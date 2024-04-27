@@ -1,10 +1,7 @@
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amsthm}
-\usepackage{graphicx}
+\input{header}
 
 % Title, authors, and affiliations
 \title{Poincar\'e--Friedrichs constants over triangulated domains}
@@ -25,11 +22,65 @@
 \section{Introduction}
 \cite{ern2021finite}
 
+% introductory paragraph 
+
+% Estimates for Poincare constants 
+% \cite{bebendorf2003note}
+% \cite{vohralik2005discrete}
+% \cite{farwig2016note}
 % Verfurth, Veeser & Verfurth 
 % ...
 
+% Estimates for Friedrichs constants (if any)
+
+% Estimates for Maxwell constants (if any)
+
+
+While it is known that finite element patches admit Poincar\'e--Friedrichs inequalities, 
+we are not aware of computable estimates. 
+Clearly, not all local patches describe convex subdomains. 
+An ostensibly more practical class of domains are domains star-shaped with respect to a ball.
+Indeed, finite element patches of Lipschitz satisfy that condition. 
+Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be abstrarily small when the patch is around a boundary simplex at a reentrant corner, even if the mesh has good shape-regularity. 
+Some interesting limit cases include the slit domain and the crossed bricks domain,
+for which some finite element patches are not star-shaped with respect to any ball. 
+\color{red}Our upper bounds do not depend on the angles of such reentrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
+
+
 \section{Triangulations and polytopal shellings}
+
+We gather notions of simplicial meshes for the subsequent discussion. 
+
+A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these the \emph{vertices} of the simplex $T$. 
+If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
+then we call $S$ a subsimplex of $T$ and we call $T$ a supersimplex of $S$. 
+
+A family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation}, if its member simplices satisfy the following condition: 
+(i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
+The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
+We say that $\calT$ has dimension $n$ if it contains an $n$-dimensional simplex as a supersimplex for each simplex within it. 
+
+Given any simplex $T$, we write $\subsimplex(T)$ for the simplicial complex that contains all subsimplices of $T$. 
+More specifically, $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the set of $k$-dimensional subsimplices of $T$. 
+Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$.
+We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
+Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces of the triangulation. 
+
+When $\calT$ is a triangulation and $T \in \calT$, then $\calT(T)$ denotes the \emph{local patch} of $T$, which is the smallest simplicial subcomplex of $\calT$ that contains all supersimplices of $T$. Formally,
+\begin{gather*}
+    \calT(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
+\end{gather*}
+A crucial observation is this: 
+given $T, T' \in \calT$, the intersection $\calT(T) \cap \calT(T')$ is either empty or the convex closure of $T$ and $T'$ is a simplex $S \in \calT$ such that $\calT(T) \cap \calT(T') = \calT(S)$. 
+\color{red}Probably needs a proof\color{black}
+
+
+
 \section{Constructive estimate of $p$-Poincar\'e constants}
+
+% either proceeding simplex by simplex, matching along faces 
+% or proceeding patch by patch, matching over intersections
+
 \section{Lebesgue de Rham complexes and examples}
 \section{Constructive estimate of $p$-Poincar\'e--Friedrichs constants}
 
