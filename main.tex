@@ -2,6 +2,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \input{header}
+\usepackage{amscd}
+\usepackage{tikz-cd}
+\newtheorem{remark}{Remark}
 
 % Title, authors, and affiliations
 \title{Poincar\'e--Friedrichs constants over triangulated domains}
@@ -85,6 +88,56 @@ given $T, T' \in \calT$, the intersection $\calT(T) \cap \calT(T')$ is either em
 \section{Constructive estimate of $p$-Poincar\'e--Friedrichs constants}
 
 \section*{Acknowledgments}
+
+\begin{remark}
+    Suppose that $\calT$ is a simplicial complex and that $T$ is a simplex, $T \notin \calT$, such that $\calS := T \cap |\calT|$ is a subcomplex of $\partial T$. 
+    According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
+    \begin{align*}
+        \begin{CD}
+            \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT \cup T) \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
+        \end{CD}
+    \end{align*}
+    We notice that $\calS$, $\calT$, $T$ and $\calT \cup T$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
+    By the nature of the mappings in the Mayer-Vietoris sequence, we see that 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT \cup T) \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    is an exact sequence. 
+    Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
+    the Mayer-Vietoris sequence includes the exact sequence 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT \cup T) \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    and we conclude that $H_{k}(\calT) = 0$ for $1 \leq k \leq n-1$.
+    Finally, the Mayer-Vietoris sequence includes the exact sequences 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT \cup T) \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT \cup T) \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT \cup T)$.
+    % We know that  $H_{0}(\calT \cup T) \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
+    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT \cup T)$. 
+    % one easily sees that $H_{0}(\calT \cup T) \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT \cup T)$. 
+    If $\calS$ is isomorphic to disk,
+    then $H_{n}(\calT \cup T) \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT \cup T) \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+    If instead $\calS$ is isomorphic to a sphere, 
+    then $H_{n}(\calT \cup T) \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT \cup T) \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+    % Moreover, Thus $H_{n}(\calT \cup T) = H_{n}(\calT) \oplus H_{n}(\calS)$.
+    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
+    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT \cup T) \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT \cup T) \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+\end{remark}
+
+A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simplices can be arranged in linear order $T_0, T_1, \dots$ in such a way that the subcomplex $( \cup_{i=0}^{k-1} T_i ) \cap T_k$ has dimension $n-1$ for all $k > 0$.
 
 \bibliographystyle{plain}
 \bibliography{library}
