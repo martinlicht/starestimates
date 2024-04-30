@@ -47,7 +47,16 @@ for which some finite element patches are not star-shaped with respect to any ba
 \color{red}Our upper bounds do not depend on the angles of such reentrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
 
 
+It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. 
+In particular, this enables the inductive method of proof.
+
+
+Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. l
+
+
 \section{Triangulations and polytopal shellings}
+
+% 1. Develop some notation 
 
 We gather notions of simplicial meshes for the subsequent discussion. 
 
@@ -70,10 +79,253 @@ When $\calT$ is a triangulation and $T \in \calT$, then $\calT(T)$ denotes the \
 \begin{gather*}
     \calT(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
 \end{gather*}
-A crucial observation is this: 
-given $T, T' \in \calT$, the intersection $\calT(T) \cap \calT(T')$ is either empty or the convex closure of $T$ and $T'$ is a simplex $S \in \calT$ such that $\calT(T) \cap \calT(T') = \calT(S)$. 
-\color{red}Probably needs a proof\color{black}
+A crucial observation is the following.
 
+\begin{lemma}
+ Let $\calT$ be an $n$-dimensional simplicial complex and let $T,T' \in \calT$.
+ Then either $\calT_{n}(T) \cap \calT_{n}(T') = \emptyset$ or there exists $S \in \calT$
+ such that $\calT_{n}(T) \cap \calT_{n}(T') = \calT_{n}(S)$ with $T, T' \subseteq S$.
+\end{lemma}
+\begin{proof}
+ Let $F \in \calT$ be $n$-dimensional.
+ We have $F \in \calT(T )$ if and only if all vertices of $T $ are vertices of $F$.
+ We have $F \in \calT(T')$ if and only if all vertices of $T'$ are vertices of $F$.
+ Consequently, $F \in \calT(T) \cap \calT(T)$ if and only if $F \in \calT(S)$,
+ where $S \in \calT$ and $S$ is the convex closure of $F$ and $F'$.
+\end{proof}
+
+% 2. Develop manifold-like complexes and characterize them 
+
+An $n$-dimensional simplicial complex is called \emph{manifold-like} if for every $x \in \bigcup \calT$
+we have one of the following two conditions:
+\begin{itemize}
+ \item 
+ there exists $\epsilon > 0$ 
+ and a homeomorphism 
+ \begin{align*}
+    \phi : \Ball_\epsilon(x) \cap \bigcup\calT  
+    \rightarrow 
+    \left\{ x \in \bbR^{n} \suchthat |x| \leq 1 \right\}
+ \end{align*}
+ such that $\phi(x) = 0$,
+ \item 
+ there exists $\epsilon > 0$ and a homeomorphism 
+ \begin{align*}
+    \phi : \Ball_\epsilon(x) \cap \bigcup\calT 
+    \rightarrow 
+    \left\{ x \in \bbR^{n} \suchthat |x| \leq 1, x_n \leq 0 \right\}
+ \end{align*}
+ such that $\phi(x) = 0$.
+\end{itemize}
+This characterizes the union of the simplicial complex $\calT$ as a topological manifold with boundary. 
+
+We would like to have a purely combinatorial and computable criterion that characterizes manifold-like simplicial complexes. A first step in that direction is the following result.
+
+\begin{lemma}\label{lemma:characterizationofmanifoldcomplexes}
+    Let $\calT$ be an $n$-dimensional simplicial complex. The following are equivalent:
+    \begin{itemize}
+     \item $\calT$ is manifold-like
+     \item $\calT(V)$ is the triangulation of a ball for all $V \in \Vertices(\calT)$
+     \item $\calT(V)$ is manifold-like for all $V \in \Vertices(\calT)$
+     \item $\calT(S)$ is the triangulation of a ball for all $S \in \calT$
+     \item $\calT(S)$ is manifold-like for all $S \in \calT$
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    \color{red} TODO
+\end{proof}
+
+
+
+\begin{remark}
+    Clearly, not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
+    Conversely, for each dimension $n \geq 5$ there exists an $n$-dimensional compact topological manifold without a triangulation. % TODO: are these compact?
+    % TODO There are computational limits to algorithmically deciding whether a simplicial complex represents a manifold. 
+\end{remark}
+
+% 3. Develop construction of complexes via adding patches 
+
+We are interested in exhausting a simplicial complex in a controlled manner. 
+Suppose that $\calT$ is a manifold-like $n$-dimensional simplicial complex. 
+We call $n$-simplices $S,T \in \calT$ \emph{face-connected} if there exists a sequence $S_0=S,S_1,\dots,T=S_m$ such that $S_{i} \cap S_{i-1}$ is a face for all $1 \leq i \leq m$. Clearly, face-connected is an equivalence relation. A \emph{connected component} of $\calT$ is an equivalence class under the face-connected relation, and we call $\calT$ connected if all its $n$-simplices are face-connected. 
+In a manifold-like simplicial complex, two $n$-simplices have non-empty intersection if and only if they are face-connected. 
+
+It is a consequence of Lemma~\ref{lemma:characterizationofmanifoldcomplexes} that,
+if $\calT$ is a manifold-like simplicial complex, then $\calT(S)$ is connected for all $S \in \calT$.
+Moreover, a manifold-like simplicial complex $\calT$ is connected if and only if $\bigcup\calT$ is a connected topological space. 
+
+We let \emph{$k$-patching} refer to enumerations $S_1, S_2, \dots$ of $\subsimplex_{k}(\calT)$
+such that for any $0 \leq m$, the union 
+$\calU_{m} := \calT(S_0) \cup \calT(S_1) \cup \calT(S_2) \cup \dots \cup \calT(S_m)$
+shares an $n$-simplex with the patch $\calT(S_{m+1})$.
+We call the $k$-patching \emph{manifold-like} if $\calU_{m}$ is manifold-like for all $0 \leq m$.
+Clearly, a $k$-patching only exists if $k < n$ and if $\calT$ is connected. 
+We refer the reader to Figure~\ref{figure:illustrationpatching} for an illustration.
+
+\begin{lemma}
+    A connected manifold-like $n$-dimensional simplicial complex $\calT$ admits a $k$-patching for any $k < n$.
+\end{lemma}
+\begin{proof}
+    We define an undirected graph by letting $\subsimplex_{k}(\calT)$ be the set of nodes 
+    and connecting any $S, S' \in \subsimplex_{k}(\calT)$ if there exists $T \in \subsimplex_{k+1}(\calT)$ with $S, S' \subseteq T$. 
+    Note that in this case $\calT(S) \cap \calT(S') = \calT(T)$. 
+    Since $\calT$ is connected, the graph $\calG$ is connected. 
+    
+    We let $S_0, S_1, S_2, \dots$ be an enumeration of the $k$-simplices generated by a breadth-first traversal of the graph $\calG$,
+    starting at some arbitrary but fixed $S_0 \in \calT$. 
+    Since $\calG$ is locally finite and connected, 
+    this breadth-first traversal includes all $k$-simplices of $\calT$.
+    
+    Let $m \in \bbZ$ with $m \geq 1$. If $S_m$ has distance $d \in \bbN$ from $S_1$ in the graph $\calG$,
+    then there exists $0 \leq l \leq m$ such that $S_l$ has distance $d-1$ from $S_1$ and is connected to $S_m$. 
+    It follows that the sequence $S_0, S_1, S_2, \dots$ is a $k$-patching of $\calT$. 
+\end{proof}
+
+The preceding lemma is generally not true when the $k$-patching is required to be manifold-like,
+as can be verified from some simple examples;~see Figure~\ref{figure:annuluscounterexample}.
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw[dotted] (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw[dotted] (A) -- (B); \draw (B) -- (C) -- (D) -- (E) -- (F) -- (A);
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw[dotted] (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw[dotted] (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}
+    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line. (2) The new edge patch already be a subset of the subtriangulation (3) An inadmissible choice because new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like (4) An inadmissible choice because new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=0.5]
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({0.8*cos(  0)}, {0.8*sin(  0)});
+        \coordinate (B) at ({0.8*cos(120)}, {0.8*sin(120)});
+        \coordinate (C) at ({0.8*cos(240)}, {0.8*sin(240)});
+        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+        \draw (A) -- (B) -- (C) -- cycle; \draw (X) -- (Y) -- (Z) -- cycle;
+        \draw[fill=gray!20] (X) -- (Y) -- (B) -- cycle;
+        \draw[fill=gray!20] (Y) -- (Z) -- (C) -- cycle;
+        \draw[fill=gray!20] (Z) -- (X) -- (A) -- cycle;
+        \draw[fill=gray!20] (A) -- (X) -- (B) -- cycle;
+        \draw[fill=gray!20] (B) -- (Y) -- (C) -- cycle;
+        \draw[fill=gray!20] (C) -- (Z) -- (A) -- cycle;
+    \end{tikzpicture}
+    \begin{tikzpicture}[scale=0.5]
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+        \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+        \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+        \draw (O) -- (A);
+        \draw (O) -- (B);
+        \draw (O) -- (C);
+        \draw (O) -- (X);
+        \draw (O) -- (Y);
+        \draw (O) -- (Z);
+        %
+    \end{tikzpicture}
+    \begin{tikzpicture}[scale=0.5] 
+        \tikzset{z={(90:1cm)}, y={(-30:1cm)}, x={(210:1cm)}}
+        % \tikzset{z={(90:1cm)}, y={(-10:1cm)}, x={(250:1cm)}}
+
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+        \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+        \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+        \coordinate (T) at ({0}, {0}, {3});
+
+        \draw[thick, fill=gray!30] (O) -- (C) -- (T) -- cycle;
+        \draw[thick, fill=gray!30] (O) -- (Y) -- (T) -- cycle;
+        \draw[thick, fill=gray!30] (O) -- (Z) -- (T) -- cycle;
+        \draw[thick, fill=gray!30] (O) -- (A) -- (T) -- cycle;
+        \draw[thick, fill=gray!30] (O) -- (B) -- (T) -- cycle;
+        \draw[thick, fill=gray!30] (O) -- (X) -- (T) -- cycle;
+        
+        
+    \end{tikzpicture}
+
+    \caption{Example of a connected $2$-dimensional manifold-like simplicial complex, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
+\end{figure}
+
+% \color{red}
+% \begin{proposition}
+%     Suppose that $\calT$ is a connected $n$-dimensional simplicial complex. Then the following are equivalent:
+%     \begin{itemize}
+%      \item $\calT$ is manifold-like
+%      \item $\calT$ has a manifold-like $0$-patching
+%      % \item There exists $1 \leq k \leq n$ such that $\calT$ has a $k$-patching
+%     \end{itemize}
+% \end{proposition}
+% \color{black}
+
+% 4. Shellability 
+
+We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
+Given an $n$-dimensional simplicial complex $\calT$, a \emph{shelling} is an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$ such that $( \calT(T_{0}) \cup \calT(T_{1}) \cup \dots \cup \calT(T_{m}) ) \cap \calT(T_{m+1})$ is a simplicial complex of dimension $n-1$. Notice that the last intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$, and is thus manifold like. 
+
+
+% \begin{lemma}
+%     If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is manifold-like.
+%     In particular, $\calT(T_{0}) \cup \calT(T_{1}) \cup \dots \cup \calT(T_{m})$ is manifold-like for every $m \geq 0$.
+% \end{lemma}
+% \begin{proof}    
+% \end{proof}
+
+We notion of shelling is taken from Ziegler's book~\cite{}
+
+% TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
+
+% 
 
 
 \section{Constructive estimate of $p$-Poincar\'e constants}
@@ -81,8 +333,8 @@ given $T, T' \in \calT$, the intersection $\calT(T) \cap \calT(T')$ is either em
 % either proceeding simplex by simplex, matching along faces 
 % or proceeding patch by patch, matching over intersections
 
-\section{Lebesgue de Rham complexes and examples}
 \section{Constructive estimate of $p$-Poincar\'e--Friedrichs constants}
+% Repeat for H(curl), H(div), and differential forms 
 
 \section*{Acknowledgments}
 

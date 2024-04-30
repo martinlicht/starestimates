@@ -18,6 +18,7 @@ arxiv.tex
 *.log
 *.o
 *.pdf
+*.temp
 *.toc
 *~
 *.kate-swp
