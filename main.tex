@@ -1,6 +1,6 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{amsart}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \input{header}
 
 % Title, authors, and affiliations
@@ -20,7 +20,6 @@
 \end{abstract}
 
 \section{Introduction}
-\cite{ern2021finite}
 
 % introductory paragraph 
 
@@ -51,14 +50,20 @@ It is often very helpful if a simplicial complex can be created recursively, sta
 In particular, this enables the inductive method of proof.
 
 
-Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. l
+Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
+\cite{ern2021finite}
 
 \section{Triangulations and polytopal shellings}
 
+We gather notions of simplicial meshes for the subsequent discussion. 
+Apart from basic definitions and notational conventions, we pay special attention to the question of when a simplicial complex is a triangulation of a manifold. 
+A particularly important class of simplicial complexes are so-called \emph{shellable} complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. While shellable complexes are a very special class of complexes, they faciliate achieving the main goal of our exposition.
+Our main references on simplicial complexes and shellability are the monographs by Ziegler~\cite{ziegler2012lectures} and Kozlov~\cite{kozlov2008combinatorial}. 
+
 % 1. Develop some notation 
 
-We gather notions of simplicial meshes for the subsequent discussion. 
+\subsection{Basic notions}
 
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these the \emph{vertices} of the simplex $T$. 
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
@@ -75,9 +80,9 @@ Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(
 We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
 Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces of the triangulation. 
 
-When $\calT$ is a triangulation and $T \in \calT$, then $\calT(T)$ denotes the \emph{local patch} of $T$, which is the smallest simplicial subcomplex of $\calT$ that contains all supersimplices of $T$. Formally,
+When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} of $T$, which is the smallest simplicial subcomplex of $\calT$ that contains all supersimplices of $T$. Formally,
 \begin{gather*}
-    \calT(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
+    \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
 \end{gather*}
 A crucial observation is the following.
 
@@ -88,13 +93,21 @@ A crucial observation is the following.
 \end{lemma}
 \begin{proof}
  Let $F \in \calT$ be $n$-dimensional.
- We have $F \in \calT(T )$ if and only if all vertices of $T $ are vertices of $F$.
- We have $F \in \calT(T')$ if and only if all vertices of $T'$ are vertices of $F$.
- Consequently, $F \in \calT(T) \cap \calT(T)$ if and only if $F \in \calT(S)$,
+ We have $F \in \patch_{\calT}(T )$ if and only if all vertices of $T $ are vertices of $F$.
+ We have $F \in \patch_{\calT}(T')$ if and only if all vertices of $T'$ are vertices of $F$.
+ Consequently, $F \in \patch_{\calT}(T) \cap \patch_{\calT}(T)$ if and only if $F \in \patch_{\calT}(S)$,
  where $S \in \calT$ and $S$ is the convex closure of $F$ and $F'$.
 \end{proof}
 
+
+
+
 % 2. Develop manifold-like complexes and characterize them 
+\subsection{Triangulations of manifolds}
+
+We call an $n$-dimensional simplicial complex $\calT$ \emph{non-branching} if every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. We call those $F \in \calT$ of dimension $n-1$ contained within only one parent a \emph{boundary face}.
+We write $\partial\calT$ for the simplicial subcomplex of $\calT$ of dimension $n-1$ 
+whose full-dimensional members are exactly the boundary faces of $\calT$.
 
 An $n$-dimensional simplicial complex is called \emph{manifold-like} if for every $x \in \bigcup \calT$
 we have one of the following two conditions:
@@ -125,10 +138,10 @@ We would like to have a purely combinatorial and computable criterion that chara
     Let $\calT$ be an $n$-dimensional simplicial complex. The following are equivalent:
     \begin{itemize}
      \item $\calT$ is manifold-like
-     \item $\calT(V)$ is the triangulation of a ball for all $V \in \Vertices(\calT)$
-     \item $\calT(V)$ is manifold-like for all $V \in \Vertices(\calT)$
-     \item $\calT(S)$ is the triangulation of a ball for all $S \in \calT$
-     \item $\calT(S)$ is manifold-like for all $S \in \calT$
+     \item $\patch_{\calT}(V)$ is the triangulation of a ball for all $V \in \Vertices(\calT)$
+     \item $\patch_{\calT}(V)$ is manifold-like for all $V \in \Vertices(\calT)$
+     \item $\patch_{\calT}(S)$ is the triangulation of a ball for all $S \in \calT$
+     \item $\patch_{\calT}(S)$ is manifold-like for all $S \in \calT$
     \end{itemize}
 \end{lemma}
 \begin{proof}
@@ -143,46 +156,7 @@ We would like to have a purely combinatorial and computable criterion that chara
     % TODO There are computational limits to algorithmically deciding whether a simplicial complex represents a manifold. 
 \end{remark}
 
-% 3. Develop construction of complexes via adding patches 
 
-We are interested in exhausting a simplicial complex in a controlled manner. 
-Suppose that $\calT$ is a manifold-like $n$-dimensional simplicial complex. 
-We call $n$-simplices $S,T \in \calT$ \emph{face-connected} if there exists a sequence $S_0=S,S_1,\dots,T=S_m$ such that $S_{i} \cap S_{i-1}$ is a face for all $1 \leq i \leq m$. Clearly, face-connected is an equivalence relation. A \emph{connected component} of $\calT$ is an equivalence class under the face-connected relation, and we call $\calT$ connected if all its $n$-simplices are face-connected. 
-In a manifold-like simplicial complex, two $n$-simplices have non-empty intersection if and only if they are face-connected. 
-
-It is a consequence of Lemma~\ref{lemma:characterizationofmanifoldcomplexes} that,
-if $\calT$ is a manifold-like simplicial complex, then $\calT(S)$ is connected for all $S \in \calT$.
-Moreover, a manifold-like simplicial complex $\calT$ is connected if and only if $\bigcup\calT$ is a connected topological space. 
-
-We let \emph{$k$-patching} refer to enumerations $S_1, S_2, \dots$ of $\subsimplex_{k}(\calT)$
-such that for any $0 \leq m$, the union 
-$\calU_{m} := \calT(S_0) \cup \calT(S_1) \cup \calT(S_2) \cup \dots \cup \calT(S_m)$
-shares an $n$-simplex with the patch $\calT(S_{m+1})$.
-We call the $k$-patching \emph{manifold-like} if $\calU_{m}$ is manifold-like for all $0 \leq m$.
-Clearly, a $k$-patching only exists if $k < n$ and if $\calT$ is connected. 
-We refer the reader to Figure~\ref{figure:illustrationpatching} for an illustration.
-
-\begin{lemma}
-    A connected manifold-like $n$-dimensional simplicial complex $\calT$ admits a $k$-patching for any $k < n$.
-\end{lemma}
-\begin{proof}
-    We define an undirected graph by letting $\subsimplex_{k}(\calT)$ be the set of nodes 
-    and connecting any $S, S' \in \subsimplex_{k}(\calT)$ if there exists $T \in \subsimplex_{k+1}(\calT)$ with $S, S' \subseteq T$. 
-    Note that in this case $\calT(S) \cap \calT(S') = \calT(T)$. 
-    Since $\calT$ is connected, the graph $\calG$ is connected. 
-    
-    We let $S_0, S_1, S_2, \dots$ be an enumeration of the $k$-simplices generated by a breadth-first traversal of the graph $\calG$,
-    starting at some arbitrary but fixed $S_0 \in \calT$. 
-    Since $\calG$ is locally finite and connected, 
-    this breadth-first traversal includes all $k$-simplices of $\calT$.
-    
-    Let $m \in \bbZ$ with $m \geq 1$. If $S_m$ has distance $d \in \bbN$ from $S_1$ in the graph $\calG$,
-    then there exists $0 \leq l \leq m$ such that $S_l$ has distance $d-1$ from $S_1$ and is connected to $S_m$. 
-    It follows that the sequence $S_0, S_1, S_2, \dots$ is a $k$-patching of $\calT$. 
-\end{proof}
-
-The preceding lemma is generally not true when the $k$-patching is required to be manifold-like,
-as can be verified from some simple examples;~see Figure~\ref{figure:annuluscounterexample}.
 
 \begin{figure}
     \centering
@@ -308,24 +282,102 @@ as can be verified from some simple examples;~see Figure~\ref{figure:annuluscoun
 % \end{proposition}
 % \color{black}
 
-% 4. Shellability 
+
+
+
+
+% 3. Shellability 
+\subsection{Shellable simplicial complexes}
 
 We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
-Given an $n$-dimensional simplicial complex $\calT$, a \emph{shelling} is an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$ such that $( \calT(T_{0}) \cup \calT(T_{1}) \cup \dots \cup \calT(T_{m}) ) \cap \calT(T_{m+1})$ is a simplicial complex of dimension $n-1$. Notice that the last intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$, and is thus manifold like. 
+Given an $n$-dimensional simplicial complex $\calT$, a \emph{shelling} is an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$ such that $( \patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m}) ) \cap \patch_{\calT}(T_{m+1})$ is a simplicial complex of dimension $n-1$. Notice that the last intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$, and is thus manifold like. 
 
 
 % \begin{lemma}
 %     If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is manifold-like.
-%     In particular, $\calT(T_{0}) \cup \calT(T_{1}) \cup \dots \cup \calT(T_{m})$ is manifold-like for every $m \geq 0$.
+%     In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ is manifold-like for every $m \geq 0$.
 % \end{lemma}
 % \begin{proof}    
 % \end{proof}
 
-We notion of shelling is taken from Ziegler's book~\cite{}
+We notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
 
 % TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
 
 % 
+
+A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simplices can be arranged in linear order $T_0, T_1, \dots$ in such a way that the subcomplex $( \cup_{i=0}^{k-1} T_i ) \cap T_k$ has dimension $n-1$ for all $k > 0$.
+
+
+\begin{remark}
+    A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
+    The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
+
+    Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
+    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
+    We exclude that case $n \leq 1$ since otherwise the discussion is trivial.
+    
+    According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
+    \begin{align*}
+        \begin{CD}
+            \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
+        \end{CD}
+    \end{align*}
+    We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
+    By the nature of the mappings in the Mayer-Vietoris sequence, 
+    \color{red}which uses some specific knowledge about the arrows\color{black}, 
+    we see that 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    is an exact sequence. 
+    Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
+    the Mayer-Vietoris sequence includes the exact sequence 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
+    Finally, the Mayer-Vietoris sequence includes the exact sequences 
+    \begin{align*}
+        \begin{CD}
+            0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
+        \end{CD}
+    \end{align*}
+    % Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
+    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
+    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+    % one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+    Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
+    In the case that $\calS$ is isomorphic to disk,
+    then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
+    Consider now the case that $\calS$ is isomorphic to a sphere.
+    Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
+    \color{red}By some handwaving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
+    Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
+    
+    We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
+    \[
+        H_0(\calT) \simeq \bbZ, 
+        \quad 
+        H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
+    \]
+    Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
+    
+    % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+    % Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
+    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
+    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
+    % \begin{align*}
+    %     \begin{CD}
+    %         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+    %     \end{CD}
+    % \end{align*}
+\end{remark}
+
 
 
 \section{Constructive estimate of $p$-Poincar\'e constants}
@@ -518,56 +570,6 @@ This inequality implies an upper bound for the generalized inverse of the gradie
 % Repeat for H(curl), H(div), and differential forms 
 
 \section*{Acknowledgments}
-
-\begin{remark}
-    Suppose that $\calT$ is a simplicial complex and that $T$ is a simplex, $T \notin \calT$, such that $\calS := T \cap |\calT|$ is a subcomplex of $\partial T$. 
-    According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
-    \begin{align*}
-        \begin{CD}
-            \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT \cup T) \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
-        \end{CD}
-    \end{align*}
-    We notice that $\calS$, $\calT$, $T$ and $\calT \cup T$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
-    By the nature of the mappings in the Mayer-Vietoris sequence, we see that 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT \cup T) \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    is an exact sequence. 
-    Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
-    the Mayer-Vietoris sequence includes the exact sequence 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT \cup T) \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    and we conclude that $H_{k}(\calT) = 0$ for $1 \leq k \leq n-1$.
-    Finally, the Mayer-Vietoris sequence includes the exact sequences 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT \cup T) \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT \cup T) \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT \cup T)$.
-    % We know that  $H_{0}(\calT \cup T) \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
-    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT \cup T)$. 
-    % one easily sees that $H_{0}(\calT \cup T) \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT \cup T)$. 
-    If $\calS$ is isomorphic to disk,
-    then $H_{n}(\calT \cup T) \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT \cup T) \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
-    If instead $\calS$ is isomorphic to a sphere, 
-    then $H_{n}(\calT \cup T) \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT \cup T) \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
-    % Moreover, Thus $H_{n}(\calT \cup T) = H_{n}(\calT) \oplus H_{n}(\calS)$.
-    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
-    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT \cup T) \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT \cup T) \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-\end{remark}
-
-A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simplices can be arranged in linear order $T_0, T_1, \dots$ in such a way that the subcomplex $( \cup_{i=0}^{k-1} T_i ) \cap T_k$ has dimension $n-1$ for all $k > 0$.
 
 \bibliographystyle{plain}
 \bibliography{library}
