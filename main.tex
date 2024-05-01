@@ -52,7 +52,7 @@ In particular, this enables the inductive method of proof.
 
 Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
-\cite{ern2021finite}
+
 
 \section{Basic notions of triangulations and polytopal shellings}
 
@@ -514,22 +514,33 @@ Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret a
 % https://hal.science/hal-03226049/file/volI_hal.pdf
 
 
-We now collect examples for Poincar\'e--Friedrich inequalities for important special cases. Over convex bounded domains, it is known~\cite{bebendorf2003note} that 
-\begin{align}
-    \| u - u_{\Omega} \|_{L^{2}(\Omega)}
+We now collect examples for Poincar\'e--Friedrich inequalities for important special cases; see also~\cite{ern2021finite} for a short overview. Over convex bounded domains, it is known~\cite{bebendorf2003note,acosta2004optimal} that 
+\begin{align}\label{math:acostaduran}
+    \| u - u_{\Omega} \|_{L^{1}(\Omega)}
     \leq 
-    \frac{d}{\pi}
+    \frac{\diam(\Omega)}{2}
+    \| \nabla u \|_{L^{1}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,2}(\Omega)
+    ,
+    \\
+    \| u - u_{\Omega} \|_{L^{2}(\Omega)} \label{math:bebendorf}
+    \leq 
+    \frac{\diam(\Omega)}{\pi}
     \| \nabla u \|_{L^{2}(\Omega)}
     ,
     \quad 
     u \in W^{1,2}(\Omega)
     .
 \end{align}
-More generally~\cite[Theorem~1]{esposito2013poincare}, when $2 \leq p < \infty$, one can show that 
-\begin{align}
+These two estimates are the best possible in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
+Moreover, when $1 < p < \infty$, we know~\cite{chua2006estimates} that
+\begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    \frac{d}{\sqrt[p]{\pi_p}}
+    C_{{\rm CW},p}
+    \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
     \quad 
@@ -537,25 +548,6 @@ More generally~\cite[Theorem~1]{esposito2013poincare}, when $2 \leq p < \infty$,
     ,
 \end{align}
 where 
-\begin{align}
-    \pi_p
-    :=
-    2\pi \frac{ \sqrt[p]{p-1} }{ p \sin(\pi/p) }
-    .
-\end{align}
-Moreover, we are aware of~\cite{chua2006estimates}, who estimate when $1 < p < \infty$,
-\begin{align}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    C_{{\rm CW},p}
-    d
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align}
-where, 
 \begin{align}
     C_{{\rm CW},p} 
     := 
@@ -567,8 +559,92 @@ where,
     }
     \leq 
     \sqrt[p]{p} 2^{1-\frac 1 p}
+    =
+    2
+    \left( \frac p 2 \right)^{\frac 1 p}
     .
 \end{align}
+In addition to that,
+according to~\cite[Theorem~1]{esposito2013poincare}, when $2 \leq p < \infty$, one can show that 
+\begin{align}\label{math:esposito:pf}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\rm{ENT},p}
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align}
+where 
+\begin{align}
+    C_{\rm{ENT},p}
+    :=
+    \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
+    .
+\end{align}
+The constant $C_{\rm{ENT},p}$ is the best possible. 
+Note that the last inequalities imply, again when $2 \leq p < \infty$, the Poincar\'e inequalities
+\begin{align}\label{math:esposito:poincare}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    2^{1-\frac 2 p}C_{\rm{ENT},p}
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align}
+The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
+
+\begin{remark}
+    Let us compare the different estimates for the Poincar\'e inequality in the case $2 \leq p$. 
+    We observe 
+    \begin{align*}
+        2^{1-\frac 2 p}
+        C_{\rm{ENT},p}
+        =
+        2 
+        \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} \cdot 4^{\frac 1 p} }
+        =
+        \frac{ p \sin(\pi/p) }{ 4^{\frac 1 p} \pi  \sqrt[p]{p-1}  }
+        \leq 
+        \frac{ p \sin(\pi/p) }{ 4^{\frac 1 p} \pi  }
+        \leq 
+        \frac{1}{ 4^{\frac 1 p} }
+        .
+    \end{align*}
+    It follows that \eqref{math:esposito:poincare} is tighter estimate than \eqref{math:chuawheeden}.
+    In the limit as $p$ goes to infinity, \eqref{math:esposito:poincare} implies the Poincar\'e inequality 
+    \begin{align*}
+        \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
+        \leq 
+        \diam(\Omega)
+        \| \nabla u \|_{L^{\infty}(\Omega)}
+        ,
+        \quad
+        u \in W^{1,\infty}(\Omega)
+        %
+    \end{align*}
+    because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. 
+    Of course, this Poincar\'e inequality implies a Poincar\'e--Friedrichs inequality with the same constant. 
+%     Taking the \emph{informal} limit also suggest the inequality 
+%     \begin{align*}
+%         \min\limits_{ c \in \bbR }
+%         \| u - c \|_{L^{\infty}(\Omega)}
+%         \leq 
+%         \frac{d}{2}
+%         \| \nabla u \|_{L^{\infty}(\Omega)}
+%         ,
+%         \quad
+%         u \in W^{1,\infty}(\Omega)
+%         ,
+%     \end{align*}
+%     however, we generally cannot exchange the minimum and the limit, so that is strictly informal. 
+\end{remark}
 
 
 % https://www.ams.org/journals/proc/2004-132-01/S0002-9939-03-07004-7/S0002-9939-03-07004-7.pdf
