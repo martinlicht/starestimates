@@ -330,8 +330,189 @@ We notion of shelling is taken from Ziegler's book~\cite{}
 
 \section{Constructive estimate of $p$-Poincar\'e constants}
 
+Let us assume that $p \in [1,\infty]$ and that $\Omega \subseteq \bbR^{n}$ is an open set. 
+We say that a domain $\Omega \subseteq \bbR^{n}$ satisfies the Poincar\'e--Friedrichs inequality with exponent $p \in [1,\infty]$
+if there exists a constant $C_{{\rm PF},\Omega,p} \geq 0$ such that the following holds:
+for every vector field $\bff \in \nabla W^{1,p}(\Omega)$ there exists $u \in W^{1,p}(\Omega)$
+such that $\nabla u = \bff$ and 
+\begin{align}\label{math:inequalitypf:gradient}
+    \| u \|_{L^{p}(\Omega)}
+    \leq 
+    C_{{\rm PF},\nabla,\Omega,p} 
+    \| \bff \|_{L^{p}(\Omega)}
+    .
+\end{align}
+We call $C_{{\rm PF},\Omega,p}$ the Poincar\'e--Friedrichs constant. 
+This inequality implies an upper bound for the generalized inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$.
+
+
+\begin{remark}
+    Before we proceed, we wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known are Poincar\'e inequality or also Friedrichs inequality in the literature. 
+    
+    Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
+    we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
+    if there exists $C_{{\varnothing},\Omega,p} \geq 0$ such that 
+    for all $u \in W^{1,p}(\Omega)$
+    \begin{align}
+        \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+        \leq 
+        C_{\varnothing,\Omega,p} 
+        \| \nabla u \|_{L^{p}(\Omega)}
+        ,
+    \end{align}
+    where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
+    \begin{align*}
+        u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u.
+    \end{align*}
+    Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{\varnothing,\Omega,p}$. 
+    Towards a converse inequality, 
+    let us first observe that the average of any $v \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
+    \begin{align*}
+        \| v_\Omega \|_{L^{p}(\Omega)}^{p}
+        = 
+        \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |v(x)| \right)^{p}
+        \leq 
+        \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |v(x)|^{p} \right)
+        = 
+        \| v \|_{L^{p}(\Omega)}^{p}
+        .
+    \end{align*}
+    Here, we have used Jensen's inequality. 
+    In the case $p = \infty$, any $v \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| v \|_{L^{\infty}(\Omega)}$. 
+    We therefore combine 
+    \begin{align*}
+        \| v - v_\Omega \|_{L^{p}(\Omega)} 
+        \leq
+        2
+        \| v \|_{L^{p}(\Omega)},
+        \quad 
+        v \in L^{p}(\Omega)
+        .
+    \end{align*}
+    \begin{align*}
+        \color{Emerald}
+        \| u - u_\Omega \|_{L^{p}(\Omega)}^{p}
+        \leq 
+        2^{p-1} 
+        \| u \|_{L^{p}(\Omega)}^{p}
+        +
+        2^{p-1} 
+        \| u_\Omega \|_{L^{p}(\Omega)}^{p}
+        \leq 
+        2^{p} 
+        \| u \|_{L^{p}(\Omega)}^{p}
+        .
+    \end{align*}
+    We conclude that the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with $C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}$. 
+    In the special case $p=2$, we always have $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $v \in L^{2}(\Omega)$,
+    and therefore it even follows that $C_{\varnothing,\Omega,2} \leq C_{{\rm PF},\Omega,2}$. 
+    \color{red} Question: can we modify the preceding discussion for general $p$ so that this special inequality for $p=2$ emerges as a limit case? Then we get stronger results for $p \approx 2$. Stern's paper? \color{black}
+    
+    The Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
+    The kernel of those operators is infinite-dimensional, whereas the gradient only has a one-dimensional kernel. 
+    When discussing Banach spaces, there is no canonical orthogonal projection on the kernel, unlike in the Hilbert space case, 
+    which is why the Poincar\'e--Friedrichs inequality seems to be the more natural approach.
+    \color{red} Make this last paragraph for concise.
+\end{remark}
+
+
+
+
+
+
 % either proceeding simplex by simplex, matching along faces 
 % or proceeding patch by patch, matching over intersections
+\begin{theorem}
+    \color{red}Precise form of the inequality yet to be discussed, though the construction is clear.
+\end{theorem}
+
+\begin{proof}
+ Let $u \in W^{1,p}(\Omega)$. 
+ For each $F \in \calT$ of dimension $n-1$, 
+ we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{P}},F} \| \nabla u_F \|_{L^{p}(U_F)}$.
+ 
+ Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j < m$ such that $F_m := T_m \cap T_j$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+ 
+ 
+%  We let $T \in \calT$ be the first $n$-simplex. 
+%  There exists We already have 
+ 
+ Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. Hence $c_{\star} := w_{m-1} - u_{|\Omega_{m-1}}$ is a constant. 
+ By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j}$. 
+ Since $\nabla u_{F_{m}|T_j} = \nabla w_{m-1|T_j}$,
+ there exists a constant $c_{m} := w_{m-1|T_j} - u_{F_{m}|T_j}$.
+ We define $u'_{F_m} := u_{F_m} + c_{m} \in W^{1,p}(U_F)$.
+ By construction, $\nabla u'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ and $u_{F_{m}|T_j} = w_{m-1|T_j}$. 
+ But that already implies $u'_{F_m} = u_{|F_m} - c_{\star}$. 
+ As we define a measurable function $u'_{\star} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $u'_{F_m|T_m}$.
+ Moreover, 
+ \begin{gather*}
+    \| u'_{F_m} \|_{L^{p}(T_m)}
+    \leq 
+    \| u_{F_m} \|_{L^{p}(T_m)}
+    +
+    \| c_{m} \|_{L^{p}(T_m)},
+    \qquad 
+    \| c_{m} \|_{L^{p}(T_m)}
+    \leq 
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
+    \| c_{m} \|_{L^{p}(T_j)},
+    \\ 
+    \| c_{m} \|_{L^{p}(T_j)}
+    \leq 
+    \| w_{m-1}\|_{L^{p}(T_j)} + \| u_{F_{m}} \|_{L^{p}(T_j)} 
+    .
+ \end{gather*}
+ In particular,
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    \leq 
+    \| u_{F_m} \|_{L^{p}(T_m)}
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
+    \| u_{F_{m}} \|_{L^{p}(T_j)}
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_j)}
+    .
+ \end{align*}
+ In the special case $p < \infty$, we also find 
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    &\leq 
+    3^{p-1}
+    \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+    +
+    3^{p-1}
+    \frac{ \vol(T_m) }{ \vol(T_j) }
+    \| u_{F_{m}} \|_{L^{p}(T_j)}^{p}
+    +
+    3^{p-1}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_j)}^{p}
+    \\&\leq 
+    3^{p-1}
+    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_j) } \right)
+    \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
+    +
+    3^{p-1}
+    \frac{ \vol(T_m) }{ \vol(T_j) }
+    \| w_{m-1}\|_{L^{p}(T_j)}^{p}
+    .
+ \end{align*}
+ Recursive application provides the desired result. 
+\end{proof}
+
+\begin{remark}
+    The previous result depends on only a few parameters of the triangulation:
+    the length of any traversal from the root simplex,
+    the ratios of the volumes of adjacent simplices,
+    the Poincar\'e constants on each face patch, and the Poincar\'e constant of the initial simplex. 
+    The aforementioned local Poincar\'e constants can generally be estimated in terms of shape-parameters. 
+    If the face patches of the triangulation are convex, then better estimates are possible. 
+\end{remark}
+
+
 
 \section{Constructive estimate of $p$-Poincar\'e--Friedrichs constants}
 % Repeat for H(curl), H(div), and differential forms 
