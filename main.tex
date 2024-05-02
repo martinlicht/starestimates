@@ -58,7 +58,7 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
 
 We gather notions of simplicial meshes for the subsequent discussion. 
 Apart from basic definitions and notational conventions, we pay special attention to the question of when a simplicial complex is a triangulation of a manifold. 
-A particularly important class of simplicial complexes are so-called \emph{shellable} complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. While shellable complexes are a very special class of complexes, they faciliate achieving the main goal of our exposition.
+A particularly important class of simplicial complexes are so-called \emph{shellable} complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. While shellable complexes are a very special class of complexes, they facilitate achieving the main goal of our exposition.
 Our main references on simplicial complexes and shellability are the monographs by Ziegler~\cite{ziegler2012lectures} and Kozlov~\cite{kozlov2008combinatorial}. 
 
 % 1. Develop some notation 
@@ -242,7 +242,7 @@ Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret a
 % See the collection at Lemma 3.24
 % https://hal.science/hal-03226049/file/volI_hal.pdf
 
-We now collect examples for Poincar\'e--Friedrich inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. Over convex bounded domains, it is known~\cite{bebendorf2003note,acosta2004optimal} that 
+We now collect examples for Poincar\'e--Friedrichs inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. Over convex bounded domains, it is known~\cite{bebendorf2003note,acosta2004optimal} that 
 \begin{align}\label{math:acostaduran}
     \| u - u_{\Omega} \|_{L^{1}(\Omega)}
     \leq 
@@ -318,7 +318,7 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    2^{1-\frac 2 p}C_{\rm{ENT},p}
+    2^{|1-\frac 2 p|}C_{\rm{ENT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -329,23 +329,49 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
 The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
 
 \begin{remark}
-    Let us compare the different estimates for the Poincar\'e inequality in the case $2 \leq p$. 
-    We observe 
+    Let us compare the different estimates for the Poincar\'e inequality.
+    In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
         C_{\rm{ENT},p}
         =
-        2 
-        \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} \cdot 4^{\frac 1 p} }
+        \frac{ 2^{1-\frac 2 p} }{2}
+        \frac{ \sin(\pi/p) }{ \pi/p }
+        \frac{ 1 }{ \sqrt[p]{p-1} }
         =
-        \frac{ p \sin(\pi/p) }{ 4^{\frac 1 p} \pi  \sqrt[p]{p-1}  }
-        \leq 
-        \frac{ p \sin(\pi/p) }{ 4^{\frac 1 p} \pi  }
-        \leq 
-        \frac{1}{ 4^{\frac 1 p} }
+        4^{-\frac 1 p}
+        \leq
+        C_{{\rm CW},p} 
         .
     \end{align*}
-    It follows that \eqref{math:esposito:poincare} is tighter estimate than \eqref{math:chuawheeden} for $p \geq 2$.
+    In the case $2 \geq p$, 
+    \begin{align*}
+        2^{\frac 2 p - 1}
+        C_{\rm{ENT},p}
+        =
+        \frac{ 2^{\frac 2 p - 1} }{2}
+        \frac{ \sin(\pi/p) }{ \pi/p }
+        \frac{ 1 }{ \sqrt[p]{p-1} }
+        \leq
+        \frac{ 2^{\frac 2 p-1} }{2}
+        =
+        2^{\frac 2 p - 2}
+        =
+        4^{\frac 1 p - 1}
+        \leq
+        C_{{\rm CW},p} 
+%         % 
+%         .
+%         4^{\frac 1 p}
+%         \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} \cdot 2 }
+%         =
+%         4^{\frac 1 p}
+%         \frac{ p \sin(\pi/p) }{ 4\pi \sqrt[p]{p-1} }
+%         \leq 
+%         \frac 1 2
+        .
+    \end{align*}
+    It follows that \eqref{math:esposito:poincare} is tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
     In the limit as $p$ goes to $1$, \eqref{math:esposito:poincare} recovers \eqref{math:acostaduran}. 
     In the limit as $p$ goes to infinity, \eqref{math:esposito:poincare} implies the Poincar\'e inequality 
     \begin{align*}
@@ -375,7 +401,13 @@ The main feature in proving these results is that the best constant in the Poinc
 %     however, we generally cannot exchange the minimum and the limit, so that is strictly informal. 
 \end{remark}
 
+% https://www.ams.org/journals/proc/2004-132-01/S0002-9939-03-07004-7/S0002-9939-03-07004-7.pdf
+% d/2 in the case $p = 1$ over convex domains 
 
+% https://academic.oup.com/plms/article/93/1/197/1462187
+% they formally require that f is Lipschitz. But convex domains are Lipschitz and hence Lipschitz is dense in all Sobolev spaces, right?
+
+\color{Emerald}
 \begin{align}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
@@ -390,18 +422,36 @@ The main feature in proving these results is that the best constant in the Poinc
     u \in W^{1,p}(\Omega)
     ,
 \end{align}
-% https://www.ams.org/journals/proc/2004-132-01/S0002-9939-03-07004-7/S0002-9939-03-07004-7.pdf
-% d/2 in the case $p = 1$ over convex domains 
-
-% https://academic.oup.com/plms/article/93/1/197/1462187
-% they formally require that f is Lipschitz. But convex domains are Lipschitz and hence Lipschitz is dense in all Sobolev spaces, right?
 
 \begin{proof}
     Given $z \in \Omega$, we define 
     \[
-        u_z(x) := \int_0^1 \bff( z + t(x-z) ) \cdot (x-z)
+        w(x,z) 
+        := 
+        \int_0^1 \bff( z + t(x-z) ) \cdot (x-z)
+        =
+        u(x) - u(z)
+        .
     \]
+    Subsequently,
+    \begin{align*}
+        w(x) = |\Omega|^{-1} \int_{\Omega} w(x,z) dz.
+    \end{align*}
+    Clearly, $\nabla_{x} u(x) = \nabla_{x} w(x,z) = \nabla_{x} w(x)$.
+    Next, 
+    \begin{align*}
+        \int_{\Omega} | w(x) |^{p} dx
+        &\leq 
+        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} | w(x,z) |^{p} dz dx
+        \\&\leq 
+        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} \int_0^1 | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
+        \\&= 
+        |\Omega|^{-1} \int_{\Omega} \int_{\Omega} \int_0^{D/|x-z|} | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
+        .
+    \end{align*}
+
 \end{proof}
+\color{black}
 
 
 
@@ -410,7 +460,52 @@ The main feature in proving these results is that the best constant in the Poinc
 
 % either proceeding simplex by simplex, matching along faces 
 % or proceeding patch by patch, matching over intersections
-\begin{theorem}
+
+
+\begin{lemma}
+    Let $T_1$ and $T_{2}$ be two $n$-simplices such that $F = T_1 \cap T_2$ is a common subsimplex of dimension $n-1$. Then 
+    \color{red} Here we estimate the Poincar\'e constant over a face patch.
+\end{lemma}
+\begin{proof}
+    \color{red}
+    Possible approaches: 
+    \begin{itemize}
+     \item Take the trace jump (requires trace inequality with explicit constant) and extend the resulting constant function
+     \item The union is star-shaped with respect to some (hopefully large) convex set, then use inequality for that situation (available in literature)
+     \item Reflection trick
+     \item Paper by Veeser and Verfuerth?
+    \end{itemize}
+    Most importantly, all constants must be explicitly computable!
+    We can do all these methods and compare the results. 
+    \color{black}
+    We write $U := T_1 \cup T_2$. Let $u \in W^{1,p}(U)$.
+    Suppose $u_1 \in W^{1,p}(T_1)$ and $u_2 \in W^{1,p}(T_2)$
+    satisfy $\nabla u_1 = \nabla u_{|T_1}$ and $\nabla u_2 = \nabla u_{|T_2}$.
+    Then there exists a constant $c \in \bbR$ such that $c = \trace_{T_1,F} u_1 - \trace_{T_1,F} u_2$.
+    Consequently, if we define 
+    \color{red} yet to be completed.
+\end{proof}
+
+
+The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is important in this context. 
+
+\begin{lemma}\label{lemma:traceinequality}
+    Let $p \in [1,\infty)$ and let $T$ be an $n$-dimensional simplex with a face $F$. Then 
+    \begin{align*}
+        |F|^{-1} \| u \|_{L^{p}(F)}^{p}
+        \leq 
+        |T|^{-1} \| u \|_{L^{p}(T)}^{p}
+        +
+        p \cdot \diam(T) |T|^{-1} 
+        \| u \|_{L^{p}(T)}^{p-1}
+        \| \nabla u \|_{\bfL^{p}(T)}
+        .
+    \end{align*}
+\end{lemma}
+
+
+
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
 \end{theorem}
 
@@ -419,18 +514,18 @@ The main feature in proving these results is that the best constant in the Poinc
  For each $F \in \calT$ of dimension $n-1$, 
  we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{P}},F} \| \nabla u_F \|_{L^{p}(U_F)}$.
  
- Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j < m$ such that $F_m := T_m \cap T_j$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+ Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
  
 %  We let $T \in \calT$ be the first $n$-simplex. 
 %  There exists We already have 
  
  Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. Hence $c_{\star} := w_{m-1} - u_{|\Omega_{m-1}}$ is a constant. 
- By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j}$. 
- Since $\nabla u_{F_{m}|T_j} = \nabla w_{m-1|T_j}$,
- there exists a constant $c_{m} := w_{m-1|T_j} - u_{F_{m}|T_j}$.
+ By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j(m)}$. 
+ Since $\nabla u_{F_{m}|T_{j(m)}} = \nabla w_{m-1|T_{j(m)}}$,
+ there exists a constant $c_{m} := w_{m-1|T_{j(m)}} - u_{F_{m}|T_{j(m)}}$.
  We define $u'_{F_m} := u_{F_m} + c_{m} \in W^{1,p}(U_F)$.
- By construction, $\nabla u'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ and $u_{F_{m}|T_j} = w_{m-1|T_j}$. 
+ By construction, $\nabla u'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ and $u_{F_{m}|T_{j(m)}} = w_{m-1|T_{j(m)}}$. 
  But that already implies $u'_{F_m} = u_{|F_m} - c_{\star}$. 
  As we define a measurable function $u'_{\star} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $u'_{F_m|T_m}$.
  Moreover, 
@@ -443,12 +538,12 @@ The main feature in proving these results is that the best constant in the Poinc
     \qquad 
     \| c_{m} \|_{L^{p}(T_m)}
     \leq 
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
-    \| c_{m} \|_{L^{p}(T_j)},
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+    \| c_{m} \|_{L^{p}(T_{j(m)})},
     \\ 
-    \| c_{m} \|_{L^{p}(T_j)}
+    \| c_{m} \|_{L^{p}(T_{j(m)})}
     \leq 
-    \| w_{m-1}\|_{L^{p}(T_j)} + \| u_{F_{m}} \|_{L^{p}(T_j)} 
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})} + \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
     .
  \end{gather*}
  In particular,
@@ -457,14 +552,54 @@ The main feature in proving these results is that the best constant in the Poinc
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
-    \| u_{F_{m}} \|_{L^{p}(T_j)}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_j)}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
     .
  \end{align*}
- In the special case $p < \infty$, we also find 
+ In the special case $p=1$,
+ \begin{align*}
+    \| w_{m} \|_{L^{1}(T_m)}
+    \leq 
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+    \right)
+    \| u_{F_m} \|_{L^{1}(U_{F_m})}
+    +
+    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
+    .
+ \end{align*}
+ In the special case $p=\infty$, we get 
+ \begin{align*}
+    \| w_{m} \|_{L^{\infty}(T_m)}
+    \leq 
+    2
+    \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+    +
+    \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    .
+ \end{align*}
+ In particular, letting $q$ be the complementary exponent, 
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    \leq 
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+    \right)^{\frac 1 p}
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
+    .
+ \end{align*}
+ 
+ \color{red}We want to summarize the Lp norms so that the Poincare inequality over $U_F$ is applied only once. In the special cases $p=1$ and $p=\infty$, this works as above. Do we have a formula for general $p$ that contains these as limit cases? \color{black}
+ In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}^{p}
     &\leq 
@@ -472,23 +607,95 @@ The main feature in proving these results is that the best constant in the Poinc
     \| u_{F_m} \|_{L^{p}(T_m)}^{p}
     +
     3^{p-1}
-    \frac{ \vol(T_m) }{ \vol(T_j) }
-    \| u_{F_{m}} \|_{L^{p}(T_j)}^{p}
+    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
     +
     3^{p-1}
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_j)^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_j)}^{p}
+    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
     \\&\leq 
     3^{p-1}
-    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_j) } \right)
+    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
     \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
     +
     3^{p-1}
-    \frac{ \vol(T_m) }{ \vol(T_j) }
-    \| w_{m-1}\|_{L^{p}(T_j)}^{p}
+    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    ,
+ \end{align*}
+ and therefore
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    &\leq 
+    3^{\frac{p-1}{p}}
+    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)^{\frac 1 p}
+    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
+    +
+    3^{\frac{p-1}{p}}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
     .
  \end{align*}
- Recursive application provides the desired result. 
+ \color{blue}
+ In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    &\leq 
+    \left( 
+        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+    \right)^{ p-1 }
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        +
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    ,
+ \end{align*}
+ and therefore
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    &\leq 
+    \left( 
+        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+    \right)^{ \frac{p-1}{p} }
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)} 
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
+        +
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+    \right)
+    .
+ \end{align*}
+ \color{black}
+ Recursive application provides the following estimate:
+ if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
+ such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
+ then 
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    &\leq 
+    \sum_{t=1}^{m} 
+    \left( 
+        \prod_{t < l \leq m} 
+        3^{\frac{p-1}{p}}
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{j(l)})^{\frac 1 p} }
+    \right)
+    \max\left( 1, \frac{ \vol(T_t) }{ \vol(T_{j(t)}) } \right)^{\frac 1 p}
+    \| u_{F_t} \|_{L^{p}(U_{F_t})}
+    \\&\quad \quad \quad 
+    +
+    \left( 
+        \prod_{t < l \leq m} 
+        3^{\frac{p-1}{p}}
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{j(l)})^{\frac 1 p} }
+    \right)
+    \| u_{T_0}\|_{L^{p}(T_{0})}
+    .
+ \end{align*}
+ 
 \end{proof}
 
 \begin{remark}
@@ -503,7 +710,53 @@ The main feature in proving these results is that the best constant in the Poinc
 % https://people.tamu.edu/~guermond//PUBLICATIONS/ern_guermond_m2an_2016.pdf 
 % Lemma 5.5
 
+\begin{figure}
+\begin{tikzpicture}
+    % Define the vertices of the triangles
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2,0);
+    \coordinate (C) at (1,1.5);
+    \coordinate (D) at (3,1.5); % Extra vertex for the second triangle
+    \coordinate (E) at (3,2.5); % Extra vertex for the second triangle
+    \coordinate (F) at (4,0.25); % Extra vertex for the second triangle
+    \coordinate (X) at (1,-1.5);
+    \coordinate (Y) at (3,-1.5); % Extra vertex for the second triangle
+    
+    \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
+    \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
+    \coordinate (CentroidCDE) at ($(C)!0.3333!(D)!0.3333!(E)$);
+    \coordinate (CentroidBDF) at ($(B)!0.3333!(D)!0.3333!(F)$);
+    \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
+    
+    % Draw triangles
+    \draw[fill=gray!20] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!30] (B) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!30] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!30] (B) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!20] (A) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!20] (Y) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!20] (Y) -- (B) -- (F) -- cycle; 
+    
+    % Draw arrows between triangle centroids
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
+    
+    % Labels for vertices (optional)
+    \node at (A) [below left] {$A$};
+    \node at (B) [below right] {$B$};
+    \node at (C) [above] {$C$};
+    \node at (D) [above right] {$D$};
+\end{tikzpicture}
+\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
+\end{figure}
 
+\newpage
 
 \section{Shellable triangulated domains}
 
