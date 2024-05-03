@@ -13,29 +13,32 @@
 
 \begin{abstract}
     We construct upper bounds for Poincar\'e--Friedrichs constants over triangulated domains. 
-    These include the Poincar\'e, Maxwell, and Friedrichs constants as special cases. 
-    The main application that we envision concern computable estimates over finite element patches. 
+    These includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
+    The main application that we envision are computable estimates over finite element patches. 
 \end{abstract}
 
 \maketitle
 
 \section{Introduction}
 
-% introductory paragraph 
+{\color{red}This introduction is a very rough draft, including snippets}
 
-We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
-Given a domain $\Omega \subseteq \bbR^n$ and $1 \leq p \leq \infty$,
-we search for a constant $C > 0$ such that 
-
-% Estimates for Poincare constants 
-% \cite{bebendorf2003note}
-% \cite{vohralik2005discrete}
-% Verfurth, Veeser & Verfurth 
-% ...
-
-% Estimates for Friedrichs constants (if any)
-
-% Estimates for Maxwell constants (if any)
+We address the construction of potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over triangulated domains. The potential operators are ought to satisfy bounds in Lebesgue norms that are explicitly computable in terms of the geometry. 
+In particular, this yields computable upper bounds for Poincar\'e--Friedrichs inequalities. 
+For example, if $\bff \in \bfL^{p}(\Omega)$ is a square-integrable vector field over some domain $\Omega \subseteq \bbR^3$, 
+we want to bound the $L^p$ norm of the potential
+\begin{align*}
+    \argmin\limits_{ \substack{ \bfv \in \bfL^{p}(\curl) \\ \curl \bfv = \bff } } \| \bfv \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\curl}
+    \| \bff \|_{L^{p}(\Omega)}
+    .
+\end{align*}
+Finding a potential operator, whether it be linear or nonlinear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
+We address this topic in the special case where $\Omega$ admits a shellable triangulation.
+While this constraints us to the class of {\color{red}contractible} domains, 
+having computable upper bounds for such domains is an important step stone towards the more general case. 
+For example, local patches around a simplex within a larger triangulation belong to the class of shellable triangulations.
 
 
 While it is known that finite element patches admit Poincar\'e--Friedrichs inequalities, 
@@ -46,25 +49,203 @@ Indeed, finite element patches of Lipschitz satisfy that condition.
 Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a reentrant corner, even if the mesh has good shape-regularity. 
 Some interesting limit cases include the slit domain and the crossed bricks domain,
 for which some finite element patches are not star-shaped with respect to any ball. 
-\color{red}Our upper bounds do not depend on the angles of such reentrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
 
+
+We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
+Given a domain $\Omega \subseteq \bbR^n$ and $1 \leq p \leq \infty$,
+we search for a constant $C > 0$ such that 
+\begin{align*}
+    \min\limits_{c\in\bbR}
+    \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\grad} \| \nabla u \|_{L^p(\Omega)},
+    \quad 
+    u \in \nabla W^{1,p}(\Omega)
+    .
+\end{align*}
+Finding a potential of a given gradient $\nabla u$ is generally a nonlinear operation. 
+The operator norm of any \emph{linear} potential construction is an upper bound for the Poincar\'e--Friedrichs constant. 
+Even though the existence of such a bounded linear potential construction is not evident a priori, 
+picking the average-free potential 
+\begin{align*}
+    \Phi_{\grad}( \bff ) 
+    := 
+    \argmin\limits_{ \substack{ v \in W^{1,p}(\Omega) \\ \int_\Omega v = 0 } } \| \nabla v - \bff \|_{L^{p}(\Omega)},
+    \quad 
+    \bff \in \nabla W^{1,p}(\Omega)
+\end{align*}
+is known to be a linear operation. Its operator norm is the constant in the Poincar\'e inequality 
+\begin{align*}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\rm P} \| \nabla u \|_{L^p(\Omega)},
+    \quad 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align*}
+where $u_\Omega$ denotes the average of $u$.
+Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities or Poincar\'e inequalities. 
+The optimal values for all $1 \leq p < \infty$ are known when the domain is convex.
+
+The situation is less clear cut when we try to find try the curl or divergence operators
+\begin{align*}
+    \curl : \bfW^{p}(\curl) \rightarrow \bfL^{p}(\curl),
+    \quad 
+    \divergence : \bfW^{p}(\divergence) \rightarrow L^{p}(\curl),
+\end{align*}
+where we use the function spaces
+\begin{align*}
+    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \curl \bfu \in \bfL^p(\Omega) \right\}
+    ,
+    \\
+    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \divergence \bfu \in L^p(\Omega) \right\}
+    .
+\end{align*}
+The fundamental difference is that the curl and divergence have infinite-dimensional kernels. 
+The existence of a bounded linear potential operator is a non-trivial fact even in the Hilbert space case. 
+In the Banach space case, it is not immediately evident the kernels of these operators are complemented.
+We are interested in constants for inequalities such as 
+\begin{align*}
+    \argmin\limits_{ \substack{ v \in W^{p}(\curl) \\ \curl v = \bff } } \| v \|_{L^{p}(\Omega)},
+    \leq 
+    C_{\curl}
+    \| \bff \|_{L^{p}(\Omega)}
+    \\
+    \argmin\limits_{ \substack{ v \in W^{p}(\divergence) \\ \divergence v = f } } \| v \|_{L^{p}(\Omega)},
+    \leq 
+    C_{\divergence}
+    \| f \|_{L^{p}(\Omega)}
+    ,
+\end{align*}
+and whether these constants can be estimated by the operator norm of linear potential operators 
+\begin{align*}
+    \Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfL^{p}(\Omega),
+    \quad 
+    \Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow L^{p}(\Omega).
+\end{align*}
+We notice that not much attention has been given to the study of optimal constants in such Poincar\'e--Friedrichs for the curl and divergence operators, even if the domain is convex, which is in sharp contrast to the study of the gradient operator. 
+In the Hilbert space setting when $p = 2$, Guerini and Savo~\cite{guerini2004eigenvalue} have develop lower bounds for the spectrum of the Hodge--Laplace operator, which implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
+\\
+
+The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence satisfying explicitly computable upper bounds. This is achieved for a special class of triangulated domains,
+namely domains with so-called \emph{shellable} triangulations. 
+Formally, a simplicial complex is shellable if its full-dimensional simplices can be ordered in a sequence such that each such simplex in the sequence intersects the union of the previously listed simplices in a codimension one simplicial complex in the boundary of the new facet being added. 
+Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
+by successively glueing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+the gluing interface is a triangulated submanifold of the boundary. 
+This forces the intermediate triangulations to be particularly well-shaped. 
+
+\color{red}Do Ern and Guermond construct a potential for the gradient over triangulations? What exactly is their approach\color{black}
+\nocite{gross2004electromagnetic,hiptmair2002finite}
+
+As a necessary subcomponent, we need to apply local Poincar\'e inequalities to select potentials. 
+Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients. 
+We construct gradient potentials locally over convex domains or face patches. 
+We can access a considerable body of literature for gradient Poincar\'e inequalities over convex domains~\cite{bebendorf2003note}. In fact, optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known over convex domains. 
+
+By contrast, the construction of curl and divergence potentials needs to repeated solve the potential problem for a vector-valued problem over simplices subject to tangential or normal boundary conditions, respectively, along a part of the boundary.
+The literature is much scarcer when it comes to this. 
+We are aware of work by Guerini and Savo who estimate the Poincar\'e--Friedrichs constants over convex domains in the Hilbert space setting, when $p=2$, subject to no boundary conditions.
+By duality, that implies lower bounds for the case of full boundary conditions.
+We remark that their work also shows that over convex domains in 3D:
+\begin{align*}
+    C_{\grad} \geq C_{\curl} \geq C_{\divergence}.
+\end{align*}
+But we need to find potentials over a simplex subject to partial boundary conditions 
+and we want to address the entire $1 \leq p \leq \infty$ of Lebesgue exponents. 
+The existence of such potentials is well-known yet we are not aware of any explicit constants in the literature.
+Even solving the potential equation of the gradient of a simplex subject to Dirichlet boundary conditions along a single face 
+has no estimates in the literature. 
+
+
+We fix this problem in two steps. 
+First, we construct an auxiliary problem subject to full boundary conditions.
+Second, we develop explicit estimates for the regularized Bogovski operator. 
+
+
+% Estimates for Poincare constants 
+% \cite{bebendorf2003note}
+% \cite{vohralik2005discrete}
+% Verfurth, Veeser & Verfurth 
+% ...
+
+% Estimates for divergence constants (if any)
+
+% Estimates for curl constants (if any)
+
+\color{blue}
+
+The Poincar\'e--Friedrichs inequalities are crucial in the stability analysis of partial differential equations of vector analysis. Furthermore, their constants enter the stability and convergence theory of finite element methods. Computable and reliable estimates are a cornerstone in rigorous a~priori and a~posteriori error analysis. 
+\\
+
+\color{red}Our upper bounds do not depend on the angles of such reentrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
+\\
 
 It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. 
 In particular, this enables the inductive method of proof.
-
+\\
 
 Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
+\begin{remark}
+    The Poincar\'e--Friedrichs constant describes the fundamental stability properties of the partial differential equation. 
+    Conversely, it also implies a the lower bound for the non-zero eigenvalues of the scalar and vector Laplacian.
+    In numerical methods, upper bounds for the Poincar\'e--Friedrichs constant enable bound for the spectrum of stiffness matrices. 
+    It also enters the a~priori error analysis. 
+\end{remark}
 
 
-\section{Basic notions of triangulations and polytopal shellings}
+\begin{remark}
+ For reference, how the extension should work:
+ suppose that $u \in H(\Omega)$ and let $f = du$.
+ Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
+ We built $u'_2 \in H(T_2)$ such that 
+ \begin{align*}
+    \trace_F u_1 = \trace_F u'_2
+ \end{align*}
+ We let $u''_2 \in H(T_2)$ such that 
+ \begin{align*}
+    d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
+ \end{align*}
+ Such $u''_2$ exists because 
+ \begin{align*}
+  \trace_F( f_2 - d u'_2 ) 
+  &= 
+  \trace_F f_1 - \trace_F d u'_2
+  \\&= 
+  \trace_F f_1 - \trace_F d u'_2
+  \\&= 
+  \trace_F d u_1 - \trace_F d u'_2
+  \\&= 
+  d \trace_F u_1 - d \trace_F u'_2
+  \\&= 
+  d \trace_F u_1 - d \trace_F u_1
+  = 0
+  .
+ \end{align*}
+ Setting $u_2 = u'_2 + u''_2$, we find 
+ \begin{align*}
+    d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
+    \\
+    \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
+ \end{align*}
+ That requires an extension from given partial boundary data. 
+ Possible approaches:
+ \begin{itemize}
+  \item Reflect a neighborhood and multiply with cut-off function.
+  \item Take traces from patch and extend onto new simplex. 
+ \end{itemize}
+
+\end{remark}
+
+
+
+\section{Basic notions of triangulations}
 
 We gather notions of simplicial meshes for the subsequent discussion. 
 Apart from basic definitions and notational conventions, we pay special attention to the question of when a simplicial complex is a triangulation of a manifold. 
 A particularly important class of simplicial complexes are so-called \emph{shellable} complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. While shellable complexes are a very special class of complexes, they facilitate achieving the main goal of our exposition.
 Our main references on simplicial complexes and shellability are the monographs by Ziegler~\cite{ziegler2012lectures} and Kozlov~\cite{kozlov2008combinatorial}. 
-
-% 1. Develop some notation 
 
 \subsection{Basic notions}
 
@@ -225,34 +406,34 @@ We conclude that our notion of Poincar\'e--Friedrichs constant is equivalent to 
 
 There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
 We define the potential 
-\[
+\begin{align*}
     \Phi( \bff ) := \argmin\limits_{ \substack{ v \in W^{1,p}(\Omega) \\ \nabla v = \bff } } \| v \|_{L^{p}(\Omega)},
     \quad 
     \bff \in \nabla W^{1,p}(\Omega)
     .
-\]
+\end{align*}
 Clearly, 
-\[
+\begin{align*}
     \| \Phi(\bff) \|_{L^p(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^p(\Omega)},
-\]
+\end{align*}
 and this inequality is sharp by definition of $\Phi$ provided that $C_{{\rm PF},\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
 However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
 Consequently, any linear potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
 satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
-\[
+\begin{align*}
     C_{{\rm PF},\Omega,p} 
     \leq 
     \argmin\limits_{ v \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
     \frac{ \| \overline\Phi(\nabla v) \|_{L^p(\Omega)} }{ \| \nabla v \|_{L^p(\Omega)} }
     .
-\]
+\end{align*}
 A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
-\[
+\begin{align*}
     \Phi_{\varnothing}( \nabla u ) = u - u_{\Omega},
     \quad 
     u \in W^{1,p}(\Omega)
     .
-\]
+\end{align*}
 Its operator norm is just the smallest Poincar\'e constant $C_{\varnothing,\Omega,p}$.
 
 In the light of these musings, we can clarify that our objective is the construction of linear potential operators for the gradient and later for the curl and divergence operators. 
@@ -274,8 +455,7 @@ Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comp
 
 
 \subsection{Poincar\'e inequalities over convex domains}
-% See the collection at Lemma 3.24
-% https://hal.science/hal-03226049/file/volI_hal.pdf
+% See the collection at Lemma 3.24 : https://hal.science/hal-03226049/file/volI_hal.pdf
 
 We now collect examples for Poincar\'e--Friedrichs inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. Over convex bounded domains, it is known~\cite{bebendorf2003note,acosta2004optimal} that 
 \begin{align}\label{math:acostaduran}
@@ -466,7 +646,7 @@ since convex domains are Lipschitz domains, we may estimate
 
 Given a gradient vector field, we can reconstructed the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
 This shall be our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials. 
-After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being contructed so far. 
+After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed so far. 
 Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
 
 
@@ -478,14 +658,14 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
-    \[
+    \begin{align*}
         \frac{ \vol(T_1) }{ \vol(T_2) }
         \leq 
         \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
         \cdot 
         \frac{\diam(T_2)^n}{n! \vol(T_2)} 
         .
-    \]
+    \end{align*}
 \end{lemma}
 \begin{proof}
     Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
@@ -694,15 +874,15 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \begin{figure}[t]
 \begin{tikzpicture}
-    % Define the vertices of the triangles
     \coordinate (A) at (0,0);
     \coordinate (B) at (2,0);
     \coordinate (C) at (1,1.5);
-    \coordinate (D) at (3,1.5); % Extra vertex for the second triangle
-    \coordinate (E) at (3,2.5); % Extra vertex for the second triangle
-    \coordinate (F) at (4,0.25); % Extra vertex for the second triangle
+    \coordinate (D) at (3,1.5); 
+    \coordinate (E) at (3,3); 
+    \coordinate (F) at (4,0.25); 
     \coordinate (X) at (1,-1.5);
-    \coordinate (Y) at (3,-1.5); % Extra vertex for the second triangle
+    \coordinate (Y) at (3,-1.5); 
+    \coordinate (T) at (5,2); 
     
     \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
     \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
@@ -711,35 +891,45 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
     \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
     \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
+    \coordinate (CentroidDFT) at ($(D)!0.3333!(F)!0.3333!(T)$);
+    \coordinate (CentroidDET) at ($(D)!0.3333!(E)!0.3333!(T)$);
     
-    % Draw triangles
-    \draw[fill=gray!20] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!30] (B) -- (C) -- (D) -- cycle; 
-    \draw[fill=gray!30] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=gray!30] (B) -- (D) -- (F) -- cycle; 
-    \draw[fill=gray!20] (A) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!20] (Y) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!20] (Y) -- (B) -- (F) -- cycle; 
+    \draw[fill=gray!10] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!10] (B) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!10] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!10] (B) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!10] (A) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!10] (Y) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!10] (Y) -- (B) -- (F) -- cycle; 
+    \draw[fill=gray!10] (T) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!10] (T) -- (D) -- (E) -- cycle; 
     
-    % Draw arrows between triangle centroids
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBDF) -- (CentroidDFT); 
+    \draw[-latex, thick, shorten <=1.0pt, shorten >=2.0pt] (CentroidCDE) -- (CentroidDET); 
     
-    % Labels for vertices (optional)
-    \node at (A) [below left] {$A$};
-    \node at (B) [below right] {$B$};
-    \node at (C) [above] {$C$};
-    \node at (D) [above right] {$D$};
+%     \node at (A) [below left] {$A$};
+%     \node at (B) [below right] {$B$};
+%     \node at (C) [above] {$C$};
+%     \node at (D) [above right] {$D$};
+%     \node at (T) [above right] {$T$};
 \end{tikzpicture}
 \caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 \end{figure}
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
+    For any $u \in W^{1,p}(\Omega)$ there exists $w \in W^{1,p}(\Omega)$
+    with $\nabla u = \nabla w$ and such that for all $T \in \calT$:
+    \begin{align*}
+        ...
+    \end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -842,97 +1032,47 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
  then 
  \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
+    \| w_{m} \|_{L^{p}(S_m)}
     &\leq 
     \sum_{t=1}^{m} 
     \left( 
         \prod_{t < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+        \frac{ \vol(S_l)^{\frac 1 p} }{ \vol(S_{l-1})^{\frac 1 p} } 
     \right)
-    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 1 + \frac{ \vol(S_t)^{\frac q p} }{ \vol(S_{t-1})^{\frac q p} } \right)^{\frac 1 q}
     \| u_{F_t} \|_{L^{p}(U_{F_t})}
     \\&\quad \quad \quad 
     +
     \left( 
         \prod_{0 < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+        \frac{ \vol(S_l)^{\frac 1 p} }{ \vol(S_{l-1})^{\frac 1 p} } 
     \right)
-    \| u_{T_0}\|_{L^{p}(T_{0})}
+    \| u_{S_0}\|_{L^{p}(S_{0})}
     .
  \end{align*}
- %  
- % \color{red}We want to summarize the Lp norms so that the Poincare inequality over $U_F$ is applied only once. In the special cases $p=1$ and $p=\infty$, this works as above. Do we have a formula for general $p$ that contains these as limit cases? \color{black}
- % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
- % \begin{align*}
- %    \| w_{m} \|_{L^{p}(T_m)}^{p}
- %    &\leq 
- %    3^{p-1}
- %    \| u_{F_m} \|_{L^{p}(T_m)}^{p}
- %    +
- %    3^{p-1}
- %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
- %    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
- %    +
- %    3^{p-1}
- %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
- %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
- %    \\&\leq 
- %    3^{p-1}
- %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
- %    \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
- %    +
- %    3^{p-1}
- %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
- %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
- %    ,
- % \end{align*}
- % and therefore
- % \begin{align*}
- %    \| w_{m} \|_{L^{p}(T_m)}
- %    &\leq 
- %    3^{\frac{p-1}{p}}
- %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)^{\frac 1 p}
- %    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
- %    +
- %    3^{\frac{p-1}{p}}
- %    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
- %    \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
- %    .
- % \end{align*}
- % \color{blue}
- % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
- % \begin{align*}
- %    \| w_{m} \|_{L^{p}(T_m)}^{p}
- %    &\leq 
- %    \left( 
- %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
- %    \right)^{ p-1 }
- %    \left( 
- %        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
- %        +
- %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
- %        +
- %        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
- %    \right)
- %    ,
- % \end{align*}
- % and therefore
- % \begin{align*}
- %    \| w_{m} \|_{L^{p}(T_m)}
- %    &\leq 
- %    \left( 
- %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
- %    \right)^{ \frac{p-1}{p} }
- %    \left( 
- %        \| u_{F_m} \|_{L^{p}(T_m)} 
- %        +
- %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
- %        +
- %        \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
- %    \right)
- %    .
- % \end{align*}
- % \color{black}
+ It follows that
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(S_m)}^{p}
+    &\leq 
+    (m+1)^{p-1}
+    \sum_{t=1}^{m} 
+    \left( 
+        \prod_{t < l \leq m} 
+        \frac{ \vol(S_l) }{ \vol(S_{l-1}) } 
+    \right)
+    \left( 1 + \frac{ \vol(S_t)^{\frac q p} }{ \vol(S_{t-1})^{\frac q p} } \right)^{p/q}
+    \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
+    \\&\quad \quad \quad 
+    +
+    (m+1)^{p-1}
+    \left( 
+        \prod_{0 < l \leq m} 
+        \frac{ \vol(S_l) }{ \vol(S_{l-1}) } 
+    \right)
+    \| u_{S_0}\|_{L^{p}(S_{0})}^{p}
+    .
+ \end{align*}
+ Notice that $p/q = p - 1$.
 \end{proof}
 
 \begin{remark}
@@ -1205,15 +1345,15 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
     then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
     Consider now the case that $\calS$ is isomorphic to a sphere.
     Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
-    \color{red}By some handwaving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
+    \color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
     Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
     
     We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
-    \[
+    \begin{align*}
         H_0(\calT) \simeq \bbZ, 
         \quad 
         H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
-    \]
+    \end{align*}
     Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
     
     % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
@@ -1227,9 +1367,15 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
     % \end{align*}
 \end{remark}
 
+\section{Extension operator on finite element stars}
 
 \section{Constructive estimate of Poincar\'e--Friedrichs constants}
-% Repeat for H(curl), H(div), and differential forms 
+
+\subsection{Inequalities for partial boundary conditions on a single simplex}
+
+\subsection{Constructions over shellable triangulations}
+
+
 
 \section*{Acknowledgments}
 

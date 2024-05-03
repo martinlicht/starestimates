@@ -722,3 +722,80 @@ We can do all these methods and compare the results.
 \end{proof}
 
 
+
+%  
+ % \color{red}We want to summarize the Lp norms so that the Poincare inequality over $U_F$ is applied only once. In the special cases $p=1$ and $p=\infty$, this works as above. Do we have a formula for general $p$ that contains these as limit cases? \color{black}
+ % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}^{p}
+ %    &\leq 
+ %    3^{p-1}
+ %    \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    \\&\leq 
+ %    3^{p-1}
+ %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+ %    \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    ,
+ % \end{align*}
+ % and therefore
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}
+ %    &\leq 
+ %    3^{\frac{p-1}{p}}
+ %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)^{\frac 1 p}
+ %    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
+ %    +
+ %    3^{\frac{p-1}{p}}
+ %    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+ %    .
+ % \end{align*}
+ % \color{blue}
+ % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}^{p}
+ %    &\leq 
+ %    \left( 
+ %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+ %    \right)^{ p-1 }
+ %    \left( 
+ %        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+ %        +
+ %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+ %        +
+ %        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    \right)
+ %    ,
+ % \end{align*}
+ % and therefore
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}
+ %    &\leq 
+ %    \left( 
+ %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+ %    \right)^{ \frac{p-1}{p} }
+ %    \left( 
+ %        \| u_{F_m} \|_{L^{p}(T_m)} 
+ %        +
+ %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
+ %        +
+ %        \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+ %    \right)
+ %    .
+ % \end{align*}
+ % \color{black}
+ 
+ 
+ 
