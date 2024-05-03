@@ -23,10 +23,13 @@
 
 % introductory paragraph 
 
+We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
+Given a domain $\Omega \subseteq \bbR^n$ and $1 \leq p \leq \infty$,
+we search for a constant $C > 0$ such that 
+
 % Estimates for Poincare constants 
 % \cite{bebendorf2003note}
 % \cite{vohralik2005discrete}
-% \cite{farwig2016note}
 % Verfurth, Veeser & Verfurth 
 % ...
 
@@ -110,7 +113,8 @@ we call $n$-simplices $S,T \in \calT$ \emph{strongly connected in $\calT$} if th
 
 \section{Constructive estimate of Poincar\'e constants}
 
-In this section we address the stepwise computable estimate of Poincar\'e constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e inequality over convex domains. These results, the exposition of which we believe to be of value on its own, will serve as a building block in constructing inequalities over triangulated domains.
+In this section we address the stepwise computable estimate of Poincar\'e constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e inequality over convex domains. These results, the exposition of which we believe to be of value on its own, will serve as a building block in constructing inequalities over local patches and then triangulated domains.
+\\
 
 Let us assume that $\Omega \subseteq \bbR^{n}$ is an open set. 
 Given any $p \in [1,\infty]$, we let $L^p(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^p(\Omega) := L^p(\Omega)^n$ for the corresponding Lebesgue space of vector fields. 
@@ -136,12 +140,8 @@ Equivalently, for all $u \in W^{1,p}(\Omega)$ we have
     .
 \end{align}
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
-The main interest in this inequality is that it implies an upper bound for the generalized inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$.
-\\
 
-
-Before we proceed, we wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known are Poincar\'e inequality or also Friedrichs inequality in the literature. 
-Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
+We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
 if there exists $C_{{\varnothing},\Omega,p} \geq 0$ such that 
 for all $u \in W^{1,p}(\Omega)$
@@ -171,7 +171,7 @@ let us first observe that the average of any $v \in W^{1,p}(\Omega)$ with $p < \
 \end{align*}
 Here, we have used Jensen's inequality. 
 In the case $p = \infty$, any $v \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| v \|_{L^{\infty}(\Omega)}$. 
-We therefore combine 
+It follows that 
 \begin{align*}
     \| v - v_\Omega \|_{L^{p}(\Omega)} 
     \leq
@@ -198,10 +198,10 @@ We therefore combine
 Hence the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with $C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}$. 
 
 In the special case $p=2$, we always have $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $v \in L^{2}(\Omega)$,
-and therefore it even follows that $C_{\varnothing,\Omega,2} \leq C_{{\rm PF},\Omega,2}$. 
+and therefore even $C_{\varnothing,\Omega,2} = C_{{\rm PF},\Omega,2}$. 
 This follows from the orthogonality constant functions to average-free functions in $L^2(\Omega)$,
-and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-We use a generalization of the projection estimate that was studied by Stern~\cite{stern2015banach} to obtain improved estimates for all $L^p$ spaces with $1 \leq p \leq \infty$:
+and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).\footnote{\color{red}Is there a better name for this than Xu-Zikatanov estimate?}
+Stern~\cite{stern2015banach} provided a generalization of the projection estimate that implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
 since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
 \begin{align*}
     \| v - v_\Omega \|_{L^{p}(\Omega)}
@@ -220,10 +220,43 @@ We have $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
 The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, which reproduces the improved estimate for the Hilbert space case.
 The main consequence for us is the estimate 
 $C_{\varnothing,\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}$.
+We conclude that our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
 \color{red} Question: can the estimate above be further improved for general $p$? Are there known results in the literature? \color{black}
 
-We conclude that our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
-Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
+There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
+We define the potential 
+\[
+    \Phi( \bff ) := \argmin\limits_{ \substack{ v \in W^{1,p}(\Omega) \\ \nabla v = \bff } } \| v \|_{L^{p}(\Omega)},
+    \quad 
+    \bff \in \nabla W^{1,p}(\Omega)
+    .
+\]
+Clearly, 
+\[
+    \| \Phi(\bff) \|_{L^p(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^p(\Omega)},
+\]
+and this inequality is sharp by definition of $\Phi$ provided that $C_{{\rm PF},\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
+However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
+Consequently, any linear potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
+satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
+\[
+    C_{{\rm PF},\Omega,p} 
+    \leq 
+    \argmin\limits_{ v \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \overline\Phi(\nabla v) \|_{L^p(\Omega)} }{ \| \nabla v \|_{L^p(\Omega)} }
+    .
+\]
+A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
+\[
+    \Phi_{\varnothing}( \nabla u ) = u - u_{\Omega},
+    \quad 
+    u \in W^{1,p}(\Omega)
+    .
+\]
+Its operator norm is just the smallest Poincar\'e constant $C_{\varnothing,\Omega,p}$.
+
+In the light of these musings, we can clarify that our objective is the construction of linear potential operators for the gradient and later for the curl and divergence operators. 
+Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. The potential reconstruction is the natural approach towards the topic when addressing the curl and divergence operators. 
 
 \begin{remark}
     Let us further remark why the above notion of Poincar\'e--Friedrichs inequality suits our discussion better than the Poincar\'e inequality. 
@@ -235,6 +268,8 @@ Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret a
     % When discussing Banach spaces, there is no canonical orthogonal projection on the kernel, unlike in the Hilbert space case, 
     % which is why the Poincar\'e--Friedrichs inequality seems to be the more natural approach.
 \end{remark}
+
+% Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
 
 
 
@@ -298,7 +333,7 @@ according to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{\rm{ENT},p}
+    C_{\rm{EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -308,17 +343,17 @@ according to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$
 \end{align}
 where 
 \begin{align}
-    C_{\rm{ENT},p}
+    C_{\rm{EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
 \end{align}
-The constant $C_{\rm{ENT},p}$ is the best possible. 
+The constant $C_{\rm{EFNT},p}$ is the best possible. 
 Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    2^{|1-\frac 2 p|}C_{\rm{ENT},p}
+    2^{|1-\frac 2 p|}C_{\rm{EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -327,13 +362,27 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
     .
 \end{align}
 The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
+Finally,
+since convex domains are Lipschitz domains, we may estimate 
+\begin{align}\label{math:lipschitzestimate}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{\infty}(\Omega)}
+    \leq 
+    \diam(\Omega)
+    \| \nabla u \|_{L^{\infty}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,\infty}(\Omega)
+    .
+\end{align}
+
 
 \begin{remark}
     Let us compare the different estimates for the Poincar\'e inequality.
     In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
-        C_{\rm{ENT},p}
+        C_{\rm{EFNT},p}
         =
         \frac{ 2^{1-\frac 2 p} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -347,7 +396,7 @@ The main feature in proving these results is that the best constant in the Poinc
     In the case $2 \geq p$, 
     \begin{align*}
         2^{\frac 2 p - 1}
-        C_{\rm{ENT},p}
+        C_{\rm{EFNT},p}
         =
         \frac{ 2^{\frac 2 p - 1} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -386,6 +435,7 @@ The main feature in proving these results is that the best constant in the Poinc
     \end{align*}
     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. 
     Of course, this Poincar\'e inequality implies a Poincar\'e--Friedrichs inequality with the same constant. 
+    Notably, it is much less clear whether \eqref{math:esposito:pf} implies a limit case for Lipschitz functions. 
 %     Taking the \emph{informal} limit also suggest the inequality 
 %     \begin{align*}
 %         \min\limits_{ c \in \bbR }
@@ -407,103 +457,286 @@ The main feature in proving these results is that the best constant in the Poinc
 % https://academic.oup.com/plms/article/93/1/197/1462187
 % they formally require that f is Lipschitz. But convex domains are Lipschitz and hence Lipschitz is dense in all Sobolev spaces, right?
 
-\color{Emerald}
-\begin{align}
-    \min\limits_{ c \in \bbR }
-    \| u - c \|_{L^{p}(\Omega)}
-    \leq 
-    % 2^{ - \frac{p-1}{p}}
-    %2^{ - 1 + \frac{1}{p}}
-    \frac{1}{ 2^{ 1 - \frac{1}{p} } }
-    \diam(\Omega)
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align}
 
-\begin{proof}
-    Given $z \in \Omega$, we define 
-    \[
-        w(x,z) 
-        := 
-        \int_0^1 \bff( z + t(x-z) ) \cdot (x-z)
-        =
-        u(x) - u(z)
-        .
-    \]
-    Subsequently,
-    \begin{align*}
-        w(x) = |\Omega|^{-1} \int_{\Omega} w(x,z) dz.
-    \end{align*}
-    Clearly, $\nabla_{x} u(x) = \nabla_{x} w(x,z) = \nabla_{x} w(x)$.
-    Next, 
-    \begin{align*}
-        \int_{\Omega} | w(x) |^{p} dx
-        &\leq 
-        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} | w(x,z) |^{p} dz dx
-        \\&\leq 
-        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} \int_0^1 | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
-        \\&= 
-        |\Omega|^{-1} \int_{\Omega} \int_{\Omega} \int_0^{D/|x-z|} | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
-        .
-    \end{align*}
-
-\end{proof}
-\color{black}
 
 
 
 
 \subsection{Poincar\'e inequalities over triangulated domains}
 
-% either proceeding simplex by simplex, matching along faces 
-% or proceeding patch by patch, matching over intersections
+Given a gradient vector field, we can reconstructed the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
+This shall be our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials. 
+After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being contructed so far. 
+Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
 
 
-\begin{lemma}
-    Let $T_1$ and $T_{2}$ be two $n$-simplices such that $F = T_1 \cap T_2$ is a common subsimplex of dimension $n-1$. Then 
-    \color{red} Here we estimate the Poincar\'e constant over a face patch.
+We have already seen a survey of Poincar\'e inequalities over convex domains. 
+Slightly more generally, we are interested in such inequalities over face patches within simplicial triangulations. 
+We state a geometric auxiliary lemma and an estimate of Poincar\'e--Friedrichs constants over face patches 
+that captures the correct asymptotic behavior as $p$ grows to infinity.
+
+
+\begin{lemma}\label{lemma:volumecomparison}
+    Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
+    \[
+        \frac{ \vol(T_1) }{ \vol(T_2) }
+        \leq 
+        \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
+        \cdot 
+        \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+        .
+    \]
 \end{lemma}
 \begin{proof}
-    \color{red}
-    Possible approaches: 
-    \begin{itemize}
-     \item Take the trace jump (requires trace inequality with explicit constant) and extend the resulting constant function
-     \item The union is star-shaped with respect to some (hopefully large) convex set, then use inequality for that situation (available in literature)
-     \item Reflection trick
-     \item Paper by Veeser and Verfuerth?
-    \end{itemize}
-    Most importantly, all constants must be explicitly computable!
-    We can do all these methods and compare the results. 
-    \color{black}
-    We write $U := T_1 \cup T_2$. Let $u \in W^{1,p}(U)$.
-    Suppose $u_1 \in W^{1,p}(T_1)$ and $u_2 \in W^{1,p}(T_2)$
-    satisfy $\nabla u_1 = \nabla u_{|T_1}$ and $\nabla u_2 = \nabla u_{|T_2}$.
-    Then there exists a constant $c \in \bbR$ such that $c = \trace_{T_1,F} u_1 - \trace_{T_1,F} u_2$.
-    Consequently, if we define 
-    \color{red} yet to be completed.
+    Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
+    Then $\vol(T_1) = h_1 \vol(F)/n$ and $\vol(T_2) = h_2 \vol(F)/n$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
+    We estimate 
+    \begin{align*}
+        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} \diam(F),
+        \\
+        h_2 &\geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(F)
+        .
+    \end{align*}
+    The desired estimate follows. 
+    % Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
+    % \begin{align*}
+    %     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
+    %     \leq 
+    %     \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
+    %     \cdot 
+    %     \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+    %     .
+    % \end{align*}
 \end{proof}
 
 
-The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is important in this context. 
+\begin{remark}
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^n / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}. 
+    This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
 
-\begin{lemma}\label{lemma:traceinequality}
-    Let $p \in [1,\infty)$ and let $T$ be an $n$-dimensional simplex with a face $F$. Then 
+
+
+
+
+\begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
+    Suppose that $T, T'$ are two $n$-simplices whose intersection is a common face $F := T_1 \cap T_2$. Then 
     \begin{align*}
-        |F|^{-1} \| u \|_{L^{p}(F)}^{p}
+        \min\limits_{ c \in \bbR }
+        \| u - c \|_{L^{p}(U)}
+        &
         \leq 
-        |T|^{-1} \| u \|_{L^{p}(T)}^{p}
-        +
-        p \cdot \diam(T) |T|^{-1} 
-        \| u \|_{L^{p}(T)}^{p-1}
-        \| \nabla u \|_{\bfL^{p}(T)}
+        2 C_{\rm{EFNT},p}
+        \max\left( 
+            \frac{ \vol(T_1) }{ \vol(T_2) }
+            ,
+            \frac{ \vol(T_2) }{ \vol(T_1) }
+        \right)^{\frac 1 p}
+        \max\left( \diam(T_1), \diam(T_2) \right)
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\rm{EFNT},p}
+        \left( 
+            \frac{\diam(T_1)^n}{n! \vol(T_1)} 
+            \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+        \right)^{\frac 1 p}
+        \max\left( \diam(T_1), \diam(T_2) \right)
+        \| \nabla u \|_{L^{p}(U)}
         .
     \end{align*}
+    for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$.
 \end{lemma}
 
+    
+\begin{proof}
+    Let $\hat T_1$ be the $n$-simplex whose vertices $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v_n = e_n$ are the origin and the $n$ canonical unit vectors. 
+    We let $\hat T_2$ be the $n$-simplex whose vertices are $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v'_n = -e_n$. 
+    Write $U := T_1 \cup T_2$ and $\hat U := \hat T_1 \cup \hat T_2$.
+    We fix affine homeomorphisms $\Phi_1 : \hat T_1 \rightarrow T_1$ and $\Phi_2 : \hat T_2 \rightarrow T_2$
+    which map the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F$.
+    Note that these affine transformations define a bi-Lipschitz mapping $\Phi : \hat U \rightarrow U$. 
+    
+    Suppose that $u \in W^{1,p}(U)$. Then $\hat u := u \circ \Phi \in W^{1,p}(\hat U)$. 
+    We observe 
+    \begin{align*}
+        \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
+        &=
+        \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
+        +
+        \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
+        \\&
+        \leq 
+        |\det(\Dif \Phi_1)|
+        \cdot \| \Dif \Phi_1 \|^{p}
+        \cdot 
+        \| \nabla u \|_{L^{p}(T_1)}^{p}
+        +
+        |\det(\Dif \Phi_2)|
+        \cdot \| \Dif \Phi_2 \|^{p}
+        \cdot 
+        \| \nabla u \|_{L^{p}(T_2)}^{p}
+        \\&
+        \leq 
+        \max\left( 
+            |\det(\Dif \Phi_1)|^{-1} \cdot \| \Dif \Phi_1 \|^{p}
+            ,
+            |\det(\Dif \Phi_2)|^{-1} \cdot \| \Dif \Phi_2 \|^{p}
+        \right)
+        \| \nabla u \|_{L^{p}(U)}^{p}
+        .
+    \end{align*}
+    Hence 
+    \begin{align*}
+        \| \nabla \hat u \|_{L^{p}(\hat U)}
+        &\leq 
+        \max\left( 
+            |\det(\Dif \Phi_1)|^{-\frac 1 p} \cdot \| \Dif \Phi_1 \|
+            ,
+            |\det(\Dif \Phi_2)|^{-\frac 1 p} \cdot \| \Dif \Phi_2 \|
+        \right)
+        \| \nabla u \|_{L^{p}(U)}
+        .
+    \end{align*}
+    There exists $\hat w \in W^{1,p}(U)$ such that $\nabla \hat w = \nabla \hat u$ and 
+    \begin{align*}
+        \| \hat w \|_{L^{p}(\hat U)}
+        \leq 
+        2 C_{\rm{EFNT},p}
+        \| \nabla \hat u \|_{L^{p}(\hat U)}
+        .
+    \end{align*}
+    Next, setting $w = \hat w \circ \Phi^{-1}$, we find $\nabla w = \nabla u$ and 
+    \begin{align*}
+        \| w \|_{L^{p}(U)}
+        \leq 
+        \max\left( 
+            |\det(\Dif \Phi_1)|
+            ,
+            |\det(\Dif \Phi_2)|
+        \right)^{\frac 1 p}
+        \| \hat w \|_{L^{p}(\hat U)}
+        .
+    \end{align*}
+    Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
+    \begin{align*}
+        \| w \|_{L^{p}(U)}
+        &\leq 
+        2 C_{\rm{EFNT},p}
+        \max\left( 
+            |\det(\Dif \Phi_1)|
+            ,
+            |\det(\Dif \Phi_2)|
+        \right)^{\frac 1 p}
+        \max\left( 
+            |\det(\Dif \Phi_1)|^{-\frac 1 p} 
+            ,
+            |\det(\Dif \Phi_2)|^{-\frac 1 p} 
+        \right)
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\rm{EFNT},p}
+        \max\left( 
+            |\det(\Dif \Phi_1)|
+            ,
+            |\det(\Dif \Phi_2)|
+        \right)^{\frac 1 p}
+        \min\left( 
+            |\det(\Dif \Phi_1)|
+            ,
+            |\det(\Dif \Phi_2)| 
+        \right)^{-\frac 1 p} 
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\rm{EFNT},p}
+        \max\left( 
+            \frac{ |\det(\Dif \Phi_1)| }{ |\det(\Dif \Phi_2)| }
+            ,
+            \frac{ |\det(\Dif \Phi_2)| }{ |\det(\Dif \Phi_1)| }
+        \right)^{\frac 1 p}
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\rm{EFNT},p}
+        \max\left( 
+            \frac{ \vol(T_1) }{ \vol(T_2) }
+            ,
+            \frac{ \vol(T_2) }{ \vol(T_1) }
+        \right)^{\frac 1 p}
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        .
+    \end{align*}
+    This gives the desired result. 
+   
+\end{proof}
 
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{figure}[t]
+\begin{tikzpicture}
+    % Define the vertices of the triangles
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2,0);
+    \coordinate (C) at (1,1.5);
+    \coordinate (D) at (3,1.5); % Extra vertex for the second triangle
+    \coordinate (E) at (3,2.5); % Extra vertex for the second triangle
+    \coordinate (F) at (4,0.25); % Extra vertex for the second triangle
+    \coordinate (X) at (1,-1.5);
+    \coordinate (Y) at (3,-1.5); % Extra vertex for the second triangle
+    
+    \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
+    \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
+    \coordinate (CentroidCDE) at ($(C)!0.3333!(D)!0.3333!(E)$);
+    \coordinate (CentroidBDF) at ($(B)!0.3333!(D)!0.3333!(F)$);
+    \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
+    
+    % Draw triangles
+    \draw[fill=gray!20] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!30] (B) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!30] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!30] (B) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!20] (A) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!20] (Y) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!20] (Y) -- (B) -- (F) -- cycle; 
+    
+    % Draw arrows between triangle centroids
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
+    
+    % Labels for vertices (optional)
+    \node at (A) [below left] {$A$};
+    \node at (B) [below right] {$B$};
+    \node at (C) [above] {$C$};
+    \node at (D) [above right] {$D$};
+\end{tikzpicture}
+\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
+\end{figure}
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
@@ -559,6 +792,7 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
     \| w_{m-1}\|_{L^{p}(T_{j(m)})}
     .
  \end{align*}
+ We want to summarize the two integrals of $u_{F_m}$. 
  In the special case $p=1$,
  \begin{align*}
     \| w_{m} \|_{L^{1}(T_m)}
@@ -572,7 +806,7 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
     \| w_{m-1}\|_{L^{1}(T_{j(m)})}
     .
  \end{align*}
- In the special case $p=\infty$, we get 
+ In the special case $p=\infty$, 
  \begin{align*}
     \| w_{m} \|_{L^{\infty}(T_m)}
     \leq 
@@ -582,10 +816,10 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
     \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
     .
  \end{align*}
- In particular, letting $q$ be the complementary exponent, 
+ When $1 < p < \infty$, letting $q$ be the complementary exponent, we observe 
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
-    \leq 
+    &\leq 
     \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} } \right)^{\frac 1 q}
     \left( 
         \| u_{F_m} \|_{L^{p}(T_m)}^{p}
@@ -595,81 +829,14 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
     \| w_{m-1}\|_{L^{p}(T_{j(m)})}
-    .
- \end{align*}
- 
- \color{red}We want to summarize the Lp norms so that the Poincare inequality over $U_F$ is applied only once. In the special cases $p=1$ and $p=\infty$, this works as above. Do we have a formula for general $p$ that contains these as limit cases? \color{black}
- In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    &\leq 
-    3^{p-1}
-    \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-    +
-    3^{p-1}
-    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-    +
-    3^{p-1}
-    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
     \\&\leq 
-    3^{p-1}
-    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-    \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
-    +
-    3^{p-1}
-    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    ,
- \end{align*}
- and therefore
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    &\leq 
-    3^{\frac{p-1}{p}}
-    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)^{\frac 1 p}
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} } \right)^{\frac 1 q}
     \| u_{F_m} \|_{L^{p}(U_{F_m})} 
     +
-    3^{\frac{p-1}{p}}
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
     .
  \end{align*}
- \color{blue}
- In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    &\leq 
-    \left( 
-        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
-    \right)^{ p-1 }
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-        +
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    ,
- \end{align*}
- and therefore
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    &\leq 
-    \left( 
-        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
-    \right)^{ \frac{p-1}{p} }
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)} 
-        +
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
-        +
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
-    \right)
-    .
- \end{align*}
- \color{black}
  Recursive application provides the following estimate:
  if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
@@ -680,22 +847,92 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
     \sum_{t=1}^{m} 
     \left( 
         \prod_{t < l \leq m} 
-        3^{\frac{p-1}{p}}
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{j(l)})^{\frac 1 p} }
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
-    \max\left( 1, \frac{ \vol(T_t) }{ \vol(T_{j(t)}) } \right)^{\frac 1 p}
+    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
     \| u_{F_t} \|_{L^{p}(U_{F_t})}
     \\&\quad \quad \quad 
     +
     \left( 
-        \prod_{t < l \leq m} 
-        3^{\frac{p-1}{p}}
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{j(l)})^{\frac 1 p} }
+        \prod_{0 < l \leq m} 
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
     \| u_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
- 
+ %  
+ % \color{red}We want to summarize the Lp norms so that the Poincare inequality over $U_F$ is applied only once. In the special cases $p=1$ and $p=\infty$, this works as above. Do we have a formula for general $p$ that contains these as limit cases? \color{black}
+ % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}^{p}
+ %    &\leq 
+ %    3^{p-1}
+ %    \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    \\&\leq 
+ %    3^{p-1}
+ %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+ %    \| u_{F_m} \|_{L^{p}(U_{F_m})}^{p}
+ %    +
+ %    3^{p-1}
+ %    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    ,
+ % \end{align*}
+ % and therefore
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}
+ %    &\leq 
+ %    3^{\frac{p-1}{p}}
+ %    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)^{\frac 1 p}
+ %    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
+ %    +
+ %    3^{\frac{p-1}{p}}
+ %    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
+ %    \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+ %    .
+ % \end{align*}
+ % \color{blue}
+ % In the special case $p < \infty$, we use the finite-dimensional H\"older inequality to find 
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}^{p}
+ %    &\leq 
+ %    \left( 
+ %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+ %    \right)^{ p-1 }
+ %    \left( 
+ %        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+ %        +
+ %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+ %        +
+ %        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+ %    \right)
+ %    ,
+ % \end{align*}
+ % and therefore
+ % \begin{align*}
+ %    \| w_{m} \|_{L^{p}(T_m)}
+ %    &\leq 
+ %    \left( 
+ %        1 + 2 \frac{ \vol(T_m)^{\frac{1}{p-1}} }{ \vol(T_{j(m)})^{\frac{1}{p-1}} }
+ %    \right)^{ \frac{p-1}{p} }
+ %    \left( 
+ %        \| u_{F_m} \|_{L^{p}(T_m)} 
+ %        +
+ %        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
+ %        +
+ %        \| w_{m-1}\|_{L^{p}(T_{j(m)})} 
+ %    \right)
+ %    .
+ % \end{align*}
+ % \color{black}
 \end{proof}
 
 \begin{remark}
@@ -710,51 +947,7 @@ The following result by Veeser and Verfürth~\cite[Lemma 2.8]{veeser} is importa
 % https://people.tamu.edu/~guermond//PUBLICATIONS/ern_guermond_m2an_2016.pdf 
 % Lemma 5.5
 
-\begin{figure}
-\begin{tikzpicture}
-    % Define the vertices of the triangles
-    \coordinate (A) at (0,0);
-    \coordinate (B) at (2,0);
-    \coordinate (C) at (1,1.5);
-    \coordinate (D) at (3,1.5); % Extra vertex for the second triangle
-    \coordinate (E) at (3,2.5); % Extra vertex for the second triangle
-    \coordinate (F) at (4,0.25); % Extra vertex for the second triangle
-    \coordinate (X) at (1,-1.5);
-    \coordinate (Y) at (3,-1.5); % Extra vertex for the second triangle
-    
-    \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
-    \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
-    \coordinate (CentroidCDE) at ($(C)!0.3333!(D)!0.3333!(E)$);
-    \coordinate (CentroidBDF) at ($(B)!0.3333!(D)!0.3333!(F)$);
-    \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
-    \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
-    \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
-    
-    % Draw triangles
-    \draw[fill=gray!20] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!30] (B) -- (C) -- (D) -- cycle; 
-    \draw[fill=gray!30] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=gray!30] (B) -- (D) -- (F) -- cycle; 
-    \draw[fill=gray!20] (A) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!20] (Y) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!20] (Y) -- (B) -- (F) -- cycle; 
-    
-    % Draw arrows between triangle centroids
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
-    
-    % Labels for vertices (optional)
-    \node at (A) [below left] {$A$};
-    \node at (B) [below right] {$B$};
-    \node at (C) [above] {$C$};
-    \node at (D) [above right] {$D$};
-\end{tikzpicture}
-\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
-\end{figure}
+
 
 \newpage
 
@@ -864,7 +1057,7 @@ We would like to have a purely combinatorial and computable criterion that chara
         \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
         \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw[dotted] (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
     \end{tikzpicture}
-    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line. (2) The new edge patch already be a subset of the subtriangulation (3) An inadmissible choice because new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like (4) An inadmissible choice because new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
+    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line. (2) The new edge patch may already be a subset of the subtriangulation (3) An inadmissible choice because new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like (4) An inadmissible choice because new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
 \end{figure}
 
 \begin{figure}

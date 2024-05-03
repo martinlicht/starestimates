@@ -39,3 +39,686 @@ We refer the reader to Figure~\ref{figure:illustrationpatching} for an illustrat
 
 The preceding lemma is generally not true when the $k$-patching is required to be manifold-like,
 as can be verified from some simple examples;~see Figure~\ref{figure:annuluscounterexample}.
+
+\color{Emerald}
+\begin{align}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    % 2^{ - \frac{p-1}{p}}
+    %2^{ - 1 + \frac{1}{p}}
+    \frac{1}{ 2^{ 1 - \frac{1}{p} } }
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align}
+
+\begin{proof}
+    Given $z \in \Omega$, we define 
+    \[
+        w(x,z) 
+        := 
+        \int_0^1 \bff( z + t(x-z) ) \cdot (x-z)
+        =
+        u(x) - u(z)
+        .
+    \]
+    Subsequently,
+    \begin{align*}
+        w(x) = |\Omega|^{-1} \int_{\Omega} w(x,z) dz.
+    \end{align*}
+    Clearly, $\nabla_{x} u(x) = \nabla_{x} w(x,z) = \nabla_{x} w(x)$.
+    Next, 
+    \begin{align*}
+        \int_{\Omega} | w(x) |^{p} dx
+        &\leq 
+        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} | w(x,z) |^{p} dz dx
+        \\&\leq 
+        \int_{\Omega} |\Omega|^{-1} \int_{\Omega} \int_0^1 | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
+        \\&= 
+        |\Omega|^{-1} \int_{\Omega} \int_{\Omega} \int_0^{D/|x-z|} | \bff( z + t(x-z) ) \cdot (x-z) |^{p} dz dx
+        .
+    \end{align*}
+
+\end{proof}
+\color{black}
+
+\begin{lemma}
+    Suppose that $T, T'$ are two $n$-simplices whose intersection is a common face $F := T_1 \cap T_2$. Then 
+    \begin{align*}
+        \| u - u_{\Omega} \|_{L^p(\Omega)} 
+        &
+        \leq 
+        \frac{2}{((n-1)!)^n }
+        \left( \frac{\diam(T)^n}{\vol(T)} \right)^n
+        \left( \frac{\diam(T')^n}{n! \vol(T')} \right)^n
+        \diam(\Omega)
+        \| \nabla u \|_{L^p(\Omega)} 
+    \end{align*}
+    for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty)$.
+\end{lemma}
+\begin{proof}
+    Suppose a tetrahedron $T$ has vertices $v_0,v_1,\dots,v_n$ and let $F_0,F_1\dots,F_n$ be the faces opposite to those vertices. 
+    The height $h(T,k)$ of the vertex $v_k$ in $T$ equals 
+    \[
+        h(T,k) := n \frac{\vol(T)}{\vol(F_k)}
+    \]
+    A lower bound for the height in terms of the volume and diameter of $T$ is 
+    \[
+        h(T,k) 
+        = 
+        n \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        \frac{\diam(T)^n}{\vol(F_k)}
+        \geq 
+        n \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        (n-1)! \frac{\diam(T)^n}{\diam(T)^{n-1}}
+        \geq 
+        \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        n! \diam(T) 
+        .
+    \]
+    Any subsimplex $S$ of $T$ adjacent to $v_k$ thus satisfies 
+    \[
+        \diam(S)
+        \geq 
+        \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        n! \diam(T) 
+        .
+    \]
+    We let $w \in F_0$ be the barycenter in the face opposite to $v_0$. 
+    Then the convex combination of $w$ and any of the faces $F_1,\dots,F_n$ defines simplices $S_1,\dots,S_n$ which satisfy 
+    \[
+        \vol(S_1) = \dots = \vol(S_n) = \frac{\vol(T)}{n}
+        .
+    \]
+    Consequently, 
+    the height $h_k := $ of the vertex $w$ in $S_k$ equals 
+    \[
+        h_k := n \frac{\vol(S_k)}{\vol(F_k)} = \frac{\vol(T)}{\vol(F_k)}
+    \]
+    It follows that $T$ is star-shaped with respect to the intersection of $T$
+    with the ball around $w$ of radius $h$, where $h := \min_{1 \leq k \leq n} h_k$.
+    A lower bound for height in terms of the volume and diameter of $T$ is 
+    \[
+        h_k 
+        = 
+        \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        \frac{\diam(T)^n}{\vol(F_k)}
+        \geq 
+        \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        (n-1)! \frac{\diam(T)^n}{\diam(T)^{n-1}}
+        \geq 
+        \frac{\vol(T)}{\diam(T)^n}
+        \cdot 
+        (n-1)! \diam(T) 
+        .
+    \]
+    Let now $T'$ be another $n$-simplex with vertices $v_0',v_1,\dots,v_n$.
+    We construct $h'$ analogous to above and $h'' := \min(h,h')$. 
+    Hence $\Omega := T \cup T'$ is star-shaped with respect to a ball around $w$ of radius $h''$.
+    Using a result by Farweg and Rosteck,
+    \begin{align*}
+        \| u - u_{\Omega} \|_{L^p(\Omega)} 
+        &
+        \leq 
+        2 \diam(\Omega)^n
+        \omega_n^{ 1 - \frac 1 n }
+        \frac{|\Omega|^{\frac{1}{n}}}{|\Ball(w,h'')|}
+        \| \nabla u \|_{L^p(\Omega)} 
+        \\&
+        \leq 
+        2 \diam(\Omega)^n
+        \omega_n^{ - \frac 1 n }
+        \frac{|\Omega|^{\frac{1}{n}}}{(h'')^n}
+        \| \nabla u \|_{L^p(\Omega)} 
+        .
+    \end{align*}
+    Without loss of generality, $\diam(T) \leq \diam(T')$. Now, 
+    \begin{align*}
+        \| u - u_{\Omega} \|_{L^p(\Omega)} 
+        &
+        \leq 
+        \left( \frac{\diam(T)^n}{\vol(T)} \right)^n
+        2 \diam(\Omega)^n
+        \omega_n^{ - \frac 1 n }
+        \frac{|\Omega|^{\frac{1}{n}}}{((n-1)!)^n \diam(T)^n }
+        \| \nabla u \|_{L^p(\Omega)} 
+        \\&
+        \leq 
+        \frac{2}{((n-1)!)^n }
+        \left( \frac{\diam(T)^n}{\vol(T)} \right)^n
+        \frac{ \diam(T')^n }{ \diam(T)^n }
+        \diam(T')
+        \| \nabla u \|_{L^p(\Omega)} 
+        .
+    \end{align*}
+    We know that 
+    \begin{align*}
+        \diam(T')
+        \leq 
+        \frac{\diam(T')^n}{n! \vol(T')}
+        \diam(F)
+        \leq 
+        \frac{\diam(T')^n}{n! \vol(T')}
+        \diam(T)
+        .
+    \end{align*}
+    The final estimate is
+    \begin{align*}
+        \| u - u_{\Omega} \|_{L^p(\Omega)} 
+        &
+        \leq 
+        \frac{2}{((n-1)!)^n }
+        \left( \frac{\diam(T)^n}{\vol(T)} \right)^n
+        \left( \frac{\diam(T')^n}{n! \vol(T')} \right)^n
+        \diam(\Omega)
+        \| \nabla u \|_{L^p(\Omega)} 
+        .
+    \end{align*}
+    This finishes the proof. 
+\end{proof}
+
+
+We use the following trace inequality, which can be found in the literature. 
+
+\begin{lemma}\label{lemma:traceinequality}
+    Let $p \in [1,\infty)$ and let $T$ be an $n$-dimensional simplex with a face $F$. Then 
+    \begin{align*}
+        \| u \|_{L^{p}(F)}^{p}
+        \leq 
+        \frac{|F|}{|T|} 
+        \| u \|_{L^{p}(T)}^{p}
+        +
+        p \cdot \diam(T) 
+        \frac{|F|}{|T|} 
+        \| u \|_{L^{p}(T)}^{p-1}
+        \| \nabla u \|_{\bfL^{p}(T)}
+        .
+    \end{align*}
+    for all $u \in W^{1,p}(T)$. Moreover, 
+    \begin{align*}
+        \| u \|_{L^{\infty}(F)}
+        \leq 
+        \| u \|_{L^{\infty}(T)}
+        .
+    \end{align*}
+    for all $u \in W^{1,\infty}(T)$. \qed
+\end{lemma}
+
+\begin{remark}
+    Lemma~\cite{veeser2012poincare} has been stated by Veeser and Verfürth~\cite[Lemma 2.8]{veeser2012poincare} when $1 \leq p < \infty$. 
+    The case $p = \infty$ is obvious because functions in $W^{1,\infty}(T)$ are already Lipschitz. 
+    \color{red}\textbf{The following is probably wrong} 
+    However, note that for any $p \in [1,\infty)$ and $u \in W^{1,p}(T)$ we have 
+    \begin{align*}
+        \| u \|_{L^{p}(F)}
+        &\leq 
+        \| u \|_{L^{p}(T)}^{\frac{p-1}{p}}
+        \left(
+            \frac{|F|}{|T|}
+            \| u \|_{L^{p}(T)}
+            +
+            p \cdot \diam(T)
+            \frac{|F|}{|T|}
+            \| \nabla u \|_{\bfL^{p}(T)}
+        \right)^{\frac{1}{p}}
+        \\&\leq 
+        \| u \|_{L^{p}(T)}^{\frac{p-1}{p}}
+        \left( \frac{|F|}{|T|} \right)^{\frac 1 p}
+        \left(
+            \| u \|_{L^{p}(T)}^{\frac{1}{p}}
+            +
+            \sqrt[p]{p} \cdot \diam(T)^{\frac 1 p} 
+            \| \nabla u \|_{\bfL^{p}(T)}^{\frac 1 p} 
+        \right)
+        .
+    \end{align*}
+    The limit as $p$ goes to infinity leads to the inequality as stated in the preceding lemma,
+    which is therefore the natural limit case of the aforementioned trace inequality.
+\end{remark}
+
+
+\begin{lemma}
+    Let $T_1$ and $T_{2}$ be two $n$-simplices such that $F = T_1 \cap T_2$ is a common subsimplex of dimension $n-1$. Then 
+    \color{red} Here we estimate the Poincar\'e constant over a face patch.
+\end{lemma}
+
+\color{red}
+Possible approaches: 
+\begin{itemize}
+ \item Take the trace jump (requires trace inequality with explicit constant) and extend the resulting constant function
+ \item The union is star-shaped with respect to some (hopefully large) convex set, then use inequality for that situation (available in literature)
+ \item Reflection trick
+ \item Paper by Veeser and Verfuerth?
+\end{itemize}
+Most importantly, all constants must be explicitly computable!
+We can do all these methods and compare the results. 
+\color{black}
+    
+\begin{proof}
+    We write $U := T_1 \cup T_2$. Let $u \in W^{1,p}(U)$.
+    Suppose $u_1 \in W^{1,p}(T_1)$ and $u_2 \in W^{1,p}(T_2)$
+    satisfy $\nabla u_1 = \nabla u_{|T_1}$ and $\nabla u_2 = \nabla u_{|T_2}$.
+    Then there exists a constant $c \in \bbR$ such that $c = \trace_{T_1,F} u_1 - \trace_{T_1,F} u_2$.
+    Consequently, if we define $u_2' = u_2 + c$, then we obtain a function $u = u_1 \cup u_2' \in W^{1,p}(T)$. 
+    Notice that 
+    \begin{align*}
+        \| u \|_{L^{p}(U)}^{p}
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \| u'_2 \|_{L^{p}(T_2)}^{p}
+        \\
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \left( 
+            \| u_2 \|_{L^{p}(T_2)}
+            +
+            \left(\frac{|T_2|}{|F|}\right)^{\frac 1 p}
+            \| c \|_{L^{p}(F)}
+        \right)^{p}
+    \end{align*}
+    \begin{align*}
+        \color{red}
+        \| u'_2 \|_{L^{p}(T_2)}
+        \leq 
+        \| u_2 \|_{L^{p}(T_2)}
+        +
+        \| c \|_{L^{p}(T_2)}
+        = 
+        \| u_2 \|_{L^{p}(T_2)}
+        +
+        \left(\frac{|T_2|}{|F|}\right)^{\frac 1 p}
+        \| c \|_{L^{p}(F)}
+        .
+    \end{align*}
+    Recall that 
+    \begin{align*}
+        \| v \|_{L^{p}(F)}^{p}
+        \leq 
+        \frac{|F|}{|T|} 
+        \| v \|_{L^{p}(T)}^{p}
+        +
+        p \cdot \diam(T) 
+        \frac{|F|}{|T|} 
+        \| v \|_{L^{p}(T)}^{p-1}
+        \| \nabla v \|_{\bfL^{p}(T)}
+        ,
+        \quad 
+        v \in W^{1,p}(T)
+        .
+    \end{align*}
+    Now 
+    \begin{align*}
+        \| c \|_{L^{p}(F)}^{p}
+        &\leq 
+        2^{p-1}
+        \| u_1 \|_{L^{p}(F)}^{p}
+        +
+        2^{p-1}
+        \| u_2 \|_{L^{p}(F)}^{p}
+    \end{align*}
+    We thus proceed with 
+    \begin{align*}
+        \| u_1 \|_{L^{p}(F)}^{p}
+        +
+        \| u_2 \|_{L^{p}(F)}^{p}
+        &
+        \leq 
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        p \cdot \diam(T_1) 
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p-1}
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}
+        \\&\quad\quad
+        +
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        p \cdot \diam(T_2) 
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{p-1}
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}
+    \end{align*}
+    If $p = 1$, then we summarize this as 
+    \begin{align*}
+        \| u \|_{L^{1}(U)} 
+        &\leq 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \| u'_2 \|_{L^{1}(T_2)} 
+        \\
+        &\leq 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \| u_2 \|_{L^{1}(T_2)}
+        +
+        \left(\frac{|T_2|}{|F|}\right)
+        \| c \|_{L^{1}(F)}
+        \\
+        &\leq 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \| u_2 \|_{L^{1}(T_2)}
+        +
+        \left(\frac{|T_2|}{|F|}\right)
+        \| u_1 \|_{L^{1}(F)} 
+        +
+        \left(\frac{|T_2|}{|F|}\right)
+        \| u_2 \|_{L^{1}(F)} 
+        \\
+        &\leq 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \| u_2 \|_{L^{1}(T_2)}
+        \\&\qquad 
+        +
+        \left(\frac{|T_2|}{|F|}\right)
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \diam(T_1) 
+        \left(\frac{|T_2|}{|F|}\right)
+        \frac{|F|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{1}(T_1)}
+        \\&\quad\quad
+        +
+        \left(\frac{|T_2|}{|F|}\right)
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{1}(T_2)} 
+        +
+        \diam(T_2) 
+        \left(\frac{|T_2|}{|F|}\right)
+        \frac{|F|}{|T_2|} 
+        \| \nabla u_2 \|_{\bfL^{1}(T_2)}
+        \\
+        &\leq 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \| u_2 \|_{L^{1}(T_2)}
+        \\&\qquad 
+        +
+        \frac{|T_2|}{|T_1|} 
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        \diam(T_1) 
+        \frac{|T_2|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{1}(T_1)}
+        \\&\quad\quad
+        +
+        \| u_2 \|_{L^{1}(T_2)} 
+        +
+        \diam(T_2) 
+        \| \nabla u_2 \|_{\bfL^{1}(T_2)}
+        \\
+        &\leq 
+        \left( 1 + \frac{|T_2|}{|T_1|} \right)
+        \| u_1 \|_{L^{1}(T_1)} 
+        +
+        2
+        \| u_2 \|_{L^{1}(T_2)}
+        +
+        \diam(T_1) 
+        \frac{|T_2|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{1}(T_1)}
+        +
+        \diam(T_2) 
+        \| \nabla u_2 \|_{\bfL^{1}(T_2)}
+        .
+    \end{align*}
+    When $1 < p < \infty$, then Young's inequality implies 
+    \begin{align*}
+        \| u_1 \|_{L^{p}(F)}^{p}
+        +
+        \| u_2 \|_{L^{p}(F)}^{p}
+        &
+        \leq 
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{q(p-1)}
+        +
+        \frac p q \cdot \diam(T_1)^{p}
+        \frac{|F|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}^{p}
+        \\&\quad\quad
+        +
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{q(p-1)}
+        +
+        \frac p q \cdot \diam(T_2)^{p} 
+        \frac{|F|}{|T_2|} 
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}^{p}
+        \\
+        &
+        \leq 
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \frac{|F|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        (p-1) \cdot \diam(T_1)^{p} 
+        \frac{|F|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}^{p}
+        \\&\quad\quad
+        +
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        \frac{|F|}{|T_2|} 
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        (p-1) \cdot \diam(T_2)^{p} 
+        \frac{|F|}{|T_2|} 
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}^{p}
+        .
+    \end{align*}
+    \color{red}The last terms vanish in the limit $p \rightarrow 1$. 
+    It is not clear whether $p=1$ emerges as a limit case: 
+    we have gained an additional $p$-norm of $u$ but applying the Poincare inequality introduces the Poincare constant, 
+    whereas there is no such dependence on the Poincare constant in the case $p=1$ above. 
+    \color{black}
+    In summary, 
+    \begin{align*}
+        2^{1-p}
+        \left(\frac{|T_2|}{|F|}\right)
+        \| c \|_{L^{p}(F)}^{p}
+        &
+        \leq 
+        2
+        \frac{|T_2|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        (p-1) \cdot \diam(T_1)^{p} 
+        \frac{|T_2|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        2
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        (p-1) \cdot \diam(T_2)^{p} 
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}^{p}
+        .
+    \end{align*}
+    We thus find 
+    %{\tiny
+    \begin{align*}
+        \| u \|_{L^{p}(U)}^{p}
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \| u'_2 \|_{L^{p}(T_2)}^{p}
+        \\
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        \left( 
+            \| u_2 \|_{L^{p}(T_2)}
+            +
+            \left(\frac{|T_2|}{|F|}\right)^{\frac 1 p}
+            \| c \|_{L^{p}(F)}
+        \right)^{p}
+        \\
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        2^{p-1}
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        2^{p-1}
+        \left(\frac{|T_2|}{|F|}\right)
+        \| c \|_{L^{p}(F)}^{p}
+        \\
+        % &\leq 
+        % \| u_1 \|_{L^{p}(T_1)}^{p}
+        % +
+        % 2^{p-1}
+        % \| u_2 \|_{L^{p}(T_2)}^{p}
+        % +
+        % 4^{p-1}
+        % \left( 
+        %     2 \max\left( 
+        %         \frac{|T_2|}{|T_1|} 
+        %         ,
+        %         1
+        %     \right)
+        %     \| u_1 \cup u_2 \|_{L^{p}(U)}^{p}
+        %     +
+        %     (p-1) \cdot 
+        %     \max\left( 
+        %         \diam(T_1)^p \frac{|T_2|}{|T_1|} 
+        %         ,
+        %         \diam(T_2)^p 
+        %         %
+        %     \right) 
+        %     \| \nabla u_1 \cup \nabla u_2 \|_{\bfL^{p}(U)}^{p}
+        % \right)
+        % \\
+        &\leq 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        2^{p-1}
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        4^{p-1}
+        2
+        \frac{|T_2|}{|T_1|} 
+        \| u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        4^{p-1}
+        (p-1) \cdot \diam(T_1)^{p} 
+        \frac{|T_2|}{|T_1|} 
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        4^{p-1}
+        2
+        \| u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        4^{p-1}
+        (p-1) \cdot \diam(T_2)^{p} 
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}^{p}
+    \end{align*}
+    %}
+    We can now apply the Poincar\'e--Friedrichs inequality over each simplex. Hence,
+    \begin{align*}
+        \| u \|_{L^{p}(U)}^{p}
+        &\leq 
+        C_1 D^{p} \| \nabla u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        2^{p-1}
+        C_2 D^{p} \| \nabla u_2 \|_{L^{p}(T_2)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        4^{p-1}
+        2
+        Q
+        C_1 D^{p} \| \nabla u_1 \|_{L^{p}(T_1)}^{p}
+        +
+        4^{p-1}
+        (p-1) \cdot D^{p} 
+        Q
+        \| \nabla u_1 \|_{\bfL^{p}(T_1)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        4^{p-1}
+        2
+        C_2 D^{p} \| \nabla u_2 \|_{L^{p}(T_2)}^{p}
+        +
+        4^{p-1}
+        (p-1) \cdot D^{p} 
+        \| \nabla u_2 \|_{\bfL^{p}(T_2)}^{p}
+        \\
+        &\leq 
+        \left( 
+            C_1 
+            +
+            4^{p-1}
+            2
+            Q
+            C_1 
+            +
+            4^{p-1}
+            (p-1)
+            Q
+        \right) 
+        D^{p}
+        \| \nabla u_1 \|_{L^{p}(T_1)}^{p}
+        \\&\quad\quad\quad\quad
+        +
+        \left( 
+        2^{p-1}
+        C_2 
+        +
+        4^{p-1}
+        2
+        C_2 
+        +
+        4^{p-1}
+        (p-1)
+        \right) 
+        D^{p}
+        \| \nabla u_2 \|_{L^{p}(T_2)}^{p}
+        \\
+        &\leq 
+        \left( 
+            2^{p-1}
+            C  
+            +
+            4^{p-1}
+            2
+            Q'
+            C_1 
+            +
+            4^{p-1}
+            (p-1)
+            Q'
+        \right) 
+        D^{p} 
+        \| \nabla u \|_{L^{p}(U)}^{p}
+        .
+    \end{align*}
+    
+    \color{red} Possibly the estimate can be tweaked to obtain nicer constants.
+\end{proof}
+
+
