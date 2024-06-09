@@ -242,49 +242,88 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
 
 \section{Basic notions of triangulations}
 
-We gather notions of simplicial meshes for the subsequent discussion. 
-Apart from basic definitions and notational conventions, we pay special attention to the question of when a simplicial complex is a triangulation of a manifold. 
-A particularly important class of simplicial complexes are so-called \emph{shellable} complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. While shellable complexes are a very special class of complexes, they facilitate achieving the main goal of our exposition.
-Our main references on simplicial complexes and shellability are the monographs by Ziegler~\cite{ziegler2012lectures} and Kozlov~\cite{kozlov2008combinatorial}. 
-
-\subsection{Basic notions}
-
+We gather basic notions and definitions concerning simplicial meshes. 
+  
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these the \emph{vertices} of the simplex $T$. 
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
-then we call $S$ a subsimplex of $T$ and we call $T$ a supersimplex of $S$. 
+then we call $S$ a \textit{subsimplex} of $T$ and we call $T$ a \textit{supersimplex} of $S$. 
 
-A family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation}, if its member simplices satisfy the following condition: 
-(i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
+The strictly positive convex combinations of the simplex' vertices are the \textit{interior} of the simplex,
+and its remaining points constitute the \textit{boundary} of the simplex.
+\\
+
+A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation}, if it satisfies the following conditions: 
+(i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
+% (i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
 The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
-We say that $\calT$ has dimension $n$ if it contains an $n$-dimensional simplex as a supersimplex for each simplex within it. 
+We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that complex.\footnote{We warn the reader that simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes.} 
+We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is defined as the union 
+\[
+    \underlying{\calT} := \bigcup_{ T \in \calT } T
+    .
+\]
+We call a set \textit{triangulable} if it is the underlying set of some triangulation. 
+
+
+\begin{remark}
+    Our main interest in this manuscript are finite triangulations of compact sets. 
+    There is another reason why we insist on the triangulation being finite: 
+    if we do not require our simplicial complexes to be finite,
+    then our definition would be considerably more permissive than the typical definitions in topology. 
+    % 
+    For example, if we allowed simplicial complex to be infinite, 
+    then any subset of Euclidean space would give rise to an ``infinite $0$-dimensional complex''. But this obviously does not reflect the topology. 
+    %
+    A more interesting such example is this:
+    the Cantor set $\calC \subseteq [0,1]$ is a compact set 
+    that underlies an ``infinite $0$-dimensional simplicial complex''.
+    If we place $\calC$ on the x-axis of a 2D coordinate system 
+    and connect each member of $\calC$ to $(0,1)$ via a straight line segment, 
+    then the resulting set is still compact, even path-connected,  
+    but has an ``infinite $1$-dimensional triangulation''.
+    % 
+    However, none of these infinite families are simplicial complexes in the sense of topology~\cite{spanier1966homology}. 
+\end{remark}
+
 
 Given any simplex $T$, we write $\subsimplex(T)$ for the simplicial complex that contains all subsimplices of $T$. 
 More specifically, $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the set of $k$-dimensional subsimplices of $T$. 
 Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$.
 We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
-Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces of the triangulation. 
+Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (codimension $1$ members) of this triangulation. 
 
-When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} of $T$, which is the smallest simplicial subcomplex of $\calT$ that contains all supersimplices of $T$. Formally,
+\begin{remark}
+    Our use of the term \textit{face} as is common in the finite element literature
+    and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics.
+    Notably, this terminology difers from the uses \textit{face} and \textit{facet} in the theory of polyhedra. 
+\end{remark}
+
+When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{star} of $T$, 
+which the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. Formally,
 \begin{gather*}
     \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
 \end{gather*}
 A crucial observation is the following.
 
 \begin{lemma}
- Let $\calT$ be an $n$-dimensional simplicial complex and let $T,T' \in \calT$.
- Then either $\calT_{n}(T) \cap \calT_{n}(T') = \emptyset$ or there exists $S \in \calT$
- such that $\calT_{n}(T) \cap \calT_{n}(T') = \calT_{n}(S)$ with $T, T' \subseteq S$.
+ Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
+ Then either $\calT_{n}(S) \cap \calT_{n}(S') = \emptyset$ or there exists $S'' \in \calT$
+ such that $\calT_{n}(S) \cap \calT_{n}(S') = \calT_{n}(S'')$ with $S, S' \subseteq S''$.
 \end{lemma}
 \begin{proof}
- Let $F \in \calT$ be $n$-dimensional.
- We have $F \in \patch_{\calT}(T )$ if and only if all vertices of $T $ are vertices of $F$.
- We have $F \in \patch_{\calT}(T')$ if and only if all vertices of $T'$ are vertices of $F$.
- Consequently, $F \in \patch_{\calT}(T) \cap \patch_{\calT}(T)$ if and only if $F \in \patch_{\calT}(S)$,
- where $S \in \calT$ and $S$ is the convex closure of $F$ and $F'$.
+ Let $T \in \calT$ be $n$-dimensional.
+ We have $T \in \patch_{\calT}(S )$ if and only if all vertices of $S $ are vertices of $T$.
+ We have $T \in \patch_{\calT}(S')$ if and only if all vertices of $S'$ are vertices of $T$.
+ Consequently, $T \in \patch_{\calT}(S) \cap \patch_{\calT}(S')$ if and only if $T \in \patch_{\calT}(S'')$,
+ where $S'' \in \calT$ is the convex closure of $S$ and $S'$.
 \end{proof}
 
+We will use a specific notion of connectivity. 
 Given an $n$-dimensional simplicial complex $\calT$, 
-we call $n$-simplices $S,T \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,T=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. Clearly, strongly connected in $\calT$ is an equivalence relation. A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, and we call $\calT$ strongly connected if it has only one strongly connected component. 
+we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. Clearly, strongly connected in $\calT$ is an equivalence relation. A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, and we call $\calT$ strongly connected if it has only one strongly connected component. 
+
+
+
 
 
 
@@ -1091,51 +1130,90 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \newpage
 
-\section{Shellable triangulated domains}
+\section{Shellable triangulations}
 
-% 2. Develop manifold-like complexes and characterize them 
-We call an $n$-dimensional simplicial complex $\calT$ \emph{non-branching} if every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. We call those $F \in \calT$ of dimension $n-1$ contained within only one parent a \emph{boundary face}.
-We write $\partial\calT$ for the simplicial subcomplex of $\calT$ of dimension $n-1$ 
-whose full-dimensional members are exactly the boundary faces of $\calT$.
+We return to the theory of triangulations,
+as our main objective requires some further concepts.
+We are interested in simplicial complexes that triangulated manifolds. 
+We put particular focus on \emph{shellable} simplicial complexes as a particularly important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations are examples of such shellable complexes. 
+Our main references for this section are the monographs by Ziegler~\cite{ziegler2012lectures} and Kozlov~\cite{kozlov2008combinatorial}. 
+\\
 
-An $n$-dimensional simplicial complex is called \emph{manifold-like} if for every $x \in \bigcup \calT$
-we have one of the following two conditions:
-\begin{itemize}
- \item 
- there exists $\epsilon > 0$ 
- and a homeomorphism 
- \begin{align*}
-    \phi : \Ball_\epsilon(x) \cap \bigcup\calT  
-    \rightarrow 
-    \left\{ x \in \bbR^{n} \suchthat |x| \leq 1 \right\}
- \end{align*}
- such that $\phi(x) = 0$,
- \item 
- there exists $\epsilon > 0$ and a homeomorphism 
- \begin{align*}
-    \phi : \Ball_\epsilon(x) \cap \bigcup\calT 
-    \rightarrow 
-    \left\{ x \in \bbR^{n} \suchthat |x| \leq 1, x_n \leq 0 \right\}
- \end{align*}
- such that $\phi(x) = 0$.
-\end{itemize}
-This characterizes the union of the simplicial complex $\calT$ as a topological manifold with boundary. 
+\subsection{Triangulations of manifolds}
 
-We would like to have a purely combinatorial and computable criterion that characterizes manifold-like simplicial complexes. A first step in that direction is the following result.
+We define an $n$-dimensional simplicial complex to be a \emph{simplicial manifold} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
+We recall that this means that for every $x \in \underlying{\calT}$
+there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^n$
+such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit ball $\calB = \{ x \in \bbR^n \suchthat |x| \leq 1 \}$
+or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
+Note than any simplicial complex that triangulates an $n$-dimensional manifold must be an $n$-dimensional simplicial complex.
+
+The following special cases receive particular interest:
+a \textit{simplicial $n$-ball} is any triangulation of a topological (closed) $n$-ball,
+and we sometimes call this a simplicial \textit{$n$-disk}.
+A \textit{simplicial $n$-sphere} is any triangulation of a topological $n$-sphere. 
+
+We now gather a few helpful properties of simplicial manifolds,
+which we state without proof. 
 
 \begin{lemma}\label{lemma:characterizationofmanifoldcomplexes}
-    Let $\calT$ be an $n$-dimensional simplicial complex. The following are equivalent:
-    \begin{itemize}
-     \item $\calT$ is manifold-like
-     \item $\patch_{\calT}(V)$ is the triangulation of a ball for all $V \in \Vertices(\calT)$
-     \item $\patch_{\calT}(V)$ is manifold-like for all $V \in \Vertices(\calT)$
-     \item $\patch_{\calT}(S)$ is the triangulation of a ball for all $S \in \calT$
-     \item $\patch_{\calT}(S)$ is manifold-like for all $S \in \calT$
-    \end{itemize}
+    Let $\calT$ be a finite $n$-dimensional simplicial manifold. 
+    \begin{enumerate}
+        \item Any face $F \in \Faces(\calT)$ is not contained in the boundary if and only if it is contained in exactly two $n$-simplices.
+        \item Any face $F \in \Faces(\calT)$ is contained in the boundary if and only if it is contained in exactly one $n$-simplex.
+        % \item $\calT$ is non-branching, that is, every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. 
+        \item If $S$ is an inner simplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
+        \item If $S$ is a boundary subsimplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
+        \item If the underlying space of $\calT$ is connected, then $\calT$ is strongly connected.
+    \end{enumerate}
 \end{lemma}
 \begin{proof}
-    \color{red} TODO
+    % Faces have at most two parents TODO must be more careful here 
+    Let $F \in \Faces(T)$ and let $z_F \in F$ be its midpoint. 
+    Let $B_F$ be a ball around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$.
+    Suppose there were distinct $n$-simplices $T_1, T_2, T_3$ that contain $z_F$. The intersection of any two of them is $F$, and their interiors are disjoint. 
+    It follows that $B_F \setminus F$ has at least $3$ connected components, though $B_F \setminus F$ has at most two components. 
+    We conclude that each face is in at most two $n$-simplices. 
+    
+    % TODO inner/boundary faces 
+    
+    % TODO structure of stars around simplices 
+    
+    % TODO 
+    
+    % TODO stars are strongly connected 
+    We show that each vertex star is strongly connected via a short induction argument.
+    Clearly, any simplicial $1$-ball and simplicial $1$-sphere is strongly connected. 
+    Now, if $n \geq 1$, then any vertex star in an $(n+1)$-dimensional simplicial manifold is strongly connected if all simplicial $n$-balls and $n$-spheres are strongly connected.
+    The induction argument implies that each vertex star in $\calT$ is strongly connected.
+
+    % strongly connected
+    If the underlying space is connected, then we easily see that the underlying space of the $1$-skeleton is path-connected.
+    Given $n$-simplices $S,S' \in \calT$, 
+    we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$.
+    We also notice that each vertex star is strongly connected. 
+    We can thus construct change the first sequence to another $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
+    such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
 \end{proof}
+
+Suppose that $\calT$ is an $n$-dimensional simplicial manifold. 
+The simplices that lie in the boundary of the underlying set are called \emph{boundary simplices}.
+If $S$ lies in the boundary of the underlying set, then it lies within some boundary face, % TODO
+and so we conclude that the family of boundary faces constitute a simplicial complex, which we call \textit{boundary complex}.
+Any point on the boundary lies within some boundary simplex, and hence the boundary complex is a triangulation of the boundary. 
+Definitions imply that the boundary complex is a simplicial manifold of dimension $n-1$.
+
+The boundary simplices of a simplicial manifold of dimension $n$ constitute a simplicial manifold themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
+
+% We call an $n$-dimensional simplicial complex $\calT$ \emph{non-branching} if every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. 
+
+
+% TODO: https://arxiv.org/html/1607.08163v3
+% https://mathoverflow.net/questions/403415/properties-a-triangulation-must-have-in-order-to-describe-a-manifold
+
+
 
 
 
@@ -1144,6 +1222,15 @@ We would like to have a purely combinatorial and computable criterion that chara
     Conversely, for each dimension $n \geq 5$ there exists an $n$-dimensional compact topological manifold without a triangulation. % TODO: are these compact?
     % TODO There are computational limits to algorithmically deciding whether a simplicial complex represents a manifold. 
 \end{remark}
+\begin{remark}
+    Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. 
+    For that reason, there is no easy combinatorial property that indicates whether a simplicial complex triangulates a manifold.
+\end{remark}
+
+% TODO: the following lemma needs only be as strong as it aids the subsequent discussion 
+
+
+
 
 
 
@@ -1257,7 +1344,7 @@ We would like to have a purely combinatorial and computable criterion that chara
         
     \end{tikzpicture}
 
-    \caption{Example of a connected $2$-dimensional manifold-like simplicial complex, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
+    \caption{Example of a connected $2$-dimensional simplicial manifold, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
 \end{figure}
 
 % \color{red}
@@ -1279,93 +1366,186 @@ We would like to have a purely combinatorial and computable criterion that chara
 \subsection{Shellable simplicial complexes}
 
 We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
-Given an $n$-dimensional simplicial complex $\calT$, a \emph{shelling} is an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$ such that $( \patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m}) ) \cap \patch_{\calT}(T_{m+1})$ is a simplicial complex of dimension $n-1$. Notice that the last intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$, and is thus manifold like. 
+We build upon the notion of shelling, as introduced in~\cite[Definition 8.1]{ziegler2012lectures}.
+Our definition of shelling is equivalent to the notion of the shellings of simplicial complexes in the aforementioned reference; see also~\cite[Remark~8.3]{ziegler2012lectures}. 
+
+Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
+For any enumeration, we call 
+\[
+    I_m := ( \patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m}) ) \cap \patch_{\calT}(T_{m+1})
+\]
+be the $m$-th \textit{interface complex}. Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
+We call the enumeration a \emph{shelling} if each interface $I_m$ is a simplicial complex of dimension $n-1$. 
+
+\begin{remark}
+    We interpret a shelling as the construction of a triangulation 
+    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
+    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
+\end{remark}
+
+\begin{example}
+    Any simplex $T$ trivially has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
+    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling.
+\end{example}
+\begin{example}
+    The standard triangulation of the $n$-dimensional cube, the Kuhn triangulation, is shellable. 
+\end{example}
+\begin{example}
+    Not all triangulable sets admit a triangulation that is also shellable. 
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
+    We refer to~\cite[Example 8.9]{ziegler2012lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
+\end{example}
+
+Our main interest are the local patches or stars within triangulations. 
+It turns out that those are shellable. 
 
 
-% \begin{lemma}
-%     If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is manifold-like.
-%     In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ is manifold-like for every $m \geq 0$.
-% \end{lemma}
-% \begin{proof}    
-% \end{proof}
+\begin{lemma}
+    Any simplicial $2$-disk is shellable.
+    Any simplicial $2$-sphere is shellable. 
+\end{lemma}
+\begin{proof}
+    Let $\calT$ be a simplicial $2$-disk. 
+    If $\calT$ contains only one triangle, then there is nothing to show. 
+    Otherwise, there exists at least one triangle $T$ that touches the boundary of the disk at either one or two edges {\color{red}Needs proof}. 
+    Letting $\calT'$ be the triangulation obtained by removing $T$,
+    we have another triangulation of the $2$-disk that intersects $T$ only at either two or one edges.
+    Repeating this procedure yields an enumeration of the triangles of $\calT$,
+    whose reverse is a shelling.
 
-We notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
+    Now let $\calS$ be any simplicial $2$-sphere. 
+    By removing any triangle $S \in \calS$, we obtain a simplicial $2$-disk, which is shellable. 
+    Any of its shellings can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
+\end{proof}
 
-% TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
+\begin{lemma}
+    Let $\calT$ be a $n$-dimensional simplicial manifold and $V \in \Vertices(\calT)$ be an inner vertex.
+    Then $\patch_{\calT}(V)$ is shellable. 
+\end{lemma}
+\begin{proof}
+    Without loss of generality, $V$ is the origin. 
+    Any ray starting at $V$ intersects at most one vertex of $\patch_{\calT}(V)$.
+    We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
+    which does not affect shellability. 
+    The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
+    and is thus shellable~\cite{ziegler2012lectures}. % TODO: cite exactly 
+\end{proof}
 
-% 
 
-A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simplices can be arranged in linear order $T_0, T_1, \dots$ in such a way that the subcomplex $( \cup_{i=0}^{k-1} T_i ) \cap T_k$ has dimension $n-1$ for all $k > 0$.
+\begin{lemma}
+    Let $\calT$ be a $3$-dimensional simplicial manifold and $S \in \calT$.
+    Then $\patch_{\calT}(S)$ is shellable. 
+\end{lemma}
+\begin{proof}
+    The statement is clear if $S$ is an inner or boundary face of $\calT$. 
+    The statement is also easily verified if $S$ is an inner or boundary edge of $\calT$.
+    When $S$ is an inner vertex, then we apply the preceding lemma. 
+    
+    It remains to consider the case where $S$ is a boundary vertex. 
+    Then the triangles of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-disk {\color{red}Needs proof},
+    which is shellable,
+    and any such shelling can be extended to a shelling of $\patch_{\calT}(S)$.
+\end{proof}
 
 
 \begin{remark}
-    A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
-    The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
-
-    Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
-    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
-    We exclude that case $n \leq 1$ since otherwise the discussion is trivial.
-    
-    According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
-    \begin{align*}
-        \begin{CD}
-            \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
-        \end{CD}
-    \end{align*}
-    We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
-    By the nature of the mappings in the Mayer-Vietoris sequence, 
-    \color{red}which uses some specific knowledge about the arrows\color{black}, 
-    we see that 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    is an exact sequence. 
-    Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
-    the Mayer-Vietoris sequence includes the exact sequence 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
-    Finally, the Mayer-Vietoris sequence includes the exact sequences 
-    \begin{align*}
-        \begin{CD}
-            0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
-        \end{CD}
-    \end{align*}
-    % Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
-    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
-    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-    % one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-    Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
-    In the case that $\calS$ is isomorphic to disk,
-    then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
-    Consider now the case that $\calS$ is isomorphic to a sphere.
-    Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
-    \color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
-    Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
-    
-    We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
-    \begin{align*}
-        H_0(\calT) \simeq \bbZ, 
-        \quad 
-        H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
-    \end{align*}
-    Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
-    
-    % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
-    % Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
-    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
-    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
-    % \begin{align*}
-    %     \begin{CD}
-    %         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
-    %     \end{CD}
-    % \end{align*}
+    Patches around boundary simplices are not necessarily shellable when the dimension exceeds $3$.
+    For example, there exists a non-shellable triangulation of a tetrahedron. 
+    If we extend this triangulation to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
+    then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
 \end{remark}
+
+The reason of our interest in shellable simplicial complexes is that they can be constructed by successive adhesion of simplices to intermediate complexes, 
+such that the interface is well-behaved: it is a simplicial disk or a simplicial sphere. 
+That has the following important consequence.
+
+% TODO: we only need some basic properties, namely that the construction maintains manifolds with boundary.
+% TODO: copy and adapt the content of Ziegler and Kozlov as necessary
+
+\begin{lemma}
+    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is a simplicial manifold.
+    In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ is a simplicial manifold for every $m \geq 0$.
+\end{lemma}
+\begin{proof}    
+\end{proof}
+
+% TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
+
+\begin{remark}
+    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possibly enumerations.
+    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
+    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
+\end{remark}
+
+\subsection{On the topology of shellable triangulations}
+
+A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
+The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
+
+Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
+Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
+We exclude that case $n \leq 1$ since otherwise the discussion is trivial.
+
+According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
+\begin{align*}
+    \begin{CD}
+        \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
+    \end{CD}
+\end{align*}
+We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
+By the nature of the mappings in the Mayer-Vietoris sequence, 
+\color{red}which uses some specific knowledge about the arrows\color{black}, 
+we see that 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+is an exact sequence. 
+Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
+the Mayer-Vietoris sequence includes the exact sequence 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
+Finally, the Mayer-Vietoris sequence includes the exact sequences 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+% Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
+% % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
+% Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+% one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
+In the case that $\calS$ is isomorphic to disk,
+then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
+Consider now the case that $\calS$ is isomorphic to a sphere.
+Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
+\color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
+Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
+
+We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
+\begin{align*}
+    H_0(\calT) \simeq \bbZ, 
+    \quad 
+    H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
+\end{align*}
+Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
+
+% then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+% Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
+% We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
+% NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
+% \begin{align*}
+%     \begin{CD}
+%         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+%     \end{CD}
+% \end{align*}
+
 
 \section{Extension operator on finite element stars}
 
