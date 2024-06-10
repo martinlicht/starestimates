@@ -19,36 +19,28 @@
 
 \maketitle
 
-\section{Introduction}
+\section{Introduction}\label{section:intro}
 
 {\color{red}This introduction is a very rough draft, including snippets}
 
 We address the construction of potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over triangulated domains. The potential operators are ought to satisfy bounds in Lebesgue norms that are explicitly computable in terms of the geometry. 
 In particular, this yields computable upper bounds for Poincar\'e--Friedrichs inequalities. 
-For example, if $\bff \in \bfL^{p}(\Omega)$ is a square-integrable vector field over some domain $\Omega \subseteq \bbR^3$, 
-we want to bound the $L^p$ norm of the potential
+For example, if $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field over some domain $\Omega \subseteq \bbR^3$, 
+we want to bound the $\bfL^2$ norm of the potential
 \begin{align*}
-    \argmin\limits_{ \substack{ \bfv \in \bfL^{p}(\curl) \\ \curl \bfv = \bff } } \| \bfv \|_{L^{p}(\Omega)}
+    \argmin\limits_{ \substack{ \bfv \in \bfL^{2} \\ \curl \bfv = \bff } } \| \bfv \|_{\bfL^{2}(\Omega)}
     \leq 
     C_{\curl}
-    \| \bff \|_{L^{p}(\Omega)}
+    \| \bff \|_{\bfL^{2}(\Omega)}
     .
 \end{align*}
 Finding a potential operator, whether it be linear or nonlinear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
 We address this topic in the special case where $\Omega$ admits a shellable triangulation.
-While this constraints us to the class of {\color{red}contractible} domains, 
+Even though only contractible domains can admit a shellable triangulation, 
 having computable upper bounds for such domains is an important step stone towards the more general case. 
 For example, local patches around a simplex within a larger triangulation belong to the class of shellable triangulations.
 
 
-While it is known that finite element patches admit Poincar\'e--Friedrichs inequalities, 
-we are not aware of computable estimates. 
-Clearly, not all local patches describe convex subdomains. 
-An ostensibly more practical class of domains are domains star-shaped with respect to a ball.
-Indeed, finite element patches of Lipschitz satisfy that condition. 
-Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a reentrant corner, even if the mesh has good shape-regularity. 
-Some interesting limit cases include the slit domain and the crossed bricks domain,
-for which some finite element patches are not star-shaped with respect to any ball. 
 
 
 We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
@@ -58,9 +50,9 @@ we search for a constant $C > 0$ such that
     \min\limits_{c\in\bbR}
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{\grad} \| \nabla u \|_{L^p(\Omega)},
+    C_{\grad,p} \| \nabla u \|_{L^p(\Omega)},
     \quad 
-    u \in \nabla W^{1,p}(\Omega)
+    u \in W^{1,p}(\Omega)
     .
 \end{align*}
 Finding a potential of a given gradient $\nabla u$ is generally a nonlinear operation. 
@@ -74,7 +66,7 @@ picking the average-free potential
     \quad 
     \bff \in \nabla W^{1,p}(\Omega)
 \end{align*}
-is known to be a linear operation. Its operator norm is the constant in the Poincar\'e inequality 
+is a linear operation. Its operator norm is the constant in the Poincar\'e inequality 
 \begin{align*}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
@@ -85,13 +77,12 @@ is known to be a linear operation. Its operator norm is the constant in the Poin
 \end{align*}
 where $u_\Omega$ denotes the average of $u$.
 Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities or Poincar\'e inequalities. 
-The optimal values for all $1 \leq p < \infty$ are known when the domain is convex.
 
-The situation is less clear cut when we try to find try the curl or divergence operators
+The situation is less clear cut when we study the curl or divergence operators
 \begin{align*}
-    \curl : \bfW^{p}(\curl) \rightarrow \bfL^{p}(\curl),
-    \quad 
-    \divergence : \bfW^{p}(\divergence) \rightarrow L^{p}(\curl),
+    \curl : \bfW^{p}(\curl,\Omega) \rightarrow \bfL^{p}(\curl,\Omega),
+    \qquad 
+    \divergence : \bfW^{p}(\divergence,\Omega) \rightarrow L^{p}(\Omega),
 \end{align*}
 where we use the function spaces
 \begin{align*}
@@ -102,16 +93,17 @@ where we use the function spaces
     .
 \end{align*}
 The fundamental difference is that the curl and divergence have infinite-dimensional kernels. 
-The existence of a bounded linear potential operator is a non-trivial fact even in the Hilbert space case. 
-In the Banach space case, it is not immediately evident the kernels of these operators are complemented.
+{\color{red}The existence of a bounded linear potential operator is a non-trivial fact even in the Hilbert space case. }
+In the Banach space case, it is not immediately evident that the kernels of these operators are complemented.
 We are interested in constants for inequalities such as 
 \begin{align*}
-    \argmin\limits_{ \substack{ v \in W^{p}(\curl) \\ \curl v = \bff } } \| v \|_{L^{p}(\Omega)},
+    \argmin\limits_{ \substack{ v \in W^{p}(\curl,\Omega) \\ \curl v = \bff } } \| v \|_{L^{p}(\Omega)}
     \leq 
     C_{\curl}
     \| \bff \|_{L^{p}(\Omega)}
-    \\
-    \argmin\limits_{ \substack{ v \in W^{p}(\divergence) \\ \divergence v = f } } \| v \|_{L^{p}(\Omega)},
+    ,
+    \qquad 
+    \argmin\limits_{ \substack{ v \in W^{p}(\divergence,\Omega) \\ \divergence v = f } } \| v \|_{L^{p}(\Omega)}
     \leq 
     C_{\divergence}
     \| f \|_{L^{p}(\Omega)}
@@ -119,13 +111,55 @@ We are interested in constants for inequalities such as
 \end{align*}
 and whether these constants can be estimated by the operator norm of linear potential operators 
 \begin{align*}
-    \Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfL^{p}(\Omega),
+    \Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
+    ,
     \quad 
-    \Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow L^{p}(\Omega).
+    \Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
+    .
 \end{align*}
-We notice that not much attention has been given to the study of optimal constants in such Poincar\'e--Friedrichs for the curl and divergence operators, even if the domain is convex, which is in sharp contrast to the study of the gradient operator. 
+We remark that seemingly not much attention has been given to the study of optimal constants in such Poincar\'e--Friedrichs inequalities for the curl and divergence operators, 
+% even if the domain is convex, 
+which is in sharp contrast to the study of the gradient operator. 
+
+We explore formulate our main results in the framework of exterior calculus.
+The formalism of exterior calculus generalizes vector calculus to arbitrary dimensions and allows us to study many differential operators, such as the curl and divergence, in a unified manner. 
+%
+It is used ubiquitiously in physics and engineering. 
+%
+For the purpose of our discussion, this formalisms allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+\\
+
+Before we outline the main results of this exposition in more details, 
+we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
+
+% Convex domains
+
+% Domains starshaped wrt ball 
+
+% Limitations
+
+
+
+
+
+Most research on optimal constants has addressed the case of convex domains. 
+Here, the optimal constants, in terms of the domain diameter alone, are known if $p=2$ \cite{bebendorf2003note} and if $p=1$ \cite{acosta2004optimal}. 
+Notably, the optimal constants $C_{\grad,p}$ for all $1 \leq p < \infty$, again in terms of only the domain diameter, are known when the domain is convex.~\cite{esposito2013poincare,ferone2012remark}.
+
 In the Hilbert space setting when $p = 2$, Guerini and Savo~\cite{guerini2004eigenvalue} have develop lower bounds for the spectrum of the Hodge--Laplace operator, which implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
 \\
+
+While it is known that finite element patches admit Poincar\'e--Friedrichs inequalities, 
+we are not aware of computable estimates. 
+Clearly, not all local patches describe convex subdomains. 
+An ostensibly more practical class of domains are domains star-shaped with respect to a ball.
+Indeed, finite element patches of Lipschitz satisfy that condition. 
+Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a reentrant corner, even if the mesh has good shape-regularity. 
+Some interesting limit cases include the slit domain and the crossed bricks domain,
+for which some finite element patches are not star-shaped with respect to any ball. 
+
+
+
 
 The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence satisfying explicitly computable upper bounds. This is achieved for a special class of triangulated domains,
 namely domains with so-called \emph{shellable} triangulations. 
@@ -149,7 +183,7 @@ We are aware of work by Guerini and Savo who estimate the Poincar\'e--Friedrichs
 By duality, that implies lower bounds for the case of full boundary conditions.
 We remark that their work also shows that over convex domains in 3D:
 \begin{align*}
-    C_{\grad} \geq C_{\curl} \geq C_{\divergence}.
+    C_{\grad,p} \geq C_{\curl} \geq C_{\divergence}.
 \end{align*}
 But we need to find potentials over a simplex subject to partial boundary conditions 
 and we want to address the entire $1 \leq p \leq \infty$ of Lebesgue exponents. 
@@ -157,6 +191,8 @@ The existence of such potentials is well-known yet we are not aware of any expli
 Even solving the potential equation of the gradient of a simplex subject to Dirichlet boundary conditions along a single face 
 has no estimates in the literature. 
 
+An open set star-shaped with respect to a internal point is also star-shaped with respect to some open ball within the domain.
+We refer to \cite{hurri1988poincare} for that perspective.
 
 We fix this problem in two steps. 
 First, we construct an auxiliary problem subject to full boundary conditions.
@@ -238,9 +274,14 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
 
 \end{remark}
 
+The remainder of this manuscript is structured as follows.
+We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
+We then review the notion of shellable triangulation in Section~\ref{section:shellable}.
+We construct an important geometric reflection operator in Section~\ref{section:extension}
+and provide computable upper bounds for Poincar\'e--Friedrichs constants over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 
 
-\section{Basic notions of triangulations}
+\section{Basic notions of triangulations}\label{section:triangulations}
 
 We gather notions of simplicial meshes for the subsequent discussion. 
 Apart from basic definitions and notational conventions, we pay special attention to the question of when a simplicial complex is a triangulation of a manifold. 
@@ -292,7 +333,7 @@ we call $n$-simplices $S,T \in \calT$ \emph{strongly connected in $\calT$} if th
 
 
 
-\section{Constructive estimate of Poincar\'e constants}
+\section{Constructive estimate of Poincar\'e constants}\label{section:poincare}
 
 In this section we address the stepwise computable estimate of Poincar\'e constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e inequality over convex domains. These results, the exposition of which we believe to be of value on its own, will serve as a building block in constructing inequalities over local patches and then triangulated domains.
 \\
@@ -1089,9 +1130,32 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \newpage
 
-\section{Shellable triangulated domains}
+\section{Shellable triangulated domains}\label{section:shellable}
 
 % 2. Develop manifold-like complexes and characterize them 
 We call an $n$-dimensional simplicial complex $\calT$ \emph{non-branching} if every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. We call those $F \in \calT$ of dimension $n-1$ contained within only one parent a \emph{boundary face}.
@@ -1282,14 +1346,14 @@ We turn our attention to a different idea of how to incrementally construct a si
 Given an $n$-dimensional simplicial complex $\calT$, a \emph{shelling} is an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$ such that $( \patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m}) ) \cap \patch_{\calT}(T_{m+1})$ is a simplicial complex of dimension $n-1$. Notice that the last intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$, and is thus manifold like. 
 
 
-% \begin{lemma}
-%     If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is manifold-like.
-%     In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ is manifold-like for every $m \geq 0$.
-% \end{lemma}
-% \begin{proof}    
-% \end{proof}
+\begin{lemma}
+    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$ and is non-branching, then it triangulates a manifold, possibly with boundary.
+    In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ triangulates a manifold for all $m \geq 0$.
+\end{lemma}
+\begin{proof}    
+\end{proof}
 
-We notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
+The notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
 
 % TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
 
@@ -1302,17 +1366,21 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
     A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
     The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
 
-    Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
-    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
-    We exclude that case $n \leq 1$ since otherwise the discussion is trivial.
+    Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold.
+    Suppose that its boundary complex $\partial\calT$ is not empty and strongly connected.  
+    We exclude the case $n \leq 1$ since otherwise the discussion is trivial.
     
+    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, 
+    whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. 
+    In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. 
+    We write $\calT'$ for the  simplicial complex that contains $\calT \cup T$.
     According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
     \begin{align*}
         \begin{CD}
             \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
         \end{CD}
     \end{align*}
-    We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to $\bbZ$. 
+    We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to ${G}$. 
     By the nature of the mappings in the Mayer-Vietoris sequence, 
     \color{red}which uses some specific knowledge about the arrows\color{black}, 
     we see that 
@@ -1322,7 +1390,7 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
         \end{CD}
     \end{align*}
     is an exact sequence. 
-    Moreover, $H_{k}(\calS) = H_{k}(T) 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
+    Moreover, $H_{k}(\calS) = H_{k}(T) = 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
     the Mayer-Vietoris sequence includes the exact sequence 
     \begin{align*}
         \begin{CD}
@@ -1330,31 +1398,32 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
         \end{CD}
     \end{align*}
     and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
-    Finally, the Mayer-Vietoris sequence includes the exact sequences 
+    Finally, the Mayer-Vietoris sequence includes the exact sequence 
     \begin{align*}
         \begin{CD}
             0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
         \end{CD}
     \end{align*}
     % Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
-    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
+    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq {G}$ because the respective simplicial complexes are path-connected. 
     % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-    % one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+    % one easily sees that $H_{0}(\calT') \simeq {G}$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
     Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
-    In the case that $\calS$ is isomorphic to disk,
-    then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
+    In the case that $\calS$ is isomorphic to disk, we have $H_{n-1}(\calS) = 0$,
+    and then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T) = 0$ are trivial 
+    and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
     Consider now the case that $\calS$ is isomorphic to a sphere.
-    Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
+    Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq {G}$. 
     \color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
     Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
     
     We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
     \begin{align*}
-        H_0(\calT) \simeq \bbZ, 
+        H_0(\calT) \simeq {G}, 
         \quad 
         H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
     \end{align*}
-    Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
+    Moreover, $H_n(\calT) \simeq {G}$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
     
     % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
     % Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
@@ -1367,9 +1436,15 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
     % \end{align*}
 \end{remark}
 
-\section{Extension operator on finite element stars}
 
-\section{Constructive estimate of Poincar\'e--Friedrichs constants}
+
+
+
+
+
+\section{Extension operator on finite element stars}\label{section:extension}
+
+\section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
 \subsection{Inequalities for partial boundary conditions on a single simplex}
 
