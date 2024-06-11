@@ -6,13 +6,14 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{tikz}
-\usepackage{amscd}
 \usepackage{tikz-cd}
 \usetikzlibrary{calc}
+\usepackage{amscd}
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{remark}{Remark}
+\newtheorem{example}{Example}
 \newtheorem{proposition}{Proposition}
 
 \makeatletter
@@ -72,6 +73,8 @@
 %\newcommand{\argmin}{\operatorname{argmin}}
 \DeclareMathOperator*{\argmin}{{\rm argmin}}
 
+\DeclareMathOperator*{\carapace}{{\rm moat}}
+
 \newcommand{\supp}{\operatorname{supp}}
 \newcommand{\esssup}{{\operatorname{esssup}}}
 \newcommand{\essinf}{{\operatorname{essinf}}}
@@ -109,6 +112,7 @@
 \newcommand{\Faces}{\calF}
 \newcommand{\Ball}{\calB}
 \newcommand{\Sphere}{S}
+\newcommand{\underlying}[1]{\left| #1 \right|}
 
 \newcommand{\Distr}{\calD}
 \newcommand{\Cont}{\calC}
