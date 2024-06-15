@@ -10,11 +10,12 @@
 \usetikzlibrary{calc}
 \usepackage{amscd}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{remark}{Remark}
-\newtheorem{example}{Example}
-\newtheorem{proposition}{Proposition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
 
 \makeatletter
 \newcommand\suchthat{%
@@ -73,7 +74,7 @@
 %\newcommand{\argmin}{\operatorname{argmin}}
 \DeclareMathOperator*{\argmin}{{\rm argmin}}
 
-\DeclareMathOperator*{\carapace}{{\rm moat}}
+\DeclareMathOperator*{\carapace}{{\rm corona}}
 
 \newcommand{\supp}{\operatorname{supp}}
 \newcommand{\esssup}{{\operatorname{esssup}}}
