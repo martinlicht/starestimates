@@ -823,3 +823,120 @@ we have any of the following two conditions:
  such that $\phi(x) = 0$.
 \end{itemize}
 This characterizes the union of the simplicial complex $\calT$ as a topological manifold with boundary. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{On the topology of shellable triangulations}
+    
+A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
+The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
+
+    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, 
+    whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. 
+    In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. 
+    We write $\calT'$ for the  simplicial complex that contains $\calT \cup T$.
+
+
+Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
+Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
+We exclude the case $n \leq 1$ since otherwise the discussion is trivial.
+
+According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
+\begin{align*}
+    \begin{CD}
+        \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
+    \end{CD}
+\end{align*}
+We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to ${G}$. 
+By the nature of the mappings in the Mayer-Vietoris sequence, 
+\color{red}which uses some specific knowledge about the arrows\color{black}, 
+we see that 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+is an exact sequence. 
+Moreover, $H_{k}(\calS) = H_{k}(T) = 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
+the Mayer-Vietoris sequence includes the exact sequence 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
+Finally, the Mayer-Vietoris sequence includes the exact sequence 
+\begin{align*}
+    \begin{CD}
+        0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
+    \end{CD}
+\end{align*}
+
+% Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
+% % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
+% Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+% one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
+then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
+Consider now the case that $\calS$ is isomorphic to a sphere.
+Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
+\color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
+Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
+
+In the case that $\calS$ is isomorphic to a disk, we have $H_{n-1}(\calS) = 0$,
+and then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T) = 0$ are trivial 
+and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
+Consider now the case that $\calS$ is isomorphic to a sphere.
+Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq {G}$. 
+\color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
+Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
+
+
+We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
+\begin{align*}
+    H_0(\calT) \simeq \bbZ, 
+    \quad 
+    H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
+\end{align*}
+Moreover, $H_n(\calT) \simeq {G}$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
+Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
+
+% then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+% Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
+% We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
+% NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
+% \begin{align*}
+%     \begin{CD}
+%         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+%     \end{CD}
+% \end{align*}
+
+\begin{remark}    
+    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq {G}$ because the respective simplicial complexes are path-connected. 
+    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+    % one easily sees that $H_{0}(\calT') \simeq {G}$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
+     
+    % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
+    % Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
+    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
+    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
+    % \begin{align*}
+    %     \begin{CD}
+    %         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
+    %     \end{CD}
+    % \end{align*}
+\end{remark}
+
+

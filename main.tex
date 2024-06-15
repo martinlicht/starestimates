@@ -332,7 +332,7 @@ More specifically, $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the s
 Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$.
 We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
 Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. 
-In practice, we not always distinguish between points and singleton simplices. % TODO: see whether being formally correct iis possible 
+In practice, we not always distinguish between points and singleton simplices. % TODO: see whether being formally correct is possible 
 Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (codimension $1$ members) of this triangulation. 
 
 \begin{remark}
@@ -1538,6 +1538,54 @@ We call the enumeration a \emph{shelling} if each interface $I_m$ is a manifold 
     this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
 \end{remark}
 
+
+
+
+The reason of our interest in shellable simplicial complexes is that they can be constructed by successive adhesion of simplices to intermediate complexes, 
+such that the interface is well-behaved: it is a simplicial disk or a simplicial sphere. 
+That leads to the following important consequence.
+
+% TODO: we only need some basic properties, namely that the construction maintains manifolds with boundary.
+% TODO: copy and adapt the content of Ziegler and Kozlov as necessary
+% The notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
+
+\begin{lemma}    
+    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
+    then
+    $$
+        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
+    $$ 
+    is a manifold with boundary for all $0 \leq m \geq M$.
+    % 
+    In particular, $X_{m}$ is a topological $n$-ball when $m < M$, 
+    and 
+    $X_{M}$ is either a topological $n$-ball or topological $n$-sphere. 
+\end{lemma}
+\begin{proof}  
+    We prove this claim by induction. 
+    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. 
+    Suppose that $X_m := T_{0} \cup T_{1} \cup \dots \cup T_{m}$ is a topological $n$-ball and that $T_{m+1}$ is the next $n$-simplex in the shelling.
+    By definition, $I_{m+1} := X_{m} \cap T_{m+1}$ is a submanifold of $\partial T_{m+1}$,
+    and it is triangulated by some faces of $T_{m+1}$ and their subsimplices. 
+    
+    Let $F$ be such a face. 
+    By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m}$,
+    and $F$ is in the boundary of $X_{m}$. We conclude that $I_{m}$ triangulates a submanifold of the boundary of $X_{m}$.
+    
+    On the one hand, 
+    if $I_{m+1}$ is the entire boundary of $T_{m+1}$, 
+    then it must also be the boundary of the topological $n$-ball $X_{m}$. 
+    Hence $X_{m} \cup T_{m+1}$ must be a topological $n$-sphere and thus a manifold without boundary, which requires $m = M$.
+    On the other hand, 
+    if $I_{m+1}$ is a proper subset of the entire boundary of $T_{m+1}$, 
+    then $X_{m} \cup T_{m+1}$ is still a topological $n$-ball.
+\end{proof}
+
+
+
+
+
+
 We collect important examples of shellable triangulations.
 Our main interest are local patches or stars within triangulations. 
 
@@ -1555,18 +1603,41 @@ Our main interest are local patches or stars within triangulations.
     Any simplicial $2$-sphere is shellable. 
 \end{lemma}
 \begin{proof}
-    Let $\calT$ be a simplicial $2$-disk. 
-    If $\calT$ contains only one triangle, then there is nothing to show. 
-    Otherwise, there exists at least one triangle $T$ that touches the boundary of the disk at either one or two edges 
-    {\color{red}Needs proof}. 
+    First, 
+    let $\calS$ be any triangulation of a $2$-sphere. 
+    By removing any triangle $S \in \calS$, we obtain a triangulation $\calT$ of a $2$-disk.
+    Any shelling of that disk can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
+    So it remains to show that any triangulation $\calT$ of the two-dimensional disk is shellable. 
+    We will construct the shelling in reverse. 
+    
+    Write $M = |\calT|$. 
+    We call a triangle $T \in \calT$ \emph{good} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
+    We show by an induction argument over the number of triangles that every triangulation of a $2$-disk contains a good triangle. 
+    Clearly, this is the case if the triangulation contains only one triangle. 
+    Now suppose the induction claim is true when the triangulation includes $N$ triangles,
+    and assume that $\calT$ includes $N+1$ triangles. 
+    There exists a triangle $T' \in \calT$ with at least one edge in the boundary. 
+    If $T'$ is good, then we are already done. 
+    Otherwise, $T'$ intersects the boundary at one edge and its opposing vertex.
+    Removing $T'$ splits the manifold into two pieces, each of which is a topological $2$-disk.
+    By the induction assumption, they contain a good triangle.
+    
+    Since $\calT$ triangulates a $2$-disk,
+    it contains a good triangle $T$. 
+    If $T$ has three edges in the boundary, then $T = M$ and we are trivially done. 
+    If $T$ intersects with the boundary in exactly one or two edges, 
+    then $\overline{M \setminus T}$ is still a topological $2$-disk.
     Letting $\calT'$ be the triangulation obtained by removing $T$,
     we have another triangulation of the $2$-disk that intersects $T$ only at either two or one edges.
-    Repeating this procedure yields an enumeration of the triangles of $\calT$,
-    whose reverse is a shelling.
+    Any shelling of $\calT'$ can be extended to a shelling of $\calT$.
+%     Let $\calT$ be a simplicial $2$-disk. 
+%     If $\calT$ contains only one triangle, then there is nothing to show. 
+%     Otherwise, there exists at least one triangle $T$ that touches the boundary of the disk at either one or two edges 
+%     {\color{red}Needs proof}. 
 
-    Now let $\calS$ be any simplicial $2$-sphere. 
-    By removing any triangle $S \in \calS$, we obtain a simplicial $2$-disk, which is shellable. 
-    Any of its shellings can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
+%     Now let $\calS$ be any simplicial $2$-sphere. 
+%     By removing any triangle $S \in \calS$, we obtain a simplicial $2$-disk, which is shellable. 
+%     Any of its shellings can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
 \end{proof}
 
 % TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
@@ -1596,7 +1667,6 @@ Our main interest are local patches or stars within triangulations.
     
     It remains to consider the case where $S$ is a boundary vertex. 
     Then the triangles of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-disk 
-    {\color{red}Needs proof},
     which is shellable,
     and any such shelling can be extended to a shelling of $\patch_{\calT}(S)$.
 \end{proof}
@@ -1606,40 +1676,13 @@ Our main interest are local patches or stars within triangulations.
     Not all trianguable sets admit a triangulation that is also shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
     We refer to~\cite[Example 8.9]{ziegler2012lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
-\end{example}
-\begin{remark}
-    Patches around boundary simplices are not necessarily shellable when the dimension exceeds $3$.
+
     For example, there exists a non-shellable triangulation of a tetrahedron. 
     If we extend this triangulation to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
     then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
+    This demonstrates that patches around boundary simplices are not necessarily shellable when the dimension exceeds $3$.
 \end{remark}
 
-The reason of our interest in shellable simplicial complexes is that they can be constructed by successive adhesion of simplices to intermediate complexes, 
-such that the interface is well-behaved: it is a simplicial disk or a simplicial sphere. 
-That has the following important consequence.
-
-
-
-
-
-% TODO: we only need some basic properties, namely that the construction maintains manifolds with boundary.
-% TODO: copy and adapt the content of Ziegler and Kozlov as necessary
-
-\begin{lemma}
-    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$, then it is a manifold triangulation.
-    In particular, $\patch_{\calT}(T_{0}) \cup \patch_{\calT}(T_{1}) \cup \dots \cup \patch_{\calT}(T_{m})$ is a manifold triangulation for every $m \geq 0$.
-\end{lemma}
-\begin{proof}    
-\end{proof}
-
-\begin{lemma}    
-    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots$ and is non-branching, then it triangulates a manifold, possibly with boundary.
-    In particular, $T_{0} \cup T_{1} \cup \dots \cup T_{m}$ is a manifold with boundary for all $m \geq 0$.
-\end{lemma}
-\begin{proof}    
-\end{proof}
-
-% The notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
 
 
 
@@ -1648,110 +1691,6 @@ That has the following important consequence.
 
 
 
-\subsection{On the topology of shellable triangulations}
-
- 
-
-
-    
-A shellable simplicial complex that triangulates a manifold has a very restricted topology. 
-The Mayer-Vietoris theorem implies restrictions on the homology groups of simplicial complexes iteratively constructed via shelling. 
-
-    Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, 
-    whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. 
-    In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. 
-    We write $\calT'$ for the  simplicial complex that contains $\calT \cup T$.
-
-
-Suppose that $\calT$ is a strongly connected $n$-dimensional simplicial complex that triangulates a manifold, and suppose that its boundary complex $\partial\calT$ is either empty or strongly connected.  
-Suppose furthermore that $T$ is an $n$-simplex, $T \notin \calT$, whose boundary complex intersects with $\partial\calT$ at a non-empty simplicial complex $\calS$ of dimension $n-1$. In particular, $\calS$ is either the whole boundary complex of $T$ or a patch around a proper subsimplex of $T$. We write $\calT'$ be the  simplicial complex that contains $\calT \cup T$.
-We exclude the case $n \leq 1$ since otherwise the discussion is trivial.
-
-According to the simplicial Mayer-Vietoris theorem, there exists an exact sequence 
-\begin{align*}
-    \begin{CD}
-        \dots \longrightarrow H_{k}(\calS) \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow H_{k-1}(\calS) \longrightarrow\dots 
-    \end{CD}
-\end{align*}
-We notice that $\calS$, $\calT$, $T$ and $\calT'$ are each connected, and hence their zeroth homology groups are isomorphic to ${G}$. 
-By the nature of the mappings in the Mayer-Vietoris sequence, 
-\color{red}which uses some specific knowledge about the arrows\color{black}, 
-we see that 
-\begin{align*}
-    \begin{CD}
-        0 \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
-    \end{CD}
-\end{align*}
-is an exact sequence. 
-Moreover, $H_{k}(\calS) = H_{k}(T) = 0$ for $0 < k < n-1$. Hence, for $1 < k < n-1$,
-the Mayer-Vietoris sequence includes the exact sequence 
-\begin{align*}
-    \begin{CD}
-        0 \longrightarrow H_{k}(\calT \oplus T) \longrightarrow H_{k}(\calT') \longrightarrow 0 
-    \end{CD}
-\end{align*}
-and we conclude that $H_{k}(\calT) = 0$ for $0 < k < n-1$.
-Finally, the Mayer-Vietoris sequence includes the exact sequence 
-\begin{align*}
-    \begin{CD}
-        0 \longrightarrow H_{n}(\calT \oplus T) \longrightarrow H_{n}(\calT') \longrightarrow H_{n-1}(\calS) \longrightarrow H_{n-1}(\calT \oplus T) \longrightarrow H_{n-1}(\calT') \longrightarrow 0 
-    \end{CD}
-\end{align*}
-
-% Here, if $n=1$, it already follows that $H_{n}(\calT \oplus T) \simeq H_{n}(\calT')$.
-% % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq \bbZ$ because the respective simplicial complexes are path-connected. 
-% Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-% one easily sees that $H_{0}(\calT') \simeq \bbZ$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-Since $\calT$ and $T$ are triangulations of manifolds with non-empty boundary, their $n$-th simplicial homology groups vanish. 
-then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ are trivial and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
-Consider now the case that $\calS$ is isomorphic to a sphere.
-Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq \bbZ$. 
-\color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
-Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
-
-In the case that $\calS$ is isomorphic to a disk, we have $H_{n-1}(\calS) = 0$,
-and then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T) = 0$ are trivial 
-and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follows.
-Consider now the case that $\calS$ is isomorphic to a sphere.
-Since the boundary complex of $\calT$ is strongly connected and non-branching, it must coincide with $\calS$. Hence $\calT'$ triangulates a manifold without boundary, and thus $H_{n}(\calT') \simeq {G}$. 
-\color{red}By some hand-waving argument, $H_{n}(\calT') \longrightarrow H_{n-1}(\calS)$ is an isomorphism.\color{black}
-Hence $H_{n-1}(\calT) \rightarrow H_{n-1}(\calT')$ is an isomorphism.
-
-
-We conclude that the simplicial homology groups of a shellable $n$-dimensional simplicial complex $\calT$ that triangulates a manifold satisfy 
-\begin{align*}
-    H_0(\calT) \simeq \bbZ, 
-    \quad 
-    H_1(\calT) \simeq \dots \simeq H_{n-1}(\calT) \simeq 0.
-\end{align*}
-Moreover, $H_n(\calT) \simeq {G}$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
-Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \simeq 0$ otherwise. 
-
-% then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
-% Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
-% We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
-% NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
-% \begin{align*}
-%     \begin{CD}
-%         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
-%     \end{CD}
-% \end{align*}
-
-\begin{remark}    
-    % % We know that  $H_{0}(\calT') \simeq H_{0}(\calT) \simeq H_{0}(T) \simeq H_{0}(\calS) \simeq {G}$ because the respective simplicial complexes are path-connected. 
-    % Hence $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-    % one easily sees that $H_{0}(\calT') \simeq {G}$ and $H_{1}(\calT) \oplus H_{1}(T) \simeq H_{1}(\calT')$. 
-     
-    % then $H_{n}(\calT') \simeq H_{n}(\calT \oplus T)$ and $H_{n-1}(\calT') \simeq H_{n-1}(\calT \oplus T)$ follow immediately.
-    % Moreover, Thus $H_{n}(\calT') = H_{n}(\calT) \oplus H_{n}(\calS)$.
-    % We conclude that any shellable simplicial complex has the homology groups of a disk or a sphere. 
-    % NB: the zeroth homology is always free, and the n-th homology group, being the kernel of a mapping free abelian group, is free as well.
-    % \begin{align*}
-    %     \begin{CD}
-    %         0 \longrightarrow H_{1}(\calT) \oplus H_{1}(T) \longrightarrow H_{1}(\calT') \longrightarrow H_{0}(\calS) \longrightarrow H_{0}(\calT) \oplus H_{0}(T) \longrightarrow H_{0}(\calT') \longrightarrow 0 
-    %     \end{CD}
-    % \end{align*}
-\end{remark}
 
 
 \section{Extension operator on finite element stars}
