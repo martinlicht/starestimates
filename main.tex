@@ -300,10 +300,10 @@ A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{tri
 The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
 We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that complex.\footnote{We warn the reader that simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes.} 
 We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is defined as the union 
-\[
+\begin{align*}
     \underlying{\calT} := \bigcup_{ T \in \calT } T
     .
-\]
+\end{align*}
 We call a set \textit{trianguable} if it is the underlying set of some triangulation. 
 
 
@@ -1192,9 +1192,6 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 
-
-
-
 \newpage
 
 \section{Shellable triangulations}
@@ -1515,7 +1512,7 @@ Our definition of shelling is equivalent to the notion of the shellings of simpl
 
 Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
 For any enumeration, we call 
-\[
+\begin{align*}
     I_m 
     := 
     \big( 
@@ -1523,7 +1520,7 @@ For any enumeration, we call
     \big) 
     \cap 
     T_{m+1}
-\]
+\end{align*}
 be the $m$-th \textit{interface set}. 
 % Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
 We call the enumeration a \emph{shelling} if each interface $I_m$ is a manifold of dimension $n-1$. 

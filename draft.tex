@@ -940,3 +940,71 @@ Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \s
 \end{remark}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Theorem 8.1}
+
+\noindent \textbf{Theorem 8.1 (Discrete Poincaré inequality).} There holds
+\begin{align*}
+    \|g\|^2_{0,\Omega} 
+    \leq 
+    C_P |g|^2_{1,T} 
+    + 
+    \frac{4}{|\Omega|} \left( \int_{\Omega} g(x) \, dx \right)^2
+        \quad 
+    \forall g \in W(T_h), \forall h > 0
+\end{align*}
+with
+\begin{align*}
+C_P = 4C_d C_\Omega \frac{C_{d,T}}{\kappa_T} [\text{diam}(\Omega)]^2 + 8c_d h^2,
+\end{align*}
+where \(C_\Omega\) is given by (27) when \(\Omega\) is convex and by (28) otherwise, \(C_{d,T}\) is given by (12) when Assumption (B) is satisfied and by (15) in the general case, \(c_d\) is given by (22), and \(C_d\) is given by (26).
+\\
+
+\noindent Obviously
+\begin{align*}
+    \|g\|_{0,\Omega} 
+    \leq 
+    \|g - I(g)\|_{0,\Omega} + \|I(g)\|^2_{0,\Omega}
+    ,
+\end{align*}
+\begin{align*}
+    \|g\|^2_{0,\Omega} 
+    &\leq 
+    2\|g - I(g)\|^2_{0,\Omega} + 2\|I(g)\|^2_{0,\Omega} 
+    ,
+    \|g\|_{0,\Omega} 
+    &\leq
+    \sqrt{2}
+    \sqrt{ \|g - I(g)\|^2_{0,\Omega} + 2\|I(g)\|^2_{0,\Omega} }
+    .
+\end{align*}
+We apply the cellwise local approximation estimate, which coincides with the cellwise Poincare inequality:
+\begin{align*}
+    \|g - I(g)\|_{0,\Omega}
+    &\leq 
+    \frac{ h_T }{\pi}
+    \| \nabla_\calT g \|_{0,\Omega}
+    ,
+    \|g - I(g)\|_{0,\Omega}
+    &\leq 
+    \frac{ h_T }{\pi}
+    \| \nabla_\calT g \|_{0,\Omega}
+    .
+\end{align*}
+
+
+
