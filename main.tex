@@ -277,7 +277,7 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
 
 The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
-We then review the notion of shellable triangulation in Section~\ref{section:shellable}.
+We then review the notion of shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations}.
 We construct an important geometric reflection operator in Section~\ref{section:extension}
 and provide computable upper bounds for Poincar\'e--Friedrichs constants over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 
@@ -364,7 +364,10 @@ A crucial observation is the following.
 
 We will use a specific notion of connectivity. 
 Given an $n$-dimensional simplicial complex $\calT$, 
-we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. Clearly, strongly connected in $\calT$ is an equivalence relation. A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, and we call $\calT$ strongly connected if it has only one strongly connected component. 
+we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
+We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. 
+Clearly, strongly connected in $\calT$ is an equivalence relation. A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, 
+and we call $\calT$ strongly connected if it has only one strongly connected component. 
 
 
 
@@ -1006,13 +1009,36 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 \end{figure}
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
-    \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
     Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
-    For any $u \in W^{1,p}(\Omega)$ there exists $w \in W^{1,p}(\Omega)$
-    with $\nabla u = \nabla w$ and such that for all $T \in \calT$:
+    Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
+    there exists a strong path $T_0, T_1, \dots, T_m = T$.
+    Then for any $u \in W^{1,p}(\Omega)$ 
+    there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
+    and such that for all $T \in \calT$:
     \begin{align*}
-        ...
+        \| w_{m} \|_{L^{p}(T_m)}^{p}
+        &\leq 
+        (m+1)^{p-1}
+        \sum_{t=1}^{m} 
+        \left( 
+            \prod_{t < l \leq m} 
+            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
+        \right)
+        \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{p/q}
+        C_{p,T_{t} \cup T_{t+1}}
+        \| \nabla u \|_{L^{p}( T_{t} \cup T_{t+1} )}^{p}
+        \\&\quad \quad \quad 
+        +
+        (m+1)^{p-1}
+        \left( 
+            \prod_{0 < l \leq m} 
+            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
+        \right)
+        C_{p,T_{0}}
+        \| \nabla u \|_{L^{p}(T_{0})}^{p}
+        .
     \end{align*}
+    \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
 \end{theorem}
 
 \begin{proof}
@@ -1416,6 +1442,147 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  Notice that $p/q = p - 1$.
 \end{proof}
 
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
+    Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
+    there exists a strong path $T_0, T_1, \dots, T_m = T$.
+    Then for any $u \in W^{1,p}(\Omega)$ 
+    there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
+    and such that for all $T \in \calT$:
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_m)}^{p}
+        &\leq 
+        (m+1)^{p-1}
+        \sum_{t=1}^{m} 
+        \left( 
+            \prod_{t < l \leq m} 
+            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
+        \right)
+        \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{p/q}
+        C_{p,T_{t} \cup T_{t+1}}
+        \| \nabla u \|_{L^{p}( T_{t} \cup T_{t+1} )}^{p}
+        \\&\quad \quad \quad 
+        +
+        (m+1)^{p-1}
+        \left( 
+            \prod_{0 < l \leq m} 
+            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
+        \right)
+        C_{p,T_{0}}
+        \| \nabla u \|_{L^{p}(T_{0})}^{p}
+        .
+    \end{align*}
+    \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
+\end{theorem}
+
+\begin{proof}
+    Let $u \in W^{1,p}(\Omega)$. 
+    Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+    
+    Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. Hence $c_{\star} := w_{m-1} - u_{|\Omega_{m-1}}$ is a constant. 
+    By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j(m)}$. 
+
+    Let $\hat T$ be the reference simplex.
+    We fix affine homeomorphisms $\Phi_1 : \hat T \rightarrow T_1$ and $\Phi_2 : \hat T \rightarrow T_2$
+    which map the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
+    Note that these affine transformations define a bi-Lipschitz mapping $\Phi : \hat U \rightarrow U$. 
+    
+    We define $u'_{m+1} := u_{{m}} \circ \Phi_1 \circ \Phi_2^{-1} \in W^{1,p}(T_{m+1})$. 
+    In particular, $u'_{m+1} \in W^{1,p}(T_{m+1})$ such that 
+    \begin{align*}
+        \trace_F u_{m} = \trace_F u'_{m+1}
+    \end{align*}
+    We will also use the bound 
+    \begin{align*}
+        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
+        &\leq 
+        |\det(\Dif \Phi_1)|^{-\frac 1 p} \cdot \| \Dif \Phi_1 \|
+        \cdot 
+        |\det(\Dif \Phi_2)|^{-\frac 1 p} \cdot \| \Dif \Phi_2 \|
+        \| \nabla u_{m} \|_{L^{p}(T_{m})}
+        .
+    \end{align*}
+    Suppose that $u''_{m+1} \in W^{1,p}(T_{m+1})$ with 
+    \begin{align*}
+        \nabla u''_{m+1} = \nabla u - \nabla u'_{m+1}, 
+        \quad 
+        \trace_{F_{m}} u''_{m+1} = 0
+    \end{align*}
+    Such $u''_{m+1}$ exists because 
+    \begin{align*}
+        \trace_{F_{m}}( \nabla u - \nabla u'_{m+1} ) 
+        &= 
+        \trace_{F_{m}} \nabla u - \trace_{F_{m}} \nabla u'_{m+1}
+        \\&= 
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} u'_{m+1}
+        = 
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} u_{|m}
+        = 0
+        .
+    \end{align*}
+    Setting $u_{m+1} = u_{m}$ over $\Omega_{m}$ and $u_{m+1} = u'_{m+1} + u''_{m+1}$ over $T_{m+1}$, 
+    we find 
+    \begin{gather*}
+        \nabla u_{m+1} = \nabla u'_{m+1} + \nabla u''_{m+1} = \nabla u'_{m+1} + \nabla u - \nabla u'_{m+1} = \nabla u,
+        % \end{gather*}
+        \\
+        % \begin{gather*}
+        \trace_{F_{m}} u_{m+1} = \trace_{F_{m}} u'_{m+1} = \trace_{F_{m}} u_1.
+    \end{gather*}
+    We construct such a $u''_{m+1} \in W^{1,p}(T_{m+1})$ satisfying desirable bounds.
+    There exists $\Psi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \Psi - u'_{m+1} \circ \Psi )$. 
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$,
+    and extend that $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
+    By construction, $\hat g$ is the gradient of a unique function in $w \in W^{1,p}$ that vanishes at the boundary of $\hat U$,
+    which satisfies Friedrichs inequality. In total, we utilize 
+    \begin{gather*}
+        \| u''_{m+1} \|_{L^{p}(T_{m+1})}
+        \leq 
+        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
+        \| w \|_{L^{p}(\hat T)}
+        ,
+        \qquad 
+        \| w \|_{L^{p}(\hat U)} 
+        \leq 
+        2 
+        \| \hat g \|_{\bfL^{p}(\hat U)}
+        ,
+        \\
+        \| \hat g \|_{\bfL^{p}(\hat U)}
+        \leq 
+        2^{\frac n p}
+        \| \hat g \|_{\bfL^{p}(\hat T)}
+        \leq 
+        2^{\frac n p}
+        |\det(\Dif \Psi_1)|^{-\frac 1 p} \cdot \| \Dif \Psi_1 \|
+        \| \nabla u - \nabla u'_{m+1} \|_{\bfL^{p}(T)}
+        .
+    \end{gather*}
+    We thus have
+    \begin{align*}
+        \| u''_{m+1} \|_{L^{p}(T_{m+1})}
+        &
+        \leq 
+        \| \nabla u \|_{L^{p}(T_{m+1})} 
+        + 
+        2^{1+\frac n p}
+        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
+        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
+        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
+        \\&
+        \leq 
+        \| \nabla u \|_{L^{p}(T_{m+1})} 
+        + 
+        2^{1+\frac n p}
+        \| \Dif \Psi \|
+        \| \Dif \Psi \|
+        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
+        .
+    \end{align*}
+    
+\end{proof}
+
 \begin{remark}
     The previous result depends on only a few parameters of the triangulation:
     the length of any traversal from the root simplex,
@@ -1452,7 +1619,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \newpage
 
-\section{Shellable triangulations}
+\section{Shellable triangulations}\label{section:advancedtriangulations}
 
 We return to the theory of triangulations,
 as our main objective requires some further concepts.
