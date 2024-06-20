@@ -1066,6 +1066,264 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     .
  \end{align*}
  We want to summarize the two integrals of $u_{F_m}$. 
+ 
+ \newpage\color{red}
+ We want 
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    \leq
+    \left( 
+        1 
+        + 
+        2
+        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
+    \right)^{p/q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        +
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    .
+ \end{align*}
+ In the special case $p=1$ and $p=\infty$,
+ \begin{align*}
+    \| w_{m} \|_{L^{1}(T_m)}
+    &\leq 
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+    \right)
+    \| u_{F_m} \|_{L^{1}(U_{F_m})}
+    +
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+    \right)
+    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
+    .
+    \\
+    \| w_{m} \|_{L^{2}(T_m)}^{2}
+    &\leq
+    \left( 
+        1 
+        + 
+        2
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \right)
+    \left( 
+        \| u_{F_m} \|_{L^{2}(T_m)}^{2}
+        +
+        \| u_{F_{m}} \|_{L^{2}(T_{j(m)})}^{2}
+        +
+        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
+    \right)
+    .
+    \\
+    \| w_{m} \|_{L^{\infty}(T_m)}
+    &\leq 
+    3
+    \max\left( 
+        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+        ,
+        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    \right)
+    .
+ \end{align*}
+ \color{orange}
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    \leq
+    \left( 
+        2 
+        + 
+        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
+    \right)^{p/q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    .
+ \end{align*}
+ In the special case $p=1$ and $p=\infty$, 
+ \begin{align*}
+    \| w_{m} \|_{L^{1}(T_m)}
+    &\leq 
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+    \right)
+    \| u_{F_m} \|_{L^{1}(U_{F_m})}
+    +
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+    \right)
+    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
+    .
+    \\
+    \| w_{m} \|_{L^{2}(T_m)}^{2}
+    &\leq
+    \left( 
+        2 
+        + 
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \right) 
+    \left( 
+        \| u_{F_m} \|_{L^{2}(T_m)}^{2}
+        +
+        \| u_{F_{m}} \|_{L^{2}(T_{j(m)})}^{2}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
+    \right)
+    \\
+    \| w_{m} \|_{L^{\infty}(T_m)}
+    &\leq 
+    3
+    \max\left( 
+        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+        ,
+        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    \right)
+    .
+ \end{align*}
+ \color{JungleGreen}
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    &\leq
+    \left( 
+        3
+    \right)^{p/q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    \\&
+    \leq
+    \left( 
+        3
+    \right)^{p/q}
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{p}(T_m \cup T_{j(m)})}^{p}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    .
+ \end{align*}
+ In the special case $p=1$ and $p=\infty$, ????
+ \begin{align*}
+    \| w_{m} \|_{L^{1}(T_m)}
+    &\leq 
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{1}(T_m \cup T_{j(m)})}^{1}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{1}(T_{j(m)})}^{1}
+    \right)
+    .
+    \\
+    \| w_{m} \|_{L^{2}(T_m)}^{2}
+    &\leq
+    3
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{2}(T_m \cup T_{j(m)})}^{2}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
+    \right)
+    \\
+    \| w_{m} \|_{L^{\infty}(T_m)}
+    &\leq 
+    3
+    \max\left( 
+        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+        ,
+        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    \right)
+    .
+ \end{align*}
+ \color{MidnightBlue}
+ \begin{align*}
+    \| w_{m} \|_{L^{p}(T_m)}^{p}
+    &\leq
+    \left( 
+        2 
+        + 
+        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
+    \right)^{p/q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        +
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    \\&
+    \leq
+    \left( 
+        2 
+        + 
+        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
+    \right)^{p/q}
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{p}(T_m \cup T_{j(m)})}^{p}
+        +
+        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
+    \right)
+    .
+ \end{align*}
+ In the special case $p=1$ and $p=\infty$, ????
+ \begin{align*}
+    \| w_{m} \|_{L^{1}(T_m)}
+    &\leq 
+    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{1}(T_m \cup T_{j(m)})} 
+        +
+        \| w_{m-1}\|_{L^{1}(T_{j(m)})} 
+    \right)
+    .
+    \\
+    \| w_{m} \|_{L^{2}(T_m)}^{2}
+    &\leq 
+    \left( 
+        2 
+        + 
+        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
+    \right) 
+    \left( 
+        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
+        \| u_{F_{m}} \|_{L^{2}(T_m \cup T_{j(m)})}^{2}
+        +
+        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
+    \right)
+    \\
+    \| w_{m} \|_{L^{\infty}(T_m)}
+    &\leq 
+    3
+    \max\left( 
+        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+        ,
+        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    \right)
+    .
+ \end{align*}
+ \color{black}
  In the special case $p=1$,
  \begin{align*}
     \| w_{m} \|_{L^{1}(T_m)}
