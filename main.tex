@@ -1456,11 +1456,15 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         C_{\partial,p}
         \diam(T) \| \nabla u \|_{L^{p}(T)}
     \end{align*}
-    where 
+    where $C_{\partial,p} > 0$ is a constant such that 
     \begin{align*}
         C_{\partial,p}
         \leq 
-        \left( C_{?} + \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p} \right) 
+        \left( C_{?} + \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p} \right),
+        \quad 
+        C_{\partial,p}
+        \leq 
+        2^{\frac n p}
         .
     \end{align*}
     % \begin{align*}
@@ -1540,7 +1544,46 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| \nabla w \|_{L^{p}(T)}^{p}
         .
     \end{align*}
-    Recall that $u = w - \gamma$. The desired result follows. 
+    Recall that $u = w - \gamma$. The first inequality follows. 
+    
+    There exists $\Psi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We let $\hat u := u \circ \Psi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \Psi )$. 
+    Then $\nabla \hat u = \hat g$. 
+    % 
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordiante axes.
+    We define $\tilde g = \nabla \tilde u$
+    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
+    By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
+    \begin{gather*}
+        \| \tilde u \|_{L^{p}(\hat U)} 
+        \leq 
+        2 
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        .
+    \end{gather*}
+    In addition to that, 
+    \begin{gather*}
+        \| u \|_{L^{p}(T_{m+1})}
+        \leq 
+        |\det(\Dif \Psi)|^{\frac 1 p} 
+        \| \hat u \|_{L^{p}(\hat T)}
+        \leq 
+        |\det(\Dif \Psi)|^{\frac 1 p} 
+        \| \tilde u \|_{L^{p}(\hat U)}
+        ,
+        \\
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        \leq 
+        2^{\frac n p}
+        \| \hat g \|_{\bfL^{p}(\hat T)}
+        \leq 
+        2^{\frac n p}
+        |\det(\Dif \Psi_1)|^{-\frac 1 p} \| \Dif \Psi \| \cdot 
+        \| \nabla u \|_{\bfL^{p}(T)}
+        .
+    \end{gather*}
+    The second inequality follows.
 \end{proof}
 
 
@@ -1671,58 +1714,6 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     % TODO: Finish the recursion 
     
     
-    We construct such a $u''_{m+1} \in W^{1,p}(T_{m+1})$ satisfying desirable bounds.
-    There exists $\Psi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
-    We define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \Psi - u'_{m+1} \circ \Psi )$. 
-    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$,
-    and extend that $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
-    By construction, $\hat g$ is the gradient of a unique function in $w \in W^{1,p}$ that vanishes at the boundary of $\hat U$,
-    which satisfies Friedrichs inequality. In total, we utilize 
-    \begin{gather*}
-        \| u''_{m+1} \|_{L^{p}(T_{m+1})}
-        \leq 
-        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
-        \| w \|_{L^{p}(\hat T)}
-        ,
-        \qquad 
-        \| w \|_{L^{p}(\hat U)} 
-        \leq 
-        2 
-        \| \hat g \|_{\bfL^{p}(\hat U)}
-        ,
-        \\
-        \| \hat g \|_{\bfL^{p}(\hat U)}
-        \leq 
-        2^{\frac n p}
-        \| \hat g \|_{\bfL^{p}(\hat T)}
-        \leq 
-        2^{\frac n p}
-        |\det(\Dif \Psi_1)|^{-\frac 1 p} \cdot \| \Dif \Psi_1 \|
-        \| \nabla u - \nabla u'_{m+1} \|_{\bfL^{p}(T)}
-        .
-    \end{gather*}
-    We thus have
-    \begin{align*}
-        \| u''_{m+1} \|_{L^{p}(T_{m+1})}
-        &
-        \leq 
-        \| \nabla u \|_{L^{p}(T_{m+1})} 
-        + 
-        2^{1+\frac n p}
-        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
-        |\det(\Dif \Psi)|^{-\frac 1 p} \cdot \| \Dif \Psi \|
-        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
-        \\&
-        \leq 
-        \| \nabla u \|_{L^{p}(T_{m+1})} 
-        + 
-        2^{1+\frac n p}
-        \| \Dif \Psi \|
-        \| \Dif \Psi \|
-        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
-        .
-    \end{align*}
-    We will also use the bound.  
 \end{proof}
 
 \begin{remark}
