@@ -311,9 +311,9 @@ We call a set \textit{trianguable} if it is the underlying set of some triangula
     Our main interest in this manuscript are finite triangulations of compact sets. 
     There is another reason why we insist on the triangulation being finite: 
     if we do not require our simplicial complexes to be finite,
-    then our definition would be considerably more permissive than the typical definitions in topology. 
+    then a reasonable definition of simplicial complex would need additional topological conditions. 
     % 
-    For example, if we allowed simplicial complex to be infinite, 
+    For example, if we modify our definition of simplicial complex to be infinite, 
     then any subset of Euclidean space would give rise to an ``infinite $0$-dimensional complex''. But this obviously does not reflect the topology. 
     %
     A more interesting such example is this:
@@ -324,7 +324,7 @@ We call a set \textit{trianguable} if it is the underlying set of some triangula
     then the resulting set is still compact, even path-connected,  
     but has an ``infinite $1$-dimensional triangulation''.
     % 
-    However, none of these infinite families are simplicial complexes in the sense of topology~\cite{spanier1966homology}. 
+    However, none of these infinite families are infinite simplicial complexes in the sense of topology~\cite{spanier1966homology}. 
 \end{remark}
 
 
@@ -488,7 +488,6 @@ The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, an
 The main consequence for us is the estimate 
 $C_{\varnothing,\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}$.
 We conclude that our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
-\color{red} Question: can the estimate above be further improved for general $p$? Are there known results in the literature? \color{black}
 
 There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
 We define the potential 
@@ -504,7 +503,7 @@ Clearly,
 \end{align*}
 and this inequality is sharp by definition of $\Phi$ provided that $C_{{\rm PF},\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
 However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
-Consequently, any linear potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
+Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
 satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
 \begin{align*}
     C_{{\rm PF},\Omega,p} 
@@ -522,8 +521,10 @@ A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Om
 \end{align*}
 Its operator norm is just the smallest Poincar\'e constant $C_{\varnothing,\Omega,p}$.
 
-In the light of these musings, we can clarify that our objective is the construction of linear potential operators for the gradient and later for the curl and divergence operators. 
-Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. The potential reconstruction is the natural approach towards the topic when addressing the curl and divergence operators. 
+In the light of these musings, we clarify that our objective is the construction of linear potential operators for the gradient and later for the curl and divergence operators,
+which is more specific than just proving an upper bound for the Poincar\'e--Friedrichs constant. 
+Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
+The potential reconstruction is the natural approach towards the topic when addressing the curl and divergence operators. 
 
 \begin{remark}
     Let us further remark why the above notion of Poincar\'e--Friedrichs inequality suits our discussion better than the Poincar\'e inequality. 
@@ -543,7 +544,8 @@ Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comp
 \subsection{Poincar\'e inequalities over convex domains}
 % See the collection at Lemma 3.24 : https://hal.science/hal-03226049/file/volI_hal.pdf
 
-We now collect examples for Poincar\'e--Friedrichs inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. Over convex bounded domains, it is known~\cite{bebendorf2003note,acosta2004optimal} that 
+We now collect examples for Poincar\'e--Friedrichs inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. 
+Over convex bounded domains, we have the Poincar\'e inequalities~\cite{bebendorf2003note,acosta2004optimal} 
 \begin{align}\label{math:acostaduran}
     \| u - u_{\Omega} \|_{L^{1}(\Omega)}
     \leq 
@@ -551,7 +553,7 @@ We now collect examples for Poincar\'e--Friedrichs inequalities for important sp
     \| \nabla u \|_{L^{1}(\Omega)}
     ,
     \quad 
-    u \in W^{1,2}(\Omega)
+    u \in W^{1,1}(\Omega)
     ,
     \\
     \| u - u_{\Omega} \|_{L^{2}(\Omega)} \label{math:bebendorf}
@@ -564,7 +566,7 @@ We now collect examples for Poincar\'e--Friedrichs inequalities for important sp
     .
 \end{align}
 These two estimates are the best possible in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
-Moreover, when $1 < p < \infty$, we know~\cite{chua2006estimates} that
+Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite{chua2006estimates}:
 \begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
@@ -593,8 +595,8 @@ where
     \left( \frac p 2 \right)^{\frac 1 p}
     .
 \end{align}
-In addition to that,
-according to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$, one can show that 
+The literature knows optimal Poincar\'e--Friedrichs constants over convex domains. 
+According to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$, one can show that 
 \begin{align}\label{math:esposito:pf}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
@@ -607,14 +609,13 @@ according to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$
     u \in W^{1,p}(\Omega)
     ,
 \end{align}
-where 
+where $C_{\rm{EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
 \begin{align}
     C_{\rm{EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
 \end{align}
-The constant $C_{\rm{EFNT},p}$ is the best possible. 
 Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
@@ -628,8 +629,7 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
     .
 \end{align}
 The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
-Finally,
-since convex domains are Lipschitz domains, we may estimate 
+Finally, since convex domains are Lipschitz domains: 
 \begin{align}\label{math:lipschitzestimate}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{\infty}(\Omega)}
@@ -730,32 +730,105 @@ since convex domains are Lipschitz domains, we may estimate
 
 \subsection{Poincar\'e inequalities over triangulated domains}
 
-Given a gradient vector field, we can reconstructed the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
+Given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
 This shall be our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials. 
-After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed so far. 
+After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed in intermediate steps. 
 Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
+\\
+
+We achieve this goal via several auxiliary results. 
+We start with a few geometric observations that pertain to the mesh regularity. 
+Whenever $T$ is an $n$-dimensional simplex, we define the quantity 
+\begin{align*}
+    \mu(T)
+    := 
+    \frac{ \diam(T)^n }{ n! \vol(T) }
+    .
+\end{align*}
+Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
+\begin{align*}
+    \mu(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \mu(T),
+    \qquad 
+    \delta(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \diam(T) }{ \diam(T') },
+    \qquad 
+    \kappa(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
+\end{align*}
 
 
-We have already seen a survey of Poincar\'e inequalities over convex domains. 
-Slightly more generally, we are interested in such inequalities over face patches within simplicial triangulations. 
-We state a geometric auxiliary lemma and an estimate of Poincar\'e--Friedrichs constants over face patches 
-that captures the correct asymptotic behavior as $p$ grows to infinity.
-
-
+\begin{lemma}\label{lemma:affinetransform}
+    Let $T$ be an $n$-simplex and let $\Psi : \Delta^n \rightarrow T$ be an affine diffeomorphism. Then 
+    \begin{align*}
+        \| \Jacobian \Psi \|
+        \leq 
+        \sqrt{n} \cdot \diam(T)
+        ,
+        \qquad 
+        \| \Jacobian \Psi^{-1} \|
+        \leq 
+        \sqrt{2n^n} 
+        % \frac{ n! \vol(T) } { \diam(T)^n }
+        \mu(T)^{-1}
+        \diam(T)^{-1}
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of $\Jacobian\Psi$ in descending order.
+    Then $\sigma_1/\sigma_n \leq \sigma_1^n / \det(\Jacobian\Psi)$. Hence 
+    \[
+        \diam(T) 
+        \leq 
+        \sqrt{2} \sigma_1 
+        \leq 
+        \sqrt{2} 
+        \frac{ \sigma_1^n }{ \det(\Jacobian\Psi) } 
+        \sigma_n
+        \leq 
+        \sqrt{2n^n} 
+        \frac{ \diam(T)^n }{ n! \vol(T) } 
+        \sigma_n
+        .
+    \]
+    The desired result is thus evident. 
+\end{proof}
+    
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
         \frac{ \vol(T_1) }{ \vol(T_2) }
-        \leq 
+        &\leq 
         \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
         \cdot 
         \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+        \leq 
+        \mu(T_1) \mu(T_2)
+        ,
+        \\
+        \diam(T_1)
+        &\leq 
+        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \diam(F)
+        \leq 
+        \mu(T_1)
+        \diam(F)
+        .
+    \end{align*}
+    If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism, then 
+    \begin{align*}
+        \| \Jacobian \Xi \|
+        \leq 
+        \sqrt{2n^{n+1}} 
+        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        \leq 
+        \sqrt{2n^{n+1}} 
+        \frac{ \mu(T_1) }{ \mu(T_2) }
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
     Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
-    Then $\vol(T_1) = h_1 \vol(F)/n$ and $\vol(T_2) = h_2 \vol(F)/n$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
+    Then $\vol(T_1) = h_1 \vol(F)/n!$ and $\vol(T_2) = h_2 \vol(F)/n!$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
     We estimate 
     \begin{align*}
         h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} \diam(F),
@@ -763,7 +836,47 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         h_2 &\geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(F)
         .
     \end{align*}
-    The desired estimate follows. 
+    The first estimate follows. 
+    Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
+    \begin{align*}
+        \diam(F)
+        \geq 
+        h
+        =
+        n!
+        \frac{ \vol(T_1) }{ \vol(F') }
+        \geq 
+        \frac{ n! \vol(T_1) }{ \diam(T_1)^n }
+        \cdot 
+        \diam(T_1)
+        .
+    \end{align*}
+    That shows the second estimate. 
+    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, we find 
+    \begin{align*}
+        \| \Jacobian \Xi \|
+        &
+        \leq 
+        \sqrt{n} 
+        \cdot 
+        \diam(T_1)
+        \sqrt{2n^n} 
+        \frac{ n! \vol(T_2) } {\diam(T_2)^n } 
+        \diam(T_2)^{-1}
+        \\&
+        \leq 
+        \sqrt{n} 
+        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \diam(F)
+        \sqrt{2n^n} \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        \diam(F)^{-1}
+        \leq 
+        \sqrt{2n^{n+1}}
+        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        .
+    \end{align*}
+    All the desired results thus follow. 
     % Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
     % \begin{align*}
     %     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
@@ -777,7 +890,10 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 \begin{remark}
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^n / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}. 
+    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^n / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\mu(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
     This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
     The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
     Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
@@ -787,7 +903,10 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 
-
+We have already seen a survey of Poincar\'e inequalities over convex domains. 
+Slightly more generally, we are interested in such inequalities over face patches within simplicial triangulations. 
+We state a geometric auxiliary lemma and an estimate of Poincar\'e--Friedrichs constants over face patches 
+that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Suppose that $T, T'$ are two $n$-simplices whose intersection is a common face $F := T_1 \cap T_2$. Then 
@@ -817,8 +936,6 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \end{align*}
     for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$.
 \end{lemma}
-
-    
 \begin{proof}
     Let $\hat T_1$ be the $n$-simplex whose vertices $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v_n = e_n$ are the origin and the $n$ canonical unit vectors. 
     We let $\hat T_2$ be the $n$-simplex whose vertices are $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v'_n = -e_n$. 
@@ -943,7 +1060,6 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         .
     \end{align*}
     This gives the desired result. 
-   
 \end{proof}
 
 
@@ -959,6 +1075,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 \begin{figure}[t]
+\begin{center}
 \begin{tikzpicture}
     \coordinate (A) at (0,0);
     \coordinate (B) at (2,0);
@@ -1005,6 +1122,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 %     \node at (D) [above right] {$D$};
 %     \node at (T) [above right] {$T$};
 \end{tikzpicture}
+\end{center}
 \caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 \end{figure}
 
@@ -1038,7 +1156,6 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(T_{0})}^{p}
         .
     \end{align*}
-    \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
 \end{theorem}
 
 \begin{proof}
@@ -1442,25 +1559,26 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  Notice that $p/q = p - 1$.
 \end{proof}
 
-Upper bound for the classical Poincar\'e inequality over a simplex is easily found. 
-We can use it to compute an upper bound for the Poincar\'e--Friedrichs inequality 
+We also want to assess an alternative route towards Poincar\'e--Friedrichs inequalities over triangulated domains,
+While the underlying idea remains the same, the construction of the potential is slightly different. 
+As an auxiliary result with independent relevance, we compute an upper bound for the Poincar\'e--Friedrichs inequality 
 when homogeneous boundary conditions are imposed on a single face of the boundary. 
+% Upper bounds for the classical Poincar\'e inequality over a simplex is widely known. 
 
-\begin{lemma}
+\begin{lemma}\label{lemma:mixedbconsimplex}
     Let $T$ be an $n$-simplex and with a face $F$. 
     If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
     \begin{align*}
         \| u \|_{L^{p}(T)}
         &
         \leq 
-        C_{\partial,p}
-        \diam(T) \| \nabla u \|_{L^{p}(T)}
+        C_{{\rm PF},T,F,p} \diam(T) \| \nabla u \|_{L^{p}(T)}
     \end{align*}
     where $C_{\partial,p} > 0$ is a constant such that 
     \begin{align*}
         C_{\partial,p}
         \leq 
-        \left( C_{?} + \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p} \right),
+        \left( C_{{\rm PF},T,F,p} + \left( C_{{\rm PF},T,F,p}^{p} + p \cdot C_{{\rm PF},T,F,p}^{p-1} \right)^{\frac 1 p} \right),  
         \quad 
         C_{\partial,p}
         \leq 
@@ -1502,7 +1620,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \[
         \| w \|_{L^{p}(T)}
         \leq 
-        C_{?}
+        C_{{\rm PF},T,p} 
         \| \nabla w \|_{\bfL^{p}(T)}
         .
     \]
@@ -1538,7 +1656,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| \nabla w \|_{L^{p}(T)}
         \\&
         \leq 
-        \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right) 
+        \left( C_{{\rm PF},T,p}^{p} + p \cdot C_{{\rm PF},T,p}^{p-1} \right) 
         \diam(T)^{p}
         \left( \frac{ \vol(F) }{ \vol(T) } \right)
         \| \nabla w \|_{L^{p}(T)}^{p}
@@ -1586,6 +1704,8 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     The second inequality follows.
 \end{proof}
 
+The following potential construction and upper bound for the Poincar\'e--Friedrichs constant 
+serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
@@ -1604,7 +1724,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
             \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
         \right)
         \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{p/q}
-        C_{p,T_{t} \cup T_{t+1}}
+        C_{{\rm PF},T_{t} \cup T_{t+1},p}
         \| \nabla u \|_{L^{p}( T_{t} \cup T_{t+1} )}^{p}
         \\&\quad \quad \quad 
         +
@@ -1613,7 +1733,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
             \prod_{0 < l \leq m} 
             \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
         \right)
-        C_{p,T_{0}}
+        C_{{\rm PF},T_{0},p}
         \| \nabla u \|_{L^{p}(T_{0})}^{p}
         .
     \end{align*}
@@ -1631,12 +1751,11 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     
     By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j(m)}$. 
     Let $\hat T$ be the reference simplex.
-    We fix affine homeomorphisms $\Phi : \hat T \rightarrow T_{j(m)}$ and $\Theta : \hat T \rightarrow T_{m+1}$,
-    each of which maps the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
-    We define $w'_{m+1} := w_{{m}} \circ \Phi \circ \Theta^{-1} \in W^{1,p}(T_{m+1})$. 
+    % We fix affine homeomorphisms $\Phi : \hat T \rightarrow T_{j(m)}$ and $\Theta : \hat T \rightarrow T_{m+1}$,
+    % each of which maps the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
     %
-    {\color{blue}We define $w'_{m+1} := w_{m} \circ \Xi \in W^{1,p}(T_{m+1})$,
-    where $\Xi : T_{m+1} \rightarrow T_{j(m)}$ is the unique affine homeomorphism that leaves $F$ invariant. }
+    We define $w'_{m+1} := w_{m} \circ \Xi \in W^{1,p}(T_{m+1})$,
+    where $\Xi : T_{m+1} \rightarrow T_{j(m)}$ is the unique affine homeomorphism that leaves $F$ invariant. 
     %
     By construction, $w'_{m+1} \in W^{1,p}(T_{m+1})$ with 
     \begin{align*}
@@ -1673,53 +1792,71 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \trace_{F_{m}} w_{m+1} = \trace_{F_{m}} w'_{m+1} = \trace_{F_{m}} w_{m}.
     \end{gather*}
     That means that $w_{m+1} \in W^{1,p}(\Omega_{m+1})$ with $\nabla w_{m+1} = \nabla u$ over $\Omega_{m+1}$. 
-    As we will show soon, there exists $D_{m+1} > 0$ such that 
-    \begin{gather*}
-        \| u''_{m+1} \|_{L^{p}(T_{m+1})} 
-        \leq 
-        D_{m+1} \diam(T_{m+1}) \cdot \| \nabla u - \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}.
-    \end{gather*}
-    Therefore, 
+    Lemma~\ref{lemma:mixedbconsimplex} gives 
     \begin{align*}
-        \| u''_{m+1} \|_{L^{p}(T_{m+1})}  
+        \| w''_{m+1} \|_{L^{p}(T_{m+1})} 
         &
         \leq 
-        D_{m+1} \diam(T_{m+1}) \| \nabla u        \|_{L^{p}(T_{m+1})} 
+        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla u - \nabla w'_{m+1} \|_{L^{p}(T_{m+1})}.
+        \\&
+        \leq 
+        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla u        \|_{L^{p}(T_{m+1})} 
         + 
-        D_{m+1} \diam(T_{m+1}) \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})} 
+        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})} 
         .
     \end{align*}
-    We use also the inequality 
+    We also employ Lemma~\ref{lemma:volumecomparison} to find 
     \begin{align*}
-        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
+        \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})}
         &\leq 
-        |\det(\Dif \Phi  )|^{-\frac 1 p} \cdot \| \Dif \Phi   \|
+        |\det(\Dif \Xi  )|^{-\frac 1 p} 
+        \| \Dif \Xi   \|
         \cdot 
-        |\det(\Dif \Theta)|^{ \frac 1 p} \cdot \| \Dif \Theta^{-1} \|
-        \| \nabla u_{m} \|_{L^{p}(T_{m})}
+        \| \nabla w_{m} \|_{L^{p}(T_{m})}
+        \leq 
+        \kappa(\calT)^{\frac 1 p} \xi(\calT)
+        \cdot 
+        \| \nabla w_{m} \|_{L^{p}(T_{m})}
         .
     \end{align*}
     Putting this all together, 
     \begin{align*}
-        \| \nabla u'_{m+1} \|_{L^{p}(T_{m+1})}
-        &\leq 
-        \frac{ \vol(T_{m+1})^{\frac 1 p} }{ \vol(T_{m})^{\frac 1 p} } 
-        \cdot 
-        \| \Dif \Phi   \|
-        \cdot 
-        \| \Dif \Theta^{-1} \|
-        \| \nabla u_{m} \|_{L^{p}(T_{m})}
+        &
+        \| w_{m+1} \|_{L^{p}(T_{m+1})}
+        \\&
+        \leq  
+        \| w'_{m+1} \|_{L^{p}(T_{m+1})}
+        + 
+        \| w''_{m+1} \|_{L^{p}(T_{m+1})}
+        \\&
+        \leq  
+        \kappa(\calT)^{\frac 1 p} 
+        \| w_{m} \|_{L^{p}(T_{m})} 
+        + 
+        C_{{\rm PF},T,F,p} \diam(T_{m+1}) 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{m+1})} 
+            + 
+            \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})} 
+        \right) 
+        \\&
+        \leq  
+        \kappa(\calT)^{\frac 1 p} 
+        \| w_{m} \|_{L^{p}(T_{m})} 
+        + 
+        C_{{\rm PF},T,F,p} 
+        \left( 1 + \kappa(\calT)^{\frac 1 p} \xi(\calT) \right) 
+        \diam(T_{m+1}) 
+        \| \nabla u \|_{L^{p}(T_{m+1})} 
         .
     \end{align*}
     % TODO: Finish the recursion 
-    
-    
 \end{proof}
 
 \begin{remark}
-    The previous result depends on only a few parameters of the triangulation:
-    the length of any traversal from the root simplex,
-    the ratios of the volumes of adjacent simplices,
+    The previous theorems, Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} and Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} 
+    depend on only a few parameters of the triangulation:
+    the length of any traversal from the root simplex, the ratios of the volumes of adjacent simplices,
     the Poincar\'e constants on each face patch, and the Poincar\'e constant of the initial simplex. 
     The aforementioned local Poincar\'e constants can generally be estimated in terms of shape-parameters. 
     If the face patches of the triangulation are convex, then better estimates are possible. 
