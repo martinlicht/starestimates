@@ -736,52 +736,72 @@ After fixing a starting triangle, we construct a scalar potential for a given gr
 Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
 \\
 
-We achieve this goal via several auxiliary results. 
-We start with a few geometric observations that pertain to the mesh regularity. 
-Whenever $T$ is an $n$-dimensional simplex, we define the quantity 
+Towards this goal, we introduce quantitative measures for the geometric quality of triangulations,
+which give an indication of the regularity of simplex shapes. 
+Most of such \emph{shape measures} in the literature are based on geometric features, 
+but we consider indicators based on affine transformations associated with the mesh;
+this is because the properties of these transformations are what shows up in our estimates. 
+
+Whenever $T$ is an $n$-dimensional simplex 
 \begin{align*}
-    \mu(T)
+    \kappa(T)
     := 
     \frac{ \diam(T)^n }{ n! \vol(T) }
     .
 \end{align*}
 Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
 \begin{align*}
-    \mu(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \mu(T),
+    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
+%     \qquad 
+%     \delta(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \diam(T) }{ \diam(T') },
     \qquad 
-    \delta(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \diam(T) }{ \diam(T') },
-    \qquad 
-    \kappa(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
+    \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
 \end{align*}
+Whenever $S,T$ are two $n$-simplices that are a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
+that preserves $F$. We define 
+\begin{align*}
+    \xi(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \| \Xi_{S,T} \|.
+\end{align*}
+This indicator quantifies how much reflection across the shared face distorts the goemetry. 
+
+
+% and $\Phi : \Delta^n \rightarrow T$ is an affine diffeomorphism from the reference simplex,
+% we define the quantity 
+% \begin{align*}
+%     \kappa(T)
+%     := 
+%     \frac{ \diam(T)^n }{ n! \vol(T) }
+%     .
+% \end{align*}
 
 
 \begin{lemma}\label{lemma:affinetransform}
-    Let $T$ be an $n$-simplex and let $\Psi : \Delta^n \rightarrow T$ be an affine diffeomorphism. Then 
+    Let $T$ be an $n$-simplex and let $\Phi : \Delta^n \rightarrow T$ be an affine diffeomorphism. Then 
     \begin{align*}
-        \| \Jacobian \Psi \|
+        \| \Jacobian \Phi \|
         \leq 
         \sqrt{n} \cdot \diam(T)
         ,
         \qquad 
-        \| \Jacobian \Psi^{-1} \|
+        \| \Jacobian \Phi^{-1} \|
         \leq 
         \sqrt{2n^n} 
         % \frac{ n! \vol(T) } { \diam(T)^n }
-        \mu(T)^{-1}
+        \kappa(T)^{-1}
         \diam(T)^{-1}
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
-    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of $\Jacobian\Psi$ in descending order.
-    Then $\sigma_1/\sigma_n \leq \sigma_1^n / \det(\Jacobian\Psi)$. Hence 
+    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of $\Jacobian\Phi$ in descending order.
+    Then $\sigma_1/\sigma_n \leq \sigma_1^n / \det(\Jacobian\Phi)$. Hence 
     \[
         \diam(T) 
         \leq 
         \sqrt{2} \sigma_1 
         \leq 
         \sqrt{2} 
-        \frac{ \sigma_1^n }{ \det(\Jacobian\Psi) } 
+        \frac{ \sigma_1^n }{ \det(\Jacobian\Phi) } 
         \sigma_n
         \leq 
         \sqrt{2n^n} 
@@ -801,7 +821,7 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
         \cdot 
         \frac{\diam(T_2)^n}{n! \vol(T_2)} 
         \leq 
-        \mu(T_1) \mu(T_2)
+        \kappa(T_1) \kappa(T_2)
         ,
         \\
         \diam(T_1)
@@ -809,7 +829,7 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
         \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
         \diam(F)
         \leq 
-        \mu(T_1)
+        \kappa(T_1)
         \diam(F)
         .
     \end{align*}
@@ -822,7 +842,7 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
         \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
         \leq 
         \sqrt{2n^{n+1}} 
-        \frac{ \mu(T_1) }{ \mu(T_2) }
+        \frac{ \kappa(T_1) }{ \kappa(T_2) }
         .
     \end{align*}
 \end{lemma}
@@ -892,7 +912,7 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
 \begin{remark}
     % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^n / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
     % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\mu(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
     In our convention, the reference simplex has unit shape measure.
     This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
     The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
@@ -926,10 +946,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \\&
         \leq 
         2 C_{\rm{EFNT},p}
-        \left( 
-            \frac{\diam(T_1)^n}{n! \vol(T_1)} 
-            \frac{\diam(T_2)^n}{n! \vol(T_2)} 
-        \right)^{\frac 1 p}
+        \rho(\calT)^{\frac 1 p}
         \max\left( \diam(T_1), \diam(T_2) \right)
         \| \nabla u \|_{L^{p}(U)}
         .
@@ -1127,9 +1144,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 \end{figure}
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly-connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
-    there exists a strong path $T_0, T_1, \dots, T_m = T$.
+    we fix a strong path $T_0, T_1, \dots, T_m = T$.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
@@ -1208,265 +1225,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \| w_{m-1}\|_{L^{p}(T_{j(m)})}
     .
  \end{align*}
- We want to summarize the two integrals of $u_{F_m}$. 
- 
- \newpage\color{red}
- We want 
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    \leq
-    \left( 
-        1 
-        + 
-        2
-        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
-    \right)^{p/q}
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-        +
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    .
- \end{align*}
- In the special case $p=1$ and $p=\infty$,
- \begin{align*}
-    \| w_{m} \|_{L^{1}(T_m)}
-    &\leq 
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
-    \right)
-    \| u_{F_m} \|_{L^{1}(U_{F_m})}
-    +
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
-    \right)
-    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
-    .
-    \\
-    \| w_{m} \|_{L^{2}(T_m)}^{2}
-    &\leq
-    \left( 
-        1 
-        + 
-        2
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \right)
-    \left( 
-        \| u_{F_m} \|_{L^{2}(T_m)}^{2}
-        +
-        \| u_{F_{m}} \|_{L^{2}(T_{j(m)})}^{2}
-        +
-        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
-    \right)
-    .
-    \\
-    \| w_{m} \|_{L^{\infty}(T_m)}
-    &\leq 
-    3
-    \max\left( 
-        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
-        ,
-        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
-    \right)
-    .
- \end{align*}
- \color{orange}
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    \leq
-    \left( 
-        2 
-        + 
-        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
-    \right)^{p/q}
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    .
- \end{align*}
- In the special case $p=1$ and $p=\infty$, 
- \begin{align*}
-    \| w_{m} \|_{L^{1}(T_m)}
-    &\leq 
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
-    \right)
-    \| u_{F_m} \|_{L^{1}(U_{F_m})}
-    +
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
-    \right)
-    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
-    .
-    \\
-    \| w_{m} \|_{L^{2}(T_m)}^{2}
-    &\leq
-    \left( 
-        2 
-        + 
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \right) 
-    \left( 
-        \| u_{F_m} \|_{L^{2}(T_m)}^{2}
-        +
-        \| u_{F_{m}} \|_{L^{2}(T_{j(m)})}^{2}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
-    \right)
-    \\
-    \| w_{m} \|_{L^{\infty}(T_m)}
-    &\leq 
-    3
-    \max\left( 
-        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
-        ,
-        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
-    \right)
-    .
- \end{align*}
- \color{JungleGreen}
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    &\leq
-    \left( 
-        3
-    \right)^{p/q}
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    \\&
-    \leq
-    \left( 
-        3
-    \right)^{p/q}
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{p}(T_m \cup T_{j(m)})}^{p}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    .
- \end{align*}
- In the special case $p=1$ and $p=\infty$, ????
- \begin{align*}
-    \| w_{m} \|_{L^{1}(T_m)}
-    &\leq 
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{1}(T_m \cup T_{j(m)})}^{1}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{1}(T_{j(m)})}^{1}
-    \right)
-    .
-    \\
-    \| w_{m} \|_{L^{2}(T_m)}^{2}
-    &\leq
-    3
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{2}(T_m \cup T_{j(m)})}^{2}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
-    \right)
-    \\
-    \| w_{m} \|_{L^{\infty}(T_m)}
-    &\leq 
-    3
-    \max\left( 
-        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
-        ,
-        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
-    \right)
-    .
- \end{align*}
- \color{MidnightBlue}
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}^{p}
-    &\leq
-    \left( 
-        2 
-        + 
-        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
-    \right)^{p/q}
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
-        +
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    \\&
-    \leq
-    \left( 
-        2 
-        + 
-        \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} }
-    \right)^{p/q}
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{p}(T_m \cup T_{j(m)})}^{p}
-        +
-        \| w_{m-1}\|_{L^{p}(T_{j(m)})}^{p}
-    \right)
-    .
- \end{align*}
- In the special case $p=1$ and $p=\infty$, ????
- \begin{align*}
-    \| w_{m} \|_{L^{1}(T_m)}
-    &\leq 
-    \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{1}(T_m \cup T_{j(m)})} 
-        +
-        \| w_{m-1}\|_{L^{1}(T_{j(m)})} 
-    \right)
-    .
-    \\
-    \| w_{m} \|_{L^{2}(T_m)}^{2}
-    &\leq 
-    \left( 
-        2 
-        + 
-        \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \right) 
-    \left( 
-        \max\left( 1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } \right)
-        \| u_{F_{m}} \|_{L^{2}(T_m \cup T_{j(m)})}^{2}
-        +
-        \| w_{m-1}\|_{L^{2}(T_{j(m)})}^{2}
-    \right)
-    \\
-    \| w_{m} \|_{L^{\infty}(T_m)}
-    &\leq 
-    3
-    \max\left( 
-        \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
-        ,
-        \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
-    \right)
-    .
- \end{align*}
- \color{black}
+ We summarize the two integrals of $u_{F_m}$. 
+ % 
  In the special case $p=1$,
  \begin{align*}
     \| w_{m} \|_{L^{1}(T_m)}
@@ -1585,35 +1345,6 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         2^{\frac n p}
         .
     \end{align*}
-    % \begin{align*}
-    %     \| u \|_{L^{p}(T)}
-    %     &
-    %     \leq 
-    %     C_{?} \diam(T)
-    %     \| \nabla w \|_{\bfL^{p}(T)}
-    %     +
-    %     \| \gamma \|_{\bfL^{p}(T)}
-    %     \\&
-    %     \leq 
-    %     C_{?} \diam(T)
-    %     \| \nabla u \|_{\bfL^{p}(T)}
-    %     +
-    %     \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p}
-    %     \diam(T)
-    %     \| \nabla w \|_{L^{p}(T)}
-    %     \\&
-    %     \leq 
-    %     C_{?} 
-    %     \diam(T) \| \nabla u \|_{\bfL^{p}(T)}
-    %     +
-    %     \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p}
-    %     \diam(T) \| \nabla u \|_{L^{p}(T)}
-    %     \\&
-    %     \leq 
-    %     \left( C_{?} + \left( C_{?}^{p} + p \cdot C_{?}^{p-1} \right)^{\frac 1 p} \right) 
-    %     \diam(T) \| \nabla u \|_{L^{p}(T)}
-    %     .
-    % \end{align*}
 \end{lemma}
 \begin{proof}
     There exists $w \in W^{1,p}(T)$ with $\nabla w = \nabla u$ and 
@@ -1664,12 +1395,12 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \end{align*}
     Recall that $u = w - \gamma$. The first inequality follows. 
     
-    There exists $\Psi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
-    We let $\hat u := u \circ \Psi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \Psi )$. 
+    There exists $\Phi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We let $\hat u := u \circ \Phi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \Phi )$. 
     Then $\nabla \hat u = \hat g$. 
     % 
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
-    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordiante axes.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
     We define $\tilde g = \nabla \tilde u$
     and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
     By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
@@ -1684,10 +1415,10 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \begin{gather*}
         \| u \|_{L^{p}(T_{m+1})}
         \leq 
-        |\det(\Dif \Psi)|^{\frac 1 p} 
+        |\det(\Dif \Phi)|^{\frac 1 p} 
         \| \hat u \|_{L^{p}(\hat T)}
         \leq 
-        |\det(\Dif \Psi)|^{\frac 1 p} 
+        |\det(\Dif \Phi)|^{\frac 1 p} 
         \| \tilde u \|_{L^{p}(\hat U)}
         ,
         \\
@@ -1697,7 +1428,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| \hat g \|_{\bfL^{p}(\hat T)}
         \leq 
         2^{\frac n p}
-        |\det(\Dif \Psi_1)|^{-\frac 1 p} \| \Dif \Psi \| \cdot 
+        |\det(\Dif \Phi_1)|^{-\frac 1 p} \| \Dif \Phi \| \cdot 
         \| \nabla u \|_{\bfL^{p}(T)}
         .
     \end{gather*}
@@ -1708,33 +1439,23 @@ The following potential construction and upper bound for the Poincar\'e--Friedri
 serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with finite triangulation $\calT$.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
-    there exists a strong path $T_0, T_1, \dots, T_m = T$.
+    we fix a strong path $T_0, T_1, \dots, T_m = T$.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
     \begin{align*}
-        \| w_{m} \|_{L^{p}(T_m)}^{p}
+        \| w_{m} \|_{L^{p}(T_m)}
         &\leq 
-        (m+1)^{p-1}
-        \sum_{t=1}^{m} 
-        \left( 
-            \prod_{t < l \leq m} 
-            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
-        \right)
-        \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{p/q}
-        C_{{\rm PF},T_{t} \cup T_{t+1},p}
-        \| \nabla u \|_{L^{p}( T_{t} \cup T_{t+1} )}^{p}
-        \\&\quad \quad \quad 
+        \sum_{l=1}^{m} 
+        \rho(\calT)^{\frac{m-l}{p}}
+        C_{{\rm PF},T,p} \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) \diam(T_{0})
+        \| \nabla u \|_{L^{p}( T_{l} )}
         +
-        (m+1)^{p-1}
-        \left( 
-            \prod_{0 < l \leq m} 
-            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
-        \right)
-        C_{{\rm PF},T_{0},p}
-        \| \nabla u \|_{L^{p}(T_{0})}^{p}
+        \rho(\calT)^{\frac m p}
+        C_{{\rm PF},T_{0},p} \diam(T_{0})
+        \| \nabla u \|_{L^{p}( T_{0} )}
         .
     \end{align*}
     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
@@ -1814,7 +1535,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \cdot 
         \| \nabla w_{m} \|_{L^{p}(T_{m})}
         \leq 
-        \kappa(\calT)^{\frac 1 p} \xi(\calT)
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
         \cdot 
         \| \nabla w_{m} \|_{L^{p}(T_{m})}
         .
@@ -1830,7 +1551,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \| w''_{m+1} \|_{L^{p}(T_{m+1})}
         \\&
         \leq  
-        \kappa(\calT)^{\frac 1 p} 
+        \rho(\calT)^{\frac 1 p} 
         \| w_{m} \|_{L^{p}(T_{m})} 
         + 
         C_{{\rm PF},T,F,p} \diam(T_{m+1}) 
@@ -1841,16 +1562,16 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \right) 
         \\&
         \leq  
-        \kappa(\calT)^{\frac 1 p} 
+        \rho(\calT)^{\frac 1 p} 
         \| w_{m} \|_{L^{p}(T_{m})} 
         + 
         C_{{\rm PF},T,F,p} 
-        \left( 1 + \kappa(\calT)^{\frac 1 p} \xi(\calT) \right) 
+        \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
         \diam(T_{m+1}) 
         \| \nabla u \|_{L^{p}(T_{m+1})} 
         .
     \end{align*}
-    % TODO: Finish the recursion 
+    The recursive estimate follows. 
 \end{proof}
 
 \begin{remark}
@@ -1886,8 +1607,6 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 
 
 
-
-\newpage
 
 \section{Shellable triangulations}\label{section:advancedtriangulations}
 
@@ -2377,16 +2096,9 @@ Our main interest are local patches or stars within triangulations.
 \end{remark}
 
 
+\newpage 
 
 
-
-
-
-
-
-
-
-\section{Extension operator on finite element stars}
 
 
 
