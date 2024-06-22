@@ -22,3 +22,8 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
 
 % TODO: discuss when we retain balls.
 
+- Spivak, Michael. *Calculus on Manifolds*. W. A. Benjamin, 1965.
+- Lee, John M. *Introduction to Smooth Manifolds*. Springer, 2012.
+- Greub, Werner H. *Multilinear Algebra*. Springer, 1978.
+- Bott, Raoul, and Loring W. Tu. *Differential Forms in Algebraic Topology*. Springer, 1982.
+

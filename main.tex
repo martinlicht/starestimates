@@ -45,7 +45,7 @@ For example, local patches around a simplex within a larger triangulation belong
 
 
 We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
-Given a domain $\Omega \subseteq \bbR^n$ and $1 \leq p \leq \infty$,
+Given a domain $\Omega \subseteq \bbR^{n}$ and $1 \leq p \leq \infty$,
 we search for a constant $C > 0$ such that 
 \begin{align*}
     \min\limits_{c\in\bbR}
@@ -384,7 +384,7 @@ In this section we address the stepwise computable estimate of Poincar\'e consta
 \\
 
 Let us assume that $\Omega \subseteq \bbR^{n}$ is an open set. 
-Given any $p \in [1,\infty]$, we let $L^p(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^p(\Omega) := L^p(\Omega)^n$ for the corresponding Lebesgue space of vector fields. 
+Given any $p \in [1,\infty]$, we let $L^p(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^p(\Omega) := L^p(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
 We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
 
 We say that a domain $\Omega \subseteq \bbR^{n}$ satisfies the \emph{Poincar\'e--Friedrichs inequality} with exponent $p \in [1,\infty]$
@@ -746,7 +746,7 @@ Whenever $T$ is an $n$-dimensional simplex
 \begin{align*}
     \kappa(T)
     := 
-    \frac{ \diam(T)^n }{ n! \vol(T) }
+    \frac{ \diam(T)^{n} }{ n! \vol(T) }
     .
 \end{align*}
 Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
@@ -762,21 +762,21 @@ that preserves $F$. We define
 \begin{align*}
     \xi(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \| \Xi_{S,T} \|.
 \end{align*}
-This indicator quantifies how much reflection across the shared face distorts the goemetry. 
+This indicator quantifies how much reflection across the shared face distorts the geometry. 
 
 
-% and $\Phi : \Delta^n \rightarrow T$ is an affine diffeomorphism from the reference simplex,
+% and $\Phi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
 % we define the quantity 
 % \begin{align*}
 %     \kappa(T)
 %     := 
-%     \frac{ \diam(T)^n }{ n! \vol(T) }
+%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
 %     .
 % \end{align*}
 
 
 \begin{lemma}\label{lemma:affinetransform}
-    Let $T$ be an $n$-simplex and let $\Phi : \Delta^n \rightarrow T$ be an affine diffeomorphism. Then 
+    Let $T$ be an $n$-simplex and let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism. Then 
     \begin{align*}
         \| \Jacobian \Phi \|
         \leq 
@@ -785,8 +785,8 @@ This indicator quantifies how much reflection across the shared face distorts th
         \qquad 
         \| \Jacobian \Phi^{-1} \|
         \leq 
-        \sqrt{2n^n} 
-        % \frac{ n! \vol(T) } { \diam(T)^n }
+        \sqrt{2n^{n}} 
+        % \frac{ n! \vol(T) } { \diam(T)^{n} }
         \kappa(T)^{-1}
         \diam(T)^{-1}
         .
@@ -794,18 +794,18 @@ This indicator quantifies how much reflection across the shared face distorts th
 \end{lemma}
 \begin{proof}
     We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of $\Jacobian\Phi$ in descending order.
-    Then $\sigma_1/\sigma_n \leq \sigma_1^n / \det(\Jacobian\Phi)$. Hence 
+    Then $\sigma_1/\sigma_n \leq \sigma_1^{n} / \det(\Jacobian\Phi)$. Hence 
     \[
         \diam(T) 
         \leq 
         \sqrt{2} \sigma_1 
         \leq 
         \sqrt{2} 
-        \frac{ \sigma_1^n }{ \det(\Jacobian\Phi) } 
+        \frac{ \sigma_1^{n} }{ \det(\Jacobian\Phi) } 
         \sigma_n
         \leq 
-        \sqrt{2n^n} 
-        \frac{ \diam(T)^n }{ n! \vol(T) } 
+        \sqrt{2n^{n}} 
+        \frac{ \diam(T)^{n} }{ n! \vol(T) } 
         \sigma_n
         .
     \]
@@ -817,16 +817,16 @@ This indicator quantifies how much reflection across the shared face distorts th
     \begin{align*}
         \frac{ \vol(T_1) }{ \vol(T_2) }
         &\leq 
-        \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
+        \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
         \cdot 
-        \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+        \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
         \leq 
         \kappa(T_1) \kappa(T_2)
         ,
         \\
         \diam(T_1)
         &\leq 
-        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         \diam(F)
         \leq 
         \kappa(T_1)
@@ -838,8 +838,8 @@ This indicator quantifies how much reflection across the shared face distorts th
         \| \Jacobian \Xi \|
         \leq 
         \sqrt{2n^{n+1}} 
-        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
-        \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
         \leq 
         \sqrt{2n^{n+1}} 
         \frac{ \kappa(T_1) }{ \kappa(T_2) }
@@ -851,9 +851,9 @@ This indicator quantifies how much reflection across the shared face distorts th
     Then $\vol(T_1) = h_1 \vol(F)/n!$ and $\vol(T_2) = h_2 \vol(F)/n!$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
     We estimate 
     \begin{align*}
-        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} \diam(F),
+        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} \diam(F),
         \\
-        h_2 &\geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^n} \diam(F)
+        h_2 &\geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
         .
     \end{align*}
     The first estimate follows. 
@@ -866,7 +866,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         n!
         \frac{ \vol(T_1) }{ \vol(F') }
         \geq 
-        \frac{ n! \vol(T_1) }{ \diam(T_1)^n }
+        \frac{ n! \vol(T_1) }{ \diam(T_1)^{n} }
         \cdot 
         \diam(T_1)
         .
@@ -880,20 +880,20 @@ This indicator quantifies how much reflection across the shared face distorts th
         \sqrt{n} 
         \cdot 
         \diam(T_1)
-        \sqrt{2n^n} 
-        \frac{ n! \vol(T_2) } {\diam(T_2)^n } 
+        \sqrt{2n^{n}} 
+        \frac{ n! \vol(T_2) } {\diam(T_2)^{n} } 
         \diam(T_2)^{-1}
         \\&
         \leq 
         \sqrt{n} 
-        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
+        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         \diam(F)
-        \sqrt{2n^n} \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        \sqrt{2n^{n}} \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
         \diam(F)^{-1}
         \leq 
         \sqrt{2n^{n+1}}
-        \frac{ \diam(T_1)^n }{ n! \vol(T_1) }
-        \frac{ n! \vol(T_2) } { \diam(T_2)^n } 
+        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
         .
     \end{align*}
     All the desired results thus follow. 
@@ -901,16 +901,16 @@ This indicator quantifies how much reflection across the shared face distorts th
     % \begin{align*}
     %     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
     %     \leq 
-    %     \frac{\diam(T_1)^n}{n! \cdot \vol(T_1)} 
+    %     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
     %     \cdot 
-    %     \frac{\diam(T_2)^n}{n! \vol(T_2)} 
+    %     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
     %     .
     % \end{align*}
 \end{proof}
 
 
 \begin{remark}
-    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^n / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
     % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
     Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
     In our convention, the reference simplex has unit shape measure.
@@ -1190,7 +1190,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{j(m)}$ be a face of dimension $n-1$. 
  We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated \textbf{domain}. % TODO: technical stuff 
  
-%  Since $\calT$ is strongly connected, there exists an enumersation of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+%  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
  Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
  such that $c_{\star} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
@@ -1636,8 +1636,8 @@ Our main references for this section are the monographs by Kozlov~\cite{kozlov20
 
 We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
 We recall that this means that for every $x \in \underlying{\calT}$
-there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^n$
-such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit ball $\calB = \{ x \in \bbR^n \suchthat |x| \leq 1 \}$
+there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
+such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| \leq 1 \}$
 or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional.
 
@@ -2127,9 +2127,13 @@ Our main interest are local patches or stars within triangulations.
 
 \section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
-Recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
-and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^n$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 
+\subsection{Review of vector calculus}
+
+We discuss the Sobolev spaces of vector calculus and their transformation behavior. 
+Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
+First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
+and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
 $W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, and we have 
 \[
@@ -2138,57 +2142,77 @@ $W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Ome
 The space $W^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
 and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
 \[
-    W^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
+    \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
     \quad 
-    W^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
+    \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
 \]
-More generally, ...
-\\
-
 We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
-Suppose that $U,V \subset \mathbb{R}^3$ are open sets and suppose that $\phi: U \to V$ is a bi-Lipschitz mapping.
+Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The gradient-, curl-, divergence-conforming Piola transformations are the mappings 
-$\phi^{\grad}: L^{p}(V) \to L^{p}(U)$,
-$\phi^{\curl}: \bfL^{p}(V) \to \bfL^{p}(U)$, 
+$\phi^{\grad}: L^{p}(\Omega') \to L^{p}(\Omega)$,
+$\phi^{\curl}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$, 
+$\phi^{\divergence}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$,
 and
-$\phi^{\divergence}: \bfL^{p}(V) \to \bfL^{p}(U)$. 
-and
-$\phi^{\rm b}: L^{p}(V) \to L^{p}(U)$. 
-They are defined by % TODO: change inverse convention from here on 
-\begin{equation}\label{eq_definition_piola}
-\begin{aligned}
+$\phi^{\rm b}: L^{p}(\Omega') \to L^{p}(\Omega)$. 
+They are defined by 
+\begin{subequations}\label{eq_definition_piola}
+\begin{align}
     \phi^{\grad}(v) &= v \circ \phi, \\
     \phi^{\curl}(\bfw) &= (\Jacobian\phi^{T} \bfw) \circ \phi, \\
     \phi^{\divergence}(\bfw) &= \left( \frac{ \Jacobian\phi^{-1} }{\det\Jacobian\phi^{-1}} \bfw \right)  \circ \phi, \\
     \phi^{\rm b}(v) &= \left( \det\Jacobian\phi^{-1} v \right)  \circ \phi,
-\end{aligned}
-\end{equation}
-where $v \in L^{p}(V)$ and $\bfw \in \bfL^{p}(V)$, 
-and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$
+\end{align}
+\end{subequations}
+where $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$, 
+and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
 These mappings are invertible. 
 %
-% trace properties 
+% TODO: bounds
 %
-The commutativity properties
-\begin{equation}\label{eq_piola_commute}
-\begin{aligned}
+We use the commutativity relations 
+\begin{subequations}\label{eq_piola_commute}
+\begin{align}
     \grad (\phi^{\grad} (v)) &= \phi^{\curl}(\grad v), 
     \\
     \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv) 
     % TODO: watch the sign 
     \\
     \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw)
-\end{aligned}
-\end{equation}
-for $v \in W^{p}(\grad,U)$, $\bfv \in W^{p}(\curl,U)$, and $\bfw \in W^{p}(\divergence,U)$.  
+\end{align}
+\end{subequations}
+for $v \in W^{p}(\grad,\Omega)$, $\bfv \in W^{p}(\curl,\Omega)$, and $\bfw \in W^{p}(\divergence,\Omega)$.  
+We summarize this as a commuting diagram:
+\begin{align*}
+    \begin{CD}
+        W^{1,p}(\grad,\Omega') @>{\grad}>> \bfW^{p}(\curl,\Omega') @>{\curl}>> \bfW^{p}(\divergence,\Omega') @>{\divergence}>> L^{p}(\Omega')
+        \\
+        @VV{\phi^{\grad}}V 
+        @VV{\phi^{\curl}}V 
+        @VV{\phi^{\divergence}}V 
+        @VV{\phi^{\rm b}}V 
+        \\
+        W^{1,p}(\grad,\Omega ) @>{\grad}>> \bfW^{p}(\curl,\Omega ) @>{\curl}>> \bfW^{p}(\divergence,\Omega ) @>{\divergence}>> L^{p}(\Omega )
+    \end{CD}
+\end{align*}
+
+\begin{remark}
+    Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
+    scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega'$.
+    This is in accordance with the notion of pullback, that we will review shortly. 
+    One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
+\end{remark}
+
 %
 
-\subsection{Exterior Algebra}
+%
+% trace properties 
+%
 
-In mathematics, Euclidean space, denoted \(\mathbb{R}^n\), is a fundamental concept representing the \(n\)-dimensional generalization of the familiar 2D and 3D spaces. Multilinear forms are scalar-valued functions that take multiple vectors as input and return a scalar and which are linear in each argument. This leads us to the study of alternating algebra, which focuses on antisymmetric multilinear forms.
-Alternating algebra plays a crucial role in various areas of mathematics, including geometry and physics.
-\\
 
+\subsection{Review of exterior calculus}
+
+We also investigate this from the perspective of exterior calculus. 
+We give a brief introduction into this topic. 
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, We let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
@@ -2203,19 +2227,21 @@ for any $v_1, v_2, \dots, v_k \in V$ and any permutation $\pi$ of the indices \(
 By definition, $\Alt^{1}(V)$ is just the dual space of $V$, and $\Alt^{0}(V)$ is the space of real numbers. 
 Formally, we define $\Alt^{k}(V)$ to be the zero vector space when $k < 0$. 
 
-The wedge product (or exterior product) of alternating multilinear forms is a fundamental operation in exterior algebra. Given two alternating multilinear forms \( u_1 \in \Alt^{k}(V) \) altand \( u_2 \in \Alt^{l}(V) \), their wedge product \( u_1 \wedge u_2 \) is a member of $\Alt^{k+l}(V)$
+The wedge product (or exterior product) of alternating multilinear forms is a fundamental operation in exterior algebra. 
+Given two alternating multilinear forms \( u_1 \in \Alt^{k}(V) \) and \( u_2 \in \Alt^{l}(V) \), 
+their wedge product \( u_1 \wedge u_2 \) is a member of $\Alt^{k+l}(V)$
 defined by the formula 
 \[
     (u_1 \wedge u_2)(v_1, v_2, \ldots, v_{k+l}) 
     = 
     \frac{1}{k! l!} 
-    \sum_{ \sigma \in S_{p+q}} 
-    \mathrm{sgn}(\sigma) 
+    \sum_{ \sigma \in S_{k+l}} 
+    \signum(\sigma) 
     u_1( v_{\sigma(  1)}, \ldots, v_{\sigma(k  )} ) 
     u_2( v_{\sigma(k+1)}, \ldots, v_{\sigma(k+l)} ),
 \]
-for any \( v_1, v_2, \ldots, v_{p+q} \in V \).
-Here, \( S_{p+q} \) denotes the symmetric group on \( p+q \) elements, \( \mathrm{sgn}(\sigma) \) is the sign of the permutation \( \sigma \). The exterior product is bilinear and associative, and satisfies 
+for any \( v_1, v_2, \ldots, v_{k+l} \in V \).
+Here, \( S_{k+l} \) denotes the symmetric group on \( k+l \) elements, and \( \signum(\sigma) \) is the sign of the permutation \( \sigma \). The exterior product is bilinear and associative, and satisfies 
 \begin{align*}
     u_1 \wedge u_2 = (-1)^{kl} u_2 \wedge u_1,
     \quad 
@@ -2226,18 +2252,23 @@ Here, \( S_{p+q} \) denotes the symmetric group on \( p+q \) elements, \( \mathr
 We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
 Moreover, this particular setting comes with a canonical basis. 
-We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^n\}\) be the canonical basis dual to the standard unit vectors.
-This is a basis of $\Alt^{1}(\bbR^{n})$. 
-The set 
+We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^{n}\}\) be the canonical basis dual to the standard unit vectors.
+This is a canonical basis of $\Alt^{1}(\bbR^{n})$. 
+To define a canonical basis of $\Alt^{k}(\bbR^{n})$, 
+we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$,
+and introduce the basic $k$-alternators 
 \begin{align*}
-    \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n), % TODO: define sigma 
+    \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n). 
 \end{align*}
-is the canonical basis of $\Alt^{k}(\bbR^{n})$. Note that 
-\begin{align*}
-    \dim \Alt^{k}(\bbR^{n}) = \binom{n}{k}. 
-\end{align*}
+These define a basis of $\Alt^{k}(\bbR^{n})$.
+Note that 
+$\dim \Alt^{k}(\bbR^{n}) = \binom{n}{k}$. 
 In particular, $\Alt^{k}(\bbR^{n})$ is the zero vector space whenever $k > n$.
 % The dimension of the space of \(k\)-forms, denoted \(\bigwedge^k V\), is given by the binomial coefficient \(\binom{n}{k}\).
+
+We notice that the standard scalar product on $\bbR^{n}$ gives rise to a scalar product on $\Alt^{1}(\bbR^{n})$,
+which induces a scalar product on $\Alt^{k}(\bbR^{n})$.
+The basic $k$-alternators are an orthonormal basis of $\Alt^{k}(\bbR^{n})$ with respect to that inner product. 
 
 We write $C^{\infty}\Alt^{k}(\Omega)$ for the space of smooth differential $k$-forms over $\Omega \subseteq \bbR^{n}$,
 which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{n})$.
@@ -2270,12 +2301,29 @@ Moreover, it satisfies the Leibniz rule:
     \qquad \omega \in C^{\infty}\Alt^{k}(\Omega), 
     \qquad \eta \in C^{\infty}\Alt^{l}(\Omega).
 \]
-These properties ensure that the exterior derivative is a crucial tool in differential geometry and calculus on manifolds.
+Let u now turn our attention to Sobolev spaces of differential forms. 
+Since $\Alt^{k}(\Omega)$ is a normed space, we can consider the pointwise norms of differential $k$-forms. 
+% First, we notice that the % TODO: introduce a norm 
+We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
+such that its pointwise norm is $p$-integrable. 
+The exterior derivative is defined in the sense of distributions and we introduce 
+\[
+    W^p\Alt^{k}(\Omega) = \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
+\]
+We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
+Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
+The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
+\[ 
+    \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
+    = 
+    u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
+\]
+for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
 
 
 \begin{remark}
     In three dimensions, 
-    the calculus of differential forms can be translted into classical vector calculus. 
+    the calculus of differential forms can be translated into classical vector calculus. 
     This is expressed formally as the commuting diagram 
     \[
     \begin{CD}
@@ -2292,13 +2340,12 @@ These properties ensure that the exterior derivative is a crucial tool in differ
     where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
     \begin{align*}
      \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} + u_3 \cartanx^{3} \right) 
-     = 
+     &= 
      \left( u_1, u_2, u_3 \right), 
-     \quad 
+     \\
      \varpi^{2}\left( u_{12} \cartanx^{1} \wedge \cartanx^{2} + u_{13} \cartanx^{1} \wedge \cartanx^{3} + u_{23} \cartanx^{2} \wedge \cartanx^{3} \right) 
-     = 
-     \left( u_{23}, - u_{13}, u_{12} \right).
-     .
+     &= 
+     \left( u_{23}, - u_{13}, u_{12} \right).   
     \end{align*}
     In two dimensions, 
     the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
@@ -2341,23 +2388,42 @@ These properties ensure that the exterior derivative is a crucial tool in differ
         \left( u_2, -u_1 \right),
     \end{align*}
     and the other vertical arrows are the identity. 
-    The utility of exterior calculus is that the doperators of vector calculus can be translated into a common framework that does not depend on the dimension.
+    The utility of exterior calculus is that the operators of vector calculus can be translated into a common framework that does not depend on the dimension.
 \end{remark}
-    
 
 
-In physics, alternating algebra is crucial in the formulation of theories such as electromagnetism and general relativity. For example, in electromagnetism, the electromagnetic field tensor is an alternating 2-form, and its properties are naturally described using the language of exterior algebra.
 
-- Spivak, Michael. *Calculus on Manifolds*. W. A. Benjamin, 1965.
-- Lee, John M. *Introduction to Smooth Manifolds*. Springer, 2012.
-- Greub, Werner H. *Multilinear Algebra*. Springer, 1978.
-- Bott, Raoul, and Loring W. Tu. *Differential Forms in Algebraic Topology*. Springer, 1982.
 
-These references provide a deeper understanding of the concepts discussed and offer additional insights into the applications and further study of alternating algebra.
+
 
 \subsection{Inequalities for partial boundary conditions on a single simplex}
 
 
+We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
+We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
+such that the $i$-th coordinate equals zero along $\hat F_i$.
+
+Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
+that maps the faces $F_{0}, F_{1}, \dots, F_{l}$ onto the boundary patch $\Gamma$. 
+We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
+The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
+Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
+
+
+
+
+% Copied from McIntosh paper 
+Rewriting $B^{k}$ in the same way, we get
+\begin{equation}\label{eq:Bogo}
+    B^{k} u(x) = - \int_{\Omega} \,(x-a) \lrcorner \int_1^\infty t^{{k}-1}\,u\left( a+t(x-a) \right) \,dt\,da\;.
+\end{equation}
+If $u \in C^{\infty}_{c}(\bbR^{n},\Alt^{k})$, 
+one sees that $B^{k} u$ is smooth with support in $\bbR^{n}\setminus\overline\Omega$, 
+and that $B^{k} u(x) = 0$ unless $x \in \Omega$. 
+Since $\Omega$ is convex, $u \in C^{\infty}_{c}(\Omega,\Alt^{k})$ implies $\supp B^{k} u \subset\Omega$, 
+Since $\Omega$ is bounded, $u \in C^{\infty}_{\overline\Omega}(\bbR^{n},\Alt^{k})$ implies $\supp B^{k} u \subset\overline\Omega$. 
+The fact that $B^{k}$ indeed maps 
+$C^{\infty}_{c}(\bbR^{n},\Alt^{k})$ to $C^{\infty}_{c}(\bbR^{n},\Alt^{{k}-1})$ will be a the following theorem.
 
 
 
@@ -2368,6 +2434,7 @@ These references provide a deeper understanding of the concepts discussed and of
 % Square 
 % L-shaped 
 % Slit
+
 % Cube 
 % Fichera
 % Crossed bricks 
