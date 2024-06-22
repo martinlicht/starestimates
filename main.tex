@@ -1178,23 +1178,35 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 \begin{proof}
  Let $u \in W^{1,p}(\Omega)$. 
  For each $F \in \calT$ of dimension $n-1$, 
- we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{P}},F} \| \nabla u_F \|_{L^{p}(U_F)}$.
+ we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{P}},F,p} \| \nabla u_F \|_{L^{p}(U_F)}$.
  
- Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+ There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
+ \[
+    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{P}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+ \]
+ In particular, $c_{\star} := u - w_0$ is a constant function. 
+ Now, let $T \in \calT$ be any $n$-simplex. 
+ By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
+ For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{j(m)}$ be a face of dimension $n-1$. 
+ We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated \textbf{domain}. % TODO: technical stuff 
  
+%  Since $\calT$ is strongly connected, there exists an enumersation of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
-%  We let $T \in \calT$ be the first $n$-simplex. 
-%  There exists We already have 
+ Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
+ such that $c_{\star} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
+ Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. 
+ By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{m-1}}$. 
+ Since $\nabla u_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}}$,
+ there exists a constant $c_{m} := w_{m-1|T_{{m-1}}} - u_{F_{m}|T_{{m-1}}}$.
+ We define $w'_{F_m} := u_{F_m} + c_{m} \in W^{1,p}(U_F)$.
+ By construction, $\nabla w'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ 
+ and 
+ $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
+ But that already implies $w'_{F_m} = u_{|F_m} - c_{\star}$. 
+ We define a measurable function $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$.
+ We have $c_{\star} = w_{m} - u_{|\Omega_{m}}$. 
  
- Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. Hence $c_{\star} := w_{m-1} - u_{|\Omega_{m-1}}$ is a constant. 
- By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j(m)}$. 
- Since $\nabla u_{F_{m}|T_{j(m)}} = \nabla w_{m-1|T_{j(m)}}$,
- there exists a constant $c_{m} := w_{m-1|T_{j(m)}} - u_{F_{m}|T_{j(m)}}$.
- We define $u'_{F_m} := u_{F_m} + c_{m} \in W^{1,p}(U_F)$.
- By construction, $\nabla u'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ and $u_{F_{m}|T_{j(m)}} = w_{m-1|T_{j(m)}}$. 
- But that already implies $u'_{F_m} = u_{|F_m} - c_{\star}$. 
- As we define a measurable function $u'_{\star} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $u'_{F_m|T_m}$.
- Moreover, 
+ We assess the norm of this potential. We observe 
  \begin{gather*}
     \| u'_{F_m} \|_{L^{p}(T_m)}
     \leq 
@@ -1204,12 +1216,12 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \qquad 
     \| c_{m} \|_{L^{p}(T_m)}
     \leq 
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| c_{m} \|_{L^{p}(T_{j(m)})},
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| c_{m} \|_{L^{p}(T_{{m-1}})},
     \\ 
-    \| c_{m} \|_{L^{p}(T_{j(m)})}
+    \| c_{m} \|_{L^{p}(T_{{m-1}})}
     \leq 
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})} + \| u_{F_{m}} \|_{L^{p}(T_{j(m)})} 
+    \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
     .
  \end{gather*}
  In particular,
@@ -1218,11 +1230,11 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     .
  \end{align*}
  We summarize the two integrals of $u_{F_m}$. 
@@ -1232,12 +1244,12 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \| w_{m} \|_{L^{1}(T_m)}
     \leq 
     \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{j(m)}) } 
+        1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
     \right)
     \| u_{F_m} \|_{L^{1}(U_{F_m})}
     +
-    \frac{ \vol(T_m) }{ \vol(T_{j(m)}) }
-    \| w_{m-1}\|_{L^{1}(T_{j(m)})}
+    \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
+    \| w_{m-1}\|_{L^{1}(T_{{m-1}})}
     .
  \end{align*}
  In the special case $p=\infty$, 
@@ -1247,28 +1259,28 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     2
     \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
     +
-    \| w_{m-1}\|_{L^{\infty}(T_{j(m)})}
+    \| w_{m-1}\|_{L^{\infty}(T_{{m-1}})}
     .
  \end{align*}
  When $1 < p < \infty$, letting $q$ be the complementary exponent, we observe 
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
     &\leq 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
     \left( 
         \| u_{F_m} \|_{L^{p}(T_m)}^{p}
         +
-        \| u_{F_{m}} \|_{L^{p}(T_{j(m)})}^{p}
+        \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
     \right)^{\frac 1 p}
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     \\&\leq 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{j(m)})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
     \| u_{F_m} \|_{L^{p}(U_{F_m})} 
     +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{j(m)})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{j(m)})}
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     .
  \end{align*}
  Recursive application provides the following estimate:
@@ -1317,6 +1329,10 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     .
  \end{align*}
  Notice that $p/q = p - 1$.
+ 
+ Repeating this argument produces $w \in L^{p}(\Omega)$ 
+ such that for all $n$-simplices $T \in \calT$ we have the restriction $w_{|T} \in W^{1,p}(T)$ with $w_{|T} = u + c_{\star}$.
+ In particular, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
 \end{proof}
 
 We also want to assess an alternative route towards Poincar\'e--Friedrichs inequalities over triangulated domains,
@@ -2106,10 +2122,244 @@ Our main interest are local patches or stars within triangulations.
 
 
 \section{Extension operator on finite element stars}\label{section:extension}
+% Only define the geometric mapping and its important quantities
+% Leave the function spaces etc. for later 
 
 \section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
+Recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
+and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^n$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
+
+In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
+$W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, and we have 
+\[
+    W^p(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+\]
+The space $W^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
+and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
+\[
+    W^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
+    \quad 
+    W^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
+\]
+More generally, ...
+\\
+
+We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
+Suppose that $U,V \subset \mathbb{R}^3$ are open sets and suppose that $\phi: U \to V$ is a bi-Lipschitz mapping.
+The gradient-, curl-, divergence-conforming Piola transformations are the mappings 
+$\phi^{\grad}: L^{p}(V) \to L^{p}(U)$,
+$\phi^{\curl}: \bfL^{p}(V) \to \bfL^{p}(U)$, 
+and
+$\phi^{\divergence}: \bfL^{p}(V) \to \bfL^{p}(U)$. 
+and
+$\phi^{\rm b}: L^{p}(V) \to L^{p}(U)$. 
+They are defined by % TODO: change inverse convention from here on 
+\begin{equation}\label{eq_definition_piola}
+\begin{aligned}
+    \phi^{\grad}(v) &= v \circ \phi, \\
+    \phi^{\curl}(\bfw) &= (\Jacobian\phi^{T} \bfw) \circ \phi, \\
+    \phi^{\divergence}(\bfw) &= \left( \frac{ \Jacobian\phi^{-1} }{\det\Jacobian\phi^{-1}} \bfw \right)  \circ \phi, \\
+    \phi^{\rm b}(v) &= \left( \det\Jacobian\phi^{-1} v \right)  \circ \phi,
+\end{aligned}
+\end{equation}
+where $v \in L^{p}(V)$ and $\bfw \in \bfL^{p}(V)$, 
+and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$
+These mappings are invertible. 
+%
+% trace properties 
+%
+The commutativity properties
+\begin{equation}\label{eq_piola_commute}
+\begin{aligned}
+    \grad (\phi^{\grad} (v)) &= \phi^{\curl}(\grad v), 
+    \\
+    \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv) 
+    % TODO: watch the sign 
+    \\
+    \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw)
+\end{aligned}
+\end{equation}
+for $v \in W^{p}(\grad,U)$, $\bfv \in W^{p}(\curl,U)$, and $\bfw \in W^{p}(\divergence,U)$.  
+%
+
+\subsection{Exterior Algebra}
+
+In mathematics, Euclidean space, denoted \(\mathbb{R}^n\), is a fundamental concept representing the \(n\)-dimensional generalization of the familiar 2D and 3D spaces. Multilinear forms are scalar-valued functions that take multiple vectors as input and return a scalar and which are linear in each argument. This leads us to the study of alternating algebra, which focuses on antisymmetric multilinear forms.
+Alternating algebra plays a crucial role in various areas of mathematics, including geometry and physics.
+\\
+
+Let $V$ be a real vector space. 
+Given an integer $k \geq 0$, We let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
+Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
+if 
+\[ 
+    u( v_{\pi(1)}, v_{\pi(2)}, \ldots, v_{\pi(k)} ) 
+    = 
+    \text{sign}(\pi) 
+    u( v_1, v_2, \ldots, v_k ) 
+\]
+for any $v_1, v_2, \dots, v_k \in V$ and any permutation $\pi$ of the indices \(\{1, 2, \ldots, k\}\). 
+By definition, $\Alt^{1}(V)$ is just the dual space of $V$, and $\Alt^{0}(V)$ is the space of real numbers. 
+Formally, we define $\Alt^{k}(V)$ to be the zero vector space when $k < 0$. 
+
+The wedge product (or exterior product) of alternating multilinear forms is a fundamental operation in exterior algebra. Given two alternating multilinear forms \( u_1 \in \Alt^{k}(V) \) altand \( u_2 \in \Alt^{l}(V) \), their wedge product \( u_1 \wedge u_2 \) is a member of $\Alt^{k+l}(V)$
+defined by the formula 
+\[
+    (u_1 \wedge u_2)(v_1, v_2, \ldots, v_{k+l}) 
+    = 
+    \frac{1}{k! l!} 
+    \sum_{ \sigma \in S_{p+q}} 
+    \mathrm{sgn}(\sigma) 
+    u_1( v_{\sigma(  1)}, \ldots, v_{\sigma(k  )} ) 
+    u_2( v_{\sigma(k+1)}, \ldots, v_{\sigma(k+l)} ),
+\]
+for any \( v_1, v_2, \ldots, v_{p+q} \in V \).
+Here, \( S_{p+q} \) denotes the symmetric group on \( p+q \) elements, \( \mathrm{sgn}(\sigma) \) is the sign of the permutation \( \sigma \). The exterior product is bilinear and associative, and satisfies 
+\begin{align*}
+    u_1 \wedge u_2 = (-1)^{kl} u_2 \wedge u_1,
+    \quad 
+    u_1 \in \Alt^{k}(V),
+    \quad 
+    u_2 \in \Alt^{l}(V).
+\end{align*}
+We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
+Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
+Moreover, this particular setting comes with a canonical basis. 
+We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^n\}\) be the canonical basis dual to the standard unit vectors.
+This is a basis of $\Alt^{1}(\bbR^{n})$. 
+The set 
+\begin{align*}
+    \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n), % TODO: define sigma 
+\end{align*}
+is the canonical basis of $\Alt^{k}(\bbR^{n})$. Note that 
+\begin{align*}
+    \dim \Alt^{k}(\bbR^{n}) = \binom{n}{k}. 
+\end{align*}
+In particular, $\Alt^{k}(\bbR^{n})$ is the zero vector space whenever $k > n$.
+% The dimension of the space of \(k\)-forms, denoted \(\bigwedge^k V\), is given by the binomial coefficient \(\binom{n}{k}\).
+
+We write $C^{\infty}\Alt^{k}(\Omega)$ for the space of smooth differential $k$-forms over $\Omega \subseteq \bbR^{n}$,
+which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{n})$.
+The exterior derivative \( d \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
+to a \((k+1)\)-form \( d\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
+Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
+\[
+    \omega = 
+    \sum_{ \sigma \in \Sigma(k,n) } 
+    \omega_{\sigma} \, 
+    \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
+\]
+where \( \omega_{\sigma} : \Omega \rightarrow \bbR \) are smooth functions.
+The exterior derivative \( d\omega \) is defined by
+\[
+    d\omega = 
+    \sum_{ \sigma \in \Sigma(k,n) } 
+    \sum_{j=1}^{n} 
+    \frac{\partial \omega_{\sigma}}{\partial x^j} 
+    \, \cartanx^j \wedge 
+    \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)}.
+\]
+The exterior derivative is linear and nilpotent, which means 
+\( d(d\omega) = 0 \) for any \( \omega \in C^{\infty}\Alt^{k}(\Omega) \).
+Moreover, it satisfies the Leibniz rule:
+\[ 
+    d(\omega \wedge \eta) 
+    = 
+    d\omega \wedge \eta + (-1)^{k} \omega \wedge d\eta, 
+    \qquad \omega \in C^{\infty}\Alt^{k}(\Omega), 
+    \qquad \eta \in C^{\infty}\Alt^{l}(\Omega).
+\]
+These properties ensure that the exterior derivative is a crucial tool in differential geometry and calculus on manifolds.
+
+
+\begin{remark}
+    In three dimensions, 
+    the calculus of differential forms can be translted into classical vector calculus. 
+    This is expressed formally as the commuting diagram 
+    \[
+    \begin{CD}
+        C^\infty\Alt^0(\Omega) @>{d}>> C^\infty\Alt^1(\Omega) @>{d}>> C^\infty\Alt^2(\Omega) @>{d}>> C^\infty\Alt^3(\Omega) 
+        \\
+        @VV{\varpi^{0}}V 
+        @VV{\varpi^{1}}V 
+        @VV{\varpi^{2}}V 
+        @VV{\varpi^{3}}V 
+        \\
+        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
+    \end{CD}
+    \]
+    where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
+    \begin{align*}
+     \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} + u_3 \cartanx^{3} \right) 
+     = 
+     \left( u_1, u_2, u_3 \right), 
+     \quad 
+     \varpi^{2}\left( u_{12} \cartanx^{1} \wedge \cartanx^{2} + u_{13} \cartanx^{1} \wedge \cartanx^{3} + u_{23} \cartanx^{2} \wedge \cartanx^{3} \right) 
+     = 
+     \left( u_{23}, - u_{13}, u_{12} \right).
+     .
+    \end{align*}
+    In two dimensions, 
+    the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
+    To the authors' best knowledge, neither convention is dominant in the literature.
+    On the one hand, we have a commuting diagram 
+    \[
+    \begin{CD}
+        C^\infty\Alt^0(\Omega) @>{d}>> C^\infty\Alt^1(\Omega) @>{d}>> C^\infty\Alt^2(\Omega) 
+        \\
+        @VV{\varpi^{0}}V 
+        @VV{\varpi^{1}}V 
+        @VV{\varpi^{2}}V 
+        \\
+        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
+    \end{CD}
+    \]
+    where the the middle vertical arrow is the isomorphism that satisfies 
+    \begin{align*}
+        \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right)
+        =
+        \left( u_1, u_2 \right),
+    \end{align*}
+    and the other vertical arrows are the identity. 
+    Alternatively, we may use the commuting diagram 
+    \[
+    \begin{CD}
+        C^\infty\Alt^0(\Omega) @>{d}>> C^\infty\Alt^1(\Omega) @>{d}>> C^\infty\Alt^2(\Omega)
+        \\
+        @VV{\varpi^{0}}V 
+        @VV{\varpi^{1}}V 
+        @VV{\varpi^{2}}V 
+        \\
+        C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
+    \end{CD}
+    \]
+    where the the middle vertical arrow is the isomorphism that satisfies 
+    \begin{align*}
+        \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right)
+        =
+        \left( u_2, -u_1 \right),
+    \end{align*}
+    and the other vertical arrows are the identity. 
+    The utility of exterior calculus is that the doperators of vector calculus can be translated into a common framework that does not depend on the dimension.
+\end{remark}
+    
+
+
+In physics, alternating algebra is crucial in the formulation of theories such as electromagnetism and general relativity. For example, in electromagnetism, the electromagnetic field tensor is an alternating 2-form, and its properties are naturally described using the language of exterior algebra.
+
+- Spivak, Michael. *Calculus on Manifolds*. W. A. Benjamin, 1965.
+- Lee, John M. *Introduction to Smooth Manifolds*. Springer, 2012.
+- Greub, Werner H. *Multilinear Algebra*. Springer, 1978.
+- Bott, Raoul, and Loring W. Tu. *Differential Forms in Algebraic Topology*. Springer, 1982.
+
+These references provide a deeper understanding of the concepts discussed and offer additional insights into the applications and further study of alternating algebra.
+
 \subsection{Inequalities for partial boundary conditions on a single simplex}
+
+
+
+
 
 \subsection{Constructions over shellable triangulations}
 
