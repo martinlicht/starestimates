@@ -2396,23 +2396,25 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 
 
-\subsection{Inequalities for partial boundary conditions on a single simplex}
-
-
-We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
-We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
-such that the $i$-th coordinate equals zero along $\hat F_i$.
-
-Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
-that maps the faces $F_{0}, F_{1}, \dots, F_{l}$ onto the boundary patch $\Gamma$. 
-We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
-The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
-Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
 
 
-% Copied from McIntosh paper 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Bogovski\u{\i}-type operators}
 We begin with introducing the Costabel-McIntosh-Bogovski\u{\i} kernel.
 For $\ell\in\{0,\dotsc,n\}$, we define the kernel $G_\ell : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
 \begin{equation}
@@ -2503,6 +2505,10 @@ Taylor's inequality now implies:
     \vol_{n-1}(S_1) A(n,\ell) \frac{ D^{n} }{|\Omega|} 
     D
     \| u \|_{L^{p}(\Omega)}
+    \leq 
+    n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+    D
+    \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
 In particular, we have a bounded operator $B_{\ell} : L^{p}(\bbR^n,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1})$ for any $1 \leq p \leq \infty$.  
@@ -2581,6 +2587,8 @@ We copy a statement by McIntosh and Costabel, who are too fucking lazy to write 
     - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_1^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
+$a = y + t(x-y)$
+$s = \frac{t}{t-1}$
 From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ has support contained in $\overline\Omega$, we immediately have that $T_\ell u(x)$ is smooth with support contained in $\overline\Omega$ as well. 
 
 We compute the exterior derivative of this potential:
@@ -2801,6 +2809,37 @@ then we can write the relations \eqref{eq:dR+Rd=1} and \eqref{eq:dT+Td=1} simply
     The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
     which has the same smallest singular value. 
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Inequalities for partial boundary conditions on a single simplex}
+We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
+We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
+such that the $i$-th coordinate equals zero along $\hat F_i$.
+
+Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
+that maps the faces $F_{0}, F_{1}, \dots, F_{l}$ onto the boundary patch $\Gamma$. 
+We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
+The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
+Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
+
+
+
+
+
 
 
 

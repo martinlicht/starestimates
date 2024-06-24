@@ -1216,7 +1216,147 @@ Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \s
  
  
  
- 
+ We introduce the operator $B^{k}$, which can be written in several alternative forms
+\begin{align*}
+    B^{k} u(x) 
+    &= 
+    - |\Omega|^{-1}
+    \int_{\Omega} \,(x-a) \lrcorner \int_1^\infty t^{{k}-1}\,u\left( a+t(x-a) \right) \,dt\,da
+    \\&= 
+    |\Omega|^{-1}
+    \int_{\Omega} \,(x-a) \lrcorner \int_0^1 t^{-{k}-1}\,u\left( a+(x-a)/s \right) \,ds\,da
+    .
+\end{align*}
+If $u \in C^{\infty}_{c}(\bbR^{n},\Alt^{k})$, 
+then $B^{k} u$ is smooth with support in $\bbR^{n}\setminus\overline\Omega$ and $B^{k} u(x) = 0$ when $x \notin \Omega$. 
+Since $\Omega$ is convex, $u \in C^{\infty}_{c}(\Omega,\Alt^{k})$ implies $\supp B^{k} u \subset\Omega$, 
+Since $\Omega$ is bounded, $\supp u \subseteq \overline\Omega$ implies $\supp B^{k} u \subset\overline\Omega$. 
+% The fact that $B^{k}$ indeed maps 
+% $C^{\infty}_{c}(\bbR^{n},\Alt^{k})$ to $C^{\infty}_{c}(\bbR^{n},\Alt^{{k}-1})$ will be a the following theorem.
+
+\begin{align*}
+    \int_{\Omega}
+    \left| B^{k} u(x) \right|^{p}
+    dx
+    &
+    = 
+    |\Omega|^{-1}
+    \int_{\Omega}
+    \int_{\Omega} 
+    \int_0^1
+    s^{(-{k}-1)p}\, |x-a|^{p} \left| u\left( a+(x-a)/s \right) \right|^{p} \,ds\,da
+    dx
+    \\&
+    = 
+    |\Omega|^{-1}
+    \int_{\Omega}
+    \int_{\Omega-a} 
+    \int_{|z|/D}^{1}
+    s^{(-{k}-1)p}\, |z|^{p} \left| u\left( a+z/s \right) \right|^{p} \,ds\,da
+    dz
+    \\&
+    = 
+    |\Omega|^{-1}
+    \int_{\Omega}
+    \int_{2\Omega} 
+    \int_{|z|/D}^{1}
+    s^{(-{k}-1)p}\, |z|^{p} \left| u\left( a+z/s \right) \right|^{p} \,ds\,da
+    dz
+    \\&
+    = 
+    |\Omega|^{-1}
+    \int_{\Omega + z/s}
+    \int_{2\Omega} 
+    \int_{|z|/D}^{1} % y = a + z/s
+    s^{(-{k}-1)p}\, |z|^{p} \left| u\left( y \right) \right|^{p} \,ds\,dy
+    dz
+    \\&
+    = 
+    |\Omega|^{-1}
+    \int_{2\Omega}
+    \int_{2\Omega} 
+    \int_{|z|/D}^{1} % y = a + z/s
+    s^{(-{k}-1)p}\, |z|^{p} \left| u\left( y \right) \right|^{p} \,ds\,dy
+    dz
+    .
+\end{align*}
+
+
+
+\begin{align*}
+    G_\ell(x,y) 
+    &\leq 
+    \int_{0}^{\frac{D}{|x-y|}} \tau^{n-\ell} (\tau+1)^{\ell-1} \,d\tau
+    \\
+    &\leq 
+    \frac{|x-y|}{D}
+    \int_{0}^{\frac{D}{|x-y|}} \frac{D}{|x-y|} \tau^{n-\ell} (\tau+1)^{\ell-1} \,d\tau
+    .
+\end{align*}
+\begin{align*}
+    G_\ell(x,y)^{p} 
+    &\leq 
+    \frac{|x-y|}{D}
+    \int_{0}^{\frac{D}{|x-y|}} \frac{D^{p}}{|x-y|^{p}} \tau^{pn-p\ell} (\tau+1)^{p\ell-p} \,d\tau
+    \\&\leq 
+    \frac{|x-y|}{D}
+    \frac{D^{p}}{|x-y|^{p}} \int_{0}^{\frac{D}{|x-y|}} (\tau+1)^{pn-p} \,d\tau
+    \\&\leq 
+    \frac{D^{p-1}}{|x-y|^{p-1}} \left( \left( \frac{D}{|x-y|} + 1 \right)^{pn-p+1} - 1 \right)
+    \\&\leq 
+    \frac{D^{p-1}}{|x-y|^{p-1}} \left( 2^{pn-p+1} \left( \frac{D}{|x-y|} \right)^{pn-p+1} - 1 \right)
+    \\&\leq 
+    2^{pn-p+1} \frac{D^{pn}}{|x-y|^{pn}} - \frac{D^{p-1}}{|x-y|^{p-1}}
+    .
+\end{align}
+
+
+
+
+
+Moreover,  
+\begin{align*}
+    \int_{\Omega} \left| B_{\ell} u(x) \right|^{p} dx
+    &=
+    |\Omega|^{-1} 
+    \int_{\Omega} 
+    \int_{\Omega} 
+    \left( 2^{pn-p+1} \frac{D^{pn}}{|x-y|^{pn}} - \frac{D^{p-1}}{|x-y|^{p-1}} \right)
+    \left| (x-y)\lrcorner u(y) \right|^{p} 
+    dy dx
+    \\&=
+    |\Omega|^{-1} 
+    \int_{\Omega} 
+    \int_{\Omega} \left( 2^{pn-p+1} D^{pn} |x-y|^{-pn+p} - D^{p-1} |x-y| \right) dx
+    \left| u(y) \right|^{p} 
+    dy
+    .
+\end{align*}
+
+
+
+
+
+
+We use the radial integrals
+\begin{align*}
+    \int_{B_D(0)} |z|^{m} dz
+    =
+    \vol_{n-1}(S_1) \int_0^D r^{m} r^{n-1} dr
+    =
+    \vol_{n-1}(S_1) \int_0^D r^{m+n-1} dr
+    =
+    \vol_{n-1}(S_1) \frac{D^{m+n}}{m+n}
+    .
+\end{align*}
+
+
+
+
+
+
+
+
  
  
  
