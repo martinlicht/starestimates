@@ -1356,6 +1356,175 @@ We use the radial integrals
 
 
 
+In order to see other properties of the operators, we apply a different change of variables. 
+Let us write this in detail for the operator $R_{\ell}$. 
+We substitute $y$ by the new variable $a=y+t(x-y)$.
+Whence $da = (1-t)^n dy$ and $t(x-y) = a-y$ and $x-y = (a-y)/t$ and $x - (a-x)/t = y$
+\begin{align*}
+    \Bogov_{\ell} u(x) 
+    &= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \chi_{\Omega}\left(y+t(y-x)\right) 
+    (x-y)\lrcorner u(y) \,dt\,dy 
+    \\&= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \chi_{\Omega}\left(y+(x-y)-(x-y)+t(y-x)\right) 
+    (x-y)\lrcorner u(y) \,dt\,dy 
+    \\&= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \chi_{\Omega}\left(x+(t+1)(y-x)\right) 
+    (x-y)\lrcorner u(y) \,dt\,dy 
+    \\
+    &= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} (t+1)^{n}
+    \chi_{\Omega}\left(a\right) 
+    \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
+\end{align*}
+Then we substitute $1-s = 1/(t+1)$, that is, $s = t/(t+1)$:
+Whence $t = \left( 1/s-1 \right)^{-1}$.
+\begin{align*}
+    \Bogov_{\ell} u(x) 
+    &= 
+    \int \int_{1}^\infty (t-1)^{n-\ell} \left( 1/s-1 \right)^{\ell-1} (t+1)^{n}
+    \chi_{\Omega}\left(a\right) 
+    \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
+    \\
+    &= 
+    .
+\end{align*}
+
+
+Then we substitute $s = (t-1)/t$:
+\begin{align*}
+    &= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{-n+\ell-1} 
+    \chi_{\Omega}\left(a\right)
+    \frac{(a-y)}{t} \lrcorner u(x+(a-x)/t) \,dt\,da 
+    \\
+    &= 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1-n-1} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u(x+(a-x)/t) \,dt\,da
+    .
+\end{align*}
+Then we substitute $s = (t-1)/t$:
+\begin{align*}
+    \Bogov_{\ell} u(x) 
+    &= 
+    \int \int_{1}^\infty s^{n-\ell} (s-1)^{2} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( x+(s-1)(a-x) ) \frac{-1}{(s-1)^2}\,ds\,da
+    \\
+    &= 
+    - \int \int_{1}^\infty s^{n-\ell} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( s(a-x) - a ) \,ds\,da
+    \\
+    &=
+    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    .
+\end{align*}
+We copy a statement by McIntosh and Costabel:
+\begin{align*}
+    \Bogov_{\ell} u(x) 
+    = 
+    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    .
+\end{align*}
+$a = y + t(x-y)$
+$s = \frac{t}{t-1}$
+From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ has support contained in $\overline\Omega$, we immediately have that $\Bogov_{\ell} u(x)$ is smooth with support contained in $\overline\Omega$ as well. 
+
+
+
+
+
+
+
+
+
+
+
+From this form of $\Bogov_{\ell}$, because of the unbounded interval of integration in $t$, one cannot immediately conclude that $\Bogov_{\ell}$ maps ${C^\infty}$ functions to ${C^\infty}$ functions.
+But if $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$, one sees that $\Bogov_{\ell} u$ is ${C^\infty}$ on 
+$\bbR^n\setminus\supp\chi_{\Omega}$, and that 
+$\Bogov_{\ell} u(x)=0$ unless $x$ lies in the starlike hull of $\supp u$ with respect to $B$. 
+Thus if $\Omega$ is open and starlike with respect to $B$, then   
+$u\in{C^\infty_c}(\Omega,\Alt^\ell)$ implies $\supp \Bogov_{\ell} u \subset\Omega$, and, if $\Omega$ is bounded, then
+$u\in{C^\infty}_{\overline\Omega}(\bbR^n,\Alt^\ell)$ implies $\supp \Bogov_{\ell} u \subset\overline\Omega$. 
+The fact that $\Bogov_{\ell}$ indeed maps 
+${C^\infty_c}(\bbR^n,\Alt^\ell)$ to ${C^\infty_c}(\bbR^n,\Alt^{\ell-1})$ will be a consequence of Theorem~\ref{T:pseudo} below.
+
+
+
+
+\subsection{Homotopy relations}
+
+Cartan's formula for the Lie derivative of a differential form with respect to a vector field can be written as
+$$
+  \frac{d}{dt}F^*_t u = F^*_t \left(d(X_t\lrcorner u) + X_t\lrcorner du\right)\;,
+$$
+where $F^*_t$ denotes the pull-back by the flow $F_t$ associated with the vector field $X_t$. Here we consider the special case of the dilation flow with center $a$
+$$
+  F_t(x) = a+t(x-a) \quad\text{ with vector field } X_t=x-a\;,
+$$
+which gives a pull-back of
+$$
+  F^*_t u(x) = t^\ell \,u\left(a+t(x-a)\right) \quad \text{for an $\ell$-form } u \;.
+$$
+This leads to the formula
+\begin{equation}
+\label{eq:Cartan}
+ \frac{d}{dt}(t^\ell u\left(a+t(x-a)\right) =
+    d\Bigl(t^{\ell-1}(x-a)\lrcorner u\left(a+t(x-a)\right)\Bigr) +
+    t^{\ell}(x-a)\lrcorner du\left(a+t(x-a)\right)
+\end{equation}
+which can also be verified elementarily from the formulas we gave in Section~\ref{S:notation}.
+
+Integrating \eqref{eq:Cartan} from $0$ to $1$ and comparing with \eqref{eq:regPoincare}, 
+we find the homotopy relations, valid for all $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$ 
+\begin{equation}
+\begin{aligned}
+\label{eq:dR+Rd=1}
+ dR_{\ell} u + R_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
+ R_1 du &= u - \left(\chi_{\Omega},u\right)\; &&(\ell=0)\;;\\
+ dR_nu &=u &&(\ell=n)\;.
+\end{aligned}
+\end{equation}
+One could be tempted to integrate Cartan's formula from $1$ to $\infty$ and compare with \eqref{eq:Bogo}, thus formally obtaining a similar homotopy relation for $\Bogov_{\ell}$ directly. The result is indeed true except for $\ell=n$, but for a rigorous proof we prefer to use the duality relation \eqref{eq:dualRT} to deduce corresponding anticommutativity relations for $\Bogov_{\ell}$ from the relations \eqref{eq:dR+Rd=1} which are already proved. Here is what one obtains for $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$:
+\begin{equation}
+\begin{aligned}
+\label{eq:dT+Td=1}
+  d\Bogov_{\ell} u + T_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
+  T_1 du &= u \; &&(\ell=0)\;;\\
+ dT_n u &=u - (\int\! u)\star\chi_{\Omega}&&(\ell=n)\;.
+\end{aligned}
+\end{equation}
+Here we consider $\chi_{\Omega}$ as an element of ${C^\infty_c}(\bbR^n,\Alt^0)$, so that for another $0$-form $u$ we have the $L^2$ scalar product $\left(\chi_{\Omega},u\right)=\int\chi_{\Omega}(a)u(a)da$, and $\star\chi_{\Omega}$ is the $n$-form $\chi_{\Omega}(x)dx_1\wedge\dots\wedge dx_n$. 
+
+The formulas for the endpoints $\ell=0$ and $\ell=n$ correspond to the two extended de Rham complexes without boundary conditions and with compact support, see \eqref{eq:edRwobc} and \eqref{eq:edRwcs}. To see this, let us extend the definition of the exterior derivative by writing $\overline d$ for all the mappings of the complex
+$$
+ 0 \to\bbR\to^\iota{C^\infty}(\overline\Omega,\Alt^0) \to^d {C^\infty}(\overline\Omega,\Alt^1)
+ \to^d\cdots \to^d {C^\infty}(\overline\Omega,\Alt^n) \to 0
+$$ 
+and $\underline d$ for all the mappings of the complex
+$$
+ 0 \to {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^0) \to^d {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^1) \to^d\cdots
+ \to^d {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^n) \to^{\iota^*} \bbR \to 0
+$$
+where $\iota$ is the inclusion mapping for constant functions and 
+$\iota^*=(\star\iota)'$ denotes the integral $u\mapsto\int\!u$ for $n$-forms.
+
+If we correspondingly extend the definitions of $R_{\ell}$ and $\Bogov_{\ell}$ by
+$$
+\begin{aligned}
+  R_0u &:=\left(\chi_{\Omega},u\right)\,\text{ for $0$-forms }u\,, &
+  R_{n+1} &:=0\,,\\
+  T_{n+1}u &:= \star(u\chi_{\Omega}) \,\text{ for }u\in\bbR\,,  &
+  T_0 &:= 0\,,
+\end{aligned}
+$$
+then we can write the relations \eqref{eq:dR+Rd=1} and \eqref{eq:dT+Td=1} simply as
+\begin{equation}\label{eq:R&T&d}
+ \overline d\,R_{\ell} u + R_{\ell+1} \,\overline d u  = u
+ \quad \text{ and }\quad
+ \underline d\,\Bogov_{\ell} u + T_{\ell+1} \,\underline du = u\quad \text{ for all }\;
+  0\le\ell\le n.
+\end{equation}
 
  
  

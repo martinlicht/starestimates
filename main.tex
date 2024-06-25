@@ -278,6 +278,8 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
 The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
 We then review the notion of shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations}.
+We review the Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}.
+Bogovski\u{\i}-type integral operators over convex sets are discussed in Section~\ref{section:bogovskii}.
 We construct an important geometric reflection operator in Section~\ref{section:extension}
 and provide computable upper bounds for Poincar\'e--Friedrichs constants over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 
@@ -2121,14 +2123,7 @@ Our main interest are local patches or stars within triangulations.
 
 
 
-\section{Extension operator on finite element stars}\label{section:extension}
-% Only define the geometric mapping and its important quantities
-% Leave the function spaces etc. for later 
-
-\section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
-
-
-\subsection{Review of vector calculus}
+\section{Review of vector calculus and exterior calculus}
 
 We discuss the Sobolev spaces of vector calculus and their transformation behavior. 
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
@@ -2209,9 +2204,9 @@ We summarize this as a commuting diagram:
 %
 
 
-\subsection{Review of exterior calculus}
+%\section{Review of exterior calculus}
 
-We also investigate this from the perspective of exterior calculus. 
+We also assume the perspective of exterior calculus. 
 We give a brief introduction into this topic. 
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, We let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
@@ -2414,25 +2409,34 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 
 
-\subsection{Bogovski\u{\i}-type operators}
-We begin with introducing the Costabel-McIntosh-Bogovski\u{\i} kernel.
-For $\ell\in\{0,\dotsc,n\}$, we define the kernel $G_\ell : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
-\begin{equation}
-\label{eq:Gl}
-  G_\ell(x,y) = 
-  \int_1^\infty (t-1)^{n-\ell}t^{\ell-1} |\Omega|^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt \;.
+\section{Bogovski\u{\i}-type operators over convex sets}\label{section:bogovskii}
+
+We use potential operators for the exterior derivative over convex domains that respect boundary conditions. 
+These are known as Bogovski\u{\i}-type operators.
+They were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics.~\cite{bogovskii} 
+The generalization to differential forms has been discussed extensively by Costabel and McIntosh~\cite{costabel},
+on whose work the following presentation is based. 
+In contrast to the aforementioned reference, the goal of our discussion is more modest:
+we merely need them over convex sets and are only interested in their operator norms between Lebesgue spaces.
+However, we derive explicit bounds for the operator norms, which are of independent interest. 
+
+
+We begin with introducing the Costabel-McIntosh kernel.
+For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
+\begin{equation}\label{eq:Gl}
+  G_{\ell}(x,y) = \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} |\Omega|^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt \;.
 \end{equation}
-Given a differential form $u \in {C^\infty}_0(\bbR^n,\Alt^\ell)$, \(1\leq \ell \leq n\), 
+Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
 we then define the integral operators
 \begin{align}
-  T_\ell u(x) &= \int G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
+  \Bogov_{\ell} u(x) &= \int G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
 \end{align}
-We call $T_\ell$ a Bogovski\u{\i}-type operator. 
+We call $\Bogov_{\ell}$ a Bogovski\u{\i}-type operator. 
 
-In order to see that the integrals in the definition of $T_\ell$ exist, 
-we first rewrite the kernel $G_\ell$:
+We show that the integrals in the definition of $\Bogov_{\ell}$ actually exist. 
+we first rewrite the kernel $G_{\ell}$:
 \begin{align*}
-    G_\ell(x,y) 
+    G_{\ell}(x,y) 
     &= 
     \int_0^\infty \tau^{n-\ell} (\tau+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+\tau(x-y) \right)\,d\tau
     \\
@@ -2442,21 +2446,21 @@ we first rewrite the kernel $G_\ell$:
     \\
     &= 
     |\Omega|^{-1}\sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \,
-    |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr \;
+    |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
 We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus 
 \begin{align*}
-    G_\ell(x,y) 
+    G_{\ell}(x,y) 
     &\leq 
-    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_0^D r^{n-k-1} \,dr \;.
+    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_0^D r^{n-k-1} \,dr 
     \\
     &= 
     |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
 \end{align*}
-We pointwise estimate $B_{\ell} u(x)$ by the result of a convolution of a locally integrable function with $u$:
+We pointwise estimate $\Bogov_{\ell} u(x)$ by the result of a convolution of a locally integrable function with $u$:
 \begin{align*}
-    \left| B_{\ell} u(x) \right|
+    \left| \Bogov_{\ell} u(x) \right|
     &=
     \left| 
         \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
@@ -2497,10 +2501,12 @@ We compute
     \vol_{n-1}(S_1) D^{n+1} \underbrace{ \sum_{k=0}^{\ell-1} \frac{ \tbinom{\ell-1}{k} }{ (n-k)(k+1) } }_{ =: A(n,\ell) \leq 2^{\ell-1}}
     .
 \end{align*}
+Here, $A(n,\ell)$ is a numerical constant that depends only on $n$ and $\ell$ 
+and which is bounded by $2^{\ell-1}$. 
 So the convolution of $u$ is taken against an integrable function. 
-Taylor's inequality now implies: 
+Taylor's convolution inequality now implies: 
 \begin{align*}
-    \| B_{\ell} u \|_{L^{p}(\Omega)}
+    \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
     &\leq 
     \vol_{n-1}(S_1) A(n,\ell) \frac{ D^{n} }{|\Omega|} 
     D
@@ -2511,119 +2517,68 @@ Taylor's inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
-In particular, we have a bounded operator $B_{\ell} : L^{p}(\bbR^n,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1})$ for any $1 \leq p \leq \infty$.  
+In particular, for any $1 \leq p \leq \infty$ we have a bounded linear operator 
+\[
+    \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+\]
+This follows from a density argument.
 
-
-
-
-
-\newpage 
-In order to see other properties of the operators, we apply a different change of variables. 
-Let us write this in detail for the operator $R_\ell$. 
-We substitute $y$ by the new variable $a=y+t(x-y)$.
-Whence $da = (1-t)^n dy$ and $t(x-y) = a-y$ and $x-y = (a-y)/t$ and $x - (a-x)/t = y$
+Additional properties of these operators become apparent after a change of variables. 
+We write down the full definition of these operators and perform two substutions:
+first, we substitute $a = y + t(x-y)$ and then we substitute $s = \frac{t}{t-1}$,
+leading to 
 \begin{align*}
-    T_\ell u(x) 
+    \Bogov_{\ell} u(x) 
     &= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{\ell-1} 
-    \chi_{\Omega}\left(y+t(y-x)\right) 
+    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \chi_{\Omega}\left(y+t(x-y)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
-    \\&= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{\ell-1} 
-    \chi_{\Omega}\left(y+(x-y)-(x-y)+t(y-x)\right) 
-    (x-y)\lrcorner u(y) \,dt\,dy 
-    \\&= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{\ell-1} 
-    \chi_{\Omega}\left(x+(t+1)(y-x)\right) 
-    (x-y)\lrcorner u(y) \,dt\,dy 
-    \\
-    &= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{\ell-1} (t+1)^{n}
-    \chi_{\Omega}\left(a\right) 
-    \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
-\end{align*}
-Then we substitute $1-s = 1/(t+1)$, that is, $s = t/(t+1)$:
-Whence $t = \left( 1/s-1 \right)^{-1}$.
-\begin{align*}
-    T_\ell u(x) 
-    &= 
-    \int \int_1^\infty (t-1)^{n-\ell} \left( 1/s-1 \right)^{\ell-1} (t+1)^{n}
-    \chi_{\Omega}\left(a\right) 
-    \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
-    \\
-    &= 
-    .
-\end{align*}
-
-
-Then we substitute $s = (t-1)/t$:
-\begin{align*}
-    &= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{-n+\ell-1} 
-    \chi_{\Omega}\left(a\right)
-    \frac{(a-y)}{t} \lrcorner u(x+(a-x)/t) \,dt\,da 
-    \\
-    &= 
-    \int \int_1^\infty (t-1)^{n-\ell}t^{\ell-1-n-1} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u(x+(a-x)/t) \,dt\,da
-    .
-\end{align*}
-Then we substitute $s = (t-1)/t$:
-\begin{align*}
-    T_\ell u(x) 
-    &= 
-    \int \int_1^\infty s^{n-\ell} (s-1)^{2} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( x+(s-1)(a-x) ) \frac{-1}{(s-1)^2}\,ds\,da
-    \\
-    &= 
-    - \int \int_1^\infty s^{n-\ell} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( s(a-x) - a ) \,ds\,da
     \\
     &=
-    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_1^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
-We copy a statement by McIntosh and Costabel, who are too fucking lazy to write down their goddamn substititions for fucks sake, stupid assholes:
-\begin{align*}
-    T_\ell u(x) 
-    = 
-    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_1^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
-    .
-\end{align*}
-$a = y + t(x-y)$
-$s = \frac{t}{t-1}$
-From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ has support contained in $\overline\Omega$, we immediately have that $T_\ell u(x)$ is smooth with support contained in $\overline\Omega$ as well. 
+We first discuss the support properties of this operator. 
+Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ satisfies $\supp u \subseteq \overline\Omega$.
+Then $\Bogov_{\ell} u(x) = 0$ whenever $x \notin \overline\Omega$,
+meaning $\supp \Bogov_{\ell} u \subseteq \overline\Omega$.
 
-We compute the exterior derivative of this potential:
+We study the interaction of this potential operator with the exterior derivative.
+Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ with $\supp u \subseteq \overline\Omega$.
+We rewrite the potential,
 \begin{align*}
     T_{\ell,a} u(x) 
     &= 
-    (x-a)\lrcorner \int_1^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     \\&
     = 
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} dt 
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{\sigma-\sigma(i)} dt 
-    .
+    ,
 \end{align*}
+and compute its exterior derivative:
 \begin{align*}
     \cartan T_{\ell,a} u(x) 
     &= 
     k
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
     .
 \end{align*}
-When we calculate the exterior derivative of $u$, we find 
+We write the exterior derivative of $u$ as 
 \begin{align*}
     \cartan u(x)
     =
@@ -2637,22 +2592,23 @@ The potential operator, applied to this result, gives
     &=
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
     \cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
     \cartanx^{\sigma}
+    \\&\qquad 
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
     (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
-Applying cancelations, we find 
+Taking into account cancellations, this gives the identity 
 \begin{align*}
     &
     \cartan T_{\ell,a} u(x)
@@ -2662,39 +2618,39 @@ Applying cancelations, we find
     =
     k
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
     \cartanx^{\sigma}
     \\&\qquad
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
     (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
     \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
-    \int_1^\infty 
+    \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_1^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
     \cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    \int_1^\infty \partial_{t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \int_{1}^\infty \partial_{t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
@@ -2703,95 +2659,34 @@ Applying cancelations, we find
     u(x)
     .
 \end{align*}
+In particular, if $\cartan u = 0$, then $\cartan T_{\ell,a} u = u$.
 
 
 
+For full technical clarify, we show we have a bounded operator 
+\[
+    \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+    .
+\]
+% - Rewrite kernel
+% - Show the support property
+% - Assess that it is Lp bounded for compactly supported forms; density argument
+% - Conclude that it is absolutely convergent. Do one (!) derivative
+% - Poincare lemma for smooth forms : needs smoothness, but that's a simple calculation 
+% - prove duality via some density argument and the extension of smooth forms outside of Lipschitz domains
 
 
-
-From this form of $T_\ell$, because of the unbounded interval of integration in $t$, one cannot immediately conclude that $T_\ell$ maps ${C^\infty}$ functions to ${C^\infty}$ functions.
-But if $u\in{C^\infty}_0(\bbR^n,\Alt^\ell)$, one sees that $T_\ell u$ is ${C^\infty}$ on 
-$\bbR^n\setminus\supp\chi_{\Omega}$, and that 
-$T_\ell u(x)=0$ unless $x$ lies in the starlike hull of $\supp u$ with respect to $B$. 
-Thus if $\Omega$ is open and starlike with respect to $B$, then   
-$u\in{C^\infty}_0(\Omega,\Alt^\ell)$ implies $\supp T_\ell u \subset\Omega$, and, if $\Omega$ is bounded, then
-$u\in{C^\infty}_{\overline\Omega}(\bbR^n,\Alt^\ell)$ implies $\supp T_\ell u \subset\overline\Omega$. 
-The fact that $T_\ell$ indeed maps 
-${C^\infty}_0(\bbR^n,\Alt^\ell)$ to ${C^\infty}_0(\bbR^n,\Alt^{\ell-1})$ will be a consequence of Theorem~\ref{T:pseudo} below.
-
-\subsection{Homotopy relations}
-
-Cartan's formula for the Lie derivative of a differential form with respect to a vector field can be written as
-$$
-  \frac{d}{dt}F^*_t u = F^*_t \left(d(X_t\lrcorner u) + X_t\lrcorner du\right)\;,
-$$
-where $F^*_t$ denotes the pull-back by the flow $F_t$ associated with the vector field $X_t$. Here we consider the special case of the dilation flow with center $a$
-$$
-  F_t(x) = a+t(x-a) \quad\text{ with vector field } X_t=x-a\;,
-$$
-which gives a pull-back of
-$$
-  F^*_t u(x) = t^\ell \,u\left(a+t(x-a)\right) \quad \text{for an $\ell$-form } u \;.
-$$
-This leads to the formula
-\begin{equation}
-\label{eq:Cartan}
- \frac{d}{dt}(t^\ell u\left(a+t(x-a)\right) =
-    d\Bigl(t^{\ell-1}(x-a)\lrcorner u\left(a+t(x-a)\right)\Bigr) +
-    t^{\ell}(x-a)\lrcorner du\left(a+t(x-a)\right)
-\end{equation}
-which can also be verified elementarily from the formulas we gave in Section~\ref{S:notation}.
-
-Integrating \eqref{eq:Cartan} from $0$ to $1$ and comparing with \eqref{eq:regPoincare}, 
-we find the homotopy relations, valid for all $u\in{C^\infty}_0(\bbR^n,\Alt^\ell)$ 
-\begin{equation}
-\begin{aligned}
-\label{eq:dR+Rd=1}
- dR_\ell u + R_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
- R_1 du &= u - \left(\chi_{\Omega},u\right)\; &&(\ell=0)\;;\\
- dR_nu &=u &&(\ell=n)\;.
-\end{aligned}
-\end{equation}
-One could be tempted to integrate Cartan's formula from $1$ to $\infty$ and compare with \eqref{eq:Bogo}, thus formally obtaining a similar homotopy relation for $T_\ell$ directly. The result is indeed true except for $\ell=n$, but for a rigorous proof we prefer to use the duality relation \eqref{eq:dualRT} to deduce corresponding anticommutation relations for $T_\ell$ from the relations \eqref{eq:dR+Rd=1} which are already proved. Here is what one obtains for $u\in{C^\infty}_0(\bbR^n,\Alt^\ell)$:
-\begin{equation}
-\begin{aligned}
-\label{eq:dT+Td=1}
-  dT_\ell u + T_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
-  T_1 du &= u \; &&(\ell=0)\;;\\
- dT_n u &=u - (\int\! u)\star\chi_{\Omega}&&(\ell=n)\;.
-\end{aligned}
-\end{equation}
-Here we consider $\chi_{\Omega}$ as an element of ${C^\infty}_0(\bbR^n,\Alt^0)$, so that for another $0$-form $u$ we have the $L^2$ scalar product $\left(\chi_{\Omega},u\right)=\int\chi_{\Omega}(a)u(a)da$, and $\star\chi_{\Omega}$ is the $n$-form $\chi_{\Omega}(x)dx_1\wedge\dots\wedge dx_n$. 
-
-The formulas for the endpoints $\ell=0$ and $\ell=n$ correspond to the two extended de Rham complexes without boundary conditions and with compact support, see \eqref{eq:edRwobc} and \eqref{eq:edRwcs}. To see this, let us extend the definition of the exterior derivative by writing $\overline d$ for all the mappings of the complex
-$$
- 0 \to\bbR\to^\iota{C^\infty}(\overline\Omega,\Alt^0) \to^d {C^\infty}(\overline\Omega,\Alt^1)
- \to^d\cdots \to^d {C^\infty}(\overline\Omega,\Alt^n) \to 0
-$$ 
-and $\underline d$ for all the mappings of the complex
-$$
- 0 \to {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^0) \to^d {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^1) \to^d\cdots
- \to^d {C^\infty}_{\overline\Omega}(\bbR^n,\Alt^n) \to^{\iota^*} \bbR \to 0
-$$
-where $\iota$ is the inclusion mapping for constant functions and 
-$\iota^*=(\star\iota)'$ denotes the integral $u\mapsto\int\!u$ for $n$-forms.
-
-If we correspondingly extend the definitions of $R_\ell$ and $T_\ell$ by
-$$
-\begin{aligned}
-  R_0u &:=\left(\chi_{\Omega},u\right)\,\text{ for $0$-forms }u\,, &
-  R_{n+1} &:=0\,,\\
-  T_{n+1}u &:= \star(u\chi_{\Omega}) \,\text{ for }u\in\bbR\,,  &
-  T_0 &:= 0\,,
-\end{aligned}
-$$
-then we can write the relations \eqref{eq:dR+Rd=1} and \eqref{eq:dT+Td=1} simply as
-\begin{equation}\label{eq:R&T&d}
- \overline d\,R_\ell u + R_{\ell+1} \,\overline d u  = u
- \quad \text{ and }\quad
- \underline d\,T_\ell u + T_{\ell+1} \,\underline du = u\quad \text{ for all }\;
-  0\le\ell\le n.
-\end{equation}
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$. There exists a bounded mapping 
+    \begin{align*}
+     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+    \end{align*}
+    such that 
+    \begin{align*}
+        \| u \|_{L^{p}} \leq n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} D \| u \|_{L^{p}(\Omega)}
+    \end{align*}
+    and such that $\cartan \Bogov_{\ell} u = u$ for all $u \in \cartan \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$.
+\end{lemma}
 
 
 
@@ -2824,6 +2719,24 @@ then we can write the relations \eqref{eq:dR+Rd=1} and \eqref{eq:dT+Td=1} simply
 
 
 
+\section{Extension operator on finite element stars}\label{section:extension}
+% Only define the geometric mapping and its important quantities
+% Leave the function spaces etc. for later 
+
+\section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Inequalities for partial boundary conditions on a single simplex}
 We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
@@ -2831,10 +2744,52 @@ We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simpl
 such that the $i$-th coordinate equals zero along $\hat F_i$.
 
 Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
-that maps the faces $F_{0}, F_{1}, \dots, F_{l}$ onto the boundary patch $\Gamma$. 
+that maps the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ onto the boundary patch $\Gamma$. 
 We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
 The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
 Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
+
+
+Let $f = \cartan u$ with $u \in \bfW^{p}(\cartan,T)$.
+We set $\hat f := \Phi^{\ast} f$ and $\hat u = \Phi^{\ast} u$, 
+so that $\hat u \in \cartan \bfW^{p}(\cartan,\Delta^{n})$ and $\cartan \hat u = \hat f$.
+
+We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
+Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
+
+The operator norm bound of the potential operator shows 
+\begin{align*}
+    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+    &\leq 
+    n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
+    \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+    \\&
+    2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
+    \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+    .
+\end{align*}
+We use the pullback estimates 
+\begin{align*}
+    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+    &\leq 
+    .
+    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+    .
+\end{align*}
+\begin{align*}
+    \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
+    &\leq 
+    2^{n-l}
+    \| \hat f \|_{L^{p}(\Upsilon^{n})} 
+    \leq 
+    2^{n-l}
+    \Phi
+    \| f \|_{L^{p}(\Upsilon^{n})} 
+    .
+\end{align*}
+
+
+Let $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
 
