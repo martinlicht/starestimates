@@ -2412,18 +2412,15 @@ Obviously, $\Upsilon^{n}$ is convex with diameter $2$.
 
 
 
-% Copied from McIntosh paper 
-Rewriting $B^{k}$ in the same way, we get
-\begin{equation}\label{eq:Bogo}
-    B^{k} u(x) = - \int_{\Omega} \,(x-a) \lrcorner \int_1^\infty t^{{k}-1}\,u\left( a+t(x-a) \right) \,dt\,da\;.
+We introduce the operator $B^{k}$, which is
+\begin{equation}\label{eq:Bogo} % TODO: rewrite 
+    B^{k} u(x) = - \int_{\Omega} \,(x-a) \lrcorner \int_1^\infty t^{{k}-1}\,u\left( a+t(x-a) \right) \,dt\,da.
 \end{equation}
 If $u \in C^{\infty}_{c}(\bbR^{n},\Alt^{k})$, 
-one sees that $B^{k} u$ is smooth with support in $\bbR^{n}\setminus\overline\Omega$, 
-and that $B^{k} u(x) = 0$ unless $x \in \Omega$. 
+then $B^{k} u$ is smooth with support in $\bbR^{n}\setminus\overline\Omega$ and $B^{k} u(x) = 0$ when $x \notin \Omega$. 
 Since $\Omega$ is convex, $u \in C^{\infty}_{c}(\Omega,\Alt^{k})$ implies $\supp B^{k} u \subset\Omega$, 
 Since $\Omega$ is bounded, $u \in C^{\infty}_{\overline\Omega}(\bbR^{n},\Alt^{k})$ implies $\supp B^{k} u \subset\overline\Omega$. 
-The fact that $B^{k}$ indeed maps 
-$C^{\infty}_{c}(\bbR^{n},\Alt^{k})$ to $C^{\infty}_{c}(\bbR^{n},\Alt^{{k}-1})$ will be a the following theorem.
+% The fact that $B^{k}$ indeed maps C^{\infty}_{c}(\bbR^{n},\Alt^{k})$ to $C^{\infty}_{c}(\bbR^{n},\Alt^{{k}-1})$ will be a the following theorem.
 
 
 
@@ -2438,6 +2435,38 @@ $C^{\infty}_{c}(\bbR^{n},\Alt^{k})$ to $C^{\infty}_{c}(\bbR^{n},\Alt^{{k}-1})$ w
 % Cube 
 % Fichera
 % Crossed bricks 
+
+
+\begin{align}
+    v_0 + \langle v_k - v_0, v_{k-1} - v_0, \dots, v_1 - v_0 \rangle,
+    \\
+    \langle v_n - v_{k+1}, \dots, v_n - v_{n-1} \rangle + v_{0},
+    \\
+    v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ),
+    \\
+    v_0 + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
+    \\
+    v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
+\end{align}
+\begin{align}
+    v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
+    +
+    \sum_{i=1}^{k} \lambda_{i} v_i 
+    +
+    \sum_{i=k+1}^{n-1} \lambda_{i} v_n
+    -
+    \sum_{i=k+1}^{n-1} \lambda_{i} v_i
+\end{align}
+\begin{align}
+    v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
+    +
+    \sum_{i=1}^{k} \lambda_{i} v_i 
+    +
+    \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i
+    +
+    \sum_{i=k+1}^{n-1} \lambda_{i} v_n
+\end{align}
+
 
 
 \section*{Acknowledgments}
