@@ -3,9 +3,19 @@
 \usepackage{fullpage}
 \input{header}
 
+\usepackage{hyperref}         % For hypertext links
+
+
 % Title, authors, and affiliations
-\title{Poincar\'e--Friedrichs constants over triangulated domains}
-\author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
+% \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
+% \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
+
+\title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
+\author{
+    Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
+    Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{email2@example.com}} \and
+    Martin Vohral\'ik\thanks{Affiliation of the Third Author, \texttt{email3@example.com}}
+}
 
 % Theorem environments
 
@@ -127,7 +137,7 @@ The formalism of exterior calculus generalizes vector calculus to arbitrary dime
 %
 It is used ubiquitously in physics and engineering. 
 %
-For the purpose of our discussion, this formalisms allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
 \\
 
 Before we outline the main results of this exposition in more details, 
@@ -155,7 +165,7 @@ we are not aware of computable estimates.
 Clearly, not all local patches describe convex subdomains. 
 An ostensibly more practical class of domains are domains star-shaped with respect to a ball.
 Indeed, finite element patches of Lipschitz satisfy that condition. 
-Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a reentrant corner, even if the mesh has good shape-regularity. 
+Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a re-entrant corner, even if the mesh has good shape-regularity. 
 Some interesting limit cases include the slit domain and the crossed bricks domain,
 for which some finite element patches are not star-shaped with respect to any ball. 
 
@@ -166,12 +176,11 @@ The main objective of the present exposition is the construction of linear poten
 namely domains with so-called \emph{shellable} triangulations. 
 Formally, a simplicial complex is shellable if its full-dimensional simplices can be ordered in a sequence such that each such simplex in the sequence intersects the union of the previously listed simplices in a codimension one simplicial complex in the boundary of the new facet being added. 
 Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
-by successively glueing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
 the gluing interface is a triangulated submanifold of the boundary. 
 This forces the intermediate triangulations to be particularly well-shaped. 
 
-\color{red}Do Ern and Guermond construct a potential for the gradient over triangulations? What exactly is their approach\color{black}
-\nocite{gross2004electromagnetic,hiptmair2002finite}
+
 
 As a necessary subcomponent, we need to apply local Poincar\'e inequalities to select potentials. 
 Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients. 
@@ -198,6 +207,7 @@ We refer to \cite{hurri1988poincare} for that perspective.
 We fix this problem in two steps. 
 First, we construct an auxiliary problem subject to full boundary conditions.
 Second, we develop explicit estimates for the regularized Bogovski operator. 
+\nocite{gross2004electromagnetic,hiptmair2002finite}
 
 
 % Estimates for Poincare constants 
@@ -215,7 +225,7 @@ Second, we develop explicit estimates for the regularized Bogovski operator.
 The Poincar\'e--Friedrichs inequalities are crucial in the stability analysis of partial differential equations of vector analysis. Furthermore, their constants enter the stability and convergence theory of finite element methods. Computable and reliable estimates are a cornerstone in rigorous a~priori and a~posteriori error analysis. 
 \\
 
-\color{red}Our upper bounds do not depend on the angles of such reentrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
+\color{red}Our upper bounds do not depend on the angles of such re-entrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
 \\
 
 It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. 
@@ -231,49 +241,6 @@ Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable tria
     It also enters the a~priori error analysis. 
 \end{remark}
 
-
-\begin{remark}
- For reference, how the extension should work:
- suppose that $u \in H(\Omega)$ and let $f = du$.
- Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
- We built $u'_2 \in H(T_2)$ such that 
- \begin{align*}
-    \trace_F u_1 = \trace_F u'_2
- \end{align*}
- We let $u''_2 \in H(T_2)$ such that 
- \begin{align*}
-    d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
- \end{align*}
- Such $u''_2$ exists because 
- \begin{align*}
-  \trace_F( f_2 - d u'_2 ) 
-  &= 
-  \trace_F f_1 - \trace_F d u'_2
-  \\&= 
-  \trace_F f_1 - \trace_F d u'_2
-  \\&= 
-  \trace_F d u_1 - \trace_F d u'_2
-  \\&= 
-  d \trace_F u_1 - d \trace_F u'_2
-  \\&= 
-  d \trace_F u_1 - d \trace_F u_1
-  = 0
-  .
- \end{align*}
- Setting $u_2 = u'_2 + u''_2$, we find 
- \begin{align*}
-    d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
-    \\
-    \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
- \end{align*}
- That requires an extension from given partial boundary data. 
- Possible approaches:
- \begin{itemize}
-  \item Reflect a neighborhood and multiply with cut-off function.
-  \item Take traces from patch and extend onto new simplex. 
- \end{itemize}
-
-\end{remark}
 
 The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
@@ -2413,8 +2380,8 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 We use potential operators for the exterior derivative over convex domains that respect boundary conditions. 
 These are known as Bogovski\u{\i}-type operators.
-They were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics.~\cite{bogovskii} 
-The generalization to differential forms has been discussed extensively by Costabel and McIntosh~\cite{costabel},
+They were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics.~\cite{bogovskii1979solution} 
+The generalization to differential forms has been discussed extensively by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 on whose work the following presentation is based. 
 In contrast to the aforementioned reference, the goal of our discussion is more modest:
 we merely need them over convex sets and are only interested in their operator norms between Lebesgue spaces.
@@ -2434,7 +2401,8 @@ we then define the integral operators
 We call $\Bogov_{\ell}$ a Bogovski\u{\i}-type operator. 
 
 We show that the integrals in the definition of $\Bogov_{\ell}$ actually exist. 
-we first rewrite the kernel $G_{\ell}$:
+In order to understand the properties of the operator $\Bogov_{\ell}$,
+including the convergence of the integral, we first rewrite the Costabel-McIntosh kernel $G_{\ell}$:
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
@@ -2458,7 +2426,10 @@ We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus
     &= 
     |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
 \end{align*}
-We pointwise estimate $\Bogov_{\ell} u(x)$ by the result of a convolution of a locally integrable function with $u$:
+We can now analyze the potential operator $\Bogov_{\ell}$. 
+Suppose that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$ and that $x \in \bbR^{n}$.
+First, if $x \notin \overline\Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t \geq 1$. Hence $G(x,y) = 0$ and therefore $\Bogov_{\ell} u(x) = 0$ in that case.
+More generally, we pointwise estimate $\Bogov_{\ell} u(x)$ by the result of a convolution of a locally integrable function with $u$:
 \begin{align*}
     \left| \Bogov_{\ell} u(x) \right|
     &=
@@ -2466,13 +2437,9 @@ We pointwise estimate $\Bogov_{\ell} u(x)$ by the result of a convolution of a l
         \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
     \right| 
     \\&\leq 
-    \left| 
-        \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
-    \right| 
+    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
     \\&\leq 
-    \left| 
-        \int_{\bbR^{n}} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
-    \right| 
+    \int_{\bbR^{n}} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
     .
 \end{align*}
 We recall the radial integrals 
@@ -2503,6 +2470,7 @@ We compute
 \end{align*}
 Here, $A(n,\ell)$ is a numerical constant that depends only on $n$ and $\ell$ 
 and which is bounded by $2^{\ell-1}$. 
+In particular, the integral $\Bogov_{\ell} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
 So the convolution of $u$ is taken against an integrable function. 
 Taylor's convolution inequality now implies: 
 \begin{align*}
@@ -2517,15 +2485,18 @@ Taylor's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
-In particular, for any $1 \leq p \leq \infty$ we have a bounded linear operator 
+We have assumed so far that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$. 
+Since that space is dense in the Lebesgue spaces, a density argument provides gives the following: 
+for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
 \]
-This follows from a density argument.
+Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
+that is, the reconstructed potential has support contained within $\overline\Omega$. 
 
 Additional properties of these operators become apparent after a change of variables. 
-We write down the full definition of these operators and perform two substutions:
-first, we substitute $a = y + t(x-y)$ and then we substitute $s = \frac{t}{t-1}$,
+We write down the full definition of these operators and perform two substitutions:
+first, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
 leading to 
 \begin{align*}
     \Bogov_{\ell} u(x) 
@@ -2538,13 +2509,27 @@ leading to
     - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
-We first discuss the support properties of this operator. 
-Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ satisfies $\supp u \subseteq \overline\Omega$.
-Then $\Bogov_{\ell} u(x) = 0$ whenever $x \notin \overline\Omega$,
-meaning $\supp \Bogov_{\ell} u \subseteq \overline\Omega$.
-
-We study the interaction of this potential operator with the exterior derivative.
-Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ with $\supp u \subseteq \overline\Omega$.
+% We first discuss the support properties of this operator. 
+% Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ satisfies $\supp u \subseteq \overline\Omega$.
+% Then $\Bogov_{\ell} u(x) = 0$ whenever $x \notin \overline\Omega$,
+% meaning $\supp \Bogov_{\ell} u \subseteq \overline\Omega$.
+% 
+Given $a \in \Omega$, we introduce the potential operator 
+\begin{align*}
+    \Bogov_{\ell,a} u(x) 
+    &:= 
+    - (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
+    .
+\end{align*}
+By definition,
+\begin{align*}
+    \Bogov_{\ell} u(x) 
+    =
+    \int_{\Omega} \Bogov_{\ell,a} u(x) \,da\;
+    .
+\end{align*}
+We study the interaction of the potential operator with the exterior derivative in more detail.
+Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$ with $\supp u \subseteq \overline\Omega$.
 We rewrite the potential,
 \begin{align*}
     T_{\ell,a} u(x) 
@@ -2575,7 +2560,7 @@ and compute its exterior derivative:
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{1}^\infty 
-    t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} dt 
     .
 \end{align*}
 We write the exterior derivative of $u$ as 
@@ -2583,27 +2568,27 @@ We write the exterior derivative of $u$ as
     \cartan u(x)
     =
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \partial_{j} u(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
-    .
+    \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
+    ,
 \end{align*}
-The potential operator, applied to this result, gives 
+and apply the potential operator to this result, which gives 
 \begin{align*}
     T_{\ell+1,a} \cartan u(x)
     &=
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
-    \cartanx^{j} \wedge \cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    \;\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
-    \cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \;\cartanx^{\sigma}
     \\&\qquad 
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
     (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
@@ -2616,7 +2601,7 @@ Taking into account cancellations, this gives the identity
     T_{\ell+1,a} \cartan u(x)
     \\&
     =
-    k
+    \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
@@ -2624,37 +2609,36 @@ Taking into account cancellations, this gives the identity
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{1}^\infty 
-    t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
     \cartanx^{\sigma}
     \\&\qquad
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt 
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
     (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
-    \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \partial_{j} u_{\sigma}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} dt
     \cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    \int_{1}^\infty \partial_{t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \int_{1}^\infty \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    u_{\sigma}\left(x)\right) \cartanx^{\sigma}
+    u_{\sigma}(x) \cartanx^{\sigma}
     =
     u(x)
     .
@@ -2739,57 +2723,69 @@ For full technical clarify, we show we have a bounded operator
 
 
 \subsection{Inequalities for partial boundary conditions on a single simplex}
-We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
-We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
-such that the $i$-th coordinate equals zero along $\hat F_i$.
-
-Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
-that maps the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ onto the boundary patch $\Gamma$. 
-We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
-The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
-Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
-Let $f = \cartan u$ with $u \in \bfW^{p}(\cartan,T)$.
-We set $\hat f := \Phi^{\ast} f$ and $\hat u = \Phi^{\ast} u$, 
-so that $\hat u \in \cartan \bfW^{p}(\cartan,\Delta^{n})$ and $\cartan \hat u = \hat f$.
+\begin{lemma}
+    Let $T$ be a simplex and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
+    Suppose that $u \in \bfW^{p}\Lambda^{k}(\cartan,\Omega)$ such that 
+    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
+    Then 
+    \begin{align*}
+        \| u \| \leq 
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
+    We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
+    such that the $i$-th coordinate equals zero along $\hat F_i$.
 
-We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
-Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
-
-The operator norm bound of the potential operator shows 
-\begin{align*}
-    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-    &\leq 
-    n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
-    \| \tilde f \|_{L^{p}(\Upsilon^{n})}
-    \\&
-    2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
-    \| \tilde f \|_{L^{p}(\Upsilon^{n})}
-    .
-\end{align*}
-We use the pullback estimates 
-\begin{align*}
-    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-    &\leq 
-    .
-    \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-    .
-\end{align*}
-\begin{align*}
-    \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
-    &\leq 
-    2^{n-l}
-    \| \hat f \|_{L^{p}(\Upsilon^{n})} 
-    \leq 
-    2^{n-l}
-    \Phi
-    \| f \|_{L^{p}(\Upsilon^{n})} 
-    .
-\end{align*}
+    Let $\Phi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
+    that maps the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ onto the boundary patch $\Gamma$. 
+    We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
+    The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
+    Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
-Let $\Upsilon^{n}$ is convex with diameter $2$. 
+    Let $f = \cartan u$ with $u \in \bfW^{p}(\cartan,T)$.
+    We set $\hat f := \Phi^{\ast} f$ and $\hat u = \Phi^{\ast} u$, 
+    so that $\hat u \in \cartan \bfW^{p}(\cartan,\Delta^{n})$ and $\cartan \hat u = \hat f$.
+
+    We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
+    Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
+
+    The operator norm bound of the potential operator shows 
+    \begin{align*}
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        &\leq 
+        n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+        \\&
+        2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+        .
+    \end{align*}
+    We use the pullback estimates 
+    \begin{align*}
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        &\leq 
+        ....
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        .
+    \end{align*}
+    \begin{align*}
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
+        &\leq 
+        2^{n-l}
+        \| \hat f \|_{L^{p}(\Upsilon^{n})} 
+        \leq 
+        2^{n-l}
+        ....
+        \| f \|_{L^{p}(\Upsilon^{n})} 
+        .
+    \end{align*}
+\end{proof}
+
+
 
 
 
@@ -2837,6 +2833,51 @@ Let $\Upsilon^{n}$ is convex with diameter $2$.
     +
     \sum_{i=k+1}^{n-1} \lambda_{i} v_n
 \end{align}
+
+
+
+\begin{remark}
+    For reference, how the extension should work:
+    suppose that $u \in H(\Omega)$ and let $f = du$.
+    Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
+    We built $u'_2 \in H(T_2)$ such that 
+    \begin{align*}
+    \trace_F u_1 = \trace_F u'_2
+    \end{align*}
+    We let $u''_2 \in H(T_2)$ such that 
+    \begin{align*}
+    d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
+    \end{align*}
+    Such $u''_2$ exists because 
+    \begin{align*}
+    \trace_F( f_2 - d u'_2 ) 
+    &= 
+    \trace_F f_1 - \trace_F d u'_2
+    \\&= 
+    \trace_F f_1 - \trace_F d u'_2
+    \\&= 
+    \trace_F d u_1 - \trace_F d u'_2
+    \\&= 
+    d \trace_F u_1 - d \trace_F u'_2
+    \\&= 
+    d \trace_F u_1 - d \trace_F u_1
+    = 0
+    .
+    \end{align*}
+    Setting $u_2 = u'_2 + u''_2$, we find 
+    \begin{align*}
+    d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
+    \\
+    \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
+    \end{align*}
+    That requires an extension from given partial boundary data. 
+    Possible approaches:
+    \begin{itemize}
+        \item Reflect a neighborhood and multiply with cut-off function.
+        \item Take traces from patch and extend onto new simplex. 
+    \end{itemize}
+\end{remark}
+
 
 
 
