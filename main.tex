@@ -25,18 +25,19 @@
 
 \begin{abstract}
     We construct upper bounds for Poincar\'e--Friedrichs constants over triangulated domains. 
-    These includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
+    This includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
     The main application that we envision are computable estimates over finite element patches. 
 \end{abstract}
 
 
 \section{Introduction}\label{section:intro}
 
-We address the construction of potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over triangulated domains. The potential operators are ought to satisfy bounds in Lebesgue norms that are explicitly computable in terms of the geometry. 
+We address the construction of potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over triangulated domains. 
+The potential operators satisfy bounds in Lebesgue norms that are explicitly computable in terms of the geometry. 
 In particular, these bounds on the operator norms yield computable upper bounds for Poincar\'e--Friedrichs inequalities. 
 Equivalently, this gives lower bounds for the eigenvalues of several vector Laplacians. 
 
-For example, if $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field over some domain $\Omega \subseteq \bbR^3$, 
+For example, if $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field on some domain $\Omega \subseteq \bbR^3$, 
 we want to find a potential $\bfu \in \bfH(\curl,\Omega)$ under the curl operator whose $\bfL^2$ norm is bounded in terms of the source field. This is expressed via the Poincar\'e--Friedrichs inequality 
 \begin{align*}
     \min\limits_{ \substack{ \bfv \in \bfL^{2} \\ \curl \bfv = \bff } } \| \bfv \|_{\bfL^{2}(\Omega)}
@@ -47,8 +48,10 @@ we want to find a potential $\bfu \in \bfH(\curl,\Omega)$ under the curl operato
 \end{align*}
 The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it corresponds to a lower bound for the Maxwell eigenvalues.
 
-Finding a potential operator, whether it be linear or nonlinear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
-We address this topic in the special case where $\Omega$ admits a shellable triangulation.
+Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
+We accomplish our results for a special class of triangulations, so-called shellable triangulations.
+We address this topic in the special case where $\Omega$ admits special triangulations, 
+namely the class of so-called \emph{shellable} triangulations. 
 Even though only contractible domains can ever admit a shellable triangulation, 
 having computable upper bounds for such domains is an important step stone towards the more general case. 
 For example, local patches around a simplex within a larger 2D or 3D triangulation are shellable.
@@ -63,7 +66,7 @@ Before we outline the main results of this exposition in more details,
 we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
 We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as a conceptual point of reference.
 Given a domain $\Omega \subseteq \bbR^{n}$ and $1 \leq p \leq \infty$,
-we search for a constant $C > 0$ such that 
+we search for a constant $C_{\grad,p} > 0$ such that 
 \begin{align*}
     \min\limits_{c\in\bbR}
     \| u - c \|_{L^{p}(\Omega)}
@@ -75,8 +78,7 @@ we search for a constant $C > 0$ such that
 \end{align*}
 Finding a potential of a given gradient $\nabla u$ is generally a nonlinear operation. 
 The operator norm of any \emph{linear} potential construction is an upper bound for the Poincar\'e--Friedrichs constant. 
-Even though the existence of such a bounded linear potential construction is not evident a priori, 
-picking the average-free potential 
+% Even though the existence of such a bounded linear potential construction is not evident a priori, picking the average-free potential 
 One example for a bounded linear operator is the average-free potential:
 \begin{align*}
     \Phi_{\grad}( \bff ) 
@@ -102,7 +104,7 @@ Most research on optimal constants has addressed the case of convex domains.
 Here, the optimal constants, in terms of the domain diameter alone, are known if $p=2$ \cite{bebendorf2003note} and if $p=1$ \cite{acosta2004optimal}. 
 Notably, the optimal constants $C_{\grad,p}$ for all $1 \leq p < \infty$, again in terms of only the domain diameter, are known when the domain is convex.~\cite{esposito2013poincare,ferone2012remark}.
 When the domain is not convex but star-shaped with respect to a ball,
-then a Poincar\'e inequality is already implicit in polynomial interpolation estimates that are known to the mathematical community~\cite{...}. 
+then polynomial interpolation estimates already provide the Poincar\'e inequality~\cite{ern2021finite}. 
 An open set star-shaped with respect to a internal point is also star-shaped with respect to some open ball within the domain.
 We refer to \cite{hurri1988poincare} for that perspective.
 
@@ -134,13 +136,15 @@ In the Banach space case, it is not immediately evident that the kernels of thes
 The existence of a bounded linear potential operator is a non-trivial fact even in the Hilbert space case.
 We are interested in constants for inequalities such as 
 \begin{align*}
-    \argmin\limits_{ \substack{ v \in W^{p}(\curl,\Omega) \\ \curl v = \bff } } \| v \|_{L^{p}(\Omega)}
+    \argmin\limits_{ \substack{ \bfv \in \bfW^{p}(\curl,\Omega) \\ \curl \bfv = \bff } } 
+    \| \bfv \|_{\bfL^{p}(\Omega)}
     \leq 
     C_{\curl}
-    \| \bff \|_{L^{p}(\Omega)}
+    \| \bff \|_{\bfL^{p}(\Omega)}
     ,
     \qquad 
-    \argmin\limits_{ \substack{ v \in W^{p}(\divergence,\Omega) \\ \divergence v = f } } \| v \|_{L^{p}(\Omega)}
+    \argmin\limits_{ \substack{ \bfv \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfv = f } } 
+    \| \bfv \|_{\bfL^{p}(\Omega)}
     \leq 
     C_{\divergence}
     \| f \|_{L^{p}(\Omega)}
@@ -160,14 +164,13 @@ This sharply contrasts to the study of the gradient operator.
 
 The literature is much scarcer when it comes to this. 
 We can access some estimates from the literature in the formalism of exterior calculus. 
-We are aware of work by Guerini and Savo who estimate the Poincar\'e--Friedrichs constants over convex domains in the Hilbert space setting, when $p=2$ and no boundary conditions are imposed. 
-In the Hilbert space setting when $p = 2$, Guerini and Savo~\cite{guerini2004eigenvalue} have develop lower bounds for the spectrum of the Hodge--Laplace operator over convex domains. This implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
+We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue}, who estimate the Poincar\'e--Friedrichs constants over convex domains in the Hilbert space setting, when $p=2$. The provide lower bounds for the spectrum of the Hodge--Laplace operator over convex domains. This implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
 By duality, that implies lower bounds for the case of full boundary conditions.
-We remark that their work also shows that over convex domains in 3D:
+Their work also includes the following sequence of inequalities,
+valid over convex domains in 3D:
 \begin{align*}
     C_{\grad} \geq C_{\curl} \geq C_{\divergence}.
 \end{align*}
-% TODO: summarize 
 When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constant 
 follow from bounds on the operator norm of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
 as mapping between Lebesgue spaces,
@@ -176,70 +179,106 @@ though these estimates have not been made explicit in the literature yet.
 
 
 
-
-While it is known that finite element patches admit Poincar\'e--Friedrichs inequalities, 
-we are not aware of computable estimates for the case of $\bfH(\curl)$ and $\bfH(\divergence)$. % TODO
 Clearly, not all local patches describe convex subdomains. 
-One possible avenue towards Poincar\'e--Friedrichs constants is the observation that stars in triangulations are often star-shaped with respect to a ball. 
+One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local patchess in triangulations are often star-shaped with respect to a ball. 
 Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. 
 However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a re-entrant corner, even if the mesh has good shape-regularity. 
 Estimates that rely on this geometric condition deteriorate when the aforementioned ball has small radius,
 and that is inevitable when the domain has a bad geometry. 
-Some interesting limit cases include the slit domain and the crossed bricks domain,
+Some illustrative limit cases include the slit domain and the crossed bricks domain,
 for which some finite element patches are not star-shaped with respect to any ball. 
 
-
-Veeser and Verfürth have provided computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over finite element stars~\cite{veeser2000}. 
-
-% TODO:V&V seems to be the only reference for stars .... 
-General results of this type for a class containing the finite element stars are not known to us. 
-In particular and as will be illustrated in a moment, 
-Poincaré constants of stars and thus of star-shaped domains may be arbitrarily large. 
-Consequently, corresponding bounds have to incorporate some quantity that is sensible to the possible lack of
-convexity.
-
-
-There is a popular avenue towards estimates that is able to circumvent the effect of low boundary regularity. 
+Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
+However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
+We review some of the main outcomes. 
+% TODO: wait for answer to email 
+Veeser and Verfürth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriotates. 
+% 
+There is a popular avenue towards Poincar\'e--Friedrichs constants, which can circumvent the effect of low boundary regularity, 
+and which has been published in different variations~\cite{vohralik2005discrete,ern2021finite}. 
 A common principle of many proofs is to construct a potential step-by-step: 
 starting with a single triangle, the potential is constructed over an increasing subdomain, until the entire domain is complete. That procedure applies to general triangulated domains, not only local stars, though the latter is our main interest. 
 The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
 Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
 along the intersection, the two potentials will only differ by a constant, 
 and that difference can easily be removed. 
-That difference can easily be removed. 
-...
-Estimates for Poincar\'e--Friedrichs constants of triangulated domains are known in various forms.
-% TODO: list literature
-% TODO: details 
+% Estimates for Poincar\'e--Friedrichs constants of triangulated domains are known in various forms.
+
+
+While we know Poincar\'e--Friedrichs constants over finite element patches for scalar-valued Sobolev spaces, 
+we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)$ and $\bfW^{p}(\divergence,\Omega)$ over finite element stars. 
+In the Hilbert space setting, with $p=2$, the Friedrichs inequality over the Sobolev space with Dirichlet boundary conditions implies, via duality, the Poincar\'e--Friedrichs for the divergence operator. However, that method seems restricted to the Hilbert space case $p=2$. 
+We are not aware of more general estimates for the curl operator, even in the Hilbert space situation. 
 \\
 
 
-
 \paragraph{Actual content of the paper}
-The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence satisfying explicitly computable upper bounds. This is achieved for a special class of triangulated domains,
-namely domains with so-called \emph{shellable} triangulations. 
-Formally, a simplicial complex is shellable if its full-dimensional simplices can be ordered in a sequence such that each such simplex in the sequence intersects the union of the previously listed simplices in a codimension one simplicial complex in the boundary of the new facet being added. 
-Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
-by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
-the gluing interface is a triangulated submanifold of the boundary. 
-This forces the intermediate triangulations to be particularly well-shaped. 
+The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence satisfying explicitly computable upper bounds. We follow closely the philosophy of the aforementioned sequential approach. The transition to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
+\\
 
+% Exterior calculus 
+Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. Exterior calculus has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,arnold2006finite}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures commmon to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. 
 
-
-
-It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. 
-In particular, this enables the inductive method of proof.
-% 
 We explore formulate our main results in the framework of exterior calculus.
 The formalism of exterior calculus generalizes vector calculus to arbitrary dimensions and allows us to study many differential operators, such as the curl and divergence, in a unified manner. 
 %
 It is used ubiquitously in physics and engineering. 
 %
 For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+\\
 
+
+We fix this problem in two steps. First, we construct an auxiliary problem subject to full boundary conditions. Second, we develop explicit estimates for the regularized Bogovski operator. \nocite{gross2004electromagnetic,hiptmair2002finite}
+\\
+
+
+
+% General outline 
+% TODO: outline of the construction; mention why shellable is important; mixed BC
+This construction of potentials requires triangulations with special conditions: 
+we assemble the triangulation sequentially, adding one simplex after the other, such that the interface between new previous intermediate triangulation and the next simplex is always a boundary submanifold of either of them.  Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved. Such triangulations are also known as shellable. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. In particular, local stars in 2D and 3D are shellable. 
+
+As a necessary subcomponent, we need to apply local Poincar\'e inequalities to select potentials. 
+Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients. 
+We construct gradient potentials locally over convex domains or face patches. 
+We can access a considerable body of literature for gradient Poincar\'e inequalities over convex domains~\cite{bebendorf2003note}. In fact, optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known over convex domains. 
+By contrast, the construction of curl and divergence potentials needs to repeated solve the potential problem for a vector-valued problem over simplices subject to tangential or normal boundary conditions, respectively, along a part of the boundary.
+\\
+
+
+
+
+% Shellable 
+Formally, a simplicial complex is shellable if its full-dimensional simplices can be ordered in a sequence such that each such simplex in the sequence intersects the union of the previously listed simplices in a codimension one simplicial complex in the boundary of the new facet being added. 
+Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
+by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+the gluing interface is a triangulated submanifold of the boundary. 
+This forces the intermediate triangulations to be particularly well-shaped. 
+
+It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. 
+In particular, this enables the inductive method of proof.
+\\
+
+
+% Mixed BC
 But we need to find potentials over a simplex subject to partial boundary conditions 
 and we want to address the entire $1 \leq p \leq \infty$ of Lebesgue exponents. 
 The existence of such potentials is well-known yet we are not aware of any explicit constants in the literature.
+
+
+Even solving the potential equation of the gradient of a simplex subject to Dirichlet boundary conditions along a single face 
+has no estimates in the literature. 
+
+
+One component of our efforts are estimates for Bogovski\u{i}-type potential operators over convex domains, seen as operators between Lebesgue spaces. 
+This follows closely the discussions in the literature~\cite{costabel2010bogovskiui} but no operator norm estimates are given in the literature, to the best of our best knowledge.
+The Bogovski\u{i}-type potential operator first appeared for the mathematical discussion of hydrodynamical models~\cite{bogovskii1979solution} and has since been extended to exterior calculus. 
+It can be identified as a formal adjoint to the Poincar\'e operator in exterior calculus. 
+Our variant of the Bogovski\u{i} potential operator is simplified in comparison earlier discussions:
+we only view it over convex domains and use simpler (that is, constant) weight function. 
+The resulting operator has generally lower regularity properties in comparison to the regularized potential in the literature but the regularity is sufficient for our purposes and the operator norms are easily computed. We consider this outcome to be of independent interest. 
+
+The Bogovski\u{i} potential operator is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to boundary conditions. For example, given the curl of a vector field over a tetrahedron that vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. We achieve by constructing an auxiliary problem subject to full boundary conditions.
 
 The regularized Bogovskii potential operator was studied extensively by Costabel and McIntosh.
 These operators are defiend over sets star-shaeped with respect to a ball. 
@@ -250,51 +289,17 @@ While the resulting Bogovskii-type potential has more moderate regularity proper
 this simplification suits our purposes and enables some simple estimates for the continuity constant of the potential operator in Lebesgue norms. 
 
 
-As a necessary subcomponent, we need to apply local Poincar\'e inequalities to select potentials. 
-Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients. 
-We construct gradient potentials locally over convex domains or face patches. 
-We can access a considerable body of literature for gradient Poincar\'e inequalities over convex domains~\cite{bebendorf2003note}. In fact, optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known over convex domains. 
-
-By contrast, the construction of curl and divergence potentials needs to repeated solve the potential problem for a vector-valued problem over simplices subject to tangential or normal boundary conditions, respectively, along a part of the boundary.
-
-
-Even solving the potential equation of the gradient of a simplex subject to Dirichlet boundary conditions along a single face 
-has no estimates in the literature. 
-
-
-We fix this problem in two steps. 
-First, we construct an auxiliary problem subject to full boundary conditions.
-Second, we develop explicit estimates for the regularized Bogovski operator. 
-\nocite{gross2004electromagnetic,hiptmair2002finite}
-
-
-% Estimates for Poincare constants 
-% \cite{bebendorf2003note}
-% \cite{vohralik2005discrete}
-% Verfurth, Veeser & Verfurth 
-% ...
-
-% Estimates for divergence constants (if any)
-
-% Estimates for curl constants (if any)
-
 
 \paragraph{Future work}
-Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
-
-\color{blue}
 The Poincar\'e--Friedrichs inequalities are crucial in the stability analysis of partial differential equations of vector analysis. Furthermore, their constants enter the stability and convergence theory of finite element methods. Computable and reliable estimates are a cornerstone in rigorous a~priori and a~posteriori error analysis. 
-\color{black}
-\\
-\color{red}
+
 The Poincar\'e--Friedrichs constant describes the fundamental stability properties of the partial differential equation. 
 Conversely, it also implies a the lower bound for the non-zero eigenvalues of the scalar and vector Laplacian.
 In numerical methods, upper bounds for the Poincar\'e--Friedrichs constant enable bound for the spectrum of stiffness matrices. 
 It also enters the a~priori error analysis. 
-\color{black}
 
-\color{red}Our upper bounds do not depend on the angles of such re-entrant corners, even in the aforementioned limit cases, but only the shape-regularity of the triangulation. \color{black}
-\\
+Estimating Poincar\'e--Friedrichs over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of discs and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
+
 
 
 
@@ -302,9 +307,29 @@ The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
 We then review the notion of shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations}.
 We review the Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}.
-Bogovski\u{\i}-type integral operators over convex sets are discussed in Section~\ref{section:bogovskii}.
+Bogovski\u{i}-type integral operators over convex sets are discussed in Section~\ref{section:bogovskii}.
 We construct an important geometric reflection operator in Section~\ref{section:extension}
 and provide computable upper bounds for Poincar\'e--Friedrichs constants over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
+
+
+
+
+
+% % TODO:V&V seems to be the only reference for stars .... General results of this type for a class containing the finite element stars are not known to us. In particular and as will be illustrated in a moment, Poincar\'e constants of stars and thus of star-shaped domains may be arbitrarily large. Consequently, corresponding bounds have to incorporate some quantity that perceives the possible lack of convexity. % TODO: \cite{vohralik2005discrete}
+
+% Estimates for Poincare constants 
+% \cite{bebendorf2003note}
+% \cite{vohralik2005discrete}
+% Verfurth, Veeser & Verfurth 
+% ...
+
+
+
+
+
+
+
+
 
 
 \section{Basic notions of triangulations}\label{section:triangulations}
@@ -315,7 +340,7 @@ A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely in
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
 then we call $S$ a \textit{subsimplex} of $T$ and we call $T$ a \textit{supersimplex} of $S$. 
 
-The strictly positive convex combinations of the simplex' vertices are the \textit{interior} of the simplex,
+The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
 and its remaining points constitute the \textit{boundary} of the simplex.
 \\
 
@@ -2846,36 +2871,44 @@ For full technical clarify, we show we have a bounded operator
 % Fichera
 % Crossed bricks 
 
+Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that there exists a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is only on one side of the hyperplane. 
 
-\begin{align}
-    v_0 + \langle v_k - v_0, v_{k-1} - v_0, \dots, v_1 - v_0 \rangle,
-    \\
-    \langle v_n - v_{k+1}, \dots, v_n - v_{n-1} \rangle + v_{0},
-    \\
-    v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ),
-    \\
-    v_0 + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
-    \\
-    v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
-\end{align}
-\begin{align}
-    v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
-    +
-    \sum_{i=1}^{k} \lambda_{i} v_i 
-    +
-    \sum_{i=k+1}^{n-1} \lambda_{i} v_n
-    -
-    \sum_{i=k+1}^{n-1} \lambda_{i} v_i
-\end{align}
-\begin{align}
-    v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
-    +
-    \sum_{i=1}^{k} \lambda_{i} v_i 
-    +
-    \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i
-    +
-    \sum_{i=k+1}^{n-1} \lambda_{i} v_n
-\end{align}
+\begin{lemma}\label{lemma:oppositesubsimplex}
+    Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
+    Let $F, F'$ be the two subsimplices of $T$ with respective sets of vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
+    Then $T$ lies on one side of the affine subspace
+    \[
+        A := v_0 + \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} +  \operatorname{lin}\{ v_n - v_{k+1}, \dots, v_n - v_{n-1} \}.
+    \]
+    Moreover, $F = T \cap A$.
+\end{lemma}
+\begin{proof}
+    Evidently, $A$ has dimension $n-1$ and $F \cap A \cap T$.
+    Let us now suppose that $x \in A \cap T$.
+    For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
+    \begin{align}
+        x 
+        &
+        = 
+        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
+        \\&
+        = 
+        \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right) v_0 
+        + 
+        \sum_{i=1  }^{k  } \lambda_{i} v_i 
+        + 
+        \left( \sum_{i=k+1}^{n-1} \lambda_{i} \right) v_n
+        + 
+        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
+        .
+    \end{align}
+    We know $x$ can be written as a unique convex combination of the vertices of $T$.
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive. 
+    If $x \notin F$, then at least one of these coefficients must be negative. 
+    But then their sum must be negative, which is a contradiction. 
+    The desired statement follows.         
+\end{proof}
+
 
 
 
@@ -2885,33 +2918,33 @@ For full technical clarify, we show we have a bounded operator
     Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
     We built $u'_2 \in H(T_2)$ such that 
     \begin{align*}
-    \trace_F u_1 = \trace_F u'_2
+        \trace_F u_1 = \trace_F u'_2
     \end{align*}
     We let $u''_2 \in H(T_2)$ such that 
     \begin{align*}
-    d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
+        d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
     \end{align*}
     Such $u''_2$ exists because 
     \begin{align*}
-    \trace_F( f_2 - d u'_2 ) 
-    &= 
-    \trace_F f_1 - \trace_F d u'_2
-    \\&= 
-    \trace_F f_1 - \trace_F d u'_2
-    \\&= 
-    \trace_F d u_1 - \trace_F d u'_2
-    \\&= 
-    d \trace_F u_1 - d \trace_F u'_2
-    \\&= 
-    d \trace_F u_1 - d \trace_F u_1
-    = 0
-    .
+        \trace_F( f_2 - d u'_2 ) 
+        &= 
+        \trace_F f_1 - \trace_F d u'_2
+        \\&= 
+        \trace_F f_1 - \trace_F d u'_2
+        \\&= 
+        \trace_F d u_1 - \trace_F d u'_2
+        \\&= 
+        d \trace_F u_1 - d \trace_F u'_2
+        \\&= 
+        d \trace_F u_1 - d \trace_F u_1
+        = 0
+        .
     \end{align*}
     Setting $u_2 = u'_2 + u''_2$, we find 
     \begin{align*}
-    d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
-    \\
-    \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
+        d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
+        \\
+        \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
     \end{align*}
     That requires an extension from given partial boundary data. 
     Possible approaches:
