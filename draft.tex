@@ -1635,3 +1635,32 @@ We apply the cellwise local approximation estimate, which coincides with the cel
 
 
 
+\begin{align}
+        v_0 + \langle v_k - v_0, v_{k-1} - v_0, \dots, v_1 - v_0 \rangle,
+        \\
+        \langle v_n - v_{k+1}, \dots, v_n - v_{n-1} \rangle + v_{0},
+        \\
+        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ),
+        \\
+        v_0 + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
+        \\
+        x = v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n} \lambda_{i} ( v_n - v_i ),
+    \end{align}
+    \begin{align}
+        v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
+        +
+        \sum_{i=1}^{k} \lambda_{i} v_i 
+        +
+        \sum_{i=k+1}^{n-1} \lambda_{i} v_n
+        -
+        \sum_{i=k+1}^{n-1} \lambda_{i} v_i
+    \end{align}
+    \begin{align}
+        v_0 \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right)
+        +
+        \sum_{i=1}^{k} \lambda_{i} v_i 
+        +
+        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i
+        +
+        \sum_{i=k+1}^{n-1} \lambda_{i} v_n
+    \end{align}
