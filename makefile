@@ -1,7 +1,7 @@
 
 all: main.pdf
 
-main.pdf: main.tex
+main.pdf: main.tex library.bib header.tex 
 	pdflatex -interaction=nonstopmode -halt-on-error main.tex
 	bibtex main
 	pdflatex -interaction=nonstopmode -halt-on-error main.tex

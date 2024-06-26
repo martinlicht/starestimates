@@ -180,7 +180,7 @@ though these estimates have not been made explicit in the literature yet.
 
 
 Clearly, not all local patches describe convex subdomains. 
-One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local patchess in triangulations are often star-shaped with respect to a ball. 
+One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local patches in triangulations are often star-shaped with respect to a ball. 
 Over patches around interior subsimplices, the size of interior ball only depends on the shape regularity of the triangulation. 
 However, the interior ball can be arbitrarily small when the patch is around a boundary simplex at a re-entrant corner, even if the mesh has good shape-regularity. 
 Estimates that rely on this geometric condition deteriorate when the aforementioned ball has small radius,
@@ -192,7 +192,7 @@ Domains that admit finite triangulations allow for different techniques to attai
 However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
 We review some of the main outcomes. 
 % TODO: wait for answer to email 
-Veeser and Verfürth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriotates. 
+Veeser and Verfürth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
 % 
 There is a popular avenue towards Poincar\'e--Friedrichs constants, which can circumvent the effect of low boundary regularity, 
 and which has been published in different variations~\cite{vohralik2005discrete,ern2021finite}. 
@@ -217,7 +217,7 @@ The main objective of the present exposition is the construction of linear poten
 \\
 
 % Exterior calculus 
-Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. Exterior calculus has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,arnold2006finite}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures commmon to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. 
+Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. Exterior calculus has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,arnold2006finite}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures common to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. 
 
 We explore formulate our main results in the framework of exterior calculus.
 The formalism of exterior calculus generalizes vector calculus to arbitrary dimensions and allows us to study many differential operators, such as the curl and divergence, in a unified manner. 
@@ -228,7 +228,7 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 \\
 
 
-We fix this problem in two steps. First, we construct an auxiliary problem subject to full boundary conditions. Second, we develop explicit estimates for the regularized Bogovski operator. \nocite{gross2004electromagnetic,hiptmair2002finite}
+We fix this problem in two steps. First, we construct an auxiliary problem subject to full boundary conditions. Second, we develop explicit estimates for the regularized Bogovski\u{\i} operator. \nocite{gross2004electromagnetic,hiptmair2002finite}
 \\
 
 
@@ -270,22 +270,22 @@ Even solving the potential equation of the gradient of a simplex subject to Diri
 has no estimates in the literature. 
 
 
-One component of our efforts are estimates for Bogovski\u{i}-type potential operators over convex domains, seen as operators between Lebesgue spaces. 
+One component of our efforts are estimates for Bogovski\u{\i}-type potential operators over convex domains, seen as operators between Lebesgue spaces. 
 This follows closely the discussions in the literature~\cite{costabel2010bogovskiui} but no operator norm estimates are given in the literature, to the best of our best knowledge.
-The Bogovski\u{i}-type potential operator first appeared for the mathematical discussion of hydrodynamical models~\cite{bogovskii1979solution} and has since been extended to exterior calculus. 
+The Bogovski\u{\i}-type potential operator first appeared for the mathematical discussion of hydrodynamical models~\cite{bogovskii1979solution} and has since been extended to exterior calculus. 
 It can be identified as a formal adjoint to the Poincar\'e operator in exterior calculus. 
-Our variant of the Bogovski\u{i} potential operator is simplified in comparison earlier discussions:
+Our variant of the Bogovski\u{\i} potential operator is simplified in comparison earlier discussions:
 we only view it over convex domains and use simpler (that is, constant) weight function. 
 The resulting operator has generally lower regularity properties in comparison to the regularized potential in the literature but the regularity is sufficient for our purposes and the operator norms are easily computed. We consider this outcome to be of independent interest. 
 
-The Bogovski\u{i} potential operator is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to boundary conditions. For example, given the curl of a vector field over a tetrahedron that vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. We achieve by constructing an auxiliary problem subject to full boundary conditions.
+The Bogovski\u{\i} potential operator is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to boundary conditions. For example, given the curl of a vector field over a tetrahedron that vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. We achieve by constructing an auxiliary problem subject to full boundary conditions.
 
-The regularized Bogovskii potential operator was studied extensively by Costabel and McIntosh.
-These operators are defiend over sets star-shaeped with respect to a ball. 
+The regularized Bogovski\u{\i} potential operator was studied extensively by Costabel and McIntosh.
+These operators are defined over sets star-shaped with respect to a ball. 
 Their analysis identifies the potential as a pseudodifferential operator of negative order and utilizes tools of harmonic analysis. 
 We study a variation of this potential operator over convex sets.
 We simply use a constant averaging over the entire domain. 
-While the resulting Bogovskii-type potential has more moderate regularity properties, 
+While the resulting Bogovski\u{\i}-type potential has more moderate regularity properties, 
 this simplification suits our purposes and enables some simple estimates for the continuity constant of the potential operator in Lebesgue norms. 
 
 
@@ -307,7 +307,7 @@ The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations} and provide computable upper bounds for Poincar\'e constants over triangulated domains in Section~\ref{section:poincare}.
 We then review the notion of shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations}.
 We review the Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}.
-Bogovski\u{i}-type integral operators over convex sets are discussed in Section~\ref{section:bogovskii}.
+Bogovski\u{\i}-type integral operators over convex sets are discussed in Section~\ref{section:bogovskii}.
 We construct an important geometric reflection operator in Section~\ref{section:extension}
 and provide computable upper bounds for Poincar\'e--Friedrichs constants over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 
