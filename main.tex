@@ -10,7 +10,7 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
+\title{Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{email2@example.com}} \and
@@ -52,6 +52,7 @@ we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator wh
 The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it corresponds to a lower bound for the Maxwell eigenvalues.
 
 Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
+The majority of estimates in the literature address only gradient potentials. 
 % We accomplish our results for a special class of triangulations, so-called shellable triangulations.
 We accomplish this undertaking in the special case where $\Omega$ admits a so-called \emph{shellable} triangulation. 
 Even though only contractible domains can ever admit a shellable triangulation, 
@@ -410,12 +411,12 @@ and we call $\calT$ strongly connected if it has only one strongly connected com
 
 
 
-\section{Constructive estimate of Poincar\'e constants}\label{section:poincare}
+\section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincare}
 
 In this section we address the stepwise computable estimate of Poincar\'e constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e inequality over convex domains. These results, the exposition of which we believe to be of value on its own, will serve as a building block in constructing inequalities over local patches and then triangulated domains.
 \\
 
-Let us assume that $\Omega \subseteq \bbR^{n}$ is an open set. 
+Let us assume that $\Omega \subseteq \bbR^{n}$ is an open connected set. 
 Given any $p \in [1,\infty]$, we let $L^p(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^p(\Omega) := L^p(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
 We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
 
@@ -430,15 +431,18 @@ such that $\nabla u = \bff$ and
     \| \bff \|_{L^{p}(\Omega)}
     .
 \end{align}
-Equivalently, for all $u \in W^{1,p}(\Omega)$ we have 
+Under the condition that $\Omega$ is connected, this is equivalent to  
 \begin{align}
     \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
     \leq 
     C_{{\rm PF},\Omega,p} 
-    \| \nabla u \|_{L^{p}(\Omega)}
+    \| \nabla u \|_{L^{p}(\Omega)},
+    \quad 
+    u \in W^{1,p}(\Omega)
     .
 \end{align}
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
+\\
 
 We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
@@ -457,27 +461,27 @@ where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \end{align*}
 Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{\varnothing,\Omega,p}$. 
 Towards a converse inequality, 
-let us first observe that the average of any $v \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
+let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
 \begin{align*}
-    \| v_\Omega \|_{L^{p}(\Omega)}^{p}
+    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
     = 
-    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |v(x)| \right)^{p}
+    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)| \right)^{p}
     \leq 
-    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |v(x)|^{p} \right)
+    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)|^{p} \right)
     = 
-    \| v \|_{L^{p}(\Omega)}^{p}
+    \| u \|_{L^{p}(\Omega)}^{p}
     .
 \end{align*}
 Here, we have used Jensen's inequality. 
-In the case $p = \infty$, any $v \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| v \|_{L^{\infty}(\Omega)}$. 
+In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
 It follows that 
 \begin{align*}
-    \| v - v_\Omega \|_{L^{p}(\Omega)} 
+    \| u - u_\Omega \|_{L^{p}(\Omega)} 
     \leq
     2
-    \| v \|_{L^{p}(\Omega)},
+    \| u \|_{L^{p}(\Omega)},
     \quad 
-    v \in L^{p}(\Omega)
+    u \in L^{p}(\Omega)
     .
 \end{align*}
 % \begin{align*}
@@ -494,38 +498,42 @@ It follows that
 %     \| u \|_{L^{p}(\Omega)}^{p}
 %     .
 % \end{align*}
-Hence the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with $C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}$. 
-
-In the special case $p=2$, we always have $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $v \in L^{2}(\Omega)$,
+Hence the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
+\begin{align*}
+    C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}.
+\end{align*}
+In the special case $p=2$, this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$,
 and therefore even $C_{\varnothing,\Omega,2} = C_{{\rm PF},\Omega,2}$. 
-This follows from the orthogonality constant functions to average-free functions in $L^2(\Omega)$,
+This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
 and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-%\footnote{\color{red}Is there a better name for this than Xu-Zikatanov estimate?}
-Stern~\cite{stern2015banach} provided a generalization of the projection estimate that implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
+Stern~\cite{stern2015banach} provides a generalized projection estimate that implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
 since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
 \begin{align*}
-    \| v - v_\Omega \|_{L^{p}(\Omega)}
+    \| u - u_\Omega \|_{L^{p}(\Omega)}
     \leq 
     \min\left( 2, 2^{|2/p-1|} \right)
-    \| v \|_{L^{p}(\Omega)}
+    \| u \|_{L^{p}(\Omega)}
     = 
     2^{|2/p-1|} 
-    \| v \|_{L^{p}(\Omega)}
+    \| u \|_{L^{p}(\Omega)}
     ,
     \quad 
-    v \in L^p(\Omega)
+    u \in L^p(\Omega)
     .
 \end{align*}
 We have $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
-The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, which reproduces the improved estimate for the Hilbert space case.
-The main consequence for us is the estimate 
-$C_{\varnothing,\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}$.
-We conclude that our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
+The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
+We thus conclude 
+\begin{align*}
+    C_{\varnothing,\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}.
+\end{align*}
+In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
+\\
 
 There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
 We define the potential 
 \begin{align*}
-    \Phi( \bff ) := \argmin\limits_{ \substack{ v \in W^{1,p}(\Omega) \\ \nabla v = \bff } } \| v \|_{L^{p}(\Omega)},
+    \Phi( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)},
     \quad 
     \bff \in \nabla W^{1,p}(\Omega)
     .
@@ -541,8 +549,8 @@ satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p
 \begin{align*}
     C_{{\rm PF},\Omega,p} 
     \leq 
-    \argmin\limits_{ v \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \overline\Phi(\nabla v) \|_{L^p(\Omega)} }{ \| \nabla v \|_{L^p(\Omega)} }
+    \argmin\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \overline\Phi(\nabla u) \|_{L^p(\Omega)} }{ \| \nabla u \|_{L^p(\Omega)} }
     .
 \end{align*}
 A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
@@ -553,14 +561,15 @@ A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Om
     .
 \end{align*}
 Its operator norm is just the smallest Poincar\'e constant $C_{\varnothing,\Omega,p}$.
+\\
 
-In the light of these musings, we clarify that our objective is the construction of linear potential operators for the gradient and later for the curl and divergence operators,
-which is more specific than just proving an upper bound for the Poincar\'e--Friedrichs constant. 
+In the light of these musings, we settle for the objective of constructing linear potential operators for the gradient and later for the curl and divergence operators.
+This task is more specific than just proving an upper bound for the Poincar\'e--Friedrichs constant. 
 Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
 The potential reconstruction is the natural approach towards the topic when addressing the curl and divergence operators. 
 
 \begin{remark}
-    Let us further remark why the above notion of Poincar\'e--Friedrichs inequality suits our discussion better than the Poincar\'e inequality. 
+    Let us further remark why the above notion of Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} suits our discussion better than the Poincar\'e inequality. 
     We want to generalize the discussion to the curl and divergence operators. 
     The kernel of the gradient is the one-dimensional space of constant functions, and is thus complemented in the Lebesgue spaces with a canonical choice of projection. 
     By contrast, the curl and divergence operators have infinite-dimensional kernels. 
@@ -574,10 +583,11 @@ The potential reconstruction is the natural approach towards the topic when addr
 
 
 
-\subsection{Poincar\'e inequalities over convex domains}
+\subsection{Poincar\'e--Friedrichs inequalities over convex domains}
 % See the collection at Lemma 3.24 : https://hal.science/hal-03226049/file/volI_hal.pdf
 
-We now collect examples for Poincar\'e--Friedrichs inequalities for important special cases; see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. 
+We collect examples for Poincar\'e and Poincar\'e--Friedrichs inequalities for the important special case of convex domains. 
+see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. 
 Over convex bounded domains, we have the Poincar\'e inequalities~\cite{bebendorf2003note,acosta2004optimal} 
 \begin{align}\label{math:acostaduran}
     \| u - u_{\Omega} \|_{L^{1}(\Omega)}
@@ -598,7 +608,7 @@ Over convex bounded domains, we have the Poincar\'e inequalities~\cite{bebendorf
     u \in W^{1,2}(\Omega)
     .
 \end{align}
-These two estimates are the best possible in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
+These two estimates are the best possible Poincar\'e inequalities in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
 Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite{chua2006estimates}:
 \begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
@@ -628,8 +638,10 @@ where
     \left( \frac p 2 \right)^{\frac 1 p}
     .
 \end{align}
-The literature knows optimal Poincar\'e--Friedrichs constants over convex domains. 
-According to~\cite{ferone2012remark,esposito2013poincare}, when $1 < p < \infty$, one can show that 
+These Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
+
+We know optimal Poincar\'e--Friedrichs constants over convex domains~\cite{ferone2012remark,esposito2013poincare}: 
+when $1 < p < \infty$, one can show that 
 \begin{align}\label{math:esposito:pf}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
@@ -649,7 +661,8 @@ where $C_{\rm{EFNT},p}$ is the best possible constant that only depends on $p$ a
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
 \end{align}
-Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\'e inequalities
+% TODO: double check what is known in the literature 
+Note that the last inequalities imply, again when $1 \leq p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
@@ -661,7 +674,6 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
     u \in W^{1,p}(\Omega)
     .
 \end{align}
-The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
 Finally, since convex domains are Lipschitz domains: 
 \begin{align}\label{math:lipschitzestimate}
     \min\limits_{ c \in \bbR }
@@ -677,6 +689,7 @@ Finally, since convex domains are Lipschitz domains:
 
 
 \begin{remark}
+    The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
     Let us compare the different estimates for the Poincar\'e inequality.
     In the case $2 \leq p$, 
     \begin{align*}
@@ -734,7 +747,7 @@ Finally, since convex domains are Lipschitz domains:
     \end{align*}
     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. 
     Of course, this Poincar\'e inequality implies a Poincar\'e--Friedrichs inequality with the same constant. 
-    Notably, it is much less clear whether \eqref{math:esposito:pf} implies a limit case for Lipschitz functions. 
+    Notably, it is much less clear whether \eqref{math:esposito:pf} implies a limit case Poincar\'e--Friedrichs inequality for Lipschitz functions. 
 %     Taking the \emph{informal} limit also suggest the inequality 
 %     \begin{align*}
 %         \min\limits_{ c \in \bbR }
@@ -750,6 +763,14 @@ Finally, since convex domains are Lipschitz domains:
 %     however, we generally cannot exchange the minimum and the limit, so that is strictly informal. 
 \end{remark}
 
+\begin{remark}
+    The optimal Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
+    but individual convex domains may allow for better constants.
+    We refer to \cite{matculevich2016explicit} for an overview. 
+    For example, triangles allow the reduction of the constant by 20\%.
+\end{remark}
+
+
 % https://www.ams.org/journals/proc/2004-132-01/S0002-9939-03-07004-7/S0002-9939-03-07004-7.pdf
 % d/2 in the case $p = 1$ over convex domains 
 
@@ -761,7 +782,7 @@ Finally, since convex domains are Lipschitz domains:
 
 
 
-\subsection{Poincar\'e inequalities over triangulated domains}
+\subsection{Poincar\'e--Friedrichs inequalities over triangulated domains}
 
 Given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
 This shall be our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials. 
@@ -990,7 +1011,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     Let $\hat T_1$ be the $n$-simplex whose vertices $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v_n = e_n$ are the origin and the $n$ canonical unit vectors. 
     We let $\hat T_2$ be the $n$-simplex whose vertices are $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v'_n = -e_n$. 
     Write $U := T_1 \cup T_2$ and $\hat U := \hat T_1 \cup \hat T_2$.
-    We fix affine homeomorphisms $\varphi_1 : \hat T_1 \rightarrow T_1$ and $\varphi_2 : \hat T_2 \rightarrow T_2$
+    We fix affine diffeomorphisms $\varphi_1 : \hat T_1 \rightarrow T_1$ and $\varphi_2 : \hat T_2 \rightarrow T_2$
     which map the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F$.
     Note that these affine transformations define a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
     
@@ -1180,30 +1201,26 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly-connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
     we fix a strong path $T_0, T_1, \dots, T_m = T$.
+    Suppose $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
     \begin{align*}
-        \| w_{m} \|_{L^{p}(T_m)}^{p}
+        % \color{red}
+        \| w \|_{L^{p}(T_m)}
         &\leq 
-        (m+1)^{p-1}
-        \sum_{t=1}^{m} 
-        \left( 
-            \prod_{t < l \leq m} 
-            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
-        \right)
-        \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{p/q}
-        C_{p,T_{t} \cup T_{t+1}}
-        \| \nabla u \|_{L^{p}( T_{t} \cup T_{t+1} )}^{p}
+        \left( 1 + \rho(\calT)^{\frac q p} \right)^{\frac 1 q}
+        \sum_{t=1}^{m}
+        \rho(\calT)^{\frac{m-t}{p}}
+        C_{{\rm{PF}},T_{t} \cup T_{t-1},p}
+        % 2 C_{\rm{EFNT},p} \rho(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
+        \| \nabla u \|_{L^{p}(T_{t} \cup T_{t-1})}
         \\&\quad \quad \quad 
         +
-        (m+1)^{p-1}
-        \left( 
-            \prod_{0 < l \leq m} 
-            \frac{ \vol(T_l) }{ \vol(T_{l-1}) } 
-        \right)
-        C_{p,T_{0}}
-        \| \nabla u \|_{L^{p}(T_{0})}^{p}
+        \rho(\calT)^{\frac{m-1}{p}}
+        % C_{\rm{EFNT},p} \diam(T_0)
+        C_{{\rm{PF}},T_{0},p}
+        \| \nabla u \|_{L^{p}(T_{0})}
         .
     \end{align*}
 \end{theorem}
@@ -1211,22 +1228,22 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 \begin{proof}
  Let $u \in W^{1,p}(\Omega)$. 
  For each $F \in \calT$ of dimension $n-1$, 
- we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{P}},F,p} \| \nabla u_F \|_{L^{p}(U_F)}$.
+ we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that $\| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{PF}},U_F,p} \| \nabla u_F \|_{L^{p}(U_F)}$.
  
  There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
  \[
-    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{P}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
  \]
- In particular, $c_{\star} := u - w_0$ is a constant function. 
+ In particular, $c_{0} := u - w_0$ is a constant function. 
  Now, let $T \in \calT$ be any $n$-simplex. 
  By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
- For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{j(m)}$ be a face of dimension $n-1$. 
+ For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$. 
  We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
  
 %  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
  Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
- such that $c_{\star} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
+ such that $c_{0} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
  Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. 
  By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{m-1}}$. 
  Since $\nabla u_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}}$,
@@ -1235,9 +1252,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  By construction, $\nabla w'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ 
  and 
  $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
- But that already implies $w'_{F_m} = u_{|F_m} - c_{\star}$. 
+ But that already implies $w'_{F_m} = u_{|F_m} - c_{0}$. 
  We define a measurable function $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$.
- We have $c_{\star} = w_{m} - u_{|\Omega_{m}}$. 
+ We have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
  \begin{gather*}
@@ -1295,7 +1312,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \| w_{m-1}\|_{L^{\infty}(T_{{m-1}})}
     .
  \end{align*}
- When $1 < p < \infty$, letting $q$ be the complementary exponent, we observe 
+ % 1/q = 1 - 1/p = (p-1)/p 
+ When $1 < p < \infty$, letting $q := p/(p-1) \in [1,\infty]$ be the complementary exponent, we observe 
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
     &\leq 
@@ -1317,54 +1335,49 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     .
  \end{align*}
  Recursive application provides the following estimate:
- if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
- such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
- then 
+%  if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
+%  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
+%  then 
  \begin{align*}
-    \| w_{m} \|_{L^{p}(S_m)}
+    \| w_{m} \|_{L^{p}(T_m)}
     &\leq 
     \sum_{t=1}^{m} 
     \left( 
         \prod_{t < l \leq m} 
-        \frac{ \vol(S_l)^{\frac 1 p} }{ \vol(S_{l-1})^{\frac 1 p} } 
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
-    \left( 1 + \frac{ \vol(S_t)^{\frac q p} }{ \vol(S_{t-1})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
     \| u_{F_t} \|_{L^{p}(U_{F_t})}
     \\&\quad \quad \quad 
     +
     \left( 
         \prod_{0 < l \leq m} 
-        \frac{ \vol(S_l)^{\frac 1 p} }{ \vol(S_{l-1})^{\frac 1 p} } 
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
-    \| u_{S_0}\|_{L^{p}(S_{0})}
+    \| u_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
- It follows that
- \begin{align*}
-    \| w_{m} \|_{L^{p}(S_m)}^{p}
-    &\leq 
-    (m+1)^{p-1}
-    \sum_{t=1}^{m} 
-    \left( 
-        \prod_{t < l \leq m} 
-        \frac{ \vol(S_l) }{ \vol(S_{l-1}) } 
-    \right)
-    \left( 1 + \frac{ \vol(S_t)^{\frac q p} }{ \vol(S_{t-1})^{\frac q p} } \right)^{p/q}
-    \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
-    \\&\quad \quad \quad 
-    +
-    (m+1)^{p-1}
-    \left( 
-        \prod_{0 < l \leq m} 
-        \frac{ \vol(S_l) }{ \vol(S_{l-1}) } 
-    \right)
-    \| u_{S_0}\|_{L^{p}(S_{0})}^{p}
-    .
- \end{align*}
- Notice that $p/q = p - 1$.
- 
+ We use Definition~\eqref{math:moremeasures} to prove the desired inequality.
+%  \begin{align*}
+%     \| w_{m} \|_{L^{p}(T_m)}^{p}
+%     &\leq 
+%     (m+1)^{p-1}
+%     % \sum_{t=1}^{m} \rho(\calT)^{m-t} 
+%     % \sum_{t=0}^{m-1} \rho(\calT)^{t} 
+%     \frac{\rho(\calT)^{m}-1}{\rho(\calT)-1}
+%     \left( 1 + \rho(\calT)^{\frac q p} \right)^{p/q}
+%     \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
+%     \\&\quad \quad \quad 
+%     +
+%     (m+1)^{p-1}
+%     \rho(\calT)^{m-1}
+%     \| u_{T_0}\|_{L^{p}(T_{0})}^{p}
+%     .
+%  \end{align*}
+%  Notice that $p/q = p - 1$.
+ % 
  Repeating this argument produces $w \in L^{p}(\Omega)$ 
- such that for all $n$-simplices $T \in \calT$ we have the restriction $w_{|T} \in W^{1,p}(T)$ with $w_{|T} = u + c_{\star}$.
+ such that for all $n$-simplices $T \in \calT$ we have the restriction $w_{|T} \in W^{1,p}(T)$ with $w_{|T} = u + c_{0}$.
  In particular, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
 \end{proof}
 
@@ -1381,17 +1394,17 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| u \|_{L^{p}(T)}
         &
         \leq 
-        C_{{\rm PF},T,F,p} \diam(T) \| \nabla u \|_{L^{p}(T)}
+        C_{{\rm PF},T,F,p} \| \nabla u \|_{L^{p}(T)}
     \end{align*}
-    where $C_{\partial,p} > 0$ is a constant such that 
+    where $C_{{\rm PF},T,F,p} > 0$ is a constant such that 
     \begin{align*}
         C_{{\rm PF},T,F,p}
         \leq 
-        \left( C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p} \right),  
+        \left( C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p} \right),  
         \quad 
         C_{{\rm PF},T,F,p}
         \leq 
-        2^{\frac n p}
+        \diam(T)
         .
     \end{align*}
 \end{lemma}
@@ -1436,53 +1449,71 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| \nabla w \|_{L^{p}(T)}
         \\&
         \leq 
+        \left( \frac{ \vol(F) }{ \vol(T) } \right)
         \left( C_{{\rm PF},T,p}^{p} + p \cdot C_{{\rm PF},T,p}^{p-1} \right) 
         \diam(T)^{p}
+        \| \nabla w \|_{L^{p}(T)}^{p}
+        \\&
+        \leq 
         \left( \frac{ \vol(F) }{ \vol(T) } \right)
+        \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right) 
+        %\diam(T)^{p}
         \| \nabla w \|_{L^{p}(T)}^{p}
         .
     \end{align*}
     Recall that $u = w - \gamma$. The first inequality follows. 
     
+    The second inequality follows from Rademachers theorem when $p = \infty$.
+    Let assume that $1 \leq p < \infty$. 
+    Suppose that $u \in C^{\infty}(T)$ with support disjoint from $F$.
+    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and the $n$-th coordinate is non-negative over $T$. 
+    We write $\bfg \in \bfL^{\infty}(T)$ be the trivial extension of $u$ outside of $T$.
+    With the fundamental theorem of calculus and H\"olders inequality: 
+    \begin{align*}
+        &
+        \int_{\Omega} |u(x_{1},\dots,x_{n-1},x_{n})|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \left| \int_{0}^{x_n} \partial_{n} u(x_{1},\dots,x_{n-1},y) dy \right|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \int_{0}^{x_n} x_{n}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+        \leq 
+        D^{p} 
+        \int_{\Omega} |\nabla u|^{p} dx
+        .
+    \end{align*}
+    That $\|u\|_{L^{p}(\Omega)} \leq \diam(T) \|\nabla u\|_{L^{p}(\Omega)}$ for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
+    
+    Very briefly verify that density argument: 
     There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
-    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \varphi )$. 
-    Then $\nabla \hat u = \hat g$. 
-    % 
+    We let $\hat u := u \circ \varphi$.
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
     We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
-    We define $\tilde g = \nabla \tilde u$
-    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
-    By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
-    \begin{gather*}
-        \| \tilde u \|_{L^{p}(\hat U)} 
-        \leq 
-        2 
-        \| \tilde g \|_{\bfL^{p}(\hat U)}
-        .
-    \end{gather*}
-    In addition to that, 
-    \begin{gather*}
-        \| u \|_{L^{p}(T_{m+1})}
-        \leq 
-        |\det(\Dif \varphi)|^{\frac 1 p} 
-        \| \hat u \|_{L^{p}(\hat T)}
-        \leq 
-        |\det(\Dif \varphi)|^{\frac 1 p} 
-        \| \tilde u \|_{L^{p}(\hat U)}
-        ,
-        \\
-        \| \tilde g \|_{\bfL^{p}(\hat U)}
-        \leq 
-        2^{\frac n p}
-        \| \hat g \|_{\bfL^{p}(\hat T)}
-        \leq 
-        2^{\frac n p}
-        |\det(\Dif \varphi_1)|^{-\frac 1 p} \| \Dif \varphi \| \cdot 
-        \| \nabla u \|_{\bfL^{p}(T)}
-        .
-    \end{gather*}
-    The second inequality follows.
+    Then $\tilde u \in W^{1,p}_{0}(\hat U)$, and $\tilde u$ is the limit of a sequence $u_{m} \in C^{\infty}_{c}(\hat U)$.
+    Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ is the desired sequence that approximates $u$. 
 \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 The following potential construction and upper bound for the Poincar\'e--Friedrichs constant 
 serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
@@ -1491,144 +1522,219 @@ serves as the blueprint for constructing potentials of the curl and divergence o
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
     we fix a strong path $T_0, T_1, \dots, T_m = T$.
+    For any $1 \leq l \leq m$, let $F_{l} = T_{l} \cap T_{l-1}$.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
     \begin{align*}
         \| w_{m} \|_{L^{p}(T_m)}
+%         &\leq 
+%         \rho(\calT)^{\frac m p}
+%         C_{{\rm PF},T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         +
+%         \sum_{l=1}^{m} 
+%         \rho(\calT)^{\frac {m-l} p}
+%         C_{{\rm PF},T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l})} 
+%         \\&\qquad 
+%         +
+%         \sum_{l=1}^{m} 
+%         \rho(\calT)^{\frac {m-l} p} \xi(\calT)
+%         C_{{\rm PF},T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l-1})} 
+%         \\
         &\leq 
-        \sum_{l=1}^{m} 
-        \rho(\calT)^{\frac{m-l}{p}}
-        C_{{\rm PF},T,p} \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) \diam(T_{0})
-        \| \nabla u \|_{L^{p}( T_{l} )}
-        +
         \rho(\calT)^{\frac m p}
-        C_{{\rm PF},T_{0},p} \diam(T_{0})
+        C_{{\rm PF},T_{0},p} 
         \| \nabla u \|_{L^{p}( T_{0} )}
+        \\&\qquad 
+        +
+        \sum_{l=1}^{m} 
+        \rho(\calT)^{\frac {m-l} p}
+        C_{{\rm PF},T_{l},F_{l},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{l})} 
+            +
+            \rho(\calT)^{\frac {1} p}
+            \xi(\calT)
+            \| \nabla u \|_{L^{p}(T_{l-1})} 
+        \right)
         .
     \end{align*}
-    \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
+%     \begin{align*}
+%         \| w_{m} \|_{L^{p}(T_m)}
+%         &\leq 
+%         \sum_{l=1}^{m} 
+%         \rho(\calT)^{\frac{m-l}{p}}
+%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
+%         C_{{\rm PF},T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}( T_{l} )}
+%         +
+%         \rho(\calT)^{\frac m p}
+%         C_{{\rm PF},T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         .
+%     \end{align*}
+%     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
 \end{theorem}
 
 \begin{proof}
     Let $u \in W^{1,p}(\Omega)$. 
-    Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. 
-    We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+    First, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
+    \[
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+    \]
+    In particular, $c_{0} := u - w_0$ is a constant function. 
+
+    Now, let $T \in \calT$ be any $n$-simplex. 
+    By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
+    For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$. 
+    We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
     
-    First, there exists $w_0 \in W^{1,p}(T_{0})$ such that $\nabla w_{0} = \nabla u$ over $\Omega_0$. 
-    Suppose that $0 \leq m < M$ such that there exists $w_{m} \in W^{1,p}(\Omega_{m})$ with $\nabla w_{m} = \nabla u$ over $\Omega_m$. 
-    Hence $w_{m} - u_{|\Omega_{m}}$ is a constant. 
-    
-    By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{j(m)}$. 
-    Let $\hat T$ be the reference simplex.
-    % We fix affine homeomorphisms $\varphi : \hat T \rightarrow T_{j(m)}$ and $\vartheta : \hat T \rightarrow T_{m+1}$,
+    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $c_{0} = u - w_{m-1}$.
+    In particular, $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
+    By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{m-1}$. 
+    % Let $\hat T$ be the reference simplex.
+    % We fix affine diffeomorphisms $\varphi : \hat T \rightarrow T_{j(m)}$ and $\vartheta : \hat T \rightarrow T_{m+1}$,
     % each of which maps the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
     %
-    We define $w'_{m+1} := w_{m} \circ \Xi \in W^{1,p}(T_{m+1})$,
-    where $\Xi : T_{m+1} \rightarrow T_{j(m)}$ is the unique affine homeomorphism that leaves $F$ invariant. 
+    We define $w'_{m} := w_{m-1} \circ \Xi \in W^{1,p}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
     %
-    By construction, $w'_{m+1} \in W^{1,p}(T_{m+1})$ with 
+    By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
     \begin{align*}
-        \trace_F w_{m} = \trace_F w'_{m+1}
+        \trace_F w_{m-1} = \trace_F w'_{m}
         .
     \end{align*}
-    Suppose that $w''_{m+1} = u - w'_{m+1} \in W^{1,p}(T_{m+1})$.
-    It satisfies 
+    Write $w''_{m} = u - w'_{m} \in W^{1,p}(T_{m})$. Then 
     \begin{align*}
-        \nabla w''_{m+1} = \nabla u - \nabla w'_{m+1}, 
+        \nabla w''_{m} = \nabla u - \nabla w'_{m}, 
         \quad 
-        \trace_{F_{m}} w''_{m+1} = 0.
+        \trace_{F_{m}} w''_{m} = 0.
     \end{align*}
     The trace condition holds because 
     \begin{align*}
-        \trace_{F_{m}}( \nabla u - \nabla w'_{m+1} ) 
+        \trace_{F_{m}}( \nabla u - \nabla w'_{m} ) 
         &= 
-        \trace_{F_{m}} \nabla u - \trace_{F_{m}} \nabla w'_{m+1}
+        \trace_{F_{m}} \nabla u - \trace_{F_{m}} \nabla w'_{m}
         \\&= 
-        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w'_{m+1}
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w'_{m}
         = 
-        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w_{m}
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w_{m-1}
         = 
         0
         .
     \end{align*}
-    Setting $w_{m+1} := w_{m}$ over $\Omega_{m}$ and $w_{m+1} := w'_{m+1} + w''_{m+1}$ over $T_{m+1}$, 
+    Setting $w_{m} := w_{m-1}$ over $\Omega_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
     we find 
     \begin{gather*}
-        \nabla w_{m+1} = \nabla w'_{m+1} + \nabla w''_{m+1} = \nabla w'_{m+1} + \nabla u - \nabla w'_{m+1} = \nabla u,
+        \nabla w_{m} = \nabla w'_{m} + \nabla w''_{m} = \nabla w'_{m} + \nabla u - \nabla w'_{m} = \nabla u,
         % \end{gather*}
         \\
         % \begin{gather*}
-        \trace_{F_{m}} w_{m+1} = \trace_{F_{m}} w'_{m+1} = \trace_{F_{m}} w_{m}.
+        \trace_{F_{m}} w_{m} = \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{m-1}.
     \end{gather*}
-    That means that $w_{m+1} \in W^{1,p}(\Omega_{m+1})$ with $\nabla w_{m+1} = \nabla u$ over $\Omega_{m+1}$. 
+    That means that $w_{m} \in W^{1,p}(\Omega_{m})$ with $\nabla w_{m} = \nabla u$ over $\Omega_{m}$. 
+    In particular, $c_{0} = u - w_{m}$. 
     Lemma~\ref{lemma:mixedbconsimplex} gives 
     \begin{align*}
-        \| w''_{m+1} \|_{L^{p}(T_{m+1})} 
+        \| w''_{m} \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla u - \nabla w'_{m+1} \|_{L^{p}(T_{m+1})}.
+        C_{{\rm PF},T_{m},F_{m},p} \| \nabla u - \nabla w'_{m} \|_{L^{p}(T_{m})}.
         \\&
         \leq 
-        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla u        \|_{L^{p}(T_{m+1})} 
+        C_{{\rm PF},T_{m},F_{m},p} \| \nabla u      \|_{L^{p}(T_{m})} 
         + 
-        C_{{\rm PF},T,F,p} \diam(T_{m+1}) \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})} 
+        C_{{\rm PF},T_{m},F_{m},p} \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
     We also employ Lemma~\ref{lemma:volumecomparison} to find 
     \begin{align*}
-        \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})}
+        \| \nabla w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
         |\det(\Dif \Xi  )|^{-\frac 1 p} 
         \| \Dif \Xi   \|
         \cdot 
-        \| \nabla w_{m} \|_{L^{p}(T_{m})}
+        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
         \leq 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
         \cdot 
-        \| \nabla w_{m} \|_{L^{p}(T_{m})}
+        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
         .
     \end{align*}
     Putting this all together, 
     \begin{align*}
         &
-        \| w_{m+1} \|_{L^{p}(T_{m+1})}
+        \| w_{m} \|_{L^{p}(T_{m})}
         \\&
         \leq  
-        \| w'_{m+1} \|_{L^{p}(T_{m+1})}
+        \| w'_{m} \|_{L^{p}(T_{m})}
         + 
-        \| w''_{m+1} \|_{L^{p}(T_{m+1})}
+        \| w''_{m} \|_{L^{p}(T_{m})}
         \\&
         \leq  
         \rho(\calT)^{\frac 1 p} 
-        \| w_{m} \|_{L^{p}(T_{m})} 
+        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
         + 
-        C_{{\rm PF},T,F,p} \diam(T_{m+1}) 
+        C_{{\rm PF},T_{m},F_{m},p} 
         \left( 
-            \| \nabla u \|_{L^{p}(T_{m+1})} 
+            \| \nabla u \|_{L^{p}(T_{m})} 
             + 
-            \| \nabla w'_{m+1} \|_{L^{p}(T_{m+1})} 
+            \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
         \right) 
         \\&
         \leq  
         \rho(\calT)^{\frac 1 p} 
-        \| w_{m} \|_{L^{p}(T_{m})} 
+        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
         + 
-        C_{{\rm PF},T,F,p} 
-        \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-        \diam(T_{m+1}) 
-        \| \nabla u \|_{L^{p}(T_{m+1})} 
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(T_{m})} 
+        + 
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(T_{m})} 
+        + 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(T_{m})} 
+        + 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        C_{{\rm PF},T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(T_{m-1})} 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m})} 
         .
     \end{align*}
-    The recursive estimate follows. 
+    The existence of $w \in W^{1,p}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 
 \begin{remark}
-    The previous theorems, Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} and Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} 
+    The previous theorems, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} 
     depend on only a few parameters of the triangulation:
     the length of any traversal from the root simplex, the ratios of the volumes of adjacent simplices,
-    the Poincar\'e constants on each face patch, and the Poincar\'e constant of the initial simplex. 
-    The aforementioned local Poincar\'e constants can generally be estimated in terms of shape-parameters. 
+    the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. 
+    The aforementioned local Poincar\'e--Friedrichs constants can generally be estimated in terms of shape-parameters. 
     If the face patches of the triangulation are convex, then better estimates are possible. 
 \end{remark}
 
@@ -2358,6 +2464,22 @@ if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the
     \int_{\Omega} v \wedge f 
     .
 \end{align*}
+We let $W^p_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^p\Alt^{k}(\Omega)$ 
+for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^p\Alt^{k}(\bbR^{n})$. 
+The space $W^p_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$. 
+
+Lastly, we are also interested in differential forms whose trace vanishes along only a part of the boundary. 
+Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
+We say that $u \in W^p\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
+such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration by parts formula
+\begin{align*}
+    \int_{B_r(x)} \cartan v \wedge \tilde u
+    &=
+    (-1)^{k(n-k)+1}
+    \int_{B_r(x)} v \wedge \widetilde{\cartan u}
+    .
+\end{align*}
+
 We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
@@ -2430,20 +2552,56 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 
 
+Let $\mollifier$ be a non-negative scalar function supported in the unit ball around the origin and with unit integral.
+Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
 
 \begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $u : \Omega \rightarrow \bbR$ be locally integrable. 
-    Then $u_\epsilon \rightarrow u$ almost everywhere. 
-    If $u \in L^{p}(\Omega)$ for some $1 \leq p < \infty$, then $u_{\epsilon} \rightarrow u$ in $L^{p}(\Omega)$. 
+%     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $u : \Omega \rightarrow \bbR$ be locally integrable.  
+%     Then $\mollifier_{\epsilon} \star u \rightarrow u$ almost everywhere. 
+%     If $u \in L^{p}(\Omega)$ for some $1 \leq p < \infty$, then $u_{\epsilon} \rightarrow u$ in $L^{p}(\Omega)$.
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
+    If $u \in L^{p}(\Omega)$, then $\mollifier_{\eps} \star u \rightarrow u$ in $L^{p}(\Omega)$ as $\epsilon \rightarrow 0$.
 \end{lemma}
 
-\begin{lemma} % TODO: possibly useful
-    Let $1 \leq p < \infty$. A sequence converges to $u \in L^{p}$ if and only if it converges locally by measure and the $L^{p}$ norms converge.
-\end{lemma}
+% \begin{lemma} % TODO: possibly useful
+%     Let $1 \leq p < \infty$. A sequence converges to $u \in L^{p}$ if and only if it converges locally by measure and the $L^{p}$ norms converge.
+% \end{lemma}
 
 \begin{lemma}
-    Smooth forms are dense in $\bfW^{p}\Lambda^{k}$.
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
+    Smooth forms are dense in $\bfW^{p}\Lambda^{k}(\Omega)$.
+    If $\Omega$ is convex, then $C^{\infty}_{c}\Lambda^{k}(\Omega)$ is dense in $\bfW^{p}_{0}\Lambda^{k}(\Omega)$.
 \end{lemma}
+\begin{proof}
+    We notice $\mollifier_{\epsilon} \star u \in C^{\infty}\Lambda^{k}(\bbR^{n})$. 
+    By the dominated convergence theorem and because $u$ has a weak derivative,
+    for any $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$
+    \begin{align*}
+        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star u ) \wedge \cartan v
+        &= 
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge u(y) \wedge \cartan_{x} v(x)
+        \\&= 
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_x\mollifier(x-y) \wedge u(y) \wedge v(x)
+        \\&= 
+        - \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_y\mollifier(x-y) \wedge u(y) \wedge v(x)
+        \\&= 
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge \cartan_y u(y) \wedge v(x)
+        = 
+        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star \cartan u ) \wedge v
+        .
+    \end{align*}
+    Hence $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $\bfW^{p}\Lambda^{k}(\Omega)$.
+    
+    Next, suppose that $\Omega$ is convex. Without loss of generality, $0 \in \Omega$. 
+    Let $u \in \bfW^{p}_{0}\Lambda^{k}(\Omega)$ and extend $u$ trivially onto $\bbR^{n}$. 
+    Define $\varphi_t(x) = tx$ for $t > 1$. 
+    Then $\varphi_{t}^{\ast} u \in \bfW^{p}_{0}\Lambda^{k}(t^{-1}\Omega)$ 
+    and $\varphi_{t}^{\ast} u$ converges to $u$ as $t$ decreases towards $1$. 
+    Given any $t > 1$, by taking the convolution with $\mollifier_{\epsilon}$ for $\epsilon > 0$ small enough,
+    we approximate $\varphi_{t}^{\ast} u$ through members of $C^{\infty}_{c}\Lambda^{k}(\Omega)$.
+    The desired result follows. 
+\end{proof}
+
 
 
 
@@ -2502,21 +2660,21 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
-    \int_0^\infty \tau^{n-\ell} (\tau+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+\tau(x-y) \right)\,d\tau
+    \int_0^\infty t^{n-\ell} (t+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
     \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} 
-    \int_0^\infty \tau^{n-k-1} |\Omega|^{-1} \chi_{\Omega}\left( x+\tau(x-y) \right)\,d\tau 
+    \int_0^\infty t^{n-k-1} |\Omega|^{-1} \chi_{\Omega}\left( x+t(x-y) \right)\,dt 
     \\
     &= 
     |\Omega|^{-1}\sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \,
     |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
-If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$. Thus 
+If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives
 \begin{align*}
     G_{\ell}(x,y) 
-    &\leq 
+    &= 
     |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_0^D r^{n-k-1} \,dr 
     \\
     &= 
@@ -2586,7 +2744,7 @@ We have assumed so far that $u \in L^{\infty}\Alt^{\ell}(\Omega)$.
 Since that space is dense in the Lebesgue spaces, a density argument establishes the following: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
-    \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+    \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
 \]
 % Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 % 
@@ -2655,7 +2813,7 @@ We have assumed so far that $u$ is essentially bounded.
 Since that space is dense in the Lebesgue spaces, a density argument yields: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
-    \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+    \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
 \]
 % Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
@@ -2697,7 +2855,7 @@ leading to
     .
 \end{align*}
 % We first discuss the support properties of this operator. 
-% Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell-1})$ satisfies $\supp u \subseteq \overline\Omega$.
+% Suppose that $u \in C^{\infty}\Alt^{\ell-1}(\bbR^n)$ satisfies $\supp u \subseteq \overline\Omega$.
 % Then $\Bogov_{\ell} u(x) = 0$ whenever $x \notin \overline\Omega$,
 % meaning $\supp \Bogov_{\ell} u \subseteq \overline\Omega$.
 % 
@@ -2730,7 +2888,7 @@ That discussion is classical and establishes the exactness of several de~Rham co
 We recapitulate these arguments since our variants of the regularized potential operators 
 are not yet included in the published literature. 
 
-Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$.
+Suppose that $u \in C^{\infty}\Alt^{\ell}(\bbR^n)$.
 We rewrite the Poincar\'e potential,
 \begin{align*}
     \Poinc_{\ell,a} u(x) 
@@ -2844,15 +3002,17 @@ Taking into account cancellations, this gives the identity
     u(x)
     .
 \end{align*}
-In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell,a} u = u$.
-
-% TODO: averaging 
+In summary, after taking the average over $a \in \Omega$:
+\begin{align*}
+    u(x) = \cartan \Poinc_{\ell} u(x) + \Poinc_{\ell+1} \cartan u(x)
+\end{align*}
+In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell} u = u$.
 
 
 
 
 The discussion for the Bogovski\u{\i} operator is almost analogous. 
-Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$ with $\supp u \subseteq \overline\Omega$.
+Suppose that $u \in C^{\infty}\Alt^{\ell}(\bbR^n)$ with $\supp u \subseteq \overline\Omega$.
 We rewrite the Bogovski\u{\i} potential,
 \begin{align*}
     \Bogov_{\ell,a} u(x) 
@@ -2966,10 +3126,12 @@ Taking into account cancellations, this gives the identity
     u(x)
     .
 \end{align*}
-In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell,a} u = u$.
+In summary, after taking the average over $a \in \Omega$:
+\begin{align*}
+    u(x) = \cartan \Bogov_{\ell} u(x) + \Bogov_{\ell+1} \cartan u(x)
+\end{align*}
+In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell} u = u$.
 \\
-
-% TODO: averaging 
 
 
 We are in the position to establish the main results of this section.
@@ -3003,7 +3165,7 @@ though the dimension and the form degree enters the estimate.
         \| u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-    If $u \in \bfW^{p}    \Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    (\Omega,\Alt^{\ell  })$ with $u = \cartan \Poinc_{\ell} u$.
+    If $u \in \bfW^{p}    \Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    \Alt^{\ell  }(\Omega)$ with $u = \cartan \Poinc_{\ell} u$.
     If $u \in \bfW^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in \bfW^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $u = \cartan \Bogov_{\ell} u$.
 \end{theorem}
 \begin{proof}
@@ -3011,8 +3173,8 @@ though the dimension and the form degree enters the estimate.
     
     Consider now $u \in W^{p}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$. 
     We write $w := \Poinc_{\ell  } u$. 
-    There exists a sequence $u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
-    For any test form $v \in C^{\infty}_{c}(\Omega,\Alt^{n-\ell-1})$, we verify 
+    There exists a sequence $u_{i} \in C^{\infty}\Alt^{\ell}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
+    For any test form $v \in C^{\infty}_{c}\Alt^{n-\ell-1}(\Omega)$, we verify 
     \begin{align*}
         \int_{\Omega} v \wedge u_{i} 
         &=
@@ -3039,9 +3201,9 @@ though the dimension and the form degree enters the estimate.
     
     Analogously, suppose that $u \in W^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$. 
     We write $w := \Bogov_{\ell} u$. 
-    There exists a sequence $u_{i} \in C^{\infty}_{c}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
-    For any test form $v \in C^{\infty}(\Omega,\Alt^{n-\ell-1})$, 
-    which is the restriction of some member of $C^{\infty}(\bbR^{n},\Alt^{n-\ell-1})$, 
+    There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\ell}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
+    For any test form $v \in C^{\infty}\Alt^{n-\ell-1}(\Omega)$, 
+    which is the restriction of some member of $C^{\infty}\Alt^{n-\ell-1}(\bbR^{n})$, 
     it holds that 
     \begin{align*}
         \int_{\Omega} v \wedge u_{i} 

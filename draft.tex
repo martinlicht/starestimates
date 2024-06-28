@@ -14,6 +14,172 @@
 
 
 
+
+
+
+
+
+
+\begin{lemma}\label{lemma:mixedbconsimplex}
+    Let $T$ be an $n$-simplex and with a face $F$. 
+    If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
+    \begin{align*}
+        \| u \|_{L^{p}(T)}
+        &
+        \leq 
+        C_{{\rm PF},T,F,p} \| \nabla u \|_{L^{p}(T)}
+    \end{align*}
+    where $C_{{\rm PF},T,F,p} > 0$ is a constant such that 
+    \begin{align*}
+        C_{{\rm PF},T,F,p}
+        \leq 
+        \left( C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p} \right),  
+        \quad 
+        C_{{\rm PF},T,F,p}
+        \leq 
+        \diam(T)
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    There exists $w \in W^{1,p}(T)$ with $\nabla w = \nabla u$ and 
+    \[
+        \| w \|_{L^{p}(T)}
+        \leq 
+        C_{{\rm PF},T,p} 
+        \| \nabla w \|_{\bfL^{p}(T)}
+        .
+    \]
+    Then $w-u$ is constant, and thus $\gamma := \trace_{F} (w-u) = \trace_{F} w$. 
+    We use that 
+    \[
+        \| \gamma \|_{L^{p}(T)}
+        =
+        \gamma \vol(T)^\frac{1}{p}
+        =
+        \left( \frac{ \vol(T) }{ \vol(F) } \right)^\frac{1}{p}
+        \cdot 
+        \gamma 
+        \vol(F)^\frac{1}{p}
+        \leq 
+        \left( \frac{ \vol(T) }{ \vol(F) } \right)^\frac{1}{p}
+        \| \gamma \|_{L^{p}(F)}
+        .
+    \]
+    Using a trace inequality~\cite[Lemma~2.8]{veeser2012poincare} when $1 \leq p < \infty$, we find 
+    \begin{align*}
+        \| \gamma \|_{L^{p}(F)}^{p}
+        &
+        \leq 
+        \frac{ \vol(F) }{ \vol(T) }
+        \| w \|_{L^{p}(T)}^{p}
+        +
+        p
+        \cdot 
+        \diam(T)
+        \frac{ \vol(F) }{ \vol(T) }
+        \| w \|_{L^{p}(T)}^{p-1}
+        \| \nabla w \|_{L^{p}(T)}
+        \\&
+        \leq 
+        \left( \frac{ \vol(F) }{ \vol(T) } \right)
+        \left( C_{{\rm PF},T,p}^{p} + p \cdot C_{{\rm PF},T,p}^{p-1} \right) 
+        \diam(T)^{p}
+        \| \nabla w \|_{L^{p}(T)}^{p}
+        \\&
+        \leq 
+        \left( \frac{ \vol(F) }{ \vol(T) } \right)
+        \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right) 
+        %\diam(T)^{p}
+        \| \nabla w \|_{L^{p}(T)}^{p}
+        .
+    \end{align*}
+    Recall that $u = w - \gamma$. The first inequality follows. 
+    
+    The second inequality follows from Rademachers theorem when $p = \infty$.
+    Let assume that $1 \leq p < \infty$. 
+    Suppose that $u \in C^{\infty}(T)$ with support disjoint from $F$.
+    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and the $n$-th coordinate is non-negative over $T$. 
+    We write $\bfg \in \bfL^{\infty}(T)$ be the trivial extension of $u$ outside of $T$.
+    With the fundamental theorem of calculus and H\"olders inequality: 
+    \begin{align*}
+        &
+        \int_{\Omega} |u(x_{1},\dots,x_{n-1},x_{n})|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \left| \int_{0}^{x_n} \partial_{n} u(x_{1},\dots,x_{n-1},y) dy \right|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \int_{0}^{x_n} x_{n}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+        \\&
+        \leq
+        \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+        \leq 
+        D^{p} 
+        \int_{\Omega} |\nabla u|^{p} dx
+        .
+    \end{align*}
+    That $\|u\|_{L^{p}(\Omega)} \leq \diam(T) \|\nabla u\|_{L^{p}(\Omega)}$ for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
+    
+    Very briefly verify that density argument: 
+    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \varphi )$. 
+    Then $\nabla \hat u = \hat g$. 
+    % 
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
+    We define $\tilde g = \nabla \tilde u$
+    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
+    By construction $\tilde u$ vanishes at the boundary of $\hat U$,
+    and we approximate $\tilde u$ in $W^{1,p}(\hat U)$ via a sequence in $C^{\infty}_{c}(\hat U)$. 
+    
+    
+    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \varphi )$. 
+    Then $\nabla \hat u = \hat g$. 
+    % 
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
+    We define $\tilde g = \nabla \tilde u$
+    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
+    By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
+    \begin{gather*}
+        \| \tilde u \|_{L^{p}(\hat U)} 
+        \leq 
+        2 
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        .
+    \end{gather*}
+    In addition to that, 
+    \begin{gather*}
+        \| u \|_{L^{p}(T_{m+1})}
+        \leq 
+        |\det(\Dif \varphi)|^{\frac 1 p} 
+        \| \hat u \|_{L^{p}(\hat T)}
+        \leq 
+        |\det(\Dif \varphi)|^{\frac 1 p} 
+        \| \tilde u \|_{L^{p}(\hat U)}
+        ,
+        \\
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        \leq 
+        2^{\frac n p}
+        \| \hat g \|_{\bfL^{p}(\hat T)}
+        \leq 
+        2^{\frac n p}
+        |\det(\Dif \varphi_1)|^{-\frac 1 p} \| \Dif \varphi \| \cdot 
+        \| \nabla u \|_{\bfL^{p}(T)}
+        .
+    \end{gather*}
+    The second inequality follows.
+\end{proof}
+
+
+
+
+
+
+
 Given $a \in \Omega$, we introduce the potential operator 
 \begin{align*}
     \Poinc_{\ell,a} u(x) 
