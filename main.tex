@@ -2349,6 +2349,15 @@ The exterior derivative is defined in the sense of distributions and we introduc
 \[
     W^p\Alt^{k}(\Omega) = \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
 \]
+We observe that $u \in L^p\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^p\Alt^{k+1}(\Omega)$
+if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
+\begin{align*}
+    \int_{\Omega} \cartan v \wedge u
+    &=
+    (-1)^{k(n-k)+1}
+    \int_{\Omega} v \wedge f 
+    .
+\end{align*}
 We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
@@ -2516,7 +2525,7 @@ If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \
 We are now in a position to show that the potentials are bounded with respect to Lebesgue norms. 
 
 We begin with the Poincar\'e operator. 
-Suppose that $u \in C^{\infty}(\Omega,\Alt^{\ell})$ with $1 \leq \ell \leq n$.
+Suppose that $u \in L^{\infty}\Alt^{\ell}(\Omega)$ with $1 \leq \ell \leq n$.
 We pointwise estimate $\Poinc_{\ell} u(x)$ for any $x \in \Omega$ by the result of a convolution of a locally integrable function with $u$:
 \begin{align*}
     \left| \Poinc_{\ell} u(x) \right|
@@ -2573,16 +2582,16 @@ Young's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
-We have assumed so far that $u \in C^{\infty}(\Omega,\Alt^{\ell})$. 
+We have assumed so far that $u \in L^{\infty}\Alt^{\ell}(\Omega)$. 
 Since that space is dense in the Lebesgue spaces, a density argument establishes the following: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
-    \Poinc_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+    \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
 \]
-Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
-
+% Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
+% 
 We analyze the Bogovski\u{\i} potential operator with similar means. 
-Suppose that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$ and that $x \in \bbR^{n}$.
+Suppose that $u \in L^{\infty}\Alt^{\ell}(\bbR^{n})$ with $\supp u \subseteq \overline\Omega$ and that $x \in \bbR^{n}$.
 First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence $G(x,y) = 0$ and therefore $\Bogov_{\ell} u(x) = 0$ in that case.
 Consider now the case $x \in \overline\Omega$. 
 We estimate $\Bogov_{\ell} u(x)$ pointwise by 
@@ -2642,13 +2651,13 @@ Young's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
-We have assumed so far that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$. 
+We have assumed so far that $u$ is essentially bounded.
 Since that space is dense in the Lebesgue spaces, a density argument yields: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
-    \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+    \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
 \]
-Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
+% Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
 \\
@@ -2716,8 +2725,8 @@ By definition,
     .
 \end{align*}
 We study the interaction of these potential operator with the exterior derivative in more detail.
-
-The following discussion is classical and establishes the exactness of several de~Rham complexes. 
+% 
+That discussion is classical and establishes the exactness of several de~Rham complexes. 
 We recapitulate these arguments since our variants of the regularized potential operators 
 are not yet included in the published literature. 
 
@@ -2837,14 +2846,7 @@ Taking into account cancellations, this gives the identity
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell,a} u = u$.
 
-\begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$ be convex.
-    If $1 \leq p < \infty$ and $u \in C^{\infty}\Lambda^{k}(\Omega)$ with $\cartan u = 0$,
-    then there exists $u_{n} \in C^{\infty}\Lambda^{k}(\Omega)$ with $\cartan u_{n} = 0$ that converges to $u$ in $L^{p}$.
-\end{lemma}
-\begin{proof}
-    % TODO
-\end{proof}
+% TODO: averaging 
 
 
 
@@ -2965,20 +2967,24 @@ Taking into account cancellations, this gives the identity
     .
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell,a} u = u$.
+\\
 
-The main results of this section are summarized as follows.
-These results also imply the Poincar\'--Friedrichs inequalities that we have been looking for. 
-These constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$,
+% TODO: averaging 
+
+
+We are in the position to establish the main results of this section.
+This includes upper bounds for the Poincar\'--Friedrichs inequalities that we have been looking for. 
+Said upper bounds are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$,
 though the dimension and the form degree enters the estimate. 
 
 \begin{theorem}
     Let $\Omega \subseteq \bbR^{n}$ be convex and let $1 \leq p < \infty$. 
     We have bounded operators 
     \begin{align*}
-        \Poinc_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+        \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow \bfW^{p}_{0}\Alt^{\ell-1}(\Omega)
         ,
         \qquad 
-        \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+        \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow \bfW^{p}_{0}\Alt^{\ell-1}(\Omega)
         .
     \end{align*}
     They satisfy the operator norm bounds 
@@ -2997,15 +3003,15 @@ though the dimension and the form degree enters the estimate.
         \| u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-    If $u \in \bfW^{p}    (\Omega,\Alt^{\ell})$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    (\Omega,\Alt^{\ell  })$ with $u = \cartan \Poinc_{\ell} u$.
-    If $u \in \bfW^{p}_{0}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$ with $u = \cartan \Bogov_{\ell} u$.
+    If $u \in \bfW^{p}    \Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    (\Omega,\Alt^{\ell  })$ with $u = \cartan \Poinc_{\ell} u$.
+    If $u \in \bfW^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in \bfW^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $u = \cartan \Bogov_{\ell} u$.
 \end{theorem}
 \begin{proof}
-    The potential operators are linear and the operator norm bounds are satisfied over the dense subspace $C^{\infty}_{c}(\Omega,\Alt^{\ell})$.
+    The potential operators are linear and the operator norm bounds are satisfied over the dense subspace $C^{\infty}_{c}\Alt^{\ell}(\Omega)$.
     
-    Consider now $u \in W^{p}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$. 
+    Consider now $u \in W^{p}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$. 
     We write $w := \Poinc_{\ell  } u$. 
-    There exists a sequence $u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}(\Omega,\Alt^{\ell})$. 
+    There exists a sequence $u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
     For any test form $v \in C^{\infty}_{c}(\Omega,\Alt^{n-\ell-1})$, we verify 
     \begin{align*}
         \int_{\Omega} v \wedge u_{i} 
@@ -3016,7 +3022,7 @@ though the dimension and the form degree enters the estimate.
         \\&=
         \int_{\Omega} v \wedge \Poinc_{\ell+1} \cartan u_{i}
         +
-        (-1)^{k(n-k-1)+1}
+        (-1)^{k(n-k)+1}
         \int_{\Omega} \cartan v \wedge \Poinc_{\ell  } u_{i}
         .
     \end{align*}
@@ -3024,16 +3030,16 @@ though the dimension and the form degree enters the estimate.
     \begin{align*}
         \int_{\Omega} v \wedge u 
         &=
-        (-1)^{k(n-k-1)+1}
+        (-1)^{k(n-k)+1}
         \int_{\Omega} \cartan v \wedge \Poinc_{\ell  } u_{i}
         .
     \end{align*}
-    By definition, $w \in W^{p}(\Omega,\Alt^{\ell-1})$ with $\cartan w = u$.
+    By definition, $w \in W^{p}\Alt^{\ell-1}(\Omega)$ with $\cartan w = u$.
     
     
-    Analogously, suppose that $u \in W^{p}_{0}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$. 
+    Analogously, suppose that $u \in W^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$. 
     We write $w := \Bogov_{\ell} u$. 
-    There exists a sequence $u_{i} \in C^{\infty}_{c}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}(\Omega,\Alt^{\ell})$. 
+    There exists a sequence $u_{i} \in C^{\infty}_{c}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}\Alt^{\ell}(\Omega)$. 
     For any test form $v \in C^{\infty}(\Omega,\Alt^{n-\ell-1})$, 
     which is the restriction of some member of $C^{\infty}(\bbR^{n},\Alt^{n-\ell-1})$, 
     it holds that 
@@ -3046,7 +3052,7 @@ though the dimension and the form degree enters the estimate.
         \\&=
         \int_{\Omega} v \wedge \Bogov_{\ell+1} \cartan u_{i}
         +
-        (-1)^{k(n-k-1)+1}
+        (-1)^{k(n-k)+1}
         \int_{\Omega} \cartan v \wedge \Bogov_{\ell  } u_{i}
         .
     \end{align*}
@@ -3054,11 +3060,11 @@ though the dimension and the form degree enters the estimate.
     \begin{align*}
         \int_{\Omega} v \wedge u 
         &=
-        (-1)^{k(n-k-1)+1}
+        (-1)^{k(n-k)+1}
         \int_{\Omega} \cartan v \wedge \Bogov_{\ell  } u_{i}
         .
     \end{align*}
-    By definition, $w \in W^{p}_{0}(\Omega,\Alt^{\ell-1})$ with $\cartan w = u$.
+    By definition, $w \in W^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $\cartan w = u$.
     % TODO: definition of weak derivative + definition of boundary condition 
     % 
     This completes the proof. 
