@@ -27,6 +27,9 @@
     We construct upper bounds for Poincar\'e--Friedrichs constants over triangulated domains. 
     This includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
     The main application that we envision are computable estimates over finite element patches. 
+    %
+    As a result with independent standing, we establishes Poincar\'e--Friedrichs inequalities for the $L^{p}$ de~Rham complex over convex bounded domains. 
+    This is achieved through bounding operator norms of Poincar\'e and Bogovski\u{\i} potential operators. 
 \end{abstract}
 
 
@@ -190,7 +193,7 @@ Domains that admit finite triangulations allow for different techniques to attai
 However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
 We review some of the main outcomes. 
 % TODO: wait for answer to email 
-Veeser and Verfürth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
+Veeser and Verf\"urth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
 % 
 The literature knows different variations of a popular avenue towards Poincar\'e--Friedrichs constants that can circumvent the effect of low boundary regularity~\cite{vohralik2005discrete,ern2021finite}. 
 These potentials share being constructed step-by-step: 
@@ -279,7 +282,7 @@ and they lead to lower bounds for the spectrum of finite element matrices.
 
 Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of disks and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
-We have also identified that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularlized potential operators. It is of interest whether the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. These topics remain for future research. 
+We have also identified that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. It is of interest whether the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. These topics remain for future research. 
 \\
 
 The remainder of this manuscript is structured as follows.
@@ -2228,7 +2231,7 @@ We summarize this as a commuting diagram:
 \end{align*}
 
 \begin{remark}
-    The Piola transform goes int the opposite direction of the mapping $\phi : \Omega \rightarrow \Omega'$:
+    The Piola transform goes into the opposite direction of the mapping $\phi : \Omega \rightarrow \Omega'$:
     scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This definition is in accordance with the notion of pullback, which we will review shortly. 
     One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
@@ -2419,6 +2422,20 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 
 
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $u : \Omega \rightarrow \bbR$ be locally integrable. 
+    Then $u_\epsilon \rightarrow u$ almost everywhere. 
+    If $u \in L^{p}(\Omega)$ for some $1 \leq p < \infty$, then $u_{\epsilon} \rightarrow u$ in $L^{p}(\Omega)$. 
+\end{lemma}
+
+\begin{lemma} % TODO: possibly useful
+    Let $1 \leq p < \infty$. A sequence converges to $u \in L^{p}$ if and only if it converges locally by measure and the $L^{p}$ norms converge.
+\end{lemma}
+
+\begin{lemma}
+    Smooth forms are dense in $\bfW^{p}\Lambda^{k}$.
+\end{lemma}
+
 
 
 
@@ -2435,26 +2452,23 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 \section{Regularized potential operators over convex sets}\label{section:potentialoperator}
 
-We use potential operators for the exterior derivative over convex domains that respect boundary conditions. 
-These are known as Bogovski\u{\i}-type operators.
-They were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics.~\cite{bogovskii1979solution} 
-The generalization to differential forms has been discussed extensively by Costabel and McIntosh~\cite{costabel2010bogovskiui},
-on whose work the following presentation is based. 
-In contrast to the aforementioned reference, the goal of our discussion is more modest:
-we merely need them over convex sets and are only interested in their operator norms between Lebesgue spaces.
-However, we derive explicit bounds for the operator norms, which are of independent interest. 
+We want to bound Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
+We already know the optimal constants for the gradient operator over convex domains,
+and we know bounds for the Poincar\'e--Friedrichs constants for the entire $L^{2}$ de~Rham complex. 
+We are not aware of such bounds for the case of the $L^{p}$ de~Rham complex when $1 \leq p \leq \infty$. 
 
-\begin{remark}
-It can be identified as a formal adjoint to the Poincar\'e operator in exterior calculus. 
-The Bogovski\u{\i}-type potential operator first appeared for the mathematical discussion of hydrodynamical models~\cite{bogovskii1979solution} and has since been extended to exterior calculus. 
-The regularized Bogovski\u{\i} potential operator was studied extensively by Costabel and McIntosh.
-These operators are defined over sets star-shaped with respect to a ball. 
-Their analysis identifies the potential as a pseudodifferential operator of negative order and utilizes tools of harmonic analysis. However, no operator norm estimates are given in the literature, to the best of our best knowledge.
-We study a variation of this potential operator over convex sets.
-We simply use a constant averaging over the entire domain. 
-While the resulting Bogovski\u{\i}-type potential has more moderate regularity properties, 
-this simplification suits our purposes and enables some simple estimates for the continuity constant of the potential operator in Lebesgue norms. 
-\end{remark}
+For that reason, we bound the norms of regularized potential operators for the exterior derivative over convex domains.
+We solve this for two special cases: either the $L^{p}$ de~Rham complex without boundary conditions, 
+and the $L^{p}$ de~Rham with full boundary conditions. 
+The corresponding potential operators are known as the regularized Poincar\'e and regularized Bogovski\u{\i} potentials in the literature. 
+We build upon the discussion spearheaded by Costabel and McIntosh~\cite{costabel2010bogovskiui},
+who analyze them as pseudodifferential operators over domains star-shaped with respect to a ball. 
+% 
+In comparison to their work, our discussion is more modest:
+we study potential operators merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
+However, our explicit purpose are explicit bounds for the operator norms, which are of independent interest. 
+\\
+
 
 
 We begin with introducing the Costabel-McIntosh kernel.
@@ -2469,12 +2483,13 @@ we then define the integral operators
   \\
   \Bogov_{\ell} u(x) &= \int G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
 \end{align}
-We call $\Bogov_{\ell}$ a Bogovski\u{\i}-type operator. 
+We call $\Poinc_{\ell}$ the Poincar\'e operator and $\Bogov_{\ell}$ the Bogovski\u{\i} operator. 
+\\
 
-We show that the integrals in the definition of $\Bogov_{\ell}$ actually exist. 
-In order to understand the properties of the operator $\Bogov_{\ell}$,
-including the convergence of the integral, we first rewrite the Costabel-McIntosh kernel $G_{\ell}$.
-Letting $x,y \in \bbR^n$ with at least one $x$ or $y$ contained in $\Omega$, we deduce 
+We show that the integrals in the definition of $\Poinc_{\ell}$ and $\Bogov_{\ell}$ actually exist. 
+In order to analyze the properties of the potential operators,
+we first rewrite the Costabel-McIntosh kernel $G_{\ell}$.
+Letting $x,y \in \bbR^n$ with $x \neq y$, we find 
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
@@ -2489,7 +2504,7 @@ Letting $x,y \in \bbR^n$ with at least one $x$ or $y$ contained in $\Omega$, we 
     |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
-We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus 
+If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$. Thus 
 \begin{align*}
     G_{\ell}(x,y) 
     &\leq 
@@ -2498,20 +2513,21 @@ We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus
     &= 
     |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
 \end{align*}
-We can now analyze the potential operator $\Bogov_{\ell}$. 
-Suppose that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$ and that $x \in \bbR^{n}$.
-First, if $x \notin \overline\Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t \geq 1$. Hence $G(x,y) = 0$ and therefore $\Bogov_{\ell} u(x) = 0$ in that case.
-More generally, we pointwise estimate $\Bogov_{\ell} u(x)$ by the result of a convolution of a locally integrable function with $u$:
+We are now in a position to show that the potentials are bounded with respect to Lebesgue norms. 
+
+We begin with the Poincar\'e operator. 
+Suppose that $u \in C^{\infty}(\Omega,\Alt^{\ell})$ with $1 \leq \ell \leq n$.
+We pointwise estimate $\Poinc_{\ell} u(x)$ for any $x \in \Omega$ by the result of a convolution of a locally integrable function with $u$:
 \begin{align*}
-    \left| \Bogov_{\ell} u(x) \right|
+    \left| \Poinc_{\ell} u(x) \right|
     &=
     \left| 
-        \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
+        \int_{\Omega} G_{n-\ell+1}(x,y) \,(x-y)\lrcorner u(y)\,dy
     \right| 
+%     \\&\leq 
+%     \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{(n-\ell+1)-1}\tbinom{(n-\ell+1)-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
     \\&\leq 
-    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
-    \\&\leq 
-    \int_{\bbR^{n}} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
+    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{ n-\ell }\tbinom{ n-\ell }{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} \chi_{B_D(0)}(x-y) |u(y)| \,dy
     .
 \end{align*}
 We recall the radial integrals 
@@ -2528,6 +2544,75 @@ We recall the radial integrals
 We compute 
 \begin{align*}
     &
+    \int_{\bbR^{n}} \sum_{k=0}^{n-\ell} \tbinom{n-\ell}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(z) |z|^{k+1-n} \,dz
+    \\&
+    =
+    \sum_{k=0}^{n-\ell} \tbinom{n-\ell}{k} \frac{ D^{n-k} }{n-k} \int_{B_D(0)} |z|^{k+1-n} \,dz
+    \\&
+    =
+    \vol_{n-1}(S_1) \sum_{k=0}^{n-\ell} \tbinom{n-\ell}{k} \frac{ D^{n-k} }{n-k} \frac{D^{k+1}}{k+1}
+    %\\&
+    =
+    \vol_{n-1}(S_1) D^{n+1} \underbrace{ \sum_{k=0}^{n-\ell} \frac{ \tbinom{n-\ell}{k} }{ (n-k)(k+1) } }_{ =: A_{\Poinc}(n,\ell) \leq 2^{n-\ell}}
+    .
+\end{align*}
+Here, $A_{\Poinc}(n,\ell)$ is a numerical constant that depends only on $n$ and $\ell$ 
+and which is bounded by $2^{n-\ell}$. 
+In particular, the integral $\Poinc_{\ell} u(x)$ is absolutely convergent for any choice of $x \in \Omega$. 
+So the convolution of $u$ is taken against an integrable function. 
+Young's convolution inequality now implies: 
+\begin{align*}
+    \| \Poinc_{\ell} u \|_{L^{p}(\Omega)}
+    &\leq 
+    \vol_{n-1}(S_1) A_{\Poinc}(n,\ell) \frac{ D^{n} }{|\Omega|} 
+    D
+    \| u \|_{L^{p}(\Omega)}
+    \leq 
+    n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+    D
+    \| u \|_{L^{p}(\Omega)}
+    .
+\end{align*}
+We have assumed so far that $u \in C^{\infty}(\Omega,\Alt^{\ell})$. 
+Since that space is dense in the Lebesgue spaces, a density argument establishes the following: 
+for any $1 \leq p \leq \infty$ we have a bounded linear operator 
+\[
+    \Poinc_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
+\]
+Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
+
+We analyze the Bogovski\u{\i} potential operator with similar means. 
+Suppose that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$ and that $x \in \bbR^{n}$.
+First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence $G(x,y) = 0$ and therefore $\Bogov_{\ell} u(x) = 0$ in that case.
+Consider now the case $x \in \overline\Omega$. 
+We estimate $\Bogov_{\ell} u(x)$ pointwise by 
+\begin{align*}
+    \left| \Bogov_{\ell} u(x) \right|
+    &=
+    \left| 
+        \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
+    \right| 
+    \\&\leq 
+    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
+    \\&\leq 
+    \int_{\bbR^{n}} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
+    .
+\end{align*}
+Using once more the radial integrals discussed above, we compute 
+% We recall the radial integrals 
+% \begin{align*}
+%     \int_{B_D(0)} |z|^{k+1-n} dz
+%     =
+%     \vol_{n-1}(S_1) \int_0^D r^{k+1-n} r^{n-1} dr
+%     =
+%     \vol_{n-1}(S_1) \int_0^D r^{k} dr
+%     =
+%     \vol_{n-1}(S_1) \frac{D^{k+1}}{k+1}
+%     .
+% \end{align*}
+% We compute 
+\begin{align*}
+    &
     \int_{\bbR^{n}} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(z) |z|^{k+1-n} \,dz
     \\&
     =
@@ -2537,14 +2622,14 @@ We compute
     \vol_{n-1}(S_1) \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \frac{D^{k+1}}{k+1}
     %\\&
     =
-    \vol_{n-1}(S_1) D^{n+1} \underbrace{ \sum_{k=0}^{\ell-1} \frac{ \tbinom{\ell-1}{k} }{ (n-k)(k+1) } }_{ =: A(n,\ell) \leq 2^{\ell-1}}
+    \vol_{n-1}(S_1) D^{n+1} \underbrace{ \sum_{k=0}^{\ell-1} \frac{ \tbinom{\ell-1}{k} }{ (n-k)(k+1) } }_{ =: A_{\Bogov}(n,\ell) \leq 2^{\ell-1}}
     .
 \end{align*}
-Here, $A(n,\ell)$ is a numerical constant that depends only on $n$ and $\ell$ 
+Here, $A_{\Bogov}(n,\ell)$ is a numerical constant that depends only on $n$ and $\ell$ 
 and which is bounded by $2^{\ell-1}$. 
 In particular, the integral $\Bogov_{\ell} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
 So the convolution of $u$ is taken against an integrable function. 
-Taylor's convolution inequality now implies: 
+Young's convolution inequality now implies: 
 \begin{align*}
     \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
     &\leq 
@@ -2552,23 +2637,44 @@ Taylor's convolution inequality now implies:
     D
     \| u \|_{L^{p}(\Omega)}
     \leq 
-    n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+    n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
     D
     \| u \|_{L^{p}(\Omega)}
     .
 \end{align*}
 We have assumed so far that $u \in C^{\infty}_{c}(\Omega,\Alt^{\ell})$. 
-Since that space is dense in the Lebesgue spaces, a density argument provides gives the following: 
+Since that space is dense in the Lebesgue spaces, a density argument yields: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
 \[
     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow L^{p}(\bbR^n,\Alt^{\ell-1}).
 \]
+Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
+\\
+
+
+
+
+
+
 
 Additional properties of these operators become apparent after a change of variables. 
-We write down the full definition of these operators and perform two substitutions:
-first, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
+We write down the full definition of these operators and perform two substitutions.
+For the Poincar\'e operator, we substitute $a = x + t(y-x)$ and then we substitute $s = (t-1)/t$,
+leading to 
+\begin{align*}
+    \Poinc_{\ell} u(x) 
+    &= 
+    \int \int_{1}^\infty (t-1)^{\ell-1}t^{n-\ell} 
+    \chi_{\Omega}\left(x+t(y-x)\right) 
+    (x-y)\lrcorner u(y) \,dt\,dy 
+    \\
+    &=
+    \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    .
+\end{align*}
+For the Bogoski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
 leading to 
 \begin{align*}
     \Bogov_{\ell} u(x) 
@@ -2586,8 +2692,13 @@ leading to
 % Then $\Bogov_{\ell} u(x) = 0$ whenever $x \notin \overline\Omega$,
 % meaning $\supp \Bogov_{\ell} u \subseteq \overline\Omega$.
 % 
-Given $a \in \Omega$, we introduce the potential operator 
+Given $a \in \Omega$, we introduce the potential operators 
 \begin{align*}
+    \Poinc_{\ell,a} u(x) 
+    &:= 
+    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
+    ,
+    \\
     \Bogov_{\ell,a} u(x) 
     &:= 
     - (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
@@ -2595,14 +2706,152 @@ Given $a \in \Omega$, we introduce the potential operator
 \end{align*}
 By definition,
 \begin{align*}
+    \Poinc_{\ell} u(x) 
+    =
+    \int_{\Omega} \Poinc_{\ell,a} u(x) \,da\;,
+    \quad 
     \Bogov_{\ell} u(x) 
     =
     \int_{\Omega} \Bogov_{\ell,a} u(x) \,da\;
     .
 \end{align*}
-We study the interaction of the potential operator with the exterior derivative in more detail.
+We study the interaction of these potential operator with the exterior derivative in more detail.
+
+The following discussion is classical and establishes the exactness of several de~Rham complexes. 
+We recapitulate these arguments since our variants of the regularized potential operators 
+are not yet included in the published literature. 
+
+Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$.
+We rewrite the Poincar\'e potential,
+\begin{align*}
+    \Poinc_{\ell,a} u(x) 
+    &= 
+    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    \\&
+    = 
+    (x-a)\lrcorner 
+    \sum_{\sigma \in \Sigma(k,n)}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} dt 
+    \\&
+    = 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{\sigma-\sigma(i)} dt 
+    ,
+\end{align*}
+and compute its exterior derivative:
+\begin{align*}
+    \cartan \Poinc_{\ell,a} u(x) 
+    &= 
+    \ell
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    + 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    \int_{0}^{1} 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} dt 
+    .
+\end{align*}
+We write the exterior derivative of $u$ as 
+\begin{align*}
+    \cartan u(x)
+    =
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
+    ,
+\end{align*}
+and apply the Poincar\'e potential operator to this result, which gives 
+\begin{align*}
+    \Poinc_{\ell+1,a} \cartan u(x)
+    &=
+    (x-a)\lrcorner 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    \;\cartanx^{j} \wedge \cartanx^{\sigma}
+    \\&
+    = 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \;\cartanx^{\sigma}
+    \\&\qquad 
+    - 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    (-1)^{i-1}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    .
+\end{align*}
+We add the exterior derivative of the potential and the potential of the exterior derivative.
+Taking into account cancellations, this gives the identity 
+\begin{align*}
+    &
+    \cartan \Poinc_{\ell,a} u(x)
+    +
+    \Poinc_{\ell+1,a} \cartan u(x)
+    \\&
+    =
+    \ell
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    + 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    \int_{0}^{1} 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    +
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \cartanx^{\sigma}
+    \\&\qquad
+    - 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    (-1)^{i-1}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    +
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} dt
+    \cartanx^{\sigma}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} 
+    \int_{0}^{1} \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} 
+    u_{\sigma}(x) \cartanx^{\sigma}
+    =
+    u(x)
+    .
+\end{align*}
+In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell,a} u = u$.
+
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$ be convex.
+    If $1 \leq p < \infty$ and $u \in C^{\infty}\Lambda^{k}(\Omega)$ with $\cartan u = 0$,
+    then there exists $u_{n} \in C^{\infty}\Lambda^{k}(\Omega)$ with $\cartan u_{n} = 0$ that converges to $u$ in $L^{p}$.
+\end{lemma}
+\begin{proof}
+    % TODO
+\end{proof}
+
+
+
+
+The discussion for the Bogovski\u{\i} operator is almost analogous. 
 Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$ with $\supp u \subseteq \overline\Omega$.
-We rewrite the potential,
+We rewrite the Bogovski\u{\i} potential,
 \begin{align*}
     \Bogov_{\ell,a} u(x) 
     &= 
@@ -2643,7 +2892,7 @@ We write the exterior derivative of $u$ as
     \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
     ,
 \end{align*}
-and apply the potential operator to this result, which gives 
+and apply the Bogovski\u{\i} potential operator to this result, which gives 
 \begin{align*}
     \Bogov_{\ell+1,a} \cartan u(x)
     &=
@@ -2717,51 +2966,129 @@ Taking into account cancellations, this gives the identity
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell,a} u = u$.
 
+The main results of this section are summarized as follows.
+These results also imply the Poincar\'--Friedrichs inequalities that we have been looking for. 
+These constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$,
+though the dimension and the form degree enters the estimate. 
 
-
-For full technical clarity, we show we have a bounded operator 
-\[
-    \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
-    .
-\]
-% - Rewrite kernel
-% - Show the support property
-% - Assess that it is Lp bounded for compactly supported forms; density argument
-% - Conclude that it is absolutely convergent. Do one (!) derivative
-% - Poincare lemma for smooth forms : needs smoothness, but that's a simple calculation 
-% - prove duality via some density argument and the extension of smooth forms outside of Lipschitz domains
-
-
-\begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$. There exists a bounded mapping 
+\begin{theorem}
+    Let $\Omega \subseteq \bbR^{n}$ be convex and let $1 \leq p < \infty$. 
+    We have bounded operators 
     \begin{align*}
-     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+        \Poinc_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+        ,
+        \qquad 
+        \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+        .
     \end{align*}
-    such that 
+    They satisfy the operator norm bounds 
     \begin{align*}
-        \| u \|_{L^{p}} \leq n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} D \| u \|_{L^{p}(\Omega)}
+        \| \Poinc_{\ell} u \|_{L^{p}(\Omega)}
+        &\leq 
+        n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+        D
+        \| u \|_{L^{p}(\Omega)}
+        ,
+        \\
+        \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
+        &\leq 
+        n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+        D
+        \| u \|_{L^{p}(\Omega)}
+        .
     \end{align*}
-    and such that $\cartan \Bogov_{\ell} u = u$ for all $u \in \cartan \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$.
-\end{lemma}
-
-
-
-
-\begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. Then 
-    \begin{align*}
-        \| \vec u \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \vec u \|_{L^{2}(\Omega)}.
-    \end{align*}
-\end{lemma}
+    If $u \in \bfW^{p}    (\Omega,\Alt^{\ell})$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    (\Omega,\Alt^{\ell  })$ with $u = \cartan \Poinc_{\ell} u$.
+    If $u \in \bfW^{p}_{0}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$ with $u = \cartan \Bogov_{\ell} u$.
+\end{theorem}
 \begin{proof}
-    Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
-    Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
-    with smallest singular value $\diam(\Omega)^{-1}$, according to Friedrichs inequality. 
-    The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
-    which has the same smallest singular value. 
+    The potential operators are linear and the operator norm bounds are satisfied over the dense subspace $C^{\infty}_{c}(\Omega,\Alt^{\ell})$.
+    
+    Consider now $u \in W^{p}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$. 
+    We write $w := \Poinc_{\ell  } u$. 
+    There exists a sequence $u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}(\Omega,\Alt^{\ell})$. 
+    For any test form $v \in C^{\infty}_{c}(\Omega,\Alt^{n-\ell-1})$, we verify 
+    \begin{align*}
+        \int_{\Omega} v \wedge u_{i} 
+        &=
+        \int_{\Omega} v \wedge \Poinc_{\ell+1} \cartan u_{i}
+        +
+        \int_{\Omega} v \wedge \cartan \Poinc_{\ell  } u_{i}
+        \\&=
+        \int_{\Omega} v \wedge \Poinc_{\ell+1} \cartan u_{i}
+        +
+        (-1)^{k(n-k-1)+1}
+        \int_{\Omega} \cartan v \wedge \Poinc_{\ell  } u_{i}
+        .
+    \end{align*}
+    By the continuity of bounded linear functionals, we find 
+    \begin{align*}
+        \int_{\Omega} v \wedge u 
+        &=
+        (-1)^{k(n-k-1)+1}
+        \int_{\Omega} \cartan v \wedge \Poinc_{\ell  } u_{i}
+        .
+    \end{align*}
+    By definition, $w \in W^{p}(\Omega,\Alt^{\ell-1})$ with $\cartan w = u$.
+    
+    
+    Analogously, suppose that $u \in W^{p}_{0}(\Omega,\Alt^{\ell})$ with $\cartan u = 0$. 
+    We write $w := \Bogov_{\ell} u$. 
+    There exists a sequence $u_{i} \in C^{\infty}_{c}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}(\Omega,\Alt^{\ell})$. 
+    For any test form $v \in C^{\infty}(\Omega,\Alt^{n-\ell-1})$, 
+    which is the restriction of some member of $C^{\infty}(\bbR^{n},\Alt^{n-\ell-1})$, 
+    it holds that 
+    \begin{align*}
+        \int_{\Omega} v \wedge u_{i} 
+        &=
+        \int_{\Omega} v \wedge \Bogov_{\ell+1} \cartan u_{i}
+        +
+        \int_{\Omega} v \wedge \cartan \Bogov_{\ell  } u_{i}
+        \\&=
+        \int_{\Omega} v \wedge \Bogov_{\ell+1} \cartan u_{i}
+        +
+        (-1)^{k(n-k-1)+1}
+        \int_{\Omega} \cartan v \wedge \Bogov_{\ell  } u_{i}
+        .
+    \end{align*}
+    By the continuity of bounded linear functionals, we find 
+    \begin{align*}
+        \int_{\Omega} v \wedge u 
+        &=
+        (-1)^{k(n-k-1)+1}
+        \int_{\Omega} \cartan v \wedge \Bogov_{\ell  } u_{i}
+        .
+    \end{align*}
+    By definition, $w \in W^{p}_{0}(\Omega,\Alt^{\ell-1})$ with $\cartan w = u$.
+    % TODO: definition of weak derivative + definition of boundary condition 
+    % 
+    This completes the proof. 
 \end{proof}
 
+% TODO: Density of C infty mit oder ohne c. 
+% TODO: Density im kernel 
+% TODO: lrcorner 
 
+\begin{remark}
+    The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
+    while they are increasing for the Bogovski\u{\i} operator.
+    This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over convex domains~\cite{guerini2004eigenvalue}.
+\end{remark}
+
+\begin{remark}
+    The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
+    To the best of our knowledge, the work of Costabel and McIntosh was the first to propose a regularized Poincar\'e operator (regularized via averaging).
+    These potentials enable the analysis of de~Rham complexes without boundary conditions.
+    % 
+    The Bogovski\u{\i}-type operators were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics~\cite{bogovskii1979solution}.
+    Their generalization to differential forms was first discussed by Costabel and McIntosh~\cite{costabel2010bogovskiui}. 
+    In some sense dual to the regularized Poincar\'e operators, they establish the exactness of the $L^{p}$ de~Rham complex with full boundary conditions.
+    % 
+    Costabel and McIntosh regularize the potentials by smoothly averaging over pivot points within an interior ball, 
+    which is why they study domains star-shaped with respect to a ball. 
+    Instead, we average over the entire domain, which requires a convex geometry. 
+    The resulting potential operators are sufficient for our purpose in establishing Poincar\'e--Friedrichs constants. 
+    The $L^{p}$ continuity constants of the regularized potential operators have not yet been established, to the best of our knowledge.
+\end{remark}
 
 
 
@@ -2868,6 +3195,27 @@ For full technical clarity, we show we have a bounded operator
 
 
 \subsection{Constructions over shellable triangulations}
+
+
+
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. Then 
+    \begin{align*}
+        \| \vec u \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \vec u \|_{L^{2}(\Omega)}.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
+    Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
+    with smallest singular value $\diam(\Omega)^{-1}$, according to Friedrichs inequality. 
+    The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
+    which has the same smallest singular value. 
+\end{proof}
+
+
+
+
+
 
 \subsection{Numerical examples}
 

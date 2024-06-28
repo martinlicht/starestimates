@@ -1721,10 +1721,51 @@ Since $\Omega$ is bounded, $u \in C^{\infty}_{\overline\Omega}(\bbR^{n},\Alt^{k}
 
 
 
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$. There exists a bounded mapping 
+    \begin{align*}
+     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+    \end{align*}
+    such that 
+    \begin{align*}
+        \| u \|_{L^{p}} \leq n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} D \| u \|_{L^{p}(\Omega)}
+    \end{align*}
+    and such that $\cartan \Bogov_{\ell} u = u$ for all $u \in \cartan \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$.
+\end{lemma}
+
+\begin{lemma}
+    Let $\Omega \subseteq \bbR^{n}$. There exists a bounded mapping 
+    \begin{align*}
+     \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
+    \end{align*}
+    such that 
+    \begin{align*}
+        \| u \|_{L^{p}} \leq n A(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} D \| u \|_{L^{p}(\Omega)}
+    \end{align*}
+    and such that $\cartan \Bogov_{\ell} u = u$ for all $u \in \cartan \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})$.
+\end{lemma}
 
 
 
 
+
+There exists a sequence $u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell})$ that converges to $u$ in $W^{p}(\Omega,\Alt^{\ell})$
+and which satisfies $\cartan u_{i} = 0$. Let $w \in L^{p}(\Omega,\Alt^{\ell-1})$ be the limit of $\Poinc_{\ell} u_{i}$.
+We know that $\Poinc_{\ell} u_{i} \in C^{\infty}(\overline\Omega,\Alt^{\ell-1})$. 
+Given any $v \in C^{\infty}_{c}(\Omega,\Alt^{n-\ell-1})$, we verify 
+\begin{align*}
+    \int_{\Omega} w \wedge \cartan v
+    &=
+    \lim_{i} \int_{\Omega} \Poinc_{\ell} u_{i} \wedge \cartan v
+    \\&=
+    \lim_{i} \int_{\Omega} \cartan \Poinc_{\ell} u_{i} \wedge v
+    \\&=
+    \lim_{i} \int_{\Omega} u_{i} \wedge v
+    =
+    \int_{\Omega} u \wedge v
+    .
+\end{align*}
+That means $w \in W^{p}(\Omega,\Alt^{\ell-1})$ with $\cartan w = u$. 
 
 
 
@@ -1817,4 +1858,51 @@ We apply the cellwise local approximation estimate, which coincides with the cel
     \end{align}
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    Bogovskii was the first establish the 
+    on whose work the following presentation is based. 
+    In contrast to the aforementioned reference, the goal of our discussion is more modest:
+    we merely need them over convex sets and are only interested in their operator norms between Lebesgue spaces.
+    However, we derive explicit bounds for the operator norms, which are of independent interest. 
+    
+    It can be identified as a formal adjoint to the Poincar\'e operator in exterior calculus. 
+    The Bogovski\u{\i}-type potential operator first appeared for the mathematical discussion of hydrodynamical models~\cite{bogovskii1979solution} and has since been extended to exterior calculus. 
+    The regularized Bogovski\u{\i} potential operator was studied extensively by Costabel and McIntosh.
+    These operators are defined over sets star-shaped with respect to a ball. 
+    
+    The generalization to differential forms has been discussed extensively by Costabel and McIntosh~\cite{costabel2010bogovskiui},
+    on whose work the following presentation is based. 
+    In contrast to the aforementioned reference, the goal of our discussion is more modest:
+    we merely need them over convex sets and are only interested in their operator norms between Lebesgue spaces.
+    However, we derive explicit bounds for the operator norms, which are of independent interest. 
+
+    
+    Their analysis identifies the potential as a pseudodifferential operator of negative order and utilizes tools of harmonic analysis. However, no operator norm estimates are given in the literature, to the best of our best knowledge.
+    We study a variation of this potential operator over convex sets.
+    We simply use a constant averaging over the entire domain. 
+    While the resulting Bogovski\u{\i}-type potential has more moderate regularity properties, 
+    this simplification suits our purposes and enables some simple estimates for the continuity constant of the potential operator in Lebesgue norms. 
 \end{document}
