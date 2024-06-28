@@ -1,3 +1,155 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{hyperref}         % For hypertext links
+
+\input{header}
+
+
+\begin{document}
+
+
+
+
+
+
+
+Given $a \in \Omega$, we introduce the potential operator 
+\begin{align*}
+    \Poinc_{\ell,a} u(x) 
+    &:= 
+    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
+    .
+\end{align*}
+By definition,
+\begin{align*}
+    \Poinc_{\ell} u(x) 
+    =
+    \int_{\Omega} \Poinc_{\ell,a} u(x) \,da\;
+    .
+\end{align*}
+We study the interaction of the potential operator with the exterior derivative in more detail.
+Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$ with $\supp u \subseteq \overline\Omega$.
+We rewrite the potential,
+\begin{align*}
+    \Poinc_{\ell,a} u(x) 
+    &= 
+    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    \\&
+    = 
+    (x-a)\lrcorner 
+    \sum_{\sigma \in \Sigma(k,n)}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} dt 
+    \\&
+    = 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{\sigma-\sigma(i)} dt 
+    ,
+\end{align*}
+and compute its exterior derivative:
+\begin{align*}
+    \cartan \Poinc_{\ell,a} u(x) 
+    &= 
+    \ell
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    + 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    \int_{0}^{1} 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} dt 
+    .
+\end{align*}
+We write the exterior derivative of $u$ as 
+\begin{align*}
+    \cartan u(x)
+    =
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
+    ,
+\end{align*}
+and apply the potential operator to this result, which gives 
+\begin{align*}
+    \Poinc_{\ell+1,a} \cartan u(x)
+    &=
+    (x-a)\lrcorner 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    \;\cartanx^{j} \wedge \cartanx^{\sigma}
+    \\&
+    = 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \;\cartanx^{\sigma}
+    \\&\qquad 
+    - 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    (-1)^{i-1}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    .
+\end{align*}
+We add the exterior derivative of the potential and the potential of the exterior derivative.
+Taking into account cancellations, this gives the identity 
+\begin{align*}
+    &
+    \cartan \Poinc_{\ell,a} u(x)
+    +
+    \Poinc_{\ell+1,a} \cartan u(x)
+    \\&
+    =
+    \ell
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    + 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    \int_{0}^{1} 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    +
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
+    \cartanx^{\sigma}
+    \\&\qquad
+    - 
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
+    (-1)^{i-1}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
+    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
+    \int_{0}^{1} 
+    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \\&\qquad
+    +
+    \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} dt
+    \cartanx^{\sigma}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} 
+    \int_{0}^{1} \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \\&
+    =
+    \sum_{\sigma \in \Sigma(k,n)} 
+    u_{\sigma}(x) \cartanx^{\sigma}
+    =
+    u(x)
+    .
+\end{align*}
+In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell,a} u = u$.
+
+
+
+
+
+
 % Develop construction of complexes via adding patches 
 \subsection{Patch coverings}
 
@@ -1207,8 +1359,7 @@ Moreover, $H_n(\calT) \simeq \bbZ$ if $\calT$ has no boundary and $H_n(\calT) \s
     \right)
     .
  \end{align*}
- 
- 
+ \color{black}
  
  
  
@@ -1308,7 +1459,7 @@ Since $\Omega$ is bounded, $\supp u \subseteq \overline\Omega$ implies $\supp B^
     \\&\leq 
     2^{pn-p+1} \frac{D^{pn}}{|x-y|^{pn}} - \frac{D^{p-1}}{|x-y|^{p-1}}
     .
-\end{align}
+\end{align*}
 
 
 
@@ -1361,31 +1512,31 @@ Let us write this in detail for the operator $R_{\ell}$.
 We substitute $y$ by the new variable $a=y+t(x-y)$.
 Whence $da = (1-t)^n dy$ and $t(x-y) = a-y$ and $x-y = (a-y)/t$ and $x - (a-x)/t = y$
 \begin{align*}
-    \Bogov_{\ell} u(x) 
+    \Poinc_{\ell} u(x) 
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{\ell-1} 
     \chi_{\Omega}\left(y+t(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\&= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{\ell-1} 
     \chi_{\Omega}\left(y+(x-y)-(x-y)+t(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\&= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{\ell-1} 
     \chi_{\Omega}\left(x+(t+1)(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} (t+1)^{n}
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{\ell-1} (t+1)^{n}
     \chi_{\Omega}\left(a\right) 
     \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
 \end{align*}
 Then we substitute $1-s = 1/(t+1)$, that is, $s = t/(t+1)$:
 Whence $t = \left( 1/s-1 \right)^{-1}$.
 \begin{align*}
-    \Bogov_{\ell} u(x) 
+    \Poinc_{\ell} u(x) 
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell} \left( 1/s-1 \right)^{\ell-1} (t+1)^{n}
+    \int \int_{0}^{1} (t-1)^{n-\ell} \left( 1/s-1 \right)^{\ell-1} (t+1)^{n}
     \chi_{\Omega}\left(a\right) 
     \frac{ x-a }{t+1}\lrcorner u( x + (a-x)/(t+1) ) \,dt\,dy 
     \\
@@ -1397,37 +1548,37 @@ Whence $t = \left( 1/s-1 \right)^{-1}$.
 Then we substitute $s = (t-1)/t$:
 \begin{align*}
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{-n+\ell-1} 
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{-n+\ell-1} 
     \chi_{\Omega}\left(a\right)
     \frac{(a-y)}{t} \lrcorner u(x+(a-x)/t) \,dt\,da 
     \\
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1-n-1} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u(x+(a-x)/t) \,dt\,da
+    \int \int_{0}^{1} (t-1)^{n-\ell}t^{\ell-1-n-1} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u(x+(a-x)/t) \,dt\,da
     .
 \end{align*}
 Then we substitute $s = (t-1)/t$:
 \begin{align*}
-    \Bogov_{\ell} u(x) 
+    \Poinc_{\ell} u(x) 
     &= 
-    \int \int_{1}^\infty s^{n-\ell} (s-1)^{2} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( x+(s-1)(a-x) ) \frac{-1}{(s-1)^2}\,ds\,da
+    \int \int_{0}^{1} s^{n-\ell} (s-1)^{2} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( x+(s-1)(a-x) ) \frac{-1}{(s-1)^2}\,ds\,da
     \\
     &= 
-    - \int \int_{1}^\infty s^{n-\ell} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( s(a-x) - a ) \,ds\,da
+    - \int \int_{0}^{1} s^{n-\ell} \chi_{\Omega}\left(a\right)\, (x-a)\lrcorner u( s(a-x) - a ) \,ds\,da
     \\
     &=
-    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
 We copy a statement by McIntosh and Costabel:
 \begin{align*}
-    \Bogov_{\ell} u(x) 
+    \Poinc_{\ell} u(x) 
     = 
-    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
 $a = y + t(x-y)$
 $s = \frac{t}{t-1}$
-From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ has support contained in $\overline\Omega$, we immediately have that $\Bogov_{\ell} u(x)$ is smooth with support contained in $\overline\Omega$ as well. 
+From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ has support contained in $\overline\Omega$, we immediately have that $\Poinc_{\ell} u(x)$ is smooth with support contained in $\overline\Omega$ as well. 
 
 
 
@@ -1439,14 +1590,14 @@ From that representation we can tell that whenever $u \in C^{\infty}(\bbR^{n})$ 
 
 
 
-From this form of $\Bogov_{\ell}$, because of the unbounded interval of integration in $t$, one cannot immediately conclude that $\Bogov_{\ell}$ maps ${C^\infty}$ functions to ${C^\infty}$ functions.
-But if $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$, one sees that $\Bogov_{\ell} u$ is ${C^\infty}$ on 
+From this form of $\Poinc_{\ell}$, because of the unbounded interval of integration in $t$, one cannot immediately conclude that $\Poinc_{\ell}$ maps ${C^\infty}$ functions to ${C^\infty}$ functions.
+But if $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$, one sees that $\Poinc_{\ell} u$ is ${C^\infty}$ on 
 $\bbR^n\setminus\supp\chi_{\Omega}$, and that 
-$\Bogov_{\ell} u(x)=0$ unless $x$ lies in the starlike hull of $\supp u$ with respect to $B$. 
+$\Poinc_{\ell} u(x)=0$ unless $x$ lies in the starlike hull of $\supp u$ with respect to $B$. 
 Thus if $\Omega$ is open and starlike with respect to $B$, then   
-$u\in{C^\infty_c}(\Omega,\Alt^\ell)$ implies $\supp \Bogov_{\ell} u \subset\Omega$, and, if $\Omega$ is bounded, then
-$u\in{C^\infty}_{\overline\Omega}(\bbR^n,\Alt^\ell)$ implies $\supp \Bogov_{\ell} u \subset\overline\Omega$. 
-The fact that $\Bogov_{\ell}$ indeed maps 
+$u\in{C^\infty_c}(\Omega,\Alt^\ell)$ implies $\supp \Poinc_{\ell} u \subset\Omega$, and, if $\Omega$ is bounded, then
+$u\in{C^\infty}_{\overline\Omega}(\bbR^n,\Alt^\ell)$ implies $\supp \Poinc_{\ell} u \subset\overline\Omega$. 
+The fact that $\Poinc_{\ell}$ indeed maps 
 ${C^\infty_c}(\bbR^n,\Alt^\ell)$ to ${C^\infty_c}(\bbR^n,\Alt^{\ell-1})$ will be a consequence of Theorem~\ref{T:pseudo} below.
 
 
@@ -1485,11 +1636,11 @@ we find the homotopy relations, valid for all $u\in{C^\infty_c}(\bbR^n,\Alt^\ell
  dR_nu &=u &&(\ell=n)\;.
 \end{aligned}
 \end{equation}
-One could be tempted to integrate Cartan's formula from $1$ to $\infty$ and compare with \eqref{eq:Bogo}, thus formally obtaining a similar homotopy relation for $\Bogov_{\ell}$ directly. The result is indeed true except for $\ell=n$, but for a rigorous proof we prefer to use the duality relation \eqref{eq:dualRT} to deduce corresponding anticommutativity relations for $\Bogov_{\ell}$ from the relations \eqref{eq:dR+Rd=1} which are already proved. Here is what one obtains for $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$:
+One could be tempted to integrate Cartan's formula from $1$ to $\infty$ and compare with \eqref{eq:Bogo}, thus formally obtaining a similar homotopy relation for $\Poinc_{\ell}$ directly. The result is indeed true except for $\ell=n$, but for a rigorous proof we prefer to use the duality relation \eqref{eq:dualRT} to deduce corresponding anticommutativity relations for $\Poinc_{\ell}$ from the relations \eqref{eq:dR+Rd=1} which are already proved. Here is what one obtains for $u\in{C^\infty_c}(\bbR^n,\Alt^\ell)$:
 \begin{equation}
 \begin{aligned}
 \label{eq:dT+Td=1}
-  d\Bogov_{\ell} u + T_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
+  d\Poinc_{\ell} u + \Poinc_{\ell+1} du &= u\; &&(1\le\ell\le n-1)\;;\\
   T_1 du &= u \; &&(\ell=0)\;;\\
  dT_n u &=u - (\int\! u)\star\chi_{\Omega}&&(\ell=n)\;.
 \end{aligned}
@@ -1509,7 +1660,7 @@ $$
 where $\iota$ is the inclusion mapping for constant functions and 
 $\iota^*=(\star\iota)'$ denotes the integral $u\mapsto\int\!u$ for $n$-forms.
 
-If we correspondingly extend the definitions of $R_{\ell}$ and $\Bogov_{\ell}$ by
+If we correspondingly extend the definitions of $R_{\ell}$ and $\Poinc_{\ell}$ by
 $$
 \begin{aligned}
   R_0u &:=\left(\chi_{\Omega},u\right)\,\text{ for $0$-forms }u\,, &
@@ -1522,7 +1673,7 @@ then we can write the relations \eqref{eq:dR+Rd=1} and \eqref{eq:dT+Td=1} simply
 \begin{equation}\label{eq:R&T&d}
  \overline d\,R_{\ell} u + R_{\ell+1} \,\overline d u  = u
  \quad \text{ and }\quad
- \underline d\,\Bogov_{\ell} u + T_{\ell+1} \,\underline du = u\quad \text{ for all }\;
+ \underline d\,\Poinc_{\ell} u + \Poinc_{\ell+1} \,\underline du = u\quad \text{ for all }\;
   0\le\ell\le n.
 \end{equation}
 
@@ -1664,3 +1815,6 @@ We apply the cellwise local approximation estimate, which coincides with the cel
         +
         \sum_{i=k+1}^{n-1} \lambda_{i} v_n
     \end{align}
+
+
+\end{document}
