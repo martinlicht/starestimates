@@ -2179,11 +2179,11 @@ Let $\Omega \subseteq \bbR^{3}$ be a bounded open set.
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
-$W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, and we have 
+$W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
 \[
     W^p(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
 \]
-The space $W^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
+The space $\bfW^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
 and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
 \[
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
@@ -2224,29 +2224,30 @@ We use the commutativity relations
     \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw)
 \end{align}
 \end{subequations}
-for $v \in W^{p}(\grad,\Omega)$, $\bfv \in W^{p}(\curl,\Omega)$, and $\bfw \in W^{p}(\divergence,\Omega)$.  
+for $v \in W^{p}(\grad,\Omega)$, $\bfv \in \bfW^{p}(\curl,\Omega)$, and $\bfw \in \bfW^{p}(\divergence,\Omega)$.  
 We summarize this as a commuting diagram:
 \begin{align*}
     \begin{CD}
-        W^{1,p}(\grad,\Omega') @>{\grad}>> \bfW^{p}(\curl,\Omega') @>{\curl}>> \bfW^{p}(\divergence,\Omega') @>{\divergence}>> L^{p}(\Omega')
+        W^{p}(\grad,\Omega') @>{\grad}>> \bfW^{p}(\curl,\Omega') @>{\curl}>> \bfW^{p}(\divergence,\Omega') @>{\divergence}>> L^{p}(\Omega')
         \\
         @VV{\phi^{\grad}}V 
         @VV{\phi^{\curl}}V 
         @VV{\phi^{\divergence}}V 
         @VV{\phi^{\rm b}}V 
         \\
-        W^{1,p}(\grad,\Omega ) @>{\grad}>> \bfW^{p}(\curl,\Omega ) @>{\curl}>> \bfW^{p}(\divergence,\Omega ) @>{\divergence}>> L^{p}(\Omega )
+        W^{p}(\grad,\Omega ) @>{\grad}>> \bfW^{p}(\curl,\Omega ) @>{\curl}>> \bfW^{p}(\divergence,\Omega ) @>{\divergence}>> L^{p}(\Omega )
     \end{CD}
 \end{align*}
 
 \begin{remark}
-    Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
-    scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega'$.
-    This is in accordance with the notion of pullback, that we will review shortly. 
+    The Piola transform goes int the opposite direction of the mapping $\phi : \Omega \rightarrow \Omega'$:
+    scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
+    This definition is in accordance with the notion of pullback, which we will review shortly. 
     One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
+    The literature also knows the Piola transform in the direction of the original mapping. 
 \end{remark}
 
-%
+
 
 %
 % trace properties 
@@ -2255,10 +2256,10 @@ We summarize this as a commuting diagram:
 
 %\section{Review of exterior calculus}
 
-We also assume the perspective of exterior calculus. 
-We give a brief introduction into this topic. 
+Having discussed vector analysis, we review exterior calculus. 
+We give a brief introduction into this topic, and refer to the literature for further background~\cite{...}. 
 Let $V$ be a real vector space. 
-Given an integer $k \geq 0$, We let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
+Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
 if 
 \[ 
@@ -2279,13 +2280,16 @@ defined by the formula
     (u_1 \wedge u_2)(v_1, v_2, \ldots, v_{k+l}) 
     = 
     \frac{1}{k! l!} 
-    \sum_{ \sigma \in S_{k+l}} 
-    \signum(\sigma) 
-    u_1( v_{\sigma(  1)}, \ldots, v_{\sigma(k  )} ) 
-    u_2( v_{\sigma(k+1)}, \ldots, v_{\sigma(k+l)} ),
+    % \sum_{ \pi \in S_{k+l}} 
+    \sum_{ \pi } 
+    \signum(\pi) 
+    u_1( v_{\pi(  1)}, \ldots, v_{\pi(k  )} ) 
+    u_2( v_{\pi(k+1)}, \ldots, v_{\pi(k+l)} ),
 \]
 for any \( v_1, v_2, \ldots, v_{k+l} \in V \).
-Here, \( S_{k+l} \) denotes the symmetric group on \( k+l \) elements, and \( \signum(\sigma) \) is the sign of the permutation \( \sigma \). The exterior product is bilinear and associative, and satisfies 
+Here, the sum runs over all permutations $\pi$ of the index set \(\{ 1, 2, \ldots, k+l \}\).
+% Here, \( S_{k+l} \) denotes the symmetric group on \( k+l \) elements, and \( \signum(\pi) \) is the sign of the permutation \( \pi \). 
+The exterior product is bilinear and associative, and satisfies 
 \begin{align*}
     u_1 \wedge u_2 = (-1)^{kl} u_2 \wedge u_1,
     \quad 
@@ -2302,7 +2306,7 @@ To define a canonical basis of $\Alt^{k}(\bbR^{n})$,
 we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$,
 and introduce the basic $k$-alternators 
 \begin{align*}
-    \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n). 
+    \cartanx^{\sigma} := \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n). 
 \end{align*}
 These define a basis of $\Alt^{k}(\bbR^{n})$.
 Note that 
@@ -2316,8 +2320,8 @@ The basic $k$-alternators are an orthonormal basis of $\Alt^{k}(\bbR^{n})$ with 
 
 We write $C^{\infty}\Alt^{k}(\Omega)$ for the space of smooth differential $k$-forms over $\Omega \subseteq \bbR^{n}$,
 which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{n})$.
-The exterior derivative \( d \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
-to a \((k+1)\)-form \( d\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
+The exterior derivative \( \cartan \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
+to a \((k+1)\)-form \( \cartan\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
 Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
 \[
     \omega = 
@@ -2326,9 +2330,9 @@ Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
 \]
 where \( \omega_{\sigma} : \Omega \rightarrow \bbR \) are smooth functions.
-The exterior derivative \( d\omega \) is defined by
+The exterior derivative \( \cartan\omega \) is defined by
 \[
-    d\omega = 
+    \cartan\omega = 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \sum_{j=1}^{n} 
     \frac{\partial \omega_{\sigma}}{\partial x^j} 
@@ -2336,16 +2340,16 @@ The exterior derivative \( d\omega \) is defined by
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)}.
 \]
 The exterior derivative is linear and nilpotent, which means 
-\( d(d\omega) = 0 \) for any \( \omega \in C^{\infty}\Alt^{k}(\Omega) \).
+\( \cartan(\cartan\omega) = 0 \) for any \( \omega \in C^{\infty}\Alt^{k}(\Omega) \).
 Moreover, it satisfies the Leibniz rule:
 \[ 
-    d(\omega \wedge \eta) 
+    \cartan(\omega \wedge \eta) 
     = 
-    d\omega \wedge \eta + (-1)^{k} \omega \wedge d\eta, 
+    \cartan\omega \wedge \eta + (-1)^{k} \omega \wedge \cartan\eta, 
     \qquad \omega \in C^{\infty}\Alt^{k}(\Omega), 
     \qquad \eta \in C^{\infty}\Alt^{l}(\Omega).
 \]
-Let u now turn our attention to Sobolev spaces of differential forms. 
+Let us now turn our attention to Sobolev spaces of differential forms. 
 Since $\Alt^{k}(\Omega)$ is a normed space, we can consider the pointwise norms of differential $k$-forms. 
 % First, we notice that the % TODO: introduce a norm 
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
@@ -2364,6 +2368,7 @@ The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential fo
 \]
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
 
+% TODO: transformationssatz 
 
 \begin{remark}
     In three dimensions, 
@@ -2371,7 +2376,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
     This is expressed formally as the commuting diagram 
     \[
     \begin{CD}
-        C^\infty\Alt^0(\Omega) @>{d}>> C^\infty\Alt^1(\Omega) @>{d}>> C^\infty\Alt^2(\Omega) @>{d}>> C^\infty\Alt^3(\Omega) 
+        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) @>{\cartan}>> C^\infty\Alt^3(\Omega) 
         \\
         @VV{\varpi^{0}}V 
         @VV{\varpi^{1}}V 
@@ -2395,7 +2400,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
     the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
     To the authors' best knowledge, neither convention is dominant in the literature.
     We summarize the situation in the following commuting diagram: 
-    \[
+    \[ % TODO: what is the convention for the curl and rotation ? look up in the textbooks?
     \begin{CD}
         C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
         \\
@@ -2403,7 +2408,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
         @AA{\varkappa^{1}}A 
         @AA{\varkappa^{2}}A 
         \\
-        C^\infty\Alt^0(\Omega) @>{d}>> C^\infty\Alt^1(\Omega) @>{d}>> C^\infty\Alt^2(\Omega) 
+        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) 
         \\
         @VV{\varpi^{0}}V 
         @VV{\varpi^{1}}V 
@@ -2419,7 +2424,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 
 
 
-
+% TODO: spaces with boundary conditions: grad, curl, divergence, exterior derivative; approximation properties
 
 
 
@@ -2596,7 +2601,7 @@ We study the interaction of the potential operator with the exterior derivative 
 Suppose that $u \in C^{\infty}(\bbR^n,\Alt^{\ell})$ with $\supp u \subseteq \overline\Omega$.
 We rewrite the potential,
 \begin{align*}
-    T_{\ell,a} u(x) 
+    \Bogov_{\ell,a} u(x) 
     &= 
     (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     \\&
@@ -2614,9 +2619,9 @@ We rewrite the potential,
 \end{align*}
 and compute its exterior derivative:
 \begin{align*}
-    \cartan T_{\ell,a} u(x) 
+    \cartan \Bogov_{\ell,a} u(x) 
     &= 
-    k
+    \ell 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
     t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
@@ -2637,7 +2642,7 @@ We write the exterior derivative of $u$ as
 \end{align*}
 and apply the potential operator to this result, which gives 
 \begin{align*}
-    T_{\ell+1,a} \cartan u(x)
+    \Bogov_{\ell+1,a} \cartan u(x)
     &=
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
@@ -2660,9 +2665,9 @@ We add the exterior derivative of the potential and the potential of the exterio
 Taking into account cancellations, this gives the identity 
 \begin{align*}
     &
-    \cartan T_{\ell,a} u(x)
+    \cartan \Bogov_{\ell,a} u(x)
     +
-    T_{\ell+1,a} \cartan u(x)
+    \Bogov_{\ell+1,a} \cartan u(x)
     \\&
     =
     \ell
@@ -2707,7 +2712,7 @@ Taking into account cancellations, this gives the identity
     u(x)
     .
 \end{align*}
-In particular, if $\cartan u = 0$, then $\cartan T_{\ell,a} u = u$.
+In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell,a} u = u$.
 
 
 
