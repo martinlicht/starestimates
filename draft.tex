@@ -14,6 +14,49 @@
 
 
 
+\begin{remark}
+    For reference, how the extension should work:
+    suppose that $u \in H(\Omega)$ and let $f = du$.
+    Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
+    We built $u'_2 \in H(T_2)$ such that 
+    \begin{align*}
+        \trace_F u_1 = \trace_F u'_2
+    \end{align*}
+    We let $u''_2 \in H(T_2)$ such that 
+    \begin{align*}
+        d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
+    \end{align*}
+    Such $u''_2$ exists because 
+    \begin{align*}
+        \trace_F( f_2 - d u'_2 ) 
+        &= 
+        \trace_F f_1 - \trace_F d u'_2
+        \\&= 
+        \trace_F f_1 - \trace_F d u'_2
+        \\&= 
+        \trace_F d u_1 - \trace_F d u'_2
+        \\&= 
+        d \trace_F u_1 - d \trace_F u'_2
+        \\&= 
+        d \trace_F u_1 - d \trace_F u_1
+        = 0
+        .
+    \end{align*}
+    Setting $u_2 = u'_2 + u''_2$, we find 
+    \begin{align*}
+        d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
+        \\
+        \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
+    \end{align*}
+    That requires an extension from given partial boundary data. 
+    Possible approaches:
+    \begin{itemize}
+        \item Reflect a neighborhood and multiply with cut-off function.
+        \item Take traces from patch and extend onto new simplex. 
+    \end{itemize}
+\end{remark}
+
+
 
 
 

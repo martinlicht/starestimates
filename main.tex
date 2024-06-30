@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \input{header}
@@ -10,7 +10,7 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over domains with shellable triangulations}
+\title{Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex\\ over domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{email2@example.com}} \and
@@ -193,7 +193,6 @@ for which some finite element patches are not star-shaped with respect to any ba
 Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
 However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
 We review some of the main outcomes. 
-% TODO: wait for answer to email 
 Veeser and Verf\"urth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
 % 
 The literature knows different variations of a popular avenue towards Poincar\'e--Friedrichs constants that can circumvent the effect of low boundary regularity~\cite{vohralik2005discrete,ern2021finite}. 
@@ -225,8 +224,8 @@ We are not aware of any estimates for the curl operator, even in the Hilbert spa
 The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence, satisfying explicitly computable upper bounds. We follow closely the philosophy of the aforementioned sequential approach. Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
 
 % Exterior calculus 
-Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. Exterior calculus is used ubiquitously in physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures common to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
-\\
+Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures common to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+\\ % hu2019structure
 
 
 
@@ -252,7 +251,7 @@ Again, the situation is more complicated for potentials of curls and divergences
 While there is a wealth of literature for gradient Poincar\'e inequalities over convex domains, where optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known,
 the literature is more sparse when it comes to the corresponding estimates for the curl and divergence potentials.
 
-In the Hilbert space case, $p=2$, the work of Guerini and Savo shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. These comparisons~\eqref{math:intro:guerinisavo} are restricted to convex Lipschitz domains. % TODO: double check 
+In the Hilbert space case, $p=2$, the work of Guerini and Savo shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. These comparisons~\eqref{math:intro:guerinisavo} are restricted to convex Lipschitz domains. 
 
 No such results are known for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. 
 We follow closely the discussions by Costabel and McIntosh~\cite{costabel2010bogovskiui},
@@ -297,14 +296,6 @@ and provide computable upper bounds for Poincar\'e--Friedrichs constants over sh
 
 
 
-
-% % TODO:V&V seems to be the only reference for stars .... General results of this type for a class containing the finite element stars are not known to us. In particular and as will be illustrated in a moment, Poincar\'e constants of stars and thus of star-shaped domains may be arbitrarily large. Consequently, corresponding bounds have to incorporate some quantity that perceives the possible lack of convexity. % TODO: \cite{vohralik2005discrete}
-
-% Estimates for Poincare constants 
-% \cite{bebendorf2003note}
-% \cite{vohralik2005discrete}
-% Verfurth, Veeser & Verfurth 
-% ...
 
 
 
@@ -366,7 +357,7 @@ More specifically, $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the s
 Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$.
 We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
 Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. 
-In practice, we not always distinguish between points and singleton simplices. % TODO: see whether being formally correct is possible 
+In practice, we not always distinguish between points and singleton simplices. 
 Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (codimension $1$ members) of this triangulation. 
 
 \begin{remark}
@@ -661,7 +652,6 @@ where $C_{\rm{EFNT},p}$ is the best possible constant that only depends on $p$ a
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
 \end{align}
-% TODO: double check what is known in the literature 
 Note that the last inequalities imply, again when $1 \leq p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
@@ -1385,6 +1375,8 @@ We also want to assess an alternative route towards Poincar\'e--Friedrichs inequ
 While the underlying idea remains the same, the construction of the potential is slightly different. 
 As an auxiliary result with independent relevance, we compute an upper bound for the Poincar\'e--Friedrichs inequality 
 when homogeneous boundary conditions are imposed on a single face of the boundary. 
+We present this result with two different techniques. 
+While it may not be obvious, the second estimate is tighter than the first estimate when using the optimal Poincar\'e--Friedrichs constants for convex domains. 
 % Upper bounds for the classical Poincar\'e inequality over a simplex is widely known. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex}
@@ -1400,10 +1392,11 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \begin{align*}
         C_{{\rm PF},T,F,p}
         \leq 
-        \left( C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p} \right),  
+        C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p},  
         \quad 
         C_{{\rm PF},T,F,p}
-        \leq 
+        \leq
+        \frac{1}{\sqrt[p]{p}}
         \diam(T)
         .
     \end{align*}
@@ -1463,28 +1456,45 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \end{align*}
     Recall that $u = w - \gamma$. The first inequality follows. 
     
-    The second inequality follows from Rademachers theorem when $p = \infty$.
+    The second inequality follows from Rademacher's theorem when $p = \infty$.
     Let assume that $1 \leq p < \infty$. 
     Suppose that $u \in C^{\infty}(T)$ with support disjoint from $F$.
-    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and the $n$-th coordinate is non-negative over $T$. 
-    We write $\bfg \in \bfL^{\infty}(T)$ be the trivial extension of $u$ outside of $T$.
-    With the fundamental theorem of calculus and H\"olders inequality: 
+    Without loss of generality, 
+    the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
+    and the minimal first coordinate among all the points of $F$ equals $0$. 
+    We write $\bfg \in \bfL^{\infty}(T)$ be the trivial extension of $\nabla u$ outside of $T$.
+    %With the fundamental theorem of calculus and H\"olders inequality: 
     \begin{align*}
-        &
-        \int_{\Omega} |u(x_{1},\dots,x_{n-1},x_{n})|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \int_{\Omega} |u(x)|^{p} dx
+        &\leq
+        \int_{\bbR^{n-1}} \int_{0}^{D} |u( x_{1}, \overline x )|^{p} dx_{1} d\overline{x}
         \\&
         \leq
-        \int_{\Omega} \left| \int_{0}^{x_n} \partial_{n} u(x_{1},\dots,x_{n-1},y) dy \right|^{p} dx_1 \dots dx_{n-1} dx_{n}
+        \int_{\bbR^{n-1}} \int_{0}^{D} \left| \int_{0}^{x_{1}} |\bfg( y, \overline x )| dy \right|^{p} dx_{1} d\overline{x}
         \\&
         \leq
-        \int_{\Omega} \int_{0}^{x_n} x_{n}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+        \int_{0}^{D} x_{1}^{p-1} \int_{\bbR^{n-1}} \int_{0}^{x_{1}} \left| \bfg( y, \overline x ) \right|^{p} dy d\overline{x} dx_{1}
         \\&
         \leq
-        \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
-        \leq 
-        D^{p} 
-        \int_{\Omega} |\nabla u|^{p} dx
-        .
+        \int_{0}^{D} x_{1}^{p-1} dx_1 \cdot \int_{\Omega} \left| \bfg( y, \overline x ) \right|^{p} dy d\overline{x} 
+        \leq
+        \frac{D^{p}}{p} \int_{\Omega} \left| \nabla u( x ) \right|^{p} dx
+        %
+%         \leq
+%         \int_{F} |u(x_{1},\dots,x_{n-1},x_{1})|^{p} dx_1 \dots dx_{n-1} dx_{1}
+%         \\&
+%         \leq
+%         \int_{\Omega} \left| \int_{0}^{x_{1}} \partial_{n} u(x_{1},\dots,x_{n-1},y) dy \right|^{p} dx_1 \dots dx_{n-1} dx_{1}
+%         \\&
+%         \leq
+%         \int_{\Omega} \int_{0}^{x_{1}} x_{1}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+%         \\&
+%         \leq
+%         \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+%         \leq 
+%         D^{p} 
+%         \int_{\Omega} |\nabla u|^{p} dx
+%         .
     \end{align*}
     That $\|u\|_{L^{p}(\Omega)} \leq \diam(T) \|\nabla u\|_{L^{p}(\Omega)}$ for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
     
@@ -1496,6 +1506,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     Then $\tilde u \in W^{1,p}_{0}(\hat U)$, and $\tilde u$ is the limit of a sequence $u_{m} \in C^{\infty}_{c}(\hat U)$.
     Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ is the desired sequence that approximates $u$. 
 \end{proof}
+
 
 
 
@@ -1938,11 +1949,6 @@ We continue with a few more observations about manifold triangulations.
 
 
 
-% TODO: https://arxiv.org/html/1607.08163v3
-% https://mathoverflow.net/questions/403415/properties-a-triangulation-must-have-in-order-to-describe-a-manifold
-
-
-
 
 
 \begin{remark}
@@ -2121,10 +2127,6 @@ The reason of our interest in shellable simplicial complexes is that they can be
 such that the interface is well-behaved: it is a simplicial disk or a simplicial sphere. 
 That leads to the following important consequence.
 
-% TODO: we only need some basic properties, namely that the construction maintains manifolds with boundary.
-% TODO: copy and adapt the content of Ziegler and Kozlov as necessary
-% The notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
-
 \begin{lemma}    
     If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
     then
@@ -2216,8 +2218,6 @@ Our main interest are local patches or stars within triangulations.
 %     Any of its shellings can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
 \end{proof}
 
-% TODO: Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
-
 \begin{lemma}
     Let $\calT$ be a $n$-dimensional manifold triangulation and $V \in \Vertices(\calT)$ be an inner vertex.
     Then $\patch_{\calT}(V)$ is shellable. 
@@ -2271,6 +2271,9 @@ Our main interest are local patches or stars within triangulations.
 
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
+We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
+Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
+
 We discuss the Sobolev spaces of vector calculus and their transformation behavior. 
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
@@ -2308,7 +2311,7 @@ where $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$,
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
 These mappings are invertible. 
 %
-% TODO: bounds
+% TODO: bounds on the Jacobian transform 
 %
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
@@ -2394,6 +2397,12 @@ The exterior product is bilinear and associative, and satisfies
     \quad 
     u_2 \in \Alt^{l}(V).
 \end{align*}
+We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we let $v \lrcorner u \in \Alt^{k-1}(V)$ be defined as 
+\begin{align*}
+    (v \lrcorner u)( v_1, v_2, \ldots, v_{k-1} ) = u( v, v_1, v_2, \ldots, v_{k-1} ),
+    \quad 
+    v_1, v_2, \ldots, v_{k-1} \in V.
+\end{align*}
 We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
 Moreover, this particular setting comes with a canonical basis. 
@@ -2447,7 +2456,7 @@ Moreover, it satisfies the Leibniz rule:
     \qquad \eta \in C^{\infty}\Alt^{l}(\Omega).
 \]
 Let us now turn our attention to Sobolev spaces of differential forms. 
-Since $\Alt^{k}(\Omega)$ is a normed space, we can consider the pointwise norms of differential $k$-forms. 
+Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a canonical norm, we can consider the pointwise norms of differential $k$-forms. 
 % First, we notice that the % TODO: introduce a norm 
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
 such that its pointwise norm is $p$-integrable. 
@@ -2646,9 +2655,9 @@ For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \ti
 Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
 we then define the integral operators
 \begin{align}
-  \Poinc_{\ell} u(x) &= \int G_{n-\ell+1}(y,x) \,(x-y)\lrcorner u(y)\,dy
+  \Poinc_{\ell} u(x) &= \int_{\Omega} G_{n-\ell+1}(y,x) \,(x-y)\lrcorner u(y)\,dy
   \\
-  \Bogov_{\ell} u(x) &= \int G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
+  \Bogov_{\ell} u(x) &= \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
 \end{align}
 We call $\Poinc_{\ell}$ the Poincar\'e operator and $\Bogov_{\ell}$ the Bogovski\u{\i} operator. 
 \\
@@ -2660,22 +2669,29 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
-    \int_0^\infty t^{n-\ell} (t+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \int_{0}^{\infty} t^{n-\ell} (t+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} 
-    \int_0^\infty t^{n-k-1} |\Omega|^{-1} \chi_{\Omega}\left( x+t(x-y) \right)\,dt 
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-\ell+k} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    |\Omega|^{-1}\sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \,
-    |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{\ell-1-k} t^{n-\ell+\ell-1-k} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \\
+    &= 
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-k-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \\
+    &= 
+    \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \int_{0}^{\infty} t^{n-k-1} |\Omega|^{-1} \chi_{\Omega}\left( x+t(x-y) \right)\,dt 
+    \\
+    &= 
+    |\Omega|^{-1} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \, |x-y|^{k-n} \int_{0}^{\infty} r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
 If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
-    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_0^D r^{n-k-1} \,dr 
+    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_{0}^{D} r^{n-k-1} \,dr 
     \\
     &= 
     |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
@@ -2701,9 +2717,9 @@ We recall the radial integrals
 \begin{align*}
     \int_{B_D(0)} |z|^{k+1-n} dz
     =
-    \vol_{n-1}(S_1) \int_0^D r^{k+1-n} r^{n-1} dr
+    \vol_{n-1}(S_1) \int_{0}^{D} r^{k+1-n} r^{n-1} dr
     =
-    \vol_{n-1}(S_1) \int_0^D r^{k} dr
+    \vol_{n-1}(S_1) \int_{0}^{D} r^{k} dr
     =
     \vol_{n-1}(S_1) \frac{D^{k+1}}{k+1}
     .
@@ -2770,9 +2786,9 @@ Using once more the radial integrals discussed above, we compute
 % \begin{align*}
 %     \int_{B_D(0)} |z|^{k+1-n} dz
 %     =
-%     \vol_{n-1}(S_1) \int_0^D r^{k+1-n} r^{n-1} dr
+%     \vol_{n-1}(S_1) \int_{0}^{D} r^{k+1-n} r^{n-1} dr
 %     =
-%     \vol_{n-1}(S_1) \int_0^D r^{k} dr
+%     \vol_{n-1}(S_1) \int_{0}^{D} r^{k} dr
 %     =
 %     \vol_{n-1}(S_1) \frac{D^{k+1}}{k+1}
 %     .
@@ -2833,12 +2849,12 @@ leading to
 \begin{align*}
     \Poinc_{\ell} u(x) 
     &= 
-    \int \int_{1}^\infty (t-1)^{\ell-1}t^{n-\ell} 
+    \int_{\Omega} \int_{1}^\infty (t-1)^{\ell-1}t^{n-\ell} 
     \chi_{\Omega}\left(x+t(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
 For the Bogoski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
@@ -2846,12 +2862,12 @@ leading to
 \begin{align*}
     \Bogov_{\ell} u(x) 
     &= 
-    \int \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
+    \int_{\Omega} \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} 
     \chi_{\Omega}\left(y+t(x-y)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    - \int \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    - \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
     .
 \end{align*}
 % We first discuss the support properties of this operator. 
@@ -3232,9 +3248,7 @@ though the dimension and the form degree enters the estimate.
     This completes the proof. 
 \end{proof}
 
-% TODO: Density of C infty mit oder ohne c. 
-% TODO: Density im kernel 
-% TODO: lrcorner 
+% DONE: Density of C infty mit oder ohne c. 
 
 \begin{remark}
     The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
@@ -3279,6 +3293,18 @@ though the dimension and the form degree enters the estimate.
 
 
 
+
+\begin{proposition}\label{proposition:guerinisavo}
+    Let $\Omega \subseteq \bbR^{n}$ be a convex bounded domain. Then 
+    Moreover, 
+    \begin{align*}
+        C_{\rm{PF},\Omega,0,2} \geq C_{\rm{PF},\Omega,1,2} \geq \dots \geq C_{\rm{PF},\Omega,n-1,2}
+    \end{align*}
+\end{proposition}
+\begin{proof}
+    The result is true if $\Omega$ has a smooth boundary. 
+    Now suppose that $\Omega$ is a Lipschitz domain. 
+\end{proof}
 
 
 
@@ -3385,6 +3411,229 @@ though the dimension and the form degree enters the estimate.
 
 
 
+
+
+
+
+\begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
+    Let $T$ be an $n$-simplex and with a face $F$. 
+    If $u \in W^{p}\Alt^{k}(T)$ such that $\trace_{F} u = 0$, then 
+    \begin{align*}
+        \| u \|_{L^{p}(T)}
+        &
+        \leq 
+        C_{{\rm PF},T,F,k,p} \| \cartan u \|_{L^{p}(T)}
+    \end{align*}
+    where $C_{{\rm PF},T,F,k,p} > 0$ is a constant such that 
+    \begin{align*}
+        C_{{\rm PF},T,F,k,p}
+        \leq 
+        \diam(T)
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    Then $\cartan \hat u = \hat g$. 
+    % 
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
+    We define $\tilde g = \cartan \tilde u$
+    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
+    By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
+    \begin{gather*}
+        \| \tilde u \|_{L^{p}(\hat U)} 
+        \leq 
+        C_{???} 
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        .
+    \end{gather*}
+    In addition to that, 
+    \begin{gather*}
+        \| u \|_{L^{p}(T_{m+1})}
+        \leq 
+        |\det(\Dif \varphi)|^{\frac 1 p} 
+        \| \hat u \|_{L^{p}(\hat T)}
+        \leq 
+        |\det(\Dif \varphi)|^{\frac 1 p} 
+        \| \tilde u \|_{L^{p}(\hat U)}
+        ,
+        \\
+        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        \leq 
+        2^{\frac n p}
+        \| \hat g \|_{\bfL^{p}(\hat T)}
+        \leq 
+        2^{\frac n p}
+        |\det(\Dif \varphi_1)|^{-\frac 1 p} \| \Dif \varphi \| \cdot 
+        \| \cartan u \|_{\bfL^{p}(T)}
+        .
+    \end{gather*}
+    The second inequality follows.
+\end{proof}
+
+
+
+
+
+
+
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_m$ be a shelling.
+    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
+    and such that for all $T \in \calT$:
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_m)}
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
+    We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
+    
+    Let $u \in W^{p}\Alt^{k}(\Omega)$. 
+    First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
+    \[
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
+    \]
+    Suppose that claim is true when the domain has $m$ simplices of dimension $n$. 
+    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
+    with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
+    By assumption, $T_{m}$ shares the interface $\Gamma_{m}$ with $U_{m-1} \subseteq \Omega_{m-1}$. 
+    
+    We define $w'_{m} := w_{m-1} \circ \Xi_{m} \in W^{p}\Alt^{k}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow U_{m-1}$ is the reflection mapping. 
+    By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
+    \begin{align*}
+        \trace_F w_{m-1} = \trace_F w'_{m}
+        .
+    \end{align*}
+    There exists $w''_{m} \in W^{p}\Alt^{k}(T_{m})$ satisfying 
+    \begin{align*}
+        \cartan w''_{m} = \cartan u - \cartan w'_{m}, 
+        \quad 
+        \trace_{\Gamma_{m}} w''_{m} = 0.
+    \end{align*}
+    Indeed, such $w''_{m}$ exists because 
+    \begin{align*}
+        \trace_{\Gamma_{m}}( \cartan u - \cartan w'_{m} ) 
+        &= 
+        \trace_{\Gamma_{m}} \cartan u - \trace_{\Gamma_{m}} \cartan w'_{m}
+        \\&= 
+        \cartan \trace_{\Gamma_{m}} u - \cartan \trace_{\Gamma_{m}} w'_{m}
+        = 
+        \cartan \trace_{\Gamma_{m}} u - \cartan \trace_{\Gamma_{m}} w_{m-1}
+        = 
+        0
+        .
+    \end{align*}
+    Setting $w_{m} := w_{m-1}$ over $\Omega_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
+    we find 
+    \begin{gather*}
+        \cartan w_{m} = \cartan w'_{m} + \cartan w''_{m} = \cartan w'_{m} + \cartan u - \cartan w'_{m} = \cartan u,
+        \\
+        \trace_{\Gamma_{m}} w_{m} = \trace_{\Gamma_{m}} w'_{m} = \trace_{\Gamma_{m}} w_{m-1}.
+    \end{gather*}
+    That means that $w_{m} \in W^{p}\Alt^{k}(\Omega_{m})$ with $\cartan w_{m} = \cartan u$ over $\Omega_{m}$. 
+    
+    We want to estimate norms. 
+    Lemma~\ref{lemma:} gives 
+    \begin{align*}
+        \| w''_{m} \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}.
+        \\&
+        \leq 
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u      \|_{L^{p}(T_{m})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        .
+    \end{align*}
+    We also employ Lemma~\ref{lemma:volumecomparison} to find 
+    \begin{align*}
+        \| \cartan w'_{m} \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Dif \Xi  )|^{-\frac 1 p} 
+        \| \Dif \Xi   \|
+        \cdot 
+        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
+        \leq 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        \cdot 
+        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
+        .
+    \end{align*}
+    Putting this all together, 
+    \begin{align*}
+        &
+        \| w_{m} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \| w'_{m} \|_{L^{p}(T_{m})}
+        + 
+        \| w''_{m} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \left( 
+            \| \cartan u \|_{L^{p}(T_{m})} 
+            + 
+            \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        \right) 
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan u \|_{L^{p}(T_{m})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan u \|_{L^{p}(T_{m})} 
+        + 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})} 
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan u \|_{L^{p}(T_{m})} 
+        + 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        \| \cartan u \|_{L^{p}(U_{m-1})} 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(U_{m-1})} 
+%         + 
+%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
+%         C_{{\rm PF},T_{m},\Gamma_{m},p} 
+%         \| \cartan u \|_{L^{p}(T_{m})} 
+        .
+    \end{align*}
+    The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
+\end{proof}
+
+
+
 \subsection{Numerical examples}
 
 % Square 
@@ -3435,48 +3684,75 @@ Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that ther
 
 
 
+\begin{proof}
+    The desired results are known for smoothly bounded domains;
+    see Theorem~2.6 of \cite{guerini2004eigenvalue} for % decay in k
+    see \cite[Theorem~1.3]{guerini2004spectre} for
+    \begin{align*}
+        C \diam(\Omega)^{-2} 
+        \leq 
+        \lambda_{k},
+        \qquad 
+        C := 
+        \left\{\begin{array}{ll}
+            \frac{n-1}{ne^{3}} & \text{ if } k=0
+            \\
+            \frac{k(n-k)}{ne^{3}} & \text{ if } 1 \leq k \leq n-1
+            \\
+            \lambda_{1,0}(B) & \text{ if } k = n % Dirichlet eigenvalue over a ball
+        \end{array}\right. 
+        % \frac{\max_{k(n-k),n-1}}{ne^{3}} \diam(\Omega)^{-2}        
+    \end{align*}
+    see \cite{savo} for $n \geq 3$, 
+    \begin{align*}
+        \frac{4}{n^{2} \tbinom{n}{k-1} \diam(\Omega)^{2} } \leq \lambda_{k}
+    \end{align*}
 
-\begin{remark}
-    For reference, how the extension should work:
-    suppose that $u \in H(\Omega)$ and let $f = du$.
-    Suppose we have $u_1 \in H(T_1)$ with $du_1 = du$ over $T_1$. 
-    We built $u'_2 \in H(T_2)$ such that 
+    
+
+    We use a technical argument
+    to generalize them to our situation. 
+    
+    
+    There exists a bi-Lipschitz mapping $\varphi : \overline{B_1(0)} \rightarrow \Omega$. 
+    We let $\varphi_{\eps} : \overline{B_1(0)} \rightarrow \bbR^{n}$ be smooth,
+    uniformly bounded, and pointwise converging to $\varphi$ in the norm of $W^{1,\infty}$. 
+    For $\epsilon > 0$ small enough, 
+    the range $\Omega_{\eps}$ of each $\varphi_{\eps}$ is a smoothly bounded domain,
+    and $\varphi_{\epsilon} : \overline{B_1(0)} \rightarrow \Omega_{\eps}$ is a diffeomorphism.
+    The diameters of $\Omega_{\eps}$ converge to the diameter of $\Omega$.
+    The desired claim now follows by the dominated convergence theorem % Given $u \in W^{2}\Lambda^{k}(\Omega)$
+    
+\end{proof}
+
+% https://mathoverflow.net/questions/232302/lipschitz-constant-of-cental-projection-of-unit-ball-to-surface-of-convex-body
+% https://eudml.org/doc/258483
+
+\begin{lemma}
+    Let $K \subseteq \bbR^{n}$ be a compact set star-shaped with respect to the origin 
+    that contains the ball $B_{r}(0)$ and that is contained in the ball $B_{R}(0)$. Then the function 
     \begin{align*}
-        \trace_F u_1 = \trace_F u'_2
+        f : S \rightarrow \partial K, \quad x \mapsto \arg( \partial K \cap \bbR x )
     \end{align*}
-    We let $u''_2 \in H(T_2)$ such that 
+    satisfies 
     \begin{align*}
-        d u''_2 = f - d u'_2, \quad \trace_F u''_2 = 0
+        R^{2}/r % euclidean 
     \end{align*}
-    Such $u''_2$ exists because 
+    If $K$ is convex, then 
     \begin{align*}
-        \trace_F( f_2 - d u'_2 ) 
-        &= 
-        \trace_F f_1 - \trace_F d u'_2
-        \\&= 
-        \trace_F f_1 - \trace_F d u'_2
-        \\&= 
-        \trace_F d u_1 - \trace_F d u'_2
-        \\&= 
-        d \trace_F u_1 - d \trace_F u'_2
-        \\&= 
-        d \trace_F u_1 - d \trace_F u_1
-        = 0
-        .
+        g : S \rightarrow \bbR, \quad x \mapsto \| \bbR x \cap \partial K \|
     \end{align*}
-    Setting $u_2 = u'_2 + u''_2$, we find 
+    satisfies 
     \begin{align*}
-        d u_2 = d u'_2 + d u''_2 = d u'_2 + f - d u'_2 = f,
-        \\
-        \trace_F u_2 = \trace_F u'_2 = \trace_F u_1.
+        R \sqrt{ R^{2} / r^{2} - 1 } % angular distance 
+        \frac R r \sqrt{ R^{2} - r^{2} } % angular distance 
     \end{align*}
-    That requires an extension from given partial boundary data. 
-    Possible approaches:
-    \begin{itemize}
-        \item Reflect a neighborhood and multiply with cut-off function.
-        \item Take traces from patch and extend onto new simplex. 
-    \end{itemize}
-\end{remark}
+
+
+\end{lemma}
+
+
+
 
 
 
