@@ -3707,27 +3707,106 @@ Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that ther
     \begin{align*}
         \frac{4}{n^{2} \tbinom{n}{k-1} \diam(\Omega)^{2} } \leq \lambda_{k}
     \end{align*}
-
     
-
-    We use a technical argument
-    to generalize them to our situation. 
+    For each $0 \leq k \leq n$ we let $\mu_{k}$ be the smallest non-zero eigenvalue of the Hodge-Laplace operator acting on $k$-forms. For each $0 \leq k \leq n-1$, we let $\sigma_{k}$ be the smallest non-zero singular value of the exterior derivative $\cartan : L^{2}\Lambda^{k}(\Omega) \rightarrow L^{2}\Lambda^{k+1}(\Omega)$. We have the relation
+    \begin{align*}
+        \mu_{k} = \min( \sigma_{k}, \sigma_{k-1} )^{2}.
+    \end{align*}
+    We first consider the case where $\Omega$ is strictly convex with smooth boundary. 
+    According to Theorem~2.6 of \cite{guerini2004eigenvalue},
+    \begin{align*}
+        \mu_{0} = \mu_{1} < \dots < \mu_{n}.
+    \end{align*}
+    By definition, we have $\mu_{n} = \sigma_{n-1}^{2}$. 
+    Suppose that we know $\mu_{k} = \sigma_{k-1}^{2}$ for some $2 \leq k \leq n$. Then 
+    \begin{align*}
+        \sigma_{k-1}^{2} = \mu_{k} > \mu_{k-1} = \min( \sigma_{k-1}, \sigma_{k-2} )^{2}
+    \end{align*}
+    implies $\mu_{k-1} = \sigma_{k-2}^{2}$. 
+    Iterating this, we find 
+    \begin{align*}
+        \sigma_{0} < \sigma_{1} < \dots < \sigma_{n-1}.
+    \end{align*}
+    We have shown this when $\Omega$ is strictly convex with smooth boundary. 
     
+    We now address the case where $\Omega$ is merely convex. 
+    According to Theorem~A of \cite{blocki1997smooth}, 
+    there exists a continuous convex function $\beta : \overline\Omega \rightarrow \bbR$ that equals zero along $\partial\Omega$, which is negative over $\Omega$, and whose Hessian over $\Omega$ has positive determinant. 
+    This already implies that the Hessian of $\beta$ over $\Omega$ is always positive-definite, and so $\beta : \Omega \rightarrow \bbR$ is strictly convex.
     
-    There exists a bi-Lipschitz mapping $\varphi : \overline{B_1(0)} \rightarrow \Omega$. 
-    We let $\varphi_{\eps} : \overline{B_1(0)} \rightarrow \bbR^{n}$ be smooth,
-    uniformly bounded, and pointwise converging to $\varphi$ in the norm of $W^{1,\infty}$. 
-    For $\epsilon > 0$ small enough, 
-    the range $\Omega_{\eps}$ of each $\varphi_{\eps}$ is a smoothly bounded domain,
-    and $\varphi_{\epsilon} : \overline{B_1(0)} \rightarrow \Omega_{\eps}$ is a diffeomorphism.
-    The diameters of $\Omega_{\eps}$ converge to the diameter of $\Omega$.
-    The desired claim now follows by the dominated convergence theorem % Given $u \in W^{2}\Lambda^{k}(\Omega)$
+    For $\epsilon > 0$ small enough, the sublevel sets 
+    \begin{align*}
+        \Omega_{\epsilon} := \left\{ x \in \Omega \suchthat \beta(x) < -\epsilon \right\}
+    \end{align*}
+    are strictly convex smoothly bounded open sets compactly contained in $\Omega$. 
+    For convenience, we also write $\Omega_{0} := \Omega$. 
     
+    We first show that for each $\rho > 0$ there exists $\epsilon > 0$ such that $\Omega \setminus \Omega_{\epsilon} \subseteq \partial\Omega + B_{\rho}(0)$. 
+    Indeed, if that were not the case, then there would exist $\rho > 0$ such that for any $\epsilon > 0$ we can find $x_{\epsilon}$ with $\beta(x_{\epsilon}) > -\epsilon$ but distance at least $\rho$ from $\partial\Omega$. We could then pick a subsequence converging to a point $x \in \Omega$ with $\beta(x) = 0$, which is a contradiction. 
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%
+    % TODO: from here on 
+    For $\rho > 0$ small enough, the mapping 
+    \begin{align*}
+        A : \partial\Omega \times [0,\rho] \rightarrow \bbR^{n}, \quad (x,s) \mapsto x - \frac{s}{|x|} x
+    \end{align*}
+    is bijective. It satisfies the bounds 
+    \begin{align*}
+        ..
+    \end{align*}
+    and 
+    \begin{align*}
+        ..
+    \end{align*}
+    % TODO:
+    Consequently, there exists $L > 0$ such that for all $\epsilon > 0$ small enough 
+    there exists $B_{\epsilon} : \Omega \rightarrow \Omega_{\epsilon}$ bi-Lipschitz with
+    \begin{align*}
+        \| \Id - B_{\epsilon} \|_{L^{\infty}(\Omega)} < L \epsilon,
+        \quad 
+        \| \Id - \Jacobian B_{\epsilon} \|_{L^{\infty}(\Omega)} < L \epsilon.
+    \end{align*}
+    %%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%
+    For any $\epsilon \geq 0$, we let $X^{k}_{\epsilon} := H\Lambda^{k}(\Omega) \cap \ker\cartan$. 
+    Notice that $B_{\epsilon}^{\ast} X^{k}_{\epsilon} = X^{k}_{0}$. 
+    %
+    Consider any $0 \leq k \leq n-1$. 
+    Let $f \in H\Lambda^{k+1}(\Omega)$ with $\cartan f = 0$.
+    There exists $u_\star \in H\Lambda^{k}(\Omega)$ with $\cartan u = f$ 
+    because $\Omega$ is convex and thus contractible. % TODO: theorem 
+    Notice that $B_{\epsilon}^{-\ast} u_0 \in H\Lambda^{k}(\Omega_{\epsilon})$ 
+    with $\cartan B_{\epsilon}^{-\ast} u_\star = B_{\epsilon}^{-\ast} f$ over $\Omega_{\epsilon}$.
+    % 
+    \begin{align*}
+        ..
+    \end{align*}
+    % TODO
+    We conclude that $P^{k}_{\epsilon} \rightarrow P^{k}_{0}$ in the operator norm. 
+    In particular, the operator norms converge. 
+    %%%%%%%%%%%%%%%%%%%%%%%%%
+    
+    For any $0 \leq k \leq n-2$ and $\epsilon > 0$ we have $\| P^{k}_{\epsilon} \| < \| P^{k+1}_{\epsilon} \|$,
+    so that $\| P^{k}_{0} \| \leq \| P^{k+1}_{0} \|$.
+    This had to be shown.
+%     
+%     There exists a bi-Lipschitz mapping $\varphi : \overline{B_1(0)} \rightarrow \Omega$. 
+%     We let $\varphi_{\eps} : \overline{B_1(0)} \rightarrow \bbR^{n}$ be smooth,
+%     uniformly bounded, and pointwise converging to $\varphi$ in the norm of $W^{1,\infty}$. 
+%     For $\epsilon > 0$ small enough, 
+%     the range $\Omega_{\eps}$ of each $\varphi_{\eps}$ is a smoothly bounded domain,
+%     and $\varphi_{\epsilon} : \overline{B_1(0)} \rightarrow \Omega_{\eps}$ is a diffeomorphism.
+%     The diameters of $\Omega_{\eps}$ converge to the diameter of $\Omega$.
+%     The desired claim now follows by the dominated convergence theorem % Given $u \in W^{2}\Lambda^{k}(\Omega)$
+    % TODO: show that the trafo converges to identity.
+    % Write the trafo as perturbation of the identity.
 \end{proof}
 
 % https://mathoverflow.net/questions/232302/lipschitz-constant-of-cental-projection-of-unit-ball-to-surface-of-convex-body
 % https://eudml.org/doc/258483
-
+% https://math.stackexchange.com/questions/1476085/uniformly-convex-approximation-of-convex-domain
+% SMOOTH EXHAUSTION FUNCTIONS IN CONVEX DOMAINS
 \begin{lemma}
     Let $K \subseteq \bbR^{n}$ be a compact set star-shaped with respect to the origin 
     that contains the ball $B_{r}(0)$ and that is contained in the ball $B_{R}(0)$. Then the function 
@@ -3745,11 +3824,15 @@ Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that ther
     satisfies 
     \begin{align*}
         R \sqrt{ R^{2} / r^{2} - 1 } % angular distance 
+        \\
         \frac R r \sqrt{ R^{2} - r^{2} } % angular distance 
     \end{align*}
-
-
 \end{lemma}
+
+\begin{lemma}
+    .
+\end{lemma}
+
 
 
 

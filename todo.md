@@ -9,6 +9,8 @@ Roadmap
 - [x] Section 6: potential operators over convex sets 
     [ ] adjust notation from Costabel and McIntosh 
 - [ ] Section 7: main estimate 
+   [ ] geometry: patch to ball
+   [ ] 
 - [ ] Section 8: numerical examples 
 
 
