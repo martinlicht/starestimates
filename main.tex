@@ -583,7 +583,6 @@ The potential reconstruction is the natural approach towards the topic when addr
 
 
 \subsection{Poincar\'e--Friedrichs inequalities over convex domains}
-% See the collection at Lemma 3.24 : https://hal.science/hal-03226049/file/volI_hal.pdf
 
 We collect examples for Poincar\'e and Poincar\'e--Friedrichs inequalities for the important special case of convex domains. 
 see also~\cite[Lemma~3.24]{ern2021finite} for a short overview. 
@@ -783,18 +782,17 @@ Finally, since convex domains are Lipschitz domains:
 \subsection{Poincar\'e--Friedrichs inequalities over triangulated domains}
 
 Given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
-This shall be our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials. 
-After fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed in intermediate steps. 
-Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
+This serves as our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials: 
+after fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
 \\
 
-Towards this goal, we introduce quantitative measures for the geometric quality of triangulations,
-which give an indication of the regularity of simplex shapes. 
+Towards this goal, we introduce quantitative measures for the geometric quality of triangulations. 
+These indicate of the regularity of simplex shapes. 
 Most of such \emph{shape measures} in the literature are based on geometric features, 
-but we consider indicators based on affine transformations associated with the mesh;
+but we also consider indicators based on affine transformations associated with the mesh;
 this is because the properties of these transformations are what shows up in our estimates. 
 
-Whenever $T$ is an $n$-dimensional simplex 
+We define the \textit{geometric shape measure} of any $n$-dimensional simplex $T$ as 
 \begin{align}\label{math:geometricshapemeasure}
     \kappa(T)
     := 
@@ -810,13 +808,17 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
     \qquad 
     \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
 \end{align}
+Here, $\kappa(\calT)$ is the geometric shape measure of the triangulation, and $\rho(\calT)$ is the maximal ratio of volumes between neighboring $n$-simplices. 
 Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
 that preserves $F$. We define 
 \begin{align}\label{math:reflectionmeasure}
     \xi(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \| \Xi_{S,T} \|.
 \end{align}
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
-% TODO: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
+
+For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
+
+% DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 % and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
 % we define the quantity 
@@ -827,9 +829,23 @@ This indicator quantifies how much reflection across the shared face distorts th
 %     .
 % \end{align*}
 
+\begin{remark}
+    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
+    This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
+
+
+
 
 \begin{lemma}\label{lemma:affinetransform}
-    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism. Then 
+    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
     \begin{align*}
         \| \Jacobian \varphi \|
         \leq 
@@ -838,27 +854,28 @@ This indicator quantifies how much reflection across the shared face distorts th
         \qquad 
         \| \Jacobian \varphi^{-1} \|
         \leq 
-        \sqrt{2n^{n}} 
+        \sqrt{2n} 
         % \frac{ n! \vol(T) } { \diam(T)^{n} }
-        \kappa(T)^{-1}
+        \kappa(T)^{\frac 1 n}
         \diam(T)^{-1}
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
-    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of $\Jacobian\varphi$ in descending order.
-    Then $\sigma_1/\sigma_n \leq \sigma_1^{n} / \det(\Jacobian\varphi)$. Hence 
+    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
+    The Jacobian determinant is the product of these singular values. 
+    Thus, $\sigma_1/\sigma_n \leq \sigma_1 / \sqrt[n]{ \det(\Jacobian\varphi) }$ and 
     \[
         \diam(T) 
         \leq 
         \sqrt{2} \sigma_1 
         \leq 
         \sqrt{2} 
-        \frac{ \sigma_1^{n} }{ \det(\Jacobian\varphi) } 
+        \frac{ \sigma_1 }{ \sqrt[n]{ \det(\Jacobian\varphi) } } 
         \sigma_n
         \leq 
-        \sqrt{2n^{n}} 
-        \frac{ \diam(T)^{n} }{ n! \vol(T) } 
+        \sqrt{2n} 
+        \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)^{\frac 1 n}
         \sigma_n
         .
     \]
@@ -869,19 +886,19 @@ This indicator quantifies how much reflection across the shared face distorts th
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
         \frac{ \vol(T_1) }{ \vol(T_2) }
-        &\leq 
-        \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-        \cdot 
-        \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-        = 
+        \leq 
+        % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
+        % \cdot 
+        % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
+        % = 
         \kappa(T_1) \kappa(T_2)
         ,
-        \\
+        \qquad 
         \diam(T_1)
-        &\leq 
-        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
-        \diam(F)
-        = 
+        \leq 
+        % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        % \diam(F)
+        % = 
         \kappa(T_1)
         \diam(F)
         .
@@ -904,11 +921,11 @@ This indicator quantifies how much reflection across the shared face distorts th
     Then $\vol(T_1) = h_1 \vol(F)/n!$ and $\vol(T_2) = h_2 \vol(F)/n!$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
     We estimate 
     % TODO: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
-    % TODO: clarify the following inequalities
+    % TODO: clarify the first of the following inequalities
     \begin{align*}
         h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} \diam(F),
         \\
-        h_2 &\geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
+        h_2 &= n! \frac{\vol(T_2)}{\vol(F)} \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
         .
     \end{align*}
     The first estimate follows. 
@@ -935,23 +952,27 @@ This indicator quantifies how much reflection across the shared face distorts th
         \sqrt{n} 
         \cdot 
         \diam(T_1)
-        \sqrt{2n^{n}} 
-        \frac{ n! \vol(T_2) } {\diam(T_2)^{n} } 
+        %
+        % \sqrt{2n} \left( \frac{ n! \vol(T_2) } {\diam(T_2)^{n} } \right)^{\frac 1 n}
+        \sqrt{2n} \kappa(T_2)^{\frac 1 n}
         \diam(T_2)^{-1}
         \\&
         \leq 
         \sqrt{n} 
         \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         \diam(F)
-        \sqrt{2n^{n}} \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
+        % \sqrt{2n^{n}} \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
+        \sqrt{2n} \kappa(T_2)^{\frac 1 n}
         \diam(F)^{-1}
         \leq 
-        \sqrt{2n^{n+1}}
-        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
-        \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
+        n\sqrt{2}
+        \kappa(T_1)
+        \kappa(T_2)^{\frac 1 n}
+        % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        % \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
         .
     \end{align*}
-    All the desired results thus follow. 
+    All the desired results thus follow. % TODO: improve these results 
     % Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
     % \begin{align*}
     %     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
@@ -963,18 +984,6 @@ This indicator quantifies how much reflection across the shared face distorts th
     % \end{align*}
 \end{proof}
 
-
-\begin{remark}
-    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    In our convention, the reference simplex has unit shape measure.
-    This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
-    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
-    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
-    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
-\end{remark}
 
 
 
@@ -2192,8 +2201,7 @@ Our main interest are local patches or stars within triangulations.
     in fact, any enumeration of the boundary faces of $T$ constitutes a shelling.
 \end{example}
 \begin{example}
-    The standard triangulation of the $n$-dimensional cube, the Kuhn triangulation, is shellable. 
-    % https://scholar.google.de/scholar?hl=de&as_sdt=0%2C5&q=kuhn+triangulation+shelling&btnG=
+    The standard triangulation of the $n$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable.~\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
 \end{example}
 
 \begin{lemma}    
@@ -2248,7 +2256,7 @@ Our main interest are local patches or stars within triangulations.
     We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
     which does not affect shellability. 
     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
-    and is thus shellable~\cite{ziegler2012lectures}. % TODO: cite exactly 
+    and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
 \end{proof}
 
 
@@ -2427,7 +2435,7 @@ We use the interior product, which is in some sense dual to the exterior product
 We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
 Moreover, this particular setting comes with a canonical basis. 
-We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^{n}\}\) be the canonical basis dual to the standard unit vectors.
+We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^{n}\}\) be the basis dual to the canonical unit vectors.
 This is a canonical basis of $\Alt^{1}(\bbR^{n})$. 
 To define a canonical basis of $\Alt^{k}(\bbR^{n})$, 
 we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$,
@@ -2441,7 +2449,7 @@ $\dim \Alt^{k}(\bbR^{n}) = \binom{n}{k}$.
 In particular, $\Alt^{k}(\bbR^{n})$ is the zero vector space whenever $k > n$.
 % The dimension of the space of \(k\)-forms, denoted \(\bigwedge^k V\), is given by the binomial coefficient \(\binom{n}{k}\).
 
-We notice that the standard scalar product on $\bbR^{n}$ gives rise to a scalar product on $\Alt^{1}(\bbR^{n})$,
+We notice that the canonical scalar product on $\bbR^{n}$ gives rise to a scalar product on $\Alt^{1}(\bbR^{n})$,
 which induces a scalar product on $\Alt^{k}(\bbR^{n})$.
 The basic $k$-alternators are an orthonormal basis of $\Alt^{k}(\bbR^{n})$ with respect to that inner product. 
 
