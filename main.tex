@@ -673,8 +673,19 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
     u \in W^{1,p}(\Omega)
     .
 \end{align}
-In the limit case $p=1$, the optimal Poincar\'e constant $1/2$ also coincides with the optimal Poincar\'e--Friedrichs constant, as can verified with some one-dimensional example. % TODO Acosta-Duran %\footnote{In the case $p=1$, the optimal Poincar\'e constant $1/2$ is an upper bound for the optimal Poincar\'e--Friedrichs constant. When $\Omega = (0,1)$, then $u(x) = x - 0.5$ is }
-Finally, since convex domains are Lipschitz domains: 
+In the limit case $p=1$, the optimal Poincar\'e constant $1/2$ also bounds the Poincar\'e--Friedrichs constant:
+\begin{align}\label{math:l1estimate}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{1}(\Omega)}
+    \leq 
+    \frac{ \diam(\Omega) }{2}
+    \| \nabla u \|_{L^{1}(\Omega)}
+    ,
+    \quad 
+    u \in W^{1,1}(\Omega)
+    .
+\end{align}
+In the limit case $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theorem leads to 
 \begin{align}\label{math:lipschitzestimate}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{\infty}(\Omega)}
@@ -686,6 +697,21 @@ Finally, since convex domains are Lipschitz domains:
     u \in W^{1,\infty}(\Omega)
     .
 \end{align}
+
+\begin{example}
+    Let $\Omega = (-1,1)$ and consider the family of odd function $u_{t} : \Omega \rightarrow \bbR$ for $t \in (0,1)$ 
+    that satisfy $u_{t}(0)=0$, $u_{t}(t) = 1$ and $u_t(1) = 1$ and interpolate linearly between those points. 
+    Obviously,
+    \begin{align}
+        \| u_{t} \|_{L^{1}(\Omega)} = 2 - t,
+        \qquad 
+        \| u'_{t} \|_{L^{1}(\Omega)} = 2t \frac{2}{2t} = 2.
+        ,
+    \end{align}
+    and $\Omega$ has diameter $2$. As $u_t$ has average zero, this example shows that \eqref{math:acostaduran} is optimal. 
+    At the same time, for any constant $c \in \bbR$ we have $\| u_t - c \|_{L^1(\Omega)} = \| u_t + c \|_{L^1(\Omega)}$.
+    Since norms are convex, it follows that $u_t$ is the potential with minimal $L^1$ norm. 
+\end{example}
 
 
 \begin{remark}
