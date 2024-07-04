@@ -63,3 +63,7 @@ General results of this type for a class containing the finite element stars are
 We express all our main results in the calculus of differential forms, also known as exterior calculus, 
 and treat the curl and divergence operator as its particular instances. 
 
+
+This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed in intermediate steps. 
+Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
+
