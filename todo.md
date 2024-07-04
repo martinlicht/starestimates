@@ -27,3 +27,5 @@ A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simp
 - Greub, Werner H. *Multilinear Algebra*. Springer, 1978.
 - Bott, Raoul, and Loring W. Tu. *Differential Forms in Algebraic Topology*. Springer, 1982.
 
+We express all our main results in the calculus of differential forms, also known as exterior calculus, 
+and treat the curl and divergence operator as its particular instances. 
