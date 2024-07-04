@@ -87,11 +87,11 @@ One example for a bounded linear operator is the average-free potential:
     \bff \in \nabla W^{1,p}(\Omega)
     .
 \end{align*} 
-Its operator norm is the constant $C_{\varnothing,\Omega,p} > 0$ in the Poincar\'e inequality 
+Its operator norm is the constant $C_{{\rm P},\Omega,p} > 0$ in the Poincar\'e inequality 
 \begin{align*}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{\varnothing,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
+    C_{{\rm P},\Omega,p} \| \nabla u \|_{L^p(\Omega)},
     \quad 
     u \in W^{1,p}(\Omega)
     ,
@@ -411,7 +411,7 @@ and we call $\calT$ \emph{strongly connected} if it has only one strongly connec
 
 \section{Constructive estimate of Poincar\'e--Friedrichs constants}\label{section:poincare}
 
-In this section we address the stepwise computable estimate of Poincar\'e constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e inequality over convex domains. These results, the exposition of which we believe to be of value on its own, will serve as a building block in constructing inequalities over local patches and then triangulated domains.
+In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. As a preparatory step, we survey variations of the Poincar\'e and Poincar\'e--Friedrichs inequalities over convex domains. This survey, which we believe to be of independent interest, will serve as a building block in constructing inequalities over triangulated domains.
 \\
 
 Let us assume that $\Omega \subseteq \bbR^{n}$ is an open connected set. 
@@ -429,7 +429,7 @@ such that $\nabla u = \bff$ and
     \| \bff \|_{L^{p}(\Omega)}
     .
 \end{align}
-Under the condition that $\Omega$ is connected, this is equivalent to  
+Since $\Omega$ is connected, this is equivalent to  
 \begin{align}
     \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
     \leq 
@@ -442,14 +442,14 @@ Under the condition that $\Omega$ is connected, this is equivalent to
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 \\
 
-We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
+We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, % TODO: cite AAAA
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
-if there exists $C_{{\varnothing},\Omega,p} \geq 0$ such that 
+if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
 for all $u \in W^{1,p}(\Omega)$
 \begin{align}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{\varnothing,\Omega,p} 
+    C_{{\rm P},\Omega,p} 
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
 \end{align}
@@ -457,7 +457,7 @@ where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \begin{align*}
     u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u.
 \end{align*}
-Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{\varnothing,\Omega,p}$. 
+Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{{\rm P},\Omega,p}$. 
 Towards a converse inequality, 
 let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
 \begin{align*}
@@ -472,6 +472,7 @@ let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \
 \end{align*}
 Here, we have used Jensen's inequality. 
 In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
+We conclude that taking the average is a projection within Lebegue spaces with unit norm. 
 It follows that 
 \begin{align*}
     \| u - u_\Omega \|_{L^{p}(\Omega)} 
@@ -499,14 +500,14 @@ It follows that
 Via an application of the triangle inequality, 
 the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
 \begin{align*}
-    C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}.
+    C_{{\rm P},\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}.
 \end{align*}
-In the special case $p=2$, this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$,
-and therefore even $C_{\varnothing,\Omega,2} = C_{{\rm PF},\Omega,2}$. 
+In the special case $p=2$, taking the average is an orthogonal projection, and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$,
+and therefore even $C_{{\rm P},\Omega,2} = C_{{\rm PF},\Omega,2}$. 
 This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
 and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-Stern's generalized projection estimate~\cite{stern2015banach} implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
-since taking the average is a the projection onto the constants functions with unit norm, it now follows that % TODO: cite specific results of Ari 
+Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
+since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
 \begin{align*}
     \| u - u_\Omega \|_{L^{p}(\Omega)}
     \leq 
@@ -523,10 +524,10 @@ since taking the average is a the projection onto the constants functions with u
 We have $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
 The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
 We thus conclude 
-\begin{align*}
-    C_{\varnothing,\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}.
-\end{align*}
-In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$.
+\begin{align}\label{math:p_vs_pf}
+    C_{{\rm P},\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}.
+\end{align}
+In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor of at most two that only depends on $1 \leq p \leq \infty$.
 \\
 
 There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
@@ -537,7 +538,7 @@ We define the potential
     \bff \in \nabla W^{1,p}(\Omega)
     .
 \end{align*}
-Clearly, 
+If there is a Poincar\'e--Friedrichs constant, then by definition
 \begin{align*}
     \| \Phi(\bff) \|_{L^p(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^p(\Omega)},
 \end{align*}
@@ -546,33 +547,34 @@ However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ is generally a 
 Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
 satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
 \begin{align*}
-    C_{{\rm PF},\Omega,p} 
+    \min\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \Phi(\nabla u) \|_{L^p(\Omega)} }{ \| \nabla u \|_{L^p(\Omega)} }
     \leq 
-    \argmin\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
+    \min\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
     \frac{ \| \overline\Phi(\nabla u) \|_{L^p(\Omega)} }{ \| \nabla u \|_{L^p(\Omega)} }
     .
 \end{align*}
-A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
+A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
 \begin{align*}
-    \Phi_{\varnothing}( \nabla u ) = u - u_{\Omega},
+    \Phi_{{\rm P}}( \nabla u ) = u - u_{\Omega},
     \quad 
     u \in W^{1,p}(\Omega)
     .
 \end{align*}
-Its operator norm is just the smallest Poincar\'e constant $C_{\varnothing,\Omega,p}$.
+Its operator norm is just the optimal Poincar\'e constant $C_{{\rm P},\Omega,p}$.
 \\
 
-In the light of these musings, we settle for the objective of constructing linear potential operators for the gradient and later for the curl and divergence operators.
+In the light of these musings, we settle for the objective of constructing linear potential operators for the gradient operator.
 This task is more specific than just proving an upper bound for the Poincar\'e--Friedrichs constant. 
 Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
-The potential reconstruction is the natural approach towards the topic when addressing the curl and divergence operators. 
+We will extend the potential reconstruction when we address Poincar\'e--Friedrichs inequalities for the curl and divergence operators. 
 
 \begin{remark}
     Let us further remark why the above notion of Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} suits our discussion better than the Poincar\'e inequality. 
     We want to generalize the discussion to the curl and divergence operators. 
     The kernel of the gradient is the one-dimensional space of constant functions, and is thus complemented in the Lebesgue spaces with a canonical choice of projection. 
     By contrast, the curl and divergence operators have infinite-dimensional kernels. 
-    Hence, it is not clear a priori whether these kernels are complemented subspaces and admit a projection onto them, not to mention a canonical projection. 
+    Hence, it is not even trivial whether these kernels are complemented subspaces and admit a projection onto them, not to mention a canonical projection. 
     % The kernel of those operators is infinite-dimensional, whereas the gradient only has a one-dimensional kernel. 
     % When discussing Banach spaces, there is no canonical orthogonal projection on the kernel, unlike in the Hilbert space case, 
     % which is why the Poincar\'e--Friedrichs inequality seems to be the more natural approach.
@@ -608,7 +610,7 @@ Over convex bounded domains, we have the Poincar\'e inequalities~\cite{bebendorf
     .
 \end{align}
 These two estimates are the best possible Poincar\'e inequalities in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
-Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite{chua2006estimates}:
+Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite[Theorem 1.1]{chua2006estimates}:
 \begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
@@ -637,9 +639,9 @@ where
     \left( \frac p 2 \right)^{\frac 1 p}
     .
 \end{align}
-These Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
+As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
 
-We know optimal Poincar\'e--Friedrichs constants over convex domains~\cite{ferone2012remark,esposito2013poincare}: 
+We know optimal Poincar\'e--Friedrichs constants over convex domains~(\cite[Theorem~1.1]{ferone2012remark}\cite[Theorem~1.1]{esposito2013poincare}): 
 when $1 < p < \infty$, one can show that 
 \begin{align}\label{math:esposito:pf}
     \min\limits_{ c \in \bbR }
@@ -660,7 +662,7 @@ where $C_{\rm{EFNT},p}$ is the best possible constant that only depends on $p$ a
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
 \end{align}
-Note that the last inequalities imply, again when $1 \leq p < \infty$, the Poincar\'e inequalities
+Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
@@ -672,6 +674,7 @@ Note that the last inequalities imply, again when $1 \leq p < \infty$, the Poinc
     u \in W^{1,p}(\Omega)
     .
 \end{align}
+In the limit case $p=1$, the optimal Poincar\'e constant $1/2$ also coincides with the optimal Poincar\'e--Friedrichs constant, as can verified with some one-dimensional example. % TODO Acosta-Duran %\footnote{In the case $p=1$, the optimal Poincar\'e constant $1/2$ is an upper bound for the optimal Poincar\'e--Friedrichs constant. When $\Omega = (0,1)$, then $u(x) = x - 0.5$ is }
 Finally, since convex domains are Lipschitz domains: 
 \begin{align}\label{math:lipschitzestimate}
     \min\limits_{ c \in \bbR }
@@ -687,8 +690,9 @@ Finally, since convex domains are Lipschitz domains:
 
 
 \begin{remark}
-    The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
-    Let us compare the different estimates for the Poincar\'e inequality.
+    % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
+    Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}
+    Let us compare the different estimates for the Poincar\'e inequality. 
     In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
@@ -731,8 +735,11 @@ Finally, since convex domains are Lipschitz domains:
         .
     \end{align*}
     It follows that \eqref{math:esposito:poincare} is tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
-    In the limit as $p$ goes to $1$, \eqref{math:esposito:poincare} recovers \eqref{math:acostaduran}. 
-    In the limit as $p$ goes to infinity, \eqref{math:esposito:poincare} implies the Poincar\'e inequality 
+    % TODO: 
+    In the limit as $p$ goes to $1$, the factor $C_{\rm{EFNT},p}$ converges to $1/2$,
+    which is the optimal Poincar\'e--Friedrichs constant and also the factor in Inequality \eqref{math:acostaduran}. 
+    In the limit as $p$ goes to infinity, the factor $C_{\rm{EFNT},p}$ converges to $1/2$, 
+    which implies the Poincar\'e inequality 
     \begin{align*}
         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
         \leq 
@@ -744,36 +751,17 @@ Finally, since convex domains are Lipschitz domains:
         %
     \end{align*}
     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. 
-    Of course, this Poincar\'e inequality implies a Poincar\'e--Friedrichs inequality with the same constant. 
-    Notably, it is much less clear whether \eqref{math:esposito:pf} implies a limit case Poincar\'e--Friedrichs inequality for Lipschitz functions. 
-%     Taking the \emph{informal} limit also suggest the inequality 
-%     \begin{align*}
-%         \min\limits_{ c \in \bbR }
-%         \| u - c \|_{L^{\infty}(\Omega)}
-%         \leq 
-%         \frac{d}{2}
-%         \| \nabla u \|_{L^{\infty}(\Omega)}
-%         ,
-%         \quad
-%         u \in W^{1,\infty}(\Omega)
-%         ,
-%     \end{align*}
-%     however, we generally cannot exchange the minimum and the limit, so that is strictly informal. 
 \end{remark}
 
 \begin{remark}
-    The optimal Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
+    Any optimal Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
     but individual convex domains may allow for better constants.
-    We refer to \cite{matculevich2016explicit} for an overview. 
-    For example, triangles allow the reduction of the constant by 20\%.
+    We refer to \cite{matculevich2016explicit} for an overview;
+    for example, triangles allow the reduction of the constant by 20\%.
 \end{remark}
 
 
-% https://www.ams.org/journals/proc/2004-132-01/S0002-9939-03-07004-7/S0002-9939-03-07004-7.pdf
-% d/2 in the case $p = 1$ over convex domains 
 
-% https://academic.oup.com/plms/article/93/1/197/1462187
-% they formally require that f is Lipschitz. But convex domains are Lipschitz and hence Lipschitz is dense in all Sobolev spaces, right?
 
 
 
