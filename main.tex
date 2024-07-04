@@ -46,11 +46,11 @@ we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator wh
     \| \bff \|_{\bfL^{2}(\Omega)}
     .
 \end{align*}
-The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it corresponds to a lower bound for the Maxwell eigenvalues.
+The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it gives rise to a lower bound for the Maxwell eigenvalues.
 
 Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
 % We accomplish our results for a special class of triangulations, so-called shellable triangulations.
-We accomplish this undertaking in the special case where $\Omega$ admits a so-called \emph{shellable} triangulation. 
+We accomplish this task in the special case where $\Omega$ admits a so-called \emph{shellable} triangulation. 
 Even though only contractible domains can ever admit a shellable triangulation, 
 having computable upper bounds for such domains is an important stepping stone towards the more general case. 
 For example, local patches around a simplex within a larger 2D or 3D triangulation are shellable.
@@ -103,7 +103,7 @@ Most research on optimal constants has addressed the case of convex domains.
 % The optimal constants that depend solely on the domain diameter are known if $p=2$ \cite{bebendorf2003note} and if $p=1$ \cite{acosta2004optimal}. 
 Notably, the optimal constants $C_{\grad,p}$ for any $1 \leq p < \infty$ that depends only on the domain diameter is known when the domain is convex.~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
 When the domain is not convex but star-shaped with respect to a ball,
-then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{ern2021finite}. 
+then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{brenner2008finite,ern2021finite}. 
 An open set star-shaped with respect to a internal point is also star-shaped with respect to some open ball within the domain,
 implying Poincar\'e inequalities on star-shaped open sets~\cite{hurri1988poincare}.
 
@@ -123,10 +123,12 @@ We use the vector field spaces
     \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \divergence \bfu \in L^p(\Omega) \right\}
     .
 \end{align*}
-Their members are vector fields whose distributional partial derivatives satisfy certain cancellation properties. 
+Their members are vector fields whose distributional curls and divergences are in Lebesgue spaces. 
+This only requires that certain linear combinations of distributional partial derivatives are measurable, 
+and in particular these spaces are not classical Sobolev spaces of vector fields. 
 Our objective is to find bounded potentials for the operators 
 \begin{align*}
-    \curl : \bfW^{p}(\curl,\Omega) \rightarrow \bfL^{p}(\curl,\Omega),
+    \curl : \bfW^{p}(\curl,\Omega) \rightarrow \bfL^{p}(\Omega),
     \qquad 
     \divergence : \bfW^{p}(\divergence,\Omega) \rightarrow L^{p}(\Omega),
 \end{align*}
@@ -161,7 +163,7 @@ Not much attention seems to have been given to the study of optimal constants in
 % even if the domain is convex, 
 This sharply contrasts to the study of the gradient operator. 
 
-The literature is much scarcer when it comes to this. 
+The literature in functional analysis is much scarcer when it comes to this. 
 We can access some estimates from the literature in the formalism of exterior calculus. 
 We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue}, who estimate the Poincar\'e--Friedrichs constants over convex domains in the Hilbert space setting, when $p=2$. They provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains. This implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
 By duality, that implies lower bounds for the case of full boundary conditions.
@@ -181,7 +183,7 @@ Clearly, not all local patches describe convex subdomains.
 One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local patches in triangulations are often star-shaped with respect to a ball. 
 Over patches around interior subsimplices, the size of the interior ball only depends on the shape regularity of the triangulation. 
 However, that interior ball can be arbitrarily small when the patch is around a boundary simplex at a re-entrant corner, even if the mesh has good shape regularity. 
-Estimates that rely on this geometric condition deteriorate when the aforementioned ball has small radius,
+Estimates that rely on this geometric condition thus deteriorate when the aforementioned ball has small radius,
 and that is inevitable when the domain has an unfortunate geometry. 
 Some illustrative limit cases include the slit domain and the crossed bricks domain~\cite{licht2019smoothed},
 for which some finite element patches are not star-shaped with respect to any ball. 
@@ -204,8 +206,10 @@ and that difference can easily be removed to ensure continuity across that inter
 
 While we know Poincar\'e--Friedrichs constants over finite element patches for scalar-valued Sobolev spaces, 
 we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)$ and $\bfW^{p}(\divergence,\Omega)$ over finite element stars. 
-In the Hilbert space setting, with $p=2$, the Friedrichs inequality over the Sobolev space with Dirichlet boundary conditions implies, 
-via duality, the Poincar\'e--Friedrichs for the divergence operator. However, that easy observation seems restricted to the Hilbert space case $p=2$. 
+In the Hilbert space setting, with $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with Dirichlet boundary conditions implies, 
+via duality, the Poincar\'e--Friedrichs inequality for the divergence operator. However, that easy observation seems restricted to the Hilbert space case $p=2$. 
+We also remark that recent work~\cite{gallistl2023computational} addresses eigenvalues for the curl--curl operator over general triangulations,
+which gives rise to an estimate for the Poincar\'e--Friedrichs constant when $p=2$. However, the use case of these estimates are sequences of triangulations after sufficiently many levels of refinement, whereas our main application are estimates that work with fixed but small triangulations, such as finite element stars. 
 We are not aware of any estimates for the curl operator, even in the Hilbert space situation. 
 \\
 
@@ -218,7 +222,7 @@ We are not aware of any estimates for the curl operator, even in the Hilbert spa
 
 
 
-The main objective of the present exposition is the construction of linear potential operators the gradient, curl, and divergence, satisfying explicitly computable upper bounds. We follow closely the philosophy of the aforementioned sequential approach. Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
+The main objective of the present exposition is the construction of linear potential operators for the gradient, curl, and divergence, satisfying explicitly computable upper bounds. We follow closely the philosophy of the aforementioned sequential approach. Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
 
 % Exterior calculus 
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. Exterior calculus is used ubiquitously in physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights structures common to the gradient, curl, and divergence operators. It also enables us to leverage on the rich literature of Sobolev spaces of differential forms. For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
@@ -259,7 +263,7 @@ The resulting operator has generally lower regularity properties in comparison t
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
 
-In addition to that, we need to find potentials over a simplex subject to partial boundary conditions,
+In addition to that, we need to find potentials over a simplex subject to partial boundary conditions. 
 Again, we want to address the entire $1 \leq p \leq \infty$ of Lebesgue exponents. 
 We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
 The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. For example, given the curl of a vector field over a tetrahedron that vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. We achieve this by constructing an auxiliary problem subject to full boundary conditions.
@@ -273,7 +277,7 @@ Computable reliable estimates for the Poincar\'e--Friedrichs constant are import
 they quantify the fundamental stability properties of partial differential equations in vector analysis,
 such as the Hodge Laplace equation. 
 Upper bounds correspond to lower bounds for the non-zero eigenvalues of the scalar and vector Laplacian.
-Furthermore, their constants enter the stability and convergence theory of finite element methods. 
+% Furthermore, their constants enter the stability and convergence theory of finite element methods. 
 In numerical methods, upper bounds for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods,
 and they lead to lower bounds for the spectrum of finite element matrices. 
 
@@ -326,7 +330,7 @@ and its remaining points constitute the \textit{boundary} of the simplex.
 A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation}, if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
 % (i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
-The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
+% The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
 We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that complex.\footnote{We warn the reader that simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes.} 
 We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is defined as the union 
 \begin{align*}
@@ -376,12 +380,12 @@ which the simplicial subcomplex of $\calT$ that contains all supersimplices of $
 \begin{gather*}
     \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
 \end{gather*}
-A crucial observation is the following.
+A crucial observation is the following.  
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
- Then either $\calT_{n}(S) \cap \calT_{n}(S') = \emptyset$ or there exists $S'' \in \calT$
- such that $\calT_{n}(S) \cap \calT_{n}(S') = \calT_{n}(S'')$ with $S, S' \subseteq S''$.
+ Then either $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \emptyset$ or there exists $S'' \in \calT$
+ such that $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \calT_{n}(S'')$ with $S, S' \subseteq S''$.
 \end{lemma}
 \begin{proof}
  Let $T \in \calT$ be $n$-dimensional.
@@ -491,7 +495,8 @@ It follows that
 %     \| u \|_{L^{p}(\Omega)}^{p}
 %     .
 % \end{align*}
-Hence the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with $C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}$. 
+Via an application of the triangle inequality, 
+the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with $C_{\varnothing,\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}$. 
 
 In the special case $p=2$, we always have $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $v \in L^{2}(\Omega)$,
 and therefore even $C_{\varnothing,\Omega,2} = C_{{\rm PF},\Omega,2}$. 
@@ -499,7 +504,7 @@ This follows from the orthogonality constant functions to average-free functions
 and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
 %\footnote{\color{red}Is there a better name for this than Xu-Zikatanov estimate?}
 Stern~\cite{stern2015banach} provided a generalization of the projection estimate that implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
-since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
+since taking the average is a the projection onto the constants functions with unit norm, it now follows that % TODO: cite specific results of Ari 
 \begin{align*}
     \| v - v_\Omega \|_{L^{p}(\Omega)}
     \leq 
@@ -779,6 +784,7 @@ Whenever $T$ is an $n$-dimensional simplex
     \frac{ \diam(T)^{n} }{ n! \vol(T) }
     .
 \end{align}
+% TODO: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity paremeter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
 Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
 \begin{align}\label{math:moremeasures}
     \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
@@ -787,13 +793,13 @@ Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce
     \qquad 
     \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
 \end{align}
-Whenever $S,T$ are two $n$-simplices that are a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
+Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
 that preserves $F$. We define 
 \begin{align}\label{math:reflectionmeasure}
     \xi(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \| \Xi_{S,T} \|.
 \end{align}
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
-
+% TODO: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 % and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
 % we define the quantity 
@@ -850,7 +856,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
         \cdot 
         \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-        \leq 
+        = 
         \kappa(T_1) \kappa(T_2)
         ,
         \\
@@ -858,7 +864,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         &\leq 
         \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         \diam(F)
-        \leq 
+        = 
         \kappa(T_1)
         \diam(F)
         .
@@ -870,7 +876,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         \sqrt{2n^{n+1}} 
         \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
-        \leq 
+        =  
         \sqrt{2n^{n+1}} 
         \frac{ \kappa(T_1) }{ \kappa(T_2) }
         .
@@ -880,6 +886,8 @@ This indicator quantifies how much reflection across the shared face distorts th
     Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
     Then $\vol(T_1) = h_1 \vol(F)/n!$ and $\vol(T_2) = h_2 \vol(F)/n!$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
     We estimate 
+    % TODO: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
+    % TODO: clarify the following inequalities
     \begin{align*}
         h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} \diam(F),
         \\
@@ -1372,7 +1380,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
 % Upper bounds for the classical Poincar\'e inequality over a simplex is widely known. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex}
-    Let $T$ be an $n$-simplex and with a face $F$. 
+    Let $T$ be an $n$-simplex with a face $F$. 
     If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
     \begin{align*}
         \| u \|_{L^{p}(T)}
@@ -1398,7 +1406,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
         \| w \|_{L^{p}(T)}
         \leq 
         C_{{\rm PF},T,p} 
-        \| \nabla w \|_{\bfL^{p}(T)}
+        \| \nabla w \|_{\bfL^{p}(T)} % TODO: bold face or no boldface? No bold face 
         .
     \]
     Then $w-u$ is constant, and thus $\gamma := \trace_{F} (w-u) = \trace_{F} w$. 
@@ -1441,7 +1449,7 @@ when homogeneous boundary conditions are imposed on a single face of the boundar
     \end{align*}
     Recall that $u = w - \gamma$. The first inequality follows. 
     
-    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    There exists $\varphi : \hat T \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
     We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \nabla ( u \circ \varphi )$. 
     Then $\nabla \hat u = \hat g$. 
     % 
@@ -1659,7 +1667,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 We return to the theory of triangulations,
 as our main objective requires some further concepts.
 We are interested in simplicial complexes that triangulated manifolds. 
-We put particular focus on \emph{shellable} simplicial complexes as a particularly important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations are examples of such shellable complexes. 
+We put particular focus on \emph{shellable} simplicial complexes as a particularly important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations of dimension two and three are examples of such shellable complexes. 
 Our main references for this section are the monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler2012lectures}. 
 
 \begin{remark}
@@ -1680,7 +1688,7 @@ such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit
 or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional.
 
-We know that any manifold $\calM$ has a got a topological boundary $\partial\calM$, possibly empty. 
+We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
 If $\calM$ is $n$-dimensional, then the $\partial\calM$ is a topological manifold without boundary of dimension $n-1$. 
 
 The following special cases receive particular interest:
@@ -1717,7 +1725,7 @@ We begin with the boundary.
     
     If $z_F$ is an interior point of $\calM$, 
     then we can assume that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere $S$ of dimension $n-1$. 
-    At the same time, $X = F \subseteq \partial \mathring B_F$ is empty if $n=1$ or homeomorphic to a sphere $S' \subseteq S$ of dimension $n-2$. 
+    At the same time, $X = F \cap \partial \mathring B_F$ is empty if $n=1$ or homeomorphic to a sphere $S' \subseteq S$ of dimension $n-2$. % TODO: proofread
     We see that $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
     But by construction $\partial \mathring B_F \setminus X$ is homeomorphic to $S \setminus S'$,
     which has exactly two distinct connected components according to the Jordan-Brouwer separation theorem.
@@ -1760,7 +1768,7 @@ We continue with a few more observations about manifold triangulations.
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$. 
     \begin{itemize}
         \item If $S$ is an inner simplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
-        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. % TODO: Define this macro 
         \item If $S$ is a boundary subsimplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
         and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
         \item If the underlying space of $\calT$ is connected, then $\calT$ is strongly connected.
@@ -1816,11 +1824,11 @@ We continue with a few more observations about manifold triangulations.
     The induction argument implies that each vertex star in $\calT$ is strongly connected.
 
     \item 
-    If the underlying space is connected, then we easily see that the underlying space of the $1$-skeleton is path-connected.
+    If the underlying space is connected, then we easily see that the union of the $1$-simplices is path-connected.
     Given $n$-simplices $S,S' \in \calT$, 
     we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$.
     We also notice that each vertex star is strongly connected. 
-    We can thus construct change the first sequence to another $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
+    We can thus change the first sequence to another $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
     such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
     \end{enumerate}
     All relevant results are proven. 
@@ -1838,7 +1846,9 @@ We continue with a few more observations about manifold triangulations.
 
 \begin{remark}
     Clearly, not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
-    Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. 
+    When the dimension is at least five, then there is no computer algorithm that, given a finite simplicial complex as input, decides whether the input is the triangulation of some fixed manifold~\cite{chernavsky2006unrecognizability}.
+    Going further, it has been shown that deciding whether a simplicial complex is the triangulation of a manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
+    % Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. ~\cite{todo}
     We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
 
     Conversely, not all topological manifolds, even if compact, can be described as a triangulation. 
@@ -2017,12 +2027,12 @@ That leads to the following important consequence.
 % The notion of shelling is taken from Ziegler's book~\cite{ziegler2012lectures}
 
 \begin{lemma}    
-    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
+    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, % TODO: what is non-brnaching?
     then
     $$
         X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
     $$ 
-    is a manifold with boundary for all $0 \leq m \geq M$.
+    is a manifold with boundary for all $0 \leq m \leq M$.
     % 
     In particular, $X_{m}$ is a topological $n$-ball when $m < M$, 
     and 
@@ -2078,7 +2088,7 @@ Our main interest are local patches or stars within triangulations.
     We will construct the shelling in reverse. 
     
     Write $M = |\calT|$. 
-    We call a triangle $T \in \calT$ \emph{good} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
+    We call a triangle $T \in \calT$ \emph{good} if it intersects the boundary $\partial M$ in a non-empty union of edges. % TODO: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
     We show by an induction argument over the number of triangles that every triangulation of a $2$-disk contains a good triangle. 
     Clearly, this is the case if the triangulation contains only one triangle. 
     Now suppose the induction claim is true when the triangulation includes $N$ triangles,
@@ -2229,7 +2239,7 @@ We summarize this as a commuting diagram:
 
 \begin{remark}
     Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
-    scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega'$.
+    scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This is in accordance with the notion of pullback, that we will review shortly. 
     One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
 \end{remark}
@@ -2484,7 +2494,7 @@ Letting $x,y \in \bbR^n$ with at least one $x$ or $y$ contained in $\Omega$, we 
     |x-y|^{k-n} \int_0^\infty r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
-We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus 
+We can restrict the inner integrals to the range $0 \leq r \leq D$. Thus % TODO: define D
 \begin{align*}
     G_{\ell}(x,y) 
     &\leq 
@@ -2728,7 +2738,7 @@ For full technical clarity, we show we have a bounded operator
 
 
 \begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$. There exists a bounded mapping 
+    Let $\Omega \subseteq \bbR^{n}$ be convex. There exists a bounded mapping 
     \begin{align*}
      \Bogov_{\ell} : L^{p}(\Omega,\Alt^{\ell}) \rightarrow \bfW^{p}_{0}(\Omega,\Alt^{\ell-1})
     \end{align*}
@@ -2745,7 +2755,10 @@ For full technical clarity, we show we have a bounded operator
 \begin{lemma}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. Then 
     \begin{align*}
-        \| \vec u \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \vec u \|_{L^{2}(\Omega)}.
+        \| \bfu \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)},
+        \qquad 
+        \bfu \in \bfH(\divergence,\Omega)
+        .
     \end{align*}
 \end{lemma}
 \begin{proof}
