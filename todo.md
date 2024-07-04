@@ -60,4 +60,6 @@ General results of this type for a class containing the finite element stars are
 - Bott, Raoul, and Loring W. Tu. *Differential Forms in Algebraic Topology*. Springer, 1982.
 
 
+We express all our main results in the calculus of differential forms, also known as exterior calculus, 
+and treat the curl and divergence operator as its particular instances. 
 

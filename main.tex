@@ -65,12 +65,12 @@ Before we outline the main results of this exposition in more details,
 we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
 We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as our conceptual point of reference.
 Given a domain $\Omega \subseteq \bbR^{n}$ and $1 \leq p \leq \infty$,
-we search for a constant $C_{\grad,p} > 0$ such that 
+we search for a constant $C_{\grad,\Omega,p} > 0$ such that 
 \begin{align*}
     \min\limits_{c\in\bbR}
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{\grad,p} \| \nabla u \|_{L^p(\Omega)},
+    C_{\grad,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
     \quad 
     u \in W^{1,p}(\Omega)
     .
@@ -86,12 +86,12 @@ One example for a bounded linear operator is the average-free potential:
     \quad 
     \bff \in \nabla W^{1,p}(\Omega)
     .
-\end{align*} % TODO: use same notation as later 
-Its operator norm is the constant $C_{\rm P,p} > 0$ in the Poincar\'e inequality 
+\end{align*} 
+Its operator norm is the constant $C_{\varnothing,\Omega,p} > 0$ in the Poincar\'e inequality 
 \begin{align*}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{\rm P,p} \| \nabla u \|_{L^p(\Omega)},
+    C_{\varnothing,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
     \quad 
     u \in W^{1,p}(\Omega)
     ,
@@ -101,7 +101,7 @@ Considerable research effort has gone into finding (or estimating) the optimal c
 
 Most research on optimal constants has addressed the case of convex domains. 
 % The optimal constants that depend solely on the domain diameter are known if $p=2$ \cite{bebendorf2003note} and if $p=1$ \cite{acosta2004optimal}. 
-Notably, the optimal constants $C_{\grad,p}$ for any $1 \leq p < \infty$ that depends only on the domain diameter is known when the domain is convex.~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
+Notably, the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ that depends only on the domain diameter is known when the domain is convex.~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
 When the domain is not convex but star-shaped with respect to a ball,
 then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{brenner2008finite,ern2021finite}. 
 An open set star-shaped with respect to a internal point is also star-shaped with respect to some open ball within the domain,
@@ -140,14 +140,14 @@ We are interested in constants for inequalities such as
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\curl,\Omega) \\ \curl \bfv = \bff } } 
     \| \bfv \|_{\bfL^{p}(\Omega)}
     \leq 
-    C_{\curl,p}
+    C_{\curl,\Omega,p}
     \| \bff \|_{\bfL^{p}(\Omega)}
     ,
     \qquad 
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfv = f } } 
     \| \bfv \|_{\bfL^{p}(\Omega)}
     \leq 
-    C_{\divergence,p}
+    C_{\divergence,\Omega,p}
     \| f \|_{L^{p}(\Omega)}
     ,
 \end{align*}
@@ -169,7 +169,7 @@ We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue}, who estim
 By duality, that implies lower bounds for the case of full boundary conditions.
 Their study also implies sequences of inequalities, such as the following in 3D convex domains:
 \begin{align}\label{math:intro:guerinisavo}
-    C_{\grad,2} \geq C_{\curl,2} \geq C_{\divergence,2}.
+    C_{\grad,\Omega,2} \geq C_{\curl,\Omega,2} \geq C_{\divergence,\Omega,2}.
 \end{align}
 When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constants 
 follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
@@ -232,16 +232,20 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 % General outline 
 We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. Having already defined a potential operator over a subtriangulation, we then construct a potential over a neighboring simplex. However, the two potentials might not have the same tangential trace along the interface between the subtriangulation and the new simplex. 
 
-To ensure the correct continuity properties, we require stronger conditions on the triangulations than in the case of gradient potentials. We postulate that the intermediate subtriangulations are manifolds with boundary, and that the aforementioned interface is, more specifically, a boundary submanifold of the intermediate subtriangulation and the new simplex. Under those conditions, which are met by \textit{shellable} triangulations, we define a well-posed auxiliary problem for the curl operator with partial tangential boundary conditions. Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
+To ensure the correct continuity properties, we require stronger conditions on the triangulations than in the case of gradient potentials. We postulate that the intermediate subtriangulations are manifolds with boundary, and that the aforementioned interface is, more specifically, a boundary submanifold of the intermediate subtriangulation and the new simplex. Under those conditions, which are met by so-called \textit{shellable} triangulations, we define a well-posed auxiliary problem for the curl operator with partial tangential boundary conditions. Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
 \\
 
-
-
-% TODO: compare with previous paragraphs 
-This construction of potentials requires triangulations with special conditions: 
-we assemble the triangulation sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.  Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved. Such triangulations are called \textit{shellable}. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. 
+Shellable triangulations are defined by a special constructive property:
+we can assemble such triangulations sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.
+Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved.
+Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. 
 In particular, local stars in 2D and 3D triangulations are shellable. 
 \\
+
+% This construction of potentials requires triangulations with special conditions: 
+% we assemble the triangulation sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.  Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved. Such triangulations are called \textit{shellable}. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. 
+% In particular, local stars in 2D and 3D triangulations are shellable. 
+% \\
 
 
 % auxiliary problems 
@@ -347,7 +351,7 @@ We call a set \textit{trianguable} if it is the underlying set of some triangula
     the Cantor set $\calC \subseteq [0,1]$ is a compact set 
     that underlies an ``infinite $0$-dimensional simplicial complex''.
     If we place $\calC$ on the x-axis of a 2D coordinate system 
-    and connect each member of $\calC$ to $(0,1)$ via a straight line segment, 
+    and connect each member of $\calC$ to $(0,1) \in \bbR^{2}$ via a straight line segment, 
     then the resulting set is still compact, even path-connected,  
     but has an ``infinite $1$-dimensional triangulation''.
     % 
@@ -361,15 +365,15 @@ Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(
 We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
 Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. 
 In practice, we not always distinguish between points and singleton simplices. 
-Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (codimension $1$ members) of this triangulation. 
-
-\begin{remark}
+Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
+% \begin{remark}
     Our use of the term \textit{face} as is common in the finite element literature
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics.
-    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra. 
-\end{remark}
+    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra. %
+% \end{remark}
+}
 
-When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{star} of $T$, 
+When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
 which the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. Formally,
 \begin{gather*}
     \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
@@ -379,7 +383,7 @@ A crucial observation is the following.
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
  Then either $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \emptyset$ or there exists $S'' \in \calT$
- such that $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \calT_{n}(S'')$ with $S, S' \subseteq S''$.
+ such that $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \patch_{\calT}(S'')$ with $S, S' \subseteq S''$.
 \end{lemma}
 \begin{proof}
  Let $T \in \calT$ be $n$-dimensional.
@@ -389,12 +393,12 @@ A crucial observation is the following.
  where $S'' \in \calT$ is the convex closure of $S$ and $S'$.
 \end{proof}
 
-We will use a specific notion of connectivity. 
+We introduce a specific notion of connectivity. 
 Given an $n$-dimensional simplicial complex $\calT$, 
 we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
 We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. 
 Clearly, strongly connected in $\calT$ is an equivalence relation. A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, 
-and we call $\calT$ strongly connected if it has only one strongly connected component. 
+and we call $\calT$ \emph{strongly connected} if it has only one strongly connected component. 
 
 
 
@@ -797,7 +801,7 @@ Whenever $T$ is an $n$-dimensional simplex
     \frac{ \diam(T)^{n} }{ n! \vol(T) }
     .
 \end{align}
-% TODO: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity paremeter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
+% TODO: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
 Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
 \begin{align}\label{math:moremeasures}
     \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
@@ -2144,7 +2148,7 @@ such that the interface is well-behaved: it is a simplicial disk or a simplicial
 That leads to the following important consequence.
 
 \begin{lemma}    
-    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, % TODO: what is non-brnaching?
+    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, % TODO: what is non-branching?
     then
     $$
         X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
