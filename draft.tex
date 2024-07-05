@@ -2115,3 +2115,25 @@ We apply the cellwise local approximation estimate, which coincides with the cel
     While the resulting Bogovski\u{\i}-type potential has more moderate regularity properties, 
     this simplification suits our purposes and enables some simple estimates for the continuity constant of the potential operator in Lebesgue norms. 
 \end{document}
+
+
+For jede Matrix $M \in \mathbb R^{n \times n}$ schreiben wir die Reihen als $r_1, r_2, \dots, r_n \in \bbR^{n}$.
+Die maximale Euklidische Norm der Reihenvektoren
+\begin{align*}
+    \| M \|_{\star} := \max\limits_{1 \leq i \leq n} \| r_i \|_{2}
+\end{align*}
+defininiert eine Norm auf den $n \times n$ Matrizen.
+
+I am looking for the smallest constant $C > 0$ such that 
+\begin{align*}
+    \| M \|_{2} \leq C \| M \|_{\star}.
+\end{align*}
+Es ist bekannt dass die Frobenius norm eine obere Schranke ist:
+\begin{align*}
+    \| M \|_{2} = \sigma_{1}(M) \leq \sum_{i=1}^{n} \sigma_{i}(M) = \| M \|_{F}
+\end{align*}
+wo $\sigma_{1}(M) \geq \dots \geq \sigma_{n}(M)$ die Singularwerte darstellen. Folglich,
+\begin{align*}
+    \| M \|_{F} = \sqrt{\sum_{i=1}^{n} \| r_i \|_{2} } \leq \sqrt{n} \max\limits_{1 \leq i \leq n} \| r_i \|_{2}
+\end{align*}
+Kann die Konstante $\sqrt{n}$ noch verbessert werden?
