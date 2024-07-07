@@ -67,3 +67,19 @@ and treat the curl and divergence operator as its particular instances.
 This is achieved by a local patchwise construction of a potential and matching that local contribution to the global potential being constructed in intermediate steps. 
 Consequently, the overall estimate depends on the local Poincar\'e constants, the mesh quality, and the depth of the recursion. 
 
+Bounds for products of singular values of a matrix,  R. PELUSO – G. PIAZZA
+
+A consideration on the condition number of
+extremely ill-conditioned matrices https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=6662260
+
+NOTE ON SOME UPPER BOUNDS FOR THE CONDITION NUMBER - GUANGHUI CHENG
+
+Singularity, Wielandt’s lemma and singular values
+
+Estimates of the spectral condition number 
+James Lam, Zhao Li, Yimin Wei, Jun-e Feng & Kwok Wai Chung
+
+A Best Upper Bound for the P-Norm Condition Number of a Matrix
+
+Bounds for Eigenvalues Using the Trace and Determinant
+
