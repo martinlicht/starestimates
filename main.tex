@@ -26,7 +26,7 @@
 \maketitle
 
 \begin{abstract}
-    We construct potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulatons. This class of triangulations includes local stars in dimension two and three. 
+    We construct potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. This class of triangulations includes local stars in dimension two and three. 
     The operator norms of our potentials satisfy explicitly computable bounds that only depend on the geometry. 
     We thus obtain computable upper bounds for Poincar\'e--Friedrichs inequalities and computable lower bounds for the eigenvalues of several vector Laplacians. 
     % 
@@ -192,14 +192,14 @@ The existence of a bounded linear potential operator is a non-trivial fact even 
 We are interested in constants for inequalities such as 
 \begin{align*}
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\curl,\Omega) \\ \curl \bfv = \bff } } 
-    \| \bfv \|_{\bfL^{p}(\Omega)}
+    \| \bfv \|_{L^{p}(\Omega)}
     \leq 
     C_{\curl,\Omega,p}
-    \| \bff \|_{\bfL^{p}(\Omega)}
+    \| \bff \|_{L^{p}(\Omega)}
     ,
     \qquad 
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfv = f } } 
-    \| \bfv \|_{\bfL^{p}(\Omega)}
+    \| \bfv \|_{L^{p}(\Omega)}
     \leq 
     C_{\divergence,\Omega,p}
     \| f \|_{L^{p}(\Omega)}
@@ -456,6 +456,7 @@ which the simplicial subcomplex of $\calT$ that contains all supersimplices of $
 \begin{gather*}
     \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
 \end{gather*}
+We write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
 A crucial observation is the following.  
 
 \begin{lemma}
@@ -592,7 +593,7 @@ let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \
 \end{align*}
 Here, we have used H\"older's or Jensen's inequality. 
 In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| v_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
-We conclude that taking the average is a projection within Lebegue spaces with unit norm. 
+We conclude that taking the average is a projection within Lebesgue spaces with unit norm. 
 The triangle inequality now shows that 
 \begin{align*}
     \| u - u_\Omega \|_{L^{p}(\Omega)} 
@@ -938,6 +939,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 
 
+% DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 
 
@@ -947,15 +949,17 @@ In this section we address the stepwise computable estimate of Poincar\'e--Fried
 Given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
 This serves as our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials: 
 after fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
+The basic idea has appeared in the different variants before, for instance recently in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
 \\
 
-% TODO: as for instance recently used in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
 
 Towards this goal, we introduce quantitative measures for the geometric quality of triangulations. 
 These indicate of the regularity of simplex shapes. 
 Most of such \emph{shape measures} in the literature are based on geometric features, 
 but we also consider indicators based on affine transformations associated with the mesh;
 this is because the properties of these transformations are what shows up in our estimates. 
+
+For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
 
 We define the \textit{geometric shape measure} of any $n$-dimensional simplex $T$ as 
 \begin{align}\label{math:geometricshapemeasure}
@@ -964,13 +968,23 @@ We define the \textit{geometric shape measure} of any $n$-dimensional simplex $T
     \frac{ \diam(T)^{n} }{ n! \vol(T) }
     .
 \end{align}
-% 
-% 
-% TODO: Note that \kappa(T)=1 whenever T is a line segment, an isosceles right-angled triangle, or their generalizations to higher dimensions (multiples of a reference simplex). \kappa(T) is slightly bigger than one for equilateral simplices and blows up with distortion.
-% 
-% 
 
-% TODO: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
+\begin{remark}
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
+    For example, $\kappa(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\kappa(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
+
+% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    The geometric ratio $\kappa(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
+
+
+% DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
 Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
 \begin{align}\label{math:moremeasures}
     \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
@@ -983,13 +997,14 @@ Here, $\kappa(\calT)$ is the geometric shape measure of the triangulation, and $
 Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
 that preserves $F$. We define 
 \begin{align}\label{math:reflectionmeasure}
-    \xi(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \| \Xi_{S,T} \|.
+    \xi(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
+    \| \Jacobian \Xi_{S,T} \|
 \end{align}
+to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
 
-For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
-
-% DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 % and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
 % we define the quantity 
@@ -1000,17 +1015,6 @@ For the purpose of the usual scaling arguments, we introduce the reference simpl
 %     .
 % \end{align*}
 
-\begin{remark}
-    % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    In our convention, the reference simplex has unit shape measure.
-    This geometric ratio equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
-    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
-    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
-    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
-\end{remark}
 
 
 
@@ -1021,60 +1025,88 @@ For the purpose of the usual scaling arguments, we introduce the reference simpl
 
 
 
-% TODO: INTRODuce a reference simplex 
-% TODO: DEFINE THE JACOBIAN 
+% DONE: INTRODuce a reference simplex 
+% DONE: DEFINE THE JACOBIAN 
+\todo{MWL: If we need to define the Jacobian formally, where should that be put? Maybe an extra paragraph \textbf{Notation} immediately at the end of the introduction section.}
 
 \begin{lemma}\label{lemma:affinetransform}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
     \begin{align*}
         \| \Jacobian \varphi \|
         \leq 
-        \sqrt{n} \cdot \diam(T) % TODO: can this improved?
+        \Ceins{n} \cdot \diam(T) % DONE: can this improved?
         ,
         \qquad 
         \| \Jacobian \varphi^{-1} \|
         \leq 
-        \sqrt{2n} 
-        % \frac{ n! \vol(T) } { \diam(T)^{n} }
-        \kappa(T)^{\frac 1 n}
+        \Czwei{n} \cdot 
+        \kappa(T) 
         \diam(T)^{-1}
         .
     \end{align*}
+    Here, $\Ceins{n} \leq \sqrt{n}$ and $\Czwei{n} \leq \sqrt{ 2n/(n-1)^{n-1} }$. 
 \end{lemma}
 \begin{proof}
     We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
     The Jacobian determinant is the product of these singular values. 
-    Thus, $\sigma_1/\sigma_n \leq \sigma_1 / \sqrt[n]{ \det(\Jacobian\varphi) }$ and 
-    \[
-        \diam(T) 
-        \leq 
-        \sqrt{2} \sigma_1 
-        \leq 
-        \sqrt{2} 
-        \frac{ \sigma_1 }{ \sqrt[n]{ \det(\Jacobian\varphi) } } 
-        \sigma_n
-        \leq 
-        \sqrt{2n} 
-        \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)^{\frac 1 n}
-        \sigma_n
+%     By a result of Hong and Pan,
+%     \begin{align*}
+%         \frac{ \sigma_{n} }{ \sigma_{1} }
+%         \geq 
+%         \left(\frac{n-1}{n}\right)^{\frac{n-1}{2}}
+%         \frac{ \sqrt{n} \det(\Jacobian\varphi) }{ \| \Jacobian\varphi \| }
+%         \sigma_{1}^{-1}
+%         \geq 
+%         \left(\frac{n-1}{n}\right)^{\frac{n-1}{2}}
+%         \frac{ \sqrt{n} \det(\Jacobian\varphi) }{ n \sigma_{1} }
+%         \sigma_{1}^{-1}
+%         .
+%     \end{align*}
+    By a result of Yu and Gu \cite{yisheng1997note},
+    \begin{align*}
+        \frac{ \sigma_{n} }{ \sigma_{1} }
+        &\geq 
+        \det(\Jacobian\varphi)
+        \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
+        \sigma_{1}^{-1}
+%         \geq 
+%         (n-1)^{\frac{n-1}{2}}
+%         \det(\Jacobian\varphi)
+%         \left( \frac{1}{ \diam(T)^{n-1} } \right)^{}
+%         \frac{1}{\sqrt{n} \diam(T)}
+%         \\&
+%         \geq 
+%         \frac{1}{\sqrt{n}}
+%         (n-1)^{\frac{n-1}{2}}
+%         \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n} }
+        \geq 
+        \sqrt{\frac{ (n-1)^{n-1} }{n} }
+        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n} }
         .
-    \]
-    The desired result is thus evident. % TODO: this is incorrect. Find a better explanation. 
+    \end{align*}
+    Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. 
+%     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
+%     \[
+%         \diam(T) 
+%         \leq 
+%         \sqrt{2} \sigma_1 
+%         \leq 
+%         \sqrt{2} 
+%         \frac{ \sigma_1^{n} }{ { \det(\Jacobian\varphi) } } 
+%         \sigma_n
+%         \leq 
+%         \sqrt{2n^{n}} 
+%         \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)
+%         \sigma_n
+%         .
+%     \]
+%     The desired result is thus evident. 
 \end{proof}
 
 % TODO: REMOVE THE \cdot 
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
-        \frac{ \vol(T_1) }{ \vol(T_2) }
-        \leq 
-        % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-        % \cdot 
-        % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-        % = 
-        \kappa(T_1) \kappa(T_2)
-        ,
-        \qquad 
         \diam(T_1)
         \leq 
         % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
@@ -1082,90 +1114,109 @@ For the purpose of the usual scaling arguments, we introduce the reference simpl
         % = 
         \kappa(T_1)
         \diam(F)
+        ,
+        \qquad 
+        \frac{ \vol(T_1) }{ \vol(T_2) }
+        \leq 
+        % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
+        % \cdot 
+        % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
+        % = 
+        \kappa(T_1) \kappa(T_2)
         .
     \end{align*}
     If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism, then 
     \begin{align*}
         \| \Jacobian \Xi \|
         \leq 
-        \sqrt{2n^{n+1}} 
-        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
-        \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
-        =  
-        \sqrt{2n^{n+1}} 
+        \Cdrei{n}
         \frac{ \kappa(T_1) }{ \kappa(T_2) }
         .
     \end{align*}
+    Here, $\Cdrei{n} \leq \Ceins{n} \Czwei{n}$. 
 \end{lemma}
 
-% TODO: REMOVE THE FACTORIAL?
+% Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
+% \begin{align*}
+%     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
+%     \leq 
+%     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
+%     \cdot 
+%     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
+%     .
+% \end{align*}
+% DONE: REMOVE THE FACTORIAL?
+% DONE: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
+% DONE: clarify the first of the following inequalities
+    
+%     \begin{align*}
+%         \diam(F) \geq h_S = n \frac{ \vol(T_1) }{ \vol(S) } \geq n \frac{ \vol(T_1) }{ \diam(T_1)^{n} } \diam(T_1).
+%     \end{align*}
+%     Thus we establish the first estimate: 
+
+%     Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
+%     \begin{align*}
+%         \diam(F)
+%         \geq 
+%         h
+%         =
+%         n
+%         \frac{ \vol(T_1) }{ \vol(F') }
+%         \geq 
+%         \frac{ n \vol(T_1) }{ \diam(T_1)^{n} }
+%         \cdot 
+%         \diam(T_1)
+%         .
+%     \end{align*}
+%     That shows the second estimate. 
+
 
 \begin{proof}
     Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
-    Then $\vol(T_1) = h_1 \vol(F)/n!$ and $\vol(T_2) = h_2 \vol(F)/n!$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
-    We estimate 
-    % TODO: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
-    % TODO: clarify the first of the following inequalities
+    By the volume formula for simplices, $\vol(T_1) = h_1 \vol(F)/n$ and $\vol(T_2) = h_2 \vol(F)/n$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
+    The diameter of $F$ is at least as large as the height $h_S$ of some other facet $S$ of $T$. Recursive application of the volume formula shows 
     \begin{align*}
-        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} \diam(F),
-        \\
-        h_2 &= n! \frac{\vol(T_2)}{\vol(F)} \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n! \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
-        .
+        \vol(T) = \frac{1}{n!} h_S h_2 \cdots h_n,
+    \end{align*}
+    where $h_S \leq \diam(F)$ and $h_2, \cdots, h_n \leq \diam(T)$. Now, 
+    \begin{align*}
+        \diam(T) \frac{ n! \vol(T) }{ \diam(T)^{n} } \leq h_S \leq \diam(F).
     \end{align*}
     The first estimate follows. 
-    Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
+    On the other hand, 
     \begin{align*}
-        \diam(F)
-        \geq 
-        h
-        =
-        n!
-        \frac{ \vol(T_1) }{ \vol(F') }
-        \geq 
-        \frac{ n! \vol(T_1) }{ \diam(T_1)^{n} }
-        \cdot 
-        \diam(T_1)
+        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n \cdot \vol(T_1)} \diam(F),
+        \\
+        h_2 &= n \frac{\vol(T_2)}{\vol(F)} \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
         .
     \end{align*}
-    That shows the second estimate. 
-    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, we find 
+    The second estimate follows. 
+    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\eqref{lemma:affinetransform} and the first estimate imply 
     \begin{align*}
         \| \Jacobian \Xi \|
         &
         \leq 
-        \sqrt{n} 
-        \cdot 
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
         \diam(T_1)
-        %
-        % \sqrt{2n} \left( \frac{ n! \vol(T_2) } {\diam(T_2)^{n} } \right)^{\frac 1 n}
-        \sqrt{2n} \kappa(T_2)^{\frac 1 n}
         \diam(T_2)^{-1}
         \\&
         \leq 
-        \sqrt{n} 
-        \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
+        \kappa(T_1) 
         \diam(F)
-        % \sqrt{2n^{n}} \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
-        \sqrt{2n} \kappa(T_2)^{\frac 1 n}
-        \diam(F)^{-1}
+        \diam(T_2)^{-1}
         \leq 
-        n\sqrt{2}
-        \kappa(T_1)
-        \kappa(T_2)^{\frac 1 n}
-        % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
-        % \frac{ n! \vol(T_2) } { \diam(T_2)^{n} } 
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
+        \kappa(T_1) 
         .
     \end{align*}
-    All the desired results thus follow. % TODO: improve these results, explain in more detail  
-    % Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
-    % \begin{align*}
-    %     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
-    %     \leq 
-    %     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-    %     \cdot 
-    %     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-    %     .
-    % \end{align*}
+    All the desired results thus follow.
 \end{proof}
 
 
@@ -1178,7 +1229,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Suppose that $T, T'$ are two $n$-simplices whose intersection is a common face $F := T_1 \cap T_2$. 
-    Let $U := T_1 \cup T_2$. 
+    Write $U := T_1 \cup T_2$. 
     Then 
     \begin{align*}
         \min\limits_{ c \in \bbR }
@@ -1203,9 +1254,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \end{align*}
     for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$.
 \end{lemma}
-\begin{remark}
-    The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
-\end{remark}
+% \begin{remark}
+%     The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
+% \end{remark}
 \begin{proof}
     Let $\hat T_1$ be the reference $n$-simplex whose vertices $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v_n = e_n$ are the origin and the $n$ canonical unit vectors. 
     We let $\hat T_2$ be the $n$-simplex whose vertices are $v_0=0, v_1=e_1, \dots, v_{n-1} = e_{n-1}, v'_n = -e_n$. 
@@ -1224,21 +1275,21 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
         \\&
         \leq 
-        |\det(\Dif \varphi_1^{-1})|
-        \cdot \| \Dif \varphi_1 \|^{p}
+        |\det(\Jacobian \varphi_1^{-1})|
+        \cdot \| \Jacobian \varphi_1 \|^{p}
         \cdot 
         \| \nabla u \|_{L^{p}(T_1)}^{p}
         +
-        |\det(\Dif \varphi_2^{-1})|
-        \cdot \| \Dif \varphi_2 \|^{p}
+        |\det(\Jacobian \varphi_2^{-1})|
+        \cdot \| \Jacobian \varphi_2 \|^{p}
         \cdot 
         \| \nabla u \|_{L^{p}(T_2)}^{p}
         \\&
         \leq 
         \max\left( 
-            |\det(\Dif \varphi_1)|^{-1} \cdot \| \Dif \varphi_1 \|^{p}
+            |\det(\Jacobian \varphi_1)|^{-1} \cdot \| \Jacobian \varphi_1 \|^{p}
             ,
-            |\det(\Dif \varphi_2)|^{-1} \cdot \| \Dif \varphi_2 \|^{p}
+            |\det(\Jacobian \varphi_2)|^{-1} \cdot \| \Jacobian \varphi_2 \|^{p}
         \right)
         \| \nabla u \|_{L^{p}(U)}^{p}
         .
@@ -1248,9 +1299,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         &\leq 
         \max\left( 
-            |\det(\Dif \varphi_1)|^{-\frac 1 p} \cdot \| \Dif \varphi_1 \|
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \cdot \| \Jacobian \varphi_1 \|
             ,
-            |\det(\Dif \varphi_2)|^{-\frac 1 p} \cdot \| \Dif \varphi_2 \|
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \cdot \| \Jacobian \varphi_2 \|
         \right)
         \| \nabla u \|_{L^{p}(U)}
         .
@@ -1269,28 +1320,28 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| w \|_{L^{p}(U)}
         \leq 
         \max\left( 
-            |\det(\Dif \varphi_1)|
+            |\det(\Jacobian \varphi_1)|
             ,
-            |\det(\Dif \varphi_2)|
+            |\det(\Jacobian \varphi_2)|
         \right)^{\frac 1 p}
         \| \hat w \|_{L^{p}(\hat U)}
         .
     \end{align*}
-    % TODO: that abbreviation is to close to the Jacobian / total derivative 
+    % DONE: that abbreviation is to close to the Jacobian / total derivative 
     Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
     \begin{align*}
         \| w \|_{L^{p}(U)}
         &\leq 
         2 C_{{\rm EFNT},p}
         \max\left( 
-            |\det(\Dif \varphi_1)|
+            |\det(\Jacobian \varphi_1)|
             ,
-            |\det(\Dif \varphi_2)|
+            |\det(\Jacobian \varphi_2)|
         \right)^{\frac 1 p}
         \max\left( 
-            |\det(\Dif \varphi_1)|^{-\frac 1 p} 
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} 
             ,
-            |\det(\Dif \varphi_2)|^{-\frac 1 p} 
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} 
         \right)
         D
         \| \nabla u \|_{L^{p}(U)}
@@ -1298,14 +1349,14 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \leq 
         2 C_{{\rm EFNT},p}
         \max\left( 
-            |\det(\Dif \varphi_1)|
+            |\det(\Jacobian \varphi_1)|
             ,
-            |\det(\Dif \varphi_2)|
+            |\det(\Jacobian \varphi_2)|
         \right)^{\frac 1 p}
         \min\left( 
-            |\det(\Dif \varphi_1)|
+            |\det(\Jacobian \varphi_1)|
             ,
-            |\det(\Dif \varphi_2)| 
+            |\det(\Jacobian \varphi_2)| 
         \right)^{-\frac 1 p} 
         D
         \| \nabla u \|_{L^{p}(U)}
@@ -1313,9 +1364,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \leq 
         2 C_{{\rm EFNT},p}
         \max\left( 
-            \frac{ |\det(\Dif \varphi_1)| }{ |\det(\Dif \varphi_2)| }
+            \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
             ,
-            \frac{ |\det(\Dif \varphi_2)| }{ |\det(\Dif \varphi_1)| }
+            \frac{ |\det(\Jacobian \varphi_2)| }{ |\det(\Jacobian \varphi_1)| }
         \right)^{\frac 1 p}
         D
         \| \nabla u \|_{L^{p}(U)}
@@ -1468,7 +1519,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  \begin{align*}
     \| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{PF}},U_F,p} \| \nabla u_F \|_{L^{p}(U_F)},
  \end{align*}
- where the computable constant $C$ is given by ... % TODO
+ where the computable constant $C_{{\rm{PF}},U_F,p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}.
+ We start with the simplex $T_{0}$. 
  There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
  \[
     \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
@@ -1481,9 +1533,13 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  
 %  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
+ \todo{MLW, MV: add a figure here to illustrate how the domain is exhausted.}
+ 
+ We use a recursive argument. 
  Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
  such that $c_{0} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
- Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_m$. 
+ This is already satisfied for $m=1$.
+ Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
  By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{m-1}}$. 
  Since $\nabla u_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}}$,
  there exists a constant $c_{m} := w_{m-1|T_{{m-1}}} - u_{F_{m}|T_{{m-1}}}$.
@@ -1497,14 +1553,14 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  
  We assess the norm of this potential. We observe 
  \begin{gather*}
-    \| u'_{F_m} \|_{L^{p}(T_m)}
+    \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
     +
     \| c_{m} \|_{L^{p}(T_m)},
     \qquad 
     \| c_{m} \|_{L^{p}(T_m)}
-    \leq 
+    = 
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
     \| c_{m} \|_{L^{p}(T_{{m-1}})},
     \\ 
@@ -1526,7 +1582,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     .
  \end{align*}
- We summarize the two integrals of $u_{F_m}$. 
+ We sum the two integrals of $u_{F_m}$. 
  % 
  In the special case $p=1$,
  \begin{align*}
@@ -1596,7 +1652,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \| u_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
- We use Definition~\eqref{math:moremeasures} to prove the desired inequality.
+ Taking into account Definition~\eqref{math:moremeasures}, we obtain the desired inequality.
 %  \begin{align*}
 %     \| w_{m} \|_{L^{p}(T_m)}^{p}
 %     &\leq 
@@ -1627,7 +1683,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 
 
 
-We also want to assess an alternative route towards Poincar\'e--Friedrichs inequalities over triangulated domains,
+We also want to assess an alternative route towards Poincar\'e--Friedrichs inequalities over triangulated domains. 
 While the underlying idea remains the same, the construction of the potential is slightly different. 
 As an auxiliary result with independent relevance, we compute an upper bound for the Poincar\'e--Friedrichs inequality 
 when homogeneous boundary conditions are imposed on a single face of the boundary. 
@@ -1663,7 +1719,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
         \| w \|_{L^{p}(T)}
         \leq 
         C_{{\rm PF},T,p} 
-        \| \nabla w \|_{\bfL^{p}(T)} % TODO: bold face or no boldface? No bold face 
+        \| \nabla w \|_{L^{p}(T)} % DONE: bold face or no boldface? No bold face 
         .
     \]
     Then $w-u$ is constant, and thus $\gamma := \trace_{F} (w-u) = \trace_{F} w$. 
@@ -1677,7 +1733,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
         \cdot 
         \gamma 
         \vol(F)^\frac{1}{p}
-        \leq 
+        =
         \left( \frac{ \vol(T) }{ \vol(F) } \right)^\frac{1}{p}
         \| \gamma \|_{L^{p}(F)}
         .
@@ -1859,6 +1915,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
     For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$. 
     We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
     
+    We use a recursive argument.
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $c_{0} = u - w_{m-1}$.
     In particular, $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
     By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{m-1}$. 
@@ -1874,13 +1931,14 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \trace_F w_{m-1} = \trace_F w'_{m}
         .
     \end{align*}
-    Write $w''_{m} = u - w'_{m} \in W^{1,p}(T_{m})$. Then 
+    %Write $w''_{m} = u - w'_{m} \in W^{1,p}(T_{m})$. Then 
+    There exists $w''_{m} \in W^{1,p}(T_{m})$ such that 
     \begin{align*}
-        \nabla w''_{m} = \nabla u - \nabla w'_{m}, 
+        \nabla w''_{m} = \nabla u_{|T_{m+1}} - \nabla w'_{m}, 
         \quad 
         \trace_{F_{m}} w''_{m} = 0.
     \end{align*}
-    The trace condition holds because 
+    This is true because 
     \begin{align*}
         \trace_{F_{m}}( \nabla u - \nabla w'_{m} ) 
         &= 
@@ -1921,8 +1979,8 @@ serves as the blueprint for constructing potentials of the curl and divergence o
     \begin{align*}
         \| \nabla w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Dif \Xi  )|^{-\frac 1 p} 
-        \| \Dif \Xi   \|
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi   \|
         \cdot 
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
         \leq 
@@ -3706,28 +3764,28 @@ though the dimension and the form degree enters the estimate.
         \| \tilde u \|_{L^{p}(\hat U)} 
         \leq 
         C_{???} 
-        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        \| \tilde g \|_{L^{p}(\hat U)}
         .
     \end{gather*}
     In addition to that, 
     \begin{gather*}
         \| u \|_{L^{p}(T_{m+1})}
         \leq 
-        |\det(\Dif \varphi)|^{\frac 1 p} 
+        |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \| \hat u \|_{L^{p}(\hat T)}
         \leq 
-        |\det(\Dif \varphi)|^{\frac 1 p} 
+        |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \| \tilde u \|_{L^{p}(\hat U)}
         ,
         \\
-        \| \tilde g \|_{\bfL^{p}(\hat U)}
+        \| \tilde g \|_{L^{p}(\hat U)}
         \leq 
         2^{\frac n p}
-        \| \hat g \|_{\bfL^{p}(\hat T)}
+        \| \hat g \|_{L^{p}(\hat T)}
         \leq 
         2^{\frac n p}
-        |\det(\Dif \varphi_1)|^{-\frac 1 p} \| \Dif \varphi \| \cdot 
-        \| \cartan u \|_{\bfL^{p}(T)}
+        |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \| \Jacobian \varphi \| \cdot 
+        \| \cartan u \|_{L^{p}(T)}
         .
     \end{gather*}
     The second inequality follows.
@@ -3817,8 +3875,8 @@ though the dimension and the form degree enters the estimate.
     \begin{align*}
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Dif \Xi  )|^{-\frac 1 p} 
-        \| \Dif \Xi   \|
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi   \|
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         \leq 
@@ -3955,7 +4013,7 @@ Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that ther
         \qquad 
         C := 
         \left\{\begin{array}{ll}
-            \frac{n-1}{ne^{3}} & \text{ if } k=0
+            \frac{n-1}{n e^{3}} & \text{ if } k=0
             \\
             \frac{k(n-k)}{ne^{3}} & \text{ if } 1 \leq k \leq n-1
             \\
