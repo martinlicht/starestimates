@@ -242,7 +242,7 @@ which enables tools such as averaged Poincar\'e and Bogovski\u{\i} operators.
 However, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
 This is not as much a problem over patches around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
 But that interior ball can be arbitrarily small when the patch is around a boundary simplex, even if the mesh has good shape regularity: 
-this occurs when the domain has sharp reentrant corners, and some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, % DONE: MV : find the examples in the paper by verfuhrt and veeser 
+this occurs when the domain has sharp reentrant corners, and some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, % DONE: MV : find the examples in the paper by verfurth and veeser 
 which contain finite element patches are not star-shaped with respect to any ball. 
 
 Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
@@ -452,9 +452,13 @@ Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces
 }
 
 When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
-which the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. Formally,
+which the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
+We write $\carapace_{\calT}(T)$ for the subset of the local patch whose members do not contain $T$ itself. 
+Formally,
 \begin{gather*}
-    \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T').
+    \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T'),
+    \qquad 
+    \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
 We write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
 A crucial observation is the following.  
@@ -2093,17 +2097,8 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 We return to the theory of triangulations,
 as our main objective requires some further concepts.
 We are interested in simplicial complexes that triangulated manifolds. 
-We put particular focus on \emph{shellable} simplicial complexes as a particularly important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations of dimension two and three are examples of such shellable complexes. 
+We put particular focus on \emph{shellable} simplicial complexes as an important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations of dimension two and three are examples of such shellable complexes. 
 Our main references for this section are the monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler2012lectures}. 
-
-\begin{remark}
-It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. In particular, this enables the inductive method of proof.
-Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation. 
-Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
-by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
-the gluing interface is a triangulated submanifold of the boundary. 
-This forces the intermediate triangulations to be particularly well-shaped. 
-\end{remark}
 
 \subsection{Triangulations of manifolds}
 
@@ -2144,7 +2139,7 @@ We begin with the boundary.
     Since the boundary is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
     
     \item
-    Let $F \in \Faces(T)$ and let $z_F \in F$ be its midpoint. 
+    Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
     Let $\mathring B_F$ be an open neighborhood around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
     Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
     The intersection of any two of them is $F$, and their interiors are disjoint. 
@@ -2194,7 +2189,7 @@ We continue with a few more observations about manifold triangulations.
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$. 
     \begin{itemize}
         \item If $S$ is an inner simplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
-        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. % TODO: Define this macro 
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
         \item If $S$ is a boundary subsimplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
         and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
         \item If the underlying space of $\calT$ is connected, then $\calT$ is strongly connected.
@@ -2286,7 +2281,7 @@ We continue with a few more observations about manifold triangulations.
 
 \begin{figure}
     \centering
-    \begin{tikzpicture}
+    \begin{tabular}{c}\begin{tikzpicture}
         \coordinate (O) at (0, 0);
         \coordinate (A) at ({cos(0)}, {sin(0)});
         \coordinate (B) at ({cos(60)}, {sin(60)});
@@ -2297,8 +2292,8 @@ We continue with a few more observations about manifold triangulations.
         \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
         \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
         \draw[dashed] (O) -- (A); \draw[dotted] (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}
-    \begin{tikzpicture}
+    \end{tikzpicture}\\ (1) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
         \coordinate (O) at (0, 0);
         \coordinate (A) at ({cos(0)}, {sin(0)});
         \coordinate (B) at ({cos(60)}, {sin(60)});
@@ -2309,8 +2304,8 @@ We continue with a few more observations about manifold triangulations.
         \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
         \draw[dotted] (A) -- (B); \draw (B) -- (C) -- (D) -- (E) -- (F) -- (A);
         \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}
-    \begin{tikzpicture}
+    \end{tikzpicture}\\ (2) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
         \coordinate (O) at (0, 0);
         \coordinate (A) at ({cos(0)}, {sin(0)});
         \coordinate (B) at ({cos(60)}, {sin(60)});
@@ -2321,8 +2316,8 @@ We continue with a few more observations about manifold triangulations.
         \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
         \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
         \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw[dotted] (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}
-    \begin{tikzpicture}
+    \end{tikzpicture}\\ (3) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
         \coordinate (O) at (0, 0);
         \coordinate (A) at ({cos(0)}, {sin(0)});
         \coordinate (B) at ({cos(60)}, {sin(60)});
@@ -2333,69 +2328,71 @@ We continue with a few more observations about manifold triangulations.
         \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
         \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
         \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw[dotted] (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}
-    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line. (2) The new edge patch may already be a subset of the subtriangulation (3) An inadmissible choice because new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like (4) An inadmissible choice because new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
+    \end{tikzpicture}\\ (4) \end{tabular}
+    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. 
+    (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line.
+    (2) The new edge patch may already be a subset of the subtriangulation
+    (3) An inadmissible choice because the new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like
+    (4) An inadmissible choice because the new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \begin{tikzpicture}[scale=0.5]
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({0.8*cos(  0)}, {0.8*sin(  0)});
-        \coordinate (B) at ({0.8*cos(120)}, {0.8*sin(120)});
-        \coordinate (C) at ({0.8*cos(240)}, {0.8*sin(240)});
-        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-        \draw (A) -- (B) -- (C) -- cycle; \draw (X) -- (Y) -- (Z) -- cycle;
-        \draw[fill=gray!20] (X) -- (Y) -- (B) -- cycle;
-        \draw[fill=gray!20] (Y) -- (Z) -- (C) -- cycle;
-        \draw[fill=gray!20] (Z) -- (X) -- (A) -- cycle;
-        \draw[fill=gray!20] (A) -- (X) -- (B) -- cycle;
-        \draw[fill=gray!20] (B) -- (Y) -- (C) -- cycle;
-        \draw[fill=gray!20] (C) -- (Z) -- (A) -- cycle;
-    \end{tikzpicture}
-    \begin{tikzpicture}[scale=0.5]
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
-        \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
-        \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
-        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-        \draw (O) -- (A);
-        \draw (O) -- (B);
-        \draw (O) -- (C);
-        \draw (O) -- (X);
-        \draw (O) -- (Y);
-        \draw (O) -- (Z);
-        %
-    \end{tikzpicture}
-    \begin{tikzpicture}[scale=0.5] 
-        \tikzset{z={(90:1cm)}, y={(-30:1cm)}, x={(210:1cm)}}
-        % \tikzset{z={(90:1cm)}, y={(-10:1cm)}, x={(250:1cm)}}
-
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
-        \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
-        \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
-        \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-        \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-        \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-        \coordinate (T) at ({0}, {0}, {3});
-
-        \draw[thick, fill=gray!30] (O) -- (C) -- (T) -- cycle;
-        \draw[thick, fill=gray!30] (O) -- (Y) -- (T) -- cycle;
-        \draw[thick, fill=gray!30] (O) -- (Z) -- (T) -- cycle;
-        \draw[thick, fill=gray!30] (O) -- (A) -- (T) -- cycle;
-        \draw[thick, fill=gray!30] (O) -- (B) -- (T) -- cycle;
-        \draw[thick, fill=gray!30] (O) -- (X) -- (T) -- cycle;
-        
-        
-    \end{tikzpicture}
-
-    \caption{Example of a connected $2$-dimensional manifold triangulation, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({0.8*cos(  0)}, {0.8*sin(  0)});
+%         \coordinate (B) at ({0.8*cos(120)}, {0.8*sin(120)});
+%         \coordinate (C) at ({0.8*cos(240)}, {0.8*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \draw (A) -- (B) -- (C) -- cycle; \draw (X) -- (Y) -- (Z) -- cycle;
+%         \draw[fill=gray!20] (X) -- (Y) -- (B) -- cycle;
+%         \draw[fill=gray!20] (Y) -- (Z) -- (C) -- cycle;
+%         \draw[fill=gray!20] (Z) -- (X) -- (A) -- cycle;
+%         \draw[fill=gray!20] (A) -- (X) -- (B) -- cycle;
+%         \draw[fill=gray!20] (B) -- (Y) -- (C) -- cycle;
+%         \draw[fill=gray!20] (C) -- (Z) -- (A) -- cycle;
+%     \end{tikzpicture}\\ (1) \end{tabular}
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \draw (O) -- (A);
+%         \draw (O) -- (B);
+%         \draw (O) -- (C);
+%         \draw (O) -- (X);
+%         \draw (O) -- (Y);
+%         \draw (O) -- (Z);
+%         %
+%     \end{tikzpicture}\\ (2) \end{tabular}
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \tikzset{z={(90:1cm)}, y={(-30:1cm)}, x={(210:1cm)}}
+%         % \tikzset{z={(90:1cm)}, y={(-10:1cm)}, x={(250:1cm)}}
+% 
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \coordinate (T) at ({0}, {0}, {3});
+% 
+%         \draw[thick, fill=gray!30] (O) -- (C) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (Y) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (Z) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (A) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (B) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (X) -- (T) -- cycle;
+% 
+%     \end{tikzpicture}\\ (3) \end{tabular}
+%     \caption{Example of a connected $2$-dimensional manifold triangulation, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
+% \end{figure}
 
 
 
@@ -2405,6 +2402,17 @@ We continue with a few more observations about manifold triangulations.
 
 % 3. Shellability 
 \subsection{Shellable simplicial complexes}
+
+\begin{remark}
+It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. In particular, this enables the inductive method of proof.
+Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation. 
+Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
+by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+the gluing interface is a triangulated submanifold of the boundary. 
+This forces the intermediate triangulations to be particularly well-shaped. 
+\end{remark}
+
+
 
 We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
 We build upon the notion of shelling, as introduced in~\cite[Definition 8.1]{ziegler2012lectures}.
@@ -2431,7 +2439,7 @@ We call the enumeration a \emph{shelling} if each interface $I_m$ is a manifold 
     Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
 \end{remark}
 \begin{remark}
-    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possibly enumerations.
+    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
     That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
     this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
 \end{remark}
@@ -2444,8 +2452,10 @@ such that the interface is well-behaved: it is a simplicial disk or a simplicial
 That leads to the following important consequence.
 
 \begin{lemma}    
-    If an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, % TODO: what is non-branching?
-    then
+    Suppose that an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
+    that is, each simplex of dimension $n-1$ is contained in at most two simplices. 
+    % TODO: what is non-branching?
+    Then
     $$
         X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
     $$ 
@@ -2503,6 +2513,7 @@ Our main interest are local stars or stars within triangulations.
     So it remains to show that any triangulation $\calT$ of the two-dimensional disk is shellable. 
     We will construct the shelling in reverse. 
     
+    \todo{Double check this proof and make it more explicit.}
     Write $M = |\calT|$. 
     We call a triangle $T \in \calT$ \emph{good} if it intersects the boundary $\partial M$ in a non-empty union of edges. % TODO: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
     We show by an induction argument over the number of triangles that every triangulation of a $2$-disk contains a good triangle. 
@@ -2514,14 +2525,15 @@ Our main interest are local stars or stars within triangulations.
     Otherwise, $T'$ intersects the boundary at one edge and its opposing vertex.
     Removing $T'$ splits the manifold into two pieces, each of which is a topological $2$-disk.
     By the induction assumption, they contain a good triangle.
+    \todo{MV:But what if this is the neighbor of $T'$ and adding $T'$ back makes the triangle bad?}
     
     Since $\calT$ triangulates a $2$-disk,
     it contains a good triangle $T$. 
     If $T$ has three edges in the boundary, then $T = M$ and we are trivially done. 
     If $T$ intersects with the boundary in exactly one or two edges, 
     then $\overline{M \setminus T}$ is still a topological $2$-disk.
-    Letting $\calT'$ be the triangulation obtained by removing $T$,
-    we have another triangulation of the $2$-disk that intersects $T$ only at either two or one edges.
+    The triangulation $\calT'$ that is obtained by removing $T$
+    is a triangulation of some $2$-disk that intersects $T$ only at either two or one edges.
     Any shelling of $\calT'$ can be extended to a shelling of $\calT$.
 %     Let $\calT$ be a simplicial $2$-disk. 
 %     If $\calT$ contains only one triangle, then there is nothing to show. 
@@ -2544,6 +2556,7 @@ Our main interest are local stars or stars within triangulations.
     which does not affect shellability. 
     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
     and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
+    % TODO: cite E&V Math Comp 2020, Lemma B1. 
 \end{proof}
 
 
