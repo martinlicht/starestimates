@@ -2096,9 +2096,11 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 
 We return to the theory of triangulations,
 as our main objective requires some further concepts.
-We are interested in simplicial complexes that triangulated manifolds. 
-We put particular focus on \emph{shellable} simplicial complexes as an important class of complexes. Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. Patches within triangulations of dimension two and three are examples of such shellable complexes. 
-Our main references for this section are the monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler2012lectures}. 
+We are interested in simplicial complexes that triangulate manifolds. 
+Our particular interest are manifold triangulations that are \emph{shellable}.
+Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
+Patches within triangulations of dimension two and three are examples of such shellable complexes. 
+The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler2012lectures} are our main references for this section. 
 
 \subsection{Triangulations of manifolds}
 
@@ -2107,6 +2109,7 @@ We recall that this means that for every $x \in \underlying{\calT}$
 there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
 such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| \leq 1 \}$
 or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
+In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional.
 
 We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
@@ -2136,11 +2139,11 @@ We begin with the boundary.
     \item 
     We $\mathring \calM := \calM \setminus \partial \calM$ denote the interior of the manifold. 
     We will use the following fact: if $S \in \calT$ has an inner point that lies on $\partial \calM$, then all inner points of $S$ are on $\partial \calM$. 
-    Since the boundary is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
+    Since the boundary $\partial \calM$ is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
     
     \item
     Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
-    Let $\mathring B_F$ be an open neighborhood around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
+    Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
     Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
     The intersection of any two of them is $F$, and their interiors are disjoint. 
     
@@ -2154,33 +2157,33 @@ We begin with the boundary.
     If an inner face $F$ were contained in only one $n$-simplex,
     then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
     So each inner face is contained in exactly two $n$-simplices. 
+    \todo{More details}
     
     If $F$ is contained in only one $n$-simplex, then it must be a face in the boundary of $\calM$. 
     If $F$ were contained in at least two $n$-simplices,
     then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
     So each face within $\partial \calM$ is contained in exactly one $n$-simplex. 
+    \todo{More details}
     
     \item
     Clearly, the simplices of $\calT$ contained in the boundary constitute a simplicial complex. 
-    If $x \in \partial \calM$ is a boundary simplex, then it is an inner point of some simplex $S \in \calT$.
-    But then this simplex must be a boundary simplex, so the boundary simplices form a triangulation of $\partial \calM$.
+    Every $x \in \calM$ is an inner point of some simplex $S \in \calT$. 
+    If $x \in \partial \calM$ is a boundary point, then $S$ must be a boundary simplex, 
+    so the boundary simplices triangulate all of $\partial \calM$.
     \end{enumerate}
-    All relevant results are proven. 
+    All desired results are thus proven. 
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TODO: integrate into narrative 
 Suppose that $\calT$ is an $n$-dimensional simplicial complex that triangulates a manifold. 
 Those simplices of the manifold triangulation that are subsets of the boundary of the underlying manifold are called \emph{boundary simplices}. 
 % The simplices that lie in the boundary of the underlying set are called \emph{boundary simplices}.
 All other simplices of the manifold triangulation are called \emph{inner simplices}. 
-
 We have seen that the boundary simplices of a manifold triangulation constitute a triangulation of the manifolds boundary. 
 We call this simplicial complex the \emph{boundary complex}. It has dimension $n-1$. 
 % We see that the family of boundary faces constitute a simplicial complex, which we call \textit{boundary complex}.
 % Any point on the boundary lies within some boundary simplex, and hence the boundary complex is a triangulation of the boundary. 
 % Definitions imply that the boundary complex is a manifold triangulation of dimension $n-1$.
 % The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \\
 
 We continue with a few more observations about manifold triangulations.
@@ -2403,20 +2406,23 @@ We continue with a few more observations about manifold triangulations.
 % 3. Shellability 
 \subsection{Shellable simplicial complexes}
 
-\begin{remark}
-It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex. In particular, this enables the inductive method of proof.
-Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation. 
+
+The notions of \emph{shelling} and \emph{shellable triangulation} have been discussed widely in combinatorial topology and polytopal theory. 
+Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation of a manifold. 
+We thus build upon the notion of shelling, as introduced in~\cite[Definition 8.1]{ziegler2012lectures},
+and our definition of shelling is equivalent to the notion of the shellings of simplicial complexes in the aforementioned reference; see also~\cite[Remark~8.3]{ziegler2012lectures}. 
+
 Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
 by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
 the gluing interface is a triangulated submanifold of the boundary. 
 This forces the intermediate triangulations to be particularly well-shaped. 
-\end{remark}
-
-
-
 We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
-We build upon the notion of shelling, as introduced in~\cite[Definition 8.1]{ziegler2012lectures}.
-Our definition of shelling is equivalent to the notion of the shellings of simplicial complexes in the aforementioned reference; see also~\cite[Remark~8.3]{ziegler2012lectures}. 
+It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex, 
+as this enables the inductive method of proof.
+\\
+
+
+
 
 Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
 For any enumeration, we call 
@@ -2454,7 +2460,7 @@ That leads to the following important consequence.
 \begin{lemma}    
     Suppose that an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
     that is, each simplex of dimension $n-1$ is contained in at most two simplices. 
-    % TODO: what is non-branching?
+    % DONE: what is non-branching?
     Then
     $$
         X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
@@ -2513,19 +2519,31 @@ Our main interest are local stars or stars within triangulations.
     So it remains to show that any triangulation $\calT$ of the two-dimensional disk is shellable. 
     We will construct the shelling in reverse. 
     
-    \todo{Double check this proof and make it more explicit.}
+    %\todo{Double check this proof and make it more explicit.}
     Write $M = |\calT|$. 
-    We call a triangle $T \in \calT$ \emph{good} if it intersects the boundary $\partial M$ in a non-empty union of edges. % TODO: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
-    We show by an induction argument over the number of triangles that every triangulation of a $2$-disk contains a good triangle. 
-    Clearly, this is the case if the triangulation contains only one triangle. 
-    Now suppose the induction claim is true when the triangulation includes $N$ triangles,
+    There is nothing to show if $\calT$ contains only one triangle. 
+    We call a triangle $T \in \calT$ \emph{good in $\calT$} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
+    Hence a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
+    and a triangle is not good in $\calT$ if that intersection is either empty only some of its vertices, or a vertex and the opposite edge.
+    % TODO: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
+    We show by an induction argument over the number of triangles that every triangulation of a $2$-disk that contains at least two triangles also contains at least two good triangles. 
+
+    Clearly, this is the case if the triangulation of the $2$-disk contains two triangles. 
+    Now suppose the induction claim is true when the triangulation includes at most $N$ triangles,
     and assume that $\calT$ includes $N+1$ triangles. 
-    There exists a triangle $T' \in \calT$ with at least one edge in the boundary. 
-    If $T'$ is good, then we are already done. 
-    Otherwise, $T'$ intersects the boundary at one edge and its opposing vertex.
-    Removing $T'$ splits the manifold into two pieces, each of which is a topological $2$-disk.
-    By the induction assumption, they contain a good triangle.
-    \todo{MV:But what if this is the neighbor of $T'$ and adding $T'$ back makes the triangle bad?}
+    There are at least two triangles with an edge on the boundary. 
+    Suppose that $\calT$ does not have at least two triangles that are good in $\calT$,
+    then there exists a triangle $T'$ that intersects $\partial M$ 
+    in one edge and its opposite vertex.
+    Removing $T'$ splits the manifold into two strongly connected components, each of which is a topological $2$-disk.
+    By the induction assumption, each of those components contains at least two triangles 
+    that are good in the respective component. 
+    So each component has at least one triangle that is good in $\calT$. 
+
+    % There exists a triangle $T' \in \calT$ with at least one edge in the boundary. 
+    % If $T'$ is good, then we are already done. 
+    % Otherwise, $T'$ intersects the boundary at one edge and its opposing vertex.
+    % \todo{MV:But what if this is the neighbor of $T'$ and adding $T'$ back makes the triangle bad?}
     
     Since $\calT$ triangulates a $2$-disk,
     it contains a good triangle $T$. 
@@ -2618,7 +2636,7 @@ and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergence
     \quad 
     \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
 \]
-We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
+We are interested in transformations of these Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The gradient-, curl-, divergence-conforming Piola transformations are the mappings 
 $\phi^{\grad}: L^{p}(\Omega') \to L^{p}(\Omega)$,
@@ -2636,6 +2654,7 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
     \phi^{\rm b}(v) &= \left( \det(\Jacobian\phi) v \right)  \circ \phi,
 \end{align}
 \end{subequations}
+\todo{MWL: double check the correct sign convention, what is inverse and what is not}
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
 These mappings are invertible. 
 %
@@ -2646,13 +2665,13 @@ We use the commutativity relations
 \begin{align}
     \grad (\phi^{\grad} (v)) &= \phi^{\curl}(\grad v), 
     \\
-    \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv) 
+    \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv), 
     % TODO: watch the sign 
     \\
-    \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw)
+    \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw),
 \end{align}
 \end{subequations}
-for $v \in W^{p}(\grad,\Omega)$, $\bfv \in \bfW^{p}(\curl,\Omega)$, and $\bfw \in \bfW^{p}(\divergence,\Omega)$.  
+where $v \in W^{p}(\grad,\Omega)$, $\bfv \in \bfW^{p}(\curl,\Omega)$, and $\bfw \in \bfW^{p}(\divergence,\Omega)$.  
 We summarize this as a commuting diagram:
 \begin{align*}
     \begin{CD}
@@ -2663,7 +2682,7 @@ We summarize this as a commuting diagram:
         @VV{\phi^{\divergence}}V 
         @VV{\phi^{\rm b}}V 
         \\
-        W^{p}(\grad,\Omega ) @>{\grad}>> \bfW^{p}(\curl,\Omega ) @>{\curl}>> \bfW^{p}(\divergence,\Omega ) @>{\divergence}>> L^{p}(\Omega )
+        W^{p}(\grad,\Omega ) @>{\grad}>> \bfW^{p}(\curl,\Omega ) @>{\curl}>> \bfW^{p}(\divergence,\Omega ) @>{\divergence}>> L^{p}(\Omega ).
     \end{CD}
 \end{align*}
 
@@ -2791,7 +2810,9 @@ We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Ome
 such that its pointwise norm is $p$-integrable. 
 The exterior derivative is defined in the sense of distributions and we introduce 
 \[
-    W^p\Alt^{k}(\Omega) = \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
+    W^p\Alt^{k}(\Omega) 
+    := 
+    \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
 \]
 We observe that $u \in L^p\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^p\Alt^{k+1}(\Omega)$
 if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
@@ -2823,7 +2844,7 @@ Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\
 The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
 \[ 
     \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
-    = 
+    := 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
 \]
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
@@ -2974,6 +2995,7 @@ we study potential operators merely over convex sets, and we are only interested
 However, our explicit purpose are explicit bounds for the operator norms, which are of independent interest. 
 \\
 
+\todo{cite Guzman and Salgado at the right spot.}\\
 
 
 We begin with introducing the Costabel-McIntosh kernel.
@@ -3722,15 +3744,15 @@ though the dimension and the form degree enters the estimate.
 
 
 \begin{lemma}
-    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. Then 
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
+    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $w \in \bfH(\divergence,\Omega)$ with $\divergence u = \divergence w$ and 
     \begin{align*}
-        \| \bfu \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)},
-        \qquad 
-        \bfu \in \bfH(\divergence,\Omega)
+        \| \bfu \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
+    This is a reduction to Friedrichs' inequality. 
     Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
     Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
     with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to Friedrichs inequality. 
