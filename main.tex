@@ -432,7 +432,7 @@ We call a set \textit{trianguable} if it is the underlying set of some triangula
     then the resulting set is still compact, even path-connected,  
     but has an ``infinite $1$-dimensional triangulation''.
     % 
-    However, none of these infinite families are infinite simplicial complexes in the sense of geometric topology~\cite{spanier1995algebraic}. 
+    However, none of these infinite families are infinite simplicial complexes in the sense of geometric topology~\cite{lee2011topological}. 
 \end{remark}
 
 
@@ -2101,6 +2101,7 @@ Our particular interest are manifold triangulations that are \emph{shellable}.
 Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
 Patches within triangulations of dimension two and three are examples of such shellable complexes. 
 The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler2012lectures} are our main references for this section. 
+We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
 
 \subsection{Triangulations of manifolds}
 
@@ -2112,17 +2113,17 @@ or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
 In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional.
 
-We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
-If $\calM$ is $n$-dimensional, then the $\partial\calM$ is a topological manifold without boundary of dimension $n-1$. 
-
 The following special cases receive particular interest:
-a \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball,
+an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball,
 and we sometimes call this a \textit{$n$-disk} triangulation.
 An \textit{$n$-sphere triangulation} is any triangulation of a topological $n$-sphere. 
+\\
 
-We gather a few helpful properties of manifold triangulations. 
+
+We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
+If $\calM$ is $n$-dimensional, then the $\partial\calM$ is a topological manifold without boundary of dimension $n-1$. 
+We gather a few helpful observations on how these notions relate to triangulations.
 While the reader might deem them obvious, we nevertheless include proofs. 
-We begin with the boundary.
 
 \begin{lemma}\label{lemma:boundarysimplices}
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$. 
@@ -2141,29 +2142,51 @@ We begin with the boundary.
     We will use the following fact: if $S \in \calT$ has an inner point that lies on $\partial \calM$, then all inner points of $S$ are on $\partial \calM$. 
     Since the boundary $\partial \calM$ is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
     
+    \item 
+    We prove an auxiliary result. 
+    Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
+    The embedding of $X$ into $Y$ cannot be onto~\cite[Theorem~2.55]{lee2011topological}, and so there exists $y \in Y \setminus X$. 
+    Using the homeomorphism from $Y$ into the $m$-sphere, which maps $y$ to the northpole without loss of generality, and a stereographic projection, 
+    we see that $Y \setminus \{y\}$ is homeomorphic to $R^{m}$.
+    By the Jordan-Brouwer separation theorem~\cite{}, $Y \setminus (X \cup \{y\})$ has got two connected components,
+    and thus $Y \setminus X$ has got two connected components.
+    
     \item
     Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
     Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
     Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
     The intersection of any two of them is $F$, and their interiors are disjoint. 
     
-    If $z_F$ is an interior point of $\calM$, 
-    then we can assume that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere $S$ of dimension $n-1$. 
-    At the same time, $X = F \cap \partial \mathring B_F$ is empty if $n=1$ or homeomorphic to a sphere $S' \subseteq S$ of dimension $n-2$. % TODO: proofread
-    We see that $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
-    But by construction $\partial \mathring B_F \setminus X$ is homeomorphic to $S \setminus S'$,
-    which has exactly two distinct connected components according to the Jordan-Brouwer separation theorem.
-    We conclude that $F$ is contained in two $n$-simplices of $\calT$.
-    If an inner face $F$ were contained in only one $n$-simplex,
-    then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
-    So each inner face is contained in exactly two $n$-simplices. 
-    \todo{More details}
+    Consider the case that $z_F$ lies on the boundary of $\calM$. 
+    If $F$ is contained in at least two distinct $n$-simplices of $\calT$,
+    then we can construct an embedded $n$-dimensional open ball that contains $z_F$.
+    But that contradicts $z_F$ being on the boundary. 
+    So any boundary face can only be contained in one single $n$-simplex. 
     
-    If $F$ is contained in only one $n$-simplex, then it must be a face in the boundary of $\calM$. 
-    If $F$ were contained in at least two $n$-simplices,
-    then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
-    So each face within $\partial \calM$ is contained in exactly one $n$-simplex. 
-    \todo{More details}
+    If $z_F$ is an interior point of $\calM$, 
+    then we can assume that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere of dimension $n-1$. 
+    At the same time, $X = F \cap \partial \mathring B_F$ is empty if $n=1$ or homeomorphic to a sphere of dimension $n-2$. % TODO: proofread
+    We see that $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
+    But by the auxiliary result above, $K = 2$. 
+    We conclude that $F$ is contained in two $n$-simplices of $\calT$.
+%     But by construction $\partial \mathring B_F \setminus X$ is homeomorphic to $S \setminus S'$,
+%     which has exactly two distinct connected components according to the Jordan-Brouwer separation theorem.
+%     If an inner face $F$ were contained in only one $n$-simplex,
+%     then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
+%     So each inner face is contained in exactly two $n$-simplices. 
+%     \todo{More details}
+    
+%     If $F$ is contained in only one $n$-simplex, then it must be a face in the boundary of $\calM$. 
+%     If $F$ were contained in at least two $n$-simplices,
+%     then we could construct a homeomorphism from the $n$-ball onto itself that maps an interior point on the its boundary, which cannot be.
+%     So each face within $\partial \calM$ is contained in exactly one $n$-simplex. 
+%     \todo{More details}
+%     {\color{blue}
+%     The doubling $M_{D}$ of the manifold $M$ is obtained by gluing $M$ to a copy of itself along the boundary.
+%     The triangulation $\calT$ can be doubled to get a triangulation of the doubled manifold.
+%     Any boundary face is an interior face of the doubled manifold two $n$-simplices of the doubled triangulation.
+%     So each face within $\partial \calM$ is contained in exactly one $n$-simplex of $\calT$. 
+%     }
     
     \item
     Clearly, the simplices of $\calT$ contained in the boundary constitute a simplicial complex. 
@@ -3639,6 +3662,108 @@ though the dimension and the form degree enters the estimate.
 % Only define the geometric mapping and its important quantities
 % Leave the function spaces etc. for later 
 
+
+
+
+
+
+Suppose that any $n$-dimensional simplex $T$ with some subsimplex $F$.
+We want to find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is only on one side of the hyperplane. 
+
+\begin{lemma}\label{lemma:oppositesubsimplex}
+    Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
+    Let $F, F'$ be the two subsimplices of $T$ with respective sets of vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
+    Then $T$ lies on one side of the affine subspace
+    \[
+        A := v_0 + \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} +  \operatorname{lin}\{ v_n - v_{k+1}, \dots, v_n - v_{n-1} \}.
+    \]
+    Moreover, $F = T \cap A$.
+\end{lemma}
+\begin{proof}
+    Evidently, $A$ has dimension $n-1$ and $F \cap A \cap T$.
+    Let us now suppose that $x \in A \cap T$.
+    For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
+    \begin{align}
+        x &= 
+        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
+        \\&
+        = 
+        \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right) v_0 
+        + 
+        \sum_{i=1  }^{k  } \lambda_{i} v_i 
+        + 
+        \left( \sum_{i=k+1}^{n-1} \lambda_{i} \right) v_n
+        + 
+        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
+        .
+    \end{align}
+    We know $x$ can be written as a unique convex combination of the vertices of $T$.
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive. 
+    If $x \notin F$, then at least one of these coefficients must be negative. 
+    But then their sum must be negative, which is a contradiction. 
+    The desired statement follows.         
+\end{proof}
+
+
+
+
+
+
+\begin{theorem}
+    Let $\calT$ be an $n$-dimensional triangulation and let $S \in \calT$ be a simplex of dimension $k < n$.
+    Let $T \in \patch_{\calT}(S)$ be of dimension $n$ and let $M := |\patch_{\calT}(S)| \setminus T$. 
+    There exists a bi-Lipschitz mapping
+    \begin{align*}
+        \varphi : T \rightarrow M
+    \end{align*}
+    satisfying
+    \begin{align*}
+        \Lip( \varphi,      T ) \leq \Cvier{n}{k},
+        \quad 
+        \Lip( \varphi^{-1}, M ) \leq \Cfive{n}{k},
+    \end{align*}
+    where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Constructive estimates of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
 
@@ -3997,43 +4122,6 @@ though the dimension and the form degree enters the estimate.
 % Fichera
 % Crossed bricks 
 
-Let $T$ be an $n$-dimensional simplex with some subsimplex $F$ We show that there exists a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is only on one side of the hyperplane. 
-
-\begin{lemma}\label{lemma:oppositesubsimplex}
-    Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
-    Let $F, F'$ be the two subsimplices of $T$ with respective sets of vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
-    Then $T$ lies on one side of the affine subspace
-    \[
-        A := v_0 + \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} +  \operatorname{lin}\{ v_n - v_{k+1}, \dots, v_n - v_{n-1} \}.
-    \]
-    Moreover, $F = T \cap A$.
-\end{lemma}
-\begin{proof}
-    Evidently, $A$ has dimension $n-1$ and $F \cap A \cap T$.
-    Let us now suppose that $x \in A \cap T$.
-    For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
-    \begin{align}
-        x 
-        &
-        = 
-        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
-        \\&
-        = 
-        \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right) v_0 
-        + 
-        \sum_{i=1  }^{k  } \lambda_{i} v_i 
-        + 
-        \left( \sum_{i=k+1}^{n-1} \lambda_{i} \right) v_n
-        + 
-        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
-        .
-    \end{align}
-    We know $x$ can be written as a unique convex combination of the vertices of $T$.
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive. 
-    If $x \notin F$, then at least one of these coefficients must be negative. 
-    But then their sum must be negative, which is a contradiction. 
-    The desired statement follows.         
-\end{proof}
 
 
 
