@@ -3719,9 +3719,9 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
     For $0 \leq m < M$, write 
     $$
-        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m},
+        \calX_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m},
         \qquad 
-        I_{m} := X_{m} \cap T_{m+1}.
+        \calI_{m} := X_{m} \cap T_{m+1}.
     $$ 
     Then $I$ is the union of $k$ different facets of $T$, 
     and their intersection is a simplex $S \in \calT$ of dimension $n-k$.
@@ -3733,6 +3733,7 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 \begin{proof}
     We know $I_{m}$ is a submanifold of the boundary of $T$, and so it must be a collection of $k$ facets
     that constitute the local patch around some simplex $S$ of dimension $n-k$.
+    To show that $\patch_{X_{m+1}}(S) = \patch_{\calT}(S)$, let us assume that $T \in \patch_{\calT}(S) \setminus \patch_{X_{m+1}}(S)$.
 \end{proof}
 
 
