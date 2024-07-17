@@ -2143,12 +2143,18 @@ While the reader might deem them obvious, we nevertheless include proofs.
     Since the boundary $\partial \calM$ is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
     
     \item 
+    We recall an auxiliary result.
+    Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
+    As a consequence of the Jordan-Brouwer separation theorem~\cite[Corollary 5.24]{mayer1989algebraische}~\cite[Corollary 6.4]{massey1981algebraic}, 
+    we know that $Y \setminus X$ has got two connected components.
+    
+    \item 
     We prove an auxiliary result. 
     Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
     The embedding of $X$ into $Y$ cannot be onto~\cite[Theorem~2.55]{lee2011topological}, and so there exists $y \in Y \setminus X$. 
     Using the homeomorphism from $Y$ into the $m$-sphere, which maps $y$ to the northpole without loss of generality, and a stereographic projection, 
     we see that $Y \setminus \{y\}$ is homeomorphic to $R^{m}$.
-    By the Jordan-Brouwer separation theorem~\cite{}, $Y \setminus (X \cup \{y\})$ has got two connected components,
+    As a consequence of the Jordan-Brouwer separation theorem~\cite[Theorem 5.23]{mayer1989algebraische}~\cite[Corollary 5.24]{mayer1989algebraische}~\cite[Corollary 6.4]{massey1981algebraic}, $Y \setminus (X \cup \{y\})$ has got two connected components,
     and thus $Y \setminus X$ has got two connected components.
     
     \item
@@ -2728,7 +2734,7 @@ We summarize this as a commuting diagram:
 %\section{Review of exterior calculus}
 
 Having discussed vector analysis, we review exterior calculus. 
-We give a brief introduction into this topic, and refer to the literature for further background~\cite{...}. 
+We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
@@ -4043,7 +4049,7 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     That means that $w_{m} \in W^{p}\Alt^{k}(\Omega_{m})$ with $\cartan w_{m} = \cartan u$ over $\Omega_{m}$. 
     
     We want to estimate norms. 
-    Lemma~\ref{lemma:todo} gives 
+    Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} gives 
     \begin{align*}
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
