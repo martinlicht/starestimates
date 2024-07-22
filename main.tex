@@ -3774,7 +3774,11 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 \end{itemize}
 \end{proof}
 
+We recall a specialization of this result.
 
+\begin{lemma}\label{theorem:starreflection:facepatch}
+
+\end{lemma}
 
 
 
@@ -3868,140 +3872,6 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
     which has the same smallest singular value. 
 \end{proof}
-
-\begin{proposition}\label{proposition:guerinisavo}
-    Let $\Omega \subseteq \bbR^{n}$ be a convex bounded domain. Then 
-    Moreover, 
-    \begin{align*}
-        C_{\rm{PF},\Omega,0,2} \geq C_{\rm{PF},\Omega,1,2} \geq \dots \geq C_{\rm{PF},\Omega,n-1,2}
-    \end{align*}
-\end{proposition}
-\begin{proof}
-    The result is true if $\Omega$ has a smooth boundary. 
-    Now suppose that $\Omega$ is a Lipschitz domain. 
-\end{proof}
-
-\begin{proof}
-    The desired results are known for smoothly bounded domains;
-    see Theorem~2.6 of \cite{guerini2004eigenvalue} for % decay in k
-    see \cite[Theorem~1.3]{guerini2004spectre} for
-    \begin{align*}
-        C \diam(\Omega)^{-2} 
-        \leq 
-        \lambda_{k},
-        \qquad 
-        C := 
-        \left\{\begin{array}{ll}
-            \frac{n-1}{n e^{3}} & \text{ if } k=0
-            \\
-            \frac{k(n-k)}{ne^{3}} & \text{ if } 1 \leq k \leq n-1
-            \\
-            \lambda_{1,0}(B) & \text{ if } k = n % Dirichlet eigenvalue over a ball
-        \end{array}\right. 
-        % \frac{\max_{k(n-k),n-1}}{ne^{3}} \diam(\Omega)^{-2}        
-    \end{align*}
-    see \cite{guerini2004eigenvalue} for $n \geq 3$, 
-    \begin{align*}
-        \frac{4}{n^{2} \tbinom{n}{k-1} \diam(\Omega)^{2} } \leq \lambda_{k}
-    \end{align*}
-    
-    For each $0 \leq k \leq n$ we let $\mu_{k}$ be the smallest non-zero eigenvalue of the Hodge-Laplace operator acting on $k$-forms. For each $0 \leq k \leq n-1$, we let $\sigma_{k}$ be the smallest non-zero singular value of the exterior derivative $\cartan : L^{2}\Lambda^{k}(\Omega) \rightarrow L^{2}\Lambda^{k+1}(\Omega)$. We have the relation
-    \begin{align*}
-        \mu_{k} = \min( \sigma_{k}, \sigma_{k-1} )^{2}.
-    \end{align*}
-    We first consider the case where $\Omega$ is strictly convex with smooth boundary. 
-    According to Theorem~2.6 of \cite{guerini2004eigenvalue},
-    \begin{align*}
-        \mu_{0} = \mu_{1} < \dots < \mu_{n}.
-    \end{align*}
-    By definition, we have $\mu_{n} = \sigma_{n-1}^{2}$. 
-    Suppose that we know $\mu_{k} = \sigma_{k-1}^{2}$ for some $2 \leq k \leq n$. Then 
-    \begin{align*}
-        \sigma_{k-1}^{2} = \mu_{k} > \mu_{k-1} = \min( \sigma_{k-1}, \sigma_{k-2} )^{2}
-    \end{align*}
-    implies $\mu_{k-1} = \sigma_{k-2}^{2}$. 
-    Iterating this, we find 
-    \begin{align*}
-        \sigma_{0} < \sigma_{1} < \dots < \sigma_{n-1}.
-    \end{align*}
-    We have shown this when $\Omega$ is strictly convex with smooth boundary. 
-    
-    We now address the case where $\Omega$ is merely convex. 
-    According to Theorem~A of \cite{blocki1997smooth}, 
-    there exists a continuous convex function $\beta : \overline\Omega \rightarrow \bbR$ that equals zero along $\partial\Omega$, which is negative over $\Omega$, and whose Hessian over $\Omega$ has positive determinant. 
-    This already implies that the Hessian of $\beta$ over $\Omega$ is always positive-definite, and so $\beta : \Omega \rightarrow \bbR$ is strictly convex.
-    
-    For $\epsilon > 0$ small enough, the sublevel sets 
-    \begin{align*}
-        \Omega_{\epsilon} := \left\{ x \in \Omega \suchthat \beta(x) < -\epsilon \right\}
-    \end{align*}
-    are strictly convex smoothly bounded open sets compactly contained in $\Omega$. 
-    For convenience, we also write $\Omega_{0} := \Omega$. 
-    
-    We first show that for each $\rho > 0$ there exists $\epsilon > 0$ such that $\Omega \setminus \Omega_{\epsilon} \subseteq \partial\Omega + B_{\rho}(0)$. 
-    Indeed, if that were not the case, then there would exist $\rho > 0$ such that for any $\epsilon > 0$ we can find $x_{\epsilon}$ with $\beta(x_{\epsilon}) > -\epsilon$ but distance at least $\rho$ from $\partial\Omega$. We could then pick a subsequence converging to a point $x \in \Omega$ with $\beta(x) = 0$, which is a contradiction. 
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%
-    % TODO: from here on 
-    For $\rho > 0$ small enough, the mapping 
-    \begin{align*}
-        A : \partial\Omega \times [0,\rho] \rightarrow \bbR^{n}, \quad (x,s) \mapsto x - \frac{s}{|x|} x
-    \end{align*}
-    is bijective. It satisfies the bounds 
-    \begin{align*}
-        ..
-    \end{align*}
-    and 
-    \begin{align*}
-        ..
-    \end{align*}
-    % TODO:
-    Consequently, there exists $L > 0$ such that for all $\epsilon > 0$ small enough 
-    there exists $B_{\epsilon} : \Omega \rightarrow \Omega_{\epsilon}$ bi-Lipschitz with
-    \begin{align*}
-        \| \Id - B_{\epsilon} \|_{L^{\infty}(\Omega)} < L \epsilon,
-        \quad 
-        \| \Id - \Jacobian B_{\epsilon} \|_{L^{\infty}(\Omega)} < L \epsilon.
-    \end{align*}
-    %%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%
-    For any $\epsilon \geq 0$, we let $X^{k}_{\epsilon} := H\Lambda^{k}(\Omega) \cap \ker\cartan$. 
-    Notice that $B_{\epsilon}^{\ast} X^{k}_{\epsilon} = X^{k}_{0}$. 
-    %
-    Consider any $0 \leq k \leq n-1$. 
-    Let $f \in H\Lambda^{k+1}(\Omega)$ with $\cartan f = 0$.
-    There exists $u_\star \in H\Lambda^{k}(\Omega)$ with $\cartan u = f$ 
-    because $\Omega$ is convex and thus contractible. % TODO: theorem 
-    Notice that $B_{\epsilon}^{-\ast} u_0 \in H\Lambda^{k}(\Omega_{\epsilon})$ 
-    with $\cartan B_{\epsilon}^{-\ast} u_\star = B_{\epsilon}^{-\ast} f$ over $\Omega_{\epsilon}$.
-    % 
-    \begin{align*}
-        ..
-    \end{align*}
-    % TODO
-    We conclude that $P^{k}_{\epsilon} \rightarrow P^{k}_{0}$ in the operator norm. 
-    In particular, the operator norms converge. 
-    %%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    For any $0 \leq k \leq n-2$ and $\epsilon > 0$ we have $\| P^{k}_{\epsilon} \| < \| P^{k+1}_{\epsilon} \|$,
-    so that $\| P^{k}_{0} \| \leq \| P^{k+1}_{0} \|$.
-    This had to be shown.
-%     
-%     There exists a bi-Lipschitz mapping $\varphi : \overline{B_1(0)} \rightarrow \Omega$. 
-%     We let $\varphi_{\eps} : \overline{B_1(0)} \rightarrow \bbR^{n}$ be smooth,
-%     uniformly bounded, and pointwise converging to $\varphi$ in the norm of $W^{1,\infty}$. 
-%     For $\epsilon > 0$ small enough, 
-%     the range $\Omega_{\eps}$ of each $\varphi_{\eps}$ is a smoothly bounded domain,
-%     and $\varphi_{\epsilon} : \overline{B_1(0)} \rightarrow \Omega_{\eps}$ is a diffeomorphism.
-%     The diameters of $\Omega_{\eps}$ converge to the diameter of $\Omega$.
-%     The desired claim now follows by the dominated convergence theorem % Given $u \in W^{2}\Lambda^{k}(\Omega)$
-    % TODO: show that the trafo converges to identity.
-    % Write the trafo as perturbation of the identity.
-\end{proof}
-
-
-
 
 
 
@@ -4301,14 +4171,35 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 
 \section{Numerical examples}
 
+We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
+Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenvalue estimates on a refined mesh as a proxy for the exact value. We compare the (approximations of) the exact values with the upper bounds obtained via Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
+
 \subsection{Two-dimensional examples}
 
+We consider the following example domains in two dimensions:
+the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain $\Omega_{SS}$:
+\[
+    \Omega_{S}  = (-1,1)^2,
+    \qquad 
+    \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
+    \qquad 
+    \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
+\]
 % Square 
 % L-shaped 
 % Slit
 
 \subsection{Three-dimensional examples}
 
+We consider the following example domains in two dimensions:
+the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed bricks domain $\Omega_{B}$:
+\[
+    \Omega_{C}  = (-1,1)^2,
+    \qquad 
+    \Omega_{F}  = (-1,1)^2 \setminus (0,1)^2,
+    \qquad 
+    \Omega_{B} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
+\]
 % Cube 
 % Fichera
 % Crossed bricks 
