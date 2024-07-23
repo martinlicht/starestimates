@@ -3828,6 +3828,98 @@ We recall a specialization of this result.
 
 
 
+\begin{proof}
+    \begin{itemize}
+    \item 
+    Consider any simplex $T$ with one vertex $v_0$ at the origin. 
+    Let $\lambda_{0}, \lambda_{1}, \dots, \lambda_{n}$ be the barycentric coordinates. 
+    The mapping 
+    \begin{align}
+        F(x) = \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+    \end{align}
+    maps $T$ onto a ``simplex with a curved face'' inside the unit ball. We analyze its Lipschitz properties.
+    On the one hand, by the reverse triangle inequality,
+    \begin{align}
+        \left| F(x) - F(y) \right|
+        &\geq 
+        \left\| 
+            \frac{x}{\|x\|}
+            \sum_{i=1}^{n} \lambda_{i}(x)
+            -
+            \frac{y}{\|y\|}
+            \sum_{i=1}^{n} \lambda_{i}(y)
+        \right\|
+        \\&
+        \geq 
+        \left| 
+            \frac{\|x\|}{\|x\|}
+            \sum_{i=1}^{n} \lambda_{i}(x)
+            -
+            \frac{\|y\|}{\|y\|}
+            \sum_{i=1}^{n} \lambda_{i}(y)
+        \right|
+        \\&
+        = 
+        \left| 
+            \sum_{i=1}^{n} \lambda_{i}(x)
+            -
+            \sum_{i=1}^{n} \lambda_{i}(y)
+        \right|
+        \\&
+        = 
+        \left| 
+            \vec{1}
+            \cdot 
+            A^{-1}( x - y )
+        \right|
+     \end{align}
+     Note that $A^{-1}( x - y ) \in \Delta^{n} - \Delta^{n}$. 
+
+    \item 
+    We let $S^{n}_{\star} := S^{n} \setminus \{e_{n+1}\} \subseteq \bbR^{n+1}$ be the unit sphere without the North pole. 
+    Suppose that $\bar x \in S^n$ is a point on the unit sphere and $\bar x \neq e_{n+1}$. 
+    We define its stereographic projection as 
+    \begin{align}
+        \pi( \bar x ) 
+        = 
+        \sum_{i=1}^{n} \frac{x_i}{1 - x_{n+1}} e_{i}
+        .
+    \end{align}
+    This is a mapping $\pi : S^{n}_{\star} \rightarrow \bbR^{n}$. 
+    Its inverse is defined as follows: given $y \in \bbR^{n}$, we have 
+    \begin{align}
+        \pi^{-1}( y )
+        = 
+        \sum_{i=1}^{n} \frac{2 y_i}{1 + \| y \|^2} e_{i}
+        +
+        \frac{1 - \| y \|^2}{1 + \| y \|^2} e_{n+1}
+        .
+    \end{align}
+    \item 
+    Mirroring the unit sphere along the equator is expressed in stereographic coordinates by the involution 
+    \begin{align}
+        \mu : \bbR^{n} \rightarrow \bbR^{n},
+        \qquad 
+        y \mapsto \frac{y}{\| y \|}.
+    \end{align}
+    \item 
+    \begin{align}
+        G(y) := \| y \| \cdot \phi\left( \frac{y}{\|y\|} \right)^{-1} \frac{y}{\|y\|}
+    \end{align}
+    \item 
+    \begin{align}
+        F^{-1} \pi^{-1} G^{-1} \mu G \pi F
+    \end{align}
+    \end{itemize}
+\end{proof}
+
+
+
+
+
+
+
+
 
 
 
