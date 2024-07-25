@@ -3782,63 +3782,284 @@ We recall a specialization of this result.
 
 
 
-% https://mathoverflow.net/questions/232302/lipschitz-constant-of-cental-projection-of-unit-ball-to-surface-of-convex-body
-% https://eudml.org/doc/258483
-% https://math.stackexchange.com/questions/1476085/uniformly-convex-approximation-of-convex-domain
-% SMOOTH EXHAUSTION FUNCTIONS IN CONVEX DOMAINS
-\begin{lemma}
-    Let $K \subseteq \bbR^{n}$ be a compact set star-shaped with respect to the origin 
-    that contains the ball $B_{r}(0)$ and that is contained in the ball $B_{R}(0)$. Then the function 
-    \begin{align*}
-        f : S \rightarrow \partial K, \quad x \mapsto \arg( \partial K \cap \bbR x )
-    \end{align*}
-    satisfies 
-    \begin{align*}
-        R^{2}/r % euclidean 
-    \end{align*}
-    If $K$ is convex, then 
-    \begin{align*}
-        g : S \rightarrow \bbR, \quad x \mapsto \| \bbR x \cap \partial K \|
-    \end{align*}
-    satisfies 
-    \begin{align*}
-        R \sqrt{ R^{2} / r^{2} - 1 } % angular distance 
-        \\
-        \frac R r \sqrt{ R^{2} - r^{2} } % angular distance 
-    \end{align*}
-\end{lemma}
 \begin{proof}
-    .
-\end{proof}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{proof}
+    We derive the estimate in several steps. 
     \begin{itemize}
+    \item 
+    We use the following auxiliary lemma. Suppose that $\|\cdot\|_{\alpha}$ and $\|\cdot\|_{\alpha}$ are two norms on a Banach space.
+    Let 
+    $$
+        F_{\alpha,\beta}(x) = \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} }.
+    $$
+    Then 
+    \begin{align*}
+        &
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\beta}
+        \\&\qquad 
+        \leq 
+        C_{\beta}^{\alpha} 
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\alpha}
+        \\&\qquad 
+        \leq 
+        C_{\beta}^{\alpha} 
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ x }{ \| y \|_{\beta} } 
+        \right\|_{\alpha}
+        +
+        C_{\beta}^{\alpha} 
+        \left\| 
+            \| y \|_{\alpha} \frac{ x }{ \| y \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\alpha}
+        \\&\qquad 
+        \leq 
+        C_{\beta}^{\alpha} 
+        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
+        \left| 
+            \| x \|_{\alpha}
+            - 
+            \| y \|_{\alpha}
+        \right|
+        +
+        C_{\beta}^{\alpha} 
+        \frac{ \| y \|_{\alpha} }{ \| y \|_{\beta} } 
+        \left\| x - y \right\|_{\alpha}
+        \\&\qquad 
+        \leq 
+        C_{\beta}^{\alpha} 
+        C_{\alpha}^{\beta} 
+        \left\| x - y \right\|_{\alpha}
+        +
+        C_{\beta}^{\alpha} 
+        C_{\alpha}^{\beta} 
+        \left\| x - y \right\|_{\alpha}
+        .
+    \end{align*}
+    \begin{align*}
+        &
+        \| 
+            F(x) - F(y) 
+        \|_{\beta}
+        \\&\leq 
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\beta}
+        \\&\leq 
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            + 
+            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            + 
+            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\beta}
+        \\&\leq 
+        \left\| 
+            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
+            - 
+            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+        \right\|_{\beta}
+            + 
+        \left\| 
+            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+        \right\|_{\beta}
+            + 
+        \left\| 
+            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+            - 
+            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
+        \right\|_{\beta}
+        \\&\leq 
+        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
+        \left\| 
+            x - y
+        \right\|_{\beta}
+            + 
+        \frac{ \| y \|_{\beta} }{ \| x \|_{\beta} } 
+        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
+        + 
+        \| y \|_{\alpha} \| y \|_{\beta} 
+        \left| 
+            \frac{ 1 }{ \| x \|_{\beta} } 
+            - 
+            \frac{ 1 }{ \| y \|_{\beta} }  
+        \right|
+        \\&\leq 
+        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
+        \left\| 
+            x - y
+        \right\|_{\beta}
+        + 
+        % BEcause w l o g 
+        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
+        + 
+        \| y \|_{\alpha} \| y \|_{\beta} 
+        \frac{ \left| \| x \|_{\beta} - \| y \|_{\beta} \right| }{ \| x \|_{\beta} \| y \|_{\beta} }
+        \\&\leq 
+        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
+        \left\| 
+            x - y
+        \right\|_{\beta}
+            + 
+        % BEcause w l o g 
+        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
+            + 
+        \| y \|_{\alpha} \| y \|_{\beta} 
+        \frac{ \left| \| x \|_{\beta} - \| y \|_{\beta} \right| }{ \| x \|_{\beta} \| y \|_{\beta} }
+        \\&\leq 
+        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
+        \left\| x - y \right\|_{\beta}
+            + 
+        % BEcause w l o g 
+        \left\| x - y \right\|_{\alpha}
+            + 
+        \| y \|_{\alpha} \| y \|_{\beta} 
+        \frac{ \left\| x - y \right\|_{\beta} }{ \| y \|_{\beta} \| y \|_{\beta} }
+        \\&\leq 
+        C^{\alpha}_{\beta} 
+        C^{\beta}_{\alpha}
+        \left\| x - y \right\|_{\alpha}
+            + 
+        % BEcause w l o g 
+        \left\| x - y \right\|_{\alpha}
+            + 
+        C^{\alpha}_{\beta} 
+        C^{\beta}_{\alpha}
+        \left\| x - y \right\|_{\alpha}
+        .
+    \end{align*}
     \item 
     Consider any simplex $T$ with one vertex $v_0$ at the origin. 
     Let $\lambda_{0}, \lambda_{1}, \dots, \lambda_{n}$ be the barycentric coordinates. 
     The mapping 
     \begin{align}
-        F(x) = \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+        F(x) = \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right) = \frac{x}{\|x\|} \left( 1 - \lambda_{0}(x) \right)
     \end{align}
     maps $T$ onto a ``simplex with a curved face'' inside the unit ball. We analyze its Lipschitz properties.
-    On the one hand, by the reverse triangle inequality,
+    On the one hand, 
+    \begin{align}
+        &
+        F(x) - F(y)
+        \\&
+        =
+        \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+        -
+        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+        \\&\qquad 
+        +
+        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+        -
+        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        \\&\qquad 
+        +
+        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        -
+        \frac{y}{\|y\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        .    
+    \end{align}
+    Without loss of generality, $\|y\| \leq \|x\|$. 
+    \begin{align}
+        &
+        \left\| F(x) - F(y) \right\|
+        \\&
+        \leq
+        \left\| x - y \right\|
+        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
+        \\&\qquad 
+        +
+        \left| \sum_{i=1}^{n} \lambda_{i}(x) - \sum_{i=1}^{n} \lambda_{i}(y) \right|
+        +
+        \|y\| \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        \frac{ \left| \|y\| - \|x\| \right| }{\|x\| \|y\|}
+        \\&\leq
+        \left\| x - y \right\|
+        \sqrt{n} \sigma_{\min}(A^{-1})
+        +
+        \sqrt{n} \sigma_{\min}(A^{-1}) \left\| x - y \right\|
+        +
+        \left\| x - y \right\|
+        \sqrt{n} \sigma_{\min}(A^{-1})
+        \\&\leq
+        3\sqrt{n} \sigma_{\min}(A^{-1})
+        \left\| x - y \right\|
+        .    
+    \end{align}
+    \begin{align}
+        &
+        \left\| F(x) - F(y) \right\|
+        \\&
+        \leq
+        \left\| x - y \right\|
+        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
+        \\&\qquad 
+        +
+        \left| \sum_{i=1}^{n} \lambda_{i}(x) - \sum_{i=1}^{n} \lambda_{i}(y) \right|
+        +
+        \|y\| \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        \frac{ \left| \|y\| - \|x\| \right| }{\|x\| \|y\|}
+        \\&
+        \leq
+        \left\| x - y \right\|
+        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
+        \\&\qquad 
+        +
+        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
+        +
+        \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        \frac{ \left| \|y\| - \|x\| \right| }{\|x\|}
+        \\&\leq
+        \leq
+        \left\| x - y \right\|
+        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
+        \\&\qquad 
+        +
+        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
+        +
+        \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
+        \frac{ \| x - y \| }{\|x\|}
+        \\&\leq
+        \leq
+        \left\| x - y \right\|
+        \frac{ \lambda_{0}(x) }{\|x\|}
+        +
+        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
+        +
+        \left( \lambda_{0}(y) \right)
+        \frac{ \| x - y \| }{\|y\|}
+        .    
+    \end{align}
+    On the one hand,
+    we compute the Jacobian  
+    \begin{align}
+        \Jacobian F(x) 
+        = 
+        \frac{ \Id \|x\| - x \|x\|^{-1} x^t }{\|x\|^2} 
+        \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
+        + 
+        \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \nabla\lambda_{i}(x) \right)
+        .
+    \end{align}
+    On the other hand, by the reverse triangle inequality,
     \begin{align}
         \left| F(x) - F(y) \right|
         &\geq 
@@ -3872,8 +4093,30 @@ We recall a specialization of this result.
             \cdot 
             A^{-1}( x - y )
         \right|
-     \end{align}
-     Note that $A^{-1}( x - y ) \in \Delta^{n} - \Delta^{n}$. 
+    \end{align}
+    Note that $A^{-1}( x - y ) \in \Delta^{n} - \Delta^{n}$. 
+    \begin{align}
+        \left| F(x) - F(y) \right|
+        &\geq 
+        \left\| 
+            \frac{x}{\|x\|}
+            \left( 1 - \lambda_{0}(x) \right) 
+            -
+            \frac{y}{\|y\|}
+            \left( 1 - \lambda_{0}(y) \right) 
+        \right\|
+        \\&
+        \geq 
+        \left\| 
+            \frac{x}{\|x\|}
+            \left( 1 - \lambda_{0}(x) \right) 
+            -
+            \frac{y}{\|y\|}
+            \left( 1 - \lambda_{0}(y) \right) 
+        \right\|
+    \end{align}
+    \todo{finish this estimate somehow}
+    
 
     \item 
     We let $S^{n}_{\star} := S^{n} \setminus \{e_{n+1}\} \subseteq \bbR^{n+1}$ be the unit sphere without the North pole. 
@@ -3910,6 +4153,10 @@ We recall a specialization of this result.
     \begin{align}
         F^{-1} \pi^{-1} G^{-1} \mu G \pi F
     \end{align}
+    \item 
+    We use the following result~\cite[Theorem~3]{alestalo2018radial}:
+    if $f : S \rightarrow S$ is an $L$-Lipschitz mapping from the Euclidean unit sphere into itself, 
+    then the radial extension $f : B \rightarrow B$ is an $L$-Lipschitz mapping from the Euclidean unit ball into itself.
     \end{itemize}
 \end{proof}
 
@@ -3921,6 +4168,56 @@ We recall a specialization of this result.
 
 
 
+
+% Please cite the original version:
+% Alestalo, P., & Trotsenko, D. A. (2018). Radial extensions of bilipschitz maps between unit spheres. Siberian
+% Electronic Mathematical Reports, 15, 839-843. https://doi.org/10.17377/semi.2018.15.071
+% Theorem 3: radial extension of bi lipschitz between unit spheres, with same constant 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% https://mathoverflow.net/questions/232302/lipschitz-constant-of-cental-projection-of-unit-ball-to-surface-of-convex-body
+% https://eudml.org/doc/258483
+% https://math.stackexchange.com/questions/1476085/uniformly-convex-approximation-of-convex-domain
+% SMOOTH EXHAUSTION FUNCTIONS IN CONVEX DOMAINS
+\begin{lemma}
+    Let $K \subseteq \bbR^{n}$ be a compact set star-shaped with respect to the origin 
+    that contains the ball $B_{r}(0)$ and that is contained in the ball $B_{R}(0)$. Then the function 
+    \begin{align*}
+        f : S \rightarrow \partial K, \quad x \mapsto \arg( \partial K \cap \bbR x )
+    \end{align*}
+    satisfies 
+    \begin{align*}
+        R^{2}/r % euclidean 
+    \end{align*}
+    If $K$ is convex, then 
+    \begin{align*}
+        g : S \rightarrow \bbR, \quad x \mapsto \| \bbR x \cap \partial K \|
+    \end{align*}
+    satisfies 
+    \begin{align*}
+        R \sqrt{ R^{2} / r^{2} - 1 } % angular distance 
+        \\
+        \frac R r \sqrt{ R^{2} - r^{2} } % angular distance 
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    .
+\end{proof}
 
 
 
