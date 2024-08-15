@@ -3715,6 +3715,31 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 
 
 
+Stars around subsimplices can be turned into vertex stars after a subdivision, 
+and the shape regularity can be controlled. 
+
+\begin{lemma}\label{lemma:stardivision}
+    Let $\calT$ be an $n$-dimensional simplicial complex
+    such that $\calT = \patch_{\calT}(S)$ for some $S \in \calT$.
+    Let $z_S$ be the barycenter of $S$ 
+    and let $\calT^{\star}$ be the simplicial complex obtained from barycentric subdivision of $S$.
+    If $T^{\star} \in \calT^{\star}$ and $T \in \calT$ are both $n$-dimensional with $T^{\star} \subseteq T$,
+    then $\vol(T^{\star}) = \vol(T) / n$.
+\end{lemma}
+\begin{proof}
+    This is easy.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
 \begin{lemma}    
     Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
     For $0 \leq m < M$, write 
@@ -3723,9 +3748,8 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
         \qquad 
         I_{m} := X_{m} \cap T_{m+1}.
     $$ 
-    Then $I$ is the union of $k$ different facets of $T$, 
-    and their intersection is a simplex $S \in \calT$ of dimension $n-k$.
-    Moreover, 
+    Whenever $I_{m}$ is the union of $k$ different facets of $T$, 
+    then the intersection of those facets is a simplex $S \in \calT$ of dimension $n-k$ that satisfies 
     $$
         \patch_{X_{m+1}}(S) = \patch_{\calT}(S).
     $$
@@ -3745,7 +3769,10 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 
 \begin{theorem}\label{theorem:starreflection}
     Let $\calT$ be an $n$-dimensional triangulation and let $S \in \calT$ be a simplex of dimension $k < n$.
-    Let $T \in \patch_{\calT}(S)$ be of dimension $n$ and let $M := |\patch_{\calT}(S)| \setminus T$. 
+    Let $T \in \patch_{\calT}(S)$ be of dimension $n$ and let 
+    \begin{align*}
+        M := |\patch_{\calT}(S)| \setminus T.
+    \end{align*}
     There exists a bi-Lipschitz mapping
     \begin{align*}
         \varphi : T \rightarrow M
@@ -3759,404 +3786,218 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
 \end{theorem}
 \begin{proof}
-\begin{itemize}
-    \item 
-    \todo{Choose hyperplane that puts T on one side}
-    We use Lemma~\ref{lemma:oppositesubsimplex}
-    \item 
-    \todo{Align barycenter of opposite subsimplex with coordinate axis}
-    \item 
-    \todo{opposite simplex cast to disk}
-    \item 
-    \todo{roll out rest of sphere onto disk}
-    \item 
-    \todo{estimate reflection}
-\end{itemize}
-\end{proof}
-
-We recall a specialization of this result.
-
-\begin{lemma}\label{theorem:starreflection:facepatch}
-
-\end{lemma}
-
-
-
-\begin{proof}
+    Without loss of generality, the barycenter of $S$ is the origin. 
     We derive the estimate in several steps. 
     \begin{itemize}
-    \item 
-    We use the following auxiliary lemma. Suppose that $\|\cdot\|_{\alpha}$ and $\|\cdot\|_{\alpha}$ are two norms on a Banach space.
-    Let 
-    $$
-        F_{\alpha,\beta}(x) = \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} }.
-    $$
-    Then 
-    \begin{align*}
-        &
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\beta}
-        \\&\qquad 
-        \leq 
-        C_{\beta}^{\alpha} 
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\alpha}
-        \\&\qquad 
-        \leq 
-        C_{\beta}^{\alpha} 
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ x }{ \| y \|_{\beta} } 
-        \right\|_{\alpha}
-        +
-        C_{\beta}^{\alpha} 
-        \left\| 
-            \| y \|_{\alpha} \frac{ x }{ \| y \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\alpha}
-        \\&\qquad 
-        \leq 
-        C_{\beta}^{\alpha} 
-        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
-        \left| 
-            \| x \|_{\alpha}
-            - 
-            \| y \|_{\alpha}
-        \right|
-        +
-        C_{\beta}^{\alpha} 
-        \frac{ \| y \|_{\alpha} }{ \| y \|_{\beta} } 
-        \left\| x - y \right\|_{\alpha}
-        \\&\qquad 
-        \leq 
-        C_{\beta}^{\alpha} 
-        C_{\alpha}^{\beta} 
-        \left\| x - y \right\|_{\alpha}
-        +
-        C_{\beta}^{\alpha} 
-        C_{\alpha}^{\beta} 
-        \left\| x - y \right\|_{\alpha}
-        .
-    \end{align*}
-    \begin{align*}
-        &
-        \| 
-            F(x) - F(y) 
-        \|_{\beta}
-        \\&\leq 
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\beta}
-        \\&\leq 
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
+        \item 
+        Let $I := M \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
+        We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
+        So $J$ is in the boundary of $|\calT|$ and is disjoint from $S$.
+        The subsimplex $S' \subseteq T$ that is complementary to $S$.
+        such that $J$ is the union of exactly those faces of $T$ that contain $S'$.
+        
+        \item 
+        We construct a new triangulation that contains $T$ and that is a star around $S$.
+        For that purpose, we let $z'_{S}$ be the midpoint of $S'$. 
+        We define a triangulation $\calS$ by the barycentric refinement of $T$. 
+        All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
+        
+        We define another simplicial complex $\calS^c$ as follows:
+        whenever $K \in \calS$ is an $n$-simplex, we replace the vertex $z_{S}'$ by new vertex opposite point $-z_{S}'$,
+        giving us a simplex $K'$. 
+        
+        We let $\calS'$ be the union of $\calS$ and $\calS^c$. 
+        By construction, all these $n$-simplices contain $S$ as a subsimplex,
+        and they are disjoint except for their proper subsimplices. 
+        Hence $\calS'$ is indeed a triangulation. 
+        Moreover, $S$ is an inner subsimplex of that triangulation. 
+        In particular, $\calS'$ is its own star around $S$.
+        
+        In what follows, we also use $\calS''$, the simplicial complex obtained from $\calS'$ by barycentric subdivision of $S$.
+        Then $\calS''$ is the local star around the barycenter $z_S$. 
+        
+        \item 
+        \todo{Reflect onto complement and estimate bi-Lipschitz constant}
+        We introduce a new mapping $\Theta : |\calS| \rightarrow |\calS^c|$.
+        
+        
+        \item 
+        Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
+        We let $A_T \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
+        That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
+        Then the mapping 
+        \begin{align}
+            F_T(x) 
+            = 
+            \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x
+        \end{align}
+        maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
+        \begin{align}
+            F_T^{-1}(x) 
+            = 
+            \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x
+        \end{align}
+        We analyze its Lipschitz properties.
+        % 
+        On the one hand, 
+        we compute the Jacobian at any $x \in \mathring T$:
+        \begin{align}
+            \Jacobian F_T(x) 
+            = 
+            \frac{ \Id \|x\| - x \|x\|^{-1} x^t }{\|x\|^2} 
+            \left( \vecone \cdot A^{-1} x \right)
             + 
-            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-            + 
-            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\beta}
-        \\&\leq 
-        \left\| 
-            \| x \|_{\alpha} \frac{ x }{ \| x \|_{\beta} } 
-            - 
-            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-        \right\|_{\beta}
-            + 
-        \left\| 
-            \| x \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-        \right\|_{\beta}
-            + 
-        \left\| 
-            \| y \|_{\alpha} \frac{ y }{ \| x \|_{\beta} } 
-            - 
-            \| y \|_{\alpha} \frac{ y }{ \| y \|_{\beta} } 
-        \right\|_{\beta}
-        \\&\leq 
-        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
-        \left\| 
-            x - y
-        \right\|_{\beta}
-            + 
-        \frac{ \| y \|_{\beta} }{ \| x \|_{\beta} } 
-        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
-        + 
-        \| y \|_{\alpha} \| y \|_{\beta} 
-        \left| 
-            \frac{ 1 }{ \| x \|_{\beta} } 
-            - 
-            \frac{ 1 }{ \| y \|_{\beta} }  
-        \right|
-        \\&\leq 
-        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
-        \left\| 
-            x - y
-        \right\|_{\beta}
-        + 
-        % BEcause w l o g 
-        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
-        + 
-        \| y \|_{\alpha} \| y \|_{\beta} 
-        \frac{ \left| \| x \|_{\beta} - \| y \|_{\beta} \right| }{ \| x \|_{\beta} \| y \|_{\beta} }
-        \\&\leq 
-        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
-        \left\| 
-            x - y
-        \right\|_{\beta}
-            + 
-        % BEcause w l o g 
-        \left| \| x \|_{\alpha} - \| y \|_{\alpha} \right|
-            + 
-        \| y \|_{\alpha} \| y \|_{\beta} 
-        \frac{ \left| \| x \|_{\beta} - \| y \|_{\beta} \right| }{ \| x \|_{\beta} \| y \|_{\beta} }
-        \\&\leq 
-        \frac{ \| x \|_{\alpha} }{ \| x \|_{\beta} } 
-        \left\| x - y \right\|_{\beta}
-            + 
-        % BEcause w l o g 
-        \left\| x - y \right\|_{\alpha}
-            + 
-        \| y \|_{\alpha} \| y \|_{\beta} 
-        \frac{ \left\| x - y \right\|_{\beta} }{ \| y \|_{\beta} \| y \|_{\beta} }
-        \\&\leq 
-        C^{\alpha}_{\beta} 
-        C^{\beta}_{\alpha}
-        \left\| x - y \right\|_{\alpha}
-            + 
-        % BEcause w l o g 
-        \left\| x - y \right\|_{\alpha}
-            + 
-        C^{\alpha}_{\beta} 
-        C^{\beta}_{\alpha}
-        \left\| x - y \right\|_{\alpha}
-        .
-    \end{align*}
-    \item 
-    Consider any simplex $T$ with one vertex $v_0$ at the origin. 
-    Let $\lambda_{0}, \lambda_{1}, \dots, \lambda_{n}$ be the barycentric coordinates. 
-    The mapping 
-    \begin{align}
-        F(x) = \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right) = \frac{x}{\|x\|} \left( 1 - \lambda_{0}(x) \right)
-    \end{align}
-    maps $T$ onto a ``simplex with a curved face'' inside the unit ball. We analyze its Lipschitz properties.
-    On the one hand, 
-    \begin{align}
-        &
-        F(x) - F(y)
-        \\&
-        =
-        \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
-        -
-        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
-        \\&\qquad 
-        +
-        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
-        -
-        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        \\&\qquad 
-        +
-        \frac{y}{\|x\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        -
-        \frac{y}{\|y\|} \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        .    
-    \end{align}
-    Without loss of generality, $\|y\| \leq \|x\|$. 
-    \begin{align}
-        &
-        \left\| F(x) - F(y) \right\|
-        \\&
-        \leq
-        \left\| x - y \right\|
-        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
-        \\&\qquad 
-        +
-        \left| \sum_{i=1}^{n} \lambda_{i}(x) - \sum_{i=1}^{n} \lambda_{i}(y) \right|
-        +
-        \|y\| \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        \frac{ \left| \|y\| - \|x\| \right| }{\|x\| \|y\|}
-        \\&\leq
-        \left\| x - y \right\|
-        \sqrt{n} \sigma_{\min}(A^{-1})
-        +
-        \sqrt{n} \sigma_{\min}(A^{-1}) \left\| x - y \right\|
-        +
-        \left\| x - y \right\|
-        \sqrt{n} \sigma_{\min}(A^{-1})
-        \\&\leq
-        3\sqrt{n} \sigma_{\min}(A^{-1})
-        \left\| x - y \right\|
-        .    
-    \end{align}
-    \begin{align}
-        &
-        \left\| F(x) - F(y) \right\|
-        \\&
-        \leq
-        \left\| x - y \right\|
-        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
-        \\&\qquad 
-        +
-        \left| \sum_{i=1}^{n} \lambda_{i}(x) - \sum_{i=1}^{n} \lambda_{i}(y) \right|
-        +
-        \|y\| \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        \frac{ \left| \|y\| - \|x\| \right| }{\|x\| \|y\|}
-        \\&
-        \leq
-        \left\| x - y \right\|
-        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
-        \\&\qquad 
-        +
-        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
-        +
-        \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        \frac{ \left| \|y\| - \|x\| \right| }{\|x\|}
-        \\&\leq
-        \leq
-        \left\| x - y \right\|
-        \frac{\sum_{i=1}^{n} \lambda_{i}(x)}{\|x\|}
-        \\&\qquad 
-        +
-        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
-        +
-        \left( \sum_{i=1}^{n} \lambda_{i}(y) \right)
-        \frac{ \| x - y \| }{\|x\|}
-        \\&\leq
-        \leq
-        \left\| x - y \right\|
-        \frac{ \lambda_{0}(x) }{\|x\|}
-        +
-        \left| \lambda_{0}(x) - \lambda_{0}(y) \right|
-        +
-        \left( \lambda_{0}(y) \right)
-        \frac{ \| x - y \| }{\|y\|}
-        .    
-    \end{align}
-    On the one hand,
-    we compute the Jacobian  
-    \begin{align}
-        \Jacobian F(x) 
-        = 
-        \frac{ \Id \|x\| - x \|x\|^{-1} x^t }{\|x\|^2} 
-        \left( \sum_{i=1}^{n} \lambda_{i}(x) \right)
-        + 
-        \frac{x}{\|x\|} \left( \sum_{i=1}^{n} \nabla\lambda_{i}(x) \right)
-        .
-    \end{align}
-    On the other hand, by the reverse triangle inequality,
-    \begin{align}
-        \left| F(x) - F(y) \right|
-        &\geq 
-        \left\| 
-            \frac{x}{\|x\|}
-            \sum_{i=1}^{n} \lambda_{i}(x)
-            -
-            \frac{y}{\|y\|}
-            \sum_{i=1}^{n} \lambda_{i}(y)
-        \right\|
-        \\&
-        \geq 
-        \left| 
-            \frac{\|x\|}{\|x\|}
-            \sum_{i=1}^{n} \lambda_{i}(x)
-            -
-            \frac{\|y\|}{\|y\|}
-            \sum_{i=1}^{n} \lambda_{i}(y)
-        \right|
-        \\&
-        = 
-        \left| 
-            \sum_{i=1}^{n} \lambda_{i}(x)
-            -
-            \sum_{i=1}^{n} \lambda_{i}(y)
-        \right|
-        \\&
-        = 
-        \left| 
-            \vec{1}
-            \cdot 
-            A^{-1}( x - y )
-        \right|
-    \end{align}
-    Note that $A^{-1}( x - y ) \in \Delta^{n} - \Delta^{n}$. 
-    \begin{align}
-        \left| F(x) - F(y) \right|
-        &\geq 
-        \left\| 
-            \frac{x}{\|x\|}
-            \left( 1 - \lambda_{0}(x) \right) 
-            -
-            \frac{y}{\|y\|}
-            \left( 1 - \lambda_{0}(y) \right) 
-        \right\|
-        \\&
-        \geq 
-        \left\| 
-            \frac{x}{\|x\|}
-            \left( 1 - \lambda_{0}(x) \right) 
-            -
-            \frac{y}{\|y\|}
-            \left( 1 - \lambda_{0}(y) \right) 
-        \right\|
-    \end{align}
-    \todo{finish this estimate somehow}
-    
-
-    \item 
-    We let $S^{n}_{\star} := S^{n} \setminus \{e_{n+1}\} \subseteq \bbR^{n+1}$ be the unit sphere without the North pole. 
-    Suppose that $\bar x \in S^n$ is a point on the unit sphere and $\bar x \neq e_{n+1}$. 
-    We define its stereographic projection as 
-    \begin{align}
-        \pi( \bar x ) 
-        = 
-        \sum_{i=1}^{n} \frac{x_i}{1 - x_{n+1}} e_{i}
-        .
-    \end{align}
-    This is a mapping $\pi : S^{n}_{\star} \rightarrow \bbR^{n}$. 
-    Its inverse is defined as follows: given $y \in \bbR^{n}$, we have 
-    \begin{align}
-        \pi^{-1}( y )
-        = 
-        \sum_{i=1}^{n} \frac{2 y_i}{1 + \| y \|^2} e_{i}
-        +
-        \frac{1 - \| y \|^2}{1 + \| y \|^2} e_{n+1}
-        .
-    \end{align}
-    \item 
-    Mirroring the unit sphere along the equator is expressed in stereographic coordinates by the involution 
-    \begin{align}
-        \mu : \bbR^{n} \rightarrow \bbR^{n},
-        \qquad 
-        y \mapsto \frac{y}{\| y \|}.
-    \end{align}
-    \item 
-    \begin{align}
-        G(y) := \| y \| \cdot \phi\left( \frac{y}{\|y\|} \right)^{-1} \frac{y}{\|y\|}
-    \end{align}
-    \item 
-    \begin{align}
-        F^{-1} \pi^{-1} G^{-1} \mu G \pi F
-    \end{align}
-    \item 
-    We use the following result~\cite[Theorem~3]{alestalo2018radial}:
-    if $f : S \rightarrow S$ is an $L$-Lipschitz mapping from the Euclidean unit sphere into itself, 
-    then the radial extension $f : B \rightarrow B$ is an $L$-Lipschitz mapping from the Euclidean unit ball into itself.
+            \frac{x}{\|x\|} \left( \vecone \cdot A^{-1} x \right)
+            .
+        \end{align}
+        The Euclidean operator norm is 
+        \begin{align}
+            \| \Jacobian F_T(x) \| 
+            \leq 
+            2 \left| \vecone \cdot A^{-1} x \right|
+            \leq 
+            2 \sqrt{n} \cdot \sigma_{\max}(A^{-1}) 
+            .
+        \end{align}
+        On the one hand, given $x, y \in T$, 
+        where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
+        \begin{align*}
+            &
+            \left\| F_T(x) - F_T(y) \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|A^{-1} x\|_2 - \|A^{-1} y\|_2 \right|
+            \\&\qquad 
+            \leq 
+            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A^{-1}) 
+            \left\| x - y \right\|_{2}
+            .
+        \end{align*}
+        On the other hand, given $x, y \in F_T(T)$, 
+        where $\| A^{-1} y \|_{1} \leq \| A^{-1} x \|_{1}$ without loss of generality, we find 
+        \begin{align*}
+            &
+            \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|x\|_2 - \|y\|_2 \right|
+            \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} }
+            \\&\qquad 
+            \leq 
+            2 \sigma_{\min}(A^{-1})^{-1} 
+            \left\| x - y \right\|_{2}
+            .
+        \end{align*}
+        By convexity of the range of $F_T(T)$, 
+        we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
+        We recall that $\sigma_{\max}(A^{-1}) = \sigma_{\min}(A)^{-1}$ and $\sigma_{\min}(A^{-1})^{-1} = \sigma_{\max}(A)$.
+        
+        \item 
+        Suppose that $S = \{v_0\}$ is a single vertex. 
+        We construct a transformation from the vertex star around $S$ onto the Euclidean unit ball. 
+        Without loss of generality, $S$ is at the origin. 
+        For any $T \in \patch_{\calT}(S)$, we let $F_T$ be the transformation. 
+        We define $F$ over $|\patch_{\calT}(S)|$ piecewise. 
+        \todo{Complete}
+        
+        
+        
+        
+        \item 
+        \todo{Combine all this to get the final transformation.}
+        
+%         \item 
+%         Let $\calU$ be the simplicial complex of dimension $n-1$ that contains precisely those facets of $T$ that do not contain $S$.
+%         We write $Y := F( |\calU| )$. 
+%         \todo{Shape of the outer patch $Y$, star-shaped geometry}
+%         
+%         \item 
+%         We let $\sphere{n}_{\star} := \sphere{n} \setminus \{e_{n+1}\} \subseteq \bbR^{n+1}$ be the unit sphere without the North pole. 
+%         Suppose that $\bar x \in \sphere{n}$ is a point on the unit sphere and $\bar x \neq e_{n+1}$. 
+%         We define its stereographic projection as 
+%         \begin{align}
+%             \pi( \bar x ) 
+%             = 
+%             \sum_{i=1}^{n} \frac{x_i}{1 - x_{n+1}} e_{i}
+%             .
+%         \end{align}
+%         This is a mapping $\pi : \sphere{n}_{\star} \rightarrow \bbR^{n}$. 
+%         Its inverse is defined as follows: given $y \in \bbR^{n}$, we have 
+%         \begin{align}
+%             \pi^{-1}( y )
+%             = 
+%             \sum_{i=1}^{n} \frac{2 y_i}{1 + \| y \|^2} e_{i}
+%             +
+%             \frac{1 - \| y \|^2}{1 + \| y \|^2} e_{n+1}
+%             .
+%         \end{align}
+%         \item 
+%         Mirroring the unit sphere along the equator is expressed in stereographic coordinates by the involution 
+%         \begin{align}
+%             \mu : \bbR^{n} \rightarrow \bbR^{n},
+%             \qquad 
+%             y \mapsto \frac{y}{\| y \|}.
+%         \end{align}
+%         \item 
+%         \begin{align}
+%             G(y) := \| y \| \cdot \phi\left( \frac{y}{\|y\|} \right)^{-1} \frac{y}{\|y\|}
+%         \end{align}
+%         \item 
+%         We combine these mappings:
+%         \begin{align}
+%             Q : \sphere{n} \rightarrow \sphere{n}, \qquad x \mapsto \pi^{-1} G^{-1} \mu G \pi(x)
+%         \end{align}
+%         We want to analyze its Lipschitz properties. \todo{Stuff}
+%         \item
+%         We have constructed a bi-Lipschitz mapping from the Euclidean unit sphere into itself.
+%         We use the following result~\cite[Theorem~3]{alestalo2018radial}:
+%         if $f : \sphere{n} \rightarrow \sphere{n}$ is any $L$-Lipschitz mapping from the Euclidean unit sphere into itself, 
+%         then the radial extension $f : \ball{n} \rightarrow \ball{n}$ is an $L$-Lipschitz mapping from the Euclidean unit ball into itself.
+%         Consequently, \todo{write out}
+%         \item 
+%         In total, we thus have 
+%         \begin{align}
+%             Q' := F^{-1} \pi^{-1} G^{-1} \mu G \pi F
+%             .
+        \end{align}
     \end{itemize}
 \end{proof}
 
@@ -4173,6 +4014,14 @@ We recall a specialization of this result.
 % Alestalo, P., & Trotsenko, D. A. (2018). Radial extensions of bilipschitz maps between unit spheres. Siberian
 % Electronic Mathematical Reports, 15, 839-843. https://doi.org/10.17377/semi.2018.15.071
 % Theorem 3: radial extension of bi lipschitz between unit spheres, with same constant 
+
+
+We recall a specialization of this result.
+
+\begin{lemma}\label{theorem:starreflection:facepatch}
+
+\end{lemma}
+
 
 
 
