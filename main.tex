@@ -3786,56 +3786,24 @@ and the shape regularity can be controlled.
     where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
 \end{theorem}
 \begin{proof}
-    Without loss of generality, the barycenter of $S$ is the origin. 
     We derive the estimate in several steps. 
     \begin{itemize}
         \item 
-        Let $I := M \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
-        We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
-        So $J$ is in the boundary of $|\calT|$ and is disjoint from $S$.
-        The subsimplex $S' \subseteq T$ that is complementary to $S$.
-        such that $J$ is the union of exactly those faces of $T$ that contain $S'$.
-        
-        \item 
-        We construct a new triangulation that contains $T$ and that is a star around $S$.
-        For that purpose, we let $z'_{S}$ be the midpoint of $S'$. 
-        We define a triangulation $\calS$ by the barycentric refinement of $T$. 
-        All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
-        
-        We define another simplicial complex $\calS^c$ as follows:
-        whenever $K \in \calS$ is an $n$-simplex, we replace the vertex $z_{S}'$ by new vertex opposite point $-z_{S}'$,
-        giving us a simplex $K'$. 
-        
-        We let $\calS'$ be the union of $\calS$ and $\calS^c$. 
-        By construction, all these $n$-simplices contain $S$ as a subsimplex,
-        and they are disjoint except for their proper subsimplices. 
-        Hence $\calS'$ is indeed a triangulation. 
-        Moreover, $S$ is an inner subsimplex of that triangulation. 
-        In particular, $\calS'$ is its own star around $S$.
-        
-        In what follows, we also use $\calS''$, the simplicial complex obtained from $\calS'$ by barycentric subdivision of $S$.
-        Then $\calS''$ is the local star around the barycenter $z_S$. 
-        
-        \item 
-        \todo{Reflect onto complement and estimate bi-Lipschitz constant}
-        We introduce a new mapping $\Theta : |\calS| \rightarrow |\calS^c|$.
-        
-        
-        \item 
+        We begin with the following preparatory observations. 
         Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
-        We let $A_T \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
+        We let $A_{T} \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
         That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
         Then the mapping 
         \begin{align}
             F_T(x) 
             = 
-            \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x
         \end{align}
         maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
         \begin{align}
             F_T^{-1}(x) 
             = 
-            \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
         \end{align}
         We analyze its Lipschitz properties.
         % 
@@ -3845,20 +3813,21 @@ and the shape regularity can be controlled.
             \Jacobian F_T(x) 
             = 
             \frac{ \Id \|x\| - x \|x\|^{-1} x^t }{\|x\|^2} 
-            \left( \vecone \cdot A^{-1} x \right)
+            \left( \vecone \cdot A_{T}^{-1} x \right)
             + 
-            \frac{x}{\|x\|} \left( \vecone \cdot A^{-1} x \right)
+            \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
             .
         \end{align}
         The Euclidean operator norm is 
         \begin{align}
             \| \Jacobian F_T(x) \| 
             \leq 
-            2 \left| \vecone \cdot A^{-1} x \right|
+            2 \left| \vecone \cdot A_{T}^{-1} x \right|
             \leq 
-            2 \sqrt{n} \cdot \sigma_{\max}(A^{-1}) 
+            2 \sqrt{n} \cdot \sigma_{\max}(A_{T}^{-1}) 
             .
         \end{align}
+        \todo{Find the best estimate. }
         On the one hand, given $x, y \in T$, 
         where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
         \begin{align*}
@@ -3867,82 +3836,187 @@ and the shape regularity can be controlled.
             \\&\qquad 
             \leq 
             \left\| 
-                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A^{-1} y \|_{1} }{ \|y\|_2 } y
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
             \right\|_{2}
             \\&\qquad 
             \leq 
             \left\| 
-                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } y
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
             \right\|_{2}
             +
             \left\| 
-                \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A^{-1} y \|_{1} }{ \|y\|_2 } y
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
             \right\|_{2}
             \\&\qquad 
             \leq 
-            \frac{ \| A^{-1} x \|_{1} }{ \|x\|_2 } 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
             \left\| 
                 x - y
             \right\|_{2}
             +
-            \left| \|A^{-1} x\|_2 - \|A^{-1} y\|_2 \right|
+            \left| \|A_{T}^{-1} x\|_2 - \|A_{T}^{-1} y\|_2 \right|
             \\&\qquad 
             \leq 
-            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A^{-1}) 
+            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
             \left\| x - y \right\|_{2}
             .
         \end{align*}
         On the other hand, given $x, y \in F_T(T)$, 
-        where $\| A^{-1} y \|_{1} \leq \| A^{-1} x \|_{1}$ without loss of generality, we find 
+        where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
         \begin{align*}
             &
             \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
             \\&\qquad 
             \leq 
             \left\| 
-                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} } y
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
             \right\|_{2}
             \\&\qquad 
             \leq 
             \left\| 
-                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } y
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
             \right\|_{2}
             +
             \left\| 
-                \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} } y
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
             \right\|_{2}
             \\&\qquad 
             \leq 
-            \frac{ \|x\|_2 }{ \| A^{-1} x \|_{1} } 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
             \left\| 
                 x - y
             \right\|_{2}
             +
             \left| \|x\|_2 - \|y\|_2 \right|
-            \frac{ \|y\|_2 }{ \| A^{-1} y \|_{1} }
+            \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} }
             \\&\qquad 
             \leq 
-            2 \sigma_{\min}(A^{-1})^{-1} 
+            2 \sigma_{\min}(A_{T}^{-1})^{-1} 
             \left\| x - y \right\|_{2}
             .
         \end{align*}
         By convexity of the range of $F_T(T)$, 
         we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
-        We recall that $\sigma_{\max}(A^{-1}) = \sigma_{\min}(A)^{-1}$ and $\sigma_{\min}(A^{-1})^{-1} = \sigma_{\max}(A)$.
-        
-        \item 
-        Suppose that $S = \{v_0\}$ is a single vertex. 
-        We construct a transformation from the vertex star around $S$ onto the Euclidean unit ball. 
-        Without loss of generality, $S$ is at the origin. 
-        For any $T \in \patch_{\calT}(S)$, we let $F_T$ be the transformation. 
-        We define $F$ over $|\patch_{\calT}(S)|$ piecewise. 
-        \todo{Complete}
-        
+        We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
         
         
         
         \item 
-        \todo{Combine all this to get the final transformation.}
+        Without loss of generality, the barycenter of $S$ is the origin. 
+        Let $I := M \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
+        We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
+        So $J$ is in the boundary of $|\calT|$ and is disjoint from $S$.
+        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
+        Note that $J$ is the union of exactly those faces of $T$ that contain $S'$.
+        
+        
+        \item 
+        We construct a new triangulation that contains $T$ and that is a star around $S$.
+        For that purpose, we let $z'_{S}$ be the midpoint of $S'$. 
+        We first define a new triangulation $\calS$ by the barycentric refinement of $T$. 
+        All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
+        
+        We define another simplicial complex $\calS^c$ as follows:
+        whenever $K \in \calS$ is an $n$-simplex, 
+        we replace the vertex $z_{S}'$ by the new vertex $-z_{S}'$ at the opposite position,
+        giving us a simplex $K'$. 
+        
+        We let $\calS'$ be the union of $\calS$ and $\calS^c$. 
+        By construction, all these $n$-simplices contain $S$ as a subsimplex,
+        and they are disjoint except for their proper subsimplices. 
+        Hence $\calS'$ is indeed a triangulation. 
+        Moreover, $S$ is an inner subsimplex of that triangulation. 
+        In particular, $\calS'$ is its own star around $S$.
+        
+        
+        \item 
+        In what follows, we also use $\calR'$, 
+        the simplicial complex obtained from $\calS'$ by barycentric subdivision of $S$.
+        Then $\calR'$ is the local star around the barycenter $z_S$,
+        and all $n$-simplices in $\calR'$ contain $z_{S}$. 
+        We let $\calR$ and $\calR^{c}$ be the corresponding refinements of $\calS$ and $\calS^{c}$, respectively.
+        
+        
+        \item 
+        % \todo{Reflect onto complement and estimate bi-Lipschitz constant}
+        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$.
+        Let $K \in \calR$ be an $n$-simplex and $K' \in \calR^{c}$ be constructed from $K$.
+        We let $A_{K} : \Delta^{n} \rightarrow K$ and $A_{K'} : \Delta^{n} \rightarrow K'$
+        be affine reference transformations
+        that agree on the vertices common to $K$ and $K'$.
+        We then define 
+        \begin{align*}
+            \Theta_{|K} := A_{K'} \circ A_{K}^{-1}.
+        \end{align*}
+        Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
+        \begin{align*}
+            \| \Jacobian \Theta_{|K}      \| \leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \kappa(A_{K}),
+            \qquad 
+            \| \Jacobian \Theta_{|K}^{-1} \| \leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
+        \end{align*}
+
+        
+        \item 
+        % \todo{Combine all this to get the final transformation.}
+        We let $\calK$ the simplicial complex obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
+        Using our initial observations, we obtain homeomorphisms 
+        \begin{align*}
+            \Psi_{\calK } : |\calK| \rightarrow \calB,
+            \qquad 
+            \Psi_{\calR'} : |\calR'| \rightarrow \calB.
+        \end{align*}
+        Both $\Psi_{\calK}$ and $\Psi_{\calR'}$ map $T$ onto the same subset of the unit ball.
+        Consequently, the image under $\Psi_{\calK}$ of $\overline{|\calK| \setminus T}$
+        onto the image under $\Psi_{\calR'}$ of $|\calR^{c}|$.
+        It follows that 
+        \begin{align*}
+            \Theta_{S} := \Psi_{\calK}^{-1} \Psi_{\calR'} \Theta
+        \end{align*}
+        is a mapping from $T$ onto $\overline{\patch_{\calT}(S) \setminus T}$.
+        We estimate the Jacobians: 
+        \begin{align*}
+            \| \Jacobian \Theta_{S} \| 
+            \leq 
+            \sup_{ K \in \calK  }
+            2 \sigma_{\min}(A_{K}^{-1})^{-1} 
+            \sup_{ K \in \calR' } 
+            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{K}^{-1}) 
+            \sup_{ K \in \calR  } \kappa(A_{K})
+            .
+        \end{align*}
+        Each bisection halves the volume of the triangles. Thus,
+        \begin{align*}
+            \color{red}
+            \| \Jacobian \Theta_{S} \| 
+            &\leq 
+            2 \sup_{ K \in \patch_{\calT}(S) }
+            2 \sigma_{\min}(A_{K}^{-1})^{-1} 
+            4 \sup_{ K \in \patch_{\calT}(S) } 
+            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{K}^{-1}) 
+            4 \sup_{ K \in \patch_{\calT}(S) } 
+            \kappa(A_{K})
+            \\&\leq 
+            64
+            \left( \sqrt{n} + 1 \right) 
+            \sup_{ K \in \patch_{\calT}(S) }
+            \sigma_{\max}(A_{K}     ) 
+            \sup_{ K \in \patch_{\calT}(S) } 
+            \sigma_{\max}(A_{K}^{-1}) 
+            \sup_{ K \in \patch_{\calT}(S) } 
+            \kappa(A_{K})
+            .
+        \end{align*}
+        That establishes the final estimate. 
+        
+        
+%         \item 
+%         Suppose that $S = \{v_0\}$ is a single vertex. 
+%         We construct a transformation from the vertex star around $S$ onto the Euclidean unit ball. 
+%         Without loss of generality, $S$ is at the origin. 
+%         For any $T \in \patch_{\calT}(S)$, we let $F_T$ be the transformation. 
+%         We define $F$ over $|\patch_{\calT}(S)|$ piecewise. 
+%         \todo{Complete}
+%         
         
 %         \item 
 %         Let $\calU$ be the simplicial complex of dimension $n-1$ that contains precisely those facets of $T$ that do not contain $S$.
@@ -4010,17 +4084,6 @@ and the shape regularity can be controlled.
 
 
 
-% Please cite the original version:
-% Alestalo, P., & Trotsenko, D. A. (2018). Radial extensions of bilipschitz maps between unit spheres. Siberian
-% Electronic Mathematical Reports, 15, 839-843. https://doi.org/10.17377/semi.2018.15.071
-% Theorem 3: radial extension of bi lipschitz between unit spheres, with same constant 
-
-
-We recall a specialization of this result.
-
-\begin{lemma}\label{theorem:starreflection:facepatch}
-
-\end{lemma}
 
 
 
@@ -4036,37 +4099,6 @@ We recall a specialization of this result.
 
 
 
-
-
-
-% https://mathoverflow.net/questions/232302/lipschitz-constant-of-cental-projection-of-unit-ball-to-surface-of-convex-body
-% https://eudml.org/doc/258483
-% https://math.stackexchange.com/questions/1476085/uniformly-convex-approximation-of-convex-domain
-% SMOOTH EXHAUSTION FUNCTIONS IN CONVEX DOMAINS
-\begin{lemma}
-    Let $K \subseteq \bbR^{n}$ be a compact set star-shaped with respect to the origin 
-    that contains the ball $B_{r}(0)$ and that is contained in the ball $B_{R}(0)$. Then the function 
-    \begin{align*}
-        f : S \rightarrow \partial K, \quad x \mapsto \arg( \partial K \cap \bbR x )
-    \end{align*}
-    satisfies 
-    \begin{align*}
-        R^{2}/r % euclidean 
-    \end{align*}
-    If $K$ is convex, then 
-    \begin{align*}
-        g : S \rightarrow \bbR, \quad x \mapsto \| \bbR x \cap \partial K \|
-    \end{align*}
-    satisfies 
-    \begin{align*}
-        R \sqrt{ R^{2} / r^{2} - 1 } % angular distance 
-        \\
-        \frac R r \sqrt{ R^{2} - r^{2} } % angular distance 
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    .
-\end{proof}
 
 
 
