@@ -13,7 +13,7 @@
 \title{Computable Poincar\'e--Friedrichs constants\\ for the $L^{p}$ de Rham complex over domains\\ with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
-    Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{email2@example.com}} \and
+    Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{martin.licht@epfl.ch}} \and
     Martin Vohral\'ik\thanks{Affiliation of the Third Author, \texttt{email3@example.com}}
 }
 
@@ -85,7 +85,7 @@ Poincar\'e--Friedrichs inequalities over local stars are our main goal in this e
 \\
 
 
-Before we outline the main results of this exposition in more details, 
+Before we outline the main results of this exposition in more detail, 
 we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
 We take the Poincar\'e--Friedrichs inequality for the gradient of scalar functions as our conceptual point of reference.
 
@@ -112,7 +112,7 @@ this inequality is equivalent to the following statement:
     C_{\grad,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
     \quad 
     \forall
-    u \in W^{1,p}(\Omega) % TODO: Use \forall notation 
+    u \in W^{1,p}(\Omega) % DONE: Use \forall notation 
     .\tag{PF} 
 \end{align}
 % Given a domain $\Omega \subseteq \bbR^{n}$ and Lebesgue exponent $1 \leq p \leq \infty$,
@@ -123,7 +123,7 @@ this inequality is equivalent to the following statement:
 %     \leq 
 %     C_{\grad,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
 %     \quad 
-%     u \in W^{1,p}(\Omega) % TODO: Use \forall notation 
+%     u \in W^{1,p}(\Omega) % DONE: Use \forall notation 
 %     .\tag{PF} 
 % \end{align}
 Finding a potential of a given gradient $\nabla u$ is generally a nonlinear operation. 
@@ -155,7 +155,7 @@ Considerable research effort has gone into finding (or estimating) the optimal c
 Most research on optimal constants has addressed the case of convex domains. 
 % The optimal constants that depend solely on the domain diameter are known if $p=2$ \cite{bebendorf2003note} and if $p=1$ \cite{acosta2004optimal}. 
 Notably, if the constants are required to depend on the convex domain only via its diameter, 
-then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly.~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
+then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
 When the domain is not convex but star-shaped with respect to a ball,
 then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{brenner2008mathematical,ern2021finite}. 
 An open set star-shaped with respect to a internal point satisfies Poincar\'e inequalities~\cite[Theorem~3.1]{hurri1988poincare}. 
@@ -177,7 +177,7 @@ We use the vector field spaces
     \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \divergence \bfu \in L^p(\Omega) \right\}
     .
 \end{align*}
-Their members are vector fields whose distributional curls and divergences are in Lebesgue spaces. 
+Their members are those vector fields whose distributional curls and divergences are in Lebesgue spaces. 
 This only requires that certain sums of distributional partial derivatives are integrable, 
 and hence these spaces are not classical Sobolev spaces of vector fields. 
 Our objective is to find bounded potentials for the operators 
@@ -193,19 +193,19 @@ We are interested in constants for inequalities such as
 \begin{align*}
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\curl,\Omega) \\ \curl \bfv = \bff } } 
     \| \bfv \|_{L^{p}(\Omega)}
-    \leq 
+    &\leq 
     C_{\curl,\Omega,p}
     \| \bff \|_{L^{p}(\Omega)}
     ,
-    \qquad 
+    \\%\qquad 
     \min\limits_{ \substack{ \bfv \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfv = f } } 
     \| \bfv \|_{L^{p}(\Omega)}
-    \leq 
+    &\leq 
     C_{\divergence,\Omega,p}
     \| f \|_{L^{p}(\Omega)}
     ,
 \end{align*}
-and whether these constants can be estimated by the operator norms of linear potential operators 
+and how these constants can be estimated by the operator norms of linear potential operators 
 \begin{align*}
     &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
     ,
@@ -220,12 +220,17 @@ This sharply contrasts to the study of the gradient operator.
 %
 % The literature in functional analysis is much scarcer when it comes to any upper bounds for the Poincar\'e--Friedrichs constants. 
 We can access some estimates from the literature in the formalism of exterior calculus. 
-We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue}, who estimate the Poincar\'e--Friedrichs constants over convex domains in the Hilbert space setting, when $p=2$. They provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains. This implies upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators.
+We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue},
+% who estimate the Poincar\'e--Friedrichs constants over smoothly bounded convex domains in the Hilbert space setting, when $p=2$. 
+who provide lower bounds for the spectrum of the Hodge--Laplace operator on smoothly bounded convex domains, 
+thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators, when $p=2$.
 By duality, that implies lower bounds for the case of full boundary conditions.
-Their study also implies sequences of inequalities, such as the following in 3D convex domains:
-\begin{align}\label{math:intro:guerinisavo}
-    C_{\grad,\Omega,2} \geq C_{\curl,\Omega,2} \geq C_{\divergence,\Omega,2}.
-\end{align}
+% They also provide sequences of inequalities, such as the following in 3D smoothly bounded convex domains:
+% \begin{align}\label{math:intro:guerinisavo}
+%     C_{\grad,\Omega,2} \geq C_{\curl,\Omega,2} \geq C_{\divergence,\Omega,2}.
+% \end{align}
+% We emphasize that \cite{guerini2004eigenvalue} only addresses smoothly bounded domains, but the extension to convex domains is a technicality. 
+
 When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constants 
 follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
 as mappings between Lebesgue spaces. 
@@ -300,9 +305,10 @@ While there is a wealth of literature for gradient Poincar\'e inequalities over 
 the literature is more sparse when it comes to the corresponding estimates for the curl and divergence potentials.
 
 % DONE: cite VVVV
-In the Hilbert space case, $p=2$, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. These comparisons~\eqref{math:intro:guerinisavo} are restricted to convex Lipschitz domains. 
+In the Hilbert space case, $p=2$, and when the domain is smoothly bounded, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
+% These comparisons~\eqref{math:intro:guerinisavo} are restricted to convex smoothly bounded domains. 
 
-But no such results are known for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. 
+But no such results are known over convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. 
 We follow closely the discussions by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators over domains star-shaped with respect to a ball. 
 In comparison to their exposition, our variants of the regularized potential operators are simplified:
@@ -340,7 +346,10 @@ and they lead to lower bounds for the spectrum of finite element matrices.
 
 Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of disks and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
-We conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. These topics remain for future research. 
+We conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over smoothly bounded convex domains, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
+% We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. 
+On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. 
+These topics remain for future research. 
 \\
 
 The remainder of this manuscript is structured as follows.
@@ -352,7 +361,7 @@ We review the Sobolev spaces in vector calculus and the calculus of differential
 Regularized potential operators over convex sets are discussed in Section~\ref{section:potentialoperator}.
 We construct an important geometric reflection operator in Section~\ref{section:extension}
 and we finally provide computable upper bounds for Poincar\'e--Friedrichs constants for the exterior derivative over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
-
+We present numerical examples in Section~\ref{section:numericalexamples}. 
 
 
 
@@ -564,7 +573,7 @@ Since $\Omega$ is connected, this is equivalent to
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 \\
 
-We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, % TODO: cite AAAA somebody, such as Alexandre 
+We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, \todo{cite Ern...}
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
 if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
 % for all $u \in W^{1,p}(\Omega)$
@@ -743,7 +752,7 @@ Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \inft
 \begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm CW},p}
+    C_{{\rm P},{\rm CW},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -754,7 +763,7 @@ Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \inft
 \end{align}
 where we use an upper bound by Chua and Wheeden:
 \begin{align}
-    C_{{\rm CW},p} 
+    C_{{\rm P},{\rm CW},p} 
     := 
     \sup\limits_{ v \in C^\infty([0,1]) \setminus \bbR } 
     \frac{ 
@@ -778,7 +787,7 @@ when $1 < p < \infty$, one can show that
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm EFNT},p}
+    C_{{\rm PF},{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -787,9 +796,9 @@ when $1 < p < \infty$, one can show that
     u \in W^{1,p}(\Omega)
     ,
 \end{align}
-where $C_{{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
+where $C_{{\rm PF},{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
 \begin{align}
-    C_{{\rm EFNT},p}
+    C_{{\rm PF},{\rm EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
@@ -798,7 +807,7 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    2^{|1-\frac 2 p|}C_{{\rm EFNT},p}
+    2^{|1-\frac 2 p|}C_{{\rm PF},{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -849,12 +858,12 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \begin{remark}
     % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
     Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}
-    Let us compare the estimate $C_{{\rm CW},p}$ for the Poincar\'e constant
-    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{{\rm EFNT},p}$. 
+    Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
+    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{{\rm PF},{\rm EFNT},p}$. 
     In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
-        C_{{\rm EFNT},p}
+        C_{{\rm PF},{\rm EFNT},p}
         =
         \frac{ 2^{1-\frac 2 p} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -862,25 +871,27 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
         \leq 
         4^{-\frac 1 p}
         \leq
-        C_{{\rm CW},p} 
+        C_{{\rm P},{\rm CW},p} 
         .
     \end{align*}
     In the case $2 \geq p$, 
     \begin{align*}
         2^{\frac 2 p - 1}
-        C_{{\rm EFNT},p}
+        C_{{\rm PF},{\rm EFNT},p}
         =
         \frac{ 2^{\frac 2 p - 1} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
         \frac{ 1 }{ \sqrt[p]{p-1} }
         \leq
         \frac{ 2^{\frac 2 p-1} }{2}
+        &
         =
         2^{\frac 2 p - 2}
+        \\&
         =
         4^{\frac 1 p - 1}
         \leq
-        C_{{\rm CW},p} 
+        C_{{\rm P},{\rm CW},p} 
 %         % 
 %         .
 %         4^{\frac 1 p}
@@ -898,7 +909,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     % DONE: chua wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
 % TODO: Keep ?
-%     In the limit as $p$ goes to $1$, the factor $C_{{\rm EFNT},p}$ converges to $1/2$,
+%     In the limit as $p$ goes to $1$, the factor $C_{{\rm PF},{\rm EFNT},p}$ converges to $1/2$,
 %     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{1}(\Omega)}
@@ -912,7 +923,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         u \in W^{1,1}(\Omega)
 %         .
 %     \end{align*}
-%     In the limit as $p$ goes to infinity, the factor $C_{{\rm EFNT},p}$ converges to $1/2$, 
+%     In the limit as $p$ goes to infinity, the factor $C_{{\rm PF},{\rm EFNT},p}$ converges to $1/2$, 
 %     which implies the Poincar\'e inequality 
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
@@ -1090,7 +1101,7 @@ This indicator quantifies how much reflection across the shared face distorts th
     \end{align*}
     Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. 
 %     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
-%     \[
+%     \begin{gather*}
 %         \diam(T) 
 %         \leq 
 %         \sqrt{2} \sigma_1 
@@ -1103,11 +1114,11 @@ This indicator quantifies how much reflection across the shared face distorts th
 %         \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)
 %         \sigma_n
 %         .
-%     \]
+%     \end{gather*}
 %     The desired result is thus evident. 
 \end{proof}
 
-% TODO: REMOVE THE \cdot 
+% DONE: REMOVE THE \cdot 
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
@@ -1240,7 +1251,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| u - c \|_{L^{p}(U)}
         &
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \max\left( 
             \frac{ \vol(T_1) }{ \vol(T_2) }
             ,
@@ -1250,7 +1261,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \rho(\calT)^{\frac 1 p}
         \max\left( \diam(T_1), \diam(T_2) \right)
         \| \nabla u \|_{L^{p}(U)}
@@ -1315,7 +1326,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \begin{align*}
         \| \hat w \|_{L^{p}(\hat U)}
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         .
     \end{align*}
@@ -1336,7 +1347,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \begin{align*}
         \| w \|_{L^{p}(U)}
         &\leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -1351,7 +1362,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -1366,7 +1377,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \max\left( 
             \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
             ,
@@ -1376,7 +1387,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm EFNT},p}
+        2 C_{{\rm PF},{\rm EFNT},p}
         \max\left( 
             \frac{ \vol(T_1) }{ \vol(T_2) }
             ,
@@ -1496,7 +1507,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
-    \begin{align*} % TODO: UNIFY NOTATION FOR THE CONSTANTS 
+    \todo{Make sure the notation for the PF constants is uniform throughout the paper}
+    \begin{align*} 
         % \color{red}
         \| w \|_{L^{p}(T_m)}
         &\leq 
@@ -1504,12 +1516,12 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \sum_{t=1}^{m}
         \rho(\calT)^{\frac{m-t}{p}}
         C_{{\rm{PF}},T_{t} \cup T_{t-1},p}
-        % 2 C_{{\rm EFNT},p} \rho(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
+        % 2 C_{{\rm PF},{\rm EFNT},p} \rho(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
         \| \nabla u \|_{L^{p}(T_{t} \cup T_{t-1})}
         \\&\quad \quad \quad 
         +
         \rho(\calT)^{\frac{m-1}{p}}
-        % C_{{\rm EFNT},p} \diam(T_0)
+        % C_{{\rm PF},{\rm EFNT},p} \diam(T_0)
         C_{{\rm{PF}},T_{0},p}
         \| \nabla u \|_{L^{p}(T_{0})}
         .
@@ -1526,9 +1538,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  where the computable constant $C_{{\rm{PF}},U_F,p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}.
  We start with the simplex $T_{0}$. 
  There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
- \[
+ \begin{gather*}
     \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
- \]
+ \end{gather*}
  In particular, $c_{0} := u - w_0$ is a constant function. 
  Now, let $T \in \calT$ be any $n$-simplex. 
  By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
@@ -1556,13 +1568,13 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  We have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
- \begin{gather*}
+ \begin{align*}
     \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
     +
     \| c_{m} \|_{L^{p}(T_m)},
-    \qquad 
+    \\
     \| c_{m} \|_{L^{p}(T_m)}
     = 
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
@@ -1572,7 +1584,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \leq 
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
     .
- \end{gather*}
+ \end{align*}
  In particular,
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
@@ -1719,16 +1731,16 @@ While it may not be obvious, the second estimate is tighter than the first estim
 \end{lemma}
 \begin{proof}
     There exists $w \in W^{1,p}(T)$ with $\nabla w = \nabla u$ and 
-    \[
+    \begin{gather*}
         \| w \|_{L^{p}(T)}
         \leq 
         C_{{\rm PF},T,p} 
         \| \nabla w \|_{L^{p}(T)} % DONE: bold face or no boldface? No bold face 
         .
-    \]
+    \end{gather*}
     Then $w-u$ is constant, and thus $\gamma := \trace_{F} (w-u) = \trace_{F} w$. 
     We use that 
-    \[
+    \begin{gather*}
         \| \gamma \|_{L^{p}(T)}
         =
         \gamma \vol(T)^\frac{1}{p}
@@ -1741,7 +1753,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
         \left( \frac{ \vol(T) }{ \vol(F) } \right)^\frac{1}{p}
         \| \gamma \|_{L^{p}(F)}
         .
-    \]
+    \end{gather*}
     Using a trace inequality~\cite[Lemma~2.8]{veeser2012poincare} when $1 \leq p < \infty$, we find 
     \begin{align*}
         \| \gamma \|_{L^{p}(F)}^{p}
@@ -1909,9 +1921,9 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 \begin{proof}
     Let $u \in W^{1,p}(\Omega)$. 
     First, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
-    \[
+    \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
-    \]
+    \end{gather*}
     In particular, $c_{0} := u - w_0$ is a constant function. 
 
     Now, let $T \in \calT$ be any $n$-simplex. 
@@ -1982,11 +1994,13 @@ serves as the blueprint for constructing potentials of the curl and divergence o
     We also employ Lemma~\ref{lemma:volumecomparison} to find 
     \begin{align*}
         \| \nabla w'_{m} \|_{L^{p}(T_{m})}
-        &\leq 
+        &
+        \leq 
         |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
         \| \Jacobian \Xi   \|
         \cdot 
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
+        \\&
         \leq 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
         \cdot 
@@ -2603,7 +2617,7 @@ Our main interest are local stars or stars within triangulations.
     which does not affect shellability. 
     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
     and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
-    % TODO: cite E&V Math Comp 2020, Lemma B1. 
+    \todo{ cite E\&V Math Comp 2020, Lemma B1.} 
 \end{proof}
 
 
@@ -2655,16 +2669,16 @@ First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable 
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
 $W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
-\[
+\begin{gather*}
     W^p(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
-\]
+\end{gather*}
 The space $\bfW^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
 and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
-\[
+\begin{gather*}
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
-    \quad 
+    \\ 
     \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
-\]
+\end{gather*}
 We are interested in transformations of these Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The gradient-, curl-, divergence-conforming Piola transformations are the mappings 
@@ -2686,16 +2700,18 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
 \todo{MWL: double check the correct sign convention, what is inverse and what is not}
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
 These mappings are invertible. 
+
 %
-% TODO: bounds on the Jacobian transform 
+\todo{bounds on the Jacobian transform }
 %
+
+\todo{double check the sign conventions}
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
     \grad (\phi^{\grad} (v)) &= \phi^{\curl}(\grad v), 
     \\
     \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv), 
-    % TODO: watch the sign 
     \\
     \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw),
 \end{align}
@@ -2739,12 +2755,12 @@ Let $V$ be a real vector space.
 Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
 if 
-\[ 
+\begin{gather*} 
     u( v_{\pi(1)}, v_{\pi(2)}, \ldots, v_{\pi(k)} ) 
     = 
     \text{sign}(\pi) 
     u( v_1, v_2, \ldots, v_k ) 
-\]
+\end{gather*}
 for any $v_1, v_2, \dots, v_k \in V$ and any permutation $\pi$ of the indices \(\{1, 2, \ldots, k\}\). 
 By definition, $\Alt^{1}(V)$ is just the dual space of $V$, and $\Alt^{0}(V)$ is the space of real numbers. 
 Formally, we define $\Alt^{k}(V)$ to be the zero vector space when $k < 0$. 
@@ -2753,7 +2769,7 @@ The wedge product (or exterior product) of alternating multilinear forms is a fu
 Given two alternating multilinear forms \( u_1 \in \Alt^{k}(V) \) and \( u_2 \in \Alt^{l}(V) \), 
 their wedge product \( u_1 \wedge u_2 \) is a member of $\Alt^{k+l}(V)$
 defined by the formula 
-\[
+\begin{gather*}
     (u_1 \wedge u_2)(v_1, v_2, \ldots, v_{k+l}) 
     = 
     \frac{1}{k! l!} 
@@ -2762,7 +2778,7 @@ defined by the formula
     \signum(\pi) 
     u_1( v_{\pi(  1)}, \ldots, v_{\pi(k  )} ) 
     u_2( v_{\pi(k+1)}, \ldots, v_{\pi(k+l)} ),
-\]
+\end{gather*}
 for any \( v_1, v_2, \ldots, v_{k+l} \in V \).
 Here, the sum runs over all permutations $\pi$ of the index set \(\{ 1, 2, \ldots, k+l \}\).
 % Here, \( S_{k+l} \) denotes the symmetric group on \( k+l \) elements, and \( \signum(\pi) \) is the sign of the permutation \( \pi \). 
@@ -2770,15 +2786,15 @@ The exterior product is bilinear and associative, and satisfies
 \begin{align*}
     u_1 \wedge u_2 = (-1)^{kl} u_2 \wedge u_1,
     \quad 
-    u_1 \in \Alt^{k}(V),
+    \forall u_1 \in \Alt^{k}(V),
     \quad 
-    u_2 \in \Alt^{l}(V).
+    \forall u_2 \in \Alt^{l}(V).
 \end{align*}
-We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we let $v \lrcorner u \in \Alt^{k-1}(V)$ be defined as 
+We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we let $v \lrcorner u \in \Alt^{k-1}(V)$ be defined via 
 \begin{align*}
     (v \lrcorner u)( v_1, v_2, \ldots, v_{k-1} ) = u( v, v_1, v_2, \ldots, v_{k-1} ),
     \quad 
-    v_1, v_2, \ldots, v_{k-1} \in V.
+    \forall v_1, v_2, \ldots, v_{k-1} \in V.
 \end{align*}
 We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
@@ -2789,7 +2805,9 @@ To define a canonical basis of $\Alt^{k}(\bbR^{n})$,
 we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$,
 and introduce the basic $k$-alternators 
 \begin{align*}
-    \cartanx^{\sigma} := \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, \quad \sigma \in \Sigma(k,n). 
+    \cartanx^{\sigma} := \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, 
+    \quad 
+    \forall \sigma \in \Sigma(k,n). 
 \end{align*}
 These define a basis of $\Alt^{k}(\bbR^{n})$.
 Note that 
@@ -2806,43 +2824,44 @@ which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{
 The exterior derivative \( \cartan \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
 to a \((k+1)\)-form \( \cartan\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
 Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
-\[
+\begin{gather*}
     \omega = 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \omega_{\sigma} \, 
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
-\]
+\end{gather*}
 where \( \omega_{\sigma} : \Omega \rightarrow \bbR \) are smooth functions.
 The exterior derivative \( \cartan\omega \) is defined by
-\[
+\begin{gather*}
     \cartan\omega = 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \sum_{j=1}^{n} 
     \frac{\partial \omega_{\sigma}}{\partial x^j} 
     \, \cartanx^j \wedge 
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)}.
-\]
+\end{gather*}
 The exterior derivative is linear and nilpotent, which means 
 \( \cartan(\cartan\omega) = 0 \) for any \( \omega \in C^{\infty}\Alt^{k}(\Omega) \).
 Moreover, it satisfies the Leibniz rule:
-\[ 
+\begin{gather*} 
     \cartan(\omega \wedge \eta) 
     = 
     \cartan\omega \wedge \eta + (-1)^{k} \omega \wedge \cartan\eta, 
-    \qquad \omega \in C^{\infty}\Alt^{k}(\Omega), 
-    \qquad \eta \in C^{\infty}\Alt^{l}(\Omega).
-\]
+    \qquad \forall \omega \in C^{\infty}\Alt^{k}(\Omega), 
+    \qquad \forall \eta \in C^{\infty}\Alt^{l}(\Omega).
+\end{gather*}
 Let us now turn our attention to Sobolev spaces of differential forms. 
 Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a canonical norm, we can consider the pointwise norms of differential $k$-forms. 
-% First, we notice that the % TODO: introduce a norm 
+\todo{introduce a norm here}
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
 such that its pointwise norm is $p$-integrable. 
 The exterior derivative is defined in the sense of distributions and we introduce 
-\[
+\begin{gather*}
     W^p\Alt^{k}(\Omega) 
     := 
     \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
-\]
+    .
+\end{gather*}
 We observe that $u \in L^p\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^p\Alt^{k+1}(\Omega)$
 if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
 \begin{align*}
@@ -2871,20 +2890,20 @@ such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the inte
 We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
-\[ 
+\begin{gather*} 
     \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
     := 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
-\]
+\end{gather*}
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
 
-% TODO: transformationssatz 
+\todo{transformationssatz}
 
 \begin{remark}
     In three dimensions, 
     the calculus of differential forms can be translated into classical vector calculus. 
     This is expressed formally as the commuting diagram 
-    \[
+    \begin{gather*}
     \begin{CD}
         C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) @>{\cartan}>> C^\infty\Alt^3(\Omega) 
         \\
@@ -2895,7 +2914,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
     \end{CD}
-    \]
+    \end{gather*}
     where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
     \begin{align*}
      \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} + u_3 \cartanx^{3} \right) 
@@ -2910,7 +2929,8 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
     the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
     To the authors' best knowledge, neither convention is dominant in the literature.
     We summarize the situation in the following commuting diagram: 
-    \[ % TODO: what is the convention for the curl and rotation ? look up in the textbooks?
+    \todo{double check the convention for the curl and rot operators in the literature}
+    \begin{gather*} 
     \begin{CD}
         C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
         \\
@@ -2926,15 +2946,14 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
     \end{CD}
-    \]
+    \end{gather*}
     Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
     The other vertical arrows are the identity. 
     The utility of exterior calculus is that the operators of vector calculus can be translated into a common framework that does not depend on the dimension.
 \end{remark}
 
 
-
-% TODO: spaces with boundary conditions: grad, curl, divergence, exterior derivative; approximation properties
+\todo{spaces with boundary conditions: grad, curl, divergence, exterior derivative; approximation properties}
 
 
 
@@ -3026,6 +3045,7 @@ However, our explicit purpose are explicit bounds for the operator norms, which 
 
 \todo{cite Guzman and Salgado at the right spot.}\\
 
+In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $D > 0$.
 
 We begin with introducing the Costabel-McIntosh kernel.
 For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
@@ -3035,9 +3055,9 @@ For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \ti
 Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
 we then define the integral operators
 \begin{align}
-  \Poinc_{\ell} u(x) &= \int_{\Omega} G_{n-\ell+1}(y,x) \,(x-y)\lrcorner u(y)\,dy
+  \Poinc_{\ell} u(x) &= \int_{\Omega} G_{n-\ell+1}(y,x) \,(x-y)\lrcorner u(y)\,dy,
   \\
-  \Bogov_{\ell} u(x) &= \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
+  \Bogov_{\ell} u(x) &= \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy.
 \end{align}
 We call $\Poinc_{\ell}$ the Poincar\'e operator and $\Bogov_{\ell}$ the Bogovski\u{\i} operator. 
 \\
@@ -3067,7 +3087,8 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
     |\Omega|^{-1} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \, |x-y|^{k-n} \int_{0}^{\infty} r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
-If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives % TODO: define D
+If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives 
+% % \todo{define D}
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
@@ -3096,8 +3117,10 @@ We pointwise estimate $\Poinc_{\ell} u(x)$ for any $x \in \Omega$ by the result 
 We recall the radial integrals 
 \begin{align*}
     \int_{B_D(0)} |z|^{k+1-n} dz
+    &
     =
     \vol_{n-1}(S_1) \int_{0}^{D} r^{k+1-n} r^{n-1} dr
+    \\&
     =
     \vol_{n-1}(S_1) \int_{0}^{D} r^{k} dr
     =
@@ -3126,10 +3149,12 @@ So the convolution of $u$ is taken against an integrable function.
 Young's convolution inequality now implies: 
 \begin{align*}
     \| \Poinc_{\ell} u \|_{L^{p}(\Omega)}
-    &\leq 
+    &
+    \leq 
     \vol_{n-1}(S_1) A_{\Poinc}(n,\ell) \frac{ D^{n} }{|\Omega|} 
     D
     \| u \|_{L^{p}(\Omega)}
+    \\&
     \leq 
     n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
     D
@@ -3139,9 +3164,9 @@ Young's convolution inequality now implies:
 We have assumed so far that $u \in L^{\infty}\Alt^{\ell}(\Omega)$. 
 Since that space is dense in the Lebesgue spaces, a density argument establishes the following: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
-\[
+\begin{gather*}
     \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
-\]
+\end{gather*}
 % Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 % 
 We analyze the Bogovski\u{\i} potential operator with similar means. 
@@ -3195,10 +3220,12 @@ So the convolution of $u$ is taken against an integrable function.
 Young's convolution inequality now implies: 
 \begin{align*}
     \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
-    &\leq 
+    &
+    \leq 
     \vol_{n-1}(S_1) A(n,\ell) \frac{ D^{n} }{|\Omega|} 
     D
     \| u \|_{L^{p}(\Omega)}
+    \\&
     \leq 
     n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
     D
@@ -3208,9 +3235,9 @@ Young's convolution inequality now implies:
 We have assumed so far that $u$ is essentially bounded.
 Since that space is dense in the Lebesgue spaces, a density argument yields: 
 for any $1 \leq p \leq \infty$ we have a bounded linear operator 
-\[
+\begin{gather*}
     \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
-\]
+\end{gather*}
 % Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
 Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
@@ -3623,7 +3650,7 @@ though the dimension and the form degree enters the estimate.
         .
     \end{align*}
     By definition, $w \in W^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $\cartan w = u$.
-    % TODO: definition of weak derivative + definition of boundary condition 
+    \todo{definition of weak derivative + definition of boundary condition }
     % 
     This completes the proof. 
 \end{proof}
@@ -3633,7 +3660,7 @@ though the dimension and the form degree enters the estimate.
 \begin{remark}
     The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
     while they are increasing for the Bogovski\u{\i} operator.
-    This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over convex domains~\cite{guerini2004eigenvalue}.
+    This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over smoothly bounded convex domains~\cite{guerini2004eigenvalue}.
 \end{remark}
 
 \begin{remark}
@@ -3680,9 +3707,9 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
     Let $F, F'$ be the two subsimplices of $T$ with respective sets of vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
     Then $T$ lies on one side of the affine subspace
-    \[
+    \begin{gather*}
         A := v_0 + \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} +  \operatorname{lin}\{ v_n - v_{k+1}, \dots, v_n - v_{n-1} \}.
-    \]
+    \end{gather*}
     Moreover, $F = T \cap A$.
 \end{lemma}
 \begin{proof}
@@ -4301,9 +4328,9 @@ and the shape regularity can be controlled.
     
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
-    \[
+    \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
-    \]
+    \end{gather*}
     Suppose that claim is true when the domain has $m$ simplices of dimension $n$. 
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
@@ -4439,7 +4466,7 @@ and the shape regularity can be controlled.
 
 
 
-\section{Numerical examples}
+\section{Numerical examples}\label{section:numericalexamples}
 
 We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
 Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenvalue estimates on a refined mesh as a proxy for the exact value. We compare the (approximations of) the exact values with the upper bounds obtained via Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
@@ -4448,13 +4475,13 @@ Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenva
 
 We consider the following example domains in two dimensions:
 the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain $\Omega_{SS}$:
-\[
+\begin{gather*}
     \Omega_{S}  = (-1,1)^2,
     \qquad 
     \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
     \qquad 
     \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
-\]
+\end{gather*}
 % Square 
 % L-shaped 
 % Slit
@@ -4463,13 +4490,13 @@ the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain 
 
 We consider the following example domains in two dimensions:
 the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed bricks domain $\Omega_{B}$:
-\[
+\begin{gather*}
     \Omega_{C}  = (-1,1)^2,
     \qquad 
     \Omega_{F}  = (-1,1)^2 \setminus (0,1)^2,
     \qquad 
     \Omega_{B} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
-\]
+\end{gather*}
 % Cube 
 % Fichera
 % Crossed bricks 
