@@ -5,12 +5,11 @@ Roadmap
 - [x] Section 3.1: PF inequalities over convex sets 
 - [x] Section 3.2: PF inequalities over triangulations
 - [x] Section 4 : advanced notions of triangulations (shellability)
-- [ ] Section 5: vector and exterior calculus review 
+- [x] Section 5: vector and exterior calculus review 
 - [x] Section 6: potential operators over convex sets 
     [ ] adjust notation from Costabel and McIntosh 
 - [ ] Section 7: main estimate 
-   [ ] geometry: patch to ball
-   [ ] 
+   [x] geometry: patch to ball
 - [ ] Section 8: numerical examples 
 
 
