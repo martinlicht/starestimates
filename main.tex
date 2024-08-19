@@ -20,6 +20,7 @@
 % Theorem environments
 
 \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\newcommand{\notice}[1]{\textcolor{red}{REMARK: #1}}
 
 \begin{document}
 
@@ -42,7 +43,7 @@
 
 \section{Introduction}\label{section:intro}
 
-% DONE \todo{Reformulate the first paragraph. } % 
+% DONE {Reformulate the first paragraph. } % 
 Potentials for the differential operators of vector calculus and exterior calculus are of fundamental importance.
 The operator norms of the potentials are upper bounds for the Poincar\'e--Friedrichs constants, 
 which quantify the fundamental stability features of a variety of partial differential equations.
@@ -573,7 +574,7 @@ Since $\Omega$ is connected, this is equivalent to
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 \\
 
-We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, \todo{cite Ern...}
+We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature~\cite{ern2021finite}. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
 if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
 % for all $u \in W^{1,p}(\Omega)$
@@ -940,7 +941,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %     % TODO: review this entire result 
 \end{remark}
 
-\todo{MWL: I have removed a few lines to shorten the discussion. We should discuss later how to set up this section and what results to present to keep a good flow.}
+% \notice{MWL: I have removed a few lines to shorten the discussion. We should discuss later how to set up this section and what results to present to keep a good flow.}
 
 \begin{remark}
     Any optimal Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
@@ -1042,7 +1043,7 @@ This indicator quantifies how much reflection across the shared face distorts th
 
 % DONE: Introduce a reference simplex 
 % DONE: DEFINE THE JACOBIAN 
-\todo{MWL: If we need to define the Jacobian formally, where should that be put? Maybe an extra paragraph \textbf{Notation} immediately at the end of the introduction section.}
+% \notice{MWL: If we need to define the Jacobian formally, where should that be put? Maybe an extra paragraph \textbf{Notation} immediately at the end of the introduction section.}
 
 \begin{lemma}\label{lemma:affinetransform}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
@@ -1288,25 +1289,30 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
         +
         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
-        \\&
-        \leq 
+        ,
+        \\
+        \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
+        &\leq 
         |\det(\Jacobian \varphi_1^{-1})|
         \cdot \| \Jacobian \varphi_1 \|^{p}
         \cdot 
         \| \nabla u \|_{L^{p}(T_1)}^{p}
-        +
+        ,
+        \\
+        \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
+        &\leq 
         |\det(\Jacobian \varphi_2^{-1})|
         \cdot \| \Jacobian \varphi_2 \|^{p}
         \cdot 
         \| \nabla u \|_{L^{p}(T_2)}^{p}
-        \\&
-        \leq 
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|^{-1} \cdot \| \Jacobian \varphi_1 \|^{p}
-            ,
-            |\det(\Jacobian \varphi_2)|^{-1} \cdot \| \Jacobian \varphi_2 \|^{p}
-        \right)
-        \| \nabla u \|_{L^{p}(U)}^{p}
+%         \\&
+%         \leq 
+%         \max\left( 
+%             |\det(\Jacobian \varphi_1)|^{-1} \cdot \| \Jacobian \varphi_1 \|^{p}
+%             ,
+%             |\det(\Jacobian \varphi_2)|^{-1} \cdot \| \Jacobian \varphi_2 \|^{p}
+%         \right)
+%         \| \nabla u \|_{L^{p}(U)}^{p}
         .
     \end{align*}
     Hence 
@@ -1314,9 +1320,9 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         &\leq 
         \max\left( 
-            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \cdot \| \Jacobian \varphi_1 \|
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \| \Jacobian \varphi_1 \|
             ,
-            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \cdot \| \Jacobian \varphi_2 \|
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \| \Jacobian \varphi_2 \|
         \right)
         \| \nabla u \|_{L^{p}(U)}
         .
@@ -1353,6 +1359,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
             ,
             |\det(\Jacobian \varphi_2)|
         \right)^{\frac 1 p}
+        \\&\qquad 
         \max\left( 
             |\det(\Jacobian \varphi_1)|^{-\frac 1 p} 
             ,
@@ -1368,6 +1375,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
             ,
             |\det(\Jacobian \varphi_2)|
         \right)^{\frac 1 p}
+        \\&\qquad 
         \min\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -1461,7 +1469,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 %     \node at (T) [above right] {$T$};
 \end{tikzpicture}
 \end{center}
-\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
+\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}. The triangle in dark gray is the triangle being added in the current iteration, and the light gray triangles constitute the subdomain assembled so far.}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1499,6 +1507,51 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\begin{figure}[t]
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!50] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=white  ] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!50] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!50] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!25] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!50] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\end{center}
+\caption{Exhausting a domain step by step as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and \ref{theorem:poincarefriedrichsestimate:gradzwei}.}
+\label{figure:exhausting}
+\end{figure}
+
+
+
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly-connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
@@ -1507,7 +1560,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
     and such that for all $T \in \calT$:
-    \todo{Make sure the notation for the PF constants is uniform throughout the paper}
+%     DONE {Make sure the notation for the PF constants is uniform throughout the paper}
     \begin{align*} 
         % \color{red}
         \| w \|_{L^{p}(T_m)}
@@ -1549,7 +1602,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  
 %  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
- \todo{MLW, MV: add a figure here to illustrate how the domain is exhausted.}
+ % DONE \notice{MWL, MV: add a figure here to illustrate how the domain is exhausted.}
  
  We use a recursive argument. 
  Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
@@ -1634,6 +1687,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         +
         \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
     \right)^{\frac 1 p}
+    \\&\qquad 
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
@@ -2501,8 +2555,9 @@ such that the interface is well-behaved: it is a simplicial disk or a simplicial
 That leads to the following important consequence.
 
 \begin{lemma}    
-    Suppose that an $n$-dimensional simplicial complex $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$ and is non-branching, 
-    that is, each simplex of dimension $n-1$ is contained in at most two simplices. 
+    Let $\calT$ be an $n$-dimensional simplicial complex 
+    with a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$,
+    such that each simplex of dimension $n-1$ is contained in at most two simplices. 
     % DONE: what is non-branching?
     Then
     $$
@@ -2547,7 +2602,7 @@ Our main interest are local stars or stars within triangulations.
     in fact, any enumeration of the boundary faces of $T$ constitutes a shelling.
 \end{example}
 \begin{example}
-    The standard triangulation of the $n$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable.~\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
+    The standard triangulation of the $n$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
 \end{example}
 
 \begin{lemma}    
@@ -2617,11 +2672,10 @@ Our main interest are local stars or stars within triangulations.
     which does not affect shellability. 
     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
     and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
-    \todo{ cite E\&V Math Comp 2020, Lemma B1.} 
 \end{proof}
 
 
-\begin{lemma}
+\begin{lemma}[cf. Lemma B1 in \cite{ern2020stable}]
     Let $\calT$ be a $3$-dimensional manifold triangulation and $S \in \calT$.
     Then $\patch_{\calT}(S)$ is shellable. 
 \end{lemma}
@@ -2635,7 +2689,6 @@ Our main interest are local stars or stars within triangulations.
     which is shellable,
     and any such shelling can be extended to a shelling of $\patch_{\calT}(S)$.
 \end{proof}
-
 
 \begin{remark}
     Not all trianguable sets admit a triangulation that is also shellable. 
@@ -2693,19 +2746,16 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
 \begin{align}
     \phi^{\grad}(v) &= v \circ \phi, \\
     \phi^{\curl}(\bfw) &= (\Jacobian\phi^{T} \bfw) \circ \phi, \\
-    \phi^{\divergence}(\bfw) &= \left( \adj(\Jacobian\phi) \bfw \right)  \circ \phi, \\
+    \phi^{\divergence}(\bfw) &= \left( \adj(\Jacobian\phi) \bfw \right)  \circ \phi, \\ % TODO: check sign convention 
     \phi^{\rm b}(v) &= \left( \det(\Jacobian\phi) v \right)  \circ \phi,
 \end{align}
 \end{subequations}
-\todo{MWL: double check the correct sign convention, what is inverse and what is not}
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
 These mappings are invertible. 
+Bounds on the Lebesgue norms will follow from a more general result below. 
 
-%
-\todo{bounds on the Jacobian transform }
-%
 
-\todo{double check the sign conventions}
+
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
@@ -2851,15 +2901,14 @@ Moreover, it satisfies the Leibniz rule:
     \qquad \forall \eta \in C^{\infty}\Alt^{l}(\Omega).
 \end{gather*}
 Let us now turn our attention to Sobolev spaces of differential forms. 
-Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a canonical norm, we can consider the pointwise norms of differential $k$-forms. 
-\todo{introduce a norm here}
+Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a norm, induced from the Euclidean norm on $\bbR^{n}$, we can consider the pointwise norms of differential $k$-forms. 
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
 such that its pointwise norm is $p$-integrable. 
 The exterior derivative is defined in the sense of distributions and we introduce 
 \begin{gather*}
     W^p\Alt^{k}(\Omega) 
     := 
-    \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan v \in L^{p}\Alt^{k+1}(\Omega) \}
+    \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan u \in L^{p}\Alt^{k+1}(\Omega) \}
     .
 \end{gather*}
 We observe that $u \in L^p\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^p\Alt^{k+1}(\Omega)$
@@ -2896,8 +2945,28 @@ The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential fo
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
 \end{gather*}
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
+We cite an explicit transformation estimate~\cite{licht2019smoothed}.
 
-\todo{transformationssatz}
+\begin{theorem} \label{theorem:pullbackestimate}
+ Let $\phi : \Omega \rightarrow \Omega'$ be a bi-Lipschitz mapping between open sets $\Omega, \Omega' \subseteq \bbR^{n}$.
+ Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega)$. 
+ Then 
+ \begin{align}\label{math:pullbackestimate}
+  \begin{split}
+  \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
+  &\leq 
+  \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
+  \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\infty}(\Omega')}
+  \| u \|_{L^{p}\Lambda^{k}(\Omega')}
+  \\&\leq 
+  \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
+  \| \Jacobian \phi^{-1} \|^{\frac{n}{p}}_{L^{\infty}(\Omega')}
+  \| u \|_{L^{p}\Lambda^{k}(\Omega')}
+  .
+  \end{split}
+ \end{align}
+\end{theorem}
+
 
 \begin{remark}
     In three dimensions, 
@@ -2929,7 +2998,6 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
     the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
     To the authors' best knowledge, neither convention is dominant in the literature.
     We summarize the situation in the following commuting diagram: 
-    \todo{double check the convention for the curl and rot operators in the literature}
     \begin{gather*} 
     \begin{CD}
         C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
@@ -2953,12 +3021,7 @@ for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show
 \end{remark}
 
 
-\todo{spaces with boundary conditions: grad, curl, divergence, exterior derivative; approximation properties}
-
-
-
-
-
+We review a few approximation properties. 
 Let $\mollifier$ be a non-negative scalar function supported in the unit ball around the origin and with unit integral.
 Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
 
@@ -3043,8 +3106,6 @@ we study potential operators merely over convex sets, and we are only interested
 However, our explicit purpose are explicit bounds for the operator norms, which are of independent interest. 
 \\
 
-\todo{cite Guzman and Salgado at the right spot.}\\
-
 In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $D > 0$.
 
 We begin with introducing the Costabel-McIntosh kernel.
@@ -3088,7 +3149,6 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
     .
 \end{align*}
 If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives 
-% % \todo{define D}
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
@@ -3657,11 +3717,11 @@ though the dimension and the form degree enters the estimate.
 
 % DONE: Density of C infty mit oder ohne c. 
 
-\begin{remark}
-    The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
-    while they are increasing for the Bogovski\u{\i} operator.
-    This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over smoothly bounded convex domains~\cite{guerini2004eigenvalue}.
-\end{remark}
+% \begin{remark}
+%     The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
+%     while they are increasing for the Bogovski\u{\i} operator.
+%     This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over smoothly bounded convex domains~\cite{guerini2004eigenvalue}.
+% \end{remark}
 
 \begin{remark}
     The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
@@ -3677,6 +3737,11 @@ though the dimension and the form degree enters the estimate.
     Instead, we average over the entire domain, which requires a convex geometry. 
     The resulting potential operators are sufficient for our purpose in establishing Poincar\'e--Friedrichs constants. 
     The $L^{p}$ continuity constants of the regularized potential operators have not yet been established, to the best of our knowledge.
+    
+    The operators discussed by Costabel and McIntosh are pseudodifferential operators of negative order, 
+    because their averaging uses a smooth weight, 
+    and hence they discuss a range of operator bounds between different function spaces. 
+    Guzman and Salgado have estimated the operator norm. 
 \end{remark}
 
 
@@ -3691,17 +3756,22 @@ though the dimension and the form degree enters the estimate.
 
 
 
-\section{Extension operator on finite element stars}\label{section:extension}
-% Only define the geometric mapping and its important quantities
-% Leave the function spaces etc. for later 
+\section{Reflection on shellable stars}\label{section:extension}
+
+This section is devoted to a crucially important geometric construction. 
+Suppose that we have a shellable simplicial complex. 
+Every time add a simplex according to the shelling sequence, 
+we complete the local star of the some simplex in the triangulation.
+We search for a homeomorphism from the new simplex on its complement in the newly completed star
+such that the interface is preserved. 
+We want this homeomorphism to be bi-Lipschitz and we are particularly interested in the norms of its Jacobian.
 
 
 
 
-
-
-Suppose that any $n$-dimensional simplex $T$ with some subsimplex $F$.
-We want to find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is only on one side of the hyperplane. 
+We begin with a geometric observation. 
+Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
+We want to find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is on only one side of the hyperplane. 
 
 \begin{lemma}\label{lemma:oppositesubsimplex}
     Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
@@ -3741,9 +3811,8 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
 
 
 
-
-Stars around subsimplices can be turned into vertex stars after a subdivision, 
-and the shape regularity can be controlled. 
+Next, we observe that stars around subsimplices can represented by vertex stars after a local subdivision of the mesh.
+The shape regularity is controlled in that process. 
 
 \begin{lemma}\label{lemma:stardivision}
     Let $\calT$ be an $n$-dimensional simplicial complex
@@ -3806,9 +3875,9 @@ and the shape regularity can be controlled.
     \end{align*}
     satisfying
     \begin{align*}
-        \Lip( \varphi,      T ) \leq \Cvier{n}{k} \diam(T),
+        \Lip( \varphi,      T ) \leq \Cvier{n}{k} \kappa(\calT)^{2},
         \quad 
-        \Lip( \varphi^{-1}, M ) \leq \Cfive{n}{k} \diam(T),
+        \Lip( \varphi^{-1}, M ) \leq \Cfive{n}{k} \kappa(\calT)^{2},
     \end{align*}
     where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
 \end{theorem}
@@ -3834,6 +3903,7 @@ and the shape regularity can be controlled.
         \end{align}
         We analyze its Lipschitz properties.
         % 
+        \color{blue}
         On the one hand, 
         we compute the Jacobian at any $x \in \mathring T$:
         \begin{align}
@@ -3854,7 +3924,7 @@ and the shape regularity can be controlled.
             2 \sqrt{n} \cdot \sigma_{\max}(A_{T}^{-1}) 
             .
         \end{align}
-        \todo{Find the best estimate. }
+        \color{black}
         On the one hand, given $x, y \in T$, 
         where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
         \begin{align*}
@@ -4100,6 +4170,7 @@ and the shape regularity can be controlled.
 %             .
 %         \end{align}
     \end{itemize}
+    The proof is complete. 
 \end{proof}
 
 
@@ -4108,7 +4179,10 @@ and the shape regularity can be controlled.
 
 
 
-
+\begin{remark}
+    While the reflection mapping and its analysis in Theorem~\ref{theorem:starreflection} serve our purpose,
+    it might be possible to improve the estimate with a different analysis or construction.
+\end{remark}
 
 
 
@@ -4325,6 +4399,7 @@ and the shape regularity can be controlled.
 \begin{proof}
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
     We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
+    See Figure~\ref{figure:exhausting} for an illustration. 
     
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
@@ -4490,13 +4565,21 @@ the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain 
 
 We consider the following example domains in two dimensions:
 the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed bricks domain $\Omega_{B}$:
-\begin{gather*}
-    \Omega_{C}  = (-1,1)^2,
+\begin{align*}
+    \Omega_{C}  = (-1,1)^3,
     \qquad 
-    \Omega_{F}  = (-1,1)^2 \setminus (0,1)^2,
-    \qquad 
-    \Omega_{B} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
-\end{gather*}
+    \Omega_{F}  = (-1,1)^3 \setminus (0,1)^3,
+    \qquad
+    \Omega_{B} &= 
+    \left( (-1,0) \times (-1,0) \times (-1,1) \right)
+    \\&\quad
+    \cup 
+    \left( (-1,0) \times (-1,1) \times (-1,0) \right)
+    \\&\quad
+    \cup 
+    \left( (-1,1) \times (-1,0) \times (-1,0) \right)
+    ,
+\end{align*}
 % Cube 
 % Fichera
 % Crossed bricks 
