@@ -1,6 +1,6 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \input{header}
 
 \usepackage{hyperref}         % For hypertext links
@@ -66,10 +66,10 @@ If $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field on some domai
 we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator, i.e., $\curl \bfu = \bff$, such that the $\bfL^2$ norm of the potential is bounded in terms of the source field $\bff$. 
 This boundedness is expressed via the Poincar\'e--Friedrichs inequality 
 \begin{align*}
-    \min\limits_{ \substack{ \bfv \in \bfL^{2}(\Omega) \\ \curl \bfv = \bff } } \| \bfv \|_{\bfL^{2}(\Omega)}
+    \min\limits_{ \substack{ \bfv \in \bfL^{2}(\Omega) \\ \curl \bfv = \bff } } \| \bfv \|_{L^{2}(\Omega)}
     \leq 
     C_{\curl}
-    \| \bff \|_{\bfL^{2}(\Omega)}
+    \| \bff \|_{L^{2}(\Omega)}
     .
 \end{align*}
 The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it gives rise to a lower bound for the Maxwell eigenvalues.
@@ -590,7 +590,7 @@ if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that
 \end{align}
 where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \begin{align*}
-    u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u.
+    u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u(x) \;dx.
 \end{align*}
 Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{{\rm P},\Omega,p}$. 
 Towards a converse inequality, 
@@ -598,9 +598,9 @@ let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \
 \begin{align*}
     \| u_\Omega \|_{L^{p}(\Omega)}^{p}
     = 
-    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)| \right)^{p}
+    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
     \leq 
-    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)|^{p} \right)
+    \int_{\Omega} |\Omega|^{-1} \int_{\Omega} |u(x)|^{p} \;dx
     = 
     \| u \|_{L^{p}(\Omega)}^{p}
     .
@@ -844,7 +844,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     .
 \end{align}
 
-% TODO: Keep ?
+% DONT: Keep ?
 % \begin{example}
 %     We explain why \eqref{math:l1estimate} is optimal. 
 %     Let $\Omega = (-1,1)$ and consider the family of odd function $u_{\epsilon} : \Omega \rightarrow \bbR$ for ${\epsilon} \in (0,1)$ 
@@ -909,7 +909,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     % DONT: insert the original inequality by chua and Wheeden
     % DONE: chua wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
-% TODO: Keep ?
+% DONT: Keep ?
 %     In the limit as $p$ goes to $1$, the factor $C_{{\rm PF},{\rm EFNT},p}$ converges to $1/2$,
 %     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
 %     \begin{align*}
@@ -937,8 +937,8 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         u \in W^{1,\infty}(\Omega)
 %         %
 %     \end{align*}
-%     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. % TODO: cite 
-%     % TODO: review this entire result 
+%     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. % DONT: cite 
+%     % DONT: review this entire result 
 \end{remark}
 
 % \notice{MWL: I have removed a few lines to shorten the discussion. We should discuss later how to set up this section and what results to present to keep a good flow.}
@@ -1146,7 +1146,8 @@ This indicator quantifies how much reflection across the shared face distorts th
         \| \Jacobian \Xi \|
         \leq 
         \Cdrei{n}
-        \frac{ \kappa(T_1) }{ \kappa(T_2) }
+        \kappa(T_2)^{-1} \kappa(T_1) 
+        % \frac{ \kappa(T_1) }{ \kappa(T_2) }
         .
     \end{align*}
     Here, $\Cdrei{n} \leq \Ceins{n} \Czwei{n}$. 
@@ -1258,6 +1259,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
             ,
             \frac{ \vol(T_2) }{ \vol(T_1) }
         \right)^{\frac 1 p}
+        \\&\qquad\qquad 
+        \cdot 
         \max\left( \diam(T_1), \diam(T_2) \right)
         \| \nabla u \|_{L^{p}(U)}
         \\&
@@ -1641,8 +1644,10 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  In particular,
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
+    &
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
+    \\&\qquad 
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
     \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}
@@ -1773,11 +1778,12 @@ While it may not be obvious, the second estimate is tighter than the first estim
     where $C_{{\rm PF},T,F,p} > 0$ is a constant such that 
     \begin{align*}
         C_{{\rm PF},T,F,p}
-        \leq 
+        &\leq 
         C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p},  
-        \quad 
+        \\
+        %\quad 
         C_{{\rm PF},T,F,p}
-        \leq
+        &\leq
         \frac{1}{\sqrt[p]{p}}
         \diam(T)
         .
@@ -1844,39 +1850,42 @@ While it may not be obvious, the second estimate is tighter than the first estim
     Without loss of generality, 
     the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
-    We write $\bfg \in \bfL^{\infty}(T)$ be the trivial extension of $\nabla u$ outside of $T$.
+    We write $\bfg \in \bfL^{\infty}(T)$ for the trivial extension of $\nabla u$ outside of $T$.
     %With the fundamental theorem of calculus and H\"olders inequality: 
+    Now:
     \begin{align*}
-        \int_{\Omega} |u(x)|^{p} \diff x dx
+        \int_{\Omega} |u(x)|^{p} \diff x \;dx
         &\leq
-        \int_{\bbR^{n-1}} \int_{0}^{D} |u( x_{1}, \overline x )|^{p} dx_{1} d\overline{x}
+        \int_{\bbR^{n-1}} \int_{0}^{D} |u( x_{1}, \overline x )|^{p} \;dx_{1} \;d\overline{x}
         \\&
         \leq
-        \int_{\bbR^{n-1}} \int_{0}^{D} \left| \int_{0}^{x_{1}} |\bfg( y, \overline x )| dy \right|^{p} dx_{1} d\overline{x}
+        \int_{\bbR^{n-1}} \int_{0}^{D} \left| \int_{0}^{x_{1}} |\bfg( y, \overline x )| \,dy \right|^{p} \;dx_{1} \,d\overline{x}
         \\&
         \leq
-        \int_{0}^{D} x_{1}^{p-1} \int_{\bbR^{n-1}} \int_{0}^{x_{1}} \left| \bfg( y, \overline x ) \right|^{p} dy d\overline{x} dx_{1}
+        \int_{0}^{D} x_{1}^{p-1} \int_{\bbR^{n-1}} \int_{0}^{x_{1}} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} \,dx_{1}
         \\&
         \leq
-        \int_{0}^{D} x_{1}^{p-1} dx_1 \cdot \int_{\Omega} \left| \bfg( y, \overline x ) \right|^{p} dy d\overline{x} 
+        \int_{0}^{D} x_{1}^{p-1} \;dx_1 
+        \cdot 
+        \int_{\Omega} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} 
         \leq
-        \frac{D^{p}}{p} \int_{\Omega} \left| \nabla u( x ) \right|^{p} dx
+        \frac{D^{p}}{p} \int_{\Omega} \left| \nabla u( x ) \right|^{p} \,dx
         %
 %         \leq
-%         \int_{F} |u(x_{1},\dots,x_{n-1},x_{1})|^{p} dx_1 \dots dx_{n-1} dx_{1}
+%         \int_{F} |u(x_{1},\dots,x_{n-1},x_{1})|^{p} \,dx_1 \dots \,dx_{n-1} \,dx_{1}
 %         \\&
 %         \leq
-%         \int_{\Omega} \left| \int_{0}^{x_{1}} \partial_{n} u(x_{1},\dots,x_{n-1},y) dy \right|^{p} dx_1 \dots dx_{n-1} dx_{1}
+%         \int_{\Omega} \left| \int_{0}^{x_{1}} \partial_{n} u(x_{1},\dots,x_{n-1},y) \,dy \right|^{p} \,dx_1 \dots \,dx_{n-1} \,dx_{1}
 %         \\&
 %         \leq
-%         \int_{\Omega} \int_{0}^{x_{1}} x_{1}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+%         \int_{\Omega} \int_{0}^{x_{1}} x_{1}^{p-1} \left| \partial_{n} u(x_{1},\dots,x_{n-1},y) \right|^{p} \,dy \,dx_1 \dots \,dx_{n-1} \,dx_{n}
 %         \\&
 %         \leq
-%         \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} dy dx_1 \dots dx_{n-1} dx_{n}
+%         \int_{\Omega} \int_{0}^{D} D^{p-1} \left| \bfg(x_{1},\dots,x_{n-1},y) \right|^{p} \,dy \,dx_1 \dots \,dx_{n-1} \,dx_{n}
 %         \leq 
 %         D^{p} 
-%         \int_{\Omega} |\nabla u|^{p} dx
-%         .
+%         \int_{\Omega} |\nabla u|^{p} \,dx
+        .
     \end{align*}
     That $\|u\|_{L^{p}(\Omega)} \leq \diam(T) \|\nabla u\|_{L^{p}(\Omega)}$ for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
     
@@ -1941,7 +1950,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \rho(\calT)^{\frac m p}
         C_{{\rm PF},T_{0},p} 
         \| \nabla u \|_{L^{p}( T_{0} )}
-        \\&\qquad 
+        \\&\quad 
         +
         \sum_{l=1}^{m} 
         \rho(\calT)^{\frac {m-l} p}
@@ -2061,7 +2070,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
         .
     \end{align*}
-    Putting this all together, 
+    Putting this all together, we use 
     \begin{align*}
         &
         \| w_{m} \|_{L^{p}(T_{m})}
@@ -2081,37 +2090,18 @@ serves as the blueprint for constructing potentials of the curl and divergence o
             + 
             \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
         \right) 
-        \\&
-        \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(T_{m})} 
-        + 
-        C_{{\rm PF},T_{m},F_{m},p} 
+    \end{align*}
+    and 
+    \begin{align*}
         \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
-        \\&
+        &
         \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(T_{m})} 
-        + 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        C_{{\rm PF},T_{m},F_{m},p} 
+        % C_{{\rm PF},T_{m},F_{m},p} 
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
-        \\&
         \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(T_{m})} 
-        + 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        C_{{\rm PF},T_{m},F_{m},p} 
+        % C_{{\rm PF},T_{m},F_{m},p} 
         \| \nabla u \|_{L^{p}(T_{m-1})} 
 %         \\&
 %         \leq  
@@ -2123,6 +2113,67 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \| \nabla u \|_{L^{p}(T_{m})} 
         .
     \end{align*}
+%     \begin{align*}
+%         &
+%         \| w_{m} \|_{L^{p}(T_{m})}
+%         \\&
+%         \leq  
+%         \| w'_{m} \|_{L^{p}(T_{m})}
+%         + 
+%         \| w''_{m} \|_{L^{p}(T_{m})}
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \left( 
+%             \| \nabla u \|_{L^{p}(T_{m})} 
+%             + 
+%             \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+%         \right) 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m})} 
+%         + 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m})} 
+%         + 
+%         \rho(\calT)^{\frac 1 p} \xi(\calT)
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m})} 
+%         + 
+%         \rho(\calT)^{\frac 1 p} \xi(\calT)
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m-1})} 
+%         \\&
+%         \leq  
+%         \rho(\calT)^{\frac 1 p} 
+%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+%         + 
+%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
+%         C_{{\rm PF},T_{m},F_{m},p} 
+%         \| \nabla u \|_{L^{p}(T_{m})} 
+%         .
+%     \end{align*}
     The existence of $w \in W^{1,p}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 
@@ -2745,12 +2796,12 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
 \begin{subequations}\label{eq_definition_piola}
 \begin{align}
     \phi^{\grad}(v) &= v \circ \phi, \\
-    \phi^{\curl}(\bfw) &= (\Jacobian\phi^{T} \bfw) \circ \phi, \\
-    \phi^{\divergence}(\bfw) &= \left( \adj(\Jacobian\phi) \bfw \right)  \circ \phi, \\ % TODO: check sign convention 
-    \phi^{\rm b}(v) &= \left( \det(\Jacobian\phi) v \right)  \circ \phi,
+    \phi^{\curl}(\bfw) &= \Jacobian\phi^{T} (\bfw \circ \phi), \\
+    \phi^{\divergence}(\bfw) &= \adj(\Jacobian\phi) \left( \bfw \circ \phi \right), \\  
+    \phi^{\rm b}(v) &= \det(\Jacobian\phi) \left( v \circ \phi \right),
 \end{align}
 \end{subequations}
-and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$. 
+and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$; see also~\cite[Definition~9.8]{ern2021finite}.
 These mappings are invertible. 
 Bounds on the Lebesgue norms will follow from a more general result below. 
 
@@ -2759,11 +2810,11 @@ Bounds on the Lebesgue norms will follow from a more general result below.
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
-    \grad (\phi^{\grad} (v)) &= \phi^{\curl}(\grad v), 
+    \grad \phi^{\grad} (v) &= \phi^{\curl}(\grad v), 
     \\
-    \curl (\phi^{\curl}(\bfv)) &= \phi^{\divergence}(\curl \bfv), 
+    \curl \phi^{\curl}(\bfv) &= \phi^{\divergence}(\curl \bfv), 
     \\
-    \divergence (\phi^{\divergence}(\bfw)) &= \phi^{\rm b}(\divergence \bfw),
+    \divergence \phi^{\divergence}(\bfw) &= \phi^{\rm b}(\divergence \bfw),
 \end{align}
 \end{subequations}
 where $v \in W^{p}(\grad,\Omega)$, $\bfv \in \bfW^{p}(\curl,\Omega)$, and $\bfw \in \bfW^{p}(\divergence,\Omega)$.  
@@ -3047,17 +3098,17 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     By the dominated convergence theorem and because $u$ has a weak derivative,
     for any $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$
     \begin{align*}
-        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star u ) \wedge \cartan v
+        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star u ) \wedge \cartan v 
         &= 
-        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge u(y) \wedge \cartan_{x} v(x)
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge u(y) \wedge \cartan_{x} v(x) \;dx\,dy
         \\&= 
-        \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_x\mollifier(x-y) \wedge u(y) \wedge v(x)
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_x\mollifier(x-y) \wedge u(y) \wedge v(x) \;dx\,dy
         \\&= 
-        - \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_y\mollifier(x-y) \wedge u(y) \wedge v(x)
+        - \int_{\bbR^{n}} \int_{\bbR^{n}} \cartan_y\mollifier(x-y) \wedge u(y) \wedge v(x) \;dx\,dy
         \\&= 
-        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge \cartan_y u(y) \wedge v(x)
+        \int_{\bbR^{n}} \int_{\bbR^{n}} \mollifier(x-y) \wedge \cartan_y u(y) \wedge v(x) \;dx\,dy
         = 
-        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star \cartan u ) \wedge v
+        \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star \cartan u ) \wedge v 
         .
     \end{align*}
     Hence $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $\bfW^{p}\Lambda^{k}(\Omega)$.
@@ -3110,8 +3161,9 @@ In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with d
 
 We begin with introducing the Costabel-McIntosh kernel.
 For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
-\begin{equation}\label{eq:Gl}
-  G_{\ell}(x,y) = \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} |\Omega|^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt \;.
+\begin{equation}\label{math:mainkernel}
+  G_{\ell}(x,y) = \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} |\Omega|^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt
+  .
 \end{equation}
 Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
 we then define the integral operators
@@ -3176,13 +3228,13 @@ We pointwise estimate $\Poinc_{\ell} u(x)$ for any $x \in \Omega$ by the result 
 \end{align*}
 We recall the radial integrals 
 \begin{align*}
-    \int_{B_D(0)} |z|^{k+1-n} dz
+    \int_{B_D(0)} |z|^{k+1-n} \,dz
     &
     =
-    \vol_{n-1}(S_1) \int_{0}^{D} r^{k+1-n} r^{n-1} dr
+    \vol_{n-1}(S_1) \int_{0}^{D} r^{k+1-n} r^{n-1} \,dr
     \\&
     =
-    \vol_{n-1}(S_1) \int_{0}^{D} r^{k} dr
+    \vol_{n-1}(S_1) \int_{0}^{D} r^{k} \,dr
     =
     \vol_{n-1}(S_1) \frac{D^{k+1}}{k+1}
     .
@@ -3382,12 +3434,12 @@ We rewrite the Poincar\'e potential,
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)}
     \int_{0}^{1} 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} \,dt 
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{0}^{1} 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{\sigma-\sigma(i)} \,dt 
     ,
 \end{align*}
 and compute its exterior derivative:
@@ -3397,12 +3449,12 @@ and compute its exterior derivative:
     \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{0}^{1} 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{0}^{1} 
-    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     .
 \end{align*}
 We write the exterior derivative of $u$ as 
@@ -3410,7 +3462,7 @@ We write the exterior derivative of $u$ as
     \cartan u(x)
     =
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
+    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} \,dt 
     ,
 \end{align*}
 and apply the Poincar\'e potential operator to this result, which gives 
@@ -3419,19 +3471,20 @@ and apply the Poincar\'e potential operator to this result, which gives
     &=
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    \;\cartanx^{j} \wedge \cartanx^{\sigma}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    \,\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
-    \;\cartanx^{\sigma}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt (x-a)_{j}
+    \,\cartanx^{\sigma}
     \\&\qquad 
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    \,(x-a)_{\sigma(i)} 
+    \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
@@ -3446,41 +3499,39 @@ Taking into account cancellations, this gives the identity
     \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{0}^{1} 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{0}^{1} 
-    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
-    \cartanx^{\sigma}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{0}^{1} 
-    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} dt
-    \cartanx^{\sigma}
+    \int_{0}^{1} t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,(x-a)_{j} \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    \int_{0}^{1} \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \int_{0}^{1} \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    u_{\sigma}(x) \cartanx^{\sigma}
+    u_{\sigma}(x) \,\cartanx^{\sigma}
     =
     u(x)
     .
@@ -3506,12 +3557,12 @@ We rewrite the Bogovski\u{\i} potential,
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)}
     \int_{1}^\infty 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} \,(x-a)_{\sigma(i) } \,\cartanx^{\sigma-\sigma(i)} \,dt 
     ,
 \end{align*}
 and compute its exterior derivative:
@@ -3521,12 +3572,12 @@ and compute its exterior derivative:
     \ell 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{1}^\infty 
-    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     .
 \end{align*}
 We write the exterior derivative of $u$ as 
@@ -3534,7 +3585,7 @@ We write the exterior derivative of $u$ as
     \cartan u(x)
     =
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \frac{ \partial u }{\partial x_{j}}(x) \cartanx^{j} \wedge \cartanx^{\sigma} dt 
+    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} \,dt 
     ,
 \end{align*}
 and apply the Bogovski\u{\i} potential operator to this result, which gives 
@@ -3543,19 +3594,18 @@ and apply the Bogovski\u{\i} potential operator to this result, which gives
     &=
     (x-a)\lrcorner 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    \;\cartanx^{j} \wedge \cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    \,\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
-    \;\cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad 
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    (x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
@@ -3570,37 +3620,35 @@ Taking into account cancellations, this gives the identity
     \ell
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
-    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     \int_{1}^\infty 
-    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \cartanx^{j} \cartanx^{\sigma-\sigma(i)} dt 
+    t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt (x-a)_{j}
-    \cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad
     - 
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k} \sum_{j=1}^{n}
     (-1)^{i-1}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) dt 
-    (x-a)_{\sigma(i)} \cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} \sum_{i=1}^{k}
     \int_{1}^\infty 
-    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \cartanx^{\sigma-\sigma(i)} dt 
+    \ell t^{\ell-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
     \sum_{\sigma \in \Sigma(k,n)} \sum_{j=1}^{n}
-    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} dt
-    \cartanx^{\sigma}
+    \int_{1}^\infty t^{\ell} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
-    \int_{1}^\infty \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) dt \cartanx^{\sigma}
+    \int_{1}^\infty \frac{\partial}{\partial t} \left( t^{\ell} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(k,n)} 
@@ -4047,9 +4095,9 @@ The shape regularity is controlled in that process.
         \end{align*}
         Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
         \begin{align*}
-            \| \Jacobian \Theta_{|K}      \| \leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \kappa(A_{K}),
-            \qquad 
-            \| \Jacobian \Theta_{|K}^{-1} \| \leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
+            \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \kappa(A_{K}),
+            \\
+            \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
 
         
@@ -4223,15 +4271,36 @@ The shape regularity is controlled in that process.
 
 \section{Constructive estimates of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
+We are now in the position to estimate Poincar\'e--Friedrichs constants for the exterior derivative over domains with shellable triangulations; this includes the curl and divergence operators in three dimensions. 
+The estimates require local Poincar\'e--Friedrichs constants over simplices, 
+with or without boundary conditions. 
+
+The analysis of the Poincar\'e potential operators in Section~\ref{section:potentialoperator}
+implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
 
 
+\begin{lemma}\label{lemma:PFexteriorsimplex}
+    Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set. 
+    Then for each $\bfu \in \bfW^{p}\Lambda^{?}(\Omega)$ there exists $w \in \bfW^{p}\Lambda^{?}(\Omega)$ with $\cartan u = \cartan w$ and 
+    \begin{align*}
+        \| \bfu \|_{L^{p}(\Omega)} 
+        \leq 
+        C_{???} % TODO 
+        \diam(\Omega) 
+        \| \divergence \bfu \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+\end{lemma}
 
+These constants are generally not optimal. 
+For example, when $p=2$ and only the divergence is considered, 
+we have the following improved estimate. 
 
-\begin{lemma}
+\begin{lemma}\label{lemma:PFfordivergence}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
     Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $w \in \bfH(\divergence,\Omega)$ with $\divergence u = \divergence w$ and 
     \begin{align*}
-        \| \bfu \|_{\bfL^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
+        \| \bfu \|_{L^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
         .
     \end{align*}
 \end{lemma}
@@ -4245,11 +4314,11 @@ The shape regularity is controlled in that process.
 \end{proof}
 
 
+We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
-
-\begin{lemma}
+\begin{lemma}\label{lemma:PFexteriorwithboundaryconditions}
     Let $T$ be a simplex and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
-    Suppose that $u \in \bfW^{p}\Lambda^{k}(\cartan,\Omega)$ such that 
+    Suppose that $u \in \bfW^{p}\Lambda^{k}(\Omega)$ such that 
     $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
     Then 
     \begin{align*}
@@ -4268,9 +4337,9 @@ The shape regularity is controlled in that process.
     Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
-    Let $f = \cartan u$ with $u \in \bfW^{p}(\cartan,T)$.
+    Let $f = \cartan u$ with $u \in \bfW^{p}\Lambda^{?}(T)$.
     We set $\hat f := \varphi^{\ast} f$ and $\hat u = \varphi^{\ast} u$, 
-    so that $\hat u \in \cartan \bfW^{p}(\cartan,\Delta^{n})$ and $\cartan \hat u = \hat f$.
+    so that $\hat u \in \cartan \bfW^{p}\Lambda^{?}(\Delta^{n})$ and $\cartan \hat u = \hat f$.
 
     We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
     Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
@@ -4383,7 +4452,7 @@ The shape regularity is controlled in that process.
 
 
 
-
+The main result of this manuscript is the following theorem. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
@@ -4468,6 +4537,7 @@ The shape regularity is controlled in that process.
         \| \Jacobian \Xi   \|
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
+        \\&
         \leq 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
         \cdot 
@@ -4494,37 +4564,23 @@ The shape regularity is controlled in that process.
             + 
             \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         \right) 
-        \\&
+    \end{align*}
+    and 
+    \begin{align*}
+        \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        &
         \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan u \|_{L^{p}(T_{m})} 
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        %C_{{\rm PF},T_{m},\Gamma_{m},p} 
         \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         \\&
         \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan u \|_{L^{p}(T_{m})} 
-        + 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        %C_{{\rm PF},T_{m},\Gamma_{m},p} 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})} 
         \\&
         \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan u \|_{L^{p}(T_{m})} 
-        + 
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
+        C%_{{\rm PF},T_{m},\Gamma_{m},p} 
         \| \cartan u \|_{L^{p}(U_{m-1})} 
 %         \\&
 %         \leq  
@@ -4554,7 +4610,7 @@ the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain 
     \Omega_{S}  = (-1,1)^2,
     \qquad 
     \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
-    \qquad 
+    \\
     \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
 \end{gather*}
 % Square 
@@ -4565,11 +4621,12 @@ the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain 
 
 We consider the following example domains in two dimensions:
 the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed bricks domain $\Omega_{B}$:
-\begin{align*}
+\begin{gather*}
     \Omega_{C}  = (-1,1)^3,
     \qquad 
     \Omega_{F}  = (-1,1)^3 \setminus (0,1)^3,
-    \qquad
+    \\
+    \begin{aligned}
     \Omega_{B} &= 
     \left( (-1,0) \times (-1,0) \times (-1,1) \right)
     \\&\quad
@@ -4579,7 +4636,8 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
     \cup 
     \left( (-1,1) \times (-1,0) \times (-1,0) \right)
     ,
-\end{align*}
+    \end{aligned}
+\end{gather*}
 % Cube 
 % Fichera
 % Crossed bricks 
@@ -4595,6 +4653,8 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 
 \section*{Acknowledgments}
+
+MWL appreciates helpful remarks by Abdellatif Aitelhad.
 
 \bibliographystyle{plain}
 \bibliography{library}
