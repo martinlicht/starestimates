@@ -12,6 +12,63 @@
 
 
 
+\begin{proof}
+    We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
+    We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
+    such that the $i$-th coordinate equals zero along $\hat F_i$.
+
+    Let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
+    that maps the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ onto the boundary patch $\Gamma$. 
+    We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
+    The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
+    Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
+
+
+    Let $f = \cartan u$ with $u \in \bfW^{p}\Lambda^{k}(T)$.
+    We set $\hat f := \varphi^{\ast} f$ and $\hat u = \varphi^{\ast} u$, 
+    so that $\hat u \in \cartan \bfW^{p}\Lambda^{k}(\Delta^{n})$ and $\cartan \hat u = \hat f$.
+
+    We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
+    Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
+
+    The operator norm bound of the potential operator shows 
+    \begin{align*}
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        &\leq 
+        n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+        \\&
+        \leq 
+        2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
+        .
+    \end{align*}
+    We use the pullback estimates 
+    \begin{gather*}
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        \leq 
+        \| \Jacobian\varphi \|_{\infty}^{k}
+        |\det\varphi^{-\frac{1}{p}}|
+        \cdot 
+        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
+        ,
+        \\
+        \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
+        \leq 
+        2^{n-l}
+        \| \hat f \|_{L^{p}(\hat T)} 
+        \leq 
+        2^{n-l}
+        \| \Jacobian\varphi^{-1} \|_{\infty}^{k+1}
+        |\det\varphi^{\frac{1}{p}}|
+        \cdot 
+        \| f \|_{L^{p}(T)} 
+        .
+    \end{gather*}
+\end{proof}
+
+
+
 
 
 \begin{remark}

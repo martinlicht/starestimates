@@ -2743,6 +2743,35 @@ Our main interest are local stars or stars within triangulations.
     and any such shelling can be extended to a shelling of $\patch_{\calT}(S)$.
 \end{proof}
 
+
+A major structural feature of shellable simplicial complexes 
+is that each time a simplex is added, the local star around a simplex gets completed. 
+
+\begin{lemma}\label{lemma:existenceofstar}
+    Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
+    For $0 \leq m < M$, write 
+    $$
+        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m},
+        \qquad 
+        I_{m} := X_{m} \cap T_{m+1}.
+    $$ 
+    Whenever $I_{m}$ is the union of $k$ different facets of $T$, 
+    then the intersection of those facets is a simplex $S \in \calT$ of dimension $n-k$ that satisfies 
+    $$
+        \patch_{X_{m+1}}(S) = \patch_{\calT}(S).
+    $$
+\end{lemma}
+\begin{proof}
+    We know $I_{m}$ is a submanifold of the boundary of $T$, and so it must be a collection of $k$ facets
+    that constitute the local patch around some simplex $S$ of dimension $n-k$.
+    To show that $\patch_{X_{m+1}}(S) = \patch_{\calT}(S)$, let us assume that $T \in \patch_{\calT}(S) \setminus \patch_{X_{m+1}}(S)$.
+    By assumption, $S$ must be a boundary simplex of $X_{m+1}$. 
+    \todo{Complete this here. The barycenter is contained in the interior of a boundary disk.}
+\end{proof}
+
+
+
+
 \begin{remark}
     Not all trianguable sets admit a triangulation that is also shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
@@ -3777,8 +3806,6 @@ though the dimension and the form degree enters the estimate.
         .
     \end{align*}
     By definition, $w \in W^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $\cartan w = u$.
-    \todo{definition of weak derivative + definition of boundary condition }
-    % 
     This completes the proof. 
 \end{proof}
 
@@ -3903,30 +3930,6 @@ The shape regularity is controlled in that process.
 
 
 
-\begin{lemma}    
-    Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
-    For $0 \leq m < M$, write 
-    $$
-        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m},
-        \qquad 
-        I_{m} := X_{m} \cap T_{m+1}.
-    $$ 
-    Whenever $I_{m}$ is the union of $k$ different facets of $T$, 
-    then the intersection of those facets is a simplex $S \in \calT$ of dimension $n-k$ that satisfies 
-    $$
-        \patch_{X_{m+1}}(S) = \patch_{\calT}(S).
-    $$
-\end{lemma}
-\begin{proof}
-    We know $I_{m}$ is a submanifold of the boundary of $T$, and so it must be a collection of $k$ facets
-    that constitute the local patch around some simplex $S$ of dimension $n-k$.
-    To show that $\patch_{X_{m+1}}(S) = \patch_{\calT}(S)$, let us assume that $T \in \patch_{\calT}(S) \setminus \patch_{X_{m+1}}(S)$.
-    By assumption, $S$ must be a boundary simplex of $X_{m+1}$. 
-    \todo{Complete this here. The barycenter is contained in the interior of a boundary disk.}
-\end{proof}
-
-
-
 
 
 
@@ -3947,6 +3950,8 @@ The shape regularity is controlled in that process.
         \Lip( \varphi^{-1}, M ) \leq \Cfive{n}{k} \kappa(\calT)^{2},
     \end{align*}
     where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
+
+    \todo{Complete the estimate.}
 \end{theorem}
 \begin{proof}
     We derive the estimate in several steps. 
@@ -4347,73 +4352,6 @@ we have the following improved estimate.
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
-\todo{Summarize the next two lemmas into one and complete the estimate}
-\begin{lemma}\label{lemma:PFexteriorwithboundaryconditions}
-    Let $T$ be an $n$-simplex 
-    and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
-    Suppose that $u \in \bfW^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
-    Then 
-    \begin{align*}
-        \| u \| 
-        \leq 
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
-    We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
-    such that the $i$-th coordinate equals zero along $\hat F_i$.
-
-    Let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism 
-    that maps the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ onto the boundary patch $\Gamma$. 
-    We let $\Upsilon^{n}$ be constructed by reflecting $\Delta^{n}$ across the coordinate axes $l+1$ through $n$.
-    The boundary $\partial\Upsilon^{n}$ is the reflection of the faces $\hat F_{0}, \hat F_{1}, \dots, \hat F_{l}$ under that process. 
-    Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
-
-
-    Let $f = \cartan u$ with $u \in \bfW^{p}\Lambda^{k}(T)$.
-    We set $\hat f := \varphi^{\ast} f$ and $\hat u = \varphi^{\ast} u$, 
-    so that $\hat u \in \cartan \bfW^{p}\Lambda^{k}(\Delta^{n})$ and $\cartan \hat u = \hat f$.
-
-    We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
-    Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
-
-    The operator norm bound of the potential operator shows 
-    \begin{align*}
-        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-        &\leq 
-        n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
-        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
-        \\&
-        \leq 
-        2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
-        \| \tilde f \|_{L^{p}(\Upsilon^{n})}
-        .
-    \end{align*}
-    We use the pullback estimates 
-    \begin{gather*}
-        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-        \leq 
-        \| \Jacobian\varphi \|_{\infty}^{k}
-        |\det\varphi^{-\frac{1}{p}}|
-        \cdot 
-        \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-        ,
-        \\
-        \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
-        \leq 
-        2^{n-l}
-        \| \hat f \|_{L^{p}(\hat T)} 
-        \leq 
-        2^{n-l}
-        \| \Jacobian\varphi^{-1} \|_{\infty}^{k+1}
-        |\det\varphi^{\frac{1}{p}}|
-        \cdot 
-        \| f \|_{L^{p}(T)} 
-        .
-    \end{gather*}
-\end{proof}
-
 
 
 
@@ -4425,52 +4363,76 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 
 
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
-    Let $T$ be an $n$-simplex and with a face $F$. 
-    If $u \in W^{p}\Alt^{k}(T)$ such that $\trace_{F} u = 0$, then 
+    Let $T$ be an $n$-simplex 
+    and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
+    Suppose that $\bfu \in \bfW^{p}\Lambda^{k}(T)$ such that 
+    $\trace_{T,F_i} \bfu = 0$ for $0 \leq i \leq l$.
+    Then there exists $\bfw \in \bfW^{p}\Lambda^{k}(T)$ such that 
+    $\trace_{T,F_i} \bfw = 0$ for $0 \leq i \leq l$
+    and  
     \begin{align*}
-        \| u \|_{L^{p}(T)}
-        &
+        \cartan \bfu = \cartan \bfw,
+        \quad 
+        \| \bfw \| 
         \leq 
-        C_{{\rm PF},T,F,k,p} \| \cartan u \|_{L^{p}(T)}
+        C_{{\rm PF},T,F,k,p}
+        \| \cartan \bfu \|
         ,
     \end{align*}
     where $C_{{\rm PF},T,F,k,p} > 0$ is a constant such that 
     \begin{align*}
         C_{{\rm PF},T,F,k,p}
         \leq 
+        ...
         \diam(T)
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
-    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
-    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F_0$.
+    We can also assume that the face of $\hat T$
+    orthogonal to the $i$-th coordinate axis is mapped 
+    onto the face $F_i$. 
+    In what follows, we let $\tilde U$ be the domain obtained from reflecting $\hat T$ along the coordinate axes $l+1$ through $n$. 
+    
+    
+    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in \bfL^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
-    % 
-    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
-    We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\tilde U$ by reflection across the coordinate axes.
     We define $\tilde g = \cartan \tilde u$
-    and see that $\tilde g$ is the extension of $\hat g$ onto $\hat U$ by reflection across the coordinate axes. 
-    By construction $\tilde u$ vanishes at the boundary of $\hat U$, and thus Friedrichs inequality satisfies 
-    \begin{gather*}
-        \| \tilde u \|_{L^{p}(\hat U)} 
-        \leq 
-        C_{???} 
-        \| \tilde g \|_{L^{p}(\hat U)}
+    and see that $\tilde g$ is the extension of $\hat g$ onto $\tilde U$ by reflection across the coordinate axes. 
+    By construction, $\tilde u \in \bfW^{p}_{0}\Lambda^{k}(\tilde U)$.
+    
+    The bounds for the potential operators imply 
+    the existence of $\tilde w \in \bfW^{p}_{0}\Lambda^{k}(\tilde U)$
+    with $\cartan \tilde w = \cartan \tilde u$ and 
+    \begin{align*}
+        \| \tilde w \|_{L^{p}(\tilde U)}
+        &\leq 
+        n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_2(0)) }{|\Omega|} 
+        2
+        \| \tilde g \|_{L^{p}(\tilde U)}
+        \\&\leq 
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{|\Omega|} 
+        \| \tilde g \|_{L^{p}(\tilde U)}
         .
-    \end{gather*}
-    In addition to that, 
+    \end{align*}
+    We let $\bfw \in \bfW^{p}\Lambda^{k}(T)$ be defined by $\bfw := \varphi^{-\ast} \tilde w$.
+    By construction, $\cartan \bfw = \cartan \bfu$,
+    and $\bfw$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
+    
+    In addition to that, by Theorem~\ref{theorem:pullbackestimate}:
     \begin{gather*}
-        \| u \|_{L^{p}(T_{m+1})}
+        \| \bfw \|_{L^{p}(T_{m+1})}
         \leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
-        \| \hat u \|_{L^{p}(\hat T)}
+        \| \tilde w \|_{L^{p}(\hat T)}
         \leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
-        \| \tilde u \|_{L^{p}(\hat U)}
+        \| \tilde w \|_{L^{p}(\tilde U)}
         ,
         \\
-        \| \tilde g \|_{L^{p}(\hat U)}
+        \| \tilde g \|_{L^{p}(\tilde U)}
         \leq 
         2^{\frac n p}
         \| \hat g \|_{L^{p}(\hat T)}
@@ -4514,9 +4476,9 @@ The main result of this manuscript is the following theorem.
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
     By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m} \subseteq \Omega_{m}$ be the complement of $T_{m}$ in that newly completed star. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m} \subseteq \Omega_{m}$ be the complement of $T_{m}$ in that newly completed star. 
     
-    We define $w'_{m} := w_{m-1} \circ \Xi_{m} \in W^{p}\Alt^{k}(T_{m})$,
+    We define $w'_{m} :=  \Xi_{m}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$,
     where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
     as in Theorem~\ref{theorem:starreflection}. 
     By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
@@ -4553,7 +4515,17 @@ The main result of this manuscript is the following theorem.
     That means that $w_{m} \in W^{p}\Alt^{k}(\Omega_{m})$ with $\cartan w_{m} = \cartan u$ over $\Omega_{m}$. 
     
     We want to estimate norms. 
-    Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} gives 
+    By construction,
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_{m})}
+        \leq  
+        \| w'_{m} \|_{L^{p}(T_{m})}
+        + 
+        \| w''_{m} \|_{L^{p}(T_{m})}
+        .
+    \end{align*}
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
+    we can assume 
     \begin{align*}
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
@@ -4568,65 +4540,26 @@ The main result of this manuscript is the following theorem.
     \end{align*}
     We also employ Theorem~\ref{theorem:pullbackestimate} to find 
     \begin{align*}
+        \| w'_{m} \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi \|^{k}
+        \cdot 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})}
+        ,
+        \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
         |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi   \|
+        \| \Jacobian \Xi \|^{k+1}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
+    We have assumed that $\cartan w_{m-1} = \cartan u_{|\Omega_{m-1}}$. 
     By the properties of the reflection mapping in Theorem~\ref{theorem:starreflection},
     \begin{align*}
         ...
-    \end{align*}
-    Putting this all together, 
-    \begin{align*}
-        &
-        \| w_{m} \|_{L^{p}(T_{m})}
-        \\&
-        \leq  
-        \| w'_{m} \|_{L^{p}(T_{m})}
-        + 
-        \| w''_{m} \|_{L^{p}(T_{m})}
-        \\&
-        \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})} 
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \left( 
-            \| \cartan u \|_{L^{p}(T_{m})} 
-            + 
-            \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
-        \right) 
-    \end{align*}
-    and \todo{fix estimate}
-    \begin{align*}
-        \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
-        &
-        \leq  
-        %C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
-        \\&
-        \leq  
-        \rho(\calT)^{\frac 1 p} \xi(\calT)
-        %C_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})} 
-        \\&
-        \leq  
-        \rho(\calT)^{\frac 1 p} \xi(\calT)
-        C%_{{\rm PF},T_{m},\Gamma_{m},p} 
-        \| \cartan u \|_{L^{p}(U_{m-1})} 
-%         \\&
-%         \leq  
-%         \rho(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(U_{m-1})} 
-%         + 
-%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-%         C_{{\rm PF},T_{m},\Gamma_{m},p} 
-%         \| \cartan u \|_{L^{p}(T_{m})} 
-        .
     \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
