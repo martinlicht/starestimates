@@ -1021,6 +1021,25 @@ that preserves $F$. We define
 to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
 
+We also want to compare the diameters of simplices that intersect. We define 
+\begin{align}\label{math:diametercomparison}
+    \theta(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
+    \frac{ \diam(T) }{ \diam(T') }
+\end{align}
+We moreover introduce 
+\begin{align}\label{math:algebraicshapemeasure}
+    \alpha(T)
+    := 
+    \sup_{ \varphi : \Delta^n \rightarrow T } 
+    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\max}( \Jacobian \varphi ) }
+    ,
+    \qquad 
+    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T)
+    ,
+\end{align}
+where the first suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
 
 % and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
 % we define the quantity 
@@ -1853,7 +1872,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
     the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
     We write $\bfg \in \bfL^{\infty}(T)$ for the trivial extension of $\nabla u$ outside of $T$.
-    %With the fundamental theorem of calculus and H\"olders inequality: 
+    %With the fundamental theorem of calculus and H\"older's inequality: 
     Now:
     \begin{align*}
         \int_{\Omega} |u(x)|^{p} \diff x \;dx
@@ -3137,8 +3156,8 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
 
 \begin{lemma}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
-    Smooth forms are dense in $\bfW^{p}\Lambda^{k}(\Omega)$.
-    If $\Omega$ is convex, then $C^{\infty}_{c}\Lambda^{k}(\Omega)$ is dense in $\bfW^{p}_{0}\Lambda^{k}(\Omega)$.
+    Smooth forms are dense in $W^{p}\Lambda^{k}(\Omega)$.
+    If $\Omega$ is convex, then $C^{\infty}_{c}\Lambda^{k}(\Omega)$ is dense in $W^{p}_{0}\Lambda^{k}(\Omega)$.
 \end{lemma}
 \begin{proof}
     We notice $\mollifier_{\epsilon} \star u \in C^{\infty}\Lambda^{k}(\bbR^{n})$. 
@@ -3158,12 +3177,12 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
         \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star \cartan u ) \wedge v 
         .
     \end{align*}
-    Hence $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $\bfW^{p}\Lambda^{k}(\Omega)$.
+    Hence $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $W^{p}\Lambda^{k}(\Omega)$.
     
     Next, suppose that $\Omega$ is convex. Without loss of generality, $0 \in \Omega$. 
-    Let $u \in \bfW^{p}_{0}\Lambda^{k}(\Omega)$ and extend $u$ trivially onto $\bbR^{n}$. 
+    Let $u \in W^{p}_{0}\Lambda^{k}(\Omega)$ and extend $u$ trivially onto $\bbR^{n}$. 
     Define $\varphi_t(x) = tx$ for $t > 1$. 
-    Then $\varphi_{t}^{\ast} u \in \bfW^{p}_{0}\Lambda^{k}(t^{-1}\Omega)$ 
+    Then $\varphi_{t}^{\ast} u \in W^{p}_{0}\Lambda^{k}(t^{-1}\Omega)$ 
     and $\varphi_{t}^{\ast} u$ converges to $u$ as $t$ decreases towards $1$. 
     Given any $t > 1$, by taking the convolution with $\mollifier_{\epsilon}$ for $\epsilon > 0$ small enough,
     we approximate $\varphi_{t}^{\ast} u$ through members of $C^{\infty}_{c}\Lambda^{k}(\Omega)$.
@@ -3744,8 +3763,8 @@ though the dimension and the form degree enters the estimate.
         \| u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-    If $u \in \bfW^{p}    \Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in \bfW^{p}    \Alt^{\ell  }(\Omega)$ with $u = \cartan \Poinc_{\ell} u$.
-    If $u \in \bfW^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in \bfW^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $u = \cartan \Bogov_{\ell} u$.
+    If $u \in W^{p}    \Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Poinc_{\ell} u \in W^{p}    \Alt^{\ell  }(\Omega)$ with $u = \cartan \Poinc_{\ell} u$.
+    If $u \in W^{p}_{0}\Alt^{\ell}(\Omega)$ with $\cartan u = 0$, then $\Bogov_{\ell} u \in W^{p}_{0}\Alt^{\ell-1}(\Omega)$ with $u = \cartan \Bogov_{\ell} u$.
 \end{theorem}
 \begin{proof}
     The potential operators are linear and the operator norm bounds are satisfied over the dense subspace $C^{\infty}_{c}\Alt^{\ell}(\Omega)$.
@@ -3937,17 +3956,17 @@ The shape regularity is controlled in that process.
     Let $\calT$ be an $n$-dimensional triangulation and let $S \in \calT$ be a simplex of dimension $k < n$.
     Let $T \in \patch_{\calT}(S)$ be of dimension $n$ and let 
     \begin{align*}
-        M := |\patch_{\calT}(S)| \setminus T.
+        U := |\patch_{\calT}(S)| \setminus T.
     \end{align*}
     There exists a bi-Lipschitz mapping
     \begin{align*}
-        \varphi : T \rightarrow M
+        \Xi : T \rightarrow U
     \end{align*}
     satisfying
     \begin{align*}
-        \Lip( \varphi,      T ) \leq \Cvier{n}{k} \kappa(\calT)^{2},
+        \Lip( \Xi,      T ) \leq \Cvier{n}{k} \kappa(\calT)^{2},
         \quad 
-        \Lip( \varphi^{-1}, M ) \leq \Cfive{n}{k} \kappa(\calT)^{2},
+        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k} \kappa(\calT)^{2},
     \end{align*}
     where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
 
@@ -4140,12 +4159,12 @@ The shape regularity is controlled in that process.
         onto the image under $\Psi_{\calR'}$ of $|\calR^{c}|$.
         It follows that 
         \begin{align*}
-            \Theta_{S} := \Psi_{\calK}^{-1} \Psi_{\calR'} \Theta
+            \Xi_{S} := \Psi_{\calK}^{-1} \Psi_{\calR'} \Theta
         \end{align*}
         is a mapping from $T$ onto $\overline{\patch_{\calT}(S) \setminus T}$.
         We estimate the Jacobians: 
         \begin{align*}
-            \| \Jacobian \Theta_{S} \| 
+            \| \Jacobian \Xi_{S} \| 
             \leq 
             \sup_{ K \in \calK  }
             2 \sigma_{\min}(A_{K}^{-1})^{-1} 
@@ -4156,29 +4175,39 @@ The shape regularity is controlled in that process.
         \end{align*}
         Each bisection halves the volume of the triangles. Thus,
         \begin{align*}
-            \color{red}
-            \| \Jacobian \Theta_{S} \| 
+            \| \Jacobian \Xi_{S} \| 
             &\leq 
-            2 \sup_{ K \in \patch_{\calT}(S) }
+            2 
+            \sup_{ K \in \patch_{\calT}(S) }
             2 \sigma_{\min}(A_{K}^{-1})^{-1} 
-            4 \sup_{ K \in \patch_{\calT}(S) } 
-            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{K}^{-1}) 
-            4 \sup_{ K \in \patch_{\calT}(S) } 
-            \kappa(A_{K})
+            4 
+            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
+            4 
+            \kappa(A_{T})
             \\&\leq 
             64
             \left( \sqrt{n} + 1 \right) 
+            \kappa(A_{T})
+            \sigma_{\max}(A_{T}^{-1}) 
             \sup_{ K \in \patch_{\calT}(S) }
             \sigma_{\max}(A_{K}     ) 
-            \sup_{ K \in \patch_{\calT}(S) } 
-            \sigma_{\max}(A_{K}^{-1}) 
-            \sup_{ K \in \patch_{\calT}(S) } 
-            \kappa(A_{K})
             .
         \end{align*}
-        That establishes the final estimate. 
-        
-        
+        We use 
+        \begin{gather*}
+            \sup_{ K \in \patch_{\calT}(S) }
+            \sigma_{\max}(A_{K}) 
+            \leq 
+            \Ceins{n} 
+            \sup_{ K \in \patch_{\calT}(S) }
+            \diam(K)
+            \leq 
+            \Ceins{n} 
+            \theta(\calT)
+            \sigma_{\max}(A_{T}) 
+            .
+        \end{gather*}
+        % That establishes the final estimate. 
 %         \item 
 %         Suppose that $S = \{v_0\}$ is a single vertex. 
 %         We construct a transformation from the vertex star around $S$ onto the Euclidean unit ball. 
@@ -4307,18 +4336,18 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \begin{lemma}\label{lemma:PFexteriorsimplex}
     Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set. 
     Let $0 \leq k < n$. 
-    Then for each $\bfu \in \bfW^{p}\Lambda^{k}(\Omega)$ 
-    there exists $\bfw \in \bfW^{p}\Lambda^{k}(\Omega)$ 
-    with $\cartan \bfu = \cartan \bfw$ and 
+    Then for each $u \in W^{p}\Lambda^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Lambda^{k}(\Omega)$ 
+    with $\cartan u = \cartan w$ and 
     \begin{align*}
-        \| \bfw \|_{L^{p}(\Omega)}
+        \| w \|_{L^{p}(\Omega)}
         &
         \leq 
         n A_{\Poinc}(n,k+1) 
         \vol_{n}(B_1(0)) 
         \frac{ \diam(\Omega)^{n} }{|\Omega|} 
         \diam(\Omega)
-        \| \cartan \bfu \|_{L^{p}(\Omega)}
+        \| \cartan u \|_{L^{p}(\Omega)}
         .
     \end{align*}
 \end{lemma}
@@ -4365,18 +4394,18 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
     Let $T$ be an $n$-simplex 
     and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
-    Suppose that $\bfu \in \bfW^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} \bfu = 0$ for $0 \leq i \leq l$.
-    Then there exists $\bfw \in \bfW^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} \bfw = 0$ for $0 \leq i \leq l$
+    Suppose that $u \in W^{p}\Lambda^{k}(T)$ such that 
+    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
+    Then there exists $w \in W^{p}\Lambda^{k}(T)$ such that 
+    $\trace_{T,F_i} w = 0$ for $0 \leq i \leq l$
     and  
     \begin{align*}
-        \cartan \bfu = \cartan \bfw,
+        \cartan u = \cartan w,
         \quad 
-        \| \bfw \| 
+        \| w \| 
         \leq 
         C_{{\rm PF},T,F,k,p}
-        \| \cartan \bfu \|
+        \| \cartan u \|
         ,
     \end{align*}
     where $C_{{\rm PF},T,F,k,p} > 0$ is a constant such that 
@@ -4396,15 +4425,15 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     In what follows, we let $\tilde U$ be the domain obtained from reflecting $\hat T$ along the coordinate axes $l+1$ through $n$. 
     
     
-    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in \bfL^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
     We let $\tilde u$ be the extension of $\hat u$ onto $\tilde U$ by reflection across the coordinate axes.
     We define $\tilde g = \cartan \tilde u$
     and see that $\tilde g$ is the extension of $\hat g$ onto $\tilde U$ by reflection across the coordinate axes. 
-    By construction, $\tilde u \in \bfW^{p}_{0}\Lambda^{k}(\tilde U)$.
+    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\tilde U)$.
     
     The bounds for the potential operators imply 
-    the existence of $\tilde w \in \bfW^{p}_{0}\Lambda^{k}(\tilde U)$
+    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\tilde U)$
     with $\cartan \tilde w = \cartan \tilde u$ and 
     \begin{align*}
         \| \tilde w \|_{L^{p}(\tilde U)}
@@ -4417,13 +4446,13 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \tilde g \|_{L^{p}(\tilde U)}
         .
     \end{align*}
-    We let $\bfw \in \bfW^{p}\Lambda^{k}(T)$ be defined by $\bfw := \varphi^{-\ast} \tilde w$.
-    By construction, $\cartan \bfw = \cartan \bfu$,
-    and $\bfw$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
+    We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} \tilde w$.
+    By construction, $\cartan w = \cartan u$,
+    and $w$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
     
     In addition to that, by Theorem~\ref{theorem:pullbackestimate}:
     \begin{gather*}
-        \| \bfw \|_{L^{p}(T_{m+1})}
+        \| w \|_{L^{p}(T_{m+1})}
         \leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \| \tilde w \|_{L^{p}(\hat T)}
