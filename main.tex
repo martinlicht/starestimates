@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 % \usepackage{fullpage}
 \input{header}
@@ -110,7 +110,7 @@ this inequality is equivalent to the following statement:
     \min\limits_{c\in\bbR}
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{\grad,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
+    C_{\grad,\Omega,p} \| \nabla u \|_{L^{p}(\Omega)},
     \quad 
     \forall
     u \in W^{1,p}(\Omega) % DONE: Use \forall notation 
@@ -122,7 +122,7 @@ this inequality is equivalent to the following statement:
 %     \min\limits_{c\in\bbR}
 %     \| u - c \|_{L^{p}(\Omega)}
 %     \leq 
-%     C_{\grad,\Omega,p} \| \nabla u \|_{L^p(\Omega)},
+%     C_{\grad,\Omega,p} \| \nabla u \|_{L^{p}(\Omega)},
 %     \quad 
 %     u \in W^{1,p}(\Omega) % DONE: Use \forall notation 
 %     .\tag{PF} 
@@ -144,7 +144,7 @@ Its operator norm is the constant $C_{{\rm P},\Omega,p} > 0$ in the Poincar\'e i
 \begin{align}\label{math:intro:poincare:grad}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm P},\Omega,p} \| \nabla u \|_{L^p(\Omega)},
+    C_{{\rm P},\Omega,p} \| \nabla u \|_{L^{p}(\Omega)},
     \quad 
     \forall 
     u \in W^{1,p}(\Omega)
@@ -172,10 +172,10 @@ An open set star-shaped with respect to a internal point satisfies Poincar\'e in
 The situation is less clear cut when we study the curl or divergence operators in vector calculus.
 We use the vector field spaces
 \begin{align*}
-    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \curl \bfu \in \bfL^p(\Omega) \right\}
+    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) : \curl \bfu \in \bfL^{p}(\Omega) \right\}
     ,
     \\
-    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^p(\Omega) : \divergence \bfu \in L^p(\Omega) \right\}
+    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) : \divergence \bfu \in L^{p}(\Omega) \right\}
     .
 \end{align*}
 Their members are those vector fields whose distributional curls and divergences are in Lebesgue spaces. 
@@ -407,7 +407,7 @@ We gather basic notions and definitions concerning simplicial meshes.
   
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these points the \emph{vertices} of the simplex $T$. 
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
-then we call $S$ a \textit{subsimplex} of $T$ and we call $T$ a \textit{supersimplex} of $S$. 
+then we call $S$ a \textit{subsimplex} of $T$ and call $T$ a \textit{supersimplex} of $S$. 
 
 The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
 and its remaining points constitute the \textit{boundary} of the simplex.
@@ -544,7 +544,7 @@ This survey, which we believe to be of independent interest, will serve as a bui
 \\
 
 Let us assume that $\Omega \subseteq \bbR^{n}$ is an open connected set. 
-Given any $p \in [1,\infty]$, we let $L^p(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^p(\Omega) := L^p(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
+Given any $p \in [1,\infty]$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
 We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
 
 % DONE: MV move this part to the introduction, as an alternative the first few paragraphs 
@@ -641,7 +641,7 @@ the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with
 In the special case $p=2$, taking the average is an orthogonal projection, and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. Hence $C_{{\rm P},\Omega,2} = C_{{\rm PF},\Omega,2}$. 
 This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
 and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^p$ spaces with $1 \leq p \leq \infty$:
+Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
 since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
 \begin{align*}
     \| u - u_\Omega \|_{L^{p}(\Omega)}
@@ -654,7 +654,7 @@ since taking the average is a the projection onto the constants functions with u
     ,
     \quad 
     \forall 
-    u \in L^p(\Omega)
+    u \in L^{p}(\Omega)
     .
 \end{align*}
 We have $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
@@ -677,21 +677,21 @@ We define the potential
 \end{align*}
 If there is a Poincar\'e--Friedrichs constant, then by definition
 \begin{align*}
-    \| \Phi(\bff) \|_{L^p(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^p(\Omega)},
+    \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^{p}(\Omega)},
 \end{align*}
 and this inequality is sharp by definition of $\Phi$ provided that $C_{{\rm PF},\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
-However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
-Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$
+However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
+Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
 satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
 \begin{align*}
     \max\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \Phi(\nabla u) \|_{L^p(\Omega)} }{ \| \nabla u \|_{L^p(\Omega)} }
+    \frac{ \| \Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
     \leq 
     \max\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \overline\Phi(\nabla u) \|_{L^p(\Omega)} }{ \| \nabla u \|_{L^p(\Omega)} }
+    \frac{ \| \overline\Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
     .
 \end{align*}
-A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^p(\Omega)$ that satisfies 
+A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that satisfies 
 \begin{align*}
     \Phi_{{\rm P}}( \nabla u ) = u - u_{\Omega},
     \quad 
@@ -1549,7 +1549,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \draw[fill=gray!50] (B) -- (C) -- (F) -- cycle; 
 \end{tikzpicture}
 \end{center}
-\caption{Exhausting a domain step by step as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and \ref{theorem:poincarefriedrichsestimate:gradzwei}.}
+\caption{Exhausting a domain step by step as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and \ref{theorem:poincarefriedrichsestimate:gradzwei}.
+The dark gray triangle is the one being currently added, and the light gray triangles constitute the subdomain assembled so far.}
 \label{figure:exhausting}
 \end{figure}
 
@@ -1624,7 +1625,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
  We have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
- \begin{align*}
+ \begin{gather*}
     \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
     \| u_{F_m} \|_{L^{p}(T_m)}
@@ -1640,7 +1641,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \leq 
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
     .
- \end{align*}
+ \end{gather*}
  In particular,
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
@@ -1774,6 +1775,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
         &
         \leq 
         C_{{\rm PF},T,F,p} \| \nabla u \|_{L^{p}(T)}
+        ,
     \end{align*}
     where $C_{{\rm PF},T,F,p} > 0$ is a constant such that 
     \begin{align*}
@@ -2772,9 +2774,10 @@ Let $\Omega \subseteq \bbR^{3}$ be a bounded open set.
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
-$W^p(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
+$W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
 \begin{gather*}
-    W^p(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    W^{p}(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    .
 \end{gather*}
 The space $\bfW^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
 and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
@@ -2891,7 +2894,7 @@ The exterior product is bilinear and associative, and satisfies
     \quad 
     \forall u_2 \in \Alt^{l}(V).
 \end{align*}
-We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we let $v \lrcorner u \in \Alt^{k-1}(V)$ be defined via 
+We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we define $v \lrcorner u \in \Alt^{k-1}(V)$ via 
 \begin{align*}
     (v \lrcorner u)( v_1, v_2, \ldots, v_{k-1} ) = u( v, v_1, v_2, \ldots, v_{k-1} ),
     \quad 
@@ -2957,12 +2960,12 @@ We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Ome
 such that its pointwise norm is $p$-integrable. 
 The exterior derivative is defined in the sense of distributions and we introduce 
 \begin{gather*}
-    W^p\Alt^{k}(\Omega) 
+    W^{p}\Alt^{k}(\Omega) 
     := 
     \{ u \in L^{p}\Alt^{k}(\Omega) \suchthat \cartan u \in L^{p}\Alt^{k+1}(\Omega) \}
     .
 \end{gather*}
-We observe that $u \in L^p\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^p\Alt^{k+1}(\Omega)$
+We observe that $u \in L^{p}\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^{p}\Alt^{k+1}(\Omega)$
 if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
 \begin{align*}
     \int_{\Omega} \cartan v \wedge u
@@ -2971,13 +2974,13 @@ if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the
     \int_{\Omega} v \wedge f 
     .
 \end{align*}
-We let $W^p_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^p\Alt^{k}(\Omega)$ 
-for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^p\Alt^{k}(\bbR^{n})$. 
-The space $W^p_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$. 
+We let $W^{p}_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^{p}\Alt^{k}(\Omega)$ 
+for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. 
+The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$. 
 
 Lastly, we are also interested in differential forms whose trace vanishes along only a part of the boundary. 
 Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
-We say that $u \in W^p\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
+We say that $u \in W^{p}\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
 such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration by parts formula
 \begin{align*}
     \int_{B_r(x)} \cartan v \wedge \tilde u
@@ -2986,16 +2989,31 @@ such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the inte
     \int_{B_r(x)} v \wedge \widetilde{\cartan u}
     .
 \end{align*}
+If that condition is satisfied, we also write 
+\begin{align*}
+    \trace_{\Gamma} u = 0
+    .
+\end{align*}
+Accordingly, we write $\trace_{\Gamma} u = \trace_{\Gamma} u'$ for $\trace_{\Gamma} (u-u') = 0$ whenever $u, u' \in W^{p}\Alt^{k}(\Omega)$.
+Lastly, we introduce the closed subspaces 
+\begin{gather*}
+    W^{p}_{0}\Alt^{k}(\Omega) 
+    := 
+    \{ u \in W^{p}\Alt^{k}(\Omega) \suchthat \trace_{\partial \Omega} u = 0 \}
+    .
+\end{gather*}
+We know that $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$.
 
-We are interested in transformations of these Sobolev tensor fields from one domain onto the other. 
+
+We are interested in transformations of Sobolev tensor fields from one domain onto the other. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
-The pullback of $u \in W^p\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
+The pullback of $u \in W^{p}\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
 \begin{gather*} 
     \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
     := 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
 \end{gather*}
-for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^p\Alt^{k}(\Omega)$.
+for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^{p}\Alt^{k}(\Omega)$.
 We cite an explicit transformation estimate~\cite{licht2019smoothed}.
 
 \begin{theorem} \label{theorem:pullbackestimate}
@@ -3373,7 +3391,7 @@ leading to
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 For the Bogoski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
@@ -3386,7 +3404,7 @@ leading to
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    - \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    - \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 % We first discuss the support properties of this operator. 
@@ -3398,23 +3416,23 @@ Given $a \in \Omega$, we introduce the potential operators
 \begin{align*}
     \Poinc_{\ell,a} u(x) 
     &:= 
-    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
+    (x-a)\lrcorner \int_{0}^{1} t^{\ell-1} u\left(a+t(x-a)\right)\,dt
     ,
     \\
     \Bogov_{\ell,a} u(x) 
     &:= 
-    - (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt\;
+    - (x-a)\lrcorner \int_{1}^\infty t^{\ell-1} u\left(a+t(x-a)\right)\,dt
     .
 \end{align*}
 By definition,
 \begin{align*}
     \Poinc_{\ell} u(x) 
     =
-    \int_{\Omega} \Poinc_{\ell,a} u(x) \,da\;,
+    \int_{\Omega} \Poinc_{\ell,a} u(x) \,da,
     \quad 
     \Bogov_{\ell} u(x) 
     =
-    \int_{\Omega} \Bogov_{\ell,a} u(x) \,da\;
+    \int_{\Omega} \Bogov_{\ell,a} u(x) \,da
     .
 \end{align*}
 We study the interaction of these potential operator with the exterior derivative in more detail.
@@ -3538,7 +3556,7 @@ Taking into account cancellations, this gives the identity
 \end{align*}
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
-    u(x) = \cartan \Poinc_{\ell} u(x) + \Poinc_{\ell+1} \cartan u(x)
+    u(x) = \cartan \Poinc_{\ell} u(x) + \Poinc_{\ell+1} \cartan u(x).
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\ell} u = u$.
 
@@ -3660,6 +3678,7 @@ Taking into account cancellations, this gives the identity
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
     u(x) = \cartan \Bogov_{\ell} u(x) + \Bogov_{\ell+1} \cartan u(x)
+    .
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell} u = u$.
 \\
@@ -3834,7 +3853,7 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
     Evidently, $A$ has dimension $n-1$ and $F \cap A \cap T$.
     Let us now suppose that $x \in A \cap T$.
     For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
-    \begin{align}
+    \begin{align*}
         x &= 
         v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
         \\&
@@ -3847,7 +3866,7 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
         + 
         \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
         .
-    \end{align}
+    \end{align*}
     We know $x$ can be written as a unique convex combination of the vertices of $T$.
     Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive. 
     If $x \notin F$, then at least one of these coefficients must be negative. 
@@ -3948,6 +3967,7 @@ The shape regularity is controlled in that process.
             F_T^{-1}(x) 
             = 
             \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
+            .
         \end{align}
         We analyze its Lipschitz properties.
         % 
@@ -4281,16 +4301,25 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 
 \begin{lemma}\label{lemma:PFexteriorsimplex}
     Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set. 
-    Then for each $\bfu \in \bfW^{p}\Lambda^{?}(\Omega)$ there exists $w \in \bfW^{p}\Lambda^{?}(\Omega)$ with $\cartan u = \cartan w$ and 
+    Let $0 \leq k < n$. 
+    Then for each $\bfu \in \bfW^{p}\Lambda^{k}(\Omega)$ 
+    there exists $\bfw \in \bfW^{p}\Lambda^{k}(\Omega)$ 
+    with $\cartan \bfu = \cartan \bfw$ and 
     \begin{align*}
-        \| \bfu \|_{L^{p}(\Omega)} 
+        \| \bfw \|_{L^{p}(\Omega)}
+        &
         \leq 
-        C_{???} % TODO 
-        \diam(\Omega) 
-        \| \divergence \bfu \|_{L^{p}(\Omega)}
+        n A_{\Poinc}(n,k+1) 
+        \vol_{n}(B_1(0)) 
+        \frac{ \diam(\Omega)^{n} }{|\Omega|} 
+        \diam(\Omega)
+        \| \cartan \bfu \|_{L^{p}(\Omega)}
         .
     \end{align*}
 \end{lemma}
+\begin{proof}
+    This follows from the discussion in Section~\ref{section:potentialoperator}.
+\end{proof}
 
 These constants are generally not optimal. 
 For example, when $p=2$ and only the divergence is considered, 
@@ -4298,9 +4327,11 @@ we have the following improved estimate.
 
 \begin{lemma}\label{lemma:PFfordivergence}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
-    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $w \in \bfH(\divergence,\Omega)$ with $\divergence u = \divergence w$ and 
+    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $\bfw \in \bfH(\divergence,\Omega)$ with $\divergence \bfu = \divergence \bfw$ and 
     \begin{align*}
-        \| \bfu \|_{L^{2}(\Omega)} \leq \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
+        \| \bfw \|_{L^{2}(\Omega)} 
+        \leq 
+        \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
         .
     \end{align*}
 \end{lemma}
@@ -4316,13 +4347,16 @@ we have the following improved estimate.
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
+\todo{Summarize the next two lemmas into one and complete the estimate}
 \begin{lemma}\label{lemma:PFexteriorwithboundaryconditions}
-    Let $T$ be a simplex and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
-    Suppose that $u \in \bfW^{p}\Lambda^{k}(\Omega)$ such that 
+    Let $T$ be an $n$-simplex 
+    and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
+    Suppose that $u \in \bfW^{p}\Lambda^{k}(T)$ such that 
     $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
     Then 
     \begin{align*}
-        \| u \| \leq 
+        \| u \| 
+        \leq 
     \end{align*}
 \end{lemma}
 \begin{proof}
@@ -4337,9 +4371,9 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     Obviously, $\Upsilon^{n}$ is convex with diameter $2$. 
 
 
-    Let $f = \cartan u$ with $u \in \bfW^{p}\Lambda^{?}(T)$.
+    Let $f = \cartan u$ with $u \in \bfW^{p}\Lambda^{k}(T)$.
     We set $\hat f := \varphi^{\ast} f$ and $\hat u = \varphi^{\ast} u$, 
-    so that $\hat u \in \cartan \bfW^{p}\Lambda^{?}(\Delta^{n})$ and $\cartan \hat u = \hat f$.
+    so that $\hat u \in \cartan \bfW^{p}\Lambda^{k}(\Delta^{n})$ and $\cartan \hat u = \hat f$.
 
     We construct $\tilde u \in L^{p}(\Upsilon^{n})$ as the reflection $\hat u$ across the coordinate axes $l+1$ through $n$, and we build $\tilde f \in L^{p}(\Upsilon^{n})$ analogously.
     Then $\tilde u \in \bfW^{p}(\Upsilon^{n})$ with $\cartan \tilde u = \tilde f$. 
@@ -4351,23 +4385,23 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         n A(n,\ell) \frac{ \vol_{n}(B_2(0)) }{|\Upsilon^{n}|} 2 
         \| \tilde f \|_{L^{p}(\Upsilon^{n})}
         \\&
+        \leq 
         2 n A(n,\ell) \vol_{n}(B_1(0)) \frac{ n! \cdot 2^{n} }{2^{n-l}} 
         \| \tilde f \|_{L^{p}(\Upsilon^{n})}
         .
     \end{align*}
     We use the pullback estimates 
-    \begin{align*}
+    \begin{gather*}
         \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-        &\leq 
+        \leq 
         \| \Jacobian\varphi \|_{\infty}^{k}
         |\det\varphi^{-\frac{1}{p}}|
         \cdot 
         \| \tilde u \|_{L^{p}(\Upsilon^{n})} 
-        .
-    \end{align*}
-    \begin{align*}
+        ,
+        \\
         \| \tilde f \|_{L^{p}(\Upsilon^{n})} 
-        &\leq 
+        \leq 
         2^{n-l}
         \| \hat f \|_{L^{p}(\hat T)} 
         \leq 
@@ -4377,7 +4411,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \cdot 
         \| f \|_{L^{p}(T)} 
         .
-    \end{align*}
+    \end{gather*}
 \end{proof}
 
 
@@ -4398,6 +4432,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         &
         \leq 
         C_{{\rm PF},T,F,k,p} \| \cartan u \|_{L^{p}(T)}
+        ,
     \end{align*}
     where $C_{{\rm PF},T,F,k,p} > 0$ is a constant such that 
     \begin{align*}
@@ -4409,7 +4444,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 \end{lemma}
 \begin{proof}
     There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
-    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^p(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    We let $\hat u := u \circ \varphi$ and define $\hat g \in \bfL^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
     % 
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
@@ -4466,26 +4501,28 @@ The main result of this manuscript is the following theorem.
 \end{theorem}
 
 \begin{proof}
+    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
     We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
-    See Figure~\ref{figure:exhausting} for an illustration. 
-    
+
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
     \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    Suppose that claim is true when the domain has $m$ simplices of dimension $n$. 
+    %Suppose that claim is true when the domain has $m$ simplices of dimension $n$. 
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
-    By assumption, $T_{m}$ shares the interface $\Gamma_{m}$ with $U_{m-1} \subseteq \Omega_{m-1}$. 
+    By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
+    In accordance to Lemma~\ref{lemma:}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m} \subseteq \Omega_{m}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We define $w'_{m} := w_{m-1} \circ \Xi_{m} \in W^{p}\Alt^{k}(T_{m})$,
-    where $\Xi : T_{m} \rightarrow U_{m-1}$ is the reflection mapping. 
+    where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
+    as in Theorem~\ref{theorem:starreflection}. 
     By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
     \begin{align*}
         \trace_F w_{m-1} = \trace_F w'_{m}
-        .
+        . % TODO: notation, 
     \end{align*}
     There exists $w''_{m} \in W^{p}\Alt^{k}(T_{m})$ satisfying 
     \begin{align*}
@@ -4521,7 +4558,7 @@ The main result of this manuscript is the following theorem.
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}.
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}
         \\&
         \leq 
         C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u      \|_{L^{p}(T_{m})} 
@@ -4529,7 +4566,7 @@ The main result of this manuscript is the following theorem.
         C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
-    We also employ Lemma~\ref{lemma:volumecomparison} to find 
+    We also employ Theorem~\ref{theorem:pullbackestimate} to find 
     \begin{align*}
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
@@ -4537,12 +4574,11 @@ The main result of this manuscript is the following theorem.
         \| \Jacobian \Xi   \|
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
-        \\&
-        \leq 
-        \rho(\calT)^{\frac 1 p} \xi(\calT)
-        \cdot 
-        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         .
+    \end{align*}
+    By the properties of the reflection mapping in Theorem~\ref{theorem:starreflection},
+    \begin{align*}
+        ...
     \end{align*}
     Putting this all together, 
     \begin{align*}
@@ -4565,7 +4601,7 @@ The main result of this manuscript is the following theorem.
             \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         \right) 
     \end{align*}
-    and 
+    and \todo{fix estimate}
     \begin{align*}
         \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         &
@@ -4611,7 +4647,7 @@ the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain 
     \qquad 
     \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
     \\
-    \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ),
+    \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ).
 \end{gather*}
 % Square 
 % L-shaped 
@@ -4635,7 +4671,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
     \\&\quad
     \cup 
     \left( (-1,1) \times (-1,0) \times (-1,0) \right)
-    ,
+    .
     \end{aligned}
 \end{gather*}
 % Cube 
