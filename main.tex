@@ -344,14 +344,23 @@ Upper bounds correspond to lower bounds for the non-zero eigenvalues of the scal
 % Furthermore, their constants enter the stability and convergence theory of finite element methods. 
 In numerical methods, upper bounds for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods,
 and they lead to lower bounds for the spectrum of finite element matrices. 
+The are several avenues for further research going from here. 
 
-Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of disks and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
-We conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over smoothly bounded convex domains, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
+The upper bounds in this manuscript are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches. There are at least two points where the present techniques can be improved further. First, we utilize local Poincar\'e--Friedrichs constants over single simplices, subject to various boundary conditions, but these local estimates over convex domains likely leave room for improvement.
+Second, our construction needs to extend differential forms onto a simplex from the complement of that simplex inside a local star. In the present manuscript, this is achieved via pullback along a bi-Lipschitz mapping. 
+Better transformations or more careful estimates are likely possible, as are completely different approaches.  For example, it is likely that further research on trace and extension operators on triangulations will enable better estimates.
+
+Related to the first of the aforementioned opportunities for improvement, we conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over smoothly bounded convex domains, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
 % We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. 
 On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. 
 These topics remain for future research. 
+
+Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of disks and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 \\
+
+
+
 
 The remainder of this manuscript is structured as follows.
 We review basic notions of triangulations in Section~\ref{section:triangulations}.
@@ -2965,7 +2974,7 @@ These define a basis of $\Alt^{k}(\bbR^{n})$.
 Note that 
 $\dim \Alt^{k}(\bbR^{n}) = \binom{n}{k}$. 
 In particular, $\Alt^{k}(\bbR^{n})$ is the zero vector space whenever $k > n$.
-% The dimension of the space of \(k\)-forms, denoted \(\bigwedge^k V\), is given by the binomial coefficient \(\binom{n}{k}\).
+% The dimension of the space of \(k\)-forms, denoted \(\bigwedge^{k} V\), is given by the binomial coefficient \(\binom{n}{k}\).
 
 We notice that the canonical scalar product on $\bbR^{n}$ gives rise to a scalar product on $\Alt^{1}(\bbR^{n})$,
 which induces a scalar product on $\Alt^{k}(\bbR^{n})$.
@@ -4487,7 +4496,9 @@ The main result of this manuscript is the following theorem.
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
     and such that for all $T \in \calT$:
     \begin{align*}
-        \| w_{m} \|_{L^{p}(T_m)}
+        \| w \|_{L^{p}(T_m)}
+        \leq 
+        ...
     \end{align*}
 \end{theorem}
 
@@ -4590,6 +4601,26 @@ The main result of this manuscript is the following theorem.
     \begin{align*}
         ...
     \end{align*}
+    This enables the recursion
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_{m})}
+        &
+        \leq  
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi \|^{k} 
+        \| w_{m-1} \|_{L^{p}(U_{m-1})}
+        \\&\qquad
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+        \| \cartan u      \|_{L^{p}(T_{m})} 
+        \\&\qquad
+        + 
+        C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi \|^{k+1} 
+        \| \cartan u_{m-1} \|_{L^{p}(U_{m-1})}
+        .
+    \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 
@@ -4658,3 +4689,4 @@ MWL appreciates helpful remarks by Abdellatif Aitelhad.
 \bibliography{library}
 
 \end{document}
+    
