@@ -977,96 +977,35 @@ this is because the properties of these transformations are what shows up in our
 
 For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
 
-We define the \textit{geometric shape measure} of any $n$-dimensional simplex $T$ as 
-\begin{align}\label{math:geometricshapemeasure}
+Whenever $T$ is any $n$-dimensional simplex $T$,
+we define the \textit{geometric shape measure} $\kappa(T)$
+and the \textit{algebraic shape measure} $\alpha(T)$ by 
+\begin{align}\label{math:shapemeasure}
     \kappa(T)
     := 
     \frac{ \diam(T)^{n} }{ n! \vol(T) }
-    .
-\end{align}
-
-\begin{remark}
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    In our convention, the reference simplex has unit shape measure.
-    For example, $\kappa(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\kappa(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
-
-% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    The geometric ratio $\kappa(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
-    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
-    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
-    (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
-\end{remark}
-
-
-% DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
-Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we introduce 
-\begin{align}\label{math:moremeasures}
-    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
-%     \qquad 
-%     \delta(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \diam(T) }{ \diam(T') },
+    ,
     \qquad 
-    \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
-\end{align}
-Here, $\kappa(\calT)$ is the geometric shape measure of the triangulation, and $\rho(\calT)$ is the maximal ratio of volumes between neighboring $n$-simplices. 
-Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
-that preserves $F$. We define 
-\begin{align}\label{math:reflectionmeasure}
-    \xi(\calT) 
-    := 
-    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
-    \| \Jacobian \Xi_{S,T} \|
-\end{align}
-to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
-This indicator quantifies how much reflection across the shared face distorts the geometry. 
-
-We also want to compare the diameters of simplices that intersect. We define 
-\begin{align}\label{math:diametercomparison}
-    \theta(\calT) 
-    := 
-    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
-    \frac{ \diam(T) }{ \diam(T') }
-\end{align}
-We moreover introduce 
-\begin{align}\label{math:algebraicshapemeasure}
     \alpha(T)
     := 
     \sup_{ \varphi : \Delta^n \rightarrow T } 
-    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\max}( \Jacobian \varphi ) }
-    ,
-    \qquad 
-    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T)
+    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
     ,
 \end{align}
-where the first suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
+where the last suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
+% DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
+Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
+\begin{align}\label{math:shapemeasure:triangulation}
+    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
+    \quad 
+    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T).
+\end{align}
+Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape measures of the triangulation.
 
-% and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
-% we define the quantity 
-% \begin{align*}
-%     \kappa(T)
-%     := 
-%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
-%     .
-% \end{align*}
-
-
-
-
-
-
-
-
-
-
-
-% DONE: Introduce a reference simplex 
-% DONE: DEFINE THE JACOBIAN 
-% \notice{MWL: If we need to define the Jacobian formally, where should that be put? Maybe an extra paragraph \textbf{Notation} immediately at the end of the introduction section.}
 
 \begin{lemma}\label{lemma:affinetransform}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
-    \begin{align*}
+    \begin{gather*}
         \| \Jacobian \varphi \|
         \leq 
         \Ceins{n} \cdot \diam(T) % DONE: can this improved?
@@ -1077,9 +1016,24 @@ where the first suprenum is taken over all affine transformation from the refere
         \Czwei{n} \cdot 
         \kappa(T) 
         \diam(T)^{-1}
+        ,
+        \\
+        \alpha(T)
+        \leq 
+        \Csechs{n}
+        % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        \kappa(T)
         .
+    \end{gather*}
+    Here,
+    \begin{align*}
+        \Ceins{n} \leq \sqrt{n},
+        \quad 
+        \Czwei{n} \leq \sqrt{ 2n/(n-1)^{n-1} },
+        \quad 
+        \Csechs{n} \leq \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        . 
     \end{align*}
-    Here, $\Ceins{n} \leq \sqrt{n}$ and $\Czwei{n} \leq \sqrt{ 2n/(n-1)^{n-1} }$. 
 \end{lemma}
 \begin{proof}
     We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
@@ -1138,7 +1092,53 @@ where the first suprenum is taken over all affine transformation from the refere
 %     The desired result is thus evident. 
 \end{proof}
 
-% DONE: REMOVE THE \cdot 
+\begin{remark}
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
+    For example, $\kappa(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\kappa(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
+
+% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    The geometric ratio $\kappa(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+% TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
+
+
+We are interested in the maximal ratio of volumes between neighboring $n$-simplices: 
+\begin{align}\label{math:volumecomparisonmeasure}
+    \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
+\end{align}
+We also want to compare the diameters of simplices that intersect. We define 
+\begin{align}\label{math:diametercomparison}
+    \theta(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
+    \frac{ \diam(T) }{ \diam(T') }
+\end{align}
+Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
+that preserves $F$. We define 
+\begin{align}\label{math:reflectionmeasure}
+    \xi(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
+    \| \Jacobian \Xi_{S,T} \|
+\end{align}
+to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
+This indicator quantifies how much reflection across the shared face distorts the geometry. 
+
+
+% and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
+% we define the quantity 
+% \begin{align*}
+%     \kappa(T)
+%     := 
+%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%     .
+% \end{align*}
+
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
@@ -1255,6 +1255,10 @@ where the first suprenum is taken over all affine transformation from the refere
     All the desired results thus follow.
 \end{proof}
 
+\begin{remark}
+    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\rho(\calT)$ but not $\theta(\calT)$. 
+    We can bound the ratio of diameters and volumes of simplices that share at least one edge in terms of the shape measure. 
+\end{remark}
 
 
 
@@ -3873,11 +3877,11 @@ though the dimension and the form degree enters the estimate.
 
 This section is devoted to a crucially important geometric construction. 
 Suppose that we have a shellable simplicial complex. 
-Every time add a simplex according to the shelling sequence, 
-we complete the local star of the some simplex in the triangulation.
-We search for a homeomorphism from the new simplex on its complement in the newly completed star
-such that the interface is preserved. 
-We want this homeomorphism to be bi-Lipschitz and we are particularly interested in the norms of its Jacobian.
+Every time we add a simplex according to the shelling sequence, 
+we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
+We will need a homeomorphism from the new simplex on its complement in the newly completed star.
+This homeomorphism is required to preserve the interface and to be bi-Lipschitz.
+We are particularly interested in the norms of its Jacobian.
 
 
 
@@ -3950,7 +3954,10 @@ The shape regularity is controlled in that process.
 
 
 
-
+The main result of this section constructs the desired homeomorphism. 
+It can be imagined as the reflection across the interface between the selected simplex and the remainder of the star. 
+The construction is completed in several steps,
+and the Lipschitz estimate reflects the shape regularity. 
 
 \begin{theorem}\label{theorem:starreflection}
     Let $\calT$ be an $n$-dimensional triangulation and let $S \in \calT$ be a simplex of dimension $k < n$.
@@ -3964,11 +3971,17 @@ The shape regularity is controlled in that process.
     \end{align*}
     satisfying
     \begin{align*}
-        \Lip( \Xi,      T ) \leq \Cvier{n}{k} \kappa(\calT)^{2},
+        \Lip( \Xi,      T ) \leq \Cvier{n}{k} \theta(\calT) \alpha(T)^{2},
         \quad 
-        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k} \kappa(\calT)^{2},
+        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k} \theta(\calT) \alpha(T)^{2},
     \end{align*}
-    where $\Cvier{n}{k} \leq ...$ and $\Cfive{n}{k} \leq ...$
+    where $...$ and $\Cfive{n}{k} \leq ...$
+    \begin{align*}
+        \Cvier{n}{k} \leq 64 \left( \sqrt{n} + 1 \right) \Ceins{n} \Czwei{n}
+        ,
+        \qquad 
+        \Cfive{n}{k} \leq 64 \left( \sqrt{n} + 1 \right) \Ceins{n} \Czwei{n}
+    \end{align*}
 
     \todo{Complete the estimate.}
 \end{theorem}
@@ -3995,98 +4008,194 @@ The shape regularity is controlled in that process.
         \end{align}
         We analyze its Lipschitz properties.
         % 
-        \color{blue}
+        In what follows, $y \in \bbR^{n}$. 
         On the one hand, 
         we compute the Jacobian at any $x \in \mathring T$:
-        \begin{align}
-            \Jacobian F_T(x) 
-            = 
-            \frac{ \Id \|x\| - x \|x\|^{-1} x^t }{\|x\|^2} 
+        \begin{align*}
+            \Jacobian F_T(x) \cdot y
+            &= 
+            \frac{ \|x\| y - x \|x\|^{-1} x^t y }{\|x\|^2} 
+            \left( \vecone \cdot A_{T}^{-1} x \right)
+            + 
+            \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} y \right)
+            \\&= 
+            \left( \Id - \|x\|^{-2} x \otimes x^t \right)
+            \frac{ 1 }{ \|x\| } 
             \left( \vecone \cdot A_{T}^{-1} x \right)
             + 
             \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
+            \\&= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+            \left( \Id - \hat x \otimes \hat x^t \right) y
+            + 
+            \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
             .
-        \end{align}
-        The Euclidean operator norm is 
-        \begin{align}
+        \end{align*}
+        This is an orthogonal sum of two vectors. Its norm satisfies:
+        \begin{align*}
+            \| \Jacobian F_T(x) \cdot y \|^{2}
+            &= 
+            \left| A_{T}^{-t} \vecone \cdot \hat x \right|^{2}
+            \| \left( \Id - \hat x \otimes \hat x^t \right) y \|^{2}
+            + 
+            \left| A_{T}^{-t} \vecone \cdot y \right|^{2} \| \hat x \|^{2}
+            .
+        \end{align*}
+        The Euclidean operator norm satisfies 
+        \begin{align*}
             \| \Jacobian F_T(x) \| 
             \leq 
-            2 \left| \vecone \cdot A_{T}^{-1} x \right|
+            \sqrt 2 \left\| A_{T}^{-t} \vecone \right\|_{2}
             \leq 
-            2 \sqrt{n} \cdot \sigma_{\max}(A_{T}^{-1}) 
-            .
-        \end{align}
-        \color{black}
-        On the one hand, given $x, y \in T$, 
-        where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
-        \begin{align*}
-            &
-            \left\| F_T(x) - F_T(y) \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \left\| 
-                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-            \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \left\| 
-                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
-            \right\|_{2}
-            +
-            \left\| 
-                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-            \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
-            \left\| 
-                x - y
-            \right\|_{2}
-            +
-            \left| \|A_{T}^{-1} x\|_2 - \|A_{T}^{-1} y\|_2 \right|
-            \\&\qquad 
-            \leq 
-            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
-            \left\| x - y \right\|_{2}
+            \sqrt{2n} \cdot \sigma_{\max}(A_{T}^{-1}) 
             .
         \end{align*}
-        On the other hand, given $x, y \in F_T(T)$, 
-        where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
+        On the other hand, we can rewrite the Jacobian as:
         \begin{align*}
-            &
-            \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \left\| 
-                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
-            \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \left\| 
-                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
-            \right\|_{2}
-            +
-            \left\| 
-                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
-            \right\|_{2}
-            \\&\qquad 
-            \leq 
-            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
-            \left\| 
-                x - y
-            \right\|_{2}
-            +
-            \left| \|x\|_2 - \|y\|_2 \right|
-            \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} }
-            \\&\qquad 
-            \leq 
-            2 \sigma_{\min}(A_{T}^{-1})^{-1} 
-            \left\| x - y \right\|_{2}
+            \Jacobian F_T(x) \cdot y
+            &= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+            y
+            - 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+            \left( \hat x \otimes \hat x^t \right) y
+            + 
+            \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
+            \\&= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+            y
+            - 
+            \hat x 
+            \left( 
+                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x^{t}
+                -
+                \vecone^{t} A_{T}^{-1} 
+            \right) y
+            \\&= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+            y
+            - 
+            \hat x 
+            \left( 
+                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+                -
+                A_{T}^{-t} \vecone
+            \right)^{t} y
             .
         \end{align*}
-        By convexity of the range of $F_T(T)$, 
-        we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
-        We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
+        Its inverse is found via the Woodbury formula: 
+        % Its inverse is easily verified to be:
+        \begin{align*}
+            \Jacobian F_T(x)^{-1}
+            &= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+            \Id
+            - 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-2}
+            \hat x 
+            \left( 
+                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+                -
+                A_{T}^{-t} \vecone
+            \right)^{t} 
+            \\&= 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+            \left( 
+                \Id
+                - 
+                \hat x 
+                \left( 
+                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                    \hat x
+                    -
+                    \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                    A_{T}^{-t} \vecone
+                \right)^{t}
+            \right)
+            \\&= 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \left( 
+                \Id
+                - 
+                \hat x 
+                \left( 
+                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                    \hat x
+                    -
+                    \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+                    A_{T}^{-t} \vecone
+                \right)^{t}
+            \right)
+            \\&= 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \left( 
+                \Id - \hat x \otimes \hat x^{t}
+                + 
+                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+                \hat x \otimes \vecone^{t} A_{T}^{-1}
+            \right)
+            .
+        \end{align*}
+        The inverse acts via multiplication with $\left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}$ on the span of $\hat x$.
+        We notice the upper bound 
+        \begin{align*}
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            &= 
+            \| A_{T}^{-1} \hat x \|^{-1}_{1}
+            \\&\leq  
+            \| A_{T}^{-1} \hat x \|^{-1}_{2}
+            \leq 
+            \sigma_{\min}( A_{T}^{-1} )^{-1}
+            = 
+            \sigma_{\max}( A_{T} )
+            .
+        \end{align*}
+        This holds because $A_{T}^{-1} \hat x$ is in the positive quadrant.
+        %, and its scalar product with $\vecone$ is minimized when it is colinear with a coordinate axis.
+        If $y \in \bbR^{n}$ is orthogonal to $\hat x$, then 
+        \begin{align*}
+            \| \Jacobian F_T(x)^{-1} \cdot y \|^{2}
+            &\leq 
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left\| 
+%                 y
+%             \right\|^{2}
+%             +
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left| 
+%                 \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+%                 \vecone^{t} A_{T}^{-1} y 
+%             \right|^{2}
+%             \\&\leq 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+            \left\| 
+                y
+            \right\|^{2}
+            +
+            \frac{ 
+            \left| 
+                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+                \vecone^{t} A_{T}^{-1} y 
+            \right|^{2}
+            }{
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{2}
+            }
+            .
+        \end{align*}
+        The operator norm of that inverse is:
+        \begin{align*}
+            \| \Jacobian F_T(x)^{-1} \|
+            \leq 
+            \sigma_{\max}( A_{T} )
+            \left( 1 + n \frac{ \sigma_{\max}(A_{T})^{2} }{ \sigma_{\min}(A_{T})^{2} } \right)^{\frac 1 2}
+            .
+        \end{align*}
+        Since the domain and codomain of $F_{T}$ are convex, 
+        this also implies bounds on the Lipschitz constants of $F_{T}$ and its inverse. 
+
+        
         
         
         
@@ -4167,46 +4276,119 @@ The shape regularity is controlled in that process.
             \| \Jacobian \Xi_{S} \| 
             \leq 
             \sup_{ K \in \calK  }
-            2 \sigma_{\min}(A_{K}^{-1})^{-1} 
+            \left( 1 + n \kappa(A_{K})^{2} \right)^{\frac 1 2}
+            \sigma_{\max}(A_{K}) 
+            %
             \sup_{ K \in \calR' } 
-            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{K}^{-1}) 
+            \sqrt{2n} 
+            \sigma_{\max}(A_{K}^{-1}) 
+            %
+            \sup_{ K \in \calR  } \kappa(A_{K})
+            \\
+            \| \Jacobian \Xi_{S}^{-1} \| 
+            \leq 
+            \sup_{ K \in \calK  }
+            \sqrt{2n} 
+            \sigma_{\max}(A_{K}^{-1}) 
+            %
+            \sup_{ K \in \calR' } 
+            \left( 1 + n \kappa(A_{K})^{2} \right)^{\frac 1 2}
+            \sigma_{\max}(A_{K}) 
+            %
             \sup_{ K \in \calR  } \kappa(A_{K})
             .
         \end{align*}
-        Each bisection halves the volume of the triangles. Thus,
+        \color{red}
+        Each bisection step reduces the diameter by at most a factor of one half,
+        and it reduces the volume always by a factor of one half. 
+        Via the estimates in Lemma~\ref{lemma:affinetransform}, we thus find 
         \begin{align*}
             \| \Jacobian \Xi_{S} \| 
             &\leq 
-            2 
-            \sup_{ K \in \patch_{\calT}(S) }
-            2 \sigma_{\min}(A_{K}^{-1})^{-1} 
-            4 
-            \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
-            4 
-            \kappa(A_{T})
+            2 \left( \sqrt{n} + 1 \right) 
+            \sup_{ K \in \calK  }
+            \Ceins{n} \diam(K) 
+            \sup_{ K \in \calR' } 
+            \Czwei{n} \kappa(K) \diam(K)^{-1}
+            \sup_{ K \in \calR  } \kappa(A_{K})
             \\&\leq 
-            64
-            \left( \sqrt{n} + 1 \right) 
-            \kappa(A_{T})
-            \sigma_{\max}(A_{T}^{-1}) 
-            \sup_{ K \in \patch_{\calT}(S) }
-            \sigma_{\max}(A_{K}     ) 
+            32 \left( \sqrt{n} + 1 \right) 
+            \theta(\calT)
+            \Ceins{n} 
+            \Czwei{n} 
+            \kappa(\calT) 
+            \alpha(\calT)
+            \\
+            \| \Jacobian \Xi_{S}^{-1} \| 
+            &\leq 
+            2 \left( \sqrt{n} + 1 \right) 
+            \sup_{ K \in \calK  }
+            \Czwei{n} \kappa(K) \diam(K)^{-1}
+            \sup_{ K \in \calR' } 
+            \Ceins{n} \diam(K)
+            \sup_{ K \in \calR  } \kappa(A_{K})
+            \\
+            &\leq 
+            32 \left( \sqrt{n} + 1 \right) 
+            \theta(\calT)
+            \Ceins{n} 
+            \Czwei{n} 
+            \kappa(\calT) 
+            \alpha(\calT)
             .
         \end{align*}
-        We use 
-        \begin{gather*}
-            \sup_{ K \in \patch_{\calT}(S) }
-            \sigma_{\max}(A_{K}) 
-            \leq 
-            \Ceins{n} 
-            \sup_{ K \in \patch_{\calT}(S) }
-            \diam(K)
-            \leq 
-            \Ceins{n} 
-            \theta(\calT)
-            \sigma_{\max}(A_{T}) 
-            .
-        \end{gather*}
+        Together with the definition of $\theta(\calT)$, the desired result follows. 
+%         \color{red}
+%         Each bisection halves the volume of the triangles. Thus,
+%         \begin{align*}
+%             \| \Jacobian \Xi_{S} \| 
+%             &\leq 
+%             2 
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             2 \sigma_{\max}(A_{K}) 
+%             4 
+%             \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
+%             4 
+%             \kappa(A_{T})
+%             \\&\leq 
+%             64
+%             \left( \sqrt{n} + 1 \right) 
+%             \kappa(A_{T})
+%             \sigma_{\max}(A_{T}^{-1}) 
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             \sigma_{\max}(A_{K}     ) 
+%             \\
+%             \| \Jacobian \Xi_{S}^{-1} \| 
+%             &\leq 
+%             2 \left( \sqrt{n} + 1 \right) 
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             \sigma_{\max}(A_{K}) 
+%             \sigma_{\max}(A_{T}^{-1}) 
+%             4 \kappa(A_{T})
+%             \\&\leq 
+%             64
+%             \left( \sqrt{n} + 1 \right) 
+%             \kappa(A_{T})
+%             \sigma_{\max}(A_{T}^{-1}) 
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             \sigma_{\max}(A_{K}     ) 
+%             .
+%         \end{align*}
+%         We use 
+%         \begin{gather*}
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             \sigma_{\max}(A_{K}) 
+%             \leq 
+%             \Ceins{n} 
+%             \sup_{ K \in \patch_{\calT}(S) }
+%             \diam(K)
+%             \leq 
+%             \Ceins{n} 
+%             \theta(\calT)
+%             \sigma_{\max}(A_{T}) 
+%             .
+%         \end{gather*}
+%         \color{black}
         % That establishes the final estimate. 
 %         \item 
 %         Suppose that $S = \{v_0\}$ is a single vertex. 

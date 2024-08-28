@@ -12,6 +12,177 @@
 
 
 
+
+
+
+
+
+
+
+\color{red}
+        On the one hand, given $x, y \in T$, 
+        where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
+        \begin{align*}
+            &
+            \left\| F_T(x) - F_T(y) \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+            \\&\qquad 
+            \leq 
+            2\sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+            \left\| x - y \right\|_{2}
+            .
+        \end{align*}
+        On the one hand, given $x, y \in T$, 
+        where $\| x \|_{2} \leq \| y \|_{2}$ without loss of generality, we find 
+        \begin{align*}
+            &
+            \left\| F_T(x) - F_T(y) \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+            \frac{\|y\|}{\|x\|}
+            +
+            \|A_{T}^{-1} y\|_1 \|y\|_{2}
+            \left| \frac{1}{\|x\|} - \frac{1}{\|y\|} \right|
+            \\&\qquad 
+            \leq 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+            \frac{\|y\|}{\|x\|}
+            +
+            \|A_{T}^{-1} y\|_1 \|y\|_{2}
+            \left| \frac{ \|y\|_{2} - \|x\|_{2} }{\|x\|_{2} \|y\|_{2}} \right|
+            \\&\qquad 
+            \leq 
+            3 \sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+            \left\| x - y \right\|_{2}
+            .
+        \end{align*}
+        On the other hand, given $x, y \in F_T(T)$, 
+        where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
+        \begin{align*}
+            &
+            \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+            \right\|_{2}
+            +
+            \left\| 
+                \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+            \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|x\|_2 - \|y\|_2 \right|
+            \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} }
+            +
+            \|y\|_2^{2}
+            \left| 
+            \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} \| A_{T}^{-1} y \|_{1} }
+            \right|
+            \\&\qquad 
+            \leq 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{2} } 
+            \left\| 
+                x - y
+            \right\|_{2}
+            +
+            \left| \|x\|_2 - \|y\|_2 \right|
+            \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{2} }
+            +
+            \|y\|_2^{2}
+            \left| 
+            \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{2} \| A_{T}^{-1} y \|_{2} }
+            \right|
+            \\&\qquad 
+            \leq 
+            \left( 2 + \sqrt{n} \frac{\sigma_{\max}(A_{T}^{-1}) }{ \sigma_{\min}(A_{T}^{-1}) } \right) \sigma_{\min}(A_{T}^{-1})^{-1} 
+            \left\| x - y \right\|_{2}
+            \\&\qquad 
+            \leq 
+            \left( 2 + \sqrt{n} \kappa(A_{T}) \right) \sigma_{\max}(A_{T})
+            \left\| x - y \right\|_{2}
+            .
+        \end{align*}
+        By convexity of the range of $F_T(T)$, 
+        we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
+        We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
+        \color{black}
+        
+
+
+
+
+
+
+
+
+
+
+
 \begin{proof}
     We let $\hat F_0$ be the convex closure of the first $n$ unit vectors. 
     We let $\hat F_1, \dots, \hat F_n$ be the remaining faces of the reference simplex 
