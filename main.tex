@@ -570,7 +570,7 @@ such that $\nabla u = \bff$ and
     .
 \end{align}
 Since $\Omega$ is connected, this is equivalent to  
-\begin{align}
+\begin{align*}
     \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
     \leq 
     C_{{\rm PF},\Omega,p} 
@@ -579,7 +579,7 @@ Since $\Omega$ is connected, this is equivalent to
     \forall 
     u \in W^{1,p}(\Omega)
     .
-\end{align}
+\end{align*}
 We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 \\
 
@@ -587,7 +587,7 @@ We wish to clarify the relationship between the Poincar\'e--Friedrichs inequalit
 we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
 if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
 % for all $u \in W^{1,p}(\Omega)$
-\begin{align}
+\begin{align*}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
     C_{{\rm P},\Omega,p} 
@@ -596,7 +596,7 @@ if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that
     \quad 
     \forall u \in W^{1,p}(\Omega)
     ,
-\end{align}
+\end{align*}
 where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \begin{align*}
     u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u(x) \;dx.
@@ -772,7 +772,7 @@ Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \inft
     ,
 \end{align}
 where we use an upper bound by Chua and Wheeden:
-\begin{align}
+\begin{align*}
     C_{{\rm P},{\rm CW},p} 
     := 
     \sup\limits_{ v \in C^\infty([0,1]) \setminus \bbR } 
@@ -787,7 +787,7 @@ where we use an upper bound by Chua and Wheeden:
     2
     \left( \frac p 2 \right)^{\frac 1 p}
     .
-\end{align}
+\end{align*}
 Note that this upper bound is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
 As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
 
@@ -807,12 +807,12 @@ when $1 < p < \infty$, one can show that
     ,
 \end{align}
 where $C_{{\rm PF},{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
-\begin{align}
+\begin{align*}
     C_{{\rm PF},{\rm EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
-\end{align}
+\end{align*}
 Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\'e inequalities
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
@@ -2858,12 +2858,12 @@ $\phi^{\rm b}: L^{p}(\Omega') \to L^{p}(\Omega)$.
 We define them 
 for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting 
 \begin{subequations}\label{eq_definition_piola}
-\begin{align}
+\begin{align*}
     \phi^{\grad}(v) &= v \circ \phi, \\
     \phi^{\curl}(\bfw) &= \Jacobian\phi^{T} (\bfw \circ \phi), \\
     \phi^{\divergence}(\bfw) &= \adj(\Jacobian\phi) \left( \bfw \circ \phi \right), \\  
     \phi^{\rm b}(v) &= \det(\Jacobian\phi) \left( v \circ \phi \right),
-\end{align}
+\end{align*}
 \end{subequations}
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$; see also~\cite[Definition~9.8]{ern2021finite}.
 These mappings are invertible. 
@@ -3246,11 +3246,11 @@ For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \ti
 \end{equation}
 Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
 we then define the integral operators
-\begin{align}
+\begin{align*}
   \Poinc_{\ell} u(x) &= \int_{\Omega} G_{n-\ell+1}(y,x) \,(x-y)\lrcorner u(y)\,dy,
   \\
   \Bogov_{\ell} u(x) &= \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy.
-\end{align}
+\end{align*}
 We call $\Poinc_{\ell}$ the Poincar\'e operator and $\Bogov_{\ell}$ the Bogovski\u{\i} operator. 
 \\
 
@@ -3998,229 +3998,17 @@ and the Lipschitz estimate reflects the shape regularity.
     We derive the estimate in several steps. 
     \begin{itemize}
         \item 
-        We begin with the following preparatory observations. 
-        Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
-        We let $A_{T} \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
-        That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
-        Then the mapping 
-        \begin{align}
-            F_T(x) 
-            = 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x
-        \end{align}
-        maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
-        \begin{align}
-            F_T^{-1}(x) 
-            = 
-            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
-            .
-        \end{align}
-        We analyze its Lipschitz properties.
-        % 
-        In what follows, $y \in \bbR^{n}$. 
-        On the one hand, 
-        we compute the Jacobian at any $x \in \mathring T$:
-        \begin{align*}
-            \Jacobian F_T(x) \cdot y
-            &= 
-            \frac{ \|x\| y - x \|x\|^{-1} x^t y }{\|x\|^2} 
-            \left( \vecone \cdot A_{T}^{-1} x \right)
-            + 
-            \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} y \right)
-            \\&= 
-            \left( \Id - \|x\|^{-2} x \otimes x^t \right)
-            \frac{ 1 }{ \|x\| } 
-            \left( \vecone \cdot A_{T}^{-1} x \right)
-            + 
-            \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
-            \\&= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-            \left( \Id - \hat x \otimes \hat x^t \right) y
-            + 
-            \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
-            .
-        \end{align*}
-        This is an orthogonal sum of two vectors. Its norm satisfies:
-        \begin{align*}
-            \| \Jacobian F_T(x) \cdot y \|^{2}
-            &= 
-            \left| A_{T}^{-t} \vecone \cdot \hat x \right|^{2}
-            \| \left( \Id - \hat x \otimes \hat x^t \right) y \|^{2}
-            + 
-            \left| A_{T}^{-t} \vecone \cdot y \right|^{2} \| \hat x \|^{2}
-            .
-        \end{align*}
-        The Euclidean operator norm satisfies 
-        \begin{align*}
-            \| \Jacobian F_T(x) \| 
-            \leq 
-            \sqrt 2 \left\| A_{T}^{-t} \vecone \right\|_{2}
-            \leq 
-            \sqrt{2n} \cdot \sigma_{\max}(A_{T}^{-1}) 
-            .
-        \end{align*}
-        On the other hand, we can rewrite the Jacobian as:
-        \begin{align*}
-            \Jacobian F_T(x) \cdot y
-            &= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-            y
-            - 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-            \left( \hat x \otimes \hat x^t \right) y
-            + 
-            \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
-            \\&= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-            y
-            - 
-            \hat x 
-            \left( 
-                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x^{t}
-                -
-                \vecone^{t} A_{T}^{-1} 
-            \right) y
-            \\&= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-            y
-            - 
-            \hat x 
-            \left( 
-                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
-                -
-                A_{T}^{-t} \vecone
-            \right)^{t} y
-            .
-        \end{align*}
-        Its inverse is found via the Woodbury formula: 
-        % Its inverse is easily verified to be:
-        \begin{align*}
-            \Jacobian F_T(x)^{-1}
-            &= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-            \Id
-            - 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-2}
-            \hat x 
-            \left( 
-                \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
-                -
-                A_{T}^{-t} \vecone
-            \right)^{t} 
-            \\&= 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-            \left( 
-                \Id
-                - 
-                \hat x 
-                \left( 
-                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
-                    \hat x
-                    -
-                    \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                    A_{T}^{-t} \vecone
-                \right)^{t}
-            \right)
-            \\&= 
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-            \left( 
-                \Id
-                - 
-                \hat x 
-                \left( 
-                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                    % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
-                    \hat x
-                    -
-                    \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-                    A_{T}^{-t} \vecone
-                \right)^{t}
-            \right)
-            \\&= 
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-            \left( 
-                \Id - \hat x \otimes \hat x^{t}
-                + 
-                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-                \hat x \otimes \vecone^{t} A_{T}^{-1}
-            \right)
-            .
-        \end{align*}
-        The inverse acts via multiplication with $\left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}$ on the span of $\hat x$.
-        We notice the upper bound 
-        \begin{align*}
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-            &= 
-            \| A_{T}^{-1} \hat x \|^{-1}_{1}
-            \\&\leq  
-            \| A_{T}^{-1} \hat x \|^{-1}_{2}
-            \leq 
-            \sigma_{\min}( A_{T}^{-1} )^{-1}
-            = 
-            \sigma_{\max}( A_{T} )
-            .
-        \end{align*}
-        This holds because $A_{T}^{-1} \hat x$ is in the positive quadrant.
-        %, and its scalar product with $\vecone$ is minimized when it is colinear with a coordinate axis.
-        If $y \in \bbR^{n}$ is orthogonal to $\hat x$, then 
-        \begin{align*}
-            \| \Jacobian F_T(x)^{-1} \cdot y \|^{2}
-            &\leq 
-%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-%             \left\| 
-%                 y
-%             \right\|^{2}
-%             +
-%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-%             \left| 
-%                 \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-%                 \vecone^{t} A_{T}^{-1} y 
-%             \right|^{2}
-%             \\&\leq 
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-            \left\| 
-                y
-            \right\|^{2}
-            +
-            \frac{ 
-            \left| 
-                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-                \vecone^{t} A_{T}^{-1} y 
-            \right|^{2}
-            }{
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{2}
-            }
-            .
-        \end{align*}
-        The operator norm of that inverse is:
-        \begin{align*}
-            \| \Jacobian F_T(x)^{-1} \|
-            \leq 
-            \sigma_{\max}( A_{T} )
-            \left( 1 + n \frac{ \sigma_{\max}(A_{T})^{2} }{ \sigma_{\min}(A_{T})^{2} } \right)^{\frac 1 2}
-            .
-        \end{align*}
-        Since the domain and codomain of $F_{T}$ are convex, 
-        this also implies bounds on the Lipschitz constants of $F_{T}$ and its inverse. 
-
-        
-        
-        
-        
-        \item 
         Without loss of generality, the barycenter of $S$ is the origin. 
-        Let $I := M \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
-        We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
-        So $J$ is in the boundary of $|\calT|$ and is disjoint from $S$.
+        % Let $I := U \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
+        %We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
+        %So $J$ is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
         We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
         Note that $J$ is the union of exactly those faces of $T$ that contain $S'$.
         
         
         \item 
-        We construct a new triangulation that contains $T$ and that is a star around $S$.
-        For that purpose, we let $z'_{S}$ be the midpoint of $S'$. 
-        We first define a new triangulation $\calS$ by the barycentric refinement of $T$. 
+        We let $z'_{S}$ be the midpoint of $S'$. 
+        We first define a new triangulation $\calS$ by the barycentric refinement of the complementary $S'$. 
         All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
         
         We define another simplicial complex $\calS^c$ as follows:
@@ -4243,7 +4031,10 @@ and the Lipschitz estimate reflects the shape regularity.
         and all $n$-simplices in $\calR'$ contain $z_{S}$. 
         We let $\calR$ and $\calR^{c}$ be the corresponding refinements of $\calS$ and $\calS^{c}$, respectively.
         
+        The last simplicial complex that we introduce is called $\calK$,
+        and it is the simplicial complex obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
         
+                
         \item 
         % \todo{Reflect onto complement and estimate bi-Lipschitz constant}
         We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$.
@@ -4262,55 +4053,144 @@ and the Lipschitz estimate reflects the shape regularity.
             \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
 
-        
+
         \item 
-        % \todo{Combine all this to get the final transformation.}
-        We let $\calK$ the simplicial complex obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
-        Using our initial observations, we obtain homeomorphisms 
+        We introduce a bi-Lipschitz mapping 
         \begin{align*}
-            \Psi_{\calK } : |\calK| \rightarrow \calB,
-            \qquad 
-            \Psi_{\calR'} : |\calR'| \rightarrow \calB.
+            \Psi : |\calR'| \rightarrow |\calK|
         \end{align*}
-        Both $\Psi_{\calK}$ and $\Psi_{\calR'}$ map $T$ onto the same subset of the unit ball.
-        Consequently, the image under $\Psi_{\calK}$ of $\overline{|\calK| \setminus T}$
-        onto the image under $\Psi_{\calR'}$ of $|\calR^{c}|$.
-        It follows that 
+        in the following manner. Let $T \in \calR'$ be an $n$-dimensional simplex and let $x \in T$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$.
+        We define 
         \begin{align*}
-            \Xi_{S} := \Psi_{\calK}^{-1} \Psi_{\calR'} \Theta
-        \end{align*}
-        is a mapping from $T$ onto $\overline{\patch_{\calT}(S) \setminus T}$.
-        We estimate the Jacobians: 
-        \begin{align*}
-            \| \Jacobian \Xi_{S} \| 
-            \leq 
-            \sup_{ K \in \calK  }
-            \left( 1 + n \kappa(A_{K})^{2} \right)^{\frac 1 2}
-            \sigma_{\max}(A_{K}) 
-            %
-            \sup_{ K \in \calR' } 
-            \sqrt{2n} 
-            \sigma_{\max}(A_{K}^{-1}) 
-            %
-            \sup_{ K \in \calR  } \kappa(A_{K})
-            \\
-            \| \Jacobian \Xi_{S}^{-1} \| 
-            \leq 
-            \sup_{ K \in \calK  }
-            \sqrt{2n} 
-            \sigma_{\max}(A_{K}^{-1}) 
-            %
-            \sup_{ K \in \calR' } 
-            \left( 1 + n \kappa(A_{K})^{2} \right)^{\frac 1 2}
-            \sigma_{\max}(A_{K}) 
-            %
-            \sup_{ K \in \calR  } \kappa(A_{K})
+            \Psi(x) 
+            = 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \| A_{K}^{-1} x \|_{1} } x
             .
         \end{align*}
-        \color{red}
+        One easily verifies that this defines a continuous mapping $\Psi$. 
+        By the same line of thought, we see that it is invertible with inverse 
+        \begin{align*}
+            \Psi^{-1}(x) 
+            = 
+            \frac{ \| A_{K}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} } x
+            .
+        \end{align*}
+        We analyze its Jacobian. 
+        First, by assumption,
+        \begin{align*}
+            \Psi(x) 
+            = 
+            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } x
+            .
+        \end{align*}
+        In what follows, $y \in \bbR^n$. We observe 
+        \begin{align*}
+            \Jacobian \Psi(x) \cdot y 
+            &= 
+            \frac{ 
+                ( A_{T}^{-t} \vecone \cdot y ) 
+                ( A_{K}^{-t} \vecone \cdot x )
+                -
+                ( A_{T}^{-t} \vecone \cdot x )
+                ( A_{K}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot x )^2
+            } 
+            x
+            + 
+            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } y
+            \\&= 
+            \frac{ 
+                ( A_{T}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )
+            } 
+            x
+            -
+            \frac{ 
+                ( A_{T}^{-t} \vecone \cdot x )
+                ( A_{K}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )^2
+            } 
+            x
+            + 
+            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } y
+            \\&= 
+            \frac{ 
+                ( A_{T}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )
+            } 
+            x
+            +
+            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } 
+            \left( 
+                y
+                -
+                \frac{ 
+                    ( A_{K}^{-t} \vecone \cdot y ) 
+                }{ 
+                    ( A_{K}^{-t} \vecone \cdot  x ) 
+                } 
+                x
+            \right)
+            .
+        \end{align*}
+        The vector $A_{K}^{-1} x$ has length at least $\sigma_{\min}( A_{K}^{-1} ) \| x \|$ and the product with $\vecone$ is smallest when the vector is colinear with one of the coordinate axes. We conclude that 
+        \[
+             A_{K}^{-t} \vecone \cdot x 
+             = 
+             \vecone \cdot A_{K}^{-1} x 
+             \geq 
+             \sigma_{\min}( A_{K}^{-1} ) \| x \|.
+        \]
+        Together with the Xu-Zikatanov inequality, we obtain the upper bound 
+        \begin{align*}
+            \| \Jacobian \Psi(x) \|
+            &\leq 
+            \sqrt{n}
+            \frac{ \sigma_{\max}( A_{T}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
+            \left( 
+            1
+            + 
+            n
+            \frac{ \sigma_{\max}( A_{T}^{-1} ) \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{K}^{-2} ) }
+            \right) 
+            .
+        \end{align*}
+        By completely analogous arguments, we find 
+        \begin{align*}
+            \| \Jacobian \Psi(x) \|
+            &\leq 
+            \sqrt{n}
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{T}^{-1} ) }
+            \left( 
+            1
+            + 
+            n
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) \sigma_{\max}( A_{T}^{-1} ) }{ \sigma_{\min}( A_{T}^{-2} ) }
+            \right) 
+            .
+        \end{align*}
+        It follows that 
+        \begin{align*}
+            \Xi := \Psi \circ \Theta
+        \end{align*}
+        is a mapping from $T$ onto $\overline{\patch_{\calT}(S) \setminus T}$.
+        It preserves the interface from $T$ onto $U$. 
+        It is continuous and bi-Lipschitz due to Rademacher's theorem. 
+        
+        
+        \item 
+        We need to estimate the singular values of the transformation matrices within the bisected simplices. 
         Each bisection step reduces the diameter by at most a factor of one half,
         and it reduces the volume always by a factor of one half. 
-        Via the estimates in Lemma~\ref{lemma:affinetransform}, we thus find 
+        We use the estimates in Lemma~\ref{lemma:affinetransform}.
+        This shows 
+        
+        
+        \color{red}
         \begin{align*}
             \| \Jacobian \Xi_{S} \| 
             &\leq 
@@ -4347,121 +4227,9 @@ and the Lipschitz estimate reflects the shape regularity.
             .
         \end{align*}
         Together with the definition of $\theta(\calT)$, the desired result follows. 
-%         \color{red}
-%         Each bisection halves the volume of the triangles. Thus,
-%         \begin{align*}
-%             \| \Jacobian \Xi_{S} \| 
-%             &\leq 
-%             2 
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             2 \sigma_{\max}(A_{K}) 
-%             4 
-%             \left( \sqrt{n} + 1 \right) \sigma_{\max}(A_{T}^{-1}) 
-%             4 
-%             \kappa(A_{T})
-%             \\&\leq 
-%             64
-%             \left( \sqrt{n} + 1 \right) 
-%             \kappa(A_{T})
-%             \sigma_{\max}(A_{T}^{-1}) 
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             \sigma_{\max}(A_{K}     ) 
-%             \\
-%             \| \Jacobian \Xi_{S}^{-1} \| 
-%             &\leq 
-%             2 \left( \sqrt{n} + 1 \right) 
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             \sigma_{\max}(A_{K}) 
-%             \sigma_{\max}(A_{T}^{-1}) 
-%             4 \kappa(A_{T})
-%             \\&\leq 
-%             64
-%             \left( \sqrt{n} + 1 \right) 
-%             \kappa(A_{T})
-%             \sigma_{\max}(A_{T}^{-1}) 
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             \sigma_{\max}(A_{K}     ) 
-%             .
-%         \end{align*}
-%         We use 
-%         \begin{gather*}
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             \sigma_{\max}(A_{K}) 
-%             \leq 
-%             \Ceins{n} 
-%             \sup_{ K \in \patch_{\calT}(S) }
-%             \diam(K)
-%             \leq 
-%             \Ceins{n} 
-%             \theta(\calT)
-%             \sigma_{\max}(A_{T}) 
-%             .
-%         \end{gather*}
-%         \color{black}
-        % That establishes the final estimate. 
-%         \item 
-%         Suppose that $S = \{v_0\}$ is a single vertex. 
-%         We construct a transformation from the vertex star around $S$ onto the Euclidean unit ball. 
-%         Without loss of generality, $S$ is at the origin. 
-%         For any $T \in \patch_{\calT}(S)$, we let $F_T$ be the transformation. 
-%         We define $F$ over $|\patch_{\calT}(S)|$ piecewise. 
-%         \todo{Complete}
-%         
         
-%         \item 
-%         Let $\calU$ be the simplicial complex of dimension $n-1$ that contains precisely those facets of $T$ that do not contain $S$.
-%         We write $Y := F( |\calU| )$. 
-%         \todo{Shape of the outer patch $Y$, star-shaped geometry}
-%         
-%         \item 
-%         We let $\sphere{n}_{\star} := \sphere{n} \setminus \{e_{n+1}\} \subseteq \bbR^{n+1}$ be the unit sphere without the North pole. 
-%         Suppose that $\bar x \in \sphere{n}$ is a point on the unit sphere and $\bar x \neq e_{n+1}$. 
-%         We define its stereographic projection as 
-%         \begin{align}
-%             \pi( \bar x ) 
-%             = 
-%             \sum_{i=1}^{n} \frac{x_i}{1 - x_{n+1}} e_{i}
-%             .
-%         \end{align}
-%         This is a mapping $\pi : \sphere{n}_{\star} \rightarrow \bbR^{n}$. 
-%         Its inverse is defined as follows: given $y \in \bbR^{n}$, we have 
-%         \begin{align}
-%             \pi^{-1}( y )
-%             = 
-%             \sum_{i=1}^{n} \frac{2 y_i}{1 + \| y \|^2} e_{i}
-%             +
-%             \frac{1 - \| y \|^2}{1 + \| y \|^2} e_{n+1}
-%             .
-%         \end{align}
-%         \item 
-%         Mirroring the unit sphere along the equator is expressed in stereographic coordinates by the involution 
-%         \begin{align}
-%             \mu : \bbR^{n} \rightarrow \bbR^{n},
-%             \qquad 
-%             y \mapsto \frac{y}{\| y \|}.
-%         \end{align}
-%         \item 
-%         \begin{align}
-%             G(y) := \| y \| \cdot \phi\left( \frac{y}{\|y\|} \right)^{-1} \frac{y}{\|y\|}
-%         \end{align}
-%         \item 
-%         We combine these mappings:
-%         \begin{align}
-%             Q : \sphere{n} \rightarrow \sphere{n}, \qquad x \mapsto \pi^{-1} G^{-1} \mu G \pi(x)
-%         \end{align}
-%         We want to analyze its Lipschitz properties. \todo{Stuff}
-%         \item
-%         We have constructed a bi-Lipschitz mapping from the Euclidean unit sphere into itself.
-%         We use the following result~\cite[Theorem~3]{alestalo2018radial}:
-%         if $f : \sphere{n} \rightarrow \sphere{n}$ is any $L$-Lipschitz mapping from the Euclidean unit sphere into itself, 
-%         then the radial extension $f : \ball{n} \rightarrow \ball{n}$ is an $L$-Lipschitz mapping from the Euclidean unit ball into itself.
-%         Consequently, \todo{write out}
-%         \item 
-%         In total, we thus have 
-%         \begin{align}
-%             Q' := F^{-1} \pi^{-1} G^{-1} \mu G \pi F
-%             .
-%         \end{align}
+        
+        
     \end{itemize}
     The proof is complete. 
 \end{proof}
