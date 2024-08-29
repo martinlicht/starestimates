@@ -6,6 +6,10 @@
 \usepackage{hyperref}         % For hypertext links
 
 
+\usepackage{enumitem}
+\setitemize[1]{left=0.0cm} 
+
+
 % Title, authors, and affiliations
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
@@ -3980,19 +3984,11 @@ and the Lipschitz estimate reflects the shape regularity.
     \end{align*}
     satisfying
     \begin{align*}
-        \Lip( \Xi,      T ) \leq \Cvier{n}{k} \theta(\calT) \alpha(T)^{2},
+        \Lip( \Xi,      T ) \leq \Cvier{n}{k}(\calT),
         \quad 
-        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k} \theta(\calT) \alpha(T)^{2},
+        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k}(\calT),
     \end{align*}
-    where $...$ and $\Cfive{n}{k} \leq ...$
-    \begin{align*}
-        \Cvier{n}{k} \leq 64 \left( \sqrt{n} + 1 \right) \Ceins{n} \Czwei{n}
-        ,
-        \qquad 
-        \Cfive{n}{k} \leq 64 \left( \sqrt{n} + 1 \right) \Ceins{n} \Czwei{n}
-    \end{align*}
-
-    \todo{Complete the estimate.}
+    where $\Cvier{n}{k}(\calT)$ and $\Cfive{n}{k}(\calT)$ are constants as stated in the proof. 
 \end{theorem}
 \begin{proof}
     We derive the estimate in several steps. 
@@ -4059,12 +4055,12 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Psi : |\calR'| \rightarrow |\calK|
         \end{align*}
-        in the following manner. Let $T \in \calR'$ be an $n$-dimensional simplex and let $x \in T$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$.
+        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$.
         We define 
         \begin{align*}
             \Psi(x) 
             = 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \| A_{K}^{-1} x \|_{1} } x
+            \frac{ \| A_{{G}}^{-1} x \|_{1} }{ \| A_{K}^{-1} x \|_{1} } x
             .
         \end{align*}
         One easily verifies that this defines a continuous mapping $\Psi$. 
@@ -4072,7 +4068,7 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Psi^{-1}(x) 
             = 
-            \frac{ \| A_{K}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} } x
+            \frac{ \| A_{K}^{-1} x \|_{1} }{ \| A_{{G}}^{-1} x \|_{1} } x
             .
         \end{align*}
         We analyze its Jacobian. 
@@ -4080,7 +4076,7 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Psi(x) 
             = 
-            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } x
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } x
             .
         \end{align*}
         In what follows, $y \in \bbR^n$. We observe 
@@ -4088,43 +4084,43 @@ and the Lipschitz estimate reflects the shape regularity.
             \Jacobian \Psi(x) \cdot y 
             &= 
             \frac{ 
-                ( A_{T}^{-t} \vecone \cdot y ) 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
                 ( A_{K}^{-t} \vecone \cdot x )
                 -
-                ( A_{T}^{-t} \vecone \cdot x )
+                ( A_{{G}}^{-t} \vecone \cdot x )
                 ( A_{K}^{-t} \vecone \cdot y ) 
             }{ 
                 ( A_{K}^{-t} \vecone \cdot x )^2
             } 
             x
             + 
-            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } y
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } y
             \\&= 
             \frac{ 
-                ( A_{T}^{-t} \vecone \cdot y ) 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
             }{ 
                 ( A_{K}^{-t} \vecone \cdot  x )
             } 
             x
             -
             \frac{ 
-                ( A_{T}^{-t} \vecone \cdot x )
+                ( A_{{G}}^{-t} \vecone \cdot x )
                 ( A_{K}^{-t} \vecone \cdot y ) 
             }{ 
                 ( A_{K}^{-t} \vecone \cdot  x )^2
             } 
             x
             + 
-            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } y
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } y
             \\&= 
             \frac{ 
-                ( A_{T}^{-t} \vecone \cdot y ) 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
             }{ 
                 ( A_{K}^{-t} \vecone \cdot  x )
             } 
             x
             +
-            \frac{ A_{T}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } 
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } 
             \left( 
                 y
                 -
@@ -4137,6 +4133,7 @@ and the Lipschitz estimate reflects the shape regularity.
             \right)
             .
         \end{align*}
+        We see that the last summand is an oblique projection of $y$. 
         The vector $A_{K}^{-1} x$ has length at least $\sigma_{\min}( A_{K}^{-1} ) \| x \|$ and the product with $\vecone$ is smallest when the vector is colinear with one of the coordinate axes. We conclude that 
         \[
              A_{K}^{-t} \vecone \cdot x 
@@ -4150,26 +4147,26 @@ and the Lipschitz estimate reflects the shape regularity.
             \| \Jacobian \Psi(x) \|
             &\leq 
             \sqrt{n}
-            \frac{ \sigma_{\max}( A_{T}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
+            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
             \left( 
             1
             + 
             n
-            \frac{ \sigma_{\max}( A_{T}^{-1} ) \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{K}^{-2} ) }
+            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{K}^{-2} ) }
             \right) 
             .
         \end{align*}
         By completely analogous arguments, we find 
         \begin{align*}
-            \| \Jacobian \Psi(x) \|
+            \| \Jacobian \Psi^{-1}(x) \|
             &\leq 
             \sqrt{n}
-            \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{T}^{-1} ) }
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-1} ) }
             \left( 
             1
             + 
             n
-            \frac{ \sigma_{\max}( A_{K}^{-1} ) \sigma_{\max}( A_{T}^{-1} ) }{ \sigma_{\min}( A_{T}^{-2} ) }
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-2} ) }
             \right) 
             .
         \end{align*}
@@ -4177,8 +4174,8 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Xi := \Psi \circ \Theta
         \end{align*}
-        is a mapping from $T$ onto $\overline{\patch_{\calT}(S) \setminus T}$.
-        It preserves the interface from $T$ onto $U$. 
+        is a mapping from ${G}$ onto $U = \overline{\patch_{\calT}(S) \setminus {G}}$.
+        It preserves the interface from ${G}$ onto $U$. 
         It is continuous and bi-Lipschitz due to Rademacher's theorem. 
         
         
@@ -4187,49 +4184,97 @@ and the Lipschitz estimate reflects the shape regularity.
         Each bisection step reduces the diameter by at most a factor of one half,
         and it reduces the volume always by a factor of one half. 
         We use the estimates in Lemma~\ref{lemma:affinetransform}.
-        This shows 
-        
-        
-        \color{red}
+        When $K \in \calK \cup \calS'r$, then 
         \begin{align*}
-            \| \Jacobian \Xi_{S} \| 
-            &\leq 
-            2 \left( \sqrt{n} + 1 \right) 
-            \sup_{ K \in \calK  }
-            \Ceins{n} \diam(K) 
-            \sup_{ K \in \calR' } 
-            \Czwei{n} \kappa(K) \diam(K)^{-1}
-            \sup_{ K \in \calR  } \kappa(A_{K})
-            \\&\leq 
-            32 \left( \sqrt{n} + 1 \right) 
-            \theta(\calT)
-            \Ceins{n} 
-            \Czwei{n} 
-            \kappa(\calT) 
-            \alpha(\calT)
-            \\
-            \| \Jacobian \Xi_{S}^{-1} \| 
-            &\leq 
-            2 \left( \sqrt{n} + 1 \right) 
-            \sup_{ K \in \calK  }
-            \Czwei{n} \kappa(K) \diam(K)^{-1}
-            \sup_{ K \in \calR' } 
-            \Ceins{n} \diam(K)
-            \sup_{ K \in \calR  } \kappa(A_{K})
-            \\
-            &\leq 
-            32 \left( \sqrt{n} + 1 \right) 
-            \theta(\calT)
-            \Ceins{n} 
-            \Czwei{n} 
-            \kappa(\calT) 
-            \alpha(\calT)
-            .
+             \sigma_{\max}( A_{K}^{-1} )
+             &\leq 
+             \Czwei{n} \kappa(K) \diam(K)
+             \leq 
+             2 \Czwei{n} \kappa(\calT) \diam(K)^{-1}
+             \\
+             \sigma_{\min}( A_{K}^{-1} )^{-1}
+             &= 
+             \sigma_{\max}( A_{K} ) 
+             \leq 
+             \Ceins{n} \diam(K),
+             \\ 
+             \kappa( A_{K} )
+             &\leq 
+             \Csechs{n} \kappa(K) \leq 2 \Csechs{n} \kappa(\calT)
+             .
         \end{align*}
-        Together with the definition of $\theta(\calT)$, the desired result follows. 
-        
-        
-        
+        When ${G} \in \calR'$ is not our original simplex, then 
+        \begin{align*}
+             \sigma_{\max}( A_{{G}}^{-1} )
+             &\leq 
+             \Czwei{n} \kappa({G}) \diam({G})
+             \leq 
+             4 \Czwei{n} \kappa(\calT) \diam(G)^{-1},
+             \\
+             \sigma_{\min}( A_{{G}}^{-1} )^{-1}
+             &= 
+             \sigma_{\max}( A_{{G}} ) 
+             \leq 
+             \Ceins{n} \diam({G}),
+             \\ 
+             \kappa( A_{{G}} )
+             &\leq 
+             \Csechs{n} \kappa({G}) \leq 4 \Csechs{n} \kappa(\calT)
+             .
+        \end{align*}
+        All the diameters above are comparable up to a factor of $\theta(\calT)$.
+        In summary,
+        \begin{gather*}
+            \| \Jacobian \Theta_{|K}      \| \leq 2 \Csechs{n} \kappa(\calT)
+            ,
+            \qquad 
+            \| \Jacobian \Theta_{|K}^{-1} \| \leq 2 \Csechs{n} \kappa(\calT)
+            ,
+            \\
+            \| \Jacobian \Xi(x) \|
+            \leq 
+            \sqrt{n}
+            4 
+            \kappa(\calT) 
+            \Ceins{n} 
+            \Czwei{n} 
+            \theta(\calT) % \frac{ \diam(K) }{ \diam(G) }
+            \left( 
+                1
+                + 
+                n
+                2 \Csechs{n} \kappa(\calT)
+                4 
+                \kappa(\calT) 
+                \Ceins{n} 
+                \Czwei{n} 
+                \theta(\calT) % \frac{ \diam(K) }{ \diam(G) }
+            \right) 
+            2 \Csechs{n} \kappa(\calT)
+            ,
+            \\
+            \| \Jacobian \Xi^{-1}(x) \|
+            \leq 
+            \sqrt{n}
+            2 
+            \kappa(\calT) 
+            \Ceins{n} 
+            \Czwei{n} 
+            \theta(\calT) % \frac{ \diam(G) }{ \diam(K) }
+            \left( 
+                1
+                + 
+                n
+                2 \Csechs{n} \kappa(\calT)
+                2 
+                \kappa(\calT) 
+                \Ceins{n} 
+                \Czwei{n} 
+                \theta(\calT) % \frac{ \diam(G) }{ \diam(K) }
+            \right) 
+            2 \Csechs{n} \kappa(\calT)
+            .
+        \end{gather*}
     \end{itemize}
     The proof is complete. 
 \end{proof}
@@ -4242,7 +4287,7 @@ and the Lipschitz estimate reflects the shape regularity.
 
 \begin{remark}
     While the reflection mapping and its analysis in Theorem~\ref{theorem:starreflection} serve our purpose,
-    it might be possible to improve the estimate with a different analysis or construction.
+    it might be possible to improve the estimate with an improved analysis or construction.
 \end{remark}
 
 
