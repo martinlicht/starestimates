@@ -1,4 +1,7 @@
 
+- [ ] correct the definition of manifolds 
+- [ ] fix the 
+
 Roadmap
 - [x] Section 1 : introduction 
 - [x] Section 2 : basic notions of triangulations

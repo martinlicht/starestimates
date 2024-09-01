@@ -2264,9 +2264,10 @@ We also refer to Lee's monograph~\cite{lee2011topological} for any further backg
 
 We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
 We recall that this means that for every $x \in \underlying{\calT}$
-there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
-such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the closed unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| \leq 1 \}$
-or onto $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
+% there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
+there exists an open neighborhood $U(x) \subseteq \underlying{\calT}$ and an embedding $\phi : U(x) \rightarrow \bbR^{n}$
+such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the open unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| < 1 \}$
+or onto the half-ball $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
 In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional.
 
@@ -2321,9 +2322,9 @@ While the reader might deem them obvious, we nevertheless include proofs.
     The intersection of any two of them is $F$, but their interiors are disjoint because otherwise they would coincide. 
     
     If $z_F$ is an interior point of $\calM$, 
-    then we can assume that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere of dimension $n-1$. 
+    then we can assume by our assumptions that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere of dimension $n-1$. 
     Consider $X = F \cap \partial \mathring B_F$.
-    If $n=1$, then $X$ is empty and $\partial \mathring B_F$ has $K$ distinct connected components. .
+    If $n=1$, then $X$ is empty and $\partial \mathring B_F$ has $K$ distinct connected components. 
     If $n > 1$, then $X$ is homeomorphic to a sphere of dimension $n-2$
     and again $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
     But by the auxiliary result above, $K = 2$. 
@@ -2357,20 +2358,31 @@ We call this simplicial complex the \emph{boundary complex}. It has dimension $n
 % The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
 \\
 
-We continue with a few more observations about manifold triangulations.
+We continue with a few more observations about manifold triangulations
+at the intersection of topology and combinatorics. 
+These include the topology of local stars, which is a surprisingly non-trivial topic. 
+We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{locally vertex combinatorial}
+if the local star of every simpelx $S \in \calT$ is a triangulated $n$-dimensional ball that contains $S$.
+We gather some results that are hard to find in the literature. 
 
 \begin{lemma}\label{lemma:startopology}
-    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$. 
+    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
+    Suppose that $1 \leq n \leq 3$. Then the following holds:
     \begin{itemize}
-        \item If $S$ is an inner simplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
+        \item
+        If $S \in \calT$ is an inner simplex, 
+        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
         and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
-        \item If $S$ is a boundary subsimplex, then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
+        \item
+        If $S \in \calT$ is a boundary subsimplex, 
+        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
         and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
-        \item If the underlying space of $\calT$ is connected, then $\calT$ is strongly connected.
     \end{itemize}
 \end{lemma}
 \begin{proof}
-    We prove these statements in several steps.
+    The lemma is obvious if $n = 1$, so we assume $n \geq 2$ in what follows. 
+    We prove these statements in several steps. 
+    The reader is assumed to have some background in topology. 
     \begin{enumerate}
     \item 
     Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with midpoint $z_F$, and dimension $k$.
@@ -2385,57 +2397,78 @@ We continue with a few more observations about manifold triangulations.
     that triangulates the same underlying set as $\calS$.
     Moreover, $\calS' = \patch_{\calS'}(z_F)$. 
     In particular, $z_F$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
+    So it remains to study the topology of vertex stars. 
     
     \item 
-    So it remains to study the topology of vertex stars. Suppose that $S = \{z\}$ is a singleton simplex. 
-    For $\delta > 0$ small enough, 
-    \begin{align*}
-        B_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) \leq \delta \right\},
-        \quad 
-        S_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) = \delta \right\},
-    \end{align*}
-    are compactly contained subsets of $|\patch_{\calT}(S)|$.
-    For each simplex $K \in \patch_{\calT}(S)$ that contains the vertex $z$ and which has the opposite face $F_K$, 
-    we easily find homeomorphisms $\phi_{K} : B_{\delta}(z) \cap K \rightarrow K$
-    such that 
-    $\phi_{K}(z) = z$, 
-    such that 
-    $\phi_{K}( K \cap S_{\delta}(z) ) = F_{K}$,
-    such that 
-    for all $K, K' \in \calT$ with $K' \subseteq K$ we have $\phi_{K|K'} = \phi_{K'}$,
-    and such that 
-    $\phi_{K}$ maps $[0,1]\cdot v$ linearly into $\bbR \cdot v$. 
-    This is defines a homeomorphism $\phi : B_{\delta}(z) \rightarrow |\patch_{\calT}(S)|$. 
-    Moreover, one easily verifies that $\phi$ is bi-Lipschitz.
-    For $\delta > 0$ small enough, $B_{\delta}(z)$ is homeomorphic to the unit ball and that homeomorphism maps $S_{\delta}(z)$ onto the unit sphere. 
+    Suppose that $2 \leq n \leq 3$ and that $\calM$ is a manifold without boundary. 
+    Under these assumptions, 
+    as explained in the proof of Theorem~1 in \cite{Siebenmann1979},
+    the set $\carapace(V)$ is a triangulation of a sphere of dimension $n-1$ for any inner vertex $V$. 
+    There exists a homeomorphism from the closed cone of $\underlying{\carapace(V)}$ onto the local star $\underlying{\patch_{\calT}(V)}$.
+    But then that closed cone and hence $\underlying{\patch_{\calT}(V)}$ are homeomorphic to an $n$-dimensional ball. 
     
-    If $z$ is an inner vertex of $\calS'$, 
-    then the boundary simplices of $\calS'$,
-    which are the boundary simplices of $\calS$, triangulate a topological sphere of dimension $n-1$.
+    \item 
+    If $2 \leq n \leq 3$ and $\calM$ has a non-empty boundary, then we use an approach as in the proof of Lemma~\ref{lemma:boundarysimplices}: 
+    we let $\calM'$ denote the doubling of the manifold and $\calT'$ be the doubling of the triangulation $\calT$. 
+    Let $V \in \calT$ be a vertex. 
+    If $V$ is an inner vertex of $\calT$, then $\carapace(V) \subseteq \calT \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT \subseteq \calT'$ triangulates a ball of dimension $n$, as discussed above. 
+    If $V$ is a boundary vertex of $\calT$, then it is an inner vertex of $\calT'$,
+    and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
+    We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. `
+    The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere. 
+    It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
+    Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the local star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
     
     
-    Now suppose that $z$ is a boundary vertex of $\calS'$,
-    which is the case if and only if $S$ is a boundary simplex. 
-    Write 
-    \[
-        B_{H} = \left\{ x \in B_1(0) \suchthat* x_1 \leq 0 \right\},
-        \quad 
-        S_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 \leq 0 \right\}.
-        \quad 
-        D_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 = 0 \right\}.
-    \]
-    Provided that $\delta > 0$ is small enough, there exists a homeomorphism $\phi'$ that maps $\overline{B_{\delta}(z)} \cap \calM$ onto $B_1(0)$, which maps $\overline{B_{\delta}(z)} \cap \partial\calM$ onto $D_H$,
-    and which maps $z$ to the origin. 
-    %
-    It follows that $\phi'$ maps the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$ onto $S_H$.
-    %
-    Assuming that $\delta$ is small enough once more, 
-    we now verify that $\phi^{-1}$ maps $|\carapace(S)|$ onto $S_{\delta}(z) \cap |\patch_{\calT}(S)|$.
-    The latter equals the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$.
-    It follows that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
-    
-    
-    
+    \item 
+%     Suppose that $S = \{z\}$ is a singleton simplex. 
+%     For $\delta > 0$ small enough, 
+%     \begin{align*}
+%         B_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) \leq \delta \right\},
+%         \quad 
+%         S_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) = \delta \right\},
+%     \end{align*}
+%     are compactly contained subsets of $|\patch_{\calT}(S)|$.
+%     For each simplex $K \in \patch_{\calT}(S)$ that contains the vertex $z$ and which has the opposite face $F_K$, 
+%     we easily find homeomorphisms $\phi_{K} : B_{\delta}(z) \cap K \rightarrow K$
+%     such that 
+%     $\phi_{K}(z) = z$, 
+%     such that 
+%     $\phi_{K}( K \cap S_{\delta}(z) ) = F_{K}$,
+%     such that 
+%     for all $K, K' \in \calT$ with $K' \subseteq K$ we have $\phi_{K|K'} = \phi_{K'}$,
+%     and such that 
+%     $\phi_{K}$ maps $[0,1]\cdot v$ linearly into $\bbR \cdot v$. 
+%     This is defines a homeomorphism $\phi : B_{\delta}(z) \rightarrow |\patch_{\calT}(S)|$. 
+%     Moreover, one easily verifies that $\phi$ is bi-Lipschitz.
+%     %     For $\delta > 0$ small enough, $B_{\delta}(z)$ is homeomorphic to the unit ball and that homeomorphism maps $S_{\delta}(z)$ onto the unit sphere. 
+%     \item 
+%     One sees that $\phi$ defines a mapping from the closed 
+%     homeomorphism between cone of link and ball 
+%     
+%     If $z$ is an inner vertex of $\calS'$, 
+%     then the boundary simplices of $\calS'$,
+%     which are the boundary simplices of $\calS$, triangulate a topological sphere of dimension $n-1$.
+%     
+%     Now suppose that $z$ is a boundary vertex of $\calS'$,
+%     which is the case if and only if $S$ is a boundary simplex. 
+%     Write 
+%     \[
+%         B_{H} = \left\{ x \in B_1(0) \suchthat* x_1 \leq 0 \right\},
+%         \quad 
+%         S_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 \leq 0 \right\}.
+%         \quad 
+%         D_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 = 0 \right\}.
+%     \]
+%     Provided that $\delta > 0$ is small enough, there exists a homeomorphism $\phi'$ that maps $\overline{B_{\delta}(z)} \cap \calM$ onto $B_1(0)$, which maps $\overline{B_{\delta}(z)} \cap \partial\calM$ onto $D_H$,
+%     and which maps $z$ to the origin. 
+%         %
+%     It follows that $\phi'$ maps the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$ onto $S_H$.
+%         %
+%     Assuming that $\delta$ is small enough once more, 
+%     we now verify that $\phi^{-1}$ maps $|\carapace(S)|$ onto $S_{\delta}(z) \cap |\patch_{\calT}(S)|$.
+%     The latter equals the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$.
+%     It follows that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
     % We let $\calM'$ be the doubling of the manifold and let $\calT'$ be the doubling of the present triangulation;
     % we refer to Lee's textbook~\cite{lee2011topological} for details. 
     % The vertex star around $z$ within the boundary triangulation $\partial\calT$ is homeomorphic to the ball of dimension $n-1$,
@@ -2454,32 +2487,38 @@ We continue with a few more observations about manifold triangulations.
     % \end{align*}
     % Necessarily, this homeomorphism maps the boundary of $\overline{B_{\delta}(z)} \cap |\calT|$, which contains $z$, onto the unit sphere. Since the image of $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi'$ is still homeomorphic to a disk of dimension $n-1$, so must be the image of $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ under $\phi'$.
     % But that just means that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
-    
-    
-    \item 
-    We show that each vertex star is strongly connected via a short induction argument.
+    \end{enumerate}
+    All relevant results are proven. 
+\end{proof}
+
+
+\begin{lemma}\label{lemma:connectivity}
+    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
+    If the underlying space of $\calT$ is connected, then $\calT$ is strongly connected.
+\end{lemma}
+\begin{proof}
+    We first show that each vertex star is strongly connected via a short induction argument.
     Clearly, any simplicial $1$-ball and simplicial $1$-sphere are strongly connected. 
     Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already strongly connected if all simplicial $n$-balls and $n$-spheres are strongly connected.
     The induction argument implies that each vertex star in $\calT$ is strongly connected.
 
-    \item 
-    If the underlying space is connected, then we easily see that the union of the $1$-simplices is path-connected.
+    If the underlying space $\underlying{\calT}$ is connected, 
+    then we easily see that the union of the $1$-simplices is path-connected.
     Given $n$-simplices $S,S' \in \calT$, 
     we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
     As each vertex star is strongly connected, 
     we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
     is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
     This just means that $\calT$ is strongly connected. 
-    \end{enumerate}
-    All relevant results are proven. 
 \end{proof}
 
 
 
-
-
-
 \begin{remark}
+    Triangulations with the property that all vertex stars are homeomorphic to a ball are also called \emph{combinatorial} \cite[Section~1]{Bagchi2005}.
+    All manifolds of dimension up to three admit smooth structures and smooth manifolds admit combinatorial triangulations. 
+    There are triangulations of manifolds in dimension higher than $3$ where not every vertex star is homeomorphic to a ball. 
+    
     Clearly, not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
     When the dimension is at least five, then there is no computer algorithm that, given a finite simplicial complex as input, decides whether the input is the triangulation of some fixed manifold~\cite{chernavsky2006unrecognizability}.
     Going further, it has been shown that deciding whether a simplicial complex is the triangulation of a manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
@@ -3992,8 +4031,10 @@ The construction is completed in several steps,
 and the Lipschitz estimate reflects the shape regularity. 
 
 \begin{theorem}\label{theorem:starreflection}
-    Let $\calT$ be an $n$-dimensional triangulation and let $S \in \calT$ be a simplex of dimension $k < n$.
-    Let $T \in \patch_{\calT}(S)$ be of dimension $n$ and let 
+    Let $\calT$ be an $n$-dimensional triangulation of an $n$-dimensional domain. 
+    Let $S \in \calT$ be a simplex of dimension $k < n$,
+    let $T \in \patch_{\calT}(S)$ be of dimension $n$,
+    and let 
     \begin{align*}
         U := |\patch_{\calT}(S)| \setminus T.
     \end{align*}
