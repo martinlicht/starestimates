@@ -2806,7 +2806,7 @@ Our main interest are local stars or stars within triangulations.
     The proof is complete. 
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lemma:stars_are_shellable}
     Let $\calT$ be a $n$-dimensional manifold triangulation and $V \in \Vertices(\calT)$ be an inner vertex.
     Then $\patch_{\calT}(V)$ is shellable. 
 \end{lemma}
@@ -4106,7 +4106,8 @@ and the Lipschitz estimate reflects the shape regularity.
             \\
             \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
-
+        
+        
 
         \item 
         We introduce a bi-Lipschitz mapping 
@@ -4234,7 +4235,17 @@ and the Lipschitz estimate reflects the shape regularity.
         \end{align*}
         is a mapping from ${G}$ onto $U = \overline{\patch_{\calT}(S) \setminus {G}}$.
         It preserves the interface from ${G}$ onto $U$. 
-        It is continuous and bi-Lipschitz due to Rademacher's theorem. 
+        
+        \item 
+        \color{red}
+        We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
+        We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+        After application of a piecewise linear Lipschitz mapping, 
+        we can assume that $|\calK|$ is convex without loss of generality. 
+        Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
+        
+        By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
+        \color{black}
         
         
         \item 
