@@ -4043,12 +4043,16 @@ and the Lipschitz estimate reflects the shape regularity.
         \Xi : T \rightarrow U
     \end{align*}
     satisfying
-    \begin{align*}
-        \Lip( \Xi,      T ) \leq \Cvier{n}{k}(\calT),
+    \begin{gather*}
+        \| \Jacobian\Xi \|          \leq \Cvier{n}(\calT),
         \quad 
-        \Lip( \Xi^{-1}, U ) \leq \Cfive{n}{k}(\calT),
-    \end{align*}
-    where $\Cvier{n}{k}(\calT)$ and $\Cfive{n}{k}(\calT)$ are constants as stated in the proof. 
+        \| \Jacobian\Xi^{-1} \|     \leq \Cfive{n}(\calT),
+        \\
+        \| \det\Jacobian\Xi \|      \leq \Cdetvier{n}(\calT),
+        \quad 
+        \| \det\Jacobian\Xi^{-1} \| \leq \Cdetfive{n}(\calT),
+    \end{gather*}
+    where the constants on the right-hand sides are as stated in the proof. 
 \end{theorem}
 \begin{proof}
     We derive the estimate in several steps. 
@@ -4107,6 +4111,17 @@ and the Lipschitz estimate reflects the shape regularity.
             \\
             \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
+        \color{red}
+        By construction, 
+        \begin{align*}
+            \det( \Jacobian \Theta_{|K} )
+            = 
+            \det( \Jacobian^{-1} \Theta_{|K} )
+            =
+            1
+            .
+        \end{align*}
+        \color{black}
 
 
         \item 
@@ -4444,16 +4459,6 @@ we have the following improved estimate.
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
-
-
-
-
-
-
-
-
-
-
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
     Let $T$ be an $n$-simplex 
     and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
@@ -4467,16 +4472,19 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \quad 
         \| w \| 
         \leq 
-        C_{{\rm PF},T,F,k,p}
+        C_{{\rm PF},\Gamma,l,k,p}(T)
+        \diam(T)^{k} 
         \| \cartan u \|
-        ,
+        .
     \end{align*}
-    where $C_{{\rm PF},T,F,k,p} > 0$ is a constant such that 
+    Here, $C_{{\rm PF},\Gamma,l,k,p}(T) > 0$ is a constant such that 
     \begin{align*}
-        C_{{\rm PF},T,F,k,p}
+        C_{{\rm PF},\Gamma,l,k,p}(T)
         \leq 
-        ...
-        \diam(T)
+        2^{\frac n p}
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
+        \Ceins{n}(T)^{k}
+        % \| \Jacobian \varphi \|^{k}
         .
     \end{align*}
 \end{lemma}
@@ -4486,6 +4494,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
     In what follows, we let $\tilde U$ be the domain obtained from reflecting $\hat T$ along the coordinate axes $l+1$ through $n$. 
+    We see that $\vol(\tilde U) = (l+1)/n!$
     
     
     We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
@@ -4501,11 +4510,11 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         \| \tilde w \|_{L^{p}(\tilde U)}
         &\leq 
-        n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_2(0)) }{|\Omega|} 
+        n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_2(0)) }{ \vol(\tilde U) } 
         2
         \| \tilde g \|_{L^{p}(\tilde U)}
         \\&\leq 
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{|\Omega|} 
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
         \| \tilde g \|_{L^{p}(\tilde U)}
         .
     \end{align*}
@@ -4530,15 +4539,23 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \hat g \|_{L^{p}(\hat T)}
         \leq 
         2^{\frac n p}
-        |\det( \Jacobian \varphi )|^{-\frac 1 p} \| \Jacobian \varphi \| \cdot 
+        |\det( \Jacobian \varphi )|^{-\frac 1 p} 
+        \| \Jacobian \varphi \|^{k}
+        \cdot 
         \| \cartan u \|_{L^{p}(T)}
         .
     \end{gather*}
     The second inequality follows.
 \end{proof}
 
-
-
+In what follows, use the abbreviation
+\begin{align*}
+    C_{{\rm PF},\Gamma,k,p}(\calT) 
+    :=
+    \max\limits_{ \substack{ T \in \calT \; \dim(T)=n \\ 0 \leq l \leq n } }
+    C_{{\rm PF},\Gamma,l,k,p}(T)   
+\end{align*}
+whenever $\calT$ is an $n$-dimensional triangulation. 
 
 
 The main result of this manuscript is the following theorem. 
@@ -4548,11 +4565,45 @@ The main result of this manuscript is the following theorem.
     Let $T_0, T_1, \dots, T_m$ be a shelling.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
-    and such that for all $T \in \calT$:
+    and such that for each $T_{m} \in \calT$ in the shelling
+    we have the following recursive estimate: 
     \begin{align*}
-        \| w \|_{L^{p}(T_m)}
-        \leq 
-        ...
+        \| w \|_{L^{p}(T_{m})}
+%         &
+%         \leq  
+%         C_{{\rm PF},\Gamma,k,p}(\calT) 
+%         \Cdetfive{n}(\calT)^{\frac 1 p} 
+%         \Cvier{n}(\calT)^{k+1} 
+%         \diam(T)^{k} 
+%         \| \cartan u \|_{L^{p}(U_{m-1})}
+%         \\&\qquad
+%         + 
+%         C_{{\rm PF},\Gamma,k,p}(\calT) 
+%         \diam(T)^{k} 
+%         \| \cartan u      \|_{L^{p}(T_{m})} 
+%         \\&\qquad
+%         + 
+%         \Cdetfive{n}(\calT)^{-\frac 1 p} 
+%         \Cvier{n}(\calT)^{k} 
+%         \| w \|_{L^{p}(U_{m-1})}
+%         \\
+        &
+        \leq  
+        C_{{\rm PF},\Gamma,k,p}(\calT) 
+        \diam(T)^{k} 
+        \left( 
+            \| \cartan u      \|_{L^{p}(T_{m})} 
+            +
+            \Cvier{n}(\calT)^{k+1} 
+            \Cdetfive{n}(\calT)^{\frac 1 p} 
+            \| \cartan u \|_{L^{p}(U_{m-1})}
+        \right)
+        \\&\qquad
+        + 
+        \Cvier{n}(\calT)^{k} 
+        \Cdetfive{n}(\calT)^{\frac 1 p} 
+        \| w \|_{L^{p}(U_{m-1})}
+        .
     \end{align*}
 \end{theorem}
 
@@ -4570,7 +4621,7 @@ The main result of this manuscript is the following theorem.
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
     By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m} \subseteq \Omega_{m}$ be the complement of $T_{m}$ in that newly completed star. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We define $w'_{m} :=  \Xi_{m}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$,
     where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
@@ -4636,45 +4687,45 @@ The main result of this manuscript is the following theorem.
     \begin{align*}
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi \|^{k}
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi_{m} \|^{k}
         \cdot 
         \| w_{m-1} \|_{L^{p}(U_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi \|^{k+1}
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi_{m} \|^{k+1}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
     We have assumed that $\cartan w_{m-1} = \cartan u_{|\Omega_{m-1}}$. 
-    By the properties of the reflection mapping in Theorem~\ref{theorem:starreflection},
-    \begin{align*}
-        ...
-    \end{align*}
-    This enables the recursion
-    \begin{align*}
-        \| w_{m} \|_{L^{p}(T_{m})}
-        &
-        \leq  
-        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi \|^{k} 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})}
-        \\&\qquad
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
-        \| \cartan u      \|_{L^{p}(T_{m})} 
-        \\&\qquad
-        + 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
-        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi \|^{k+1} 
-        \| \cartan u_{m-1} \|_{L^{p}(U_{m-1})}
-        .
-    \end{align*}
+    We use the properties of the reflection mapping in Theorem~\ref{theorem:starreflection}. 
+%     \begin{align*}
+%         ...
+%     \end{align*}
+%     This enables the recursion
+%     \begin{align*}
+%         \| w_{m} \|_{L^{p}(T_{m})}
+%         &
+%         \leq  
+%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+%         \| \Jacobian \Xi_{m} \|^{k} 
+%         \| w_{m-1} \|_{L^{p}(U_{m-1})}
+%         \\&\qquad
+%         + 
+%         C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+%         \| \cartan u      \|_{L^{p}(T_{m})} 
+%         \\&\qquad
+%         + 
+%         C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+%         \| \Jacobian \Xi_{m} \|^{k+1} 
+%         \| \cartan u \|_{L^{p}(U_{m-1})}
+%         .
+%     \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 
