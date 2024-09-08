@@ -914,7 +914,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         4^{\frac 1 p}
 %         \frac{ p \sin(\pi/p) }{ 4\pi \sqrt[p]{p-1} }
 %         \leq 
-%         \frac 1 2
+%         \frac{1}{2}
         .
     \end{align*}
     It follows that \eqref{math:esposito:poincare} is generally tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
@@ -4067,7 +4067,7 @@ and the Lipschitz estimate reflects the shape regularity.
         
         \item 
         We let $z'_{S}$ be the midpoint of $S'$. 
-        We first define a new triangulation $\calS$ by the barycentric refinement of the complementary $S'$. 
+        We first define a new triangulation $\calS$ by the barycentric refinement of the complementary simplex $S'$. 
         All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
         
         We define another simplicial complex $\calS^c$ as follows:
@@ -4110,18 +4110,589 @@ and the Lipschitz estimate reflects the shape regularity.
             \\
             \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
-        \color{red}
+        \color{blue}
         By construction, 
         \begin{align*}
-            \det( \Jacobian \Theta_{|K} )
+            |\det( \Jacobian      \Theta_{|K} )|
             = 
-            \det( \Jacobian^{-1} \Theta_{|K} )
+            |\det( \Jacobian^{-1} \Theta_{|K} )|
             =
             1
             .
         \end{align*}
-        \color{black}
+        We $h_z \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $K$.
+        Clearly,
+        \begin{align*}
+            \Theta_{|K}(x) 
+            = 
+            x
+            - 
+            2 \hat z_{S'} \frac{\langle \hat h_z, x \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+            .
+        \end{align*}
+        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $\hat h_z$,
+        and when $x = z_{S'}$, then 
+        \begin{align*}
+            -z_{S'} 
+            =
+            z_{S'}
+            - 
+            2 \hat z_{S'} \frac{\langle \hat h_z, z_{S'} \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+            .
+        \end{align*}
+        If we orthogonally decompose $z_{S'} = h_z + b_z$, then 
+        \begin{align*}
+            \Theta_{|K}( h_z ) 
+            &= 
+            h_z
+            - 
+            2 z_{S'} \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle}
+            \\&= 
+            h_z
+            - 
+            2 z_{S'}
+            \\&= 
+            - h_{z}
+            - 
+            2 b_{z}
+            .
+        \end{align*}
+        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        Then $\| h_z \| = \cos(\beta) \|z_{S'}\|$ and $\| b_z \| = \sin(\beta) \|z_{S'}\|$. 
+        We study the singular values of the matrix 
+        \begin{align*}
+            \begin{pmatrix}
+            -1                 & 0
+            \\ 
+            -2 \|b_z\|/\|h_z\| & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            -1             & 0
+            \\ 
+            -2 \tan(\beta) & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0             & \tan(\beta)
+             \\ 
+            -\tan(\beta) & 0
+            \end{pmatrix}
+            +
+            \begin{pmatrix}
+            -1           & -\tan(\beta)
+             \\ 
+            \tan(\beta) & 1
+            \end{pmatrix}
+            .
+        \end{align*}
+        It follows that $\det(\Theta_{|K}) = 1$. 
+        Its singular values satisfy 
+        \begin{align*}
+            ( \sigma_{\max} + \sigma_{\min} )/2
+            =
+            \tan(\beta)
+            ,
+            \qquad 
+            ( \sigma_{\max} - \sigma_{\min} )/2
+            =
+            \sqrt{ 1 + \tan^{2}(\beta) }
+            ,
+        \end{align*}
+        which means that 
+        \begin{align*}
+            \sigma_{\max} = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
+            ,
+            \qquad 
+            \sigma_{\min} = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
+            .
+        \end{align*}
+        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        By the definition of the cosine, $\cos(\beta) \leq \| h_{z} \| / \| z_{S'} \|$. 
+        Let $F_{z} \subseteq K$ be the face opposite to $z_{S'}$,
+        which is also a face of $T$. Then $(n-k-1) h_{z}$ is the height vector of $F_{z}$ in $T$. 
+        Thus 
+        \begin{align*}
+            \frac{ \| h_{z} \| }{ \| z_{S'} \| }
+            \geq 
+            \frac{ (n-k-1)^{-1} \| (n-k-1) h_{z} \| }{ \| z_{S'} \| }
+            \geq 
+            \frac{ (n-k-1)^{-1} n \vol(T) }{ \| z_{S'} \| \vol(F_{z}) }
+            \geq 
+            \frac{n}{ n-k-1 }
+            \cdot 
+            \frac{ \vol(T) }{ \diam(T)^{n} }
+            .
+%             \\
+%             \leq 
+%             \frac{ n \vol(K) }{ \| z_{S'} \| \vol(F_{z}) }
+%             \leq 
+%             \frac{ \vol(T) }{ \| z_{S'} \| \vol(F_{z}) }
+%             \leq 
+%             \frac{ \vol(T) }{ \diam(T)^{n} }
+%             .
+        \end{align*}
+        
 
+        
+        
+        
+What are the singular values of a $2x2$ (lower) unit triangular matrix? Suppose we have the matrix
+Suppose we have the matrix 
+\begin{align*}
+    \begin{pmatrix}
+    1 & 0
+    \\ 
+    b & 1
+    \end{pmatrix}
+\end{align*}
+Following up a generic formula found here, 
+https://math.stackexchange.com/a/861774/3557
+I decompose 
+\begin{align*}
+    \begin{pmatrix}
+    1 & 0
+    \\ 
+    b & 1
+    \end{pmatrix}
+    =
+    \frac 1 2 
+    \begin{pmatrix}
+    2 & -b
+    \\ 
+    b & 2
+    \end{pmatrix}
+    +
+    \frac 1 2 
+    \begin{pmatrix}
+    0 & b
+    \\ 
+    b & 0
+    \end{pmatrix}
+\end{align*}
+The singular values $w_1$ and $w_2$ are implicitly given by 
+\begin{align*}
+    \frac{ w_1 + w_2 }{2} = \frac 1 2 \sqrt{ 4 + b^2 }
+    \\
+    \frac{ w_1 - w_2 }{2} = \frac 1 2 |b|
+\end{align*}
+If we assume that the first value is at least the second value, 
+then adding and subtracting these equations leads to 
+\begin{align*}
+    w_1 = \frac 1 2 \sqrt{ 4 + b^2 } + \frac 1 2 |b|
+    \\
+    w_2 = \frac 1 2 \sqrt{ 4 + b^2 } - \frac 1 2 |b|
+\end{align*}
+I would like to know whether that reasoning is correct 
+
+
+foo
+\begin{align*}
+    \lambda^2 = \frac{1}{2} \left( a + c \pm \sqrt{ a^2 - 2 a c + c^2 + 4b^2 } \right)
+\end{align*}
+\begin{align*}
+    \lambda 
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ (1+t^2) + 1 \pm \sqrt{ (1+t^2)^2 - 2 (1+t^2)   +   1 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{ 1 + 2t^2 + t^4 - 2 - 2 t^2 + 1 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{          + t^4                 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+    .
+\end{align*}
+\begin{align*}
+    \lambda = \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+\end{align*}
+\begin{align*}
+    \left( t^2 + 2 + t \sqrt{ t^2 + 4 } \right)
+    \left( t^2 + 2 - t \sqrt{ t^2 + 4 } \right)
+    =
+    t^{4} + 4 t^{2} + 4
+    -
+    t^{2} ( t^{2} + 4 )
+    =
+    4
+\end{align*}
+\begin{align*}
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+    &=
+    \sqrt{1+a^2/4} \pm a/2
+    \\
+    \frac 1 2 \left( t^2 + 2 \pm t \sqrt{ t^2 + 4 } \right)
+    &=
+    1+a^2/4
+    \pm
+    a \sqrt{1+a^2/4}
+    + 
+    a^2/4
+    \\&=
+    1
+    +
+    2a^2/4
+    \pm
+    a \sqrt{1+a^2/4}
+    \\
+    1 + \frac{t^2}{2} \pm t \sqrt{ \frac{t^2}{4} + 1 } 
+    &=
+    1
+    +
+    a^2/2
+    \pm
+    a \sqrt{1+a^2/4}
+    .
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        
+        
+        \item 
+        We prove another auxiliary result.
+        Let $x, h_1, h_2 \in \bbR^{n}$ be non-zero. 
+        Define 
+        \begin{align*}
+            F(x) 
+            = 
+            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, x \rangle }{ \| h_1 \|^{2} }
+            x
+            .
+        \end{align*}
+        This is defined away from the hyperplane orthogonal to $h_2$.
+        This is a radial mapping that maps each point on the hyperplane defined by the normal vector $h_1$
+        onto the colinear point that lies on the hyperplane defined by the normal vector $h_2$. Indeed, 
+        if $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \| h_1 \|^{2}$, then $\langle F(x), h_2 \rangle = \| h_2 \|^{2}$.
+        
+        We identify the Lipschitz properties of this mapping by computing its Jacobian. 
+        We write $\alpha_1, \alpha_2 \geq 0$ for the two angles between $h_1$ and $h_2$, respectively, and the vector $x$.
+        In what follows, $y \in \bbR^{n}$.
+        \begin{align*}
+            \Jacobian F(x) \cdot y
+            &=
+            \frac{ \langle h_2, h_2 \rangle }{ \|h_2\| \|x\| \cos(\alpha_2) }
+            \left( y - \frac{ \langle h_2, y \rangle }{ \langle h_2, x \rangle } x \right)
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            +
+            x
+            \otimes 
+            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
+            \frac{ h_1^{t} y }{ \| h_1 \|^{2} }
+            \\&=
+            \frac{ \langle \hat h_2, h_2 \rangle }{ \cos(\alpha_2) }
+            \left( y - \frac{ \langle \hat h_2, y \rangle }{ \langle \hat h_2, \hat x \rangle } \hat x \right)
+            \frac{ \langle \hat x, \hat h_1 \rangle }{ \langle h_1, \hat h_1 \rangle }
+            +
+            \hat x
+            \otimes 
+            \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
+            \frac{ \hat h_1^{t} y }{ \| h_1 \| }
+            \\&=
+            \frac{ \| h_2 \| }{ \cos(\alpha_2) }
+            \left( y - \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x \right)
+            \frac{ \cos(\alpha_1) }{ \| h_1 \| }
+            +
+            \hat x
+            \otimes 
+            \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
+            \frac{ \hat h_1^{t} y }{ \| h_1 \| }
+            \\&=
+            \frac{ \| h_2 \| }{ \| h_1 \| }
+            \frac{ \cos(\alpha_1) }{ \cos(\alpha_2) }
+            \left( 
+                y 
+                - 
+                \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x 
+                + 
+                \frac{ \langle \hat h_1, y \rangle }{ \cos(\alpha_1) } \hat x 
+            \right)
+            .
+        \end{align*}
+        We define $a := \cos(\alpha_1)^{-1} \hat h_1 - \cos(\alpha_2)^{-1} \hat h_2$. 
+        Notice that $a \perp \hat x$ by definition. The matrix $\Id + \hat x \otimes a^{t}$ is the identity over the orthogonal complement of the linear span of $a$ and $x$. Over that two-dimensional subspace, it can be represented by a triangular matrix.
+        Its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are~\cite{blinn1996consider} 
+        \begin{align*}
+            \sigma_{\max} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2},
+            \qquad 
+            \sigma_{\min} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}.     
+        \end{align*}
+        Notice that these are strictly monotonely increasing or decreasing, respectively, in $\|a\|$.
+        We notice the obvious upper bound 
+        \begin{align*}
+            \|a\| 
+            \leq 
+            2 \max_{1 \leq i \leq 2} 
+            \left( 
+                \frac{ \hat h_i }{ \langle \hat x, \hat h_i \rangle } 
+            \right)
+            .
+        \end{align*}
+
+        \item 
+        We introduce a bi-Lipschitz mapping 
+        \begin{align*}
+            \Psi : |\calR'| \rightarrow |\calK|
+        \end{align*}
+        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$. 
+        We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$. 
+        We define 
+        \begin{align*}
+            \Psi(x) 
+            = 
+            \frac{ \| h_K \|^{2} }{ \langle h_K, x \rangle }
+            \frac{ \langle h_{{G}}, x \rangle }{ \| h_{{G}} \|^{2} }
+            x
+            .
+        \end{align*}
+        One easily verifies that this defines a continuous mapping $\Psi$. 
+        By the same line of thought, we see that it is invertible with inverse satisfying 
+        \begin{align*}
+            \Psi^{-1}(z) 
+            = 
+            \frac{ \| h_{{G}} \|^{2} }{ \langle h_{{G}}, z \rangle }
+            \frac{ \langle h_K, z \rangle }{ \| h_K \|^{2} }
+            z,
+            \qquad 
+            z = \Psi(x)
+            .
+        \end{align*}
+        Our previous observations enable estimates for the Jacobians. 
+        We have the operator norm and determinant formulas 
+        \begin{gather*}
+            \| \Jacobian\Psi(x) \|
+            = 
+            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            \left( 
+                \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2}
+            \right)
+            \\
+            \| \Jacobian\Psi(z)^{-1} \|
+            = 
+            \frac{ \| h_{{G}} \| }{ \| h_K \| }
+            \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
+            \left( 
+                \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}
+            \right)^{-1},
+            \\
+            \det\Jacobian\Psi(x)
+            =
+            \left( 
+            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            \right)^{n},
+            \qquad
+            \det\Jacobian\Psi^{-1}(x)
+            =
+            \left( 
+            \frac{ \| h_{{G}} \| }{ \| h_{K} \| }
+            \frac{ \cos(\alpha_{K}) }{ \cos(\alpha_{{G}}) }
+            \right)^{n}
+        \end{gather*}
+        where $\alpha_K$ and $\alpha_{{G}}$ are the angles of $x$ with the vectors $h_{{G}}$ and $h_{K}$, respectively,
+        and where $a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K$. 
+        
+        We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
+        By the definition of the cosine, 
+        \begin{align*}
+            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            \leq 
+            \frac{ \| x_K \| }{ \| h_{{G}} \| }
+            \leq 
+            \frac{ \diam(K) }{ \| h_{{G}} \| }
+            ,
+            \qquad 
+            \frac{ \| h_{{G}} \| }{ \| h_K \| }
+            \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
+            \leq 
+            \frac{ \| x_{G} \| }{ \| h_{K} \| }
+            \leq 
+            \frac{ \diam(G) }{ \| h_{K} \| }
+            .
+        \end{align*}
+%         \begin{align*}
+%             \frac{ \| h_K \| }{ \| h_{{G}} \| }
+%             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+%             \leq 
+%             \frac{ \| x_K \| }{ \| x_{{G}} \| }
+%             .
+%         \end{align*}
+
+        The diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$.
+        The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
+        Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of the origin in some simplex in $\calS'$
+        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $\kappa(A)^{-2}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
+        It follows that $\|x_{G}\| \leq \diam(T)$. 
+        
+        We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
+        Recall that 
+        \begin{align*}
+            \frac{ \|h_{F}\|}{\diam(T)}
+            = 
+            \frac{ n \vol(T) }{ \vol(F) \diam(T) }
+            \geq 
+            \frac{ n \vol(T) }{ \diam(T)^{n} }
+            \geq 
+            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            .
+        \end{align*}
+        We conclude that 
+        \begin{gather*}
+            \frac{ \diam(K) }{ \| h_{{G}} \| }
+            \leq 
+            (k+1)\kappa(A)^{2}
+            \frac{ \diam(K) }{ \| h_{T} \| }
+            \leq 
+            (k+1)\kappa(A)^{2}
+            \theta(\calT)
+            \frac{ \diam(T) }{ \| h_{T} \| }
+            \leq 
+            (k+1)\kappa(A)^{2}
+            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            ,
+            \\
+            \frac{ \| x_{G} \| }{ \| h_{K} \| }
+            \leq 
+            (k+1)
+            \frac{ \diam(T) }{ \| h_{K} \| }
+            \leq 
+            (k+1)
+            \theta(\calT)
+            \frac{ \diam(K) }{ \| h_{K} \| }
+            \leq 
+            (k+1)
+            \theta(\calT)
+            \sup_{ K \in \patch_{\calT}(S) }
+            (n-1)! \cdot \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            .
+        \end{gather*}
+        \begin{gather*}
+            \frac{ \diam(K) }{ \| h_{{K}} \| }
+            \leq 
+            (k+1)
+            \sup_{ K \in \patch_{\calT}(S) }
+            (n-1)! \cdot \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            ,
+            \\
+            \frac{ \| x_{G} \| }{ \| h_{G} \| }
+            \leq 
+            (k+1)\kappa(A)^{2}
+            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            .
+        \end{gather*}
+
+        
+        %         To simplify that expression, we make another observation regarding the height vectors. 
+        %         when $T$ is an $n$-dimensional simplex with a $k$-dimensional subsimplex $S \subseteq T$,
+        %         and $h > 0$ is the height of some vertex $v \in S$ opposite to a face $F$,
+        %         then the barycenter $z_S$ of $S$ has distance $h/(k+1)$ from the face $F$. 
+        %         From this obversation we infer that the height vectors at the origin of the simplices in $\calR'$ and $\calK$
+        %         are obtained by rescaling the height vectors in $\calS'$ and $\patch_{\calT}(S)$
+        %         with the factor $(k+1)^{-1}$.
+        
+        The vector $a$ is the difference between $\hat h_{G}$ and $\hat h_{K}$ after both are rescaled such that they lie on the affine hyperplane with normal vector $\hat x$. That difference has length at most $\tan(\alpha_{G}) + \tan(\alpha_{K})$.
+        We calculate 
+        \begin{align*}
+            \|a\|
+            = 
+            \left\|
+            \frac{\|x_{G}\|}{\|h_{G}\|} \hat h_{{G}} 
+            - 
+            \frac{\|x_{K}\|}{\|h_{K}\|} \hat h_K
+            \right\|
+            &
+            \leq 
+            \frac{\|x_{G}\|}{\|h_{G}\|} 
+            + 
+            \frac{\|x_{K}\|}{\|h_{K}\|} 
+            \\&
+            \leq 
+            (k+1) 
+            (n-1)! \cdot 
+            \left( 1 + \kappa(A)^{2} \right)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            .
+        \end{align*}
+        \todo{bound $\kappa(A)$ right away...}
+        
+        \item 
+        We define a mapping $ \Xi : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
+        \begin{align*}
+            \Xi := \Psi \circ \Theta.
+        \end{align*}
+        It preserves the interface from $T$ onto $U$. We briefly recapitulate why it is bi-Lipschitz.
+        
+        We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
+        We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+        After application of a piecewise linear Lipschitz mapping, 
+        we can assume that $|\calK|$ is convex without loss of generality. 
+        Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
+        By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
+        
+        We recall the upper bound $\sqrt{1+\theta^2} \leq 1 + \theta$ for any $\theta \geq 0$. 
+        
+        \begin{align*}
+            |\det(\Xi)|
+            \leq 
+            (k+1)^{n}
+            (n-1)!^{n}
+            \theta(\calT)^{n}
+            \kappa(A)^{2n}
+            \mu(\calT)
+            ,
+            \qquad 
+            |\det(\Xi^{-1})|
+            \leq 
+            (k+1)^{n}
+            (n-1)!^{n}
+            \theta(\calT)^{n}
+            \mu(\calT)
+            .
+        \end{align*}
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        \color{black}
+        
+        
+        
+        
+        
+        \item 
+        We introduce a bi-Lipschitz mapping 
+        \begin{align*}
+            \Psi : |\calR'| \rightarrow |\calK|
+        \end{align*}
+        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There 
 
         \item 
         We introduce a bi-Lipschitz mapping 
@@ -4557,14 +5128,23 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     The second inequality follows.
 \end{proof}
 
-In what follows, use the abbreviation
+Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
     C_{{\rm PF},\Gamma,k,p}(\calT) 
     :=
     \max\limits_{ \substack{ T \in \calT \; \dim(T)=n \\ 0 \leq l \leq n } }
     C_{{\rm PF},\Gamma,l,k,p}(T)   
 \end{align*}
-whenever $\calT$ is an $n$-dimensional triangulation. 
+
+
+
+
+Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
+For each $1 \leq m \leq M$, there exists a simplex $S_{m} \in \calT$ 
+such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m} \in \patch_{\calT}(S_{m})$.
+We then let $U_{m}$ be the closure $\patch_{\calT}(S_{m}) \setminus T_{m}$,
+and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
+
 
 
 The main result of this manuscript is the following theorem. 
