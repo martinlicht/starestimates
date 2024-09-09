@@ -1,6 +1,9 @@
+https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
+
 
 - [ ] correct the definition of manifolds 
-- [ ] fix the 
+- [ ] fix the reflection
+- [ ] complete the final estimate
 
 Roadmap
 - [x] Section 1 : introduction 
@@ -10,7 +13,7 @@ Roadmap
 - [x] Section 5 : advanced notions of triangulations (shellability)
 - [x] Section 6: vector and exterior calculus review 
 - [x] Section 7: potential operators over convex sets 
-- [ ] Section 8: reflection 
+- [x] Section 8: reflection 
 - [ ] Section 9: main estimate
 - [ ] Section A: numerical examples 
 
