@@ -4043,13 +4043,13 @@ and the Lipschitz estimate reflects the shape regularity.
     \end{align*}
     satisfying
     \begin{gather*}
-        \| \Jacobian\Xi \|          \leq \Cvier{n}(\calT),
+        \| \Jacobian\Xi \|          \leq \Cvier{n}{k}(\calT),
         \quad 
-        \| \Jacobian\Xi^{-1} \|     \leq \Cfive{n}(\calT),
+        \| \Jacobian\Xi^{-1} \|     \leq \Cfive{n}{k}(\calT),
         \\
-        \| \det\Jacobian\Xi \|      \leq \Cdetvier{n}(\calT),
+        \| \det\Jacobian\Xi \|      \leq \Cdetvier{n}{k}(\calT),
         \quad 
-        \| \det\Jacobian\Xi^{-1} \| \leq \Cdetfive{n}(\calT),
+        \| \det\Jacobian\Xi^{-1} \| \leq \Cdetfive{n}{k}(\calT),
     \end{gather*}
     where the constants on the right-hand sides are as stated in the proof. 
 \end{theorem}
@@ -4110,8 +4110,7 @@ and the Lipschitz estimate reflects the shape regularity.
             \\
             \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \kappa(A_{K}).
         \end{align*}
-        \color{blue}
-        By construction, 
+        By construction, the mapping preserves volumes:
         \begin{align*}
             |\det( \Jacobian      \Theta_{|K} )|
             = 
@@ -4120,8 +4119,9 @@ and the Lipschitz estimate reflects the shape regularity.
             1
             .
         \end{align*}
+        We want to characterize the singular values of this transform. 
         We $h_z \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $K$.
-        Clearly,
+        We can write
         \begin{align*}
             \Theta_{|K}(x) 
             = 
@@ -4131,15 +4131,16 @@ and the Lipschitz estimate reflects the shape regularity.
             .
         \end{align*}
         Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $\hat h_z$,
-        and when $x = z_{S'}$, then 
-        \begin{align*}
-            -z_{S'} 
-            =
-            z_{S'}
-            - 
-            2 \hat z_{S'} \frac{\langle \hat h_z, z_{S'} \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
-            .
-        \end{align*}
+        and that it equals $-z_{S'}$ when $x = z_{S'}$.
+%         and when $x = z_{S'}$, then 
+%         \begin{align*}
+%             -z_{S'} 
+%             =
+%             z_{S'}
+%             - 
+%             2 \hat z_{S'} \frac{\langle \hat h_z, z_{S'} \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+%             .
+%         \end{align*}
         If we orthogonally decompose $z_{S'} = h_z + b_z$, then 
         \begin{align*}
             \Theta_{|K}( h_z ) 
@@ -4147,11 +4148,13 @@ and the Lipschitz estimate reflects the shape regularity.
             h_z
             - 
             2 z_{S'} \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle}
-            \\&= 
+            %\\&
+            = 
             h_z
             - 
             2 z_{S'}
-            \\&= 
+            %\\&
+            = 
             - h_{z}
             - 
             2 b_{z}
@@ -4161,6 +4164,8 @@ and the Lipschitz estimate reflects the shape regularity.
         Then $\| h_z \| = \cos(\beta) \|z_{S'}\|$ and $\| b_z \| = \sin(\beta) \|z_{S'}\|$. 
         We study the singular values of the matrix 
         \begin{align*}
+            B 
+            := 
             \begin{pmatrix}
             -1                 & 0
             \\ 
@@ -4172,184 +4177,58 @@ and the Lipschitz estimate reflects the shape regularity.
             \\ 
             -2 \tan(\beta) & 1
             \end{pmatrix}
-            =
-            \begin{pmatrix}
-            0             & \tan(\beta)
-             \\ 
-            -\tan(\beta) & 0
-            \end{pmatrix}
-            +
-            \begin{pmatrix}
-            -1           & -\tan(\beta)
-             \\ 
-            \tan(\beta) & 1
-            \end{pmatrix}
             .
         \end{align*}
-        It follows that $\det(\Theta_{|K}) = 1$. 
-        Its singular values satisfy 
+        We compute the eigenvalues of the symmetric matrix $B^{\ast} B$. 
+        Its square roots are the desired singular values of $B$:
         \begin{align*}
-            ( \sigma_{\max} + \sigma_{\min} )/2
-            =
-            \tan(\beta)
+            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + \tan(\beta) \sqrt{ 4\tan(\beta)^2 + 4 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
             ,
-            \qquad 
-            ( \sigma_{\max} - \sigma_{\min} )/2
-            =
-            \sqrt{ 1 + \tan^{2}(\beta) }
-            ,
-        \end{align*}
-        which means that 
-        \begin{align*}
-            \sigma_{\max} = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
-            ,
-            \qquad 
-            \sigma_{\min} = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
+            \\
+            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - \tan(\beta) \sqrt{ 4\tan(\beta)^2 + 4 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
             .
         \end{align*}
-        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        By the definition of the cosine, $\cos(\beta) \leq \| h_{z} \| / \| z_{S'} \|$. 
+        \begin{align*}
+            \lambda
+        \end{align*}
+        These are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$. 
+        They are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
+        
+%         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        By the definition of the tangent, $\tan(\beta) \leq \| b_{z} \| / \| h_{z} \|$, and we know $\|b_z\| \leq \|z_{S'}\|$. 
         Let $F_{z} \subseteq K$ be the face opposite to $z_{S'}$,
-        which is also a face of $T$. Then $(n-k-1) h_{z}$ is the height vector of $F_{z}$ in $T$. 
+        which is also a face of $T$. Then $(n-k) h_{z}$ is the height vector of $F_{z}$ in $T$. 
         Thus 
         \begin{align*}
-            \frac{ \| h_{z} \| }{ \| z_{S'} \| }
-            \geq 
-            \frac{ (n-k-1)^{-1} \| (n-k-1) h_{z} \| }{ \| z_{S'} \| }
-            \geq 
-            \frac{ (n-k-1)^{-1} n \vol(T) }{ \| z_{S'} \| \vol(F_{z}) }
-            \geq 
-            \frac{n}{ n-k-1 }
+            \frac{ \| b_{z} \| }{ \| h_{z} \| }
+            = 
+            \frac{ \| b_{z} \| }{ (n-k)^{-1} \| (n-k) h_{z} \| }
+            = 
+            \frac{ \| b_{z} \| \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
+            \leq 
+            \frac{ n-k-1 }{n!}
             \cdot 
-            \frac{ \vol(T) }{ \diam(T)^{n} }
+            \frac{ \diam(T)^{n} }{ \vol(T) }
+            :=
+            \beta_T
             .
-%             \\
-%             \leq 
-%             \frac{ n \vol(K) }{ \| z_{S'} \| \vol(F_{z}) }
-%             \leq 
-%             \frac{ \vol(T) }{ \| z_{S'} \| \vol(F_{z}) }
-%             \leq 
-%             \frac{ \vol(T) }{ \diam(T)^{n} }
-%             .
         \end{align*}
-        
+        This establishes bounds on the singular values of the transformation in terms of the mesh geometry. 
+        We write 
+        \begin{align*}
+            \beta_T 
+            := 
+%             \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) 
+%             \geq 
+            \sqrt{ 
+                1 + (n-k)^{2} \frac{ \diam(T)^{2n} }{ n!^{2}\vol(T)^{2} } 
+            } 
+            + 
+            (n-k) \frac{ \diam(T)^{n} }{ n! \vol(T) }            
+            .
+        \end{align*}
 
         
-        
-        
-What are the singular values of a $2x2$ (lower) unit triangular matrix? Suppose we have the matrix
-Suppose we have the matrix 
-\begin{align*}
-    \begin{pmatrix}
-    1 & 0
-    \\ 
-    b & 1
-    \end{pmatrix}
-\end{align*}
-Following up a generic formula found here, 
-https://math.stackexchange.com/a/861774/3557
-I decompose 
-\begin{align*}
-    \begin{pmatrix}
-    1 & 0
-    \\ 
-    b & 1
-    \end{pmatrix}
-    =
-    \frac 1 2 
-    \begin{pmatrix}
-    2 & -b
-    \\ 
-    b & 2
-    \end{pmatrix}
-    +
-    \frac 1 2 
-    \begin{pmatrix}
-    0 & b
-    \\ 
-    b & 0
-    \end{pmatrix}
-\end{align*}
-The singular values $w_1$ and $w_2$ are implicitly given by 
-\begin{align*}
-    \frac{ w_1 + w_2 }{2} = \frac 1 2 \sqrt{ 4 + b^2 }
-    \\
-    \frac{ w_1 - w_2 }{2} = \frac 1 2 |b|
-\end{align*}
-If we assume that the first value is at least the second value, 
-then adding and subtracting these equations leads to 
-\begin{align*}
-    w_1 = \frac 1 2 \sqrt{ 4 + b^2 } + \frac 1 2 |b|
-    \\
-    w_2 = \frac 1 2 \sqrt{ 4 + b^2 } - \frac 1 2 |b|
-\end{align*}
-I would like to know whether that reasoning is correct 
-
-
-foo
-\begin{align*}
-    \lambda^2 = \frac{1}{2} \left( a + c \pm \sqrt{ a^2 - 2 a c + c^2 + 4b^2 } \right)
-\end{align*}
-\begin{align*}
-    \lambda 
-    &= 
-    \frac{1}{\sqrt 2} \sqrt{ (1+t^2) + 1 \pm \sqrt{ (1+t^2)^2 - 2 (1+t^2)   +   1 + 4t^2 } } 
-    \\
-    &= 
-    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{ 1 + 2t^2 + t^4 - 2 - 2 t^2 + 1 + 4t^2 } } 
-    \\
-    &= 
-    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{          + t^4                 + 4t^2 } } 
-    \\
-    &= 
-    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
-    .
-\end{align*}
-\begin{align*}
-    \lambda = \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
-\end{align*}
-\begin{align*}
-    \left( t^2 + 2 + t \sqrt{ t^2 + 4 } \right)
-    \left( t^2 + 2 - t \sqrt{ t^2 + 4 } \right)
-    =
-    t^{4} + 4 t^{2} + 4
-    -
-    t^{2} ( t^{2} + 4 )
-    =
-    4
-\end{align*}
-\begin{align*}
-    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
-    &=
-    \sqrt{1+a^2/4} \pm a/2
-    \\
-    \frac 1 2 \left( t^2 + 2 \pm t \sqrt{ t^2 + 4 } \right)
-    &=
-    1+a^2/4
-    \pm
-    a \sqrt{1+a^2/4}
-    + 
-    a^2/4
-    \\&=
-    1
-    +
-    2a^2/4
-    \pm
-    a \sqrt{1+a^2/4}
-    \\
-    1 + \frac{t^2}{2} \pm t \sqrt{ \frac{t^2}{4} + 1 } 
-    &=
-    1
-    +
-    a^2/2
-    \pm
-    a \sqrt{1+a^2/4}
-    .
-\end{align*}
-
-
-
-
 
 
 
@@ -4426,7 +4305,8 @@ foo
         \end{align*}
         We define $a := \cos(\alpha_1)^{-1} \hat h_1 - \cos(\alpha_2)^{-1} \hat h_2$. 
         Notice that $a \perp \hat x$ by definition. The matrix $\Id + \hat x \otimes a^{t}$ is the identity over the orthogonal complement of the linear span of $a$ and $x$. Over that two-dimensional subspace, it can be represented by a triangular matrix.
-        Its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are~\cite{blinn1996consider} 
+        Similar as above, its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are
+        %~\cite{blinn1996consider} 
         \begin{align*}
             \sigma_{\max} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2},
             \qquad 
@@ -4539,51 +4419,51 @@ foo
         The diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$.
         The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
         Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of the origin in some simplex in $\calS'$
-        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $\kappa(A)^{-2}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $\beta_T$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
         In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
         It follows that $\|x_{G}\| \leq \diam(T)$. 
         
         We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
-        Recall that 
         \begin{align*}
-            \frac{ \|h_{F}\|}{\diam(T)}
-            = 
-            \frac{ n \vol(T) }{ \vol(F) \diam(T) }
-            \geq 
-            \frac{ n \vol(T) }{ \diam(T)^{n} }
-            \geq 
-            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \frac{\diam(T)}{ \|h_{F}\|}
+            \leq  
+            \frac{ \vol(F) \diam(T) }{ n \vol(T) }
+            \leq 
+            \frac{ \diam(T)^{n} }{ n! \vol(T) }
             .
         \end{align*}
         We conclude that 
         \begin{gather*}
             \frac{ \diam(K) }{ \| h_{{G}} \| }
             \leq 
-            (k+1)\kappa(A)^{2}
+            (k+1)\beta_T
             \frac{ \diam(K) }{ \| h_{T} \| }
             \leq 
-            (k+1)\kappa(A)^{2}
+            (k+1)\beta_T
             \theta(\calT)
             \frac{ \diam(T) }{ \| h_{T} \| }
             \leq 
-            (k+1)\kappa(A)^{2}
-            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            (k+1)\beta_T
+            \theta(\calT)
+            \frac{ \diam(T)^{n} }{ n! \vol(T) }
             ,
             \\
             \frac{ \| x_{G} \| }{ \| h_{K} \| }
             \leq 
             (k+1)
+            \sup_{ K \in \patch_{\calT}(S) }
             \frac{ \diam(T) }{ \| h_{K} \| }
             \leq 
             (k+1)
             \theta(\calT)
+            \sup_{ K \in \patch_{\calT}(S) }
             \frac{ \diam(K) }{ \| h_{K} \| }
             \leq 
             (k+1)
             \theta(\calT)
             \sup_{ K \in \patch_{\calT}(S) }
-            (n-1)! \cdot \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{gather*}
         \begin{gather*}
@@ -4591,13 +4471,13 @@ foo
             \leq 
             (k+1)
             \sup_{ K \in \patch_{\calT}(S) }
-            (n-1)! \cdot \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            \frac{ \diam(K)^{n} }{ n! \vol(K) }
             ,
-            \\
+            \qquad 
             \frac{ \| x_{G} \| }{ \| h_{G} \| }
             \leq 
-            (k+1)\kappa(A)^{2}
-            (n-1)! \cdot \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            (k+1)\beta_T
+            \frac{ \diam(T)^{n} }{ n! \vol(T) }
             .
         \end{gather*}
 
@@ -4628,13 +4508,11 @@ foo
             \\&
             \leq 
             (k+1) 
-            (n-1)! \cdot 
-            \left( 1 + \kappa(A)^{2} \right)
+            \left( 1 + \beta_T \right)
             \sup_{ K \in \patch_{\calT}(S) }
             \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{align*}
-        \todo{bound $\kappa(A)$ right away...}
         
         \item 
         We define a mapping $ \Xi : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
@@ -4651,37 +4529,62 @@ foo
         By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
         
         We recall the upper bound $\sqrt{1+\theta^2} \leq 1 + \theta$ for any $\theta \geq 0$. 
-        
+        This leads to  
+        \begin{align*}
+            \| \Jacobian \Xi \|
+            &\leq 
+            \Cvier{n}{k}(\calT)
+            :=
+            (k+1) 
+            \mu(\calT)
+            \beta_T
+            \Big( 
+                1 
+                + 
+                (k+1) 
+                \left( 1 + \beta_T \right)
+                \mu(\calT)
+            \Big)            
+            \\
+            \| \Jacobian \Xi^{-1} \|
+            &\leq  
+            \Cfive{n}{k}(\calT)
+            :=
+            (k+1) 
+            \mu(\calT)
+            \Big( 
+                1 
+                + 
+                (k+1) 
+                \left( 1 + \beta_T \right)
+                \mu(\calT)
+            \Big)            
+        \end{align*}
+        We get the determinant estimate 
         \begin{align*}
             |\det(\Xi)|
             \leq 
+            \Cdetvier{n}{k}(\calT)
+            :=
             (k+1)^{n}
-            (n-1)!^{n}
             \theta(\calT)^{n}
-            \kappa(A)^{2n}
-            \mu(\calT)
+            \beta_T^{n}
+            \mu(\calT)^{n}
             ,
             \qquad 
             |\det(\Xi^{-1})|
             \leq 
+            \Cdetfive{n}{k}(\calT)
+            :=
             (k+1)^{n}
-            (n-1)!^{n}
             \theta(\calT)^{n}
-            \mu(\calT)
+            \mu(\calT)^{n}
             .
         \end{align*}
-
+        This completes the desired estimates. 
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        \color{black}
         
         
         
@@ -5161,8 +5064,8 @@ The main result of this manuscript is the following theorem.
 %         &
 %         \leq  
 %         C_{{\rm PF},\Gamma,k,p}(\calT) 
-%         \Cdetfive{n}(\calT)^{\frac 1 p} 
-%         \Cvier{n}(\calT)^{k+1} 
+%         \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
+%         \Cvier{n}{k}(\calT)^{k+1} 
 %         \diam(T)^{k} 
 %         \| \cartan u \|_{L^{p}(U_{m-1})}
 %         \\&\qquad
@@ -5172,8 +5075,8 @@ The main result of this manuscript is the following theorem.
 %         \| \cartan u      \|_{L^{p}(T_{m})} 
 %         \\&\qquad
 %         + 
-%         \Cdetfive{n}(\calT)^{-\frac 1 p} 
-%         \Cvier{n}(\calT)^{k} 
+%         \Cdetfive{n}{k}(\calT)^{-\frac 1 p} 
+%         \Cvier{n}{k}(\calT)^{k} 
 %         \| w \|_{L^{p}(U_{m-1})}
 %         \\
         &
@@ -5183,14 +5086,14 @@ The main result of this manuscript is the following theorem.
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
             +
-            \Cvier{n}(\calT)^{k+1} 
-            \Cdetfive{n}(\calT)^{\frac 1 p} 
+            \Cvier{n}{k}(\calT)^{k+1} 
+            \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
             \| \cartan u \|_{L^{p}(U_{m-1})}
         \right)
         \\&\qquad
         + 
-        \Cvier{n}(\calT)^{k} 
-        \Cdetfive{n}(\calT)^{\frac 1 p} 
+        \Cvier{n}{k}(\calT)^{k} 
+        \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}

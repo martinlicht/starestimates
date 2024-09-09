@@ -13,6 +13,141 @@
 
 
 
+
+
+
+
+
+
+        \color{blue}
+        We study the singular values of the matrix 
+        \begin{align*}
+            \begin{pmatrix}
+            -1                 & 0
+            \\ 
+            -2 \|b_z\|/\|h_z\| & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            -1             & 0
+            \\ 
+            -2 \tan(\beta) & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            0             & \tan(\beta)
+             \\ 
+            -\tan(\beta) & 0
+            \end{pmatrix}
+            +
+            \begin{pmatrix}
+            -1           & -\tan(\beta)
+             \\ 
+            \tan(\beta) & 1
+            \end{pmatrix}
+            .
+        \end{align*}
+        It follows that $\det(\Theta_{|K}) = 1$. 
+        Its singular values satisfy 
+        \begin{align*}
+            ( \sigma_{\max} + \sigma_{\min} )/2
+            =
+            \tan(\beta)
+            ,
+            \qquad 
+            ( \sigma_{\max} - \sigma_{\min} )/2
+            =
+            \sqrt{ 1 + \tan^{2}(\beta) }
+            .
+        \end{align*}
+        We arrive at 
+        \begin{align*}
+            \sigma_{\max} = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
+            ,
+            \qquad 
+            \sigma_{\min} = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
+            .
+        \end{align*}
+\begin{align*}
+    \lambda^2 = \frac{1}{2} \left( a + c \pm \sqrt{ a^2 - 2 a c + c^2 + 4b^2 } \right)
+\end{align*}
+\begin{align*}
+    \lambda 
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ (1+t^2) + 1 \pm \sqrt{ (1+t^2)^2 - 2 (1+t^2)   +   1 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{ 1 + 2t^2 + t^4 - 2 - 2 t^2 + 1 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm \sqrt{          + t^4                 + 4t^2 } } 
+    \\
+    &= 
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+    .
+\end{align*}
+\begin{align*}
+    \lambda = \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+\end{align*}
+\begin{align*}
+    \left( t^2 + 2 + t \sqrt{ t^2 + 4 } \right)
+    \left( t^2 + 2 - t \sqrt{ t^2 + 4 } \right)
+    =
+    t^{4} + 4 t^{2} + 4
+    -
+    t^{2} ( t^{2} + 4 )
+    =
+    4
+\end{align*}
+\begin{align*}
+    \frac{1}{\sqrt 2} \sqrt{ t^2 + 2 \pm t \sqrt{ t^2 + 4 } } 
+    &=
+    \sqrt{1+a^2/4} \pm a/2
+    \\
+    \frac 1 2 \left( t^2 + 2 \pm t \sqrt{ t^2 + 4 } \right)
+    &=
+    1+a^2/4
+    \pm
+    a \sqrt{1+a^2/4}
+    + 
+    a^2/4
+    \\&=
+    1
+    +
+    2a^2/4
+    \pm
+    a \sqrt{1+a^2/4}
+    \\
+    1 + \frac{t^2}{2} \pm t \sqrt{ \frac{t^2}{4} + 1 } 
+    &=
+    1
+    +
+    a^2/2
+    \pm
+    a \sqrt{1+a^2/4}
+    .
+\end{align*}
+\color{black}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         \item 
         % \todo{Combine all this to get the final transformation.}
         The last simplicial complex that we introduce is called $\calK$,
