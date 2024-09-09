@@ -4587,6 +4587,127 @@ and the Lipschitz estimate reflects the shape regularity.
         
         
         
+        \item 
+        Consider any $n$-simplex $R \in \calR$ and let $R^c \in \calR^{c}$ be its image under $\Theta$.
+        We construct a bi-Lipschitz mapping 
+        \begin{align*}
+            \Gamma_{R} : R \cup R^{c} \rightarrow R^{c}
+        \end{align*}
+        and analyze its properties. The construction will be such that the union of $\Gamma_{R}$ for all $n$-simplices $R \in \calR$
+        will define a bi-Lipschitz mapping 
+        \begin{align*}
+            \Gamma : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}
+        \end{align*}
+        which will be the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
+        
+        We write $h_{z}$ for the height of $z_{S'}$ within $K$.
+        Given $x \in K \cup K^{c}$, we can write uniquely
+        \begin{align*}
+            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c}.
+        \end{align*}
+        Notice that 
+        \begin{align*}
+            t = \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+        \end{align*}
+        We define 
+        \begin{align*}
+            \Gamma_{K}(x) = x - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
+        \end{align*}
+        We readily verify that this transformation satisfies the desired properties. 
+        It remains to analyze its Jacobian.
+        
+        We have an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$.
+        With that,
+        \begin{align*}
+            \Jacobian \Gamma_{K}(x)
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            z_{S'} \otimes h_{z}^{t}
+            =
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
+            z_{S'} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            h_{z} \otimes h_{z}^{t}
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            b_{z} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 } 
+            \hat h_{z} \otimes \hat h_{z}^{t}
+            - 
+            \frac{ \|b_z\| }{ 2 \| h_{z} \| } 
+            \hat b_{z} \otimes \hat h_{z}^{t}
+            .
+        \end{align*}
+        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        Hence $\tan(\beta) = \| b_z \| / \| h_z \|$. It remains to study the singular values of the matrix 
+        \begin{align*}
+            C 
+            = 
+            \frac 1 2 
+            \begin{pmatrix}
+                1 & 0 
+                \tan(\beta) & 2 
+            \end{pmatrix}
+        \end{align*}
+        By building the symmetric matrix $C^{t} C$ and computing its eigenvalues, we obtain 
+        \begin{align*}
+            \sigma_{\max} = \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
+            ,
+            \\
+            \sigma_{\min} = \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
+            .
+        \end{align*}
+        These are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Gamma$,
+        the remaining eigenvalues being equal to $1$. Upon close inspection, we see that 
+        \begin{align*}
+            \sigma_{\max} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+            ,
+            \\
+            \sigma_{\min} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+            .
+        \end{align*}
+        These are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
+        Moreover, $\sigma_{\max} \sigma_{\min} = 1/2$. 
+        We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
+        Similar as above, we use the upper bound 
+        \begin{align*}
+            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \mu(T).
+        \end{align*}
+        We conclude that 
+        \begin{gather*}
+            \| \Jacobian\Gamma \| 
+            \leq 
+            \frac 1 4 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            ,
+            \\
+            \| \Jacobian\Gamma^{-1} \| 
+            \leq 
+            \frac 1 2 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            \\
+            \det \Jacobian\Gamma = \frac 1 2 
+            .
+        \end{gather*}
+
+
+
+
+
+
+        
+        
+        
         
         
         
