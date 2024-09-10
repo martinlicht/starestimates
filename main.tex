@@ -1033,7 +1033,7 @@ Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape 
         \\
         \alpha(T)
         \leq 
-        \Csechs{n}
+        \Cdrei{n}
         % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
         \kappa(T)
         .
@@ -1042,51 +1042,50 @@ Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape 
     \begin{align*}
         \Ceins{n} \leq \sqrt{n},
         \quad 
-        \Czwei{n} \leq \sqrt{ 2n/(n-1)^{n-1} },
+        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}, 
         \quad 
-        \Csechs{n} \leq \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        \Cdrei{n} \leq \sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
         . 
     \end{align*}
 \end{lemma}
 \begin{proof}
     We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
     The Jacobian determinant is the product of these singular values. 
-%     By a result of Hong and Pan,
+    By a result of Hong and Pan \cite{hong1992lower},
+    \begin{align*}
+        \sigma_{n}
+        &\geq 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n-1} }
+        = 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ n! \vol(T) }{ \diam(T)^{n-1} }
+        .
+    \end{align*}
+%     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
+    The second inequality follows. 
+    To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
+    
+%     By a result of Yu and Gu \cite{yisheng1997note},
 %     \begin{align*}
 %         \frac{ \sigma_{n} }{ \sigma_{1} }
-%         \geq 
-%         \left(\frac{n-1}{n}\right)^{\frac{n-1}{2}}
-%         \frac{ \sqrt{n} \det(\Jacobian\varphi) }{ \| \Jacobian\varphi \| }
+%         &\geq 
+%         \det(\Jacobian\varphi)
+%         \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
 %         \sigma_{1}^{-1}
 %         \geq 
-%         \left(\frac{n-1}{n}\right)^{\frac{n-1}{2}}
-%         \frac{ \sqrt{n} \det(\Jacobian\varphi) }{ n \sigma_{1} }
-%         \sigma_{1}^{-1}
-%         .
-%     \end{align*}
-    By a result of Yu and Gu \cite{yisheng1997note},
-    \begin{align*}
-        \frac{ \sigma_{n} }{ \sigma_{1} }
-        &\geq 
-        \det(\Jacobian\varphi)
-        \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
-        \sigma_{1}^{-1}
-%         \geq 
-%         (n-1)^{\frac{n-1}{2}}
+%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
 %         \det(\Jacobian\varphi)
 %         \left( \frac{1}{ \diam(T)^{n-1} } \right)^{}
 %         \frac{1}{\sqrt{n} \diam(T)}
 %         \\&
 %         \geq 
+%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
 %         \frac{1}{\sqrt{n}}
-%         (n-1)^{\frac{n-1}{2}}
-%         \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n} }
-        \geq 
-        \sqrt{\frac{ (n-1)^{n-1} }{n} }
-        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n} }
-        .
-    \end{align*}
-    Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. 
+%         \frac{ n! \vol(T) }{ \diam(T)^{n} }
+%         .
+%     \end{align*}
+%     Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. % THIS IS OPTIMAL
 %     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
 %     \begin{gather*}
 %         \diam(T) 
@@ -1152,6 +1151,7 @@ This indicator quantifies how much reflection across the shared face distorts th
 %     .
 % \end{align*}
 
+\todo{Tighter estimate via geometry}
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
@@ -1177,12 +1177,12 @@ This indicator quantifies how much reflection across the shared face distorts th
     \begin{align*}
         \| \Jacobian \Xi \|
         \leq 
-        \Cdrei{n}
+        \Cvier{n}
         \kappa(T_2)^{-1} \kappa(T_1) 
         % \frac{ \kappa(T_1) }{ \kappa(T_2) }
         .
     \end{align*}
-    Here, $\Cdrei{n} \leq \Ceins{n} \Czwei{n}$. 
+    Here, $\Cvier{n} \leq \Ceins{n} \Czwei{n}$. 
 \end{lemma}
 
 % Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
@@ -4035,34 +4035,59 @@ and the Lipschitz estimate reflects the shape regularity.
     let $T \in \patch_{\calT}(S)$ be of dimension $n$,
     and let 
     \begin{align*}
-        U := |\patch_{\calT}(S)| \setminus T.
+        U := \overline{ |\patch_{\calT}(S)| \setminus T },
+        \qquad 
+        {\Gamma_I} := U \cap T,
+        \qquad 
+        {\Gamma_J} := \overline{ \partial T \setminus \partial U }.
     \end{align*}
+    \begin{enumerate}
+    \item 
     There exists a bi-Lipschitz mapping
     \begin{align*}
-        \Xi : T \rightarrow U
+        \Xi_{1} : T \rightarrow U
     \end{align*}
-    satisfying
+    which is the identity along ${\Gamma_I} = T \cap U$ and which satisfies the upper bounds 
     \begin{gather*}
-        \| \Jacobian\Xi \|          \leq \Cvier{n}{k}(\calT),
+        \| \Jacobian\Xi_{1} \|          \leq \Cfive{n}{k}(\calT),
         \quad 
-        \| \Jacobian\Xi^{-1} \|     \leq \Cfive{n}{k}(\calT),
+        \| \Jacobian\Xi_{1}^{-1} \|     \leq \Csechs{n}{k}(\calT),
         \\
-        \| \det\Jacobian\Xi \|      \leq \Cdetvier{n}{k}(\calT),
+        \| \det\Jacobian\Xi_{1} \|      \leq \Cdetfive{n}{k}(\calT),
         \quad 
-        \| \det\Jacobian\Xi^{-1} \| \leq \Cdetfive{n}{k}(\calT),
+        \| \det\Jacobian\Xi_{1}^{-1} \| \leq \Cdetsechs{n}{k}(\calT),
     \end{gather*}
     where the constants on the right-hand sides are as stated in the proof. 
+    \item 
+    There exists a bi-Lipschitz mapping
+    \begin{align*}
+        \Xi_{2} : T \rightarrow U
+    \end{align*}
+    which is the identity along $\partial U \setminus \partial T$ and which satisfies the upper bounds 
+    \begin{gather*}
+        \| \Jacobian\Xi_{2} \|          \leq \Csieb{n}{k}(\calT),
+        \quad 
+        \| \Jacobian\Xi_{2}^{-1} \|     \leq \Cacht{n}{k}(\calT),
+        \\
+        \| \det\Jacobian\Xi_{2} \|      \leq \Cdetsieb{n}{k}(\calT),
+        \quad 
+        \| \det\Jacobian\Xi_{2}^{-1} \| \leq \Cdetacht{n}{k}(\calT),
+    \end{gather*}
+    where the constants on the right-hand sides are as stated in the proof. 
+    \end{enumerate}
 \end{theorem}
 \begin{proof}
     We derive the estimate in several steps. 
+    In what follows, we use the notation $\hat z$ for the normalization of any vector $z \in \bbR^{n}$.
     \begin{itemize}
         \item 
-        Without loss of generality, the barycenter of $S$ is the origin. 
+        Without loss of generality, the barycenter $z_{S}$ of $S$ is the origin. 
         % Let $I := U \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
-        %We let $J \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
-        %So $J$ is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
+        %We let ${\Gamma_J} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
+        %So ${\Gamma_J}$ is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
         We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
-        Note that $J$ is the union of exactly those faces of $T$ that contain $S'$.
+        Note that ${\Gamma_J}$ is the union of exactly those faces of $T$ that contain $S'$,
+        whereas ${\Gamma_I} = U \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
         
         \item 
@@ -4095,7 +4120,7 @@ and the Lipschitz estimate reflects the shape regularity.
         
                 
         \item 
-        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$.
+        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$ as follows.
         Let $K \in \calR$ be an $n$-simplex and $K' \in \calR^{c}$ be constructed from $K$.
         We let $A_{K} : \Delta^{n} \rightarrow K$ and $A_{K'} : \Delta^{n} \rightarrow K'$
         be affine reference transformations
@@ -4130,7 +4155,7 @@ and the Lipschitz estimate reflects the shape regularity.
             2 \hat z_{S'} \frac{\langle \hat h_z, x \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
             .
         \end{align*}
-        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $\hat h_z$,
+        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $h_z$,
         and that it equals $-z_{S'}$ when $x = z_{S'}$.
 %         and when $x = z_{S'}$, then 
 %         \begin{align*}
@@ -4148,6 +4173,10 @@ and the Lipschitz estimate reflects the shape regularity.
             h_z
             - 
             2 z_{S'} \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle}
+            = 
+            h_z
+            - 
+            2 z_{S'} \frac{\langle h_z, z_{S'} \rangle}{\langle h_z, z_{S'} \rangle}
             %\\&
             = 
             h_z
@@ -4182,17 +4211,15 @@ and the Lipschitz estimate reflects the shape regularity.
         We compute the eigenvalues of the symmetric matrix $B^{\ast} B$. 
         Its square roots are the desired singular values of $B$:
         \begin{align*}
-            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + \tan(\beta) \sqrt{ 4\tan(\beta)^2 + 4 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
+            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
             ,
             \\
-            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - \tan(\beta) \sqrt{ 4\tan(\beta)^2 + 4 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
+            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
             .
         \end{align*}
-        \begin{align*}
-            \lambda
-        \end{align*}
-        These are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$. 
         They are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
+        These are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$,
+        whereas all its other singular values equal $1$. 
         
 %         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
         By the definition of the tangent, $\tan(\beta) \leq \| b_{z} \| / \| h_{z} \|$, and we know $\|b_z\| \leq \|z_{S'}\|$. 
@@ -4206,14 +4233,12 @@ and the Lipschitz estimate reflects the shape regularity.
             = 
             \frac{ \| b_{z} \| \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
             \leq 
-            \frac{ n-k-1 }{n!}
+            \frac{ n-k }{n!}
             \cdot 
             \frac{ \diam(T)^{n} }{ \vol(T) }
-            :=
-            \beta_T
             .
         \end{align*}
-        This establishes bounds on the singular values of the transformation in terms of the mesh geometry. 
+        This establishes bounds on the singular values of the transformation. 
         We write 
         \begin{align*}
             \beta_T 
@@ -4232,6 +4257,134 @@ and the Lipschitz estimate reflects the shape regularity.
 
 
 
+        \item 
+        We introduce another mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$ as follows. 
+        Consider any $n$-simplex $K \in \calR$ and let $K^c \in \calR^{c}$ be its image under $\Phi$.
+        We construct a bi-Lipschitz mapping 
+        \begin{align*}
+            \Phi_{K} : K \cup K^{c} \rightarrow K^{c}
+        \end{align*}
+        and analyze its properties. The construction will be such that the union of $\Phi_{K}$ for all $n$-simplices $K \in \calR$
+        will define the required mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$,
+        which will be bi-Lipschitz and the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
+        
+        We write $h_{z}$ for the height of $z_{S'}$ within $K$.
+        Given $x \in K \cup K^{c}$, we have a unique representation
+        \begin{align*}
+            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c}.
+        \end{align*}
+        Notice that 
+        \begin{align*}
+            t = \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+            .
+        \end{align*}
+        Based on that observation, we define 
+        \begin{align*}
+            \Phi_{K}(x) := x - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
+            .
+        \end{align*}
+        We readily verify that this transformation is a bi-Lipschitz mapping from $K \cup K^{c}$ onto $K^{c}$
+        that satifies the desired mapping properties. 
+        It remains to analyze its Jacobian to get explicit estimates. 
+        
+        We have an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$.
+        With that,
+        \begin{align*}
+            \Jacobian \Phi_{K}(x)
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
+            z_{S'} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            h_{z} \otimes h_{z}^{t}
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            b_{z} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
+            h_{z} \otimes h_{z}^{t}
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            b_{z} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 } 
+            \hat h_{z} \otimes \hat h_{z}^{t}
+            - 
+            \frac{ \|b_z\| }{ 2 \| h_{z} \| } 
+            \hat b_{z} \otimes \hat h_{z}^{t}
+            .
+        \end{align*}
+        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        Hence $\tan(\beta) = \| b_z \| / \| h_z \|$. It remains to study the singular values of the matrix 
+        \begin{align*}
+            C 
+            = 
+            \frac 1 2 
+            \begin{pmatrix}
+                -1 & 0 
+                \\
+                -\tan(\beta) & 2 
+            \end{pmatrix}
+        \end{align*}
+        By building the symmetric matrix $C^{t} C$ and computing its eigenvalues, we obtain 
+        \begin{align*}
+            \sigma_{\max} 
+            = 
+            \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
+            =
+            \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+            ,
+            \\
+            \sigma_{\min} 
+            = 
+            \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
+            =
+            \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+            .
+        \end{align*}
+        These are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Phi_{K}$, the remaining eigenvalues being equal to $1$. 
+%         Upon close inspection, we see that 
+%         \begin{align*}
+%             \sigma_{\max} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+%             ,
+%             \\
+%             \sigma_{\min} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
+%             .
+%         \end{align*}
+        These are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
+        Moreover, $\sigma_{\max} \sigma_{\min} = 1/2$. 
+        We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
+        Similar as above, we use the upper bound 
+        \begin{align*}
+            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \mu(T).
+        \end{align*}
+        We conclude that 
+        \begin{gather*}
+            \| \Jacobian\Phi_{K} \| 
+            \leq 
+            \frac 1 4 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            ,
+            \\
+            \| \Jacobian\Phi_{K}^{-1} \| 
+            \leq 
+            \frac 1 2 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            ,
+            \\
+            \det \Jacobian\Phi = \frac 1 2 
+            .
+        \end{gather*}
+        This finishes the discussion of the transformation $\Phi$.
 
 
 
@@ -4514,27 +4667,125 @@ and the Lipschitz estimate reflects the shape regularity.
             .
         \end{align*}
         
-        \item 
-        We define a mapping $ \Xi : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
-        \begin{align*}
-            \Xi := \Psi \circ \Theta.
-        \end{align*}
-        It preserves the interface from $T$ onto $U$. We briefly recapitulate why it is bi-Lipschitz.
+        \todo{TODO: Integrate the following paragraph and make it two-sided.}
+        We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz over some essentially disjoint closed partitions over their respective domains.
+        It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
+        Rademacher's theorem then shows that both have essentially bounded weak Jacobians almost everywhere. 
         
         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
         After application of a piecewise linear Lipschitz mapping, 
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
         
-        We recall the upper bound $\sqrt{1+\theta^2} \leq 1 + \theta$ for any $\theta \geq 0$. 
-        This leads to  
+        
+        
+        
+        \item 
+        We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
         \begin{align*}
-            \| \Jacobian \Xi \|
+            \Xi_{1} := \Psi \circ \Theta.
+        \end{align*}
+        It preserves the interface from $T$ onto $U$. 
+        % We briefly recapitulate why it is bi-Lipschitz.
+%         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
+%         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+%         After application of a piecewise linear Lipschitz mapping, 
+%         we can assume that $|\calK|$ is convex without loss of generality. 
+%         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
+%         By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
+        The combination of the previous estimates for $\Psi$ and $\Theta$,
+        as well as the upper bound $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$,
+        provide 
+        \begin{align*}
+            \| \Jacobian \Xi_{1} \|
             &\leq 
-            \Cvier{n}{k}(\calT)
+            \Cfive{n}{k}(\calT)
             :=
+            (k+1) 
+            \theta(\calT)
+            \mu(\calT)
+            \beta_T^{2}
+            \Big( 
+                1 
+                + 
+                (k+1) 
+                \left( 1 + \beta_T \right)
+                \mu(\calT)
+            \Big)            
+            ,
+            \\
+            \| \Jacobian \Xi_{1}^{-1} \|
+            &\leq  
+            \Csechs{n}{k}(\calT)
+            :=
+            (k+1) 
+            \theta(\calT)
+            \mu(\calT)
+            \beta_T
+            \Big( 
+                1 
+                + 
+                (k+1) 
+                \left( 1 + \beta_T \right)
+                \mu(\calT)
+            \Big)            
+            .
+        \end{align*}
+        We get the determinant estimates
+        \begin{align*}
+            |\det(\Xi_{1})|
+            \leq 
+            \Cdetfive{n}{k}(\calT)
+            :=
+            (k+1)^{n}
+            \theta(\calT)^{n}
+            \beta_T^{n}
+            \mu(\calT)^{n}
+            ,
+            \qquad 
+            |\det(\Xi_{1}^{-1})|
+            \leq 
+            \Cdetsechs{n}{k}(\calT)
+            :=
+            (k+1)^{n}
+            \theta(\calT)^{n}
+            \mu(\calT)^{n}
+            .
+        \end{align*}
+        This completes the desired estimates for $\Xi_{1}$. 
+        
+        
+        
+        
+        
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        \item 
+        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U $ by setting 
+        \begin{align*}
+            \Xi_{2} := \Psi \circ \Phi.
+        \end{align*}
+        It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
+        The combination of the previous estimates for $\Psi$ and $\Phi$ now lead to 
+        \begin{align*}
+            \| \Jacobian \Xi_{2} \|
+            &\leq 
+            \Csieb{n}{k}(\calT)
+            :=
+            \frac 1 4
+            % \left( \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \sqrt{ 1 + (k+1)^2 \mu(T)^2 } \right)
+            \left( 4 + (k+1) \mu(T) \right)
+            \cdot 
             (k+1) 
             \mu(\calT)
             \beta_T
@@ -4546,10 +4797,14 @@ and the Lipschitz estimate reflects the shape regularity.
                 \mu(\calT)
             \Big)            
             \\
-            \| \Jacobian \Xi^{-1} \|
+            \| \Jacobian \Xi_{2}^{-1} \|
             &\leq  
-            \Cfive{n}{k}(\calT)
+            \Cacht{n}{k}(\calT)
             :=
+            \frac 1 2
+            %\left( \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \sqrt{ 1 + (k+1)^2 \mu(T)^2 } \right)
+            \left( 4 + (k+1) \mu(T) \right)
+            \cdot 
             (k+1) 
             \mu(\calT)
             \Big( 
@@ -4562,144 +4817,33 @@ and the Lipschitz estimate reflects the shape regularity.
         \end{align*}
         We get the determinant estimate 
         \begin{align*}
-            |\det(\Xi)|
+            |\det(\Xi_{2})|
             \leq 
-            \Cdetvier{n}{k}(\calT)
+            \Cdetsieb{n}{k}(\calT)
             :=
+            \frac 1 2 
             (k+1)^{n}
             \theta(\calT)^{n}
             \beta_T^{n}
             \mu(\calT)^{n}
             ,
             \qquad 
-            |\det(\Xi^{-1})|
+            |\det(\Xi_{2}^{-1})|
             \leq 
-            \Cdetfive{n}{k}(\calT)
+            \Cdetacht{n}{k}(\calT)
             :=
+            2
             (k+1)^{n}
             \theta(\calT)^{n}
             \mu(\calT)^{n}
             .
         \end{align*}
-        This completes the desired estimates. 
+        This completes the desired estimates for $\Xi_{2}$. 
         
         
         
         
         
-        \item 
-        Consider any $n$-simplex $R \in \calR$ and let $R^c \in \calR^{c}$ be its image under $\Theta$.
-        We construct a bi-Lipschitz mapping 
-        \begin{align*}
-            \Gamma_{R} : R \cup R^{c} \rightarrow R^{c}
-        \end{align*}
-        and analyze its properties. The construction will be such that the union of $\Gamma_{R}$ for all $n$-simplices $R \in \calR$
-        will define a bi-Lipschitz mapping 
-        \begin{align*}
-            \Gamma : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}
-        \end{align*}
-        which will be the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
-        
-        We write $h_{z}$ for the height of $z_{S'}$ within $K$.
-        Given $x \in K \cup K^{c}$, we can write uniquely
-        \begin{align*}
-            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c}.
-        \end{align*}
-        Notice that 
-        \begin{align*}
-            t = \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
-        \end{align*}
-        We define 
-        \begin{align*}
-            \Gamma_{K}(x) = x - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
-        \end{align*}
-        We readily verify that this transformation satisfies the desired properties. 
-        It remains to analyze its Jacobian.
-        
-        We have an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$.
-        With that,
-        \begin{align*}
-            \Jacobian \Gamma_{K}(x)
-            &=
-            \Id 
-            - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
-            z_{S'} \otimes h_{z}^{t}
-            =
-            \Id 
-            - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
-            z_{S'} \otimes h_{z}^{t}
-            \\
-            &=
-            \Id 
-            - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
-            h_{z} \otimes h_{z}^{t}
-            - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
-            b_{z} \otimes h_{z}^{t}
-            \\
-            &=
-            \Id 
-            - 
-            \frac{1}{ 2 } 
-            \hat h_{z} \otimes \hat h_{z}^{t}
-            - 
-            \frac{ \|b_z\| }{ 2 \| h_{z} \| } 
-            \hat b_{z} \otimes \hat h_{z}^{t}
-            .
-        \end{align*}
-        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
-        Hence $\tan(\beta) = \| b_z \| / \| h_z \|$. It remains to study the singular values of the matrix 
-        \begin{align*}
-            C 
-            = 
-            \frac 1 2 
-            \begin{pmatrix}
-                1 & 0 
-                \tan(\beta) & 2 
-            \end{pmatrix}
-        \end{align*}
-        By building the symmetric matrix $C^{t} C$ and computing its eigenvalues, we obtain 
-        \begin{align*}
-            \sigma_{\max} = \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
-            ,
-            \\
-            \sigma_{\min} = \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
-            .
-        \end{align*}
-        These are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Gamma$,
-        the remaining eigenvalues being equal to $1$. Upon close inspection, we see that 
-        \begin{align*}
-            \sigma_{\max} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
-            ,
-            \\
-            \sigma_{\min} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
-            .
-        \end{align*}
-        These are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
-        Moreover, $\sigma_{\max} \sigma_{\min} = 1/2$. 
-        We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
-        Similar as above, we use the upper bound 
-        \begin{align*}
-            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \mu(T).
-        \end{align*}
-        We conclude that 
-        \begin{gather*}
-            \| \Jacobian\Gamma \| 
-            \leq 
-            \frac 1 4 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
-            ,
-            \\
-            \| \Jacobian\Gamma^{-1} \| 
-            \leq 
-            \frac 1 2 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
-            \\
-            \det \Jacobian\Gamma = \frac 1 2 
-            .
-        \end{gather*}
-
 
 
 
@@ -4878,7 +5022,7 @@ and the Lipschitz estimate reflects the shape regularity.
              \\ 
              \kappa( A_{K} )
              &\leq 
-             \Csechs{n} \kappa(K) \leq 2 \Csechs{n} \kappa(\calT)
+             \Cdrei{n} \kappa(K) \leq 2 \Cdrei{n} \kappa(\calT)
              .
         \end{align*}
         When ${G} \in \calR'$ is not our original simplex, then 
@@ -4897,16 +5041,16 @@ and the Lipschitz estimate reflects the shape regularity.
              \\ 
              \kappa( A_{{G}} )
              &\leq 
-             \Csechs{n} \kappa({G}) \leq 4 \Csechs{n} \kappa(\calT)
+             \Cdrei{n} \kappa({G}) \leq 4 \Cdrei{n} \kappa(\calT)
              .
         \end{align*}
         All the diameters above are comparable up to a factor of $\theta(\calT)$.
         In summary,
         \begin{gather*}
-            \| \Jacobian \Theta_{|K}      \| \leq 2 \Csechs{n} \kappa(\calT)
+            \| \Jacobian \Theta_{|K}      \| \leq 2 \Cdrei{n} \kappa(\calT)
             ,
             \qquad 
-            \| \Jacobian \Theta_{|K}^{-1} \| \leq 2 \Csechs{n} \kappa(\calT)
+            \| \Jacobian \Theta_{|K}^{-1} \| \leq 2 \Cdrei{n} \kappa(\calT)
             ,
             \\
             \| \Jacobian \Xi(x) \|
@@ -4921,14 +5065,14 @@ and the Lipschitz estimate reflects the shape regularity.
                 1
                 + 
                 n
-                2 \Csechs{n} \kappa(\calT)
+                2 \Cdrei{n} \kappa(\calT)
                 4 
                 \kappa(\calT) 
                 \Ceins{n} 
                 \Czwei{n} 
                 \theta(\calT) % \frac{ \diam(K) }{ \diam(G) }
             \right) 
-            2 \Csechs{n} \kappa(\calT)
+            2 \Cdrei{n} \kappa(\calT)
             ,
             \\
             \| \Jacobian \Xi^{-1}(x) \|
@@ -4943,14 +5087,14 @@ and the Lipschitz estimate reflects the shape regularity.
                 1
                 + 
                 n
-                2 \Csechs{n} \kappa(\calT)
+                2 \Cdrei{n} \kappa(\calT)
                 2 
                 \kappa(\calT) 
                 \Ceins{n} 
                 \Czwei{n} 
                 \theta(\calT) % \frac{ \diam(G) }{ \diam(K) }
             \right) 
-            2 \Csechs{n} \kappa(\calT)
+            2 \Cdrei{n} \kappa(\calT)
             .
         \end{gather*}
     \end{itemize}
@@ -5185,8 +5329,8 @@ The main result of this manuscript is the following theorem.
 %         &
 %         \leq  
 %         C_{{\rm PF},\Gamma,k,p}(\calT) 
-%         \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
-%         \Cvier{n}{k}(\calT)^{k+1} 
+%         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+%         \Cfive{n}{k}(\calT)^{k+1} 
 %         \diam(T)^{k} 
 %         \| \cartan u \|_{L^{p}(U_{m-1})}
 %         \\&\qquad
@@ -5196,8 +5340,8 @@ The main result of this manuscript is the following theorem.
 %         \| \cartan u      \|_{L^{p}(T_{m})} 
 %         \\&\qquad
 %         + 
-%         \Cdetfive{n}{k}(\calT)^{-\frac 1 p} 
-%         \Cvier{n}{k}(\calT)^{k} 
+%         \Cdetsechs{n}{k}(\calT)^{-\frac 1 p} 
+%         \Cfive{n}{k}(\calT)^{k} 
 %         \| w \|_{L^{p}(U_{m-1})}
 %         \\
         &
@@ -5207,14 +5351,14 @@ The main result of this manuscript is the following theorem.
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
             +
-            \Cvier{n}{k}(\calT)^{k+1} 
-            \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
+            \Cfive{n}{k}(\calT)^{k+1} 
+            \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
             \| \cartan u \|_{L^{p}(U_{m-1})}
         \right)
         \\&\qquad
         + 
-        \Cvier{n}{k}(\calT)^{k} 
-        \Cdetfive{n}{k}(\calT)^{\frac 1 p} 
+        \Cfive{n}{k}(\calT)^{k} 
+        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
