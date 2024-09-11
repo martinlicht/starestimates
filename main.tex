@@ -67,8 +67,7 @@ However, while potential operators and Poincar\'e--Friedrichs constants for the 
 We illustrate the subject of our discussion with the curl operator. 
 % One example application concerns the curl operator. 
 If $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field on some domain $\Omega \subseteq \bbR^3$, 
-we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator, i.e., $\curl \bfu = \bff$, such that the $\bfL^2$ norm of the potential is bounded in terms of the source field $\bff$. 
-This boundedness is expressed via the Poincar\'e--Friedrichs inequality 
+we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator, i.e., $\curl \bfu = \bff$, such that the $\bfL^2$ norm of the potential is bounded in terms of the source field $\bff$. Specifically, we want the Poincar\'e--Friedrichs inequality % DONE: Theo prefers not using ``expressed''
 \begin{align*}
     \min\limits_{ \substack{ \bfv \in \bfL^{2}(\Omega) \\ \curl \bfv = \bff } } \| \bfv \|_{L^{2}(\Omega)}
     \leq 
@@ -76,7 +75,8 @@ This boundedness is expressed via the Poincar\'e--Friedrichs inequality
     \| \bff \|_{L^{2}(\Omega)}
     .
 \end{align*}
-The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. Any upper bound for it gives rise to a lower bound for the Maxwell eigenvalues.
+The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. 
+Any upper bound for it gives rise to a lower bound for the Maxwell eigenvalues.
 
 Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
 The majority of estimates in the literature address only gradient potentials. 
@@ -99,7 +99,7 @@ Given a domain $\Omega \subseteq \bbR^{n}$ and Lebesgue exponent $1 \leq p \leq 
 we search for a constant $C_{\grad,\Omega,p} > 0$ such that the following holds:
 for every gradient vector field $\bff \in \nabla W^{1,p}(\Omega)$ there exists a scalar potential $u \in W^{1,p}(\Omega)$
 such that $\nabla u = \bff$ and 
-\begin{align}\label{math:intro:inequalitypf:gradient}
+\begin{align}\label{math:intro:inequalitypf:gradient} 
     \| u \|_{L^{p}(\Omega)}
     \leq 
     C_{\grad,\Omega,p} 
@@ -131,10 +131,10 @@ this inequality is equivalent to the following statement:
 %     u \in W^{1,p}(\Omega) % DONE: Use \forall notation 
 %     .\tag{PF} 
 % \end{align}
-Finding a potential of a given gradient $\nabla u$ is generally a nonlinear operation. 
-The operator norm of any \emph{linear} potential construction is an upper bound for the Poincar\'e--Friedrichs constant. 
+Finding a norm-minimizing potential of a given gradient $\nabla u$, if possible, is generally a nonlinear operation.\footnote{The existence of a minimum-norm potential is not guaranteed unless $1 < p < \infty$.}
+The operator norm of any \emph{linear} potential construction serves as an upper bound for the Poincar\'e--Friedrichs constant. 
 % Even though the existence of such a bounded linear potential construction is not evident a priori, picking the average-free potential 
-One example for a bounded linear operator is the average-free potential:
+One very simple example for such a bounded linear operator is the average-free potential: % DONE Theo : too much formalism. Solution: Acknowledge that it's very formal 
 \begin{align*}
     \Phi_{\grad}( \bff ) 
     := 
@@ -163,7 +163,7 @@ Notably, if the constants are required to depend on the convex domain only via i
 then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
 When the domain is not convex but star-shaped with respect to a ball,
 then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{brenner2008mathematical,ern2021finite}. 
-An open set star-shaped with respect to a internal point satisfies Poincar\'e inequalities~\cite[Theorem~3.1]{hurri1988poincare}. 
+Poincar\'e inequalities hold over star-shaped open sets~\cite[Theorem~3.1]{hurri1988poincare}. % DONE: strange sentence 
 
 
 
@@ -227,7 +227,7 @@ This sharply contrasts to the study of the gradient operator.
 We can access some estimates from the literature in the formalism of exterior calculus. 
 We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue},
 % who estimate the Poincar\'e--Friedrichs constants over smoothly bounded convex domains in the Hilbert space setting, when $p=2$. 
-who provide lower bounds for the spectrum of the Hodge--Laplace operator on smoothly bounded convex domains, 
+who provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, % DONE: Theo : smoothly bounded -> with smooth boundary
 thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators, when $p=2$.
 By duality, that implies lower bounds for the case of full boundary conditions.
 % They also provide sequences of inequalities, such as the following in 3D smoothly bounded convex domains:
@@ -248,7 +248,7 @@ but estimates in Lebesgue norms have not been made explicit in the literature ye
 The main objective of this manuscript is bounding the Poincar\'e--Friedrichs constants over local stars within triangulated domains. 
 Clearly, not all local stars describe convex subdomains. 
 One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local stars in triangulations are star-shaped with respect to a ball,
-which enables tools such as averaged Poincar\'e and Bogovski\u{\i} operators. 
+which enables tools such as averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. 
 However, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
 This is not as much a problem over patches around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
 But that interior ball can be arbitrarily small when the patch is around a boundary simplex, even if the mesh has good shape regularity: 
@@ -310,10 +310,10 @@ While there is a wealth of literature for gradient Poincar\'e inequalities over 
 the literature is more sparse when it comes to the corresponding estimates for the curl and divergence potentials.
 
 % DONE: cite VVVV
-In the Hilbert space case, $p=2$, and when the domain is smoothly bounded, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
+In the Hilbert space case, $p=2$, and when the domain has a smooth boundary, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
 % These comparisons~\eqref{math:intro:guerinisavo} are restricted to convex smoothly bounded domains. 
 
-But no such results are known over convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. 
+However, no such results are known over convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. % DONE: Theo : But -> However 
 We follow closely the discussions by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators over domains star-shaped with respect to a ball. 
 In comparison to their exposition, our variants of the regularized potential operators are simplified:
@@ -321,41 +321,48 @@ we only study them over convex domains and use simpler (that is, constant) weigh
 The resulting operator features generally lower regularity properties in comparison to the regularized potential in the literature;
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
+\todo{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
+
 
 In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
 Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
 We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
 The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. 
-For example, given the curl of a vector field over a tetrahedron that vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. We achieve this by constructing an auxiliary problem subject to full boundary conditions.
+For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
+we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
+% the curl of a vector field over a tetrahedron with vanishes along, say, two of the tetrahedron faces, we want to find the unique vector field potential. % DONE : Theo : unclear sentence 
+We achieve this by constructing an auxiliary problem subject to full boundary conditions.
 \\
 
 
 
 % Exterior calculus % DONE: MV recommends moving this down to finish the current line of thoughts 
+\todo{Where to place this paragraph?}
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
 %It also enables us to leverage on the rich literature of Sobolev spaces of differential forms.
 For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+% DONE: Theo : paragraph feels misplaced 
 \\ 
 
 
 
 
-% Future work 
-Computable reliable estimates for the Poincar\'e--Friedrichs constant are important: 
-they quantify the fundamental stability properties of partial differential equations in vector analysis,
-such as the Hodge Laplace equation. 
-Upper bounds correspond to lower bounds for the non-zero eigenvalues of the scalar and vector Laplacian.
+% Future work % DONE: Theo : parts already mentioned ??? 
+% Computable reliable estimates are important: 
+% they quantify the fundamental stability properties of partial differential equations in vector analysis,
+% such as the Hodge Laplace equation. 
+Any upper bounds for the Poincar\'e--Friedrichs constant corresponds to a lower bounds for the non-zero eigenvalues of the scalar and vector Laplacian.
 % Furthermore, their constants enter the stability and convergence theory of finite element methods. 
-In numerical methods, upper bounds for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods,
+In numerical methods, upper bounds for the Poincar\'e--Friedrichs for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods,
 and they lead to lower bounds for the spectrum of finite element matrices. 
-The are several avenues for further research going from here. 
+There are several avenues for further research going from here. 
 
 
 The upper bounds in this manuscript are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches. There are at least two points where the present techniques can be improved further. First, we utilize local Poincar\'e--Friedrichs constants over single simplices, subject to various boundary conditions, but these local estimates over convex domains likely leave room for improvement.
 Second, our construction needs to extend differential forms onto a simplex from the complement of that simplex inside a local star. In the present manuscript, this is achieved via pullback along a bi-Lipschitz mapping. 
 Better transformations or more careful estimates are likely possible, as are completely different approaches.  For example, it is likely that further research on trace and extension operators on triangulations will enable better estimates.
 
-Related to the first of the aforementioned opportunities for improvement, we conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over smoothly bounded convex domains, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
+Related to the first of the aforementioned opportunities for improvement, we conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
 % We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. 
 On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. 
 These topics remain for future research. 
@@ -475,7 +482,7 @@ Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces
 }
 
 When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
-which the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
+which is the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
 We write $\carapace_{\calT}(T)$ for the subset of the local patch whose members do not contain $T$ itself. 
 Formally,
 \begin{gather*}
@@ -501,7 +508,7 @@ A crucial observation is the following.
 
 We introduce a specific notion of connectivity. 
 Given an $n$-dimensional simplicial complex $\calT$, 
-we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
+we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. % TODO: Theo suggests reverse order of that sequence 
 We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. 
 Clearly, strongly connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, 
@@ -791,8 +798,8 @@ where we use an upper bound by Chua and Wheeden:
     2
     \left( \frac p 2 \right)^{\frac 1 p}
     .
-\end{align*}
-Note that this upper bound is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
+\end{align*} % DONE: Theo : following sentence : which upper bound ?
+Note that $C_{{\rm P},{\rm CW},p}$ is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
 As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
 
 We know optimal Poincar\'e--Friedrichs constants over convex domains~(\cite[Theorem~1.1]{ferone2012remark}\cite[Theorem~1.1]{esposito2013poincare}): 
@@ -871,7 +878,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 \begin{remark}
     % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
-    Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}
+    Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}. 
     Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
     with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{{\rm PF},{\rm EFNT},p}$. 
     In the case $2 \leq p$, 
@@ -917,7 +924,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         \frac{1}{2}
         .
     \end{align*}
-    It follows that \eqref{math:esposito:poincare} is generally tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
+    It follows that \eqref{math:esposito:poincare} is generally a tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
     % DONE: what exactly is the limit as p -> 1 ? It converges to 1.
     % DONT: insert the original inequality by chua and Wheeden
     % DONE: chua wheeden upper bound is not optimal!
@@ -974,8 +981,8 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
-In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. As a preparatory step, 
-Given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
+In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
+As a preparatory step, given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
 This serves as our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials: 
 after fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
 The basic idea has appeared in the different variants before, for instance recently in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
@@ -989,6 +996,8 @@ but we also consider indicators based on affine transformations associated with 
 this is because the properties of these transformations are what shows up in our estimates. 
 
 For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
+
+% TODO: Theo : Should shape measures and their discussion be put into the previous section ? 
 
 Whenever $T$ is any $n$-dimensional simplex $T$,
 we define the \textit{geometric shape measure} $\kappa(T)$
@@ -2759,7 +2768,7 @@ Our main interest are local stars or stars within triangulations.
     in fact, any enumeration of the boundary faces of $T$ constitutes a shelling.
 \end{example}
 \begin{example}
-    The standard triangulation of the $n$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
+    The standard triangulation of the $3$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable, as are its higher-dimensional generalizations.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
 \end{example}
 
 \begin{lemma}    
@@ -3294,7 +3303,7 @@ who analyze them as pseudodifferential operators over domains star-shaped with r
 % 
 In comparison to their work, our discussion is more modest:
 we study potential operators merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
-However, our explicit purpose are explicit bounds for the operator norms, which are of independent interest. 
+However, our purpose are explicit bounds for the operator norms, which are of independent interest. 
 \\
 
 In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $D > 0$.
@@ -3807,7 +3816,7 @@ In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\ell} u = u$.
 
 
 We are in the position to establish the main results of this section.
-This includes upper bounds for the Poincar\'--Friedrichs inequalities that we have been looking for. 
+This includes upper bounds for the Poincar\'e--Friedrichs inequalities that we have been looking for. 
 Said upper bounds are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$,
 though the dimension and the form degree enters the estimate. 
 
@@ -3926,9 +3935,10 @@ though the dimension and the form degree enters the estimate.
     The $L^{p}$ continuity constants of the regularized potential operators have not yet been established, to the best of our knowledge.
     
     The operators discussed by Costabel and McIntosh are pseudodifferential operators of negative order, 
-    because their averaging uses a smooth weight, 
-    and hence they discuss a range of operator bounds between different function spaces. 
-    Guzman and Salgado have estimated the operator norm. 
+    because their averaging uses a smooth weight, and which proves boundedness of the operators between a variety of function spaces. 
+    Explicit bounds for the higher-order seminorms of these pseudodifferential operators 
+    have been contributed by Guzman and Salgado~\cite{guzman2021estimation}. % DONE: THEO That requires more comments 
+    % Guzman and Salgado have estimated the operator norm. \todo{Describe Guzman and Salgado's contribution in more detail.} 
 \end{remark}
 
 
@@ -5004,8 +5014,13 @@ and the Lipschitz estimate reflects the shape regularity.
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
         
-        By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipchitz. 
+        A similar argument applies to the triangulation $\calR'$. 
+        We conclude that $\Xi$ is bi-Lipchitz. 
         \color{black}
+        
+        \item 
+        \color{red}
+        We collect several geometric facts. 
         
         
         \item 
