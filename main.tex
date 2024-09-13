@@ -1,10 +1,10 @@
 \documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \input{header}
 
 \usepackage{hyperref}         % For hypertext links
-
+\usepackage{tikz-3dplot}      % 3d plots 
 
 \usepackage{enumitem}
 \setitemize[1]{left=0.0cm} 
@@ -25,6 +25,16 @@
 
 \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
 \newcommand{\notice}[1]{\textcolor{red}{REMARK: #1}}
+
+
+
+
+
+
+
+
+
+
 
 \begin{document}
 
@@ -75,8 +85,15 @@ we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator, i
     \| \bff \|_{L^{2}(\Omega)}
     .
 \end{align*}
-The constant in this inequality quantifies the stability properties of the Maxwell system on that domain. 
-Any upper bound for it gives rise to a lower bound for the Maxwell eigenvalues.
+The constant in this inequality corresponds to a lower bound for the Maxwell eigenvalues and quantifies the stability properties of the Maxwell system on that domain. 
+\color{blue}
+Broadly speaking, upper bounds for the Poincar\'e--Friedrichs constants correspond to lower bounds for the non-zero eigenvalues of the scalar and vector Laplacians.
+% Furthermore, their constants enter the stability and convergence theory of finite element methods. 
+In numerical methods, estimates for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods, as well as spectral bounds for finite element matrices. 
+\color{black}
+\\
+
+
 
 Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
 The majority of estimates in the literature address only gradient potentials. 
@@ -239,7 +256,7 @@ By duality, that implies lower bounds for the case of full boundary conditions.
 When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constants 
 follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
 as mappings between Lebesgue spaces. 
-We are aware of estimates for the higher-order seminorms of these potentials~\cite{guzman2021estimation},
+We are aware of estimates for the higher-order seminorms of these potentials~\cite{guzman2021estimation} (see also~\cite{gallistl2023computational}),
 but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
 \\
 % DONE: cite Guzman and Salgado in a reasonable manner 
@@ -321,7 +338,7 @@ we only study them over convex domains and use simpler (that is, constant) weigh
 The resulting operator features generally lower regularity properties in comparison to the regularized potential in the literature;
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
-\todo{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
+% DONE \todo{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
 
 
 In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
@@ -351,13 +368,7 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 % Computable reliable estimates are important: 
 % they quantify the fundamental stability properties of partial differential equations in vector analysis,
 % such as the Hodge Laplace equation. 
-Any upper bounds for the Poincar\'e--Friedrichs constant corresponds to a lower bounds for the non-zero eigenvalues of the scalar and vector Laplacian.
-% Furthermore, their constants enter the stability and convergence theory of finite element methods. 
-In numerical methods, upper bounds for the Poincar\'e--Friedrichs for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods,
-and they lead to lower bounds for the spectrum of finite element matrices. 
 There are several avenues for further research going from here. 
-
-
 The upper bounds in this manuscript are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches. There are at least two points where the present techniques can be improved further. First, we utilize local Poincar\'e--Friedrichs constants over single simplices, subject to various boundary conditions, but these local estimates over convex domains likely leave room for improvement.
 Second, our construction needs to extend differential forms onto a simplex from the complement of that simplex inside a local star. In the present manuscript, this is achieved via pullback along a bi-Lipschitz mapping. 
 Better transformations or more careful estimates are likely possible, as are completely different approaches.  For example, it is likely that further research on trace and extension operators on triangulations will enable better estimates.
@@ -3955,39 +3966,53 @@ though the dimension and the form degree enters the estimate.
 
 \section{Reflections and Deformations on shellable stars}\label{section:extension}
 
-This section is devoted to crucially important geometric constructions. 
+This section is devoted to geometric operations that are crucially important for our main result. 
 Suppose that we have a shellable simplicial complex. 
 Every time we add a simplex according to the shelling sequence, 
 we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
-We will need a homeomorphism from the new simplex on its complement in the newly completed star.
+We will need a homeomorphism going from the new simplex onto its complement within the newly completed star.
 This homeomorphism is required to preserve the interface and to be bi-Lipschitz.
 We are particularly interested in the norms of its Jacobian.
+We inerpret this as a nonlinear reflection. It will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
 
-This reflection will be used subsequently to generalize the discussion in Section~\ref{section:gradient}
-to the setting of differential forms. 
-In addition to that, this endeavor will also produce another geometric tool 
-which enables an additional possibility to estimate Poincar\'e--Friedrichs constants:
-we construct a deformation which maps the entire star into the complement of the newly completed star. 
+In addition to that, this endeavor will produce another geometric tool 
+that enables an additional estimate Poincar\'e--Friedrichs constants:
+we construct a bi-Lipschitz deformation which maps the entire star 
+into the complement of the newly completed star. 
 Again, we give explicit estimates of the Jacobian.
+\\
 
 
 
-
-We begin with a geometric observation. 
+We begin with the following observation. 
 Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
-We want to find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is on only one side of the hyperplane. 
+We find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is on only one side of the hyperplane. 
 
 \begin{lemma}\label{lemma:oppositesubsimplex}
     Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
-    Let $F, F'$ be the two subsimplices of $T$ with respective sets of vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
+    Let $F, F'$ be the two subsimplices of $T$ with respective vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
     Then $T$ lies on one side of the affine subspace
     \begin{gather*}
-        A := v_0 + \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} +  \operatorname{lin}\{ v_n - v_{k+1}, \dots, v_n - v_{n-1} \}.
+        A 
+        := 
+        v_0 
+        + 
+        \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} 
+        +  
+        \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}.
     \end{gather*}
     Moreover, $F = T \cap A$.
 \end{lemma}
 \begin{proof}
-    Evidently, $A$ has dimension $n-1$ and $F \cap A \cap T$.
+    Evidently, the linear spans 
+    \begin{gather*}
+        A_{0} := \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \},
+        \qquad 
+        A_{1} := \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}
+    \end{gather*}
+    intersect only at the origin, since otherwise the vertices of $T$ are not affinely independent. 
+    So $A$ has dimension $n-1$. 
+    Obviously, $F \subset A \cap T$. 
     Let us now suppose that $x \in A \cap T$.
     For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
     \begin{align*}
@@ -4004,27 +4029,60 @@ We want to find a hyperplane of codimension one that intersects $T$ only at the 
         \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
         .
     \end{align*}
-    We know $x$ can be written as a unique convex combination of the vertices of $T$.
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive. 
-    If $x \notin F$, then at least one of these coefficients must be negative. 
-    But then their sum must be negative, which is a contradiction. 
+    We know that this is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive.
+    But if $x \notin F$, then at least one of them must be negative,
+    and thus their sum must be negative, which is a contradiction. 
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are zero,
+    which implies $x \in F$.
     The desired statement follows.         
 \end{proof}
 
 
+% \begin{figure}
+% \tdplotsetmaincoords{60}{120}
+% \centering
+% \begin{tikzpicture}[tdplot_main_coords]
+% \coordinate (A) at (0, 0, 0);
+% \coordinate (B) at (2, 0, 0);
+% \coordinate (C) at (1, 1.73, 0); % 1.73 = sqrt(3) for an equilateral triangle
+% \coordinate (D) at (1, 0.58, 1.63); % 1.63 = sqrt(8/3) for a regular tetrahedron
+% \coordinate (A) at (0, 0, 0);
+% \coordinate (B) at (2, 0, 0);
+% \coordinate (C) at (1, 1.73, 0); % 1.73 = sqrt(3) for an equilateral triangle
+% \coordinate (D) at (1, 0.58, 1.63); % 1.63 = sqrt(8/3) for a regular tetrahedron
+% \draw[thick] (A) -- (B) 
+% \draw[] (B) -- (C) 
+% \draw[] (C) -- (A) 
+% \draw[] (A) -- (D);
+% \draw[thick] (B) -- (D);
+% \draw[] (C) -- (D);
+% \node at (A) [below left] {$A(0,0,0)$};
+% \node at (B) [below right] {$B(2,0,0)$};
+% \node at (C) [above right] {$C(1,\sqrt{3},0)$};
+% \node at (D) [above] {$D(1, \frac{1}{\sqrt{3}}, \sqrt{\frac{8}{3}})$};
+% \end{tikzpicture} 
+% \caption{test}
+% \end{figure}
 
 
 
 Next, we observe that stars around subsimplices can represented by vertex stars after a local subdivision of the mesh.
 The shape regularity is controlled in that process. 
 
+% \begin{lemma}\label{lemma:stardivision}
+%     Let $\calT$ be an $n$-dimensional simplicial complex
+%     such that $\calT = \patch_{\calT}(S)$ for some $S \in \calT$.
+%     Let $z_S$ be the barycenter of $S$ 
+%     and let $\calT^{\star}$ be the simplicial complex obtained from barycentric subdivision of $S$.
+%     If $T^{\star} \in \calT^{\star}$ and $T \in \calT$ are both $n$-dimensional with $T^{\star} \subseteq T$,
+%     then $\vol(T^{\star}) = \vol(T) / n$.
+% \end{lemma}
 \begin{lemma}\label{lemma:stardivision}
-    Let $\calT$ be an $n$-dimensional simplicial complex
-    such that $\calT = \patch_{\calT}(S)$ for some $S \in \calT$.
-    Let $z_S$ be the barycenter of $S$ 
-    and let $\calT^{\star}$ be the simplicial complex obtained from barycentric subdivision of $S$.
-    If $T^{\star} \in \calT^{\star}$ and $T \in \calT$ are both $n$-dimensional with $T^{\star} \subseteq T$,
-    then $\vol(T^{\star}) = \vol(T) / n$.
+    Let $T$ be an $n$-dimensional simplex with a $k$-dimensional subsimplex $S$,
+    let $z_S$ be the barycenter of $S$, 
+    and let $T'$ be one of the $n$-dimensional simplices obtained by splitting $T$ at $z_{S}$.
+    Then $\vol(T') = \vol(T) / n$. 
 \end{lemma}
 \begin{proof}
     This is easy.
@@ -4041,7 +4099,7 @@ The shape regularity is controlled in that process.
 
 
 
-The main result of this section constructs the desired homeomorphism. 
+We know construct the main result of this section, namely the desired bi-Lipschitz homeomorphism. 
 It can be imagined as the reflection across the interface between the selected simplex and the remainder of the star. 
 The construction is completed in several steps,
 and the Lipschitz estimate reflects the shape regularity. 
@@ -4054,9 +4112,9 @@ and the Lipschitz estimate reflects the shape regularity.
     \begin{align*}
         U := \overline{ |\patch_{\calT}(S)| \setminus T },
         \qquad 
-        {\Gamma_I} := U \cap T,
+        {\Gamma_1} := U \cap T,
         \qquad 
-        {\Gamma_J} := \overline{ \partial T \setminus \partial U }.
+        {\Gamma_2} := \overline{ \partial T \setminus \partial U }.
     \end{align*}
     \begin{enumerate}
     \item 
@@ -4064,7 +4122,7 @@ and the Lipschitz estimate reflects the shape regularity.
     \begin{align*}
         \Xi_{1} : T \rightarrow U
     \end{align*}
-    which is the identity along ${\Gamma_I} = T \cap U$ and which satisfies the upper bounds 
+    which is the identity along ${\Gamma_1} = T \cap U$ and which satisfies the upper bounds 
     \begin{gather*}
         \| \Jacobian\Xi_{1} \|          \leq \Cfive{n}{k}(\calT),
         \quad 
@@ -4100,11 +4158,11 @@ and the Lipschitz estimate reflects the shape regularity.
         \item 
         Without loss of generality, the barycenter $z_{S}$ of $S$ is the origin. 
         % Let $I := U \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
-        %We let ${\Gamma_J} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
-        %So ${\Gamma_J}$ is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
+        %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
+        %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
         We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
-        Note that ${\Gamma_J}$ is the union of exactly those faces of $T$ that contain $S'$,
-        whereas ${\Gamma_I} = U \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
+        Note that ${\Gamma_2}$ is the union of exactly those faces of $T$ that contain $S'$,
+        whereas ${\Gamma_1} = U \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
         
         \item 
@@ -4169,7 +4227,8 @@ and the Lipschitz estimate reflects the shape regularity.
             = 
             x
             - 
-            2 \hat z_{S'} \frac{\langle \hat h_z, x \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+            2 \frac{\langle \hat h_z, x \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+            \hat z_{S'}
             .
         \end{align*}
         Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $h_z$,
@@ -4189,11 +4248,11 @@ and the Lipschitz estimate reflects the shape regularity.
             &= 
             h_z
             - 
-            2 z_{S'} \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle}
+            2 \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle} z_{S'}
             = 
             h_z
             - 
-            2 z_{S'} \frac{\langle h_z, z_{S'} \rangle}{\langle h_z, z_{S'} \rangle}
+            2 \frac{\langle h_z, z_{S'} \rangle}{\langle h_z, z_{S'} \rangle} z_{S'}
             %\\&
             = 
             h_z
@@ -4439,28 +4498,25 @@ and the Lipschitz estimate reflects the shape regularity.
             \left( y - \frac{ \langle h_2, y \rangle }{ \langle h_2, x \rangle } x \right)
             \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
             +
-            x
-            \otimes 
             \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
-            \frac{ h_1^{t} y }{ \| h_1 \|^{2} }
+            \frac{ \langle h_1, y \rangle }{ \| h_1 \|^{2} }
+            x
             \\&=
             \frac{ \langle \hat h_2, h_2 \rangle }{ \cos(\alpha_2) }
             \left( y - \frac{ \langle \hat h_2, y \rangle }{ \langle \hat h_2, \hat x \rangle } \hat x \right)
             \frac{ \langle \hat x, \hat h_1 \rangle }{ \langle h_1, \hat h_1 \rangle }
             +
-            \hat x
-            \otimes 
             \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
-            \frac{ \hat h_1^{t} y }{ \| h_1 \| }
+            \frac{ \langle \hat h_1, y \rangle }{ \| h_1 \| }
+            \hat x
             \\&=
             \frac{ \| h_2 \| }{ \cos(\alpha_2) }
             \left( y - \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x \right)
             \frac{ \cos(\alpha_1) }{ \| h_1 \| }
             +
-            \hat x
-            \otimes 
             \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
-            \frac{ \hat h_1^{t} y }{ \| h_1 \| }
+            \frac{ \langle \hat h_1, y \rangle }{ \| h_1 \| }
+            \hat x
             \\&=
             \frac{ \| h_2 \| }{ \| h_1 \| }
             \frac{ \cos(\alpha_1) }{ \cos(\alpha_2) }
@@ -4557,8 +4613,11 @@ and the Lipschitz estimate reflects the shape regularity.
             \right)^{n}
         \end{gather*}
         where $\alpha_K$ and $\alpha_{{G}}$ are the angles of $x$ with the vectors $h_{{G}}$ and $h_{K}$, respectively,
-        and where $a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K$. 
-        
+        and where 
+        \begin{align*}
+            a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K
+            .
+        \end{align*}
         We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
         By the definition of the cosine, 
         \begin{align*}
@@ -4684,16 +4743,16 @@ and the Lipschitz estimate reflects the shape regularity.
             .
         \end{align*}
         
-        \todo{TODO: Integrate the following paragraph and make it two-sided.}
-        We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz over some essentially disjoint closed partitions over their respective domains.
+        We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz with respect to some essentially disjoint closed partitions over their respective domains.
         It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
-        Rademacher's theorem then shows that both have essentially bounded weak Jacobians almost everywhere. 
+        Rademacher's theorem then shows that both have essentially bounded weak Jacobians. 
         
         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
         After application of a piecewise linear Lipschitz mapping, 
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
+        \todo{not enough}
         
         
         
@@ -4752,7 +4811,7 @@ and the Lipschitz estimate reflects the shape regularity.
         We get the determinant estimates
         \begin{align*}
             |\det(\Xi_{1})|
-            \leq 
+            &\leq 
             \Cdetfive{n}{k}(\calT)
             :=
             (k+1)^{n}
@@ -4760,9 +4819,9 @@ and the Lipschitz estimate reflects the shape regularity.
             \beta_T^{n}
             \mu(\calT)^{n}
             ,
-            \qquad 
+            \\
             |\det(\Xi_{1}^{-1})|
-            \leq 
+            &\leq 
             \Cdetsechs{n}{k}(\calT)
             :=
             (k+1)^{n}
@@ -4835,7 +4894,7 @@ and the Lipschitz estimate reflects the shape regularity.
         We get the determinant estimate 
         \begin{align*}
             |\det(\Xi_{2})|
-            \leq 
+            &\leq 
             \Cdetsieb{n}{k}(\calT)
             :=
             \frac 1 2 
@@ -4844,9 +4903,9 @@ and the Lipschitz estimate reflects the shape regularity.
             \beta_T^{n}
             \mu(\calT)^{n}
             ,
-            \qquad 
+            \\
             |\det(\Xi_{2}^{-1})|
-            \leq 
+            &\leq 
             \Cdetacht{n}{k}(\calT)
             :=
             2
@@ -5133,7 +5192,7 @@ and the Lipschitz estimate reflects the shape regularity.
     We notice that the mappings $\Xi_{1}$ and $\Xi_{2}$ above are not only bi-Lipschitz, but in fact also piecewise affine, 
     where piecewise refers to an essentially non-overlapping decomposition of their respective domains into convex polytopes.
     While the reflection and deformation mappings in Theorem~\ref{theorem:starreflection} serve our purpose,
-    it might be possible to improve the estimate with an improved analysis or construction.
+    it might be possible to improve the analysis or construction and lower the Jacobian estimates. 
 \end{remark}
 
 
@@ -5520,13 +5579,13 @@ Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenva
 \subsection{Two-dimensional examples}
 
 We consider the following example domains in two dimensions:
-the unit square $\Omega_S$, the L-shaped domain $\Omega_L$, and the slit domain $\Omega_{SS}$:
+the unit square $\Omega_Q$, the L-shaped domain $\Omega_L$, and the slit domain $\Omega_{S}$:
 \begin{gather*}
-    \Omega_{S}  = (-1,1)^2,
+    \Omega_{Q}  = (-1,1)^2,
     \qquad 
     \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
     \\
-    \Omega_{SS} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ).
+    \Omega_{S} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ).
 \end{gather*}
 % Square 
 % L-shaped 
