@@ -1260,7 +1260,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         .
     \end{align*}
     The second estimate follows. 
-    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\eqref{lemma:affinetransform} and the first estimate imply 
+    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\ref{lemma:affinetransform} and the first estimate imply 
     \begin{align*}
         \| \Jacobian \Xi \|
         &
@@ -1286,6 +1286,81 @@ This indicator quantifies how much reflection across the shared face distorts th
         .
     \end{align*}
     All the desired results thus follow.
+    
+    Without loss of generality, $F$ lies in the plane of the second to last coordinates,
+    so that the height of $T_1$ and $T_2$ is in the first coordinate direction. 
+    After further rotation, we can assume that $z_2 = a_1 e_1 + a_2 e_2$ for some $a_1, a_2 \in \bbR$.
+    If $h > 0$ is the height of $z_1$ within $T_1$, then the singular values of $\Xi$ 
+    are all one with the possibe exception of the singular values of the matrix 
+    \begin{align*}
+        A = 
+        \begin{pmatrix}
+            a_1/h & 0
+            \\
+            a_2/h & 1
+        \end{pmatrix}
+    \end{align*}
+    Its singular values are 
+    \begin{align*}
+        \sigma_{\max}
+        &= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            }
+        +
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 + \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 - \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        ,
+        \\
+        \sigma_{\min}
+        &=
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        -
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} - \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        .
+    \end{align*}
+
 \end{proof}
 
 \begin{remark}
@@ -5288,6 +5363,9 @@ we have the following improved estimate.
 \end{proof}
 
 
+
+
+
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
@@ -5445,12 +5523,13 @@ The main result of this manuscript is the following theorem.
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
+    \todo{Settle the notation}
 \end{theorem}
 
 \begin{proof}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
-    We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
+    We write $\Omega_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
 
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
@@ -5568,6 +5647,72 @@ The main result of this manuscript is the following theorem.
 %     \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
+
+
+
+
+
+
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_m$ be a shelling.
+    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
+    such that 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
+        \leq 
+        C_{\PF,T,k,p}(T_{0})
+        \prod_{i=0}^{m} 
+        C_{???}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    We prove this via induction. 
+    The statement is clearly satisfied when $m=0$ because then we only consider a single simplex. 
+    Let us assume that the statement is true for some integer $m-1 \geq 0$.
+    
+    We write $\Omega_{m-1} := \cup_{j=0}^{m-1} T_{j}$, 
+    which is a triangulated $n$-dimensional submanifold with boundary.
+    By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m} \subset \partial T_{m}$, 
+    which is a collection of faces of $T_{m}$. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S \subseteq T$, 
+    and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    
+    We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow U_{m-1}$ as discussed in Theorem~\ref{theorem:starreflection},
+    which acts as the identity along $\partial U_{m-1} \setminus \partial T$.
+    By assumption, 
+    there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
+    such that $\cartan w_{m-1} = \Xi_{2}^{-1} \cartan u$ and 
+    \begin{align*}
+        \| w_{m-1} \|_{L^{p}(T_{m})}
+        \leq 
+        C_{\PF,T,k,p}(T_{0})
+        \prod_{i=0}^{m} 
+        C_{???}
+        \| \Xi_{2}^{-\ast} \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+    Because pullback and exterior derivative commute, 
+    we have $w := \Xi_{2}^{\ast} w_{m-1}$ satisfying $\cartan w = \cartan u$. 
+    Moreover, the desired estimate follow from Theorem~\ref{theorem:starreflection}.
+    The proof is complete. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
