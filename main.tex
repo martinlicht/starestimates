@@ -581,13 +581,13 @@ We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ 
 % DONE: MV move this part to the introduction, as an alternative the first few paragraphs 
 
 We say that a domain $\Omega \subseteq \bbR^{n}$ satisfies the \emph{Poincar\'e--Friedrichs inequality} with exponent $p \in [1,\infty]$
-if there exists a constant $C_{{\rm PF},\Omega,p} \geq 0$ such that the following holds:
+if there exists a constant $C_{\PF,\Omega,p} \geq 0$ such that the following holds:
 for every vector field $\bff \in \nabla W^{1,p}(\Omega)$ there exists $u \in W^{1,p}(\Omega)$
 such that $\nabla u = \bff$ and 
 \begin{align}\label{math:inequalitypf:gradient}
     \| u \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm PF},\Omega,p} 
+    C_{\PF,\Omega,p} 
     \| \bff \|_{L^{p}(\Omega)}
     .
 \end{align}
@@ -595,14 +595,14 @@ Since $\Omega$ is connected, this is equivalent to
 \begin{align*}
     \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm PF},\Omega,p} 
+    C_{\PF,\Omega,p} 
     \| \nabla u \|_{L^{p}(\Omega)},
     \quad 
     \forall 
     u \in W^{1,p}(\Omega)
     .
 \end{align*}
-We call $C_{{\rm PF},\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
+We call $C_{\PF,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 \\
 
 We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature~\cite{ern2021finite}. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
@@ -667,9 +667,9 @@ The triangle inequality now shows that
 Via an application of the triangle inequality, 
 the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
 \begin{align*}
-    C_{{\rm P},\Omega,p} \leq 2 C_{{\rm PF},\Omega,p}.
+    C_{{\rm P},\Omega,p} \leq 2 C_{\PF,\Omega,p}.
 \end{align*}
-In the special case $p=2$, taking the average is an orthogonal projection, and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. Hence $C_{{\rm P},\Omega,2} = C_{{\rm PF},\Omega,2}$. 
+In the special case $p=2$, taking the average is an orthogonal projection, and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. Hence $C_{{\rm P},\Omega,2} = C_{\PF,\Omega,2}$. 
 This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
 and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
 Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
@@ -692,7 +692,7 @@ We have $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
 The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
 We thus conclude 
 \begin{align}\label{math:p_vs_pf}
-    C_{{\rm P},\Omega,p} \leq 2^{|2/p-1|} C_{{\rm PF},\Omega,p}.
+    C_{{\rm P},\Omega,p} \leq 2^{|2/p-1|} C_{\PF,\Omega,p}.
 \end{align}
 In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$ and that is at most $2$.
 \\
@@ -708,9 +708,9 @@ We define the potential
 \end{align*}
 If there is a Poincar\'e--Friedrichs constant, then by definition
 \begin{align*}
-    \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{{\rm PF},\Omega,p} \| \bff \|_{L^{p}(\Omega)},
+    \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{\PF,\Omega,p} \| \bff \|_{L^{p}(\Omega)},
 \end{align*}
-and this inequality is sharp by definition of $\Phi$ provided that $C_{{\rm PF},\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
+and this inequality is sharp by definition of $\Phi$ provided that $C_{\PF,\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
 However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
 Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
 satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
@@ -819,7 +819,7 @@ when $1 < p < \infty$, one can show that
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm PF},{\rm EFNT},p}
+    C_{\PF,{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -828,9 +828,9 @@ when $1 < p < \infty$, one can show that
     u \in W^{1,p}(\Omega)
     ,
 \end{align}
-where $C_{{\rm PF},{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
+where $C_{\PF,{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
 \begin{align*}
-    C_{{\rm PF},{\rm EFNT},p}
+    C_{\PF,{\rm EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
@@ -839,7 +839,7 @@ Note that the last inequalities imply, again when $1 < p < \infty$, the Poincar\
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    2^{|1-\frac 2 p|}C_{{\rm PF},{\rm EFNT},p}
+    2^{|1-\frac 2 p|}C_{\PF,{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -891,11 +891,11 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
     Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}. 
     Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
-    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{{\rm PF},{\rm EFNT},p}$. 
+    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{\PF,{\rm EFNT},p}$. 
     In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
-        C_{{\rm PF},{\rm EFNT},p}
+        C_{\PF,{\rm EFNT},p}
         =
         \frac{ 2^{1-\frac 2 p} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -909,7 +909,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     In the case $2 \geq p$, 
     \begin{align*}
         2^{\frac 2 p - 1}
-        C_{{\rm PF},{\rm EFNT},p}
+        C_{\PF,{\rm EFNT},p}
         =
         \frac{ 2^{\frac 2 p - 1} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -941,7 +941,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     % DONE: chua wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
 % DONT: Keep ?
-%     In the limit as $p$ goes to $1$, the factor $C_{{\rm PF},{\rm EFNT},p}$ converges to $1/2$,
+%     In the limit as $p$ goes to $1$, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$,
 %     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{1}(\Omega)}
@@ -955,7 +955,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         u \in W^{1,1}(\Omega)
 %         .
 %     \end{align*}
-%     In the limit as $p$ goes to infinity, the factor $C_{{\rm PF},{\rm EFNT},p}$ converges to $1/2$, 
+%     In the limit as $p$ goes to infinity, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$, 
 %     which implies the Poincar\'e inequality 
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
@@ -1384,7 +1384,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| u - c \|_{L^{p}(U)}
         &
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \max\left( 
             \frac{ \vol(T_1) }{ \vol(T_2) }
             ,
@@ -1396,7 +1396,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \rho(\calT)^{\frac 1 p}
         \max\left( \diam(T_1), \diam(T_2) \right)
         \| \nabla u \|_{L^{p}(U)}
@@ -1466,7 +1466,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \begin{align*}
         \| \hat w \|_{L^{p}(\hat U)}
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         .
     \end{align*}
@@ -1487,7 +1487,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
     \begin{align*}
         \| w \|_{L^{p}(U)}
         &\leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -1503,7 +1503,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -1519,7 +1519,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \max\left( 
             \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
             ,
@@ -1529,7 +1529,7 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{{\rm PF},{\rm EFNT},p}
+        2 C_{\PF,{\rm EFNT},p}
         \max\left( 
             \frac{ \vol(T_1) }{ \vol(T_2) }
             ,
@@ -1704,12 +1704,12 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \sum_{t=1}^{m}
         \rho(\calT)^{\frac{m-t}{p}}
         C_{{\rm{PF}},T_{t} \cup T_{t-1},p}
-        % 2 C_{{\rm PF},{\rm EFNT},p} \rho(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
+        % 2 C_{\PF,{\rm EFNT},p} \rho(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
         \| \nabla u \|_{L^{p}(T_{t} \cup T_{t-1})}
         \\&\quad \quad \quad 
         +
         \rho(\calT)^{\frac{m-1}{p}}
-        % C_{{\rm PF},{\rm EFNT},p} \diam(T_0)
+        % C_{\PF,{\rm EFNT},p} \diam(T_0)
         C_{{\rm{PF}},T_{0},p}
         \| \nabla u \|_{L^{p}(T_{0})}
         .
@@ -1905,17 +1905,17 @@ While it may not be obvious, the second estimate is tighter than the first estim
         \| u \|_{L^{p}(T)}
         &
         \leq 
-        C_{{\rm PF},T,F,p} \| \nabla u \|_{L^{p}(T)}
+        C_{\PF,T,F,p} \| \nabla u \|_{L^{p}(T)}
         ,
     \end{align*}
-    where $C_{{\rm PF},T,F,p} > 0$ is a constant such that 
+    where $C_{\PF,T,F,p} > 0$ is a constant such that 
     \begin{align*}
-        C_{{\rm PF},T,F,p}
+        C_{\PF,T,F,p}
         &\leq 
-        C_{{\rm PF},T,p} + \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right)^{\frac 1 p},  
+        C_{\PF,T,p} + \left( C_{\PF,T,p}^{p} + p \cdot \diam(T) C_{\PF,T,p}^{p-1} \right)^{\frac 1 p},  
         \\
         %\quad 
-        C_{{\rm PF},T,F,p}
+        C_{\PF,T,F,p}
         &\leq
         \frac{1}{\sqrt[p]{p}}
         \diam(T)
@@ -1927,7 +1927,7 @@ While it may not be obvious, the second estimate is tighter than the first estim
     \begin{gather*}
         \| w \|_{L^{p}(T)}
         \leq 
-        C_{{\rm PF},T,p} 
+        C_{\PF,T,p} 
         \| \nabla w \|_{L^{p}(T)} % DONE: bold face or no boldface? No bold face 
         .
     \end{gather*}
@@ -1964,13 +1964,13 @@ While it may not be obvious, the second estimate is tighter than the first estim
         \\&
         \leq 
         \left( \frac{ \vol(F) }{ \vol(T) } \right)
-        \left( C_{{\rm PF},T,p}^{p} + p \cdot C_{{\rm PF},T,p}^{p-1} \right) 
+        \left( C_{\PF,T,p}^{p} + p \cdot C_{\PF,T,p}^{p-1} \right) 
         \diam(T)^{p}
         \| \nabla w \|_{L^{p}(T)}^{p}
         \\&
         \leq 
         \left( \frac{ \vol(F) }{ \vol(T) } \right)
-        \left( C_{{\rm PF},T,p}^{p} + p \cdot \diam(T) C_{{\rm PF},T,p}^{p-1} \right) 
+        \left( C_{\PF,T,p}^{p} + p \cdot \diam(T) C_{\PF,T,p}^{p-1} \right) 
         %\diam(T)^{p}
         \| \nabla w \|_{L^{p}(T)}^{p}
         .
@@ -2065,29 +2065,29 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \| w_{m} \|_{L^{p}(T_m)}
 %         &\leq 
 %         \rho(\calT)^{\frac m p}
-%         C_{{\rm PF},T_{0},p} 
+%         C_{\PF,T_{0},p} 
 %         \| \nabla u \|_{L^{p}( T_{0} )}
 %         +
 %         \sum_{l=1}^{m} 
 %         \rho(\calT)^{\frac {m-l} p}
-%         C_{{\rm PF},T_{l},F_{l},p} 
+%         C_{\PF,T_{l},F_{l},p} 
 %         \| \nabla u \|_{L^{p}(T_{l})} 
 %         \\&\qquad 
 %         +
 %         \sum_{l=1}^{m} 
 %         \rho(\calT)^{\frac {m-l} p} \xi(\calT)
-%         C_{{\rm PF},T_{l},F_{l},p} 
+%         C_{\PF,T_{l},F_{l},p} 
 %         \| \nabla u \|_{L^{p}(T_{l-1})} 
 %         \\
         &\leq 
         \rho(\calT)^{\frac m p}
-        C_{{\rm PF},T_{0},p} 
+        C_{\PF,T_{0},p} 
         \| \nabla u \|_{L^{p}( T_{0} )}
         \\&\quad 
         +
         \sum_{l=1}^{m} 
         \rho(\calT)^{\frac {m-l} p}
-        C_{{\rm PF},T_{l},F_{l},p} 
+        C_{\PF,T_{l},F_{l},p} 
         \left( 
             \| \nabla u \|_{L^{p}(T_{l})} 
             +
@@ -2103,11 +2103,11 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \sum_{l=1}^{m} 
 %         \rho(\calT)^{\frac{m-l}{p}}
 %         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-%         C_{{\rm PF},T_{l},F_{l},p} 
+%         C_{\PF,T_{l},F_{l},p} 
 %         \| \nabla u \|_{L^{p}( T_{l} )}
 %         +
 %         \rho(\calT)^{\frac m p}
-%         C_{{\rm PF},T_{0},p} 
+%         C_{\PF,T_{0},p} 
 %         \| \nabla u \|_{L^{p}( T_{0} )}
 %         .
 %     \end{align*}
@@ -2179,12 +2179,12 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{{\rm PF},T_{m},F_{m},p} \| \nabla u - \nabla w'_{m} \|_{L^{p}(T_{m})}.
+        C_{\PF,T_{m},F_{m},p} \| \nabla u - \nabla w'_{m} \|_{L^{p}(T_{m})}.
         \\&
         \leq 
-        C_{{\rm PF},T_{m},F_{m},p} \| \nabla u      \|_{L^{p}(T_{m})} 
+        C_{\PF,T_{m},F_{m},p} \| \nabla u      \|_{L^{p}(T_{m})} 
         + 
-        C_{{\rm PF},T_{m},F_{m},p} \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        C_{\PF,T_{m},F_{m},p} \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
     We also employ Lemma~\ref{lemma:volumecomparison} to find 
@@ -2217,7 +2217,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \rho(\calT)^{\frac 1 p} 
         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
         + 
-        C_{{\rm PF},T_{m},F_{m},p} 
+        C_{\PF,T_{m},F_{m},p} 
         \left( 
             \| \nabla u \|_{L^{p}(T_{m})} 
             + 
@@ -2230,11 +2230,11 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         &
         \leq  
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        % C_{{\rm PF},T_{m},F_{m},p} 
+        % C_{\PF,T_{m},F_{m},p} 
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
         \leq  
         \rho(\calT)^{\frac 1 p} \xi(\calT)
-        % C_{{\rm PF},T_{m},F_{m},p} 
+        % C_{\PF,T_{m},F_{m},p} 
         \| \nabla u \|_{L^{p}(T_{m-1})} 
 %         \\&
 %         \leq  
@@ -2242,7 +2242,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
 %         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m})} 
         .
     \end{align*}
@@ -2259,7 +2259,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \rho(\calT)^{\frac 1 p} 
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \left( 
 %             \| \nabla u \|_{L^{p}(T_{m})} 
 %             + 
@@ -2270,32 +2270,32 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \rho(\calT)^{\frac 1 p} 
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m})} 
 %         + 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
 %         \\&
 %         \leq  
 %         \rho(\calT)^{\frac 1 p} 
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m})} 
 %         + 
 %         \rho(\calT)^{\frac 1 p} \xi(\calT)
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         \\&
 %         \leq  
 %         \rho(\calT)^{\frac 1 p} 
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m})} 
 %         + 
 %         \rho(\calT)^{\frac 1 p} \xi(\calT)
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m-1})} 
 %         \\&
 %         \leq  
@@ -2303,7 +2303,7 @@ serves as the blueprint for constructing potentials of the curl and divergence o
 %         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
 %         + 
 %         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-%         C_{{\rm PF},T_{m},F_{m},p} 
+%         C_{\PF,T_{m},F_{m},p} 
 %         \| \nabla u \|_{L^{p}(T_{m})} 
 %         .
 %     \end{align*}
@@ -5381,18 +5381,19 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \quad 
         \| w \| 
         \leq 
-        C_{{\rm PF},\Gamma,l,k,p}(T)
+        C_{\PF,\Gamma,l,k,p}(T)
         \diam(T)^{k} 
         \| \cartan u \|
         .
     \end{align*}
-    Here, $C_{{\rm PF},\Gamma,l,k,p}(T) > 0$ is a constant such that 
+    Here, $C_{\PF,\Gamma,l,k,p}(T) > 0$ is a constant such that 
     \begin{align*}
-        C_{{\rm PF},\Gamma,l,k,p}(T)
+        C_{\PF,\Gamma,l,k,p}(T)
         \leq 
         2^{\frac n p}
         2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
-        \Ceins{n}(T)^{k}
+        \alpha(T)^{k-1}
+        \Ceins{n}(T)
         % \| \Jacobian \varphi \|^{k}
         .
     \end{align*}
@@ -5432,23 +5433,26 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     and $w$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
     
     In addition to that, by Theorem~\ref{theorem:pullbackestimate}:
-    \begin{gather*}
+    \begin{align*}
         \| w \|_{L^{p}(T_{m+1})}
-        \leq 
+        &\leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
+        \| \Jacobian \varphi^{-1} \|^{k-1}
         \| \tilde w \|_{L^{p}(\hat T)}
+        \\&
         \leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
+        \| \Jacobian \varphi^{-1} \|^{k-1}
         \| \tilde w \|_{L^{p}(\tilde U)}
         ,
         \\
         \| \tilde g \|_{L^{p}(\tilde U)}
-        \leq 
+        &\leq 
         2^{\frac n p}
         \| \hat g \|_{L^{p}(\hat T)}
         \leq 
         2^{\frac n p}
-        |\det( \Jacobian \varphi )|^{-\frac 1 p} 
+        |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
         \| \Jacobian \varphi \|^{k}
         \cdot 
         \| \cartan u \|_{L^{p}(T)}
@@ -5459,10 +5463,10 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 
 Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
-    C_{{\rm PF},\Gamma,k,p}(\calT) 
+    C_{\PF,\Gamma,k,p}(\calT) 
     :=
     \max\limits_{ \substack{ T \in \calT \; \dim(T)=n \\ 0 \leq l \leq n } }
-    C_{{\rm PF},\Gamma,l,k,p}(T)   
+    C_{\PF,\Gamma,l,k,p}(T)   
 \end{align*}
 
 
@@ -5489,14 +5493,14 @@ The main result of this manuscript is the following theorem.
         \| w \|_{L^{p}(T_{m})}
 %         &
 %         \leq  
-%         C_{{\rm PF},\Gamma,k,p}(\calT) 
+%         C_{\PF,\Gamma,k,p}(\calT) 
 %         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
 %         \Cfive{n}{k}(\calT)^{k+1} 
 %         \diam(T)^{k} 
 %         \| \cartan u \|_{L^{p}(U_{m-1})}
 %         \\&\qquad
 %         + 
-%         C_{{\rm PF},\Gamma,k,p}(\calT) 
+%         C_{\PF,\Gamma,k,p}(\calT) 
 %         \diam(T)^{k} 
 %         \| \cartan u      \|_{L^{p}(T_{m})} 
 %         \\&\qquad
@@ -5507,7 +5511,7 @@ The main result of this manuscript is the following theorem.
 %         \\
         &
         \leq  
-        C_{{\rm PF},\Gamma,k,p}(\calT) 
+        C_{\PF,\Gamma,k,p}(\calT) 
         \diam(T)^{k} 
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
@@ -5594,12 +5598,12 @@ The main result of this manuscript is the following theorem.
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}
+        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}
         \\&
         \leq 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan u      \|_{L^{p}(T_{m})} 
+        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan u      \|_{L^{p}(T_{m})} 
         + 
-        C_{{\rm PF},T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
     We also employ Theorem~\ref{theorem:pullbackestimate} to find 
@@ -5635,11 +5639,11 @@ The main result of this manuscript is the following theorem.
 %         \| w_{m-1} \|_{L^{p}(U_{m-1})}
 %         \\&\qquad
 %         + 
-%         C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+%         C_{\PF,T_{m},\Gamma_{m},k,p} 
 %         \| \cartan u      \|_{L^{p}(T_{m})} 
 %         \\&\qquad
 %         + 
-%         C_{{\rm PF},T_{m},\Gamma_{m},k,p} 
+%         C_{\PF,T_{m},\Gamma_{m},k,p} 
 %         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
 %         \| \Jacobian \Xi_{m} \|^{k+1} 
 %         \| \cartan u \|_{L^{p}(U_{m-1})}
@@ -5721,6 +5725,17 @@ The main result of this manuscript is the following theorem.
 We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
 Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenvalue estimates on a refined mesh as a proxy for the exact value. We compare the (approximations of) the exact values with the upper bounds obtained via Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
 
+\subsection{Estimates for partial boundary conditions}
+
+We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
+which relies on estimates for the Bogovski\u{i} operator over an auxiliary reference domain.
+Our experiments over triangles and tetrahedra indicate we overestimate by several magnitudes.
+%
+We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
+
+
+
+
 \subsection{Two-dimensional examples}
 
 We consider the following example domains in two dimensions:
@@ -5730,7 +5745,7 @@ the unit square $\Omega_Q$, the L-shaped domain $\Omega_L$, and the slit domain 
     \qquad 
     \Omega_{L}  = (-1,1)^2 \setminus (0,1)^2,
     \\
-    \Omega_{S} = (-1,1)^2 \setminus ( (0,1) \times \{0\} ).
+    \Omega_{S} = (-1,1)^2 \setminus ( [0,1) \times \{0\} ).
 \end{gather*}
 % Square 
 % L-shaped 
@@ -5743,7 +5758,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 \begin{gather*}
     \Omega_{C}  = (-1,1)^3,
     \qquad 
-    \Omega_{F}  = (-1,1)^3 \setminus (0,1)^3,
+    \Omega_{F}  = (-1,1)^3 \setminus [0,1)^3,
     \\
     \begin{aligned}
     \Omega_{B} &= 
