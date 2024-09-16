@@ -1,6 +1,6 @@
 \documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
-% \usepackage{fullpage}
+\usepackage{fullpage}
 \input{header}
 
 \usepackage{comment}          % 
@@ -355,7 +355,7 @@ We achieve this by constructing an auxiliary problem subject to full boundary co
 
 
 % Exterior calculus % DONE: MV recommends moving this down to finish the current line of thoughts 
-\todo{Where to place this paragraph?}
+\todo{What is the best place for this paragraph?}
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
 %It also enables us to leverage on the rich literature of Sobolev spaces of differential forms.
 For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
@@ -534,36 +534,65 @@ we introduce quantitative measures for the geometric quality of triangulations.
 These indicate of the regularity of simplex shapes. 
 Most of such \emph{shape measures} in the literature are based on geometric features, 
 but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
+All these quantities have in common that they can be computed from purely local information. 
+While there are many equivalent shape measures, we use the ones that most immediate appear in our proofs.
+
+\todo{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
+
+We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
+Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$.
 
 For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
 
+Given a matrix $A \in \bbR^{n \times n}$, we let $\sigma_{1}(A) \geq \dots \geq \sigma_{n}(A) \geq 0$ denote the descending sequence of its singular values, 
+where $\sigma_{\max}(A) := \sigma_{1}(A)$ is the largest and $\sigma_{\min}(A) := \sigma_{n}(A)$ is the smallest. 
+We recall that the $\ell^{2}$ operator norm of $\|A\|_{2}$ agrees with $\sigma_{\max}(A)$,
+and if $A$ is invertible, then $\|A^{-1}\| = \sigma_{\min}(A)^{-1}$.
+% Another norm on matrices, less common but useful for us, is the \emph{maximum column norm} $\|A\|_{\maxcol}$, which is defined as the largest $\ell^{2}$-norm of any column of $A$. 
+
 Whenever $T$ is any $n$-dimensional simplex $T$,
-we define the \textit{geometric shape measure} $\kappa(T)$
-and the \textit{algebraic shape measure} $\alpha(T)$ by 
+we define the \textit{geometric shape measure} $\kappa(T)$,
+the \textit{algebraic shape measure} $\kappa_{2}(T)$,
+and the \textit{aspect shape measure} $\kappa_{\maxcol}(T)$ 
+by 
 \begin{align}\label{math:shapemeasure}
     \kappa(T)
     := 
     \frac{ \diam(T)^{n} }{ n! \vol(T) }
     ,
     \qquad 
-    \alpha(T)
+    \kappa_{\maxcol}(T)
+    := 
+    \frac{ \diam(T) }{ \height(T) }
+    ,
+    \qquad 
+    \kappa_{2}(T)
     := 
     \sup_{ \varphi : \Delta^n \rightarrow T } 
     \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
+%     \sup_{ \varphi : \Delta^n \rightarrow T } \| \Jacobian \varphi \|_{\maxcol} \| \Jacobian \varphi^{-1} \|_{\maxcol}
     ,
 \end{align}
-where the last suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
+where the last supremum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
 % DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
-Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
+
+When $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
 \begin{align}\label{math:shapemeasure:triangulation}
-    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
+    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T)
+    ,
     \quad 
-    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T).
+    \kappa_{\maxcol}(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa_{\maxcol}(T)
+    ,
+    \quad 
+    \kappa_{2}(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa_{2}(T)
+    .
 \end{align}
-Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape measures of the triangulation.
+We call these the geometric, algebraic, and aspect shape measure, respectively, of the triangulation. 
+
+We gather a few relationships between geometric and algebraic entities and compare the different shape measures.
 
 
-\begin{lemma}\label{lemma:affinetransform}
+\begin{lemma}\label{lemma:measurerelationships}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
     \begin{gather*}
         \| \Jacobian \varphi \|
@@ -578,10 +607,17 @@ Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape 
         \diam(T)^{-1}
         ,
         \\
-        \alpha(T)
+        \kappa_{2}(T)
         \leq 
         \Cdrei{n}
         % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        \kappa(T)
+        ,
+        \qquad 
+        %         \kappa(T)^{\frac 1 n}
+        %         \leq 
+        \kappa_{\maxcol}(T)
+        \leq 
         \kappa(T)
         .
     \end{gather*}
@@ -591,11 +627,19 @@ Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape 
         \quad 
         \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}, 
         \quad 
-        \Cdrei{n} \leq \sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
+        \Cdrei{n} \leq \Ceins{n}\Czwei{n} %\sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
         . 
     \end{align*}
 \end{lemma}
 \begin{proof}
+%     The columns of the matrix $\Jacobian \varphi^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
+%     except for the vertex $\varphi(0)$. It immediately follows that 
+%     \begin{align*}
+%         \| \Jacobian \varphi^{-1} \|_{2} \leq \sqrt{n} \cdot \height(T)^{-1}
+%         .
+%     \end{align*}
+%     The smallest height in the reference simplex $\Delta^{n}$ is $1/\sqrt{n}$. 
+%     
     We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
     The Jacobian determinant is the product of these singular values. 
     By a result of Hong and Pan \cite{hong1992lower},
@@ -610,45 +654,27 @@ Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape 
         .
     \end{align*}
 %     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
-    The second inequality follows. 
-    To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
-    
-%     By a result of Yu and Gu \cite{yisheng1997note},
+    The second inequality follows by taking the reciprocal. 
+    The definition of the condition number now gives the third inequalities. 
+    % To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
+    Finally, 
+    if $F$ is the face of $T$ opposite to the vertex with the smallest height, then 
+    \begin{align*}
+        \frac{ \diam(T) }{ \height(T) }
+        \leq 
+        \frac{ \diam(T) \vol(F) }{ n \vol(T) }
+        \leq 
+        \frac{ \diam(T)^{n} }{ n! \vol(T) }
+        .
+    \end{align*}
+%     Since $n! \vol(T)$ is bounded from below by the product of any $n$ different heights of $T$, it follows that 
 %     \begin{align*}
-%         \frac{ \sigma_{n} }{ \sigma_{1} }
-%         &\geq 
-%         \det(\Jacobian\varphi)
-%         \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
-%         \sigma_{1}^{-1}
-%         \geq 
-%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
-%         \det(\Jacobian\varphi)
-%         \left( \frac{1}{ \diam(T)^{n-1} } \right)^{}
-%         \frac{1}{\sqrt{n} \diam(T)}
-%         \\&
-%         \geq 
-%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
-%         \frac{1}{\sqrt{n}}
-%         \frac{ n! \vol(T) }{ \diam(T)^{n} }
+%         \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%         \leq 
+%         \frac{ \diam(T)^{n} }{ \height(T)^{n} }
 %         .
 %     \end{align*}
-%     Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. % THIS IS OPTIMAL
-%     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
-%     \begin{gather*}
-%         \diam(T) 
-%         \leq 
-%         \sqrt{2} \sigma_1 
-%         \leq 
-%         \sqrt{2} 
-%         \frac{ \sigma_1^{n} }{ { \det(\Jacobian\varphi) } } 
-%         \sigma_n
-%         \leq 
-%         \sqrt{2n^{n}} 
-%         \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)
-%         \sigma_n
-%         .
-%     \end{gather*}
-%     The desired result is thus evident. 
+    That shows the fourth and last of the inequalities. 
 \end{proof}
 
 \begin{remark}
@@ -786,7 +812,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         .
     \end{align*}
     The second estimate follows. 
-    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\ref{lemma:affinetransform} and the first estimate imply 
+    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\ref{lemma:measurerelationships} and the first estimate imply 
     \begin{align*}
         \| \Jacobian \Xi \|
         &
@@ -993,7 +1019,7 @@ if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that
 \end{align*}
 where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \begin{align*}
-    u_{\Omega} := |\Omega|^{-1} \int_{\Omega} u(x) \;dx.
+    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
 \end{align*}
 Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\rm{PF}},\Omega,p} \leq C_{{\rm P},\Omega,p}$. 
 Towards a converse inequality, 
@@ -1001,9 +1027,9 @@ let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \
 \begin{align*}
     \| u_\Omega \|_{L^{p}(\Omega)}^{p}
     = 
-    \int_{\Omega} \left( |\Omega|^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
+    \int_{\Omega} \left( \vol(\Omega)^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
     \leq 
-    \int_{\Omega} |\Omega|^{-1} \int_{\Omega} |u(x)|^{p} \;dx
+    \int_{\Omega} \vol(\Omega)^{-1} \int_{\Omega} |u(x)|^{p} \;dx
     = 
     \| u \|_{L^{p}(\Omega)}^{p}
     .
@@ -1865,7 +1891,8 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| u_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
- Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality.
+ % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
+ We obtain the desired estimate. 
 %  \begin{align*}
 %     \| w_{m} \|_{L^{p}(T_m)}^{p}
 %     &\leq 
@@ -3404,7 +3431,7 @@ In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with d
 We begin with introducing the Costabel-McIntosh kernel.
 For any $\ell \in \{0,\dotsc,n\}$, we define the kernel $G_{\ell} : \bbR^{n} \times \bbR^{n} \rightarrow \bbR$ by
 \begin{equation}\label{math:mainkernel}
-  G_{\ell}(x,y) = \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} |\Omega|^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt
+  G_{\ell}(x,y) = \int_{1}^\infty (t-1)^{n-\ell}t^{\ell-1} \vol(\Omega)^{-1}\chi_{\Omega} \left(y+t(x-y)\right)\,dt
   .
 \end{equation}
 Given a differential form $u \in {C^\infty_c}(\bbR^n,\Alt^\ell)$, where \(1 \leq \ell \leq n\), 
@@ -3424,32 +3451,32 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
-    \int_{0}^{\infty} t^{n-\ell} (t+1)^{\ell-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \int_{0}^{\infty} t^{n-\ell} (t+1)^{\ell-1} \vol(\Omega)^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-\ell+k} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-\ell+k} \vol(\Omega)^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{\ell-1-k} t^{n-\ell+\ell-1-k} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{\ell-1-k} t^{n-\ell+\ell-1-k} \vol(\Omega)^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-k-1} |\Omega|^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
+    \int_{0}^{\infty} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} t^{n-k-1} \vol(\Omega)^{-1} \chi_{\Omega} \left( x+t(x-y) \right)\,dt
     \\
     &= 
-    \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \int_{0}^{\infty} t^{n-k-1} |\Omega|^{-1} \chi_{\Omega}\left( x+t(x-y) \right)\,dt 
+    \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \int_{0}^{\infty} t^{n-k-1} \vol(\Omega)^{-1} \chi_{\Omega}\left( x+t(x-y) \right)\,dt 
     \\
     &= 
-    |\Omega|^{-1} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \, |x-y|^{k-n} \int_{0}^{\infty} r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
+    \vol(\Omega)^{-1} \sum_{k=0}^{\ell-1} \tbinom{\ell-1}{k} \, |x-y|^{k-n} \int_{0}^{\infty} r^{n-k-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
 If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq D$, which gives 
 \begin{align*}
     G_{\ell}(x,y) 
     &= 
-    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_{0}^{D} r^{n-k-1} \,dr 
+    \vol(\Omega)^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \int_{0}^{D} r^{n-k-1} \,dr 
     \\
     &= 
-    |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
+    \vol(\Omega)^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} |x-y|^{k-n} \frac{ D^{n-k} }{n-k}.
 \end{align*}
 We are now in a position to show that the potentials are bounded with respect to Lebesgue norms. 
 
@@ -3463,9 +3490,9 @@ We pointwise estimate $\Poinc_{\ell} u(x)$ for any $x \in \Omega$ by the result 
         \int_{\Omega} G_{n-\ell+1}(x,y) \,(x-y)\lrcorner u(y)\,dy
     \right| 
 %     \\&\leq 
-%     \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{(n-\ell+1)-1}\tbinom{(n-\ell+1)-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
+%     \int_{\Omega} \vol(\Omega)^{-1} \sum_{k=0}^{(n-\ell+1)-1}\tbinom{(n-\ell+1)-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
     \\&\leq 
-    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{ n-\ell }\tbinom{ n-\ell }{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} \chi_{B_D(0)}(x-y) |u(y)| \,dy
+    \int_{\Omega} \vol(\Omega)^{-1} \sum_{k=0}^{ n-\ell }\tbinom{ n-\ell }{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} \chi_{B_D(0)}(x-y) |u(y)| \,dy
     .
 \end{align*}
 We recall the radial integrals 
@@ -3505,12 +3532,12 @@ Young's convolution inequality now implies:
     \| \Poinc_{\ell} u \|_{L^{p}(\Omega)}
     &
     \leq 
-    \vol_{n-1}(S_1) A_{\Poinc}(n,\ell) \frac{ D^{n} }{|\Omega|} 
+    \vol_{n-1}(S_1) A_{\Poinc}(n,\ell) \frac{ D^{n} }{\vol(\Omega)} 
     D
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+    n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{\vol(\Omega)} 
     D
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3521,7 +3548,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Poinc_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Poinc}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
+% Its operator norm is bounded by $n A_{\Poinc}(n,\ell) \vol(\Omega)^{-1} \vol_{n}(B_D(0)) D$. 
 % 
 We analyze the Bogovski\u{\i} potential operator with similar means. 
 Suppose that $u \in L^{\infty}\Alt^{\ell}(\bbR^{n})$ with $\supp u \subseteq \overline\Omega$ and that $x \in \bbR^{n}$.
@@ -3535,9 +3562,9 @@ We estimate $\Bogov_{\ell} u(x)$ pointwise by
         \int_{\Omega} G_{\ell}(x,y) \,(x-y)\lrcorner u(y)\,dy
     \right| 
     \\&\leq 
-    \int_{\Omega} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
+    \int_{\Omega} \vol(\Omega)^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} |x-y|^{k+1-n} |u(y)| \,dy
     \\&\leq 
-    \int_{\bbR^{n}} |\Omega|^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
+    \int_{\bbR^{n}} \vol(\Omega)^{-1} \sum_{k=0}^{\ell-1}\tbinom{\ell-1}{k} \frac{ D^{n-k} }{n-k} \chi_{B_D(0)}(x-y) |x-y|^{k+1-n} |u(y)| \,dy
     .
 \end{align*}
 Using once more the radial integrals discussed above, we compute 
@@ -3576,12 +3603,12 @@ Young's convolution inequality now implies:
     \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
     &
     \leq 
-    \vol_{n-1}(S_1) A(n,\ell) \frac{ D^{n} }{|\Omega|} 
+    \vol_{n-1}(S_1) A(n,\ell) \frac{ D^{n} }{\vol(\Omega)} 
     D
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+    n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{\vol(\Omega)} 
     D
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3592,7 +3619,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Bogov_{\ell} : L^{p}\Alt^{\ell}(\Omega) \rightarrow L^{p}\Alt^{\ell-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Bogov}(n,\ell) |\Omega|^{-1} \vol_{n}(B_D(0)) D$. 
+% Its operator norm is bounded by $n A_{\Bogov}(n,\ell) \vol(\Omega)^{-1} \vol_{n}(B_D(0)) D$. 
 Moreover, $\supp \Bogov_{\ell} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
 \\
@@ -3927,14 +3954,14 @@ though the dimension and the form degree enters the estimate.
     \begin{align*}
         \| \Poinc_{\ell} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+        n A_{\Poinc}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{\vol(\Omega)} 
         D
         \| u \|_{L^{p}(\Omega)}
         ,
         \\
         \| \Bogov_{\ell} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{|\Omega|} 
+        n A_{\Bogov}(n,\ell) \frac{ \vol_{n}(B_D(0)) }{\vol(\Omega)} 
         D
         \| u \|_{L^{p}(\Omega)}
         .
@@ -4388,26 +4415,28 @@ and the Lipschitz estimate reflects the shape regularity.
             \frac{ \| b_{z} \| }{ \| h_{z} \| }
             = 
             \frac{ \| b_{z} \| }{ (n-k)^{-1} \| (n-k) h_{z} \| }
-            = 
-            \frac{ \| b_{z} \| \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
             \leq 
-            \frac{ n-k }{n!}
-            \cdot 
-            \frac{ \diam(T)^{n} }{ \vol(T) }
+            (n-k) \kappa_{\maxcol}(T)
+%             = 
+%             \frac{ \| b_{z} \| \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
+%             \leq 
+%             \frac{ n-k }{n!}
+%             \cdot 
+%             \frac{ \diam(T)^{n} }{ \vol(T) }
             .
         \end{align*}
         This establishes bounds on the singular values of the transformation. 
         We write 
         \begin{align*}
-            \beta_T 
+            B_{T} 
             := 
 %             \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) 
 %             \geq 
             \sqrt{ 
-                1 + (n-k)^{2} \frac{ \diam(T)^{2n} }{ n!^{2}\vol(T)^{2} } 
+                1 + (n-k)^{2} \kappa_{\maxcol}(T)^{2} % \frac{ \diam(T)^{2n} }{ n!^{2}\vol(T)^{2} } 
             } 
             + 
-            (n-k) \frac{ \diam(T)^{n} }{ n! \vol(T) }            
+            (n-k) \kappa_{\maxcol}(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }            
             .
         \end{align*}
 
@@ -4525,18 +4554,18 @@ and the Lipschitz estimate reflects the shape regularity.
         We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
         Similar as above, we use the upper bound 
         \begin{align*}
-            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \mu(T).
+            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \kappa_{\maxcol}(T).
         \end{align*}
         We conclude that 
         \begin{gather*}
             \| \Jacobian\Phi_{K} \| 
             \leq 
-            \frac 1 4 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            \frac 1 4 \sqrt{ 9 + (k+1)^2 \kappa_{\maxcol}(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \kappa_{\maxcol}(T)^2 }
             ,
             \\
             \| \Jacobian\Phi_{K}^{-1} \| 
             \leq 
-            \frac 1 2 \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \mu(T)^2 }
+            \frac 1 2 \sqrt{ 9 + (k+1)^2 \kappa_{\maxcol}(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \kappa_{\maxcol}(T)^2 }
             ,
             \\
             \det \Jacobian\Phi = \frac 1 2 
@@ -4730,7 +4759,7 @@ and the Lipschitz estimate reflects the shape regularity.
         The diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$.
         The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
         Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of the origin in some simplex in $\calS'$
-        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $\beta_T$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $B_{T}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
         In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
         It follows that $\|x_{G}\| \leq \diam(T)$. 
@@ -4739,25 +4768,24 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \frac{\diam(T)}{ \|h_{F}\|}
             \leq  
-            \frac{ \vol(F) \diam(T) }{ n \vol(T) }
-            \leq 
-            \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \kappa_{\maxcol}(T)
+            % \frac{ \vol(F) \diam(T) }{ n \vol(T) } \leq \frac{ \diam(T)^{n} }{ n! \vol(T) }
             .
         \end{align*}
         We conclude that 
         \begin{gather*}
             \frac{ \diam(K) }{ \| h_{{G}} \| }
             \leq 
-            (k+1)\beta_T
+            (k+1)B_{T}
             \frac{ \diam(K) }{ \| h_{T} \| }
             \leq 
-            (k+1)\beta_T
+            (k+1)B_{T}
             \theta(\calT)
             \frac{ \diam(T) }{ \| h_{T} \| }
             \leq 
-            (k+1)\beta_T
+            (k+1)B_{T}
             \theta(\calT)
-            \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \kappa_{\maxcol}(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             ,
             \\
             \frac{ \| x_{G} \| }{ \| h_{K} \| }
@@ -4774,7 +4802,7 @@ and the Lipschitz estimate reflects the shape regularity.
             (k+1)
             \theta(\calT)
             \sup_{ K \in \patch_{\calT}(S) }
-            \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            \kappa_{\maxcol}(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{gather*}
         \begin{gather*}
@@ -4782,13 +4810,13 @@ and the Lipschitz estimate reflects the shape regularity.
             \leq 
             (k+1)
             \sup_{ K \in \patch_{\calT}(S) }
-            \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            \kappa_{\maxcol}(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             ,
             \qquad 
             \frac{ \| x_{G} \| }{ \| h_{G} \| }
             \leq 
-            (k+1)\beta_T
-            \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            (k+1)B_{T}
+            \kappa_{\maxcol}({G}) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             .
         \end{gather*}
 
@@ -4819,9 +4847,9 @@ and the Lipschitz estimate reflects the shape regularity.
             \\&
             \leq 
             (k+1) 
-            \left( 1 + \beta_T \right)
+            \left( 1 + B_{T} \right)
             \sup_{ K \in \patch_{\calT}(S) }
-            \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            \kappa_{\maxcol}(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{align*}
         
@@ -4862,14 +4890,14 @@ and the Lipschitz estimate reflects the shape regularity.
             :=
             (k+1) 
             \theta(\calT)
-            \mu(\calT)
-            \beta_T^{2}
+            \kappa_{\maxcol}(\calT)
+            B_{T}^{2}
             \Big( 
                 1 
                 + 
                 (k+1) 
-                \left( 1 + \beta_T \right)
-                \mu(\calT)
+                \left( 1 + B_{T} \right)
+                \kappa_{\maxcol}(\calT)
             \Big)            
             ,
             \\
@@ -4879,14 +4907,14 @@ and the Lipschitz estimate reflects the shape regularity.
             :=
             (k+1) 
             \theta(\calT)
-            \mu(\calT)
-            \beta_T
+            \kappa_{\maxcol}(\calT)
+            B_{T}
             \Big( 
                 1 
                 + 
                 (k+1) 
-                \left( 1 + \beta_T \right)
-                \mu(\calT)
+                \left( 1 + B_{T} \right)
+                \kappa_{\maxcol}(\calT)
             \Big)            
             .
         \end{align*}
@@ -4898,8 +4926,8 @@ and the Lipschitz estimate reflects the shape regularity.
             :=
             (k+1)^{n}
             \theta(\calT)^{n}
-            \beta_T^{n}
-            \mu(\calT)^{n}
+            B_{T}^{n}
+            \kappa_{\maxcol}(\calT)^{n}
             ,
             \\
             |\det(\Xi_{1}^{-1})|
@@ -4908,7 +4936,7 @@ and the Lipschitz estimate reflects the shape regularity.
             :=
             (k+1)^{n}
             \theta(\calT)^{n}
-            \mu(\calT)^{n}
+            \kappa_{\maxcol}(\calT)^{n}
             .
         \end{align*}
         This completes the desired estimates for $\Xi_{1}$. 
@@ -4941,18 +4969,18 @@ and the Lipschitz estimate reflects the shape regularity.
             \Csieb{n}{k}(\calT)
             :=
             \frac 1 4
-            % \left( \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \sqrt{ 1 + (k+1)^2 \mu(T)^2 } \right)
-            \left( 4 + (k+1) \mu(T) \right)
+            % \left( \sqrt{ 9 + (k+1)^2 \kappa_{\maxcol}(T)^2 } + \sqrt{ 1 + (k+1)^2 \kappa_{\maxcol}(T)^2 } \right)
+            \left( 4 + (k+1) \kappa_{\maxcol}(T) \right)
             \cdot 
             (k+1) 
-            \mu(\calT)
-            \beta_T
+            \kappa_{\maxcol}(\calT)
+            B_{T}
             \Big( 
                 1 
                 + 
                 (k+1) 
-                \left( 1 + \beta_T \right)
-                \mu(\calT)
+                \left( 1 + B_{T} \right)
+                \kappa_{\maxcol}(\calT)
             \Big)            
             \\
             \| \Jacobian \Xi_{2}^{-1} \|
@@ -4960,17 +4988,17 @@ and the Lipschitz estimate reflects the shape regularity.
             \Cacht{n}{k}(\calT)
             :=
             \frac 1 2
-            %\left( \sqrt{ 9 + (k+1)^2 \mu(T)^2 } + \sqrt{ 1 + (k+1)^2 \mu(T)^2 } \right)
-            \left( 4 + (k+1) \mu(T) \right)
+            %\left( \sqrt{ 9 + (k+1)^2 \kappa_{\maxcol}(T)^2 } + \sqrt{ 1 + (k+1)^2 \kappa_{\maxcol}(T)^2 } \right)
+            \left( 4 + (k+1) \kappa_{\maxcol}(T) \right)
             \cdot 
             (k+1) 
-            \mu(\calT)
+            \kappa_{\maxcol}(\calT)
             \Big( 
                 1 
                 + 
                 (k+1) 
-                \left( 1 + \beta_T \right)
-                \mu(\calT)
+                \left( 1 + B_{T} \right)
+                \kappa_{\maxcol}(\calT)
             \Big)            
         \end{align*}
         We get the determinant estimate 
@@ -4982,8 +5010,8 @@ and the Lipschitz estimate reflects the shape regularity.
             \frac 1 2 
             (k+1)^{n}
             \theta(\calT)^{n}
-            \beta_T^{n}
-            \mu(\calT)^{n}
+            B_{T}^{n}
+            \kappa_{\maxcol}(\calT)^{n}
             ,
             \\
             |\det(\Xi_{2}^{-1})|
@@ -4993,7 +5021,7 @@ and the Lipschitz estimate reflects the shape regularity.
             2
             (k+1)^{n}
             \theta(\calT)^{n}
-            \mu(\calT)^{n}
+            \kappa_{\maxcol}(\calT)^{n}
             .
         \end{align*}
         This completes the desired estimates for $\Xi_{2}$. 
@@ -5161,7 +5189,7 @@ and the Lipschitz estimate reflects the shape regularity.
         We need to estimate the singular values of the transformation matrices within the bisected simplices. 
         Each bisection step reduces the diameter by at most a factor of one half,
         and it reduces the volume always by a factor of one half. 
-        We use the estimates in Lemma~\ref{lemma:affinetransform}.
+        We use the estimates in Lemma~\ref{lemma:measurerelationships}.
         When $K \in \calK \cup \calS'r$, then 
         \begin{align*}
              \sigma_{\max}( A_{K}^{-1} )
@@ -5330,7 +5358,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
         \leq 
         n A_{\Poinc}(n,k+1) 
         \vol_{n}(B_1(0)) 
-        \frac{ \diam(\Omega)^{n} }{|\Omega|} 
+        \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
         \diam(\Omega)
         \| \cartan u \|_{L^{p}(\Omega)}
         .
@@ -5393,7 +5421,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \leq 
         2^{\frac n p}
         2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
-        \alpha(T)^{k-1}
+        \kappa_{2}(T)^{k-1}
         \Ceins{n}(T)
         % \| \Jacobian \varphi \|^{k}
         .
@@ -5528,7 +5556,7 @@ The main result of this manuscript is the following theorem.
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
-    \todo{Settle the notation}
+    \todo{The notation $U_m$ should be settled in the definition of shellings.}
 \end{theorem}
 
 \begin{proof}
