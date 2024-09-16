@@ -3,6 +3,7 @@
 % \usepackage{fullpage}
 \input{header}
 
+\usepackage{comment}          % 
 \usepackage{hyperref}         % For hypertext links
 \usepackage{tikz-3dplot}      % 3d plots 
 
@@ -524,6 +525,377 @@ We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$.
 Clearly, strongly connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, 
 and we call $\calT$ \emph{strongly connected} if it has only one strongly connected component. 
+\\
+
+
+
+We shift gears and move from a combinatorial study of triangulations to an analytical study:
+we introduce quantitative measures for the geometric quality of triangulations. 
+These indicate of the regularity of simplex shapes. 
+Most of such \emph{shape measures} in the literature are based on geometric features, 
+but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
+
+For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
+
+Whenever $T$ is any $n$-dimensional simplex $T$,
+we define the \textit{geometric shape measure} $\kappa(T)$
+and the \textit{algebraic shape measure} $\alpha(T)$ by 
+\begin{align}\label{math:shapemeasure}
+    \kappa(T)
+    := 
+    \frac{ \diam(T)^{n} }{ n! \vol(T) }
+    ,
+    \qquad 
+    \alpha(T)
+    := 
+    \sup_{ \varphi : \Delta^n \rightarrow T } 
+    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
+    ,
+\end{align}
+where the last suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
+% DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
+Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
+\begin{align}\label{math:shapemeasure:triangulation}
+    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
+    \quad 
+    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T).
+\end{align}
+Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape measures of the triangulation.
+
+
+\begin{lemma}\label{lemma:affinetransform}
+    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
+    \begin{gather*}
+        \| \Jacobian \varphi \|
+        \leq 
+        \Ceins{n} \cdot \diam(T) % DONE: can this improved?
+        ,
+        \qquad 
+        \| \Jacobian \varphi^{-1} \|
+        \leq 
+        \Czwei{n} \cdot 
+        \kappa(T) 
+        \diam(T)^{-1}
+        ,
+        \\
+        \alpha(T)
+        \leq 
+        \Cdrei{n}
+        % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        \kappa(T)
+        .
+    \end{gather*}
+    Here,
+    \begin{align*}
+        \Ceins{n} \leq \sqrt{n},
+        \quad 
+        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}, 
+        \quad 
+        \Cdrei{n} \leq \sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
+        . 
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
+    The Jacobian determinant is the product of these singular values. 
+    By a result of Hong and Pan \cite{hong1992lower},
+    \begin{align*}
+        \sigma_{n}
+        &\geq 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n-1} }
+        = 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ n! \vol(T) }{ \diam(T)^{n-1} }
+        .
+    \end{align*}
+%     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
+    The second inequality follows. 
+    To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
+    
+%     By a result of Yu and Gu \cite{yisheng1997note},
+%     \begin{align*}
+%         \frac{ \sigma_{n} }{ \sigma_{1} }
+%         &\geq 
+%         \det(\Jacobian\varphi)
+%         \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
+%         \sigma_{1}^{-1}
+%         \geq 
+%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
+%         \det(\Jacobian\varphi)
+%         \left( \frac{1}{ \diam(T)^{n-1} } \right)^{}
+%         \frac{1}{\sqrt{n} \diam(T)}
+%         \\&
+%         \geq 
+%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
+%         \frac{1}{\sqrt{n}}
+%         \frac{ n! \vol(T) }{ \diam(T)^{n} }
+%         .
+%     \end{align*}
+%     Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. % THIS IS OPTIMAL
+%     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
+%     \begin{gather*}
+%         \diam(T) 
+%         \leq 
+%         \sqrt{2} \sigma_1 
+%         \leq 
+%         \sqrt{2} 
+%         \frac{ \sigma_1^{n} }{ { \det(\Jacobian\varphi) } } 
+%         \sigma_n
+%         \leq 
+%         \sqrt{2n^{n}} 
+%         \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)
+%         \sigma_n
+%         .
+%     \end{gather*}
+%     The desired result is thus evident. 
+\end{proof}
+
+\begin{remark}
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
+    For example, $\kappa(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\kappa(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
+
+% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    The geometric ratio $\kappa(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+% TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
+
+
+We are interested in the maximal ratio of volumes between neighboring $n$-simplices: 
+\begin{align}\label{math:volumecomparisonmeasure}
+    \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
+\end{align}
+We also want to compare the diameters of simplices that intersect. We define 
+\begin{align}\label{math:diametercomparison}
+    \theta(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
+    \frac{ \diam(T) }{ \diam(T') }
+\end{align}
+Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
+that preserves $F$. We define 
+\begin{align}\label{math:reflectionmeasure}
+    \xi(\calT) 
+    := 
+    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
+    \| \Jacobian \Xi_{S,T} \|
+\end{align}
+to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
+This indicator quantifies how much reflection across the shared face distorts the geometry. 
+
+
+% and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
+% we define the quantity 
+% \begin{align*}
+%     \kappa(T)
+%     := 
+%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%     .
+% \end{align*}
+
+\begin{lemma}\label{lemma:volumecomparison}
+    Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
+    \begin{align*}
+        \diam(T_1)
+        \leq 
+        % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
+        % \diam(F)
+        % = 
+        \kappa(T_1)
+        \diam(F)
+        ,
+        \qquad 
+        \frac{ \vol(T_1) }{ \vol(T_2) }
+        \leq 
+        % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
+        % \cdot 
+        % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
+        % = 
+        \kappa(T_1) \kappa(T_2)
+        .
+    \end{align*}
+    If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism, then 
+    \begin{align*}
+        \| \Jacobian \Xi \|
+        \leq 
+        \Cvier{n}
+        \kappa(T_2)^{-1} \kappa(T_1) 
+        % \frac{ \kappa(T_1) }{ \kappa(T_2) }
+        .
+    \end{align*}
+    Here, $\Cvier{n} \leq \Ceins{n} \Czwei{n}$. 
+\end{lemma}
+
+% Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
+% \begin{align*}
+%     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
+%     \leq 
+%     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
+%     \cdot 
+%     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
+%     .
+% \end{align*}
+% DONE: REMOVE THE FACTORIAL?
+% DONE: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
+% DONE: clarify the first of the following inequalities
+    
+%     \begin{align*}
+%         \diam(F) \geq h_S = n \frac{ \vol(T_1) }{ \vol(S) } \geq n \frac{ \vol(T_1) }{ \diam(T_1)^{n} } \diam(T_1).
+%     \end{align*}
+%     Thus we establish the first estimate: 
+
+%     Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
+%     \begin{align*}
+%         \diam(F)
+%         \geq 
+%         h
+%         =
+%         n
+%         \frac{ \vol(T_1) }{ \vol(F') }
+%         \geq 
+%         \frac{ n \vol(T_1) }{ \diam(T_1)^{n} }
+%         \cdot 
+%         \diam(T_1)
+%         .
+%     \end{align*}
+%     That shows the second estimate. 
+
+
+\begin{proof}
+    Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
+    By the volume formula for simplices, $\vol(T_1) = h_1 \vol(F)/n$ and $\vol(T_2) = h_2 \vol(F)/n$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
+    The diameter of $F$ is at least as large as the height $h_S$ of some other facet $S$ of $T$. Recursive application of the volume formula shows 
+    \begin{align*}
+        \vol(T) = \frac{1}{n!} h_S h_2 \cdots h_n,
+    \end{align*}
+    where $h_S \leq \diam(F)$ and $h_2, \cdots, h_n \leq \diam(T)$. Now, 
+    \begin{align*}
+        \diam(T) \frac{ n! \vol(T) }{ \diam(T)^{n} } \leq h_S \leq \diam(F).
+    \end{align*}
+    The first estimate follows. 
+    On the other hand, 
+    \begin{align*}
+        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n \cdot \vol(T_1)} \diam(F),
+        \\
+        h_2 &= n \frac{\vol(T_2)}{\vol(F)} \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
+        .
+    \end{align*}
+    The second estimate follows. 
+    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\ref{lemma:affinetransform} and the first estimate imply 
+    \begin{align*}
+        \| \Jacobian \Xi \|
+        &
+        \leq 
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
+        \diam(T_1)
+        \diam(T_2)^{-1}
+        \\&
+        \leq 
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
+        \kappa(T_1) 
+        \diam(F)
+        \diam(T_2)^{-1}
+        \leq 
+        \Ceins{n}
+        \Czwei{n}
+        \kappa(T_2)
+        \kappa(T_1) 
+        .
+    \end{align*}
+    All the desired results thus follow.
+    
+%     \todo{Tighter estimate via geometry}
+%     Without loss of generality, $F$ lies in the plane of the second to last coordinates,
+%     so that the height of $T_1$ and $T_2$ is in the first coordinate direction. 
+%     After further rotation, we can assume that $z_2 = a_1 e_1 + a_2 e_2$ for some $a_1, a_2 \in \bbR$.
+%     If $h > 0$ is the height of $z_1$ within $T_1$, then the singular values of $\Xi$ 
+%     are all one with the possibe exception of the singular values of the matrix 
+%     \begin{align*}
+%         A = 
+%         \begin{pmatrix}
+%             a_1/h & 0
+%             \\
+%             a_2/h & 1
+%         \end{pmatrix}
+%     \end{align*}
+%     Its singular values are 
+%     \begin{align*}
+%         \sigma_{\max}
+%         &= 
+%         \frac{1}{\sqrt 2}
+%         \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+%         \\&= 
+%         \frac{1}{\sqrt 2}
+%         \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\sqrt{ 
+%             \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+%             \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+%             } }
+%         \\&= 
+%         \frac{1}{\sqrt 2}
+%         \sqrt{ 
+%             \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+%             }
+%         +
+%         \frac{1}{\sqrt 2}
+%         \sqrt{ 
+%             \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+%             }
+%         \\&= 
+%         \frac{1}{2}
+%         \sqrt{ 
+%             1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+%             }
+%         +
+%         \frac{1}{2}
+%         \sqrt{ 
+%             1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+%             }
+%         \\&= 
+%         \frac{1}{2}
+%         \sqrt{ 
+%             \left( 1 + \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+%             }
+%         +
+%         \frac{1}{2}
+%         \sqrt{ 
+%             \left( 1 - \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+%             }
+%         ,
+%         \\
+%         \sigma_{\min}
+%         &=
+%         \frac{1}{\sqrt 2}
+%         \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+%         \\&= 
+%         \frac{1}{2}
+%         \sqrt{ 
+%             1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+%             }
+%         -
+%         \frac{1}{2}
+%         \sqrt{ 
+%             1 + \frac{ a_1^2 }{h^2} - \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+%             }
+%         .
+%     \end{align*}
+\end{proof}
+
+\begin{remark}
+    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\rho(\calT)$ but not $\theta(\calT)$. 
+    As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one edge in terms of the shape measure. 
+    If we have an upper estimate for the number of simplices sharing a given vertex, 
+    we can also bound the ratios of diameters and volumes of simplices sharing only a single common vertex. 
+\end{remark}
+%%%%%%%% END HERE 
 
 
 
@@ -1000,373 +1372,7 @@ The basic idea has appeared in the different variants before, for instance recen
 \\
 
 
-Towards this goal, we introduce quantitative measures for the geometric quality of triangulations. 
-These indicate of the regularity of simplex shapes. 
-Most of such \emph{shape measures} in the literature are based on geometric features, 
-but we also consider indicators based on affine transformations associated with the mesh;
-this is because the properties of these transformations are what shows up in our estimates. 
 
-For the purpose of the usual scaling arguments, we introduce the reference simplex $\Delta^n \subseteq \bbR^n$ as the convex closure of the origin and the $n$ canonical unit vectors. 
-
-% TODO: Theo : Should shape measures and their discussion be put into the previous section ? 
-
-Whenever $T$ is any $n$-dimensional simplex $T$,
-we define the \textit{geometric shape measure} $\kappa(T)$
-and the \textit{algebraic shape measure} $\alpha(T)$ by 
-\begin{align}\label{math:shapemeasure}
-    \kappa(T)
-    := 
-    \frac{ \diam(T)^{n} }{ n! \vol(T) }
-    ,
-    \qquad 
-    \alpha(T)
-    := 
-    \sup_{ \varphi : \Delta^n \rightarrow T } 
-    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
-    ,
-\end{align}
-where the last suprenum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
-% DONE: Although this is fairly clear upon reading, we could specify in word that $\kappa(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\rho(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
-Moreover, when $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
-\begin{align}\label{math:shapemeasure:triangulation}
-    \kappa(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \kappa(T),
-    \quad 
-    \alpha(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \alpha(T).
-\end{align}
-Here, $\kappa(\calT)$ and $\alpha(\calT)$ are the geometric and algebraic shape measures of the triangulation.
-
-
-\begin{lemma}\label{lemma:affinetransform}
-    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
-    \begin{gather*}
-        \| \Jacobian \varphi \|
-        \leq 
-        \Ceins{n} \cdot \diam(T) % DONE: can this improved?
-        ,
-        \qquad 
-        \| \Jacobian \varphi^{-1} \|
-        \leq 
-        \Czwei{n} \cdot 
-        \kappa(T) 
-        \diam(T)^{-1}
-        ,
-        \\
-        \alpha(T)
-        \leq 
-        \Cdrei{n}
-        % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
-        \kappa(T)
-        .
-    \end{gather*}
-    Here,
-    \begin{align*}
-        \Ceins{n} \leq \sqrt{n},
-        \quad 
-        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}, 
-        \quad 
-        \Cdrei{n} \leq \sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
-        . 
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
-    The Jacobian determinant is the product of these singular values. 
-    By a result of Hong and Pan \cite{hong1992lower},
-    \begin{align*}
-        \sigma_{n}
-        &\geq 
-        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
-        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n-1} }
-        = 
-        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
-        \frac{ n! \vol(T) }{ \diam(T)^{n-1} }
-        .
-    \end{align*}
-%     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
-    The second inequality follows. 
-    To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
-    
-%     By a result of Yu and Gu \cite{yisheng1997note},
-%     \begin{align*}
-%         \frac{ \sigma_{n} }{ \sigma_{1} }
-%         &\geq 
-%         \det(\Jacobian\varphi)
-%         \left( \frac{n-1}{\|\Jacobian\varphi\|_{F}^{2}} \right)^{\frac{n-1}{2}}
-%         \sigma_{1}^{-1}
-%         \geq 
-%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
-%         \det(\Jacobian\varphi)
-%         \left( \frac{1}{ \diam(T)^{n-1} } \right)^{}
-%         \frac{1}{\sqrt{n} \diam(T)}
-%         \\&
-%         \geq 
-%         \left( \frac{n-1}{n^{2}} \right)^{\frac{n-1}{2}}
-%         \frac{1}{\sqrt{n}}
-%         \frac{ n! \vol(T) }{ \diam(T)^{n} }
-%         .
-%     \end{align*}
-%     Since $\diam(T) \leq \sqrt{2} \sigma_{1}$, the desired result follows. % THIS IS OPTIMAL
-%     Thus, $\sigma_1/\sigma_n \leq \sigma_1^{n} / { \det(\Jacobian\varphi) }$ and 
-%     \begin{gather*}
-%         \diam(T) 
-%         \leq 
-%         \sqrt{2} \sigma_1 
-%         \leq 
-%         \sqrt{2} 
-%         \frac{ \sigma_1^{n} }{ { \det(\Jacobian\varphi) } } 
-%         \sigma_n
-%         \leq 
-%         \sqrt{2n^{n}} 
-%         \left( \frac{ \diam(T)^{n} }{ n! \vol(T) } \right)
-%         \sigma_n
-%         .
-%     \end{gather*}
-%     The desired result is thus evident. 
-\end{proof}
-
-\begin{remark}
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\kappa(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    In our convention, the reference simplex has unit shape measure.
-    For example, $\kappa(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\kappa(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
-
-% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    The geometric ratio $\kappa(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
-    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
-    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
-% TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
-\end{remark}
-
-
-We are interested in the maximal ratio of volumes between neighboring $n$-simplices: 
-\begin{align}\label{math:volumecomparisonmeasure}
-    \rho(\calT) := \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } \frac{ \vol(T) }{ \vol(T') }.
-\end{align}
-We also want to compare the diameters of simplices that intersect. We define 
-\begin{align}\label{math:diametercomparison}
-    \theta(\calT) 
-    := 
-    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
-    \frac{ \diam(T) }{ \diam(T') }
-\end{align}
-Whenever $S,T$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{S,T} : S \rightarrow T$ denote the affine diffeomorphism 
-that preserves $F$. We define 
-\begin{align}\label{math:reflectionmeasure}
-    \xi(\calT) 
-    := 
-    \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
-    \| \Jacobian \Xi_{S,T} \|
-\end{align}
-to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
-This indicator quantifies how much reflection across the shared face distorts the geometry. 
-
-
-% and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
-% we define the quantity 
-% \begin{align*}
-%     \kappa(T)
-%     := 
-%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
-%     .
-% \end{align*}
-
-\todo{Tighter estimate via geometry}
-\begin{lemma}\label{lemma:volumecomparison}
-    Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
-    \begin{align*}
-        \diam(T_1)
-        \leq 
-        % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
-        % \diam(F)
-        % = 
-        \kappa(T_1)
-        \diam(F)
-        ,
-        \qquad 
-        \frac{ \vol(T_1) }{ \vol(T_2) }
-        \leq 
-        % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-        % \cdot 
-        % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-        % = 
-        \kappa(T_1) \kappa(T_2)
-        .
-    \end{align*}
-    If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism, then 
-    \begin{align*}
-        \| \Jacobian \Xi \|
-        \leq 
-        \Cvier{n}
-        \kappa(T_2)^{-1} \kappa(T_1) 
-        % \frac{ \kappa(T_1) }{ \kappa(T_2) }
-        .
-    \end{align*}
-    Here, $\Cvier{n} \leq \Ceins{n} \Czwei{n}$. 
-\end{lemma}
-
-% Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
-% \begin{align*}
-%     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
-%     \leq 
-%     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-%     \cdot 
-%     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-%     .
-% \end{align*}
-% DONE: REMOVE THE FACTORIAL?
-% DONE: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
-% DONE: clarify the first of the following inequalities
-    
-%     \begin{align*}
-%         \diam(F) \geq h_S = n \frac{ \vol(T_1) }{ \vol(S) } \geq n \frac{ \vol(T_1) }{ \diam(T_1)^{n} } \diam(T_1).
-%     \end{align*}
-%     Thus we establish the first estimate: 
-
-%     Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
-%     \begin{align*}
-%         \diam(F)
-%         \geq 
-%         h
-%         =
-%         n
-%         \frac{ \vol(T_1) }{ \vol(F') }
-%         \geq 
-%         \frac{ n \vol(T_1) }{ \diam(T_1)^{n} }
-%         \cdot 
-%         \diam(T_1)
-%         .
-%     \end{align*}
-%     That shows the second estimate. 
-
-
-\begin{proof}
-    Let $h_1$ and $h_2$ be the heights of $F$ in the simplices $T_1$ and $T_2$, respectively. 
-    By the volume formula for simplices, $\vol(T_1) = h_1 \vol(F)/n$ and $\vol(T_2) = h_2 \vol(F)/n$, and thus $\vol(T_1)/\vol(T_2) = h_1/h_2$.
-    The diameter of $F$ is at least as large as the height $h_S$ of some other facet $S$ of $T$. Recursive application of the volume formula shows 
-    \begin{align*}
-        \vol(T) = \frac{1}{n!} h_S h_2 \cdots h_n,
-    \end{align*}
-    where $h_S \leq \diam(F)$ and $h_2, \cdots, h_n \leq \diam(T)$. Now, 
-    \begin{align*}
-        \diam(T) \frac{ n! \vol(T) }{ \diam(T)^{n} } \leq h_S \leq \diam(F).
-    \end{align*}
-    The first estimate follows. 
-    On the other hand, 
-    \begin{align*}
-        h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n \cdot \vol(T_1)} \diam(F),
-        \\
-        h_2 &= n \frac{\vol(T_2)}{\vol(F)} \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
-        .
-    \end{align*}
-    The second estimate follows. 
-    Lastly, letting $\Xi : T_1 \rightarrow T_2$ be as above, Lemma~\ref{lemma:affinetransform} and the first estimate imply 
-    \begin{align*}
-        \| \Jacobian \Xi \|
-        &
-        \leq 
-        \Ceins{n}
-        \Czwei{n}
-        \kappa(T_2)
-        \diam(T_1)
-        \diam(T_2)^{-1}
-        \\&
-        \leq 
-        \Ceins{n}
-        \Czwei{n}
-        \kappa(T_2)
-        \kappa(T_1) 
-        \diam(F)
-        \diam(T_2)^{-1}
-        \leq 
-        \Ceins{n}
-        \Czwei{n}
-        \kappa(T_2)
-        \kappa(T_1) 
-        .
-    \end{align*}
-    All the desired results thus follow.
-    
-    Without loss of generality, $F$ lies in the plane of the second to last coordinates,
-    so that the height of $T_1$ and $T_2$ is in the first coordinate direction. 
-    After further rotation, we can assume that $z_2 = a_1 e_1 + a_2 e_2$ for some $a_1, a_2 \in \bbR$.
-    If $h > 0$ is the height of $z_1$ within $T_1$, then the singular values of $\Xi$ 
-    are all one with the possibe exception of the singular values of the matrix 
-    \begin{align*}
-        A = 
-        \begin{pmatrix}
-            a_1/h & 0
-            \\
-            a_2/h & 1
-        \end{pmatrix}
-    \end{align*}
-    Its singular values are 
-    \begin{align*}
-        \sigma_{\max}
-        &= 
-        \frac{1}{\sqrt 2}
-        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
-        \\&= 
-        \frac{1}{\sqrt 2}
-        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\sqrt{ 
-            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
-            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
-            } }
-        \\&= 
-        \frac{1}{\sqrt 2}
-        \sqrt{ 
-            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
-            }
-        +
-        \frac{1}{\sqrt 2}
-        \sqrt{ 
-            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
-            }
-        \\&= 
-        \frac{1}{2}
-        \sqrt{ 
-            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
-            }
-        +
-        \frac{1}{2}
-        \sqrt{ 
-            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
-            }
-        \\&= 
-        \frac{1}{2}
-        \sqrt{ 
-            \left( 1 + \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
-            }
-        +
-        \frac{1}{2}
-        \sqrt{ 
-            \left( 1 - \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
-            }
-        ,
-        \\
-        \sigma_{\min}
-        &=
-        \frac{1}{\sqrt 2}
-        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
-        \\&= 
-        \frac{1}{2}
-        \sqrt{ 
-            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
-            }
-        -
-        \frac{1}{2}
-        \sqrt{ 
-            1 + \frac{ a_1^2 }{h^2} - \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
-            }
-        .
-    \end{align*}
-
-\end{proof}
-
-\begin{remark}
-    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\rho(\calT)$ but not $\theta(\calT)$. 
-    We can bound the ratio of diameters and volumes of simplices that share at least one edge in terms of the shape measure. 
-\end{remark}
 
 
 
@@ -1859,7 +1865,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| u_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
- Taking into account Definition~\eqref{math:moremeasures}, we obtain the desired inequality.
+ Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality.
 %  \begin{align*}
 %     \| w_{m} \|_{L^{p}(T_m)}^{p}
 %     &\leq 
@@ -2902,16 +2908,17 @@ Our main interest are local stars or stars within triangulations.
 \end{proof}
 
 \begin{lemma}\label{lemma:stars_are_shellable}
-    Let $\calT$ be a $n$-dimensional manifold triangulation and $V \in \Vertices(\calT)$ be an inner vertex.
+    Let $\calT$ be a $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
     Then $\patch_{\calT}(V)$ is shellable. 
 \end{lemma}
 \begin{proof}
-    Without loss of generality, $V$ is the origin. 
-    Any ray starting at $V$ intersects at most one vertex of $\patch_{\calT}(V)$.
-    We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
-    which does not affect shellability. 
-    The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
-    and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
+    This is Lemma~8.7 in \cite{ziegler2012lectures}.
+%     Without loss of generality, $V$ is the origin. 
+%     Any ray starting at $V$ intersects at most one vertex of $\patch_{\calT}(V)$.
+%     We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
+%     which does not affect shellability. 
+%     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
+%     and is thus shellable~\cite[Theorem~8.12]{ziegler2012lectures}. 
 \end{proof}
 
 
@@ -5005,14 +5012,7 @@ and the Lipschitz estimate reflects the shape regularity.
         
         
         
-        
-        \item 
-        We introduce a bi-Lipschitz mapping 
-        \begin{align*}
-            \Psi : |\calR'| \rightarrow |\calK|
-        \end{align*}
-        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There 
-
+\begin{comment}
         \item 
         We introduce a bi-Lipschitz mapping 
         \begin{align*}
@@ -5253,6 +5253,7 @@ and the Lipschitz estimate reflects the shape regularity.
             2 \Cdrei{n} \kappa(\calT)
             .
         \end{gather*}
+\end{comment}
     \end{itemize}
     The proof is complete. 
 \end{proof}
@@ -5457,7 +5458,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \cdot 
         \| \cartan u \|_{L^{p}(T)}
         .
-    \end{gather*}
+    \end{align*}
     The second inequality follows.
 \end{proof}
 
