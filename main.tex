@@ -1,6 +1,6 @@
-\documentclass[10pt,letterpaper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{fullpage}
+% \usepackage{fullpage}
 \input{header}
 
 \usepackage{comment}          % 
@@ -445,18 +445,20 @@ The strictly positive convex combinations of the vertices of the simplex constit
 and its remaining points constitute the \textit{boundary} of the simplex.
 \\
 
-A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation}, if it satisfies the following conditions: 
+A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} 
+if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
 % (i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
 We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler2012lectures}).} 
-We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is defined as the union 
+We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is the union 
 \begin{align*}
     \underlying{\calT} := \bigcup_{ T \in \calT } T
     .
 \end{align*}
-We call a set \textit{trianguable} if it is the underlying set of some triangulation. 
+We call any set \textit{trianguable} if it is the underlying set of some triangulation. 
+\\
 
-
+\begin{comment}
 \begin{remark}
     Our main interest in this manuscript are finite triangulations of compact sets. 
     There is another reason why we insist on the triangulation being finite: 
@@ -476,39 +478,49 @@ We call a set \textit{trianguable} if it is the underlying set of some triangula
     % 
     However, none of these infinite families are infinite simplicial complexes in the sense of geometric topology~\cite{lee2011topological}. 
 \end{remark}
+\end{comment}
 
 
-Given any simplex $T$, we write $\subsimplex(T)$ for the simplicial complex that contains all subsimplices of $T$. 
-More specifically, $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the set of $k$-dimensional subsimplices of $T$. 
-Whenever $\calT$ is a simplicial complex and $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$.
-We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$. 
-The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
-Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. 
-In practice, we not always distinguish between points and singleton simplices. 
-Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
+Given any simplex $T$, we write $\subsimplex(T)$ for the simplicial complex that contains all subsimplices of $T$,
+and $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the set of $k$-dimensional subsimplices of $T$. 
+We write $\Vertices(T) := \subsimplex_{0}(T)$ for the set of vertices of $T$.
+
+Whenever $\calT$ is a simplicial complex, 
+the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
+% Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. In practice, we not always distinguish between points and singleton simplices. 
+% Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
+Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, codimension one members) of this triangulation.\footnote{
 % \begin{remark}
     Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics.~\cite{schrijver1998theory}
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra.~\cite{ziegler2012lectures}
 % \end{remark}
 }
+% Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
+% and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\todo{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
 
 When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
 which is the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
 We write $\carapace_{\calT}(T)$ for the subset of the local patch whose members do not contain $T$ itself. 
 Formally,
 \begin{gather*}
-    \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T'),
+    % \patch_{\calT}(T) := \bigcup_{ T' \in \supsimplex(\calT,T) } \subsimplex(T'),
+    \patch_{\calT}(T) := \bigcup_{ \substack{ T' \in \subsimplex_{n}(\calT) \\ T \subseteq T' } } \subsimplex(T'),
     \qquad 
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
-We write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
-A crucial observation is the following.  
+We also write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
+A crucial structural observation is the following.~\footnote{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}  
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
- Then either $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \emptyset$ or there exists $S'' \in \calT$
- such that $\patch_{\calT}(S) \cap \patch_{\calT}(S') = \patch_{\calT}(S'')$ with $S, S' \subseteq S''$.
+ Then either $\patch_{\calT}(S)$ and $\patch_{\calT}(S')$ are essentially disjoint or there exists $S'' \in \calT$
+ such that 
+ \begin{align*}
+    \patch_{\calT}(S) \cap \patch_{\calT}(S') = \patch_{\calT}(S''),
+    \qquad 
+    \Vertices(S) \cup \Vertices(S') = \Vertices(S'').
+ \end{align*}
 \end{lemma}
 \begin{proof}
  Let $T \in \calT$ be $n$-dimensional.
@@ -532,15 +544,16 @@ and we call $\calT$ \emph{strongly connected} if it has only one strongly connec
 We shift gears and move from a combinatorial study of triangulations to an analytical study:
 we introduce quantitative measures for the geometric quality of triangulations. 
 These indicate of the regularity of simplex shapes. 
+All these quantities have in common that they can be computed from purely local information. 
 Most of such \emph{shape measures} in the literature are based on geometric features, 
 but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
-All these quantities have in common that they can be computed from purely local information. 
 While there are many equivalent shape measures, we use the ones that most immediate appear in our proofs.
 
 \todo{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
-Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$.
+Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$,
+where the height of a vertex is defined as the distance to the affine span of its opposing face.
 
 For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
 
@@ -1553,13 +1566,17 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \begin{remark}
     Any optimal Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
     but individual convex domains may allow for better constants.
-    We refer to \cite{matculevich2016explicit} for an overview;
-    for example, triangles allow the reduction of the constant by 20\%.
+    We refer to \cite{matculevich2016explicit} for an overview of some improved inequalities, such as for triangles.
+    % for example, triangles allow the reduction of the constant by 20\%.
 \end{remark}
 
 
 
-
+Whenever $\calT$ is a strongly connected $n$-dimensional triangulation, 
+a \emph{spanning tree} is an enumeration of the all $n$-dimensional simplices $T_{0}, \dots, T_{M}$
+where for each $1 \leq m \leq M$ we have fixed $0 \leq j(m) \leq m-1$ such that 
+$T_{m}$ and $T_{j(m)}$ share a common face of dimension $n-1$.
+We call $T_{j(m)}$ the \emph{predecessor} of $T_{m}$ within the spanning tree. 
 
 
 % DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
@@ -1569,21 +1586,29 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
 In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
-As a preparatory step, given a gradient vector field, we can reconstruct the original scalar function up to a constant by a well-understood procedure: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. This defines a scalar potential. 
-This serves as our inspiration for estimating the Poincar\'e constant over triangulated domains, which we achieve by an explicit construction of scalar potentials: 
-after fixing a starting triangle, we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
+We achieve by explicitly constructing scalar potentials of gradients.
+We have already seen that we can construct the scalar potential for a gradient vector field by a well-understood procedure if the domain is convex: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. We take that procedure as in inspiration for constructing gradient potentials over more general triangulated domains: after fixing a starting cell, we construct the potential by successive integration over more and more cells. we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
 The basic idea has appeared in the different variants before, for instance recently in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
 \\
 
+We construct scalar potentials over larger and larger intermediate subdomains. 
+Two different variations of that idea are analyzed;
+while the underlying idea remains the same, they differ in the way the intermdiate potentials are extended.
+On the one hand, we can cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and relies on Lemma~\ref{lemma:poincarefriedrichsoverfacepatch} as an auxiliary result. 
+
+On the other hand, we assess an alternative route towards constructing scalar gradient potentials over triangulated domains. 
+While the underlying idea remains the same, the construction of the potential is slightly different. 
+we can extend the potential on each intermediate domain to another simplex by solving a local auxiliary problem on that simplex subject to partial boundary conditions. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}. 
+As an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex} computes an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed on a single face of the boundary. 
+
+We emphasize that the second approach to constructing potentials and bounding Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. Our estimates of Poincar\'e--Friedrichs constants capture the correct asymptotic behavior as $p$ grows to infinity.
 
 
 
 
 
-We have already seen a survey of Poincar\'e inequalities over convex domains. 
-Slightly more generally, we are interested in such inequalities over face patches within simplicial triangulations. 
-We state a geometric auxiliary lemma and an estimate of Poincar\'e--Friedrichs constants over face patches 
-that captures the correct asymptotic behavior as $p$ grows to infinity.
+
+
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
@@ -1695,8 +1720,8 @@ that captures the correct asymptotic behavior as $p$ grows to infinity.
         \| \hat w \|_{L^{p}(\hat U)}
         .
     \end{align*}
-    The desired result now follows from noting $\vol(T_i) = |\det(\Jacobian \varphi_i)|$ and $\| \Jacobian \varphi_i \| \leq \Ceins{n} \diam(T_i)$
-    for $i = 1, 2$, where we use Lemma~\ref{lemma:measurerelationships}.
+    Noting $\vol(T_i) = |\det(\Jacobian \varphi_i)|$ and $\| \Jacobian \varphi_i \| \leq \Ceins{n} \diam(T_i)$
+    for $i = 1, 2$, where we use Lemma~\ref{lemma:measurerelationships}, we conclude the desired result.
 \begin{comment}
     % DONE: that abbreviation is to close to the Jacobian / total derivative 
     Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
@@ -1936,9 +1961,9 @@ The dark gray triangle is the one being currently added, and the light gray tria
 \begin{proof}
  Let $u \in W^{1,p}(\Omega)$. 
  For each $F \in \calT$ of dimension $n-1$, 
- we let $u_F \in W^{1,p}(U_F)$ such that $\nabla u_F = \nabla u$ over $U_F$ and such that 
+ we let $w_F \in W^{1,p}(U_F)$ such that $\nabla w_F = \nabla u$ over $U_F$ and such that 
  \begin{align*}
-    \| u_F \|_{L^{p}(U_F)} \leq C_{{\rm{PF}},U_F,p} \| \nabla u_F \|_{L^{p}(U_F)},
+    \| w_F \|_{L^{p}(U_F)} \leq C_{{\rm{PF}},U_F,p} \| \nabla w_F \|_{L^{p}(U_F)},
  \end{align*}
  where the computable constant $C_{{\rm{PF}},U_F,p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}.
  We start with the simplex $T_{0}$. 
@@ -1947,36 +1972,40 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
  \end{gather*}
  In particular, $c_{0} := u - w_0$ is a constant function. 
+ 
  Now, let $T \in \calT$ be any $n$-simplex. 
  By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
- For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$. 
- We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
+ We let $\Omega_m := \cup_{j=0}^{m} T_m$ for any $0 \leq m \leq M$,
+ which is a triangulated $n$-dimensional submanifold with boundary.
+ For any $1 \leq m \leq M$ we write $F_m := T_m \cap T_{m-1}$,
+ which is a face of dimension $n-1$. 
  
 %  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
  % DONE \notice{MWL, MV: add a figure here to illustrate how the domain is exhausted.}
  
- We use a recursive argument. 
- Suppose that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
+ We construct the potential recursively. 
+ We have seen that $c_{0} = w_{0} - u_{|\Omega_{0}}$ is a constant. 
+ Assume that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
  such that $c_{0} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
- This is already satisfied for $m=1$.
+ % Note that this assumption is already satisfied when $m=1$.
  Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
  By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{m-1}}$. 
- Since $\nabla u_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}}$,
- there exists a constant $c_{m} := w_{m-1|T_{{m-1}}} - u_{F_{m}|T_{{m-1}}}$.
- We define $w'_{F_m} := u_{F_m} + c_{m} \in W^{1,p}(U_F)$.
- By construction, $\nabla w'_{F_m} = \nabla u_{F_m} = \nabla u_{|U_{F_m}}$ 
+ Since $$\nabla w_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}},$$
+ there exists a constant $$c_{m} := w_{m-1|T_{{m-1}}} - w_{F_{m}|T_{{m-1}}}.$$
+ We define $w'_{F_m} := w_{F_m} + c_{m} \in W^{1,p}(U_F)$.
+ By construction, $$\nabla w'_{F_m} = \nabla w_{F_m} = \nabla u_{|U_{F_m}}$$ 
  and 
  $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
- But that already implies $w'_{F_m} = u_{|F_m} - c_{0}$. 
- We define a measurable function $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$.
- We have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
+ But that already implies $w'_{F_m} = w_{|F_m} - c_{0}$. 
+ Letting $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
+ we have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
  \begin{gather*}
     \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
-    \| u_{F_m} \|_{L^{p}(T_m)}
+    \| w_{F_m} \|_{L^{p}(T_m)}
     +
     \| c_{m} \|_{L^{p}(T_m)},
     \\
@@ -1987,7 +2016,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \\ 
     \| c_{m} \|_{L^{p}(T_{{m-1}})}
     \leq 
-    \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
+    \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
     .
  \end{gather*}
  In particular,
@@ -1995,17 +2024,17 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| w_{m} \|_{L^{p}(T_m)}
     &
     \leq 
-    \| u_{F_m} \|_{L^{p}(T_m)}
+    \| w_{F_m} \|_{L^{p}(T_m)}
     \\&\qquad 
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}
+    \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     .
  \end{align*}
- We sum the two integrals of $u_{F_m}$. 
+ We sum the two integrals of $w_{F_m}$. 
  % 
  In the special case $p=1$,
  \begin{align*}
@@ -2014,7 +2043,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \max\left(
         1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
     \right)
-    \| u_{F_m} \|_{L^{1}(U_{F_m})}
+    \| w_{F_m} \|_{L^{1}(U_{F_m})}
     +
     \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
     \| w_{m-1}\|_{L^{1}(T_{{m-1}})}
@@ -2025,21 +2054,21 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| w_{m} \|_{L^{\infty}(T_m)}
     \leq 
     2
-    \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+    \| w_{F_m} \|_{L^{\infty}(U_{F_m})}
     +
     \| w_{m-1}\|_{L^{\infty}(T_{{m-1}})}
     .
  \end{align*}
  % 1/q = 1 - 1/p = (p-1)/p 
- When $1 < p < \infty$, letting $q := p/(p-1) \in [1,\infty]$ be the complementary exponent, we observe 
+ When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
  \begin{align*}
     \| w_{m} \|_{L^{p}(T_m)}
     &\leq 
     \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
     \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
         +
-        \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
+        \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
     \right)^{\frac 1 p}
     \\&\qquad 
     +
@@ -2047,7 +2076,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     \\&\leq 
     \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
+    \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
     +
     \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
@@ -2066,14 +2095,14 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
     \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
-    \| u_{F_t} \|_{L^{p}(U_{F_t})}
+    \| w_{F_t} \|_{L^{p}(U_{F_t})}
     \\&\quad \quad \quad 
     +
     \left( 
         \prod_{0 < l \leq m} 
         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
     \right)
-    \| u_{T_0}\|_{L^{p}(T_{0})}
+    \| w_{T_0}\|_{L^{p}(T_{0})}
     .
  \end{align*}
  % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
@@ -2086,12 +2115,12 @@ The dark gray triangle is the one being currently added, and the light gray tria
 %     % \sum_{t=0}^{m-1} \volumeratio(\calT)^{t} 
 %     \frac{\volumeratio(\calT)^{m}-1}{\volumeratio(\calT)-1}
 %     \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{p/q}
-%     \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
+%     \| w_{F_t} \|_{L^{p}(U_{F_t})}^{p}
 %     \\&\quad \quad \quad 
 %     +
 %     (m+1)^{p-1}
 %     \volumeratio(\calT)^{m-1}
-%     \| u_{T_0}\|_{L^{p}(T_{0})}^{p}
+%     \| w_{T_0}\|_{L^{p}(T_{0})}^{p}
 %     .
 %  \end{align*}
 %  Notice that $p/q = p - 1$.
@@ -2108,14 +2137,6 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 
-We also want to assess an alternative route towards Poincar\'e--Friedrichs inequalities over triangulated domains. 
-While the underlying idea remains the same, the construction of the potential is slightly different. 
-As an auxiliary result with independent relevance, we compute an upper bound for the Poincar\'e--Friedrichs inequality 
-when homogeneous boundary conditions are imposed on a single face of the boundary. 
-We present this result with two different techniques. 
-While it may not be obvious, the second estimate is tighter than the first estimate when using the optimal Poincar\'e--Friedrichs constants for convex domains. 
-% Upper bounds for the classical Poincar\'e inequality over a simplex is widely known. 
-
 \begin{lemma}\label{lemma:mixedbconsimplex}
     Let $T$ be an $n$-simplex with a face $F$. 
     If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
@@ -2127,20 +2148,21 @@ While it may not be obvious, the second estimate is tighter than the first estim
         ,
     \end{align*}
     where $C_{\PF,T,F,p} > 0$ is a constant such that 
-    \begin{align*}
-        C_{\PF,T,F,p}
-        &\leq 
-        C_{\PF,T,p} + \left( C_{\PF,T,p}^{p} + p \cdot \diam(T) C_{\PF,T,p}^{p-1} \right)^{\frac 1 p},  
-        \\
-        %\quad 
-        C_{\PF,T,F,p}
-        &\leq
-        \frac{1}{\sqrt[p]{p}}
-        \diam(T)
-        .
-    \end{align*}
+    $C_{\PF,T,F,p} \leq \frac{1}{\sqrt[p]{p}} \diam(T)$.
+%     \begin{align*}
+%         C_{\PF,T,F,p}
+%         &\leq 
+%         C_{\PF,T,p} + \left( C_{\PF,T,p}^{p} + p \cdot \diam(T) C_{\PF,T,p}^{p-1} \right)^{\frac 1 p},  
+%         \\
+%         C_{\PF,T,F,p}
+%         &\leq
+%         \frac{1}{\sqrt[p]{p}}
+%         \diam(T)
+%         .
+%     \end{align*}
 \end{lemma}
 \begin{proof}
+\begin{comment}
     There exists $w \in W^{1,p}(T)$ with $\nabla w = \nabla u$ and 
     \begin{gather*}
         \| w \|_{L^{p}(T)}
@@ -2194,33 +2216,34 @@ While it may not be obvious, the second estimate is tighter than the first estim
         .
     \end{align*}
     Recall that $u = w - \gamma$. The first inequality follows. 
-    
-    The second inequality follows from Rademacher's theorem when $p = \infty$.
-    Let assume that $1 \leq p < \infty$. 
-    Suppose that $u \in C^{\infty}(T)$ with support disjoint from $F$.
+\end{comment}
+    % The second inequality follows from Rademacher's theorem when $p = \infty$.
+    Since the inequality follows from Rademacher's theorem when $p = \infty$,
+    we assume $1 \leq p < \infty$. 
+    Let $u \in C^{\infty}(T)$ have support disjoint from $F$.
     Without loss of generality, 
     the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
-    We write $\bfg \in \bfL^{\infty}(T)$ for the trivial extension of $\nabla u$ outside of $T$.
+    We write $\bfg \in \bfL^{\infty}(\bbR^{n})$ for the trivial extension of $\nabla u$ outside of $T$.
     %With the fundamental theorem of calculus and H\"older's inequality: 
-    Now:
+    We verify
     \begin{align*}
-        \int_{\Omega} |u(x)|^{p} \diff x \;dx
+        \int_{T} |u(x)|^{p} \diff x \;dx
         &\leq
-        \int_{\bbR^{n-1}} \int_{0}^{D} |u( x_{1}, \overline x )|^{p} \;dx_{1} \;d\overline{x}
+        \int_{\bbR^{n-1}} \int_{0}^{\diam(T)} |u( x_{1}, \overline x )|^{p} \;dx_{1} \;d\overline{x}
         \\&
         \leq
-        \int_{\bbR^{n-1}} \int_{0}^{D} \left| \int_{0}^{x_{1}} |\bfg( y, \overline x )| \,dy \right|^{p} \;dx_{1} \,d\overline{x}
+        \int_{\bbR^{n-1}} \int_{0}^{\diam(T)} \left| \int_{0}^{x_{1}} |\bfg( y, \overline x )| \,dy \right|^{p} \;dx_{1} \,d\overline{x}
         \\&
         \leq
-        \int_{0}^{D} x_{1}^{p-1} \int_{\bbR^{n-1}} \int_{0}^{x_{1}} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} \,dx_{1}
+        \int_{0}^{\diam(T)} x_{1}^{p-1} \int_{\bbR^{n-1}} \int_{0}^{x_{1}} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} \,dx_{1}
         \\&
         \leq
-        \int_{0}^{D} x_{1}^{p-1} \;dx_1 
+        \int_{0}^{\diam(T)} x_{1}^{p-1} \;dx_1 
         \cdot 
-        \int_{\Omega} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} 
+        \int_{T} \left| \bfg( y, \overline x ) \right|^{p} \;dy \,d\overline{x} 
         \leq
-        \frac{D^{p}}{p} \int_{\Omega} \left| \nabla u( x ) \right|^{p} \,dx
+        \frac{\diam(T)^{p}}{p} \int_{T} \left| \nabla u( x ) \right|^{p} \,dx
         %
 %         \leq
 %         \int_{F} |u(x_{1},\dots,x_{n-1},x_{1})|^{p} \,dx_1 \dots \,dx_{n-1} \,dx_{1}
@@ -2238,17 +2261,21 @@ While it may not be obvious, the second estimate is tighter than the first estim
 %         \int_{\Omega} |\nabla u|^{p} \,dx
         .
     \end{align*}
-    That $\|u\|_{L^{p}(\Omega)} \leq \diam(T) \|\nabla u\|_{L^{p}(\Omega)}$ for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
+    That $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
+    for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
     
     Very briefly verify that density argument: 
-    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    There exists $\varphi : \Delta^{n} \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
     We let $\hat u := u \circ \varphi$.
-    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\hat T$.
+    Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\Delta^{n}$.
     We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
     Then $\tilde u \in W^{1,p}_{0}(\hat U)$, and $\tilde u$ is the limit of a sequence $u_{m} \in C^{\infty}_{c}(\hat U)$.
-    Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ is the desired sequence that approximates $u$. 
+    Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ approximates $u$. 
 \end{proof}
 
+% \begin{remark}
+%     While it may not be obvious, the second estimate is tighter than the first estimate when using the optimal Poincar\'e--Friedrichs constants for convex domains.  
+% \end{remark}
 
 
 
@@ -2267,9 +2294,6 @@ While it may not be obvious, the second estimate is tighter than the first estim
 
 
 
-
-The following potential construction and upper bound for the Poincar\'e--Friedrichs constant 
-serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly connected finite triangulation $\calT$.
