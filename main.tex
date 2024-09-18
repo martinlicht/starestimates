@@ -510,7 +510,7 @@ Formally,
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
 We also write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
-A crucial structural observation is the following.~\footnote{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}  
+A crucial structural observation is the following.~\footnote{\todo{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}}  
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
@@ -1572,13 +1572,6 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 
 
-Whenever $\calT$ is a strongly connected $n$-dimensional triangulation, 
-a \emph{spanning tree} is an enumeration of the all $n$-dimensional simplices $T_{0}, \dots, T_{M}$
-where for each $1 \leq m \leq M$ we have fixed $0 \leq j(m) \leq m-1$ such that 
-$T_{m}$ and $T_{j(m)}$ share a common face of dimension $n-1$.
-We call $T_{j(m)}$ the \emph{predecessor} of $T_{m}$ within the spanning tree. 
-
-
 % DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 
@@ -1956,6 +1949,29 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \| \nabla u \|_{L^{p}(T_{0})}
         .
     \end{align*}
+    \todo{Rewrite this result.}
+    When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_m)}
+        &\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+        \left( 
+            \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
+            +
+            \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
+        \right)^{\frac 1 p}
+        \\&\qquad 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
+        \\&\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+        \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
+        .
+    \end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -1998,11 +2014,13 @@ The dark gray triangle is the one being currently added, and the light gray tria
  and 
  $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
  But that already implies $w'_{F_m} = w_{|F_m} - c_{0}$. 
- Letting $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
+ Defining $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
  we have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
  \begin{gather*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    =
     \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
     \| w_{F_m} \|_{L^{p}(T_m)}
@@ -3226,21 +3244,23 @@ is that each time a simplex is added, the local star around a simplex gets compl
 
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
+We discuss the Sobolev spaces of vector calculus and exterior calculus 
+with particular emphasis on their transformation behavior. 
 We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
 Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
 
-We discuss the Sobolev spaces of vector calculus and their transformation behavior. 
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
-$W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
+% $W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is 
+The space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$ is 
 \begin{gather*}
-    W^{p}(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    W^{p}(\grad,\Omega) := W^{1,p}(\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
     .
 \end{gather*}
 The space $\bfW^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
-and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
+and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are written 
 \begin{gather*}
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
     \\ 
@@ -3267,9 +3287,7 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$; see also~\cite[Definition~9.8]{ern2021finite}.
 These mappings are invertible. 
 Bounds on the Lebesgue norms will follow from a more general result below. 
-
-
-
+% 
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
@@ -3300,8 +3318,8 @@ We summarize this as a commuting diagram:
     % Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
     scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This definition is in accordance with the notion of pullback, which we will review shortly. 
-    One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
-    The literature also knows the Piola transform in the direction of the original mapping. 
+    One advantage of that definition is that it also makes sense whenever the transformation is not onto. 
+    In some literature conventions, the Piola transform is in the direction of the original mapping. 
 \end{remark}
 
 
@@ -3314,7 +3332,8 @@ We summarize this as a commuting diagram:
 %\section{Review of exterior calculus}
 
 Having discussed vector analysis, we review exterior calculus. 
-We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
+We begin with exterior algebra. 
+%We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
@@ -4523,12 +4542,12 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Theta_{|K} := A_{K'} \circ A_{K}^{-1}.
         \end{align*}
-        Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
-        \begin{align*}
-            \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
-            \\
-            \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
-        \end{align*}
+        % Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
+        % \begin{align*}
+        %     \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
+        %     \\
+        %     \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
+        % \end{align*}
         By construction, the mapping preserves volumes:
         \begin{align*}
             |\det( \Jacobian      \Theta_{|K} )|
