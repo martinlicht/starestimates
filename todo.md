@@ -1,9 +1,18 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
-
-- [ ] correct the definition of manifolds 
-- [ ] fix the reflection
+- [x] replace the shape notation by C_ ...
+- [ ] singular values listed in reflection section
+- [ ] additional layer of quantities for potential operators
+- [ ] potential section: adapt notation and tex code, unify notation 
+- [ ] condense the scalar discussion
+- [ ] reduce the shape constant discussion
+- [ ] potentials section: adapt and unify notation/tex
 - [ ] complete the final estimate
+
+Further points that need discussion
+- [ ] reduce the shape regularity discussion
+- [ ] simplify the scalar potential construction with recursive structure
+- [ ] spanning tree
 
 Roadmap
 - [x] Section 1 : introduction 
