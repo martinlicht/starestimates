@@ -4305,23 +4305,13 @@ though the dimension and the form degree enters the estimate.
 
 \section{Reflections and Deformations on shellable stars}\label{section:extension}
 
-This section is devoted to geometric operations that are crucially important for our main result. 
-Suppose that we have a shellable simplicial complex. 
-Every time we add a simplex according to the shelling sequence, 
-we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
-We will need a homeomorphism going from the new simplex onto its complement within the newly completed star.
-This homeomorphism is required to preserve the interface and to be bi-Lipschitz.
-We are particularly interested in the norms of its Jacobian.
-We inerpret this as a nonlinear reflection. It will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
-
-In addition to that, this endeavor will produce another geometric tool 
-that enables an additional estimate Poincar\'e--Friedrichs constants:
-we construct a bi-Lipschitz deformation which maps the entire star 
-into the complement of the newly completed star. 
-Again, we give explicit estimates of the Jacobian.
-\\
-
-
+This section is devoted to geometric operations that are crucial for our main result. 
+Consider the situation where we have an $n$-dimensional local star around some simplex $S$ and some $n$-dimensional simplex $T$ within that local star. We will need a homeomorphism going from the simplex $T$ onto its complement within the local star around $S$.
+This homeomorphism is required to preserve the interface and we interpret it as a nonlinear reflection. 
+We ensure that the homeomorphism is bi-Lipschitz and we are particularly interested in the norms of its Jacobian.
+This nonlinear reflection will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
+Additionally, this endeavor produces another geometric tool:
+we construct a bi-Lipschitz deformation which contracts the entire star into the complement of the newly completed star. 
 
 We begin with the following observation. 
 Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
@@ -4352,8 +4342,8 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
     intersect only at the origin, since otherwise the vertices of $T$ are not affinely independent. 
     So $A$ has dimension $n-1$. 
     Obviously, $F \subset A \cap T$. 
-    Let us now suppose that $x \in A \cap T$.
-    For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
+    Suppose now that $x \in A \cap T$.
+    There exist $\lambda_1,\dots,\lambda_{n-1} \in \bbR$ such that 
     \begin{align*}
         x &= 
         v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
@@ -4368,13 +4358,11 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
         \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
         .
     \end{align*}
-    We know that this is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
+    This is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
     Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive.
     But if $x \notin F$, then at least one of them must be negative,
     and thus their sum must be negative, which is a contradiction. 
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are zero,
-    which implies $x \in F$.
-    The desired statement follows.         
+    Hence $\lambda_{k+1} = \dots = \lambda_{n-1} = 0$, implying $x \in F$.
 \end{proof}
 
 
@@ -4406,7 +4394,7 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
 
 
 
-Next, we observe that stars around subsimplices can represented by vertex stars after a local subdivision of the mesh.
+Next, we observe local stars can be subdivided to vertex stars.
 The shape regularity is controlled in that process. 
 
 % \begin{lemma}\label{lemma:stardivision}
@@ -4438,10 +4426,8 @@ The shape regularity is controlled in that process.
 
 
 
-We know construct the main result of this section, namely the desired bi-Lipschitz homeomorphism. 
-It can be imagined as the reflection across the interface between the selected simplex and the remainder of the star. 
-The construction is completed in several steps,
-and the Lipschitz estimate reflects the shape regularity. 
+We now provide the bi-Lipschitz nonlinear reflection across the interface between the selected simplex and the remainder of the local star
+as well as the bi-Lipschitz contraction from the local star onto the complement of the selected simplex. 
 
 \begin{theorem}\label{theorem:starreflection}
     Let $\calT$ be an $n$-dimensional triangulation of an $n$-dimensional domain. 
