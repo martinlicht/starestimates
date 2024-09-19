@@ -1571,7 +1571,6 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \end{remark}
 
 
-
 % DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 
@@ -1588,6 +1587,16 @@ We construct scalar potentials over larger and larger intermediate subdomains.
 Two different variations of that idea are analyzed;
 while the underlying idea remains the same, they differ in the way the intermdiate potentials are extended.
 On the one hand, we can cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and relies on Lemma~\ref{lemma:poincarefriedrichsoverfacepatch} as an auxiliary result. 
+
+For the agenda of this section, the following combinatorial notion of triangulations will be helpful. 
+Whenever $\calT$ is a strongly connected $n$-dimensional triangulation, 
+a \emph{spanning tree} is an enumeration $T_{0}, \dots, T_{M}$ of all its $n$-dimensional simplices
+where for each index $1 \leq m \leq M$ we have fixed index $0 \leq j(m) \leq m-1$ 
+such that $T_{m}$ and $T_{j(m)}$ share a common face of dimension $n-1$.
+We call $T_{j(m)}$ the \emph{predecessor} of $T_{m}$ within the spanning tree. 
+
+
+
 
 On the other hand, we assess an alternative route towards constructing scalar gradient potentials over triangulated domains. 
 While the underlying idea remains the same, the construction of the potential is slightly different. 
