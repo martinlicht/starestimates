@@ -15,11 +15,10 @@ Further points that need discussion
 - [ ] spanning tree
 
 Revision
-- [ ] header
-- [ ] title and abstract 
-- [ ] library 
-- [ ] Introduction 
-- [ ] separate last part into outlook 
+- [x] header
+- [x] title and abstract, macros 
+- [x] library + bib style 
+- [ ] Introduction, separate last part into outlook 
 - [ ] Move section on scalar potentials ahead 
 - [ ] Section 2: scalar potential on domains
 - [ ] Section 3: triangulations 
@@ -30,7 +29,14 @@ Revision
 - [ ] Section 7: Shellable triangulations 
 - [ ] Section 8: reflections and deformations
 - [ ] Section 9: Final estimate 
+- [ ] Section 10: Computation 
 
+Further changes
+git diff 97fbcd86 21e58
+- [ ] outline of triangulation + shape measures 
+- [ ] inequalities over triangulations
+- [ ] Sobolev and potential operators 
+- [ ] reflection
 
 
 

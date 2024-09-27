@@ -1,11 +1,27 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
-% \usepackage{fullpage}
+\usepackage{fullpage}
 \input{header}
 
 \usepackage{comment}          % 
 \usepackage{hyperref}         % For hypertext links
 \usepackage{tikz-3dplot}      % 3d plots 
+
+% Added by MV 
+\usepackage{bm} % preferred version of bold symbols
+\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
+\usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
+\usepackage[textsize=tiny,color=blue!50!white]{todonotes}
+\setlength{\marginparwidth}{2cm}
+
+\newcommand\cye[1]{%
+\protect\leavevmode
+\begingroup
+    \color{red!35!yellow}%
+    #1%
+\endgroup
+}
+
 
 \usepackage{enumitem}
 \setitemize[1]{left=0.0cm} 
@@ -15,18 +31,18 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Computable Poincar\'e--Friedrichs constants\\ for the $L^{p}$ de Rham complex over domains\\ with shellable triangulations}
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over \cye{convex domains and} domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{martin.licht@epfl.ch}} \and
-    Martin Vohral\'ik\thanks{Affiliation of the Third Author, \texttt{email3@example.com}}
+    Martin Vohral\'ik\thanks{\cye{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France}, \texttt{\cye{martin.vohralik@inria.fr}}}
 }
 
 % Theorem environments
 
-\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\newcommand{\martin}[1]{\textcolor{red}{TODO: #1}}
 \newcommand{\notice}[1]{\textcolor{red}{REMARK: #1}}
-
+\newcommand{\disk}{\cye{ball}}
 
 
 
@@ -42,7 +58,8 @@
 \maketitle
 
 \begin{abstract}
-    We construct potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. This class of triangulations includes local stars in dimension two and three. 
+    We construct potentials for the gradient, the curl\cye{,} and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. 
+    This class of triangulations \cye{in particular} includes local \cye{patches (stars)} in dimension two and three.
     The operator norms of our potentials satisfy explicitly computable bounds that only depend on the geometry. 
     We thus obtain computable upper bounds for Poincar\'e--Friedrichs inequalities and computable lower bounds for the eigenvalues of several vector Laplacians. 
     % 
@@ -51,11 +68,23 @@
     %     The main application that we envision are computable estimates over finite element patches. 
     %
     As a result with independent standing, we establish Poincar\'e--Friedrichs inequalities for the $L^{p}$ de~Rham complex over convex bounded domains. 
-    This is achieved through bounding operator norms of Poincar\'e and Bogovski\u{\i} potential operators.
-    We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances. 
+    This is achieved through \cye{a suitable construction of regularized} Poincar\'e and Bogovski\u{\i} potential operators \cye{where we can bound their operator norms}.
+    \martin{We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances.} 
+    \cye{Computational examples illustrate the theoretical findings.}
+    \\
+    
+    We construct potentials for the gradient, the curl\cye{,} and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. 
+    This class of triangulations \cye{in particular} includes local \cye{patches (stars)} in dimension two and three.
+    \cye{We derive} computable bounds \cye{on} the operator norms of our potentials that only depend on the geometry. We thus obtain computable upper bounds for \cye{constants in} Poincar\'e--Friedrichs inequalities \cye{as well as} computable lower bounds for the eigenvalues of several vector Laplacians.
+    As a result with independent standing, we \cye{also} establish Poincar\'e--Friedrichs inequalities \cye{with computable constants} for the $L^{p}$ de~Rham complex over convex bounded domains.
+    This is achieved through \cye{a suitable construction of regularized} Poincar\'e and Bogovski\u{\i} potential operators \cye{where we can bound their operator norms}.
+    \cye{Computational examples illustrate the theoretical findings.}
 \end{abstract}
 
 
+\tableofcontents
+\todo[inline]{MV: Added table of contents: for us, to see the structure of and the main terminology used in the paper}
+ 
 \section{Introduction}\label{section:intro}
 
 % DONE {Reformulate the first paragraph. } % 
@@ -339,7 +368,7 @@ we only study them over convex domains and use simpler (that is, constant) weigh
 The resulting operator features generally lower regularity properties in comparison to the regularized potential in the literature;
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
-% DONE \todo{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
+% DONE \martin{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
 
 
 In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
@@ -355,7 +384,7 @@ We achieve this by constructing an auxiliary problem subject to full boundary co
 
 
 % Exterior calculus % DONE: MV recommends moving this down to finish the current line of thoughts 
-\todo{What is the best place for this paragraph?}
+\martin{What is the best place for this paragraph?}
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
 %It also enables us to leverage on the rich literature of Sobolev spaces of differential forms.
 For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
@@ -497,7 +526,7 @@ Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Face
 % \end{remark}
 }
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
-% and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\todo{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
+% and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\martin{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
 
 When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
 which is the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
@@ -549,7 +578,7 @@ Most of such \emph{shape measures} in the literature are based on geometric feat
 but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
 While there are many equivalent shape measures, we use the ones that most immediate appear in our proofs.
 
-\todo{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
+\martin{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
 Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$,
@@ -918,7 +947,7 @@ This indicator quantifies how much reflection across the shared face distorts th
     \end{align*}
     The desired estimates are shown.
 \begin{comment}
-    \todo{Tighter estimate via geometry}
+    \martin{Tighter estimate via geometry}
     Matrix inverse lemma:
     \begin{align*}
         A ( A + (z_2-z_1) e_1^t )^{-1}
@@ -4019,7 +4048,7 @@ Taking into account cancellations, this gives the identity
     u(x)
     .
 \end{align*}
-\todo{What if $\ell = 0$ and $u$ is constant? The reconstruction is not complete for constants}
+\martin{What if $\ell = 0$ and $u$ is constant? The reconstruction is not complete for constants}
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
     u(x) = \cartan \Poinc_{\ell} u(x) + \Poinc_{\ell+1} \cartan u(x).
@@ -4273,7 +4302,7 @@ though the dimension and the form degree enters the estimate.
     because their averaging uses a smooth weight, and which proves boundedness of the operators between a variety of function spaces. 
     Explicit bounds for the higher-order seminorms of these pseudodifferential operators 
     have been contributed by Guzman and Salgado~\cite{guzman2021estimation}. % DONE: THEO That requires more comments 
-    % Guzman and Salgado have estimated the operator norm. \todo{Describe Guzman and Salgado's contribution in more detail.} 
+    % Guzman and Salgado have estimated the operator norm. \martin{Describe Guzman and Salgado's contribution in more detail.} 
 \end{remark}
 
 
@@ -5077,7 +5106,7 @@ and the Lipschitz estimate reflects the shape regularity.
         After application of a piecewise linear Lipschitz mapping, 
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        \todo{not enough}
+        \martin{not enough}
         
         
         
@@ -5771,7 +5800,7 @@ The main result of this manuscript is the following theorem.
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
-    \todo{The notation $U_m$ should be settled in the definition of shellings.}
+    \martin{The notation $U_m$ should be settled in the definition of shellings.}
 \end{theorem}
 
 \begin{proof}
@@ -6034,7 +6063,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 MWL appreciates helpful remarks by Abdellatif Aitelhad and by Martin Costabel.
 
-\bibliographystyle{plain}
+\bibliographystyle{acm_mod}
 \bibliography{library}
 
 \end{document}
