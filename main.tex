@@ -41,8 +41,8 @@
 
 % Theorem environments
 
-\newcommand{\mwl}[1]{\textcolor{red}{MWL: #1}}
-\newcommand{\notice}[1]{\textcolor{red}{REMARK: #1}}
+\newcommand{\mwl}[1]{\color{red}{MWL: #1}}
+\newcommand{\notice}[1]{\color{red}{REMARK: #1}}
 \newcommand{\disk}{\cye{ball}}
 
 
@@ -2880,22 +2880,22 @@ We gather some results that are hard to find in the literature.
 
 \begin{lemma}\label{lemma:connectivity}
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
-    If the underlying space of $\calT$ is connected, then $\calT$ is \cye{face} connected. \mwl{TODO Add a hyphen to each such instance.}
+    If the underlying space of $\calT$ is connected, then $\calT$ is face-connected.
 \end{lemma}
 \begin{proof}
-    We first show that each vertex star is \cye{face} connected via a short induction argument.
-    Clearly, any simplicial $1$-ball and simplicial $1$-sphere are \cye{face} connected. 
-    Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already \cye{face} connected if all simplicial $n$-balls and $n$-spheres are \cye{face} connected.
-    The induction argument implies that each vertex star in $\calT$ is \cye{face} connected.
+    We first show that each vertex star is face-connected via a short induction argument.
+    Clearly, any simplicial $1$-ball and simplicial $1$-sphere are face-connected. 
+    Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
+    The induction argument implies that each vertex star in $\calT$ is face-connected.
 
     If the underlying space $\underlying{\calT}$ is connected, 
     then we easily see that the union of the $1$-simplices is path-connected.
     Given $n$-simplices $S,S' \in \calT$, 
     we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
-    As each vertex star is \cye{face} connected, 
+    As each vertex star is face-connected, 
     we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
     is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
-    This just means that $\calT$ is \cye{face} connected. 
+    This just means that $\calT$ is face-connected. 
 \end{proof}
 
 
