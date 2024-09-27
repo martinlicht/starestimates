@@ -1,13 +1,17 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
 - [x] replace the shape notation by C_ ...
-- [ ] reflection: singular values listed in reflection section
+- [ ] scalars: condense the scalar discussion via spanning trees, use recursion, spanning tree
+- [ ] final: complete the final estimate, use recursion 
+    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
+- [ ] introduce combinatorial triangulations, use literature referals
+- [ ] sobolev section: check later that everything needed is there 
 - [ ] potentials section: sigma notation for potential operators, rewrite
 - [ ] potentials section: additional constants notation for potential operators
 - [ ] potentials section: adapt and unify notation/tex
-- [ ] scalars: condense the scalar discussion via spanning trees
-- [ ] shape: reduce the shape constant discussion
-- [ ] final: complete the final estimate
+- [ ] reflection: singular values listed in reflection section
+- [ ] shape: reduce the shape constant discussion once everything else is in place
+- [ ] numerics: create a spanning tree and start computing the sclar estimate 
 
 Further points that need discussion
 - [ ] reduce the shape regularity discussion

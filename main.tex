@@ -1,6 +1,6 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-% \usepackage{fullpage}
+\usepackage{fullpage}
 \input{header}
 
 \usepackage{comment}          % 
@@ -1964,17 +1964,6 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \| w_{m} \|_{L^{p}(T_m)}
         &\leq 
         \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-        \left( 
-            \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
-            +
-            \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
-        \right)^{\frac 1 p}
-        \\&\qquad 
-        +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
-        \\&\leq 
-        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
         \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
         +
         \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
@@ -2109,31 +2098,28 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
     .
  \end{align*}
- Recursive application provides the following estimate:
-%  if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
-%  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
-%  then 
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    &\leq 
-    \sum_{t=1}^{m} 
-    \left( 
-        \prod_{t < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-    \right)
-    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
-    \| w_{F_t} \|_{L^{p}(U_{F_t})}
-    \\&\quad \quad \quad 
-    +
-    \left( 
-        \prod_{0 < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-    \right)
-    \| w_{T_0}\|_{L^{p}(T_{0})}
-    .
- \end{align*}
+%  Recursive application provides the following estimate:
+%  \begin{align*}
+%     \| w_{m} \|_{L^{p}(T_m)}
+%     &\leq 
+%     \sum_{t=1}^{m} 
+%     \left( 
+%         \prod_{t < l \leq m} 
+%         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+%     \right)
+%     \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
+%     \| w_{F_t} \|_{L^{p}(U_{F_t})}
+%     \\&\quad \quad \quad 
+%     +
+%     \left( 
+%         \prod_{0 < l \leq m} 
+%         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+%     \right)
+%     \| w_{T_0}\|_{L^{p}(T_{0})}
+%     .
+%  \end{align*}
+%  We obtain the desired estimate. 
  % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
- We obtain the desired estimate. 
 %  \begin{align*}
 %     \| w_{m} \|_{L^{p}(T_m)}^{p}
 %     &\leq 
@@ -6042,7 +6028,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 \section*{Acknowledgments}
 
-MWL appreciates helpful remarks by Abdellatif Aitelhad and by Martin Costabel.
+MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, and by John M.\ Lee.
 
 \bibliographystyle{plain}
 \bibliography{library}
