@@ -28,10 +28,10 @@ Revision
 - [ ] Section 3: triangulations 
 - [ ] Section 4: scalar potential on triangulated domains
 - [ ] Move back section on shellable triangulations
-- [ ] Section 5: review of vector calculus
-- [ ] Section 6: potential operators 
+- [o] Section 5: review of vector calculus
+- [o] Section 6: potential operators 
 - [ ] Section 7: Shellable triangulations 
-- [ ] Section 8: reflections and deformations
+- [o] Section 8: reflections and deformations
 - [ ] Section 9: Final estimate 
 - [ ] Section 10: Computation 
 
