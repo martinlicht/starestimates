@@ -465,27 +465,27 @@ We present numerical examples in Section~\ref{section:numericalexamples}.
 
 \section{Basic notions of triangulations}\label{section:triangulations}
 
-We gather basic notions and definitions concerning simplicial meshes. 
+We gather here basic notions and definitions concerning simplicial meshes. 
   
+\subsection{\cye{A triangulation or a simplicial complex}}
+
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these points the \emph{vertices} of the simplex $T$. 
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
 then we call $S$ a \textit{subsimplex} of $T$ and call $T$ a \textit{supersimplex} of $S$. 
 
 The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
 and its remaining points constitute the \textit{boundary} of the simplex.
-\\
 
-A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} 
-if it satisfies the following conditions: 
+A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
 % (i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
-We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler2012lectures}).} 
-We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is the union 
+We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\todo{MV: Don't we only use $n$-dimensional simplicial complexes? That would be a simplification of our presentation.}\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) \cye{and simply ``simplicial meshes'' in the finite element literature}.} 
+We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is \sout{defined as} the union 
 \begin{align*}
     \underlying{\calT} := \bigcup_{ T \in \calT } T
     .
 \end{align*}
-We call any set \textit{trianguable} if it is the underlying set of some triangulation. 
+We call any set triangulable if it is the underlying set of some triangulation. 
 \\
 
 \begin{comment}
@@ -522,8 +522,8 @@ the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}
 Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, codimension one members) of this triangulation.\footnote{
 % \begin{remark}
     Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
-    and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics.~\cite{schrijver1998theory}
-    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra.~\cite{ziegler2012lectures}
+    and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
+    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler2012lectures}.
 % \end{remark}
 }
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
@@ -562,11 +562,11 @@ A crucial structural observation is the following.~\footnote{\todo{$U_T$ looks o
 
 We introduce a specific notion of connectivity. 
 Given an $n$-dimensional simplicial complex $\calT$, 
-we call $n$-simplices $S,S' \in \calT$ \emph{strongly connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. % TODO: Theo suggests reverse order of that sequence 
+we call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. % TODO: Theo suggests reverse order of that sequence 
 We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. 
-Clearly, strongly connected in $\calT$ is an equivalence relation among simplices. 
-A \emph{strongly connected component} of $\calT$ is an equivalence class under this equivalence relation, 
-and we call $\calT$ \emph{strongly connected} if it has only one strongly connected component. 
+Clearly, face-connected in $\calT$ is an equivalence relation among simplices. 
+A \emph{face-connected component} of $\calT$ is an equivalence class under this equivalence relation, 
+and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
 \\
 
 
@@ -1619,7 +1619,7 @@ while the underlying idea remains the same, they differ in the way the intermdia
 On the one hand, we can cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and relies on Lemma~\ref{lemma:poincarefriedrichsoverfacepatch} as an auxiliary result. 
 
 For the agenda of this section, the following combinatorial notion of triangulations will be helpful. 
-Whenever $\calT$ is a strongly connected $n$-dimensional triangulation, 
+Whenever $\calT$ is a face-connected $n$-dimensional triangulation, 
 a \emph{spanning tree} is an enumeration $T_{0}, \dots, T_{M}$ of all its $n$-dimensional simplices
 where for each index $1 \leq m \leq M$ we have fixed index $0 \leq j(m) \leq m-1$ 
 such that $T_{m}$ and $T_{j(m)}$ share a common face of dimension $n-1$.
@@ -2024,7 +2024,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
  For any $1 \leq m \leq M$ we write $F_m := T_m \cap T_{m-1}$,
  which is a face of dimension $n-1$. 
  
-%  Since $\calT$ is strongly connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
+%  Since $\calT$ is face-connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
  
  % DONE \notice{MWL, MV: add a figure here to illustrate how the domain is exhausted.}
  
@@ -2339,7 +2339,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly connected finite triangulation $\calT$.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a face-connected finite triangulation $\calT$.
     Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
     we fix a strong path $T_0, T_1, \dots, T_m = T$.
     For any $1 \leq l \leq m$, let $F_{l} = T_{l} \cap T_{l-1}$.
@@ -3210,7 +3210,7 @@ We \cye{now} collect important examples of shellable triangulations. \cye{Essent
 \end{proof}
 
 \begin{remark}
-    Not all triangu\cye{l}able sets admit a triangulation that is shellable. 
+    Not all triangulable sets admit a triangulation that is shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations \cye{are} be shellable. \cye{For example, if we extend the non-shellable triangulation of a tetrahedron from~\cite[Example 8.9]{ziegler1995lectures}} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
     then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
     This demonstrates that patches around boundary simplices are not necessarily shellable when the \cye{space} dimension \cye{$n$} is larger than three.
@@ -3244,7 +3244,7 @@ is that each time a\cye{n $n$-}simplex is added, star\cye{s} around \cye{lower-d
 
 
 \begin{remark}
-    Not all trianguable sets admit a triangulation that is also shellable. 
+    Not all triangulable sets admit a triangulation that is also shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
     We refer to~\cite[Example 8.9]{ziegler2012lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
 
@@ -6147,8 +6147,39 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 
 
+\section{\cye{Outlook}} \todo{MV: Added this section at the end and moved here the corresponding contents from the introduction} \label{section:outlook}
+
+There are several avenues for further research going \cye{further from the results established in this manuscript}.
+ 
+\cye{Our} upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars), where there are at least two points where the present techniques can be improved further. First, we utilize local Poincar\'e--Friedrichs constants over single simplices, subject to various boundary conditions, but these local estimates over convex \cye{\sout{domains}simplices} \todo{MV: ???} \cye{already} leave room for improvement.
+Second, our construction needs to extend differential forms onto a simplex from the complement of that simplex inside a star. In the present manuscript, this is achieved via pullback along a bi-Lipschitz mapping. 
+Better transformations or more careful estimates are likely possible, as are completely different approaches. For example, it is likely that further research on trace and extension operators on triangulations will enable better estimates.
+
+Related to the first of the aforementioned opportunities for improvement, we conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators \cye{in the sprit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we employ now}. 
+% We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. 
+On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. 
+
+\cye{Concerning the domains considered,} estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to \cye{\sout{spaces} domains} \todo{MV: ???} with simplicial homology groups of \disk s and spheres. In particular, domains with shellable triangulations are contractible. \cye{We believe that in the forthcoming works, t}hese estimates will \cye{become} subcomponent\cye{s} in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
 
+
+\mwl{
+% Future work % DONE: Theo : parts already mentioned ??? 
+% Computable reliable estimates are important: 
+% they quantify the fundamental stability properties of partial differential equations in vector analysis,
+% such as the Hodge Laplace equation. 
+There are several avenues for further research going from here. 
+The upper bounds in this manuscript are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches. There are at least two points where the present techniques can be improved further. First, we utilize local Poincar\'e--Friedrichs constants over single simplices, subject to various boundary conditions, but these local estimates over convex domains likely leave room for improvement.
+Second, our construction needs to extend differential forms onto a simplex from the complement of that simplex inside a local star. In the present manuscript, this is achieved via pullback along a bi-Lipschitz mapping. 
+Better transformations or more careful estimates are likely possible, as are completely different approaches.  For example, it is likely that further research on trace and extension operators on triangulations will enable better estimates.
+
+Related to the first of the aforementioned opportunities for improvement, we conjecture that the Guerini--Savo estimates, hitherto only known for the exterior derivative as a mapping between Hilbert spaces and over convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and to convex Lipschitz domains. We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators. 
+% We conjecture that the Poincar\'e--Friedrichs constant for the gradient operator still bounds the Poincar\'e--Friedrichs constants of the other instances of the exterior derivatives, as in \eqref{math:intro:guerinisavo}, when $1 \leq p \leq \infty$ and the domain is convex. 
+On a related note, explicit estimates for the operator norms of regularized potential operators with different degrees of smoothing are of general interest. 
+These topics remain for future research. 
+
+Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is fundamentally restricted to spaces with the simplicial homology groups of disks and spheres. In particular, domains with shellable triangulations are contractible. However, these estimates are important partial results. Forthcoming work will take these as a subcomponent in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
+}
 
 
 

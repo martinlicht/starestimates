@@ -22,10 +22,10 @@ Revision
 - [x] header
 - [x] title and abstract, macros 
 - [x] library + bib style 
-- [ ] Introduction, separate last part into outlook 
-- [ ] Move section on scalar potentials ahead 
+- [ ] Introduction 
+- [ ] Move ahead section on scalar potentials 
 - [ ] Section 2: scalar potential on domains
-- [ ] Section 3: triangulations (combinatorial)
+- [o] Section 3: triangulations (combinatorial)
 - [ ] Section 3: triangulations (shape estimate)
 - [ ] Section 4: scalar potential on triangulated domains
 - [ ] Move back section on shellable triangulations
@@ -34,7 +34,8 @@ Revision
 - [o] Section 7: Shellable triangulations 
 - [o] Section 8: reflections and deformations
 - [ ] Section 9: Final estimate 
-- [ ] Section 10: Computation 
+- [ ] Section 10: Computation
+- [o] outlook 
 
 Further changes
 git diff 97fbcd86 21e58
