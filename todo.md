@@ -1,13 +1,13 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
 - [x] replace the shape notation by C_ ...
-- [ ] singular values listed in reflection section
-- [ ] additional layer of quantities for potential operators
-- [ ] potential section: adapt notation and tex code, unify notation 
-- [ ] condense the scalar discussion
-- [ ] reduce the shape constant discussion
+- [ ] reflection: singular values listed in reflection section
+- [ ] potentials section: sigma notation for potential operators, rewrite
+- [ ] potentials section: additional constants notation for potential operators
 - [ ] potentials section: adapt and unify notation/tex
-- [ ] complete the final estimate
+- [ ] scalars: condense the scalar discussion via spanning trees
+- [ ] shape: reduce the shape constant discussion
+- [ ] final: complete the final estimate
 
 Further points that need discussion
 - [ ] reduce the shape regularity discussion
@@ -38,6 +38,10 @@ git diff 97fbcd86 21e58
 - [ ] Sobolev and potential operators 
 - [ ] reflection
 
+
+% Suppose that we have a shellable simplicial complex. 
+% Every time we add a simplex according to the shelling sequence, 
+% we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
 
 
 [ ] prove Guerini Savo theorem for Lipschitz domains

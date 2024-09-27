@@ -539,7 +539,7 @@ Formally,
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
 We also write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
-A crucial structural observation is the following.~\footnote{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}  
+A crucial structural observation is the following.~\footnote{\todo{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}}  
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
@@ -1600,8 +1600,6 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \end{remark}
 
 
-
-
 % DONE: I imagine that $\Delta^n$ is a reference simplex, but this has not been introduced earlier.
 
 
@@ -1989,6 +1987,29 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \| \nabla u \|_{L^{p}(T_{0})}
         .
     \end{align*}
+    \todo{Rewrite this result.}
+    When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
+    \begin{align*}
+        \| w_{m} \|_{L^{p}(T_m)}
+        &\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+        \left( 
+            \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
+            +
+            \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
+        \right)^{\frac 1 p}
+        \\&\qquad 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
+        \\&\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+        \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
+        .
+    \end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -2031,11 +2052,13 @@ The dark gray triangle is the one being currently added, and the light gray tria
  and 
  $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
  But that already implies $w'_{F_m} = w_{|F_m} - c_{0}$. 
- Letting $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
+ Defining $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
  we have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
  
  We assess the norm of this potential. We observe 
  \begin{gather*}
+    \| w_{m} \|_{L^{p}(T_m)}
+    =
     \| w'_{F_m} \|_{L^{p}(T_m)}
     \leq 
     \| w_{F_m} \|_{L^{p}(T_m)}
@@ -3260,21 +3283,23 @@ is that each time a simplex is added, the local star around a simplex gets compl
 
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
+We discuss the Sobolev spaces of vector calculus and exterior calculus 
+with particular emphasis on their transformation behavior. 
 We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
 Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
 
-We discuss the Sobolev spaces of vector calculus and their transformation behavior. 
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
-$W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is the space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$, that is,  
+% $W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is 
+The space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$ is 
 \begin{gather*}
-    W^{p}(\grad,\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    W^{p}(\grad,\Omega) := W^{1,p}(\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
     .
 \end{gather*}
 The space $\bfW^{p}(\curl,\Omega)$ of vector-valued $\bfL^{p}(\Omega)$ functions with weak curls in $\bfL^{p}(\Omega)$
-and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are defined as 
+and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergences in $L^{p}(\Omega)$ are written 
 \begin{gather*}
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
     \\ 
@@ -3301,9 +3326,7 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
 and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$; see also~\cite[Definition~9.8]{ern2021finite}.
 These mappings are invertible. 
 Bounds on the Lebesgue norms will follow from a more general result below. 
-
-
-
+% 
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
@@ -3334,8 +3357,8 @@ We summarize this as a commuting diagram:
     % Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
     scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This definition is in accordance with the notion of pullback, which we will review shortly. 
-    One advantage of that definition is that it also makes sense whenever the transformation is not a diffeomorphism. 
-    The literature also knows the Piola transform in the direction of the original mapping. 
+    One advantage of that definition is that it also makes sense whenever the transformation is not onto. 
+    In some literature conventions, the Piola transform is in the direction of the original mapping. 
 \end{remark}
 
 
@@ -3348,7 +3371,8 @@ We summarize this as a commuting diagram:
 %\section{Review of exterior calculus}
 
 Having discussed vector analysis, we review exterior calculus. 
-We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
+We begin with exterior algebra. 
+%We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
@@ -4319,23 +4343,13 @@ though the dimension and the form degree enters the estimate.
 
 \section{Reflections and Deformations on shellable stars}\label{section:extension}
 
-This section is devoted to geometric operations that are crucially important for our main result. 
-Suppose that we have a shellable simplicial complex. 
-Every time we add a simplex according to the shelling sequence, 
-we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
-We will need a homeomorphism going from the new simplex onto its complement within the newly completed star.
-This homeomorphism is required to preserve the interface and to be bi-Lipschitz.
-We are particularly interested in the norms of its Jacobian.
-We inerpret this as a nonlinear reflection. It will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
-
-In addition to that, this endeavor will produce another geometric tool 
-that enables an additional estimate Poincar\'e--Friedrichs constants:
-we construct a bi-Lipschitz deformation which maps the entire star 
-into the complement of the newly completed star. 
-Again, we give explicit estimates of the Jacobian.
-\\
-
-
+This section is devoted to geometric operations that are crucial for our main result. 
+Consider the situation where we have an $n$-dimensional local star around some simplex $S$ and some $n$-dimensional simplex $T$ within that local star. We will need a homeomorphism going from the simplex $T$ onto its complement within the local star around $S$.
+This homeomorphism is required to preserve the interface and we interpret it as a nonlinear reflection. 
+We ensure that the homeomorphism is bi-Lipschitz and we are particularly interested in the norms of its Jacobian.
+This nonlinear reflection will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
+Additionally, this endeavor produces another geometric tool:
+we construct a bi-Lipschitz deformation which contracts the entire star into the complement of the newly completed star. 
 
 We begin with the following observation. 
 Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
@@ -4366,8 +4380,8 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
     intersect only at the origin, since otherwise the vertices of $T$ are not affinely independent. 
     So $A$ has dimension $n-1$. 
     Obviously, $F \subset A \cap T$. 
-    Let us now suppose that $x \in A \cap T$.
-    For some real coefficients $\lambda_1,\dots,\lambda_{n-1} \in \bbR$, it holds that 
+    Suppose now that $x \in A \cap T$.
+    There exist $\lambda_1,\dots,\lambda_{n-1} \in \bbR$ such that 
     \begin{align*}
         x &= 
         v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
@@ -4382,13 +4396,11 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
         \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
         .
     \end{align*}
-    We know that this is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
+    This is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
     Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive.
     But if $x \notin F$, then at least one of them must be negative,
     and thus their sum must be negative, which is a contradiction. 
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are zero,
-    which implies $x \in F$.
-    The desired statement follows.         
+    Hence $\lambda_{k+1} = \dots = \lambda_{n-1} = 0$, implying $x \in F$.
 \end{proof}
 
 
@@ -4420,7 +4432,7 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
 
 
 
-Next, we observe that stars around subsimplices can represented by vertex stars after a local subdivision of the mesh.
+Next, we observe local stars can be subdivided to vertex stars.
 The shape regularity is controlled in that process. 
 
 % \begin{lemma}\label{lemma:stardivision}
@@ -4452,10 +4464,8 @@ The shape regularity is controlled in that process.
 
 
 
-We know construct the main result of this section, namely the desired bi-Lipschitz homeomorphism. 
-It can be imagined as the reflection across the interface between the selected simplex and the remainder of the star. 
-The construction is completed in several steps,
-and the Lipschitz estimate reflects the shape regularity. 
+We now provide the bi-Lipschitz nonlinear reflection across the interface between the selected simplex and the remainder of the local star
+as well as the bi-Lipschitz contraction from the local star onto the complement of the selected simplex. 
 
 \begin{theorem}\label{theorem:starreflection}
     Let $\calT$ be an $n$-dimensional triangulation of an $n$-dimensional domain. 
@@ -4557,12 +4567,12 @@ and the Lipschitz estimate reflects the shape regularity.
         \begin{align*}
             \Theta_{|K} := A_{K'} \circ A_{K}^{-1}.
         \end{align*}
-        Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
-        \begin{align*}
-            \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
-            \\
-            \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
-        \end{align*}
+        % Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
+        % \begin{align*}
+        %     \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
+        %     \\
+        %     \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
+        % \end{align*}
         By construction, the mapping preserves volumes:
         \begin{align*}
             |\det( \Jacobian      \Theta_{|K} )|
