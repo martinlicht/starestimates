@@ -14,17 +14,23 @@ Further points that need discussion
 - [ ] simplify the scalar potential construction with recursive structure
 - [ ] spanning tree
 
-Roadmap
-- [x] Section 1 : introduction 
-- [x] Section 2 : basic notions of triangulations
-- [x] Section 3: PF inequalities over convex sets 
-- [x] Section 4: PF inequalities over triangulations
-- [x] Section 5 : advanced notions of triangulations (shellability)
-- [x] Section 6: vector and exterior calculus review 
-- [x] Section 7: potential operators over convex sets 
-- [x] Section 8: reflection 
-- [ ] Section 9: main estimate
-- [ ] Section A: numerical examples 
+Revision
+- [ ] header
+- [ ] title and abstract 
+- [ ] library 
+- [ ] Introduction 
+- [ ] separate last part into outlook 
+- [ ] Move section on scalar potentials ahead 
+- [ ] Section 2: scalar potential on domains
+- [ ] Section 3: triangulations 
+- [ ] Section 4: scalar potential on triangulated domains
+- [ ] Move back section on shellable triangulations
+- [ ] Section 5: review of vector calculus
+- [ ] Section 6: potential operators 
+- [ ] Section 7: Shellable triangulations 
+- [ ] Section 8: reflections and deformations
+- [ ] Section 9: Final estimate 
+
 
 
 
