@@ -15,8 +15,9 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 
 Further points that need discussion
 - [ ] reduce the shape regularity discussion
-- [ ] simplify the scalar potential construction with recursive structure
-- [ ] spanning tree
+- [ ] spanning tree; simplify the scalar potential construction with recursive structure
+- [ ] opnorm and vecnorm
+
 
 Revision
 - [x] header
@@ -26,8 +27,8 @@ Revision
 - [ ] Move ahead section on scalar potentials 
 - [ ] Section 2: scalar potential on domains
 - [o] Section 3: triangulations (combinatorial)
-- [ ] Section 3: triangulations (shape estimate)
-- [ ] Section 4: scalar potential on triangulated domains
+- [o] Section 3: triangulations (shape estimate)
+- [o] Section 4: scalar potential on triangulated domains
 - [ ] Move back section on shellable triangulations
 - [o] Section 5: review of vector calculus
 - [o] Section 6: potential operators 

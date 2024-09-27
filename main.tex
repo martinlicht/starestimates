@@ -6,6 +6,9 @@
 \usepackage{comment}          % 
 \usepackage{hyperref}         % For hypertext links
 \usepackage{tikz-3dplot}      % 3d plots 
+\usepackage{enumitem}
+\setitemize[1]{left=0.0cm} 
+
 
 % Added by MV 
 \usepackage{bm} % preferred version of bold symbols
@@ -23,9 +26,16 @@
 \endgroup
 }
 
+\newcommand{\mwl}[1]{{\color{red} MWL: #1}}
+\newcommand{\notice}[1]{{\color{red}REMARK: #1}}
+\newcommand{\disk}{\cye{ball}}
 
-\usepackage{enumitem}
-\setitemize[1]{left=0.0cm} 
+
+
+
+
+
+
 
 
 % Title, authors, and affiliations
@@ -38,20 +48,6 @@
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{martin.licht@epfl.ch}} \and
     Martin Vohral\'ik\thanks{\cye{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France}, \texttt{\cye{martin.vohralik@inria.fr}}}
 }
-
-% Theorem environments
-
-\newcommand{\mwl}[1]{\color{red}{MWL: #1}}
-\newcommand{\notice}[1]{\color{red}{REMARK: #1}}
-\newcommand{\disk}{\cye{ball}}
-
-
-
-
-
-
-
-
 
 
 \begin{document}
@@ -339,12 +335,12 @@ To ensure the correct continuity properties, we require stronger conditions on t
 Shellable triangulations are defined by a special constructive property:
 we can assemble such triangulations sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.
 Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved.
-Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. 
+Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler1995lectures}, which we only employ in a simple special case. 
 In particular, local stars in 2D and 3D triangulations are shellable. 
 \\
 
 % This construction of potentials requires triangulations with special conditions: 
-% we assemble the triangulation sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.  Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved. Such triangulations are called \textit{shellable}. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler2012lectures}, which we only employ in a simple special case. 
+% we assemble the triangulation sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.  Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved. Such triangulations are called \textit{shellable}. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler1995lectures}, which we only employ in a simple special case. 
 % In particular, local stars in 2D and 3D triangulations are shellable. 
 % \\
 
@@ -523,7 +519,7 @@ Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Face
 % \begin{remark}
     Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
-    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler2012lectures}.
+    Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
 % \end{remark}
 }
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
@@ -589,7 +585,7 @@ For the purpose of the usual scaling arguments, the \emph{$n$-dimensional refere
 
 Given a matrix $A \in \bbR^{n \times n}$, we let $\sigma_{1}(A) \geq \dots \geq \sigma_{n}(A) \geq 0$ denote the descending sequence of its singular values, 
 where $\sigma_{\max}(A) := \sigma_{1}(A)$ is the largest and $\sigma_{\min}(A) := \sigma_{n}(A)$ is the smallest. 
-We recall that the $\ell^{2}$ operator norm of $\|A\|_{2}$ agrees with $\sigma_{\max}(A)$,
+We recall that the $\ell^{2}$ operator norm of $A$, written $\| A \|_{2}$, agrees with $\sigma_{\max}(A)$,
 and if $A$ is invertible, then $\|A^{-1}\| = \sigma_{\min}(A)^{-1}$.
 % Another norm on matrices, less common but useful for us, is the \emph{maximum column norm} $\|A\|_{\maxcol}$, which is defined as the largest $\ell^{2}$-norm of any column of $A$. 
 
@@ -614,7 +610,7 @@ by
     := 
     \sup_{ \varphi : \Delta^n \rightarrow T } 
     \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
-%     \sup_{ \varphi : \Delta^n \rightarrow T } \| \Jacobian \varphi \|_{\maxcol} \| \Jacobian \varphi^{-1} \|_{\maxcol}
+%     \sup_{ \varphi : \Delta^n \rightarrow T } \matnorm{\Jacobian \varphi}_{\maxcol} \matnorm{ \Jacobian \varphi^{-1} }_{\maxcol}
     ,
 \end{align}
 where the last supremum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
@@ -633,18 +629,18 @@ When $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce
 \end{align}
 We call these the geometric, aspect, and algebraic shape measure, respectively, of the triangulation. 
 
-We gather a few relationships between geometric and algebraic entities and compare the different shape measures.
+We now gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
 
 
 \begin{lemma}\label{lemma:measurerelationships}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
     \begin{gather*}
-        \| \Jacobian \varphi \|
+        \matnorm{\Jacobian \varphi}
         \leq 
         \Ceins{n} \cdot \diam(T) % DONE: can this improved?
         ,
         \qquad 
-        \| \Jacobian \varphi^{-1} \|
+        \matnorm{ \Jacobian \varphi^{-1} }
         \leq 
         \Czwei{n} \cdot 
         \geometricshapemeasure(T) 
@@ -669,7 +665,7 @@ We gather a few relationships between geometric and algebraic entities and compa
     \begin{align*}
         \Ceins{n} \leq \sqrt{n},
         \quad 
-        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}, 
+        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{2}{n-1}}, 
         \quad 
         \Cdrei{n} \leq \Ceins{n}\Czwei{n} %\sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
         . 
@@ -679,7 +675,7 @@ We gather a few relationships between geometric and algebraic entities and compa
 %     The columns of the matrix $\Jacobian \varphi^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
 %     except for the vertex $\varphi(0)$. It immediately follows that 
 %     \begin{align*}
-%         \| \Jacobian \varphi^{-1} \|_{2} \leq \sqrt{n} \cdot \height(T)^{-1}
+%         \matnorm{ \Jacobian \varphi^{-1} }_{2} \leq \sqrt{n} \cdot \height(T)^{-1}
 %         .
 %     \end{align*}
 %     The smallest height in the reference simplex $\Delta^{n}$ is $1/\sqrt{n}$. 
@@ -729,14 +725,14 @@ We gather a few relationships between geometric and algebraic entities and compa
 % Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
     % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
     The geometric ratio $\geometricshapemeasure(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}.
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}. \mwl{Update this entire paragraph.}
     Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
     One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
 % TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
 \end{remark}
 
 
-We are interested in the maximal ratio of volumes between neighboring $n$-simplices, written $\volumeratio(\calT)$,
+We are interested in the maximal ratio of volumes between \mwl{face?} neighboring $n$-simplices, written $\volumeratio(\calT)$,
 and the ratio of intersecting simplices, written $\diameterratio(\calT)$. Formally, 
 \begin{align}
     \volumeratio(\calT) 
@@ -751,13 +747,13 @@ and the ratio of intersecting simplices, written $\diameterratio(\calT)$. Formal
     \frac{ \diam(T) }{ \diam(T') }
     .
 \end{align}
-Whenever $T, T'$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{T,T'} : T \rightarrow T'$ denote the affine diffeomorphism 
-that preserves $F$. We define 
+Finally, whenever $T, T'$ are two $n$-simplices that share a common face $F$ of codimension $1$, we let $\Xi_{T,T'} : T \rightarrow T'$ denote the affine diffeomorphism 
+that preserves $F$. We then define 
 \begin{align}\label{math:reflectionmeasure}
     \reflectionestimate(\calT) 
     := 
     \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } }
-    \| \Jacobian \Xi_{T,T'} \|
+    \matnorm{ \Jacobian \Xi_{T,T'} }
 \end{align}
 to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
@@ -795,7 +791,7 @@ This indicator quantifies how much reflection across the shared face distorts th
     \end{align*}
     If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism that is the identity over $F$, then 
     \begin{align*}
-        \| \Jacobian \Xi \|
+        \matnorm{ \Jacobian \Xi }
         \leq 
         ( 1 + \aspectratio(T_2) ) \aspectratio(T_1)
         % \Cvier{n} \geometricshapemeasure(T_2) \geometricshapemeasure(T_1) 
@@ -883,9 +879,9 @@ This indicator quantifies how much reflection across the shared face distorts th
     can be written as the composition $\Xi = \phi_{2} \phi^{-1}_{1}$ for some affine transformations $\phi_1 : \Delta^{n} \rightarrow T_1$ and $\phi_2 : \Delta^{n} \rightarrow T_2$. 
     Lemma~\ref{lemma:measurerelationships} and the first estimate imply 
     \begin{align*}
-        \| \Jacobian \Xi \|
+        \matnorm{ \Jacobian \Xi }
         \leq 
-        \| \Jacobian\phi_{2} \| \cdot \| \Jacobian\phi_{1}^{-1} \|
+        \matnorm{ \Jacobian\phi_{2} } \cdot \matnorm{ \Jacobian\phi_{1}^{-1} }
         \leq 
         \Ceins{n}^{2} \diam(T_2) \height(T_1)^{-1}
         \leq 
@@ -895,7 +891,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         .
     \end{align*}
 %     \begin{align*}
-%         \| \Jacobian \Xi \|
+%         \matnorm{ \Jacobian \Xi }
 %         &
 %         \leq 
 %         \Ceins{n}
@@ -936,7 +932,7 @@ This indicator quantifies how much reflection across the shared face distorts th
     Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
     By the Xu-Zikanatov estimate,
     \begin{align*}
-        \| \Jacobian \Xi \|
+        \matnorm{ \Jacobian \Xi }
         \leq 
         \frac{ \diam(T_1) }{ \height(T_1) }
         +
@@ -1137,8 +1133,9 @@ This indicator quantifies how much reflection across the shared face distorts th
 \end{proof}
 
 \begin{remark}
+    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\rho(\calT)$ \cye{of~\eqref{math:volumecomparisonmeasure}} but not $\theta(\calT)$ \cye{of~\eqref{math:diametercomparison}}. 
     Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ but not $\diameterratio(\calT)$. 
-    As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one edge in terms of the shape measure. 
+    As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one face in terms of the shape measure. 
     If we have an upper estimate for the number of simplices sharing a given vertex, 
     we can also bound the ratios of diameters and volumes of simplices sharing only a single common vertex. 
 \end{remark}
@@ -1147,7 +1144,7 @@ This indicator quantifies how much reflection across the shared face distorts th
 
 
 
-
+\mwl{Throughout the manuscript, use a macro for opnorm and equip the matrices with the operator norm index.}
 
 
 
@@ -1605,6 +1602,50 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
 In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
@@ -1612,6 +1653,13 @@ We achieve by explicitly constructing scalar potentials of gradients.
 We have already seen that we can construct the scalar potential for a gradient vector field by a well-understood procedure if the domain is convex: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. We take that procedure as in inspiration for constructing gradient potentials over more general triangulated domains: after fixing a starting cell, we construct the potential by successive integration over more and more cells. we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
 The basic idea has appeared in the different variants before, for instance recently in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
 \\
+
+{\color{blue}In this section\cye{,} we \cye{develop a} stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. \cye{The following very classical procedure serves us as an inspiration:} given a gradient vector field, we can reconstruct \cye{the scalar potential} up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
+Over triangulated domains, \cye{we fix} a starting triangle \cye{and perform this classical procedure. We then pass through the triangulation such that each subsequent simplex is connected to the previous ones by a face}. 
+We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face.
+This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
+}
+
 
 We construct scalar potentials over larger and larger intermediate subdomains. 
 Two different variations of that idea are analyzed;
@@ -1641,6 +1689,8 @@ We emphasize that the second approach to constructing potentials and bounding Po
 
 
 
+{\color{blue}\cye{We start by extending the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations} in a way which captures the correct asymptotic behavior as $p$ grows to infinity. \cye{Let us stress that face patches are not necessarily convex and remark that our result is in particular sharp when $T_1$ and $T_2$ have similar volumes and diameters}.}
+
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
@@ -1652,7 +1702,7 @@ We emphasize that the second approach to constructing potentials and bounding Po
         \| u - c \|_{L^{p}(U)}
         &
 %         \leq 
-%         2 C_{\PF,{\rm EFNT},p}
+%         2 \Ceins{n} C_{\PF,{\rm EFNT},p}
 %         \max\left( 
 %             \frac{ \vol(T_1) }{ \vol(T_2) }
 %             ,
@@ -1664,12 +1714,12 @@ We emphasize that the second approach to constructing potentials and bounding Po
 %         \| \nabla u \|_{L^{p}(U)}
 %         \\&
         \leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 \Ceins{n} C_{\PF,{\rm EFNT},p}
         \volumeratio(\calT)^{\frac 1 p}
         \max\left( \diam(T_1), \diam(T_2) \right)
         \| \nabla u \|_{L^{p}(U)}
     \end{align*}
-    for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$.
+    for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$. \mwl{Introduce constant $C_{{\rm{PF}},T_1 \cup T_2,p}$}
 \end{lemma}
 % \begin{remark}
 %     The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
@@ -1681,7 +1731,7 @@ We emphasize that the second approach to constructing potentials and bounding Po
     We let $\varphi_{1} : \Delta_{1} \rightarrow T_{1}$ and $\varphi_{2} : \Delta_{2} \rightarrow T_{2}$
     be affine transformations that map the $e_{i}$ to $v_{i}$ for $i = 0, \dots, n-1$ 
     and which satisfy $\varphi_{1}(e_{n}) = z_{1}$ and $\varphi_{2}(-e_{n}) = z_{2}$.
-    Write $\hat U := \Delta_1 \cup \Delta_2$.
+    Write $\hat U := \Delta_1 \cup \Delta_2$, which is (crucially) convex. .
     We have a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
     
     Suppose that $u \in W^{1,p}(U)$. Then $\hat u := u \circ \varphi \in W^{1,p}(\hat U)$. 
@@ -1697,7 +1747,7 @@ We emphasize that the second approach to constructing potentials and bounding Po
 %         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
 %         &\leq 
 %         |\det(\Jacobian \varphi_1^{-1})|
-%         \cdot \| \Jacobian \varphi_1 \|^{p}
+%         \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
 %         \cdot 
 %         \| \nabla u \|_{L^{p}(T_1)}^{p}
 %         ,
@@ -1705,16 +1755,16 @@ We emphasize that the second approach to constructing potentials and bounding Po
 %         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
 %         &\leq 
 %         |\det(\Jacobian \varphi_2^{-1})|
-%         \cdot \| \Jacobian \varphi_2 \|^{p}
+%         \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
 %         \cdot 
 %         \| \nabla u \|_{L^{p}(T_2)}^{p}
 %         \\
 %         \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
 %         &\leq 
 %         \max\left( 
-%             |\det(\Jacobian \varphi_1)|^{-1} \cdot \| \Jacobian \varphi_1 \|^{p}
+%             |\det(\Jacobian \varphi_1)|^{-1} \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
 %             ,
-%             |\det(\Jacobian \varphi_2)|^{-1} \cdot \| \Jacobian \varphi_2 \|^{p}
+%             |\det(\Jacobian \varphi_2)|^{-1} \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
 %         \right)
 %         \| \nabla u \|_{L^{p}(U)}^{p}
 %         .
@@ -1724,15 +1774,15 @@ We emphasize that the second approach to constructing potentials and bounding Po
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         &\leq 
         \max\left( 
-            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \| \Jacobian \varphi_1 \|
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_1 }
             ,
-            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \| \Jacobian \varphi_2 \|
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_2 }
         \right)
         \| \nabla u \|_{L^{p}(U)}
         .
     \end{align*}
     Notice that $\hat U$ is convex and has diameter $2$. 
-    There exists $\hat w \in W^{1,p}(\hat U)$ such that $\nabla \hat w = \nabla \hat u$ and 
+    Thus, due to~\eqref{math:esposito:pf}, there exists $\hat w \in W^{1,p}(\hat U)$ such that $\nabla \hat w = \nabla \hat u$ and 
     \begin{align*}
         \| \hat w \|_{L^{p}(\hat U)}
         \leq 
@@ -1752,8 +1802,8 @@ We emphasize that the second approach to constructing potentials and bounding Po
         \| \hat w \|_{L^{p}(\hat U)}
         .
     \end{align*}
-    Noting $\vol(T_i) = |\det(\Jacobian \varphi_i)|$ and $\| \Jacobian \varphi_i \| \leq \Ceins{n} \diam(T_i)$
-    for $i = 1, 2$, where we use Lemma~\ref{lemma:measurerelationships}, we conclude the desired result.
+    \cye{In the last equality, we have also used $|\det(\Jacobian\varphi_i)| = n! \vol(T_i)$ that we have already employed in~\eqref{equation:Hong_Pan}.}
+    Noting $\vol(T_i) = |\det(\Jacobian \varphi_i)|$ and $\matnorm{ \Jacobian \varphi_i } \leq \Ceins{n} \diam(T_i)$ for $i = 1, 2$, where we use Lemma~\ref{lemma:measurerelationships}, we conclude the desired result.
 \begin{comment}
     % DONE: that abbreviation is to close to the Jacobian / total derivative 
     Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
@@ -1962,9 +2012,9 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a strongly-connected finite triangulation $\calT$.
-    Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
-    we fix a strong path $T_0, T_1, \dots, T_m = T$.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a face-connected $n$-dimensional finite triangulation $\calT$.
+    We fix an $n$-simplex $T_0 \in \calT$ and for all $n$-simplices $T \in \calT$ 
+    we fix a strong path $T_0, T_1, \dots, T_{M} = T$.
     Suppose $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$.
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
@@ -1988,7 +2038,8 @@ The dark gray triangle is the one being currently added, and the light gray tria
         \| \nabla u \|_{L^{p}(T_{0})}
         .
     \end{align*}
-    \todo{Rewrite this result.}
+    \todo{Rewrite this result. First a local recursive one, then a global bound}
+    \todo{Ensure big $M$ at all indices here.}
     When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
     \begin{align*}
         \| w_{m} \|_{L^{p}(T_m)}
@@ -2001,7 +2052,165 @@ The dark gray triangle is the one being currently added, and the light gray tria
         .
     \end{align*}
 \end{theorem}
+\begin{proof}
+\todo[inline]{MV: Reworked and simplified the beginning of the proof.}
+ Let $u \in W^{1,p}(\Omega)$. 
+ \cye{On the first} simplex $T_{0}$, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
+ \begin{gather*}
+    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+ \end{gather*}
+ In particular, $c_{0} := \cye{w_0} - \cye{u}$ is a constant function. 
+ \cye{We then define 
+  \begin{align*}
+    w := u + c_0
+  \end{align*} 
+  (note that $w|_{T_{0}} = w_0$). Clearly,} 
+ $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$. \cye{We verify that $w$ fulfills the desired estimate.}
+ 
+ Let $T \in \calT$ be any $n$-simplex. 
+ By assumption, there exists a \cye{face} path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices \cye{from $\calT$}. 
+ For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. \cye{Recall the notation $U_{F_m} := T_m \cup T_{m-1}$.}
+ We let $u_{F_m} \in W^{1,p}(U_{F_m})$ \cye{be} such that $\nabla u_{F_m} = \nabla u$ over $U_{F_m}$ and 
+ \begin{align*}
+    \| u_{F_m} \|_{L^{p}(U_{F_m})} \leq C_{{\rm{PF}},U_{F_m},p} \| \nabla u_{F_m} \|_{L^{p}(U_{F_m})},
+ \end{align*}
+ where the computable constant $C_{{\rm{PF}},U_{F_m},p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}. \cye{Since $\nabla (w|_{U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u|_{U_{F_m}})$, we can define the constant
+ \begin{align*}
+    c_{m} := w|_{U_{F_m}} - u_{F_{m}}.
+ \end{align*}
+ }
+ \cye{\sout{We finally write $\Omega_m := \cup_{j=0}^{m} T_m$, which is triangulated $n$-dimensional submanifold with boundary}}.\todo[inline]{MV: False, $\Omega_m$ is not necessarily a triangulated $n$-dimensional submanifold with boundary, see the 7-triangles example standing for $\Omega_m$ (then the 8th one gives $\Omega_{m+1} = \Omega$). As discussed online, we fortunately do not need here a submanifold with boundary (but we will need it and have it for shellable triangulations.) Actually, here we do not need $\Omega_m$ at all.}
 
+\begin{figure}[h]
+\centerline{\includegraphics[width=0.2\textwidth]{homotopic_ball.jpg}}
+\end{figure}
+
+ 
+ We \cye{now} assess the norm of the potential \cye{$w$}. \cye{For any $1 \leq m \leq M$,} we observe 
+ \begin{gather*}
+    \| \cye{w} \|_{L^{p}(T_m)}
+    \leq 
+    \| u_{F_m} \|_{L^{p}(T_m)}
+    +
+    \| c_{m} \|_{L^{p}(T_m)},
+    \\
+    \| c_{m} \|_{L^{p}(T_m)}
+    = 
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| c_{m} \|_{L^{p}(T_{{m-1}})},
+    \\ 
+    \| c_{m} \|_{L^{p}(T_{{m-1}})}
+    \leq 
+    \| \cye{w}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
+    .
+ \end{gather*}
+ \cye{Consequently},
+ \begin{align*}
+    \| \cye{w} \|_{L^{p}(T_m)}
+    &
+    \leq 
+    \| u_{F_m} \|_{L^{p}(T_m)}
+    \\&\qquad 
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
+    .
+ \end{align*}
+ We sum the two integrals of $u_{F_m}$. 
+ % 
+ In the special case $p=1$,
+ \begin{align*}
+    \| \cye{w} \|_{L^{1}(T_m)}
+    \leq 
+    \max\left(
+        1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
+    \right)
+    \| u_{F_m} \|_{L^{1}(U_{F_m})}
+    +
+    \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
+    \| \cye{w}\|_{L^{1}(T_{{m-1}})}
+    .
+ \end{align*}
+ In the special case $p=\infty$, 
+ \begin{align*}
+    \| \cye{w} \|_{L^{\infty}(T_m)}
+    \leq 
+    2
+    \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
+    +
+    \| \cye{w}\|_{L^{\infty}(T_{{m-1}})}
+    .
+ \end{align*}
+ % 1/q = 1 - 1/p = (p-1)/p 
+ When $1 < p < \infty$, \cye{recalling the complementary exponent} $q = p/(p-1) \in [1,\infty]$, we observe \cye{using the H\"older inequality}
+ \begin{align*}
+    \| \cye{w} \|_{L^{p}(T_m)}
+    &\leq 
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+    \left( 
+        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
+        +
+        \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
+    \right)^{\frac 1 p}
+    \\&\qquad 
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
+    \\&\cye{=} 
+    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
+    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
+    +
+    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
+    .
+ \end{align*}
+ Recursive application provides the following estimate:
+%  if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
+%  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
+%  then 
+ \begin{align*}
+    \| \cye{w} \|_{L^{p}(T_m)}
+    &\leq 
+    \sum_{t=1}^{m} 
+    \left( 
+        \prod_{t < l \leq m} 
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+    \right)
+    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
+    \| u_{F_t} \|_{L^{p}(U_{F_t})}
+    \\&\quad \quad \quad 
+    +
+    \left( 
+        \prod_{0 < l \leq m} 
+        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
+    \right)
+    \| u_{T_0}\|_{L^{p}(T_{0})}
+    .
+ \end{align*}
+ % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
+ We obtain the desired estimate. 
+%  \begin{align*}
+%     \| \cye{w} \|_{L^{p}(T_m)}^{p}
+%     &\leq 
+%     (m+1)^{p-1}
+%     % \sum_{t=1}^{m} \rho(\calT)^{m-t} 
+%     % \sum_{t=0}^{m-1} \rho(\calT)^{t} 
+%     \frac{\rho(\calT)^{m}-1}{\rho(\calT)-1}
+%     \left( 1 + \rho(\calT)^{\frac q p} \right)^{p/q}
+%     \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
+%     \\&\quad \quad \quad 
+%     +
+%     (m+1)^{p-1}
+%     \rho(\calT)^{m-1}
+%     \| u_{T_0}\|_{L^{p}(T_{0})}^{p}
+%     .
+%  \end{align*}
+%  Notice that $p/q = p - 1$.
+ % 
+\end{proof}
 \begin{proof}
  Let $u \in W^{1,p}(\Omega)$. 
  For each $F \in \calT$ of dimension $n-1$, 
@@ -2174,6 +2383,9 @@ The dark gray triangle is the one being currently added, and the light gray tria
 \end{proof}
 
 
+\cye{\begin{remark}
+The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} overestimates the best one increasingly with increasing number of $n$-simplices in the triangulation $\calT$. For this reason, we target its use to local patches (stars), in particular nonconvex boundary stars such as that of Figure~\ref{figure:exhausting}. Clearly, the same building principle applies when we can obtain a nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a  face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a large decrease of the overestimation of the best Poincar\'e--Friedrichs constant. 
+\end{remark}}
 
 
 
@@ -2181,7 +2393,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 \begin{lemma}\label{lemma:mixedbconsimplex}
-    Let $T$ be an $n$-simplex with a face $F$. 
+    Let $T$ be an $n$-simplex with a face $F$ and $p \in [1,\infty]$. 
     If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
     \begin{align*}
         \| u \|_{L^{p}(T)}
@@ -2190,8 +2402,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
         C_{\PF,T,F,p} \| \nabla u \|_{L^{p}(T)}
         ,
     \end{align*}
-    where $C_{\PF,T,F,p} > 0$ is a constant such that 
-    $C_{\PF,T,F,p} \leq \frac{1}{\sqrt[p]{p}} \diam(T)$.
+    where $C_{\PF,T,F,p} = \frac{1}{\sqrt[p]{p}} \diam(T)$ for $p < \infty$ and $C_{\PF,T,F,\infty} = 1$. 
 %     \begin{align*}
 %         C_{\PF,T,F,p}
 %         &\leq 
@@ -2261,15 +2472,16 @@ The dark gray triangle is the one being currently added, and the light gray tria
     Recall that $u = w - \gamma$. The first inequality follows. 
 \end{comment}
     % The second inequality follows from Rademacher's theorem when $p = \infty$.
-    Since the inequality follows from Rademacher's theorem when $p = \infty$,
+    Since the inequality follows from Rademacher's theorem in the limit case $p = \infty$,
     we assume $1 \leq p < \infty$. 
     Let $u \in C^{\infty}(T)$ have support disjoint from $F$.
+    We trivially extend $u$ to a function over the entire $\bbR^{n}$.
     Without loss of generality, 
     the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
     We write $\bfg \in \bfL^{\infty}(\bbR^{n})$ for the trivial extension of $\nabla u$ outside of $T$.
     %With the fundamental theorem of calculus and H\"older's inequality: 
-    We verify
+    Using the fundamental theorem of calculus and H\"older's inequality, 
     \begin{align*}
         \int_{T} |u(x)|^{p} \diff x \;dx
         &\leq
@@ -2306,9 +2518,8 @@ The dark gray triangle is the one being currently added, and the light gray tria
     \end{align*}
     That $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
     for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
-    
     Very briefly verify that density argument: 
-    There exists $\varphi : \Delta^{n} \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    There exists affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
     We let $\hat u := u \circ \varphi$.
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\Delta^{n}$.
     We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
@@ -2334,6 +2545,11 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 
+
+The following potential construction and upper bound for the Poincar\'e--Friedrichs constant 
+serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. \cye{It has the same building principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.}
+
+\todo[inline]{MV: Why a second theorem? We should explain the difference of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:grad}. Which is better and when?}
 
 
 
@@ -2398,7 +2614,165 @@ The dark gray triangle is the one being currently added, and the light gray tria
 %     \end{align*}
 %     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
 \end{theorem}
+\begin{theorem}%\label{theorem:poincarefriedrichsestimate:gradzwei}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with an \cye{$n$-dimensional} \cye{face-}connected finite triangulation $\calT$.
+    Let $T_0 \in \calT$ be an $n$-simplex \cye{and} for all $n$-simplices $T \in \calT$, 
+    fix a \cye{face} path $T_0, T_1, \dots, T_{\cye{M}} = T$. For any $1 \leq l \leq \cye{M}$, let $F_l = T_l \cap T_{l-1}$.
+    Then for any $u \in W^{1,p}(\Omega)$ 
+    there exists $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$ 
+    and such that for all $T \in \calT$\cye{, we have the following recursive estimate}:
+    \begin{align*}
+        \| \cye{w} \|_{L^{p}(T_{\cye{M}})}
+%         &\leq 
+%         \rho(\calT)^{\frac \cye{M} p}
+%         C_{\PF,T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         +
+%         \sum_{l=1}^{\cye{M}} 
+%         \rho(\calT)^{\frac {\cye{M}-l} p}
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l})} 
+%         \\&\qquad 
+%         +
+%         \sum_{l=1}^{\cye{M}} 
+%         \rho(\calT)^{\frac {\cye{M}-l} p} \xi(\calT)
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l-1})} 
+%         \\
+        &\leq 
+        \sum_{l=1}^{\cye{M}} 
+        \rho(\calT)^{\frac {\cye{M}-l} p}
+        C_{\PF,T_{l},F_{l},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{l})} 
+            +
+            \rho(\calT)^{\frac {1} p}
+            \xi(\calT)
+            \| \nabla u \|_{L^{p}(T_{l-1})} 
+        \right)
+        \\&\quad 
+        + \rho(\calT)^{\frac{\cye{M}}{p}}
+        C_{\PF,T_{0},p} 
+        \| \nabla u \|_{L^{p}( T_{0} )}
+        .
+    \end{align*}
+%     \begin{align*}
+%         \| w_{\cye{M}} \|_{L^{p}(T_{\cye{M}})}
+%         &\leq 
+%         \sum_{l=1}^{\cye{M}} 
+%         \rho(\calT)^{\frac{\cye{M}-l}{p}}
+%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}( T_{l} )}
+%         +
+%         \rho(\calT)^{\frac \cye{M} p}
+%         C_{\PF,T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         .
+%     \end{align*}
+%     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
+\end{theorem}\todo{MV: Synchronized the announcement and notation with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 
+\begin{proof}
+\todo[inline]{MV: Reworked and simplified the proof.}
+
+\cye{We start as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}  Let $u \in W^{1,p}(\Omega)$. 
+ \cye{On the first} simplex $T_{0}$, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
+ \begin{gather*}
+    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+ \end{gather*}
+ In particular, $c_{0} := \cye{w_0} - \cye{u}$ is a constant function. 
+ \cye{We then define 
+   \begin{align*}
+    w := u + c_0
+  \end{align*} 
+ (note that $w|_{T_{0}} = w_0$). Clearly,} 
+ $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$. \cye{We verify that $w$ fulfills the desired estimate.}
+ 
+ Let $T \in \calT$ be any $n$-simplex. 
+ By assumption, there exists a \cye{face} path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices \cye{from $\calT$}. 
+ For any $1 \leq m \leq M$, \cye{recall that} $F_m := T_m \cap T_{m-1}$ \cye{is}  a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. 
+
+    \cye{\sout{We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.}}
+   \todo[inline]{MV: False, $\Omega_m$ is not necessarily a triangulated $n$-dimensional submanifold with boundary, see the 7-triangles example standing for $\Omega_m$ (then the 8th one gives $\Omega_{m+1} = \Omega$). As discussed online, we fortunately do not need here a submanifold with boundary (but we will need it and have it for shellable triangulations.) Actually, here we do not need $\Omega_m$ at all.}
+
+\begin{figure}[h]
+\centerline{\includegraphics[width=0.2\textwidth]{homotopic_ball.jpg}}
+\end{figure}
+
+    \cye{\sout{We use a recursive argument.}} Suppose that $\cye{1} < m \leq M$.
+    We define $w'_{m} := w\cye{|_{T_{m-1}}} \circ \Xi \in W^{1,p}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
+    %
+    By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
+    \begin{align*}
+        \trace_{F_{\cye{m}}} w'_{m} = \trace_{F_{\cye{m}}} w\cye{|_{T_{m-1}}}
+        .
+    \end{align*}
+    We now define $w''_{m} \in W^{1,p}(T_{m})$ as
+\cye{    \begin{align}\label{equation:w''}
+        w''_{m} := u|_{T_{\cye{m}}} - w'_{m} + c_0 = w|_{T_{\cye{m}}} - w'_{m} = u|_{T_{\cye{m}}} - u\cye{|_{T_{m-1}}} \circ \Xi.
+    \end{align}
+    We crucially note that $w''_{m}$ is trace free on $F_{m}$ since
+    \begin{align*}
+        \trace_{F_{m}} w''_{m} = \trace_{F_{m}} (u|_{T_{\cye{m}}} - w'_{m} + c_0) = \trace_{F_{m}} (u|_{T_{m-1}} - w\cye{|_{T_{m-1}}} + c_0) = 0.
+    \end{align*}}
+    Lemma~\ref{lemma:mixedbconsimplex} gives\cye{, from the first expression in~\eqref{equation:w''}}
+    \begin{align*}
+        \| w''_{m} \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        C_{\PF,T_{m},F_{m},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{m})} 
+            + 
+            \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        \right) 
+        .
+    \end{align*}
+    We also employ\cye{~\eqref{math:reflectionmeasure} \sout{Lemma~\ref{lemma:volumecomparison}}} to find 
+    \begin{align*}
+        \| \nabla w'_{m} \|_{L^{p}(T_{m})}
+        &
+        \leq 
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \matnorm{ \Jacobian \Xi }
+        \| \nabla \cye{w} \|_{L^{p}(T_{m-1})}
+        \\&
+        \leq 
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla \cye{w} \|_{L^{p}(T_{m-1})}
+        \\&
+        \cye{=
+        \rho(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla u \|_{L^{p}(T_{m-1})} }
+        .
+    \end{align*}
+    \todo{MV: How $|\det(\Jacobian\Xi)|^{-\frac 1 p} \leq \rho(\calT)^{\frac 1 p}$ follows?}
+    \cye{From the second expression in~\eqref{equation:w''}, we then finally have} 
+    \begin{align*}
+        &
+        \| \cye{w} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \| w'_{m} \|_{L^{p}(T_{m})}
+        + 
+        \| w''_{m} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \rho(\calT)^{\frac 1 p} 
+        \| \cye{w} \|_{L^{p}(T_{m-1})} 
+        + 
+        C_{\PF,T_{m},F_{m},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{m})} 
+            + 
+            \cye{\rho(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla u \|_{L^{p}(T_{m-1})}}
+        \right). 
+    \end{align*}
+\cye{Therefrom, the desired estimate follows.}
+\end{proof}
 \begin{proof}
     Let $u \in W^{1,p}(\Omega)$. 
     First, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
@@ -2478,7 +2852,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
         &
         \leq 
         |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi   \|
+        \matnorm{ \Jacobian \Xi   }
         \cdot 
         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
         \\&
@@ -3246,7 +3620,7 @@ is that each time a\cye{n $n$-}simplex is added, star\cye{s} around \cye{lower-d
 \begin{remark}
     Not all triangulable sets admit a triangulation that is also shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
-    We refer to~\cite[Example 8.9]{ziegler2012lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
+    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
 
     For example, there exists a non-shellable triangulation of a tetrahedron. 
     If we extend this triangulation to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
@@ -4342,7 +4716,7 @@ though the \cye{space} dimension \cye{$n$} and the form degree \cye{$\ell$} ente
 %     This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over smoothly bounded convex domains~\cite{guerini2004eigenvalue}.
 % \end{remark}
 
-\begin{remark}
+\begin{remark} \label{remark:reg_Poinc_Bog}
     The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
     To the best of our knowledge, the work of Costabel and McIntosh~\cite{costabel2010bogovskiui} was the first to propose a regularized Poincar\'e operator (regularized via averaging).
     These potentials enable the analysis of de~Rham complexes without boundary conditions.
@@ -4570,13 +4944,13 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
     \end{align*}
     which is the identity along ${\Gamma_1} = T \cap U$ and which satisfies the upper bounds 
     \begin{gather*}
-        \| \Jacobian\Xi_{1} \|          \leq \Cfive{n}{k}(\calT),
+        \matnorm{ \Jacobian\Xi_{1} }          \leq \Cfive{n}{k}(\calT),
         \quad 
-        \| \Jacobian\Xi_{1}^{-1} \|     \leq \Csechs{n}{k}(\calT),
+        \matnorm{ \Jacobian\Xi_{1}^{-1} }     \leq \Csechs{n}{k}(\calT),
         \\
-        \| \det\Jacobian\Xi_{1} \|      \leq \Cdetfive{n}{k}(\calT),
+        | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
         \quad 
-        \| \det\Jacobian\Xi_{1}^{-1} \| \leq \Cdetsechs{n}{k}(\calT),
+        | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT),
     \end{gather*}
     where the constants on the right-hand sides are as stated in the proof. 
     \item 
@@ -4586,13 +4960,13 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
     \end{align*}
     which is the identity along $\partial U \setminus \partial T$ and which satisfies the upper bounds 
     \begin{gather*}
-        \| \Jacobian\Xi_{2} \|          \leq \Csieb{n}{k}(\calT),
+        \matnorm{ \Jacobian\Xi_{2} }          \leq \Csieb{n}{k}(\calT),
         \quad 
-        \| \Jacobian\Xi_{2}^{-1} \|     \leq \Cacht{n}{k}(\calT),
+        \matnorm{ \Jacobian\Xi_{2}^{-1} }     \leq \Cacht{n}{k}(\calT),
         \\
-        \| \det\Jacobian\Xi_{2} \|      \leq \Cdetsieb{n}{k}(\calT),
+        | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
         \quad 
-        \| \det\Jacobian\Xi_{2}^{-1} \| \leq \Cdetacht{n}{k}(\calT),
+        | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT),
     \end{gather*}
     where the constants on the right-hand sides are as stated in the proof. 
     \end{enumerate}
@@ -4653,9 +5027,9 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \end{align*}
         % Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
         % \begin{align*}
-        %     \| \Jacobian \Theta_{|K}      \| &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
+        %     \matnorm{ \Jacobian \Theta_{|K}      } &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
         %     \\
-        %     \| \Jacobian \Theta_{|K}^{-1} \| &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
+        %     \matnorm{ \Jacobian \Theta_{|K}^{-1} } &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
         % \end{align*}
         By construction, the mapping preserves volumes:
         \begin{align*}
@@ -4713,7 +5087,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        Then $\| h_z \| = \cos(\beta) \|z_{S'}\|$ and $\| b_z \| = \sin(\beta) \|z_{S'}\|$. 
+        Then $\vecnorm{ h_z } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_z } = \sin(\beta) \vecnorm{ z_{S'} }$. 
         We study the singular values of the matrix 
         \begin{align*}
             B 
@@ -4721,7 +5095,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \begin{pmatrix}
             -1                 & 0
             \\ 
-            -2 \|b_z\|/\|h_z\| & 1
+            -2 \vecnorm{ b_z }/\vecnorm{ h_z } & 1
             \end{pmatrix}
             =
             \begin{pmatrix}
@@ -4745,18 +5119,18 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         whereas all its other singular values equal $1$. 
         
 %         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        By the definition of the tangent, $\tan(\beta) \leq \| b_{z} \| / \| h_{z} \|$, and we know $\|b_z\| \leq \|z_{S'}\|$. 
+        By the definition of the tangent, $\tan(\beta) \leq \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$, and we know $\vecnorm{ b_z } \leq \vecnorm{ z_{S'} }$. 
         Let $F_{z} \subseteq K$ be the face opposite to $z_{S'}$,
         which is also a face of $T$. Then $(n-k) h_{z}$ is the height vector of $F_{z}$ in $T$. 
         Thus 
         \begin{align*}
-            \frac{ \| b_{z} \| }{ \| h_{z} \| }
+            \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
             = 
-            \frac{ \| b_{z} \| }{ (n-k)^{-1} \| (n-k) h_{z} \| }
+            \frac{ \vecnorm{ b_{z} } }{ (n-k)^{-1} \| (n-k) h_{z} \| }
             \leq 
             (n-k) \aspectratio(T)
 %             = 
-%             \frac{ \| b_{z} \| \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
+%             \frac{ \vecnorm{ b_{z} } \vol(F_{z}) }{ (n-k)^{-1} n \vol(T) }
 %             \leq 
 %             \frac{ n-k }{n!}
 %             \cdot 
@@ -4846,12 +5220,12 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \frac{1}{ 2 } 
             \hat h_{z} \otimes \hat h_{z}^{t}
             - 
-            \frac{ \|b_z\| }{ 2 \| h_{z} \| } 
+            \frac{ \vecnorm{ b_z } }{ 2 \vecnorm{ h_{z} } } 
             \hat b_{z} \otimes \hat h_{z}^{t}
             .
         \end{align*}
         We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
-        Hence $\tan(\beta) = \| b_z \| / \| h_z \|$. It remains to study the singular values of the matrix 
+        Hence $\tan(\beta) = \vecnorm{ b_z } / \vecnorm{ h_z }$. It remains to study the singular values of the matrix 
         \begin{align*}
             C 
             = 
@@ -4892,16 +5266,16 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
         Similar as above, we use the upper bound 
         \begin{align*}
-            \tan(\beta) = \frac{\|b_z\|}{\|h_z\|} \leq (k+1) \aspectratio(T).
+            \tan(\beta) = \frac{\vecnorm{ b_z }}{\vecnorm{ h_z }} \leq (k+1) \aspectratio(T).
         \end{align*}
         We conclude that 
         \begin{gather*}
-            \| \Jacobian\Phi_{K} \| 
+            \matnorm{ \Jacobian\Phi_{K} } 
             \leq 
             \frac 1 4 \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 }
             ,
             \\
-            \| \Jacobian\Phi_{K}^{-1} \| 
+            \matnorm{ \Jacobian\Phi_{K}^{-1} } 
             \leq 
             \frac 1 2 \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 }
             ,
@@ -5031,7 +5405,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         Our previous observations enable estimates for the Jacobians. 
         We have the operator norm and determinant formulas 
         \begin{gather*}
-            \| \Jacobian\Psi(x) \|
+            \matnorm{ \Jacobian\Psi(x) }
             = 
             \frac{ \| h_K \| }{ \| h_{{G}} \| }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
@@ -5039,7 +5413,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
                 \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2}
             \right)
             \\
-            \| \Jacobian\Psi(z)^{-1} \|
+            \matnorm{ \Jacobian\Psi(z)^{-1} }
             = 
             \frac{ \| h_{{G}} \| }{ \| h_K \| }
             \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
@@ -5222,7 +5596,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         as well as the upper bound $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$,
         provide 
         \begin{align*}
-            \| \Jacobian \Xi_{1} \|
+            \matnorm{ \Jacobian \Xi_{1} }
             &\leq 
             \Cfive{n}{k}(\calT)
             :=
@@ -5239,7 +5613,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \Big)            
             ,
             \\
-            \| \Jacobian \Xi_{1}^{-1} \|
+            \matnorm{ \Jacobian \Xi_{1}^{-1} }
             &\leq  
             \Csechs{n}{k}(\calT)
             :=
@@ -5302,7 +5676,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
         The combination of the previous estimates for $\Psi$ and $\Phi$ now lead to 
         \begin{align*}
-            \| \Jacobian \Xi_{2} \|
+            \matnorm{ \Jacobian \Xi_{2} }
             &\leq 
             \Csieb{n}{k}(\calT)
             :=
@@ -5321,7 +5695,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
                 \aspectratio(\calT)
             \Big)            
             \\
-            \| \Jacobian \Xi_{2}^{-1} \|
+            \matnorm{ Jacobian \Xi_{2}^{-1} }
             &\leq  
             \Cacht{n}{k}(\calT)
             :=
@@ -5473,7 +5847,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \]
         Together with the Xu-Zikatanov inequality, we obtain the upper bound 
         \begin{align*}
-            \| \Jacobian \Psi(x) \|
+            \matnorm{ \Jacobian \Psi(x) }
             &\leq 
             \sqrt{n}
             \frac{ \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
@@ -5487,7 +5861,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \end{align*}
         By completely analogous arguments, we find 
         \begin{align*}
-            \| \Jacobian \Psi^{-1}(x) \|
+            \matnorm{ \Jacobian \Psi^{-1}(x) }
             &\leq 
             \sqrt{n}
             \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-1} ) }
@@ -5569,13 +5943,13 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         All the diameters above are comparable up to a factor of $\diameterratio(\calT)$.
         In summary,
         \begin{gather*}
-            \| \Jacobian \Theta_{|K}      \| \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
+            \matnorm{ \Jacobian \Theta_{|K}      } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
             ,
             \qquad 
-            \| \Jacobian \Theta_{|K}^{-1} \| \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
+            \matnorm{ \Jacobian \Theta_{|K}^{-1} } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
             ,
             \\
-            \| \Jacobian \Xi(x) \|
+            \matnorm{ \Jacobian \Xi(x) }
             \leq 
             \sqrt{n}
             4 
@@ -5597,7 +5971,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             2 \Cdrei{n} \geometricshapemeasure(\calT)
             ,
             \\
-            \| \Jacobian \Xi^{-1}(x) \|
+            \matnorm{ \Jacobian \Xi^{-1}(x) }
             \leq 
             \sqrt{n}
             2 
@@ -5761,7 +6135,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T)
-        % \| \Jacobian \varphi \|^{k}
+        % \matnorm{\Jacobian \varphi}^{k}
         .
     \end{align*}
 \end{lemma}
@@ -5804,12 +6178,12 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| w \|_{L^{p}(T_{m+1})}
         &\leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
-        \| \Jacobian \varphi^{-1} \|^{k-1}
+        \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
         \| \tilde w \|_{L^{p}(\hat T)}
         \\&
         \leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
-        \| \Jacobian \varphi^{-1} \|^{k-1}
+        \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
         \| \tilde w \|_{L^{p}(\tilde U)}
         ,
         \\
@@ -5820,7 +6194,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \leq 
         2^{\frac n p}
         |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
-        \| \Jacobian \varphi \|^{k}
+        \matnorm{\Jacobian \varphi}^{k}
         \cdot 
         \| \cartan u \|_{L^{p}(T)}
         .
@@ -5978,7 +6352,7 @@ The main result of this manuscript is the following theorem.
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi_{m} \|^{k}
+        \matnorm{ \Jacobian \Xi_{m} }^{k}
         \cdot 
         \| w_{m-1} \|_{L^{p}(U_{m-1})}
         ,
@@ -5986,7 +6360,7 @@ The main result of this manuscript is the following theorem.
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi_{m} \|^{k+1}
+        \matnorm{ \Jacobian \Xi_{m} }^{k+1}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         .
@@ -6002,7 +6376,7 @@ The main result of this manuscript is the following theorem.
 %         &
 %         \leq  
 %         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \| \Jacobian \Xi_{m} \|^{k} 
+%         \matnorm{ \Jacobian \Xi_{m} }^{k} 
 %         \| w_{m-1} \|_{L^{p}(U_{m-1})}
 %         \\&\qquad
 %         + 
@@ -6012,7 +6386,7 @@ The main result of this manuscript is the following theorem.
 %         + 
 %         C_{\PF,T_{m},\Gamma_{m},k,p} 
 %         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \| \Jacobian \Xi_{m} \|^{k+1} 
+%         \matnorm{ \Jacobian \Xi_{m} }^{k+1} 
 %         \| \cartan u \|_{L^{p}(U_{m-1})}
 %         .
 %     \end{align*}
