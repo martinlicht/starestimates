@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper]{article}
+\documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \input{header}
@@ -6,6 +6,23 @@
 \usepackage{comment}          % 
 \usepackage{hyperref}         % For hypertext links
 \usepackage{tikz-3dplot}      % 3d plots 
+
+% Added by MV 
+\usepackage{bm} % preferred version of bold symbols
+\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
+\usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
+% \usepackage[textsize=tiny,color=blue!10!white]{todonotes}
+\newcommand{\todo}[1]{{\colorbox{yellow}{#1}}}
+\setlength{\marginparwidth}{2cm}
+    
+\newcommand\cye[1]{%
+\protect\leavevmode
+\begingroup
+    \color{red!35!yellow}%
+    #1%
+\endgroup
+}
+
 
 \usepackage{enumitem}
 \setitemize[1]{left=0.0cm} 
@@ -15,18 +32,18 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Computable Poincar\'e--Friedrichs constants\\ for the $L^{p}$ de Rham complex over domains\\ with shellable triangulations}
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over \cye{convex domains and} domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{martin.licht@epfl.ch}} \and
-    Martin Vohral\'ik\thanks{Affiliation of the Third Author, \texttt{email3@example.com}}
+    Martin Vohral\'ik\thanks{\cye{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France}, \texttt{\cye{martin.vohralik@inria.fr}}}
 }
 
 % Theorem environments
 
-\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+\newcommand{\mwl}[1]{\textcolor{red}{MWL: #1}}
 \newcommand{\notice}[1]{\textcolor{red}{REMARK: #1}}
-
+\newcommand{\disk}{\cye{ball}}
 
 
 
@@ -42,7 +59,8 @@
 \maketitle
 
 \begin{abstract}
-    We construct potentials for the gradient, the curl and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. This class of triangulations includes local stars in dimension two and three. 
+    We construct potentials for the gradient, the curl\cye{,} and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. 
+    This class of triangulations \cye{in particular} includes local \cye{patches (stars)} in dimension two and three.
     The operator norms of our potentials satisfy explicitly computable bounds that only depend on the geometry. 
     We thus obtain computable upper bounds for Poincar\'e--Friedrichs inequalities and computable lower bounds for the eigenvalues of several vector Laplacians. 
     % 
@@ -51,11 +69,23 @@
     %     The main application that we envision are computable estimates over finite element patches. 
     %
     As a result with independent standing, we establish Poincar\'e--Friedrichs inequalities for the $L^{p}$ de~Rham complex over convex bounded domains. 
-    This is achieved through bounding operator norms of Poincar\'e and Bogovski\u{\i} potential operators.
-    We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances. 
+    This is achieved through \cye{a suitable construction of regularized} Poincar\'e and Bogovski\u{\i} potential operators \cye{where we can bound their operator norms}.
+    \mwl{We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances.} 
+    \cye{Computational examples illustrate the theoretical findings.}
+    \\
+    
+    We construct potentials for the gradient, the curl\cye{,} and the divergence operators, and more generally the exterior derivative, over domains with shellable triangulations. 
+    This class of triangulations \cye{in particular} includes local \cye{patches (stars)} in dimension two and three.
+    \cye{We derive} computable bounds \cye{on} the operator norms of our potentials that only depend on the geometry. We thus obtain computable upper bounds for \cye{constants in} Poincar\'e--Friedrichs inequalities \cye{as well as} computable lower bounds for the eigenvalues of several vector Laplacians.
+    As a result with independent standing, we \cye{also} establish Poincar\'e--Friedrichs inequalities \cye{with computable constants} for the $L^{p}$ de~Rham complex over convex bounded domains.
+    This is achieved through \cye{a suitable construction of regularized} Poincar\'e and Bogovski\u{\i} potential operators \cye{where we can bound their operator norms}.
+    \cye{Computational examples illustrate the theoretical findings.}
 \end{abstract}
 
 
+\tableofcontents
+\todo[inline]{MV: Added table of contents: for us, to see the structure of and the main terminology used in the paper}
+ 
 \section{Introduction}\label{section:intro}
 
 % DONE {Reformulate the first paragraph. } % 
@@ -339,7 +369,7 @@ we only study them over convex domains and use simpler (that is, constant) weigh
 The resulting operator features generally lower regularity properties in comparison to the regularized potential in the literature;
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
-% DONE \todo{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
+% DONE \mwl{Theo : I believe Gallistl-Olkhovskiy also estimate the constant. They do star-shape and regularized stuff, so it's different, but we should keep that in mind and maybe reference them}.
 
 
 In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
@@ -355,7 +385,7 @@ We achieve this by constructing an auxiliary problem subject to full boundary co
 
 
 % Exterior calculus % DONE: MV recommends moving this down to finish the current line of thoughts 
-\todo{What is the best place for this paragraph?}
+\mwl{What is the best place for this paragraph?}
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
 %It also enables us to leverage on the rich literature of Sobolev spaces of differential forms.
 For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
@@ -497,7 +527,7 @@ Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Face
 % \end{remark}
 }
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
-% and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\todo{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
+% and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\mwl{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
 
 When $\calT$ is a triangulation and $T \in \calT$, then $\patch_{\calT}(T)$ denotes the \emph{local patch} or \textit{local star} of $T$, 
 which is the simplicial subcomplex of $\calT$ that contains all supersimplices of $T$ and their subsimplices. 
@@ -549,7 +579,7 @@ Most of such \emph{shape measures} in the literature are based on geometric feat
 but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
 While there are many equivalent shape measures, we use the ones that most immediate appear in our proofs.
 
-\todo{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
+\mwl{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
 Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$,
@@ -918,7 +948,7 @@ This indicator quantifies how much reflection across the shared face distorts th
     \end{align*}
     The desired estimates are shown.
 \begin{comment}
-    \todo{Tighter estimate via geometry}
+    \mwl{Tighter estimate via geometry}
     Matrix inverse lemma:
     \begin{align*}
         A ( A + (z_2-z_1) e_1^t )^{-1}
@@ -3240,12 +3270,24 @@ is that each time a simplex is added, the local star around a simplex gets compl
 
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
-We discuss the Sobolev spaces of vector calculus and exterior calculus 
-with particular emphasis on their transformation behavior. 
-We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
-Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
+% We discuss the Sobolev spaces of vector calculus and exterior calculus 
+% with particular emphasis on their transformation behavior. 
+% We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
+% Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
+% TODO: Fuse these two paragraphs 
 
-Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
+We review in this section the Sobolev spaces of vector and exterior calculus and their transformation behavior. We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for background material on Sobolev vector analysis and to Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth} for exterior algebra and exterior products. 
+
+Throughout this section, we let $\Omega \subseteq \bbR^{3}$ be any bounded open set.
+
+\subsection{Vector calculus}
+
+\cye{Recall the notations~\eqref{equation:W1p} and~\eqref{equation:W_curl_div_p} from Section~\ref{section:intro}; actually, here we temporarily rather employ }
+\begin{gather*}
+    W^{p}(\grad,\Omega) \cye{= W^{1,p}(\Omega)} = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    .
+\end{gather*}
+\mwl{Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
@@ -3261,14 +3303,15 @@ and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergence
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
     \\ 
     \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
-\end{gather*}
+\end{gather*}}
+
 We are interested in transformations of these Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
-The gradient-, curl-, divergence-conforming Piola transformations are the mappings 
+\mwl{We introduce the} gradient-, curl-, and divergence-conforming Piola transformations, respectively, as the mappings 
 $\phi^{\grad}: L^{p}(\Omega') \to L^{p}(\Omega)$,
-$\phi^{\curl}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$, 
-$\phi^{\divergence}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$,
-and
+$\phi^{\curl}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$, and 
+$\phi^{\divergence}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$.
+We also introduce 
 $\phi^{\rm b}: L^{p}(\Omega') \to L^{p}(\Omega)$. 
 We define them 
 for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting 
@@ -3280,10 +3323,9 @@ for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting
     \phi^{\rm b}(v) &= \det(\Jacobian\phi) \left( v \circ \phi \right),
 \end{align*}
 \end{subequations}
-and where $\Jacobian\phi$ is the Jacobian matrix of $\phi$; see also~\cite[Definition~9.8]{ern2021finite}.
-These mappings are invertible. 
+Here, $\Jacobian\phi$ is the Jacobian matrix of $\phi$ (see also~\cite[Definition~9.8]{ern2021finite}), and $\adj\Jacobian\phi$ denotes taking its adjugate matrix.
+These transformations are invertible. 
 Bounds on the Lebesgue norms will follow from a more general result below. 
-% 
 We use the commutativity relations 
 \begin{subequations}\label{eq_piola_commute}
 \begin{align}
@@ -3315,21 +3357,16 @@ We summarize this as a commuting diagram:
     scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This definition is in accordance with the notion of pullback, which we will review shortly. 
     One advantage of that definition is that it also makes sense whenever the transformation is not onto. 
-    In some literature conventions, the Piola transform is in the direction of the original mapping. 
+    The literature also knows the Piola transform in the direction of the original mapping. 
 \end{remark}
 
 
+\subsection{Exterior calculus}
 
-%
-% trace properties 
-%
-
-
-%\section{Review of exterior calculus}
-
-Having discussed vector analysis, we review exterior calculus. 
-We begin with exterior algebra. 
+%\cye{We now move to} exterior calculus. 
 %We give a brief introduction into this topic, and refer to the literature for further background~\cite{lee2012smooth}. 
+
+\mwl{We now move the discussion to exterior calculus, beginning with exterior algebra.}
 Let $V$ be a real vector space. 
 Given an integer $k \geq 0$, we let $\Alt^{k}(V)$ denote the space of scalar-valued antisymmetric $k$-linear forms over $V$. 
 Recall that any $k$-linear scalar-valued form $u$ over $V$ is called antisymmetric
@@ -3375,6 +3412,7 @@ We use the interior product, which is in some sense dual to the exterior product
     \quad 
     \forall v_1, v_2, \ldots, v_{k-1} \in V.
 \end{align*}
+
 We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
 Moreover, this particular setting comes with a canonical basis. 
@@ -3397,6 +3435,8 @@ In particular, $\Alt^{k}(\bbR^{n})$ is the zero vector space whenever $k > n$.
 We notice that the canonical scalar product on $\bbR^{n}$ gives rise to a scalar product on $\Alt^{1}(\bbR^{n})$,
 which induces a scalar product on $\Alt^{k}(\bbR^{n})$.
 The basic $k$-alternators are an orthonormal basis of $\Alt^{k}(\bbR^{n})$ with respect to that inner product. 
+
+\subsection{Smooth differential forms}
 
 We write $C^{\infty}\Alt^{k}(\Omega)$ for the space of smooth differential $k$-forms over $\Omega \subseteq \bbR^{n}$,
 which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{n})$.
@@ -3429,6 +3469,9 @@ Moreover, it satisfies the Leibniz rule:
     \qquad \forall \omega \in C^{\infty}\Alt^{k}(\Omega), 
     \qquad \forall \eta \in C^{\infty}\Alt^{l}(\Omega).
 \end{gather*}
+
+\subsection{Sobolev spaces of differential forms}
+
 Let us now turn our attention to Sobolev spaces of differential forms. 
 Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a norm, induced from the Euclidean norm on $\bbR^{n}$, we can consider the pointwise norms of differential $k$-forms. 
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
@@ -3449,11 +3492,12 @@ if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the
     \int_{\Omega} v \wedge f 
     .
 \end{align*}
-We let $W^{p}_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^{p}\Alt^{k}(\Omega)$ 
-for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. 
-The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$. 
-
-Lastly, we are also interested in differential forms whose trace vanishes along only a part of the boundary. 
+% \mwl{We let $W^{p}_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^{p}\Alt^{k}(\Omega)$
+% for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$.
+% The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.}
+% \cye{\sout{We let $W^{p}_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^{p}\Alt^{k}(\Omega)$ 
+% for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. }}\todo{MV: repeated below.}
+Lastly, we are also interested in differential forms whose trace vanishes along a part of the boundary. 
 Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
 We say that $u \in W^{p}\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
 such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration by parts formula
@@ -3477,21 +3521,24 @@ Lastly, we introduce the closed subspaces
     \{ u \in W^{p}\Alt^{k}(\Omega) \suchthat \trace_{\partial \Omega} u = 0 \}
     .
 \end{gather*}
-We know that $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$.
+% \cye{The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.}\todo{MV: Moved here.}
+\mwl{This is a closed subspace. We know that $u \in W^{p}_{0}\Alt^{k}(\Omega)$ if and only if its extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. Moreover, $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$.}
 
 
-We are interested in transformations of Sobolev tensor fields from one domain onto the other. 
+\subsection{Transformations by bi-Lipschitz mappings}
+
+We are interested in transformations of Sobolev tensor fields from one domain onto \cye{an}other. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 The pullback of $u \in W^{p}\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
-\begin{gather*} 
+\begin{align} \label{equation:pullback}
     \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
     := 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
-\end{gather*}
+\end{align}
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^{p}\Alt^{k}(\Omega)$.
 We cite an explicit transformation estimate~\cite{licht2019smoothed}.
 
-\begin{theorem} \label{theorem:pullbackestimate}
+\begin{proposition} \label{proposition:pullbackestimate}
  Let $\phi : \Omega \rightarrow \Omega'$ be a bi-Lipschitz mapping between open sets $\Omega, \Omega' \subseteq \bbR^{n}$.
  Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega)$. 
  Then 
@@ -3499,17 +3546,14 @@ We cite an explicit transformation estimate~\cite{licht2019smoothed}.
   \begin{split}
   \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
   &\leq 
-  \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
-  \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\infty}(\Omega')}
-  \| u \|_{L^{p}\Lambda^{k}(\Omega')}
-  \\&\leq 
-  \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
-  \| \Jacobian \phi^{-1} \|^{\frac{n}{p}}_{L^{\infty}(\Omega')}
+  \| \Jacobian \phi \|^{k}_{L^{\cye{\infty}}(\Omega)}
+  \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\cye{\infty}}(\Omega')}
   \| u \|_{L^{p}\Lambda^{k}(\Omega')}
   .
   \end{split}
  \end{align}
-\end{theorem}
+\end{proposition}
+\notice{MWL:I have simplified the statement to what is needed later.}
 
 
 \begin{remark}
@@ -3527,6 +3571,7 @@ We cite an explicit transformation estimate~\cite{licht2019smoothed}.
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
     \end{CD}
+    \cye{\, ,}
     \end{gather*}
     where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
     \begin{align*}
@@ -3558,14 +3603,16 @@ We cite an explicit transformation estimate~\cite{licht2019smoothed}.
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
     \end{CD}
+    \cye{\,.}
     \end{gather*}
     Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
     The other vertical arrows are the identity. 
     The utility of exterior calculus is that the operators of vector calculus can be translated into a common framework that does not depend on the dimension.
 \end{remark}
 
+\subsection{Some approximation properties}
 
-We review a few approximation properties. 
+We finally review a few approximation properties. 
 Let $\mollifier$ be a non-negative scalar function supported in the unit ball around the origin and with unit integral.
 Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
 
@@ -3574,7 +3621,7 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
 %     Then $\mollifier_{\epsilon} \star u \rightarrow u$ almost everywhere. 
 %     If $u \in L^{p}(\Omega)$ for some $1 \leq p < \infty$, then $u_{\epsilon} \rightarrow u$ in $L^{p}(\Omega)$.
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
-    If $u \in L^{p}(\Omega)$, then $\mollifier_{\eps} \star u \rightarrow u$ in $L^{p}(\Omega)$ as $\epsilon \rightarrow 0$.
+    If $u \in L^{p}(\Omega)$, then the convolution $\mollifier_{\eps} \star u \rightarrow u$ in $L^{p}(\Omega)$ as $\epsilon \rightarrow 0$.
 \end{lemma}
 
 % \begin{lemma} % TODO: possibly useful
@@ -4029,7 +4076,7 @@ Taking into account cancellations, this gives the identity
     u(x)
     .
 \end{align*}
-\todo{What if $\ell = 0$ and $u$ is constant? The reconstruction is not complete for constants}
+\mwl{What if $\ell = 0$ and $u$ is constant? The reconstruction is not complete for constants}
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
     u(x) = \cartan \Poinc_{\ell} u(x) + \Poinc_{\ell+1} \cartan u(x).
@@ -4283,7 +4330,7 @@ though the dimension and the form degree enters the estimate.
     because their averaging uses a smooth weight, and which proves boundedness of the operators between a variety of function spaces. 
     Explicit bounds for the higher-order seminorms of these pseudodifferential operators 
     have been contributed by Guzman and Salgado~\cite{guzman2021estimation}. % DONE: THEO That requires more comments 
-    % Guzman and Salgado have estimated the operator norm. \todo{Describe Guzman and Salgado's contribution in more detail.} 
+    % Guzman and Salgado have estimated the operator norm. \mwl{Describe Guzman and Salgado's contribution in more detail.} 
 \end{remark}
 
 
@@ -5073,7 +5120,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         After application of a piecewise linear Lipschitz mapping, 
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        \todo{not enough}
+        \mwl{not enough}
         
         
         
@@ -5672,7 +5719,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     By construction, $\cartan w = \cartan u$,
     and $w$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
     
-    In addition to that, by Theorem~\ref{theorem:pullbackestimate}:
+    In addition to that, by Theorem~\ref{proposition:pullbackestimate}:
     \begin{align*}
         \| w \|_{L^{p}(T_{m+1})}
         &\leq 
@@ -5767,7 +5814,7 @@ The main result of this manuscript is the following theorem.
         \| w \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
-    \todo{The notation $U_m$ should be settled in the definition of shellings.}
+    \mwl{The notation $U_m$ should be settled in the definition of shellings.}
 \end{theorem}
 
 \begin{proof}
@@ -5846,7 +5893,7 @@ The main result of this manuscript is the following theorem.
         C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
-    We also employ Theorem~\ref{theorem:pullbackestimate} to find 
+    We also employ Theorem~\ref{proposition:pullbackestimate} to find 
     \begin{align*}
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
@@ -6030,7 +6077,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, and by John M.\ Lee.
 
-\bibliographystyle{plain}
+\bibliographystyle{acm_mod}
 \bibliography{library}
 
 \end{document}
