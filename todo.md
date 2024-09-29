@@ -28,7 +28,7 @@ Revision
 - [o] Section 2: scalar potential on domains
 - [o] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
-- [o] Section 4: scalar potential on triangulated domains
+- [x] Section 4: scalar potential on triangulated domains
 - [ ] Move back section on shellable triangulations
 - [o] Section 5: review of vector calculus
 - [o] Section 6: potential operators 

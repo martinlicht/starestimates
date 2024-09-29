@@ -1,7 +1,7 @@
 \documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-%\usepackage[margin=0.1cm]{geometry}
+\usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{comment}          % 
@@ -27,7 +27,7 @@
 \endgroup
 }
 
-\newcommand{\mwl}[1]{{\color{red} MWL: #1}}
+\newcommand{\mwl}[1]{{\color{red}#1}}
 \newcommand{\notice}[1]{{\color{red}REMARK: #1}}
 \newcommand{\disk}{\cye{ball}}
 
@@ -1135,7 +1135,7 @@ This indicator quantifies how much reflection across the shared face distorts th
 \end{proof}
 
 \begin{remark}
-    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ \cye{of~\eqref{math:volumeratio}} but not $\diameterratio(\calT)$ \cye{of~\eqref{math:diametercomparison}}. 
+    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ \cye{of~\eqref{math:volumeratio}} but not $\diameterratio(\calT)$ \cye{of~\eqref{math:diameterratio}}. 
     Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ but not $\diameterratio(\calT)$. 
     As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one face in terms of the shape measure. 
     If we have an upper estimate for the number of simplices sharing a given vertex, 
@@ -1650,13 +1650,13 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
-\mwl{In this section, we develop a stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
+In this section, we develop a stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
 The following very classical procedure serves us as an inspiration: given a gradient vector field, we can reconstruct the scalar potential up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
 We perform a discrete analogue of this procedure over triangulated domains: 
 having fixed a starting triangle, we traverse the triangulation along face-neighboring simplices.
 %We construct a scalar potential for a given gradient vector field on larger and larger triangulated subdomains.
 We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face, thus constructing a scalar potential over larger and larger subdomains.
-This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.}
+This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
 
 
 
@@ -1839,7 +1839,7 @@ We begin with an auxiliary result with independent relevance, where we estimate 
 % \end{remark}
 
 
-The next auxiliary result extends the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations. We point out that face patches are not necessarily convex. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
+The next auxiliary result extends the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations. We emphasize that face patches are not necessarily convex. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
@@ -2079,6 +2079,7 @@ Both estimates of Poincar\'e--Friedrichs constants capture the correct asymptoti
 
 
 
+\begin{comment}
 For the remainder of this section, the following combinatorial notion of triangulations is used. 
 Whenever $\calT$ is a face-connected $n$-dimensional triangulation, 
 a \emph{spanning tree} is an enumeration $T_{0}, \dots, T_{M}$ of all its $n$-dimensional simplices
@@ -2086,6 +2087,7 @@ where for each index $1 \leq m \leq M$ we have a fixed index $0 \leq \iota(m) \l
 such that $T_{m}$ and $T_{\iota(m)}$ are face-neighboring.
 We call $T_{\iota(m)}$ the \emph{precursor} of $T_{m}$ within the spanning tree. 
 The reader is referred to Figure~\ref{figure:spanningtree} for an illustration. 
+\end{comment}
 
 \begin{figure}[t]
 \begin{center}
@@ -2142,19 +2144,18 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
-    Let $\calT$ be a face-connected $n$-dimensional finite triangulation 
-    with a spanning tree $T_0, T_1, \dots, T_{M}$. \mwl{should be a sequence with precursor function}
-    For any $1 \leq m \leq \cye{M}$, let $F_m = T_m \cap T_{\iota(m)}$.
+    Let $\calT$ be a face-connected $n$-dimensional finite triangulation. 
     Suppose $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$,
     and that the domain $\Omega$ is the interior of the underlying set of $\calT$. 
     Then for any $u \in W^{1,p}(\Omega)$ 
     there exists $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$ 
-    and such that for all $1 \leq m \leq M$
-    we have the following recursive estimates:
+    and satisfying the following estimates:
+    there exists an $n$-simplex $T_0 \in \calT$ with 
     \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    and for $1 \leq m \leq M$ we have 
+    and whenever $T_0, T_1, \dots, T_M$ is a face path,
+    then for all $1 \leq m \leq$ we the following recursive estimates:
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         &
@@ -2184,6 +2185,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| \nabla u \|_{L^{p}(U_{F_m})} 
         . 
     \end{align*}
+    Here, for any $1 \leq m \leq M$, let $F_m = T_m \cap T_{m-1}$.
 \end{theorem}
 
 
@@ -2194,7 +2196,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     We start with the Poincar\'e--Friedrichs inequality on the first simplex $T_{0}$. 
     There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
     \begin{gather*}
-    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
     \end{gather*}
     In particular, $c_{0} := w_0 - u$ is a constant function. 
     We then define 
@@ -2205,17 +2207,16 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     Clearly, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
     By construction $w_{|T_{0}} = w_0$. 
     We verify that $w$ satisfies the two desired recursive estimates.
-
+    Suppose that $T_0, T_1, \dots, T_M$ is a face path in $\calT$
+    and that $1 \leq m \leq M$.
+    Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$. 
     
-    
-    We continue by discussing the first recursive estimate. 
-    Suppose that $1 \leq m \leq M$.
-    Recall that we write $F_m := T_m \cap T_{\iota(m)}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$. 
-    We define $w'_{m} := w_{|T_{\iota(m)}} \circ \Xi \in W^{1,p}(T_{m})$,
-    where $\Xi : T_{m} \rightarrow T_{\iota(m)}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
+    We proceed with showing the first recursive estimate. 
+    We define $w'_{m} := w_{|T_{m-1}} \circ \Xi \in W^{1,p}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
     By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
     \begin{align*}
-        \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{|T_{\iota(m)}}
+        \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{|T_{m-1}}
         .
     \end{align*}
     We now define $w''_{m} \in W^{1,p}(T_{m})$ via 
@@ -2224,7 +2225,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         := 
 %         u_{|T_{m}} - w'_{m} + c_0 
 %         = 
-        w_{|T_{m}} - w'_{m} = u_{|T_{m}} - u_{|T_{\iota(m)}} \circ \Xi.
+        w_{|T_{m}} - w'_{m} = u_{|T_{m}} - u_{|T_{m-1}} \circ \Xi.
     \end{align}
     We crucially note that $w''_{m}$ is trace-free along $F_{m}$ since
     \begin{align*}
@@ -2236,18 +2237,18 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         =
         \trace_{F_{m}} w_{|T_{m}}
         -
-        \trace_{F_{m}} w_{|T_{\iota(m)}}
+        \trace_{F_{m}} w_{|T_{m-1}}
         =
         \trace_{F_{m}} u_{|T_{m}}
         -
-        \trace_{F_{m}} u_{|T_{\iota(m)}}
+        \trace_{F_{m}} u_{|T_{m-1}}
 %         = 
 %         \trace_{F_{m}} \left( 
 %             u_{|T_{m}} - w'_{m} + c_0 
 %         \right) 
 %         = 
 %         \trace_{F_{m}} \left( 
-%             u_{|T_{\iota(m)}} - w_{|T_{\iota(m)}} + c_0 
+%             u_{|T_{m-1}} - w_{|T_{m-1}} + c_0 
 %         \right) 
         = 0.
     \end{align*}
@@ -2278,15 +2279,15 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \leq 
         |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
         \matnorm{ \Jacobian \Xi }
-        \| \nabla w \|_{L^{p}(T_{\iota(m)})}
+        \| \nabla w \|_{L^{p}(T_{m-1})}
         \\&
         \leq 
         \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla w \|_{L^{p}(T_{\iota(m)})}
+        \| \nabla w \|_{L^{p}(T_{m-1})}
         \\&
         =
         \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla u \|_{L^{p}(T_{\iota(m)})}
+        \| \nabla u \|_{L^{p}(T_{m-1})}
         .
     \end{align*}
     % The second expression in~\eqref{equation:w''} shows $w_{|T_{m}} = w''_{m} + w'_{m}$. We finally find 
@@ -2301,14 +2302,14 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \\&
         \leq  
         \volumeratio(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(T_{\iota(m)})} 
+        \| w \|_{L^{p}(T_{m-1})} 
         + 
         C_{\PF,T_{m},F_{m},p} 
         \left( 
             \| \nabla u \|_{L^{p}(T_{m})} 
             + 
             \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla u \|_{L^{p}(T_{\iota(m)})}
+        \| \nabla u \|_{L^{p}(T_{m-1})}
         \right). 
     \end{align*}
     We now use H\"older's inequality. 
@@ -2317,7 +2318,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     
     Now we discuss the second recursive estimate. 
     Suppose again that $1 \leq m \leq M$. 
-    Recall that we write $U_{F_m} := T_m \cup T_{\iota(m)}$. 
+    Recall that we write $U_{F_m} := T_m \cup T_{m-1}$. 
     We use the Poincar\'e--Friedrichs inequality over $U_{F_{m}}$,
     as given in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, 
     to find $w_{F_m} \in W^{1,p}(U_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $U_{F_m}$ and 
@@ -2339,12 +2340,12 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \\
         \| c_{m} \|_{L^{p}(T_m)}
         = 
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
-        \| c_{m} \|_{L^{p}(T_{{\iota(m)}})},
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| c_{m} \|_{L^{p}(T_{{m-1}})},
         \\ 
-        \| c_{m} \|_{L^{p}(T_{{\iota(m)}})}
+        \| c_{m} \|_{L^{p}(T_{{m-1}})}
         \leq 
-        \| w \|_{L^{p}(T_{{\iota(m)}})} + \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})} 
+        \| w \|_{L^{p}(T_{{m-1}})} + \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
         .
     \end{gather*}
     In combination, 
@@ -2355,11 +2356,11 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w_{F_m} \|_{L^{p}(T_m)}
         \\&\qquad 
         +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
-        \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})}
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}
         +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
-        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{m-1}})}
         .
     \end{align*}
     We sum the two integrals of $w_{F_m}$. 
@@ -2370,21 +2371,21 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \begin{align*}
         \| w \|_{L^{p}(T_m)}
         &\leq 
-        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{\iota(m)}})^{\frac q p} } \right)^{\frac 1 q}
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
         \left( 
             \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
             +
-            \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})}^{p}
+            \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
         \right)^{\frac 1 p}
         +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
-        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{m-1}})}
         \\&\leq 
-        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{\iota(m)}})^{\frac q p} } \right)^{\frac 1 q}
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
         \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
         +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
-        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{m-1}})}
         .
     \end{align*}
     In the special case $p=1$,
@@ -2392,12 +2393,12 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w\|_{L^{1}(T_m)}
         \leq 
         \max\left(
-            1, \frac{ \vol(T_m) }{ \vol(T_{{\iota(m)}}) } 
+            1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
         \right)
         \| w_{F_m} \|_{L^{1}(U_{F_m})}
         +
-        \frac{ \vol(T_m) }{ \vol(T_{{\iota(m)}}) }
-        \| w \|_{L^{1}(T_{{\iota(m)}})}
+        \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
+        \| w \|_{L^{1}(T_{{m-1}})}
         .
     \end{align*}
     In the limit case $p=\infty$, 
@@ -2407,7 +2408,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         2
         \| w_{F_m} \|_{L^{\infty}(U_{F_m})}
         +
-        \| w \|_{L^{\infty}(T_{{\iota(m)}})}
+        \| w \|_{L^{\infty}(T_{{m-1}})}
         .
     \end{align*}
     The local inequality~\eqref{math:wFm_inequality} now provides the second recursive estimate. 
@@ -2448,7 +2449,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 \begin{remark}
-    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular nonconvex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
+    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular nonconvex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $\{ U_m \}$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ U_m \}$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
 \end{remark}
 
 
@@ -2486,14 +2487,14 @@ as our main objective requires some further concepts.
 We are interested in simplicial complexes that triangulate manifolds. 
 Our particular interest are manifold triangulations that are \emph{shellable}.
 Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
-\cye{Local} patches \cye{(stars)} within triangulations of dimension two and three are examples of such shellable complexes. 
+Local patches (stars) within triangulations of dimension two and three are examples of such shellable complexes. 
 The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures} are our main references for this section. 
 We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
 
 \begin{figure}[h]
 \centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
-\label{figure:not_manifold_triang}
 \caption{A manifold triangulation (left) and not a manifold triangulation (right)}
+\label{figure:not_manifold_triang}
 \end{figure}
 
 
@@ -2507,11 +2508,10 @@ such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the open unit b
 or onto the half-ball $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
 In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
 Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional. 
-\cye{An example of a manifold triangulation and an example which is not a manifold triangulation are given in Figure~\ref{figure:not_manifold_triang}.}
+An example of a manifold triangulation and an example which is not a manifold triangulation are given in Figure~\ref{figure:not_manifold_triang}.
 
 The following special cases receive particular interest:
-an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball\cye{\sout{,
-and we sometimes call this a \textit{$n$-disk} triangulation}}.
+an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball\mwl{, and we sometimes call this a \textit{$n$-disk} triangulation}.
 An \textit{$n$-sphere triangulation} is any triangulation of a topological $n$-sphere. 
 
 
@@ -2554,7 +2554,9 @@ While the reader might deem them obvious, we nevertheless include proofs.
     
     \item
     Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
-    Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ so small that it only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
+    Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ 
+    homeomorphic to an $n$-dimensional ball 
+    so small that its closure $\overline{B_F}$ only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
     Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
     The intersection of any two of them is $F$, but their interiors are disjoint because otherwise they would coincide. 
     
@@ -2594,12 +2596,11 @@ We call this simplicial complex the \emph{boundary complex}. It has dimension $n
 % Definitions imply that the boundary complex is a manifold triangulation of dimension $n-1$.
 % The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
 
-We continue with a few more observations about manifold triangulations
-at the intersection of topology and combinatorics. 
-These include the topology of local patches (stars), which is a surprisingly non-trivial topic. 
-We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{locally vertex combinatorial}
-if the star of every simplex $S \in \calT$ is a triangulated $n$-dimensional ball that contains $S$.
-We gather some results that are hard to find in the literature. 
+We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. This topics is surprisingly non-trivial and 
+we gather some results that are hard to find in the literature. 
+
+We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{combinatorial}
+if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simplicial ball of dimension $n$. 
 
 \begin{lemma}\label{lemma:startopology}
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
@@ -2621,18 +2622,19 @@ We gather some results that are hard to find in the literature.
     The reader is assumed to have some background in topology. 
     \begin{enumerate}
     \item 
-    Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with barycenter $z_{\cye{S}}$\todo{MV: OK?}, and dimension $k$.
+    Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with barycenter $z_{S}$, and dimension $k$.
     Let $\calS := \patch_{\calT}(S)$ be its star. 
     Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
     has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
     For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
-    \begin{align*}
-        v_0, \dots, v_{i-1}, z_{\cye{S}}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}.
-    \end{align*}
+    $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+%     \begin{align*}
+%         $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+%     \end{align*}
     The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
     that triangulates the same underlying set as $\calS$.
-    Moreover, $\calS' = \patch_{\calS'}(z_{\cye{S}})$. 
-    In particular, $z_{\cye{S}}$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
+    Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
+    In particular, $z_{S}$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
     So it remains to study the topology of vertex stars. 
     
     \item 
@@ -2761,125 +2763,10 @@ We gather some results that are hard to find in the literature.
     We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
 
     Conversely, not all topological manifolds, even if compact, can be described as a triangulation. 
-    Such manifolds appear in dimension four and higher:
-    one example is the E8 manifold\todo{MV: reference?}, which is a compact simply-connected topological $4$-manifold that is not homeomorphic to the underlying set of any simplicial complex. The construction of such counterexamples typically involves an infinite procedure.
+    Such manifolds, some even compact and simply-connected, appear in dimension four and higher~\cite{akbulut2014casson}.
 %     For each dimension $n \geq 5$ there exists an $n$-dimensional compact topological manifold without a triangulation. 
 \end{remark}
 
-\begin{figure}
-    \centering
-    \begin{tabular}{c}\begin{tikzpicture}
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({cos(0)}, {sin(0)});
-        \coordinate (B) at ({cos(60)}, {sin(60)});
-        \coordinate (C) at ({cos(120)}, {sin(120)});
-        \coordinate (D) at ({cos(180)}, {sin(180)});
-        \coordinate (E) at ({cos(240)}, {sin(240)});
-        \coordinate (F) at ({cos(300)}, {sin(300)});
-        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
-        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
-        \draw[dashed] (O) -- (A); \draw[dotted] (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}\\ (1) \end{tabular}
-    \begin{tabular}{c}\begin{tikzpicture}
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({cos(0)}, {sin(0)});
-        \coordinate (B) at ({cos(60)}, {sin(60)});
-        \coordinate (C) at ({cos(120)}, {sin(120)});
-        \coordinate (D) at ({cos(180)}, {sin(180)});
-        \coordinate (E) at ({cos(240)}, {sin(240)});
-        \coordinate (F) at ({cos(300)}, {sin(300)});
-        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
-        \draw[dotted] (A) -- (B); \draw (B) -- (C) -- (D) -- (E) -- (F) -- (A);
-        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}\\ (2) \end{tabular}
-    \begin{tabular}{c}\begin{tikzpicture}
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({cos(0)}, {sin(0)});
-        \coordinate (B) at ({cos(60)}, {sin(60)});
-        \coordinate (C) at ({cos(120)}, {sin(120)});
-        \coordinate (D) at ({cos(180)}, {sin(180)});
-        \coordinate (E) at ({cos(240)}, {sin(240)});
-        \coordinate (F) at ({cos(300)}, {sin(300)});
-        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
-        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
-        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw[dotted] (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}\\ (3) \end{tabular}
-    \begin{tabular}{c}\begin{tikzpicture}
-        \coordinate (O) at (0, 0);
-        \coordinate (A) at ({cos(0)}, {sin(0)});
-        \coordinate (B) at ({cos(60)}, {sin(60)});
-        \coordinate (C) at ({cos(120)}, {sin(120)});
-        \coordinate (D) at ({cos(180)}, {sin(180)});
-        \coordinate (E) at ({cos(240)}, {sin(240)});
-        \coordinate (F) at ({cos(300)}, {sin(300)});
-        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
-        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
-        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw[dotted] (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
-    \end{tikzpicture}\\ (4) \end{tabular}
-    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. 
-    (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line.
-    (2) The new edge patch may already be a subset of the subtriangulation
-    (3) An inadmissible choice because the new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like
-    (4) An inadmissible choice because the new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
-\end{figure}
-
-% \begin{figure}
-%     \centering
-%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
-%         \coordinate (O) at (0, 0);
-%         \coordinate (A) at ({0.8*cos(  0)}, {0.8*sin(  0)});
-%         \coordinate (B) at ({0.8*cos(120)}, {0.8*sin(120)});
-%         \coordinate (C) at ({0.8*cos(240)}, {0.8*sin(240)});
-%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-%         \draw (A) -- (B) -- (C) -- cycle; \draw (X) -- (Y) -- (Z) -- cycle;
-%         \draw[fill=gray!20] (X) -- (Y) -- (B) -- cycle;
-%         \draw[fill=gray!20] (Y) -- (Z) -- (C) -- cycle;
-%         \draw[fill=gray!20] (Z) -- (X) -- (A) -- cycle;
-%         \draw[fill=gray!20] (A) -- (X) -- (B) -- cycle;
-%         \draw[fill=gray!20] (B) -- (Y) -- (C) -- cycle;
-%         \draw[fill=gray!20] (C) -- (Z) -- (A) -- cycle;
-%     \end{tikzpicture}\\ (1) \end{tabular}
-%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
-%         \coordinate (O) at (0, 0);
-%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
-%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
-%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
-%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-%         \draw (O) -- (A);
-%         \draw (O) -- (B);
-%         \draw (O) -- (C);
-%         \draw (O) -- (X);
-%         \draw (O) -- (Y);
-%         \draw (O) -- (Z);
-%         %
-%     \end{tikzpicture}\\ (2) \end{tabular}
-%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
-%         \tikzset{z={(90:1cm)}, y={(-30:1cm)}, x={(210:1cm)}}
-%         % \tikzset{z={(90:1cm)}, y={(-10:1cm)}, x={(250:1cm)}}
-% 
-%         \coordinate (O) at (0, 0);
-%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
-%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
-%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
-%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
-%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
-%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
-%         \coordinate (T) at ({0}, {0}, {3});
-% 
-%         \draw[thick, fill=gray!30] (O) -- (C) -- (T) -- cycle;
-%         \draw[thick, fill=gray!30] (O) -- (Y) -- (T) -- cycle;
-%         \draw[thick, fill=gray!30] (O) -- (Z) -- (T) -- cycle;
-%         \draw[thick, fill=gray!30] (O) -- (A) -- (T) -- cycle;
-%         \draw[thick, fill=gray!30] (O) -- (B) -- (T) -- cycle;
-%         \draw[thick, fill=gray!30] (O) -- (X) -- (T) -- cycle;
-% 
-%     \end{tikzpicture}\\ (3) \end{tabular}
-%     \caption{Example of a connected $2$-dimensional manifold triangulation, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
-% \end{figure}
 
 
 
@@ -2897,15 +2784,14 @@ This forces the intermediate triangulations to be particularly well-shaped.
 We build upon the notion of shelling as introduced in~\cite[Definition 8.1]{ziegler1995lectures},
 where our definition of shelling is equivalent to the notion of the shellings of simplicial complexes, see also~\cite[Remark~8.3]{ziegler1995lectures}. 
 
-\todo[inline]{MV: Shortened, narrowed, removed repetitions.}
+% \mwl{Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
+% by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+% the gluing interface is a triangulated submanifold of the boundary. 
+% This forces the intermediate triangulations to be particularly well-shaped. 
+% We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
+%It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex, as this enables the inductive method of proof.
+% }
 
-\mwl{Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
-by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
-the gluing interface is a triangulated submanifold of the boundary. 
-This forces the intermediate triangulations to be particularly well-shaped. 
-We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
-It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex, 
-as this enables the inductive method of proof.}
 
 
 Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
@@ -2919,9 +2805,9 @@ For any enumeration, we call
     \cap 
     T_{m+1}
 \end{align*}
-be the $m$-th \textit{interface set}. 
+the $m$-th \textit{interface set}. 
 % Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
-We call the enumeration a \emph{shelling} if each interface \cye{set} $I_m$ is a \cye{triangulated} manifold of dimension $n-1$. 
+We call the enumeration a \emph{shelling} if each interface set $I_m$ is a triangulated manifold of dimension $n-1$. 
 
 \begin{remark}
     We interpret a shelling as the construction of a triangulation 
@@ -2935,7 +2821,8 @@ We call the enumeration a \emph{shelling} if each interface \cye{set} $I_m$ is a
 \end{remark}
 
 
-The reason of our interest in shellable simplicial complexes is that they can be constructed by \cye{a} successive adhesion of simplices to intermediate complexes \cye{where these intermediate complexes are} simplicial \disk s \cye{\sout{or a simplicial spheres}}, as shows the following important consequence.\todo{MV: OK? ``Intermediate'' excludes the last one.} 
+The reason of our interest in shellable simplicial complexes is that they can be constructed via successive adhesion of simplices.
+The resulting succession of simplicial complexes consists of simplicial balls or spheres. 
 
 \begin{lemma}\label{lemma:shell_triang_man}
     Let $\calT$ be an $n$-dimensional simplicial complex 
@@ -2946,7 +2833,7 @@ The reason of our interest in shellable simplicial complexes is that they can be
     $$
         X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
     $$ 
-    is a \cye{triangulated} manifold with boundary for all $0 \leq m \leq M$.
+    is a triangulated manifold with boundary for all $0 \leq m \leq M$.
     % 
     In particular, $X_{m}$ is a topological $n$-ball when $m < M$, 
     and 
@@ -2956,7 +2843,7 @@ The reason of our interest in shellable simplicial complexes is that they can be
     We prove this claim by induction. 
     Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. 
     Suppose that $X_m := T_{0} \cup T_{1} \cup \dots \cup T_{m}$ is a topological $n$-ball and that $T_{m+1}$ is the next $n$-simplex in the shelling.
-    By definition, $I_{\cye{m}} := X_{m} \cap T_{m+1}$ is a submanifold of $\partial T_{m+1}$,
+    By definition, $I_{m} := X_{m} \cap T_{m+1}$ is a submanifold of $\partial T_{m+1}$,
     and it is triangulated by some faces of $T_{m+1}$ and their subsimplices. 
     
     Let $F$ be such a face. 
@@ -2964,29 +2851,27 @@ The reason of our interest in shellable simplicial complexes is that they can be
     and $F$ is in the boundary of $X_{m}$. We conclude that $I_{m}$ triangulates a submanifold of the boundary of $X_{m}$.
     
     On the one hand, 
-    if $I_{\cye{m}}$ is the entire boundary of $T_{m+1}$, 
+    if $I_{m}$ is the entire boundary of $T_{m+1}$, 
     then it must also be the boundary of the topological $n$-ball $X_{m}$. 
     Hence $X_{m} \cup T_{m+1}$ must be a topological $n$-sphere and thus a manifold without boundary, which requires $m = M$.
     On the other hand, 
-    if $I_{\cye{m}}$ is a proper subset of the entire boundary of $T_{m+1}$, 
+    if $I_{m}$ is a proper subset of the entire boundary of $T_{m+1}$, 
     then $X_{m} \cup T_{m+1}$ is still a topological $n$-ball.
 \end{proof}
 
 
-We \cye{now} collect important examples of shellable triangulations. \cye{Essentially, in two space dimensions, interesting triangulations shellable, but starting from three space dimensions, nonshellable situations can arise}. Our main interest are local \cye{patches} (stars) within triangulations\cye{: these are shellable up to three space dimensions, but not necessarily beyond}. 
+We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations shellable, but starting from three space dimensions, nonshellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
 
 \begin{example}\label{example:shell_simpl}
-    Any simplex $T$ \cye{(}trivially\cye{)} has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
-    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling\cye{, cf.~\cite[Example 8.2.(iii)]{ziegler1995lectures}}.
+    Any simplex $T$ (trivially) has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
+    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
 \end{example}
 \begin{example}
     The standard triangulation of the $3$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable, as are its higher-dimensional generalizations.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
 \end{example}
-
-\cye{\begin{example}
+\begin{example}
     There exists a non-shellable triangulation of a tetrahedron and of a cube in $n=3$, see~\cite[Example 8.9]{ziegler1995lectures}.
-\end{example}}\todo{MV: 3D counterexamples directly here and straight to the point.}
-
+\end{example}
 
 \begin{lemma}\label{lemma:shell_2D}
     Any simplicial $2$-\disk\ is shellable.
@@ -3028,8 +2913,25 @@ We \cye{now} collect important examples of shellable triangulations. \cye{Essent
     then $\overline{M \setminus T}$ is still a topological $2$-\disk.
     The triangulation $\calT'$ that is obtained by removing $T$
     is a triangulation of some $2$-\disk\ that intersects $T$ only at either two or one edges.
-    Any shelling of $\calT'$ can \cye{in this way} be extended to a shelling of $\calT$\cye{, and} the proof is complete. 
+    Any shelling of $\calT'$ can in this way be extended to a shelling of $\calT$, and the proof is complete. 
 \end{proof}
+
+\begin{lemma}
+    Let $\calT$ be a $3$-dimensional manifold triangulation and $S \in \calT$.
+    Then $\patch_{\calT}(S)$ is shellable. 
+\end{lemma}
+\begin{proof}
+    The statement is trivially true if $S$ is a tetrahedron. 
+    The statement is clear if $S$ is an inner or boundary face of $\calT$,
+    where we only need to enumerate either one or two tetrahedra. 
+    The statement is still easily verified if $S$ is an inner or boundary edge of $\calT$:
+    one chooses a starting tetrahedron (with a boundary face if $S$ is a boundary edge) and rotates around the edge in a fixed direction to create a suitable enumeration. 
+    When $S$ is an inner vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-sphere.
+    Similarly, when $S$ is a boundary vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-\disk.
+    Both these $2$-dimensional complexes are shellable by Lemma~\ref{lemma:shell_2D}, and any such shelling immediately yields a shelling of $\patch_{\calT}(S)$ since there is a one-to-one correspondance between the tetrahedra in $\calT$ and the triangles.
+    \footnote{For $S$ an inner vertex, \cite[Lemma~B.1]{ern2020stable} also yields the claim.}
+\end{proof}
+
 
 \begin{lemma}\label{lemma:stars_are_shellable}
     Let $\calT$ be a $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
@@ -3046,28 +2948,19 @@ We \cye{now} collect important examples of shellable triangulations. \cye{Essent
 \end{proof}
 
 
-\begin{lemma}
-    Let $\calT$ be a $3$-dimensional manifold triangulation and $S \in \calT$.
-    Then $\patch_{\calT}(S)$ is shellable. 
-\end{lemma}
-\begin{proof}
-    \cye{For $S$ a tetrahedron, this is Example~\ref{example:shell_simpl}.}
-    The statement is \cye{also} clear if $S$ is an inner or boundary face of $\calT$\cye{, where we only need to enumerate respectively one or two tetrahedra}. 
-    The statement is \cye{still} easily verified if $S$ is an inner or boundary edge of $\calT$\cye{: one chooses a starting tetrahedron (with a boundary face) and rotates around the edge in a fixed direction to create a suitable enumeration}.
-
-    \cye{When $S$ is an inner vertex, then the \cye{faces} (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-sphere. Similarly, when $S$ is a boundary vertex, then the \cye{faces} (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-\disk. Both these $2$-dimensional complexes are shellable \cye{by Lemma~\ref{lemma:shell_2D}}, and any such shelling \cye{immediately yields} a shelling of $\patch_{\calT}(S)$ since there is a one-to-one correspondance between the tetrahedra in $\calT$ and the triangles.}\footnote{\cye{For $S$ an inner vertex, \cite[Lemma~B.1]{ern2020stable} also yields the claim.}}\todo{MV: but not Lemma~\ref{lemma:stars_are_shellable}, because this first needs the triangulation $\calT$ itself to be shellable, right?}
-\end{proof}
-
 \begin{remark}
     Not all triangulable sets admit a triangulation that is shellable. 
-    Moreover, even if a set admits a shellable triangulation, not all of its triangulations \cye{are} be shellable. \cye{For example, if we extend the non-shellable triangulation of a tetrahedron from~\cite[Example 8.9]{ziegler1995lectures}} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
-    then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
-    This demonstrates that patches around boundary simplices are not necessarily shellable when the \cye{space} dimension \cye{$n$} is larger than three.
-\end{remark}\todo{MV: Moved up a bit.}
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations are be shellable. For example, if we extend the non-shellable triangulation of the tetrahedron from~\cite[Example 8.9]{ziegler1995lectures} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
+    This demonstrates that patches around boundary simplices are not necessarily shellable when the space dimension $n$ is larger than three.
+\end{remark}
+\begin{remark}
+    Not all triangulable sets admit a triangulation that is also shellable. 
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
+    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
+\end{remark}
 
 
-A major structural feature of shellable simplicial complexes 
-is that each time a\cye{n $n$-}simplex is added, star\cye{s} around \cye{lower-dimensional} simpl\cye{ices} gets completed. 
+A major structural feature of shellable simplicial complexes is that each time an $n$-simplex is added, stars around lower-dimensional simplices gets completed. 
 
 \begin{lemma}\label{lemma:existenceofstar}
     Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
@@ -3077,31 +2970,21 @@ is that each time a\cye{n $n$-}simplex is added, star\cye{s} around \cye{lower-d
         \qquad 
         I_{m} := X_{m} \cap T_{m+1}.
     $$ 
-    \cye{\sout{Whenever} Then} $I_{m}$ is \cye{a} union of $k$ different face\cye{\sout{t}}s of $T$,\todo{MV: this is a property, not an assumption, right?} \cye{$1 \leq k \leq n$,} \cye{and} the intersection of those face\cye{\sout{t}}s is an interior simplex $S_{\cye{m}} \in \calT$ of dimension $n-k$ that satisfies 
+    Then $I_{m}$ is a union of $k$ different faces of $T$, $1 \leq k \leq n$, and the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
     $$
-        \patch_{X_{m+1}}(S_{\cye{m}}) = \patch_{\calT}(S_{\cye{m}}).
+        \patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m}).
     $$
 \end{lemma}
 \begin{proof}
-    We know $I_{m}$ is a \cye{triangulated} submanifold of the boundary of $T$, and so it must be a collection of $k$ face\cye{\sout{t}}s \cye{of $T$, $1 \leq k \leq n$ ($k = n + 1$ can happen for the last enumerated simplex $m = M$ when $\calT$ is an $n$-sphere). $I_{m}$ also} constitutes \cye{a} local patch \cye{(star) of $(n-1)$-dimensional simplices around} some simplex $S_{\cye{m}}$ of dimension $n-k$ \cye{in $I_{m}$}.
-    By \cye{definition}, $S_{\cye{m}}$ \cye{is} be a boundary simplex of $X_{m}$\cye{,} and it is an interior simplex of $X_{m+1}$. 
-    But then $S_{\cye{m}}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
-    which means that $\patch_{X_{m+1}}(S_{\cye{m}}) = \patch_{\calT}(S_{\cye{m}})$. 
+    We know $I_{m}$ is a triangulated submanifold of the boundary of $T$, and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n$ ($k = n + 1$ can happen for the last enumerated simplex $m = M$ when $\calT$ is an $n$-sphere). $I_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $I_{m}$.
+    By definition, $S_{m}$ is a boundary simplex of $X_{m}$, and it is an interior simplex of $X_{m+1}$. 
+    But then $S_{m}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
+    which means that $\patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m})$. 
 \end{proof}
 
 
 
 
-\begin{remark}
-    Not all triangulable sets admit a triangulation that is also shellable. 
-    Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
-    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
-
-    For example, there exists a non-shellable triangulation of a tetrahedron. 
-    If we extend this triangulation to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, 
-    then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
-    This demonstrates that patches around boundary simplices are not necessarily shellable when the dimension is larger than the three.
-\end{remark}
 
 
  
