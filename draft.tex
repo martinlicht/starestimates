@@ -309,6 +309,120 @@ We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m 
  
  
  
+\begin{figure}
+    \centering
+    \begin{tabular}{c}\begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw[dotted] (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}\\ (1) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw[dotted] (A) -- (B); \draw (B) -- (C) -- (D) -- (E) -- (F) -- (A);
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}\\ (2) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw[dotted] (O) -- (C); \draw (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}\\ (3) \end{tabular}
+    \begin{tabular}{c}\begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \coordinate (A) at ({cos(0)}, {sin(0)});
+        \coordinate (B) at ({cos(60)}, {sin(60)});
+        \coordinate (C) at ({cos(120)}, {sin(120)});
+        \coordinate (D) at ({cos(180)}, {sin(180)});
+        \coordinate (E) at ({cos(240)}, {sin(240)});
+        \coordinate (F) at ({cos(300)}, {sin(300)});
+        \fill[gray!20] (A) -- (B) -- (O) -- (F) -- cycle;
+        \draw (A) -- (B) -- (C) -- (D) -- (E) -- (F) -- cycle;
+        \draw[dashed] (O) -- (A); \draw (O) -- (B); \draw (O) -- (C); \draw[dotted] (O) -- (D); \draw (O) -- (E); \draw (O) -- (F);
+    \end{tikzpicture}\\ (4) \end{tabular}
+    \caption{Examples and counterexamples for building a manifold-like $1$-patching of a $2$-dimensional manifold-like triangulation. 
+    (1) We have already added the edge patch along the dashed line and we add the edge patch along the dotted line.
+    (2) The new edge patch may already be a subset of the subtriangulation
+    (3) An inadmissible choice because the new edge patch has no overlap with current subtriangulation, though the next subtriangulation would be manifold-like
+    (4) An inadmissible choice because the new edge patch has no overlap with current subtriangulation and the next subtriangulation would not be manifold-like.}\label{figure:illustrationpatching}
+\end{figure}
+
+% \begin{figure}
+%     \centering
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({0.8*cos(  0)}, {0.8*sin(  0)});
+%         \coordinate (B) at ({0.8*cos(120)}, {0.8*sin(120)});
+%         \coordinate (C) at ({0.8*cos(240)}, {0.8*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \draw (A) -- (B) -- (C) -- cycle; \draw (X) -- (Y) -- (Z) -- cycle;
+%         \draw[fill=gray!20] (X) -- (Y) -- (B) -- cycle;
+%         \draw[fill=gray!20] (Y) -- (Z) -- (C) -- cycle;
+%         \draw[fill=gray!20] (Z) -- (X) -- (A) -- cycle;
+%         \draw[fill=gray!20] (A) -- (X) -- (B) -- cycle;
+%         \draw[fill=gray!20] (B) -- (Y) -- (C) -- cycle;
+%         \draw[fill=gray!20] (C) -- (Z) -- (A) -- cycle;
+%     \end{tikzpicture}\\ (1) \end{tabular}
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \draw (O) -- (A);
+%         \draw (O) -- (B);
+%         \draw (O) -- (C);
+%         \draw (O) -- (X);
+%         \draw (O) -- (Y);
+%         \draw (O) -- (Z);
+%         %
+%     \end{tikzpicture}\\ (2) \end{tabular}
+%     \begin{tabular}{c}\begin{tikzpicture}[scale=0.5]
+%         \tikzset{z={(90:1cm)}, y={(-30:1cm)}, x={(210:1cm)}}
+%         % \tikzset{z={(90:1cm)}, y={(-10:1cm)}, x={(250:1cm)}}
+% 
+%         \coordinate (O) at (0, 0);
+%         \coordinate (A) at ({3.0*cos(  0)}, {3.0*sin(  0)});
+%         \coordinate (B) at ({3.0*cos(120)}, {3.0*sin(120)});
+%         \coordinate (C) at ({3.0*cos(240)}, {3.0*sin(240)});
+%         \coordinate (X) at ({3.0*cos( 60)}, {3.0*sin( 60)});
+%         \coordinate (Y) at ({3.0*cos(180)}, {3.0*sin(180)});
+%         \coordinate (Z) at ({3.0*cos(300)}, {3.0*sin(300)});
+%         \coordinate (T) at ({0}, {0}, {3});
+% 
+%         \draw[thick, fill=gray!30] (O) -- (C) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (Y) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (Z) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (A) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (B) -- (T) -- cycle;
+%         \draw[thick, fill=gray!30] (O) -- (X) -- (T) -- cycle;
+% 
+%     \end{tikzpicture}\\ (3) \end{tabular}
+%     \caption{Example of a connected $2$-dimensional manifold triangulation, which triangulates an annulus, that does neither admit a manifold-like $0$-patching nor manifold-like $1$-patching.}\label{figure:annuluscounterexample}
+% \end{figure}
  
 
 

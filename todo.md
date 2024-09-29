@@ -1,22 +1,27 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
+- how much redundancy is achievable?
+- do you have a preference for facet or face ? 
+
 - [x] replace the shape notation by C_ ...
-- [x] scalars: condense the scalar discussion via spanning trees, use recursion, spanning tree
-- [ ] final: complete the final estimate, use recursion 
-    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
-- [ ] introduce combinatorial triangulations, use literature referals
+- [ ] scalars: condense the discussion even further
+- [x] introduce combinatorial triangulations, use literature referals
 - [ ] sobolev section: check later that everything needed is there 
 - [ ] potentials section: sigma notation for potential operators, rewrite
 - [ ] potentials section: additional constants notation for potential operators
 - [ ] potentials section: adapt and unify notation/tex
 - [ ] reflection: singular values listed in reflection section
 - [ ] shape: reduce the shape constant discussion once everything else is in place
-- [ ] numerics: create a spanning tree and start computing the sclar estimate 
-
-Further points that need discussion
-- [ ] reduce the shape regularity discussion
-- [ ] spanning tree; simplify the scalar potential construction with recursive structure
+- [ ] numerics: create a spanning tree and start computing the scalar estimate 
 - [ ] opnorm and vecnorm
+- [ ] final: complete the final estimate, use recursion 
+    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
+- [ ] We should use clarify face vs facet
+- [ ] should all triangulations be n dimensional ? 
+- [ ] remove \Faces or use it all over the place 
+- [ ] U_T
+
+
 
 
 Revision
@@ -26,17 +31,18 @@ Revision
 - [ ] Introduction 
 - [ ] Move ahead section on scalar potentials 
 - [o] Section 2: scalar potential on domains
-- [o] Section 3: triangulations (combinatorial)
+- [x] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
-- [x] Section 4: scalar potential on triangulated domains
+- [x] Section 4: scalar potential on triangulations
 - [ ] Move back section on shellable triangulations
 - [o] Section 5: review of vector calculus
 - [o] Section 6: potential operators 
-- [o] Section 7: Shellable triangulations 
+        unity notation, 
+- [x] Section 7: Shellable triangulations 
 - [o] Section 8: reflections and deformations
 - [ ] Section 9: Final estimate 
-- [ ] Section 10: Computation
-- [o] outlook 
+- [o] Section 10: Computation
+- [x] outlook 
 
 Further changes
 git diff 97fbcd86 21e58
