@@ -1,7 +1,7 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
 - [x] replace the shape notation by C_ ...
-- [ ] scalars: condense the scalar discussion via spanning trees, use recursion, spanning tree
+- [x] scalars: condense the scalar discussion via spanning trees, use recursion, spanning tree
 - [ ] final: complete the final estimate, use recursion 
     - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
 - [ ] introduce combinatorial triangulations, use literature referals
@@ -25,7 +25,7 @@ Revision
 - [x] library + bib style 
 - [ ] Introduction 
 - [ ] Move ahead section on scalar potentials 
-- [ ] Section 2: scalar potential on domains
+- [o] Section 2: scalar potential on domains
 - [o] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
 - [o] Section 4: scalar potential on triangulated domains

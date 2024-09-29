@@ -1,6 +1,7 @@
 \documentclass[10pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
+%\usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{comment}          % 
@@ -42,7 +43,7 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over \cye{convex domains and} domains with shellable triangulations}
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over convex domains and domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Affiliation of the First Author, \texttt{email1@example.com}} \and
     Martin Werner Licht\thanks{Affiliation of the Second Author, \texttt{martin.licht@epfl.ch}} \and
@@ -80,7 +81,6 @@
 
 
 \tableofcontents
-\todo[inline]{MV: Added table of contents: for us, to see the structure of and the main terminology used in the paper}
  
 \section{Introduction}\label{section:intro}
 
@@ -556,16 +556,17 @@ A crucial structural observation is the following.~\footnote{\todo{$U_T$ looks o
  where $S'' \in \calT$ is the convex closure of $S$ and $S'$.
 \end{proof}
 
-We introduce a specific notion of connectivity. 
-Given an $n$-dimensional simplicial complex $\calT$, 
-we call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. % TODO: Theo suggests reverse order of that sequence 
-We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. 
+We introduce a specific notion of connectivity when we are given an $n$-dimensional simplicial complex $\calT$. 
+We call two $n$-dimensional simplices $S, S' \in \calT$ \emph{face-neighboring} if $S \cap S'$ is a common face of both of them. 
+We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. % TODO: Theo suggests reverse order of that sequence 
+We call such a sequence a \emph{strong path} from $S$ to $S'$ in $\calT$. \mwl{Change the terminology strong path to something else.}
 Clearly, face-connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{face-connected component} of $\calT$ is an equivalence class under this equivalence relation, 
 and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
-\\
 
+\mwl{We should use clarify face vs facet}
 
+\subsection{...}
 
 We shift gears and move from a combinatorial study of triangulations to an analytical study:
 we introduce quantitative measures for the geometric quality of triangulations. 
@@ -734,13 +735,14 @@ We now gather a few relationships between geometric and algebraic entities and c
 
 We are interested in the maximal ratio of volumes between \mwl{face?} neighboring $n$-simplices, written $\volumeratio(\calT)$,
 and the ratio of intersecting simplices, written $\diameterratio(\calT)$. Formally, 
-\begin{align}
+\begin{align}\label{math:volumeratio}
     \volumeratio(\calT) 
     := 
     \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \in \subsimplex_{n-1}(\calT) } } 
     \frac{ \vol(T) }{ \vol(T') }
     ,
-    \qquad 
+\end{align}
+\begin{align}\label{math:diameterratio}
     \diameterratio(\calT) 
     := 
     \sup_{ \substack{ T, T' \in \subsimplex_{n}(\calT) \\ T \cap T' \neq \emptyset } }
@@ -1133,7 +1135,7 @@ This indicator quantifies how much reflection across the shared face distorts th
 \end{proof}
 
 \begin{remark}
-    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\rho(\calT)$ \cye{of~\eqref{math:volumecomparisonmeasure}} but not $\theta(\calT)$ \cye{of~\eqref{math:diametercomparison}}. 
+    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ \cye{of~\eqref{math:volumeratio}} but not $\diameterratio(\calT)$ \cye{of~\eqref{math:diametercomparison}}. 
     Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ but not $\diameterratio(\calT)$. 
     As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one face in terms of the shape measure. 
     If we have an upper estimate for the number of simplices sharing a given vertex, 
@@ -1648,223 +1650,29 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
-In this section we address the stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
-We achieve by explicitly constructing scalar potentials of gradients.
-We have already seen that we can construct the scalar potential for a gradient vector field by a well-understood procedure if the domain is convex: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. We take that procedure as in inspiration for constructing gradient potentials over more general triangulated domains: after fixing a starting cell, we construct the potential by successive integration over more and more cells. we construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
-The basic idea has appeared in the different variants before, for instance recently in \cite{Ern_Voh_p_rob_3D_20, Chaum_Voh_p_rob_3D_H_curl_23, Voh_loc_glob_H1_24}.
-\\
-
-{\color{blue}In this section\cye{,} we \cye{develop a} stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. \cye{The following very classical procedure serves us as an inspiration:} given a gradient vector field, we can reconstruct \cye{the scalar potential} up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
-Over triangulated domains, \cye{we fix} a starting triangle \cye{and perform this classical procedure. We then pass through the triangulation such that each subsequent simplex is connected to the previous ones by a face}. 
-We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face.
-This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
-}
-
-
-We construct scalar potentials over larger and larger intermediate subdomains. 
-Two different variations of that idea are analyzed;
-while the underlying idea remains the same, they differ in the way the intermdiate potentials are extended.
-On the one hand, we can cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and relies on Lemma~\ref{lemma:poincarefriedrichsoverfacepatch} as an auxiliary result. 
-
-For the agenda of this section, the following combinatorial notion of triangulations will be helpful. 
-Whenever $\calT$ is a face-connected $n$-dimensional triangulation, 
-a \emph{spanning tree} is an enumeration $T_{0}, \dots, T_{M}$ of all its $n$-dimensional simplices
-where for each index $1 \leq m \leq M$ we have fixed index $0 \leq j(m) \leq m-1$ 
-such that $T_{m}$ and $T_{j(m)}$ share a common face of dimension $n-1$.
-We call $T_{j(m)}$ the \emph{predecessor} of $T_{m}$ within the spanning tree. 
+\mwl{In this section, we develop a stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. 
+The following very classical procedure serves us as an inspiration: given a gradient vector field, we can reconstruct the scalar potential up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
+We perform a discrete analogue of this procedure over triangulated domains: 
+having fixed a starting triangle, we traverse the triangulation along face-neighboring simplices.
+%We construct a scalar potential for a given gradient vector field on larger and larger triangulated subdomains.
+We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face, thus constructing a scalar potential over larger and larger subdomains.
+This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.}
 
 
 
-
-On the other hand, we assess an alternative route towards constructing scalar gradient potentials over triangulated domains. 
-While the underlying idea remains the same, the construction of the potential is slightly different. 
-we can extend the potential on each intermediate domain to another simplex by solving a local auxiliary problem on that simplex subject to partial boundary conditions. This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}. 
-As an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex} computes an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed on a single face of the boundary. 
-
-We emphasize that the second approach to constructing potentials and bounding Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. Our estimates of Poincar\'e--Friedrichs constants capture the correct asymptotic behavior as $p$ grows to infinity.
-
-
-
+% We have already seen that we can construct the scalar potential for a gradient vector field by a well-understood procedure if the domain is convex: after fixing a starting point, we integrate the gradient vector field along lines emanating from that starting point. We take that procedure as in inspiration for constructing gradient potentials over more general triangulated domains: after fixing a starting cell, we construct the potential by successive integration over more and more cells. We construct a scalar potential for a given gradient vector field on larger and larger simplicial neighborhoods. 
+% This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
+% 
+% {\color{blue}In this section\cye{,} we \cye{develop a} stepwise computable estimate of Poincar\'e--Friedrichs constants of triangulated domains. \cye{The following very classical procedure serves us as an inspiration:} given a gradient vector field, we can reconstruct \cye{the scalar potential} up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
+% Over triangulated domains, \cye{we fix} a starting triangle \cye{and perform this classical procedure. We then pass through the triangulation such that each subsequent simplex is connected to the previous ones by a face}. 
+% We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face.
+% This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
+% }
 
 
-
-
-{\color{blue}\cye{We start by extending the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations} in a way which captures the correct asymptotic behavior as $p$ grows to infinity. \cye{Let us stress that face patches are not necessarily convex and remark that our result is in particular sharp when $T_1$ and $T_2$ have similar volumes and diameters}.}
-
-
-\begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
-    Let $\calT$ be a triangulation.
-    Let $T_{1}, T_{2} \in \calT$ be two $n$-simplices whose intersection is a common facet $F := T_1 \cap T_2$. 
-    Write $U := T_1 \cup T_2$. 
-    Then 
-    \begin{align*}
-        \min\limits_{ c \in \bbR }
-        \| u - c \|_{L^{p}(U)}
-        &
-%         \leq 
-%         2 \Ceins{n} C_{\PF,{\rm EFNT},p}
-%         \max\left( 
-%             \frac{ \vol(T_1) }{ \vol(T_2) }
-%             ,
-%             \frac{ \vol(T_2) }{ \vol(T_1) }
-%         \right)^{\frac 1 p}
-%         \\&\qquad\qquad 
-%         \cdot 
-%         \max\left( \diam(T_1), \diam(T_2) \right)
-%         \| \nabla u \|_{L^{p}(U)}
-%         \\&
-        \leq 
-        2 \Ceins{n} C_{\PF,{\rm EFNT},p}
-        \volumeratio(\calT)^{\frac 1 p}
-        \max\left( \diam(T_1), \diam(T_2) \right)
-        \| \nabla u \|_{L^{p}(U)}
-    \end{align*}
-    for any $u \in W^{1,p}(\Omega)$ with $p \in [1,\infty]$. \mwl{Introduce constant $C_{{\rm{PF}},T_1 \cup T_2,p}$}
-\end{lemma}
-% \begin{remark}
-%     The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
-% \end{remark}
-\begin{proof}
-    Without loss of generality, $F$ has the vertices $v_0, \dots, v_{n-1}$,
-    and $z_{1} \in T_{1}$ and $z_{2} \in T_{2}$ are the remaining vertices of the two triangles. 
-    Let $\Delta_{1} = \Delta^{n}$ be the reference $n$-simplex and let $\Delta_{2}$ be obtained from it by flipping the $n$-th coordinate.
-    We let $\varphi_{1} : \Delta_{1} \rightarrow T_{1}$ and $\varphi_{2} : \Delta_{2} \rightarrow T_{2}$
-    be affine transformations that map the $e_{i}$ to $v_{i}$ for $i = 0, \dots, n-1$ 
-    and which satisfy $\varphi_{1}(e_{n}) = z_{1}$ and $\varphi_{2}(-e_{n}) = z_{2}$.
-    Write $\hat U := \Delta_1 \cup \Delta_2$, which is (crucially) convex. .
-    We have a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
-    
-    Suppose that $u \in W^{1,p}(U)$. Then $\hat u := u \circ \varphi \in W^{1,p}(\hat U)$. 
-    We observe 
-%     \begin{align*}
-%         \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
-%         &=
-%         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
-%         +
-%         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
-%         ,
-%         \\
-%         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
-%         &\leq 
-%         |\det(\Jacobian \varphi_1^{-1})|
-%         \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
-%         \cdot 
-%         \| \nabla u \|_{L^{p}(T_1)}^{p}
-%         ,
-%         \\
-%         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
-%         &\leq 
-%         |\det(\Jacobian \varphi_2^{-1})|
-%         \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
-%         \cdot 
-%         \| \nabla u \|_{L^{p}(T_2)}^{p}
-%         \\
-%         \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
-%         &\leq 
-%         \max\left( 
-%             |\det(\Jacobian \varphi_1)|^{-1} \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
-%             ,
-%             |\det(\Jacobian \varphi_2)|^{-1} \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
-%         \right)
-%         \| \nabla u \|_{L^{p}(U)}^{p}
-%         .
-%     \end{align*}
-%     Hence 
-    \begin{align*}
-        \| \nabla \hat u \|_{L^{p}(\hat U)}
-        &\leq 
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_1 }
-            ,
-            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_2 }
-        \right)
-        \| \nabla u \|_{L^{p}(U)}
-        .
-    \end{align*}
-    Notice that $\hat U$ is convex and has diameter $2$. 
-    Thus, due to~\eqref{math:esposito:pf}, there exists $\hat w \in W^{1,p}(\hat U)$ such that $\nabla \hat w = \nabla \hat u$ and 
-    \begin{align*}
-        \| \hat w \|_{L^{p}(\hat U)}
-        \leq 
-        2 C_{\PF,{\rm EFNT},p}
-        \| \nabla \hat u \|_{L^{p}(\hat U)}
-        .
-    \end{align*}
-    Next, setting $w := \hat w \circ \varphi^{-1}$, we find $\nabla w = \nabla u$ and 
-    \begin{align*}
-        \| w \|_{L^{p}(U)}
-        \leq 
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|
-            ,
-            |\det(\Jacobian \varphi_2)|
-        \right)^{\frac 1 p}
-        \| \hat w \|_{L^{p}(\hat U)}
-        .
-    \end{align*}
-    \cye{In the last equality, we have also used $|\det(\Jacobian\varphi_i)| = n! \vol(T_i)$ that we have already employed in~\eqref{equation:Hong_Pan}.}
-    Noting $\vol(T_i) = |\det(\Jacobian \varphi_i)|$ and $\matnorm{ \Jacobian \varphi_i } \leq \Ceins{n} \diam(T_i)$ for $i = 1, 2$, where we use Lemma~\ref{lemma:measurerelationships}, we conclude the desired result.
-\begin{comment}
-    % DONE: that abbreviation is to close to the Jacobian / total derivative 
-    Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
-    \begin{align*}
-        \| w \|_{L^{p}(U)}
-        &\leq 
-        2 C_{\PF,{\rm EFNT},p}
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|
-            ,
-            |\det(\Jacobian \varphi_2)|
-        \right)^{\frac 1 p}
-        \\&\qquad 
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} 
-            ,
-            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} 
-        \right)
-        D
-        \| \nabla u \|_{L^{p}(U)}
-        \\&
-        \leq 
-        2 C_{\PF,{\rm EFNT},p}
-        \max\left( 
-            |\det(\Jacobian \varphi_1)|
-            ,
-            |\det(\Jacobian \varphi_2)|
-        \right)^{\frac 1 p}
-        \\&\qquad 
-        \min\left( 
-            |\det(\Jacobian \varphi_1)|
-            ,
-            |\det(\Jacobian \varphi_2)| 
-        \right)^{-\frac 1 p} 
-        D
-        \| \nabla u \|_{L^{p}(U)}
-        \\&
-        \leq 
-        2 C_{\PF,{\rm EFNT},p}
-        \max\left( 
-            \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
-            ,
-            \frac{ |\det(\Jacobian \varphi_2)| }{ |\det(\Jacobian \varphi_1)| }
-        \right)^{\frac 1 p}
-        D
-        \| \nabla u \|_{L^{p}(U)}
-        \\&
-        \leq 
-        2 C_{\PF,{\rm EFNT},p}
-        \max\left( 
-            \frac{ \vol(T_1) }{ \vol(T_2) }
-            ,
-            \frac{ \vol(T_2) }{ \vol(T_1) }
-        \right)^{\frac 1 p}
-        D
-        \| \nabla u \|_{L^{p}(U)}
-        .
-    \end{align*}
-    This gives the desired result. 
-\end{comment}
-\end{proof}
+% While the underlying idea remains the same, they differ in the way the intermdiate potentials are extended.
+% This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and relies on Lemma~\ref{lemma:poincarefriedrichsoverfacepatch} as an auxiliary result. 
+% This is described in Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}. 
 
 
 
@@ -1878,523 +1686,21 @@ We emphasize that the second approach to constructing potentials and bounding Po
 
 
 
-\begin{figure}[t]
-\begin{center}
-\begin{tikzpicture}
-    \coordinate (A) at (0,0);
-    \coordinate (B) at (2,0);
-    \coordinate (C) at (1,1.5);
-    \coordinate (D) at (3,1.5); 
-    \coordinate (E) at (3,3); 
-    \coordinate (F) at (4,0.25); 
-    \coordinate (X) at (1,-1.5);
-    \coordinate (Y) at (3,-1.5); 
-    \coordinate (T) at (5,2); 
-    
-    \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
-    \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
-    \coordinate (CentroidCDE) at ($(C)!0.3333!(D)!0.3333!(E)$);
-    \coordinate (CentroidBDF) at ($(B)!0.3333!(D)!0.3333!(F)$);
-    \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
-    \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
-    \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
-    \coordinate (CentroidDFT) at ($(D)!0.3333!(F)!0.3333!(T)$);
-    \coordinate (CentroidDET) at ($(D)!0.3333!(E)!0.3333!(T)$);
-    
-    \draw[fill=gray!10] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!10] (B) -- (C) -- (D) -- cycle; 
-    \draw[fill=gray!10] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=gray!10] (B) -- (D) -- (F) -- cycle; 
-    \draw[fill=gray!10] (A) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!10] (Y) -- (B) -- (X) -- cycle; 
-    \draw[fill=gray!10] (Y) -- (B) -- (F) -- cycle; 
-    \draw[fill=gray!10] (T) -- (D) -- (F) -- cycle; 
-    \draw[fill=gray!10] (T) -- (D) -- (E) -- cycle; 
-    
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
-    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBDF) -- (CentroidDFT); 
-    \draw[-latex, thick, shorten <=1.0pt, shorten >=2.0pt] (CentroidCDE) -- (CentroidDET); 
-    
-%     \node at (A) [below left] {$A$};
-%     \node at (B) [below right] {$B$};
-%     \node at (C) [above] {$C$};
-%     \node at (D) [above right] {$D$};
-%     \node at (T) [above right] {$T$};
-\end{tikzpicture}
-\end{center}
-\caption{Strongly connected triangulation of a domain. The arrows depict a tree in the strong connection graph of the form used in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}. The triangle in dark gray is the triangle being added in the current iteration, and the light gray triangles constitute the subdomain assembled so far.}
-\end{figure}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\begin{figure}[t]
-\begin{center}
-\begin{tikzpicture}
-    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
-    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
-    \draw[fill=gray!50] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=white  ] (A) -- (C) -- (D) -- cycle; 
-    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
-\end{tikzpicture}
-\quad
-\begin{tikzpicture}
-    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
-    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
-    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!50] (A) -- (C) -- (D) -- cycle; 
-    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
-\end{tikzpicture}
-\quad
-\begin{tikzpicture}
-    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
-    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
-    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
-    \draw[fill=gray!50] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
-\end{tikzpicture}
-\quad
-\begin{tikzpicture}
-    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
-    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
-    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
-    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
-    \draw[fill=gray!25] (C) -- (D) -- (E) -- cycle; 
-    \draw[fill=gray!50] (B) -- (C) -- (F) -- cycle; 
-\end{tikzpicture}
-\end{center}
-\caption{Exhausting a domain step by step as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and \ref{theorem:poincarefriedrichsestimate:gradzwei}.
-The dark gray triangle is the one being currently added, and the light gray triangles constitute the subdomain assembled so far.}
-\label{figure:exhausting}
-\end{figure}
-
-
-
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a face-connected $n$-dimensional finite triangulation $\calT$.
-    We fix an $n$-simplex $T_0 \in \calT$ and for all $n$-simplices $T \in \calT$ 
-    we fix a strong path $T_0, T_1, \dots, T_{M} = T$.
-    Suppose $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$.
-    Then for any $u \in W^{1,p}(\Omega)$ 
-    there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
-    and such that for all $T \in \calT$:
-%     DONE {Make sure the notation for the PF constants is uniform throughout the paper}
-    \begin{align*} 
-        % \color{red}
-        \| w \|_{L^{p}(T_m)}
-        &\leq 
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        \sum_{t=1}^{m}
-        \volumeratio(\calT)^{\frac{m-t}{p}}
-        C_{{\rm{PF}},T_{t} \cup T_{t-1},p}
-        % 2 C_{\PF,{\rm EFNT},p} \volumeratio(\calT)^{\frac 1 p} \max\left( \diam(T_{t}), \diam(T_{t-1}) \right)
-        \| \nabla u \|_{L^{p}(T_{t} \cup T_{t-1})}
-        \\&\quad \quad \quad 
-        +
-        \volumeratio(\calT)^{\frac{m-1}{p}}
-        % C_{\PF,{\rm EFNT},p} \diam(T_0)
-        C_{{\rm{PF}},T_{0},p}
-        \| \nabla u \|_{L^{p}(T_{0})}
-        .
-    \end{align*}
-    \todo{Rewrite this result. First a local recursive one, then a global bound}
-    \todo{Ensure big $M$ at all indices here.}
-    When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
-    \begin{align*}
-        \| w_{m} \|_{L^{p}(T_m)}
-        &\leq 
-        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-        \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
-        +
-        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-        \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
-        .
-    \end{align*}
-\end{theorem}
-\begin{proof}
-\todo[inline]{MV: Reworked and simplified the beginning of the proof.}
- Let $u \in W^{1,p}(\Omega)$. 
- \cye{On the first} simplex $T_{0}$, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
- \begin{gather*}
-    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
- \end{gather*}
- In particular, $c_{0} := \cye{w_0} - \cye{u}$ is a constant function. 
- \cye{We then define 
-  \begin{align*}
-    w := u + c_0
-  \end{align*} 
-  (note that $w|_{T_{0}} = w_0$). Clearly,} 
- $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$. \cye{We verify that $w$ fulfills the desired estimate.}
- 
- Let $T \in \calT$ be any $n$-simplex. 
- By assumption, there exists a \cye{face} path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices \cye{from $\calT$}. 
- For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. \cye{Recall the notation $U_{F_m} := T_m \cup T_{m-1}$.}
- We let $u_{F_m} \in W^{1,p}(U_{F_m})$ \cye{be} such that $\nabla u_{F_m} = \nabla u$ over $U_{F_m}$ and 
- \begin{align*}
-    \| u_{F_m} \|_{L^{p}(U_{F_m})} \leq C_{{\rm{PF}},U_{F_m},p} \| \nabla u_{F_m} \|_{L^{p}(U_{F_m})},
- \end{align*}
- where the computable constant $C_{{\rm{PF}},U_{F_m},p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}. \cye{Since $\nabla (w|_{U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u|_{U_{F_m}})$, we can define the constant
- \begin{align*}
-    c_{m} := w|_{U_{F_m}} - u_{F_{m}}.
- \end{align*}
- }
- \cye{\sout{We finally write $\Omega_m := \cup_{j=0}^{m} T_m$, which is triangulated $n$-dimensional submanifold with boundary}}.\todo[inline]{MV: False, $\Omega_m$ is not necessarily a triangulated $n$-dimensional submanifold with boundary, see the 7-triangles example standing for $\Omega_m$ (then the 8th one gives $\Omega_{m+1} = \Omega$). As discussed online, we fortunately do not need here a submanifold with boundary (but we will need it and have it for shellable triangulations.) Actually, here we do not need $\Omega_m$ at all.}
-
-\begin{figure}[h]
-\centerline{\includegraphics[width=0.2\textwidth]{homotopic_ball.jpg}}
-\end{figure}
-
- 
- We \cye{now} assess the norm of the potential \cye{$w$}. \cye{For any $1 \leq m \leq M$,} we observe 
- \begin{gather*}
-    \| \cye{w} \|_{L^{p}(T_m)}
-    \leq 
-    \| u_{F_m} \|_{L^{p}(T_m)}
-    +
-    \| c_{m} \|_{L^{p}(T_m)},
-    \\
-    \| c_{m} \|_{L^{p}(T_m)}
-    = 
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| c_{m} \|_{L^{p}(T_{{m-1}})},
-    \\ 
-    \| c_{m} \|_{L^{p}(T_{{m-1}})}
-    \leq 
-    \| \cye{w}\|_{L^{p}(T_{{m-1}})} + \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
-    .
- \end{gather*}
- \cye{Consequently},
- \begin{align*}
-    \| \cye{w} \|_{L^{p}(T_m)}
-    &
-    \leq 
-    \| u_{F_m} \|_{L^{p}(T_m)}
-    \\&\qquad 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
-    .
- \end{align*}
- We sum the two integrals of $u_{F_m}$. 
- % 
- In the special case $p=1$,
- \begin{align*}
-    \| \cye{w} \|_{L^{1}(T_m)}
-    \leq 
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
-    \right)
-    \| u_{F_m} \|_{L^{1}(U_{F_m})}
-    +
-    \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
-    \| \cye{w}\|_{L^{1}(T_{{m-1}})}
-    .
- \end{align*}
- In the special case $p=\infty$, 
- \begin{align*}
-    \| \cye{w} \|_{L^{\infty}(T_m)}
-    \leq 
-    2
-    \| u_{F_m} \|_{L^{\infty}(U_{F_m})}
-    +
-    \| \cye{w}\|_{L^{\infty}(T_{{m-1}})}
-    .
- \end{align*}
- % 1/q = 1 - 1/p = (p-1)/p 
- When $1 < p < \infty$, \cye{recalling the complementary exponent} $q = p/(p-1) \in [1,\infty]$, we observe \cye{using the H\"older inequality}
- \begin{align*}
-    \| \cye{w} \|_{L^{p}(T_m)}
-    &\leq 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-    \left( 
-        \| u_{F_m} \|_{L^{p}(T_m)}^{p}
-        +
-        \| u_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
-    \right)^{\frac 1 p}
-    \\&\qquad 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
-    \\&\cye{=} 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-    \| u_{F_m} \|_{L^{p}(U_{F_m})} 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| \cye{w}\|_{L^{p}(T_{{m-1}})}
-    .
- \end{align*}
- Recursive application provides the following estimate:
-%  if $T_0 = S_0, S_1, \dots, S_m = T_m$ is a sequence of $n$-simplices in $\calT$
-%  such that \color{red}$S_{t-1}$ precedes $S_{t}$ in the graph \color{black} and such that $F_t = S_t \cap S_{t-1}$,
-%  then 
- \begin{align*}
-    \| \cye{w} \|_{L^{p}(T_m)}
-    &\leq 
-    \sum_{t=1}^{m} 
-    \left( 
-        \prod_{t < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-    \right)
-    \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
-    \| u_{F_t} \|_{L^{p}(U_{F_t})}
-    \\&\quad \quad \quad 
-    +
-    \left( 
-        \prod_{0 < l \leq m} 
-        \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-    \right)
-    \| u_{T_0}\|_{L^{p}(T_{0})}
-    .
- \end{align*}
- % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
- We obtain the desired estimate. 
-%  \begin{align*}
-%     \| \cye{w} \|_{L^{p}(T_m)}^{p}
-%     &\leq 
-%     (m+1)^{p-1}
-%     % \sum_{t=1}^{m} \rho(\calT)^{m-t} 
-%     % \sum_{t=0}^{m-1} \rho(\calT)^{t} 
-%     \frac{\rho(\calT)^{m}-1}{\rho(\calT)-1}
-%     \left( 1 + \rho(\calT)^{\frac q p} \right)^{p/q}
-%     \| u_{F_t} \|_{L^{p}(U_{F_t})}^{p}
-%     \\&\quad \quad \quad 
-%     +
-%     (m+1)^{p-1}
-%     \rho(\calT)^{m-1}
-%     \| u_{T_0}\|_{L^{p}(T_{0})}^{p}
-%     .
-%  \end{align*}
-%  Notice that $p/q = p - 1$.
- % 
-\end{proof}
-\begin{proof}
- Let $u \in W^{1,p}(\Omega)$. 
- For each $F \in \calT$ of dimension $n-1$, 
- we let $w_F \in W^{1,p}(U_F)$ such that $\nabla w_F = \nabla u$ over $U_F$ and such that 
- \begin{align*}
-    \| w_F \|_{L^{p}(U_F)} \leq C_{{\rm{PF}},U_F,p} \| \nabla w_F \|_{L^{p}(U_F)},
- \end{align*}
- where the computable constant $C_{{\rm{PF}},U_F,p}$ is determined via Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}.
- We start with the simplex $T_{0}$. 
- There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
- \begin{gather*}
-    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
- \end{gather*}
- In particular, $c_{0} := u - w_0$ is a constant function. 
- 
- Now, let $T \in \calT$ be any $n$-simplex. 
- By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
- We let $\Omega_m := \cup_{j=0}^{m} T_m$ for any $0 \leq m \leq M$,
- which is a triangulated $n$-dimensional submanifold with boundary.
- For any $1 \leq m \leq M$ we write $F_m := T_m \cap T_{m-1}$,
- which is a face of dimension $n-1$. 
- 
-%  Since $\calT$ is face-connected, there exists an enumeration of $n$-simplices $T_0, T_1, \dots, T_M$ such that for any $1 \leq m \leq M$ there exists some fixed but arbitrary $0 \leq j(m) < m$ such that $F_m := T_m \cap T_{j(m)}$ is a face of dimension $n-1$. We write $\Omega_m := \cup_{j=0}^{m} T_m$. Hence $\Omega = \Omega_M$. 
- 
- % DONE \notice{MWL, MV: add a figure here to illustrate how the domain is exhausted.}
- 
- We construct the potential recursively. 
- We have seen that $c_{0} = w_{0} - u_{|\Omega_{0}}$ is a constant. 
- Assume that $1 \leq m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ 
- such that $c_{0} = w_{m-1} - u_{|\Omega_{m-1}}$ is the constant above. 
- % Note that this assumption is already satisfied when $m=1$.
- Hence $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
- By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{m-1}}$. 
- Since $$\nabla w_{F_{m}|T_{{m-1}}} = \nabla w_{m-1|T_{{m-1}}},$$
- there exists a constant $$c_{m} := w_{m-1|T_{{m-1}}} - w_{F_{m}|T_{{m-1}}}.$$
- We define $w'_{F_m} := w_{F_m} + c_{m} \in W^{1,p}(U_F)$.
- By construction, $$\nabla w'_{F_m} = \nabla w_{F_m} = \nabla u_{|U_{F_m}}$$ 
- and 
- $w'_{F_{m}|T_{{m-1}}} = w_{m-1|T_{{m-1}}}$. 
- But that already implies $w'_{F_m} = w_{|F_m} - c_{0}$. 
- Defining $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{m-1}$ with $w'_{F_m|T_m}$,
- we have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
- 
- We assess the norm of this potential. We observe 
- \begin{gather*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    =
-    \| w'_{F_m} \|_{L^{p}(T_m)}
-    \leq 
-    \| w_{F_m} \|_{L^{p}(T_m)}
-    +
-    \| c_{m} \|_{L^{p}(T_m)},
-    \\
-    \| c_{m} \|_{L^{p}(T_m)}
-    = 
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| c_{m} \|_{L^{p}(T_{{m-1}})},
-    \\ 
-    \| c_{m} \|_{L^{p}(T_{{m-1}})}
-    \leq 
-    \| w_{m-1}\|_{L^{p}(T_{{m-1}})} + \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})} 
-    .
- \end{gather*}
- In particular,
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    &
-    \leq 
-    \| w_{F_m} \|_{L^{p}(T_m)}
-    \\&\qquad 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
-    .
- \end{align*}
- We sum the two integrals of $w_{F_m}$. 
- % 
- In the special case $p=1$,
- \begin{align*}
-    \| w_{m} \|_{L^{1}(T_m)}
-    \leq 
-    \max\left(
-        1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
-    \right)
-    \| w_{F_m} \|_{L^{1}(U_{F_m})}
-    +
-    \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
-    \| w_{m-1}\|_{L^{1}(T_{{m-1}})}
-    .
- \end{align*}
- In the special case $p=\infty$, 
- \begin{align*}
-    \| w_{m} \|_{L^{\infty}(T_m)}
-    \leq 
-    2
-    \| w_{F_m} \|_{L^{\infty}(U_{F_m})}
-    +
-    \| w_{m-1}\|_{L^{\infty}(T_{{m-1}})}
-    .
- \end{align*}
- % 1/q = 1 - 1/p = (p-1)/p 
- When $1 < p < \infty$, letting $q := p/(p-1) \in (1,\infty)$ be the complementary exponent, we observe 
- \begin{align*}
-    \| w_{m} \|_{L^{p}(T_m)}
-    &\leq 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-    \left( 
-        \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
-        +
-        \| w_{F_{m}} \|_{L^{p}(T_{{m-1}})}^{p}
-    \right)^{\frac 1 p}
-    \\&\qquad 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
-    \\&\leq 
-    \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-    \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
-    +
-    \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
-    \| w_{m-1}\|_{L^{p}(T_{{m-1}})}
-    .
- \end{align*}
-%  Recursive application provides the following estimate:
-%  \begin{align*}
-%     \| w_{m} \|_{L^{p}(T_m)}
-%     &\leq 
-%     \sum_{t=1}^{m} 
-%     \left( 
-%         \prod_{t < l \leq m} 
-%         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-%     \right)
-%     \left( 1 + \frac{ \vol(T_t)^{\frac q p} }{ \vol(T_{t-1})^{\frac q p} } \right)^{\frac 1 q}
-%     \| w_{F_t} \|_{L^{p}(U_{F_t})}
-%     \\&\quad \quad \quad 
-%     +
-%     \left( 
-%         \prod_{0 < l \leq m} 
-%         \frac{ \vol(T_l)^{\frac 1 p} }{ \vol(T_{l-1})^{\frac 1 p} } 
-%     \right)
-%     \| w_{T_0}\|_{L^{p}(T_{0})}
-%     .
-%  \end{align*}
-%  We obtain the desired estimate. 
- % Taking into account Definition~\eqref{math:todo}, we obtain the desired inequality. % TODO: what was originally used here?
-%  \begin{align*}
-%     \| w_{m} \|_{L^{p}(T_m)}^{p}
-%     &\leq 
-%     (m+1)^{p-1}
-%     % \sum_{t=1}^{m} \volumeratio(\calT)^{m-t} 
-%     % \sum_{t=0}^{m-1} \volumeratio(\calT)^{t} 
-%     \frac{\volumeratio(\calT)^{m}-1}{\volumeratio(\calT)-1}
-%     \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{p/q}
-%     \| w_{F_t} \|_{L^{p}(U_{F_t})}^{p}
-%     \\&\quad \quad \quad 
-%     +
-%     (m+1)^{p-1}
-%     \volumeratio(\calT)^{m-1}
-%     \| w_{T_0}\|_{L^{p}(T_{0})}^{p}
-%     .
-%  \end{align*}
-%  Notice that $p/q = p - 1$.
- % 
- Repeating this argument produces $w \in L^{p}(\Omega)$ 
- such that for all $n$-simplices $T \in \calT$ we have the restriction $w_{|T} \in W^{1,p}(T)$ with $w_{|T} = u + c_{0}$.
- In particular, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
-\end{proof}
-
-
-\cye{\begin{remark}
-The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} overestimates the best one increasingly with increasing number of $n$-simplices in the triangulation $\calT$. For this reason, we target its use to local patches (stars), in particular nonconvex boundary stars such as that of Figure~\ref{figure:exhausting}. Clearly, the same building principle applies when we can obtain a nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a  face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a large decrease of the overestimation of the best Poincar\'e--Friedrichs constant. 
-\end{remark}}
 
 
 
 
 
+
+
+
+
+We begin with an auxiliary result with independent relevance, where we estimate the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
+% This is inspired by the classical proof of what is often called Friedrichs' inequality. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex}
     Let $T$ be an $n$-simplex with a face $F$ and $p \in [1,\infty]$. 
-    If $u \in W^{1,p}(T)$ such that $\trace_{F} u = 0$, then 
+    If $u \in W^{1,p}(T)$ with $\trace_{F} u = 0$, then 
     \begin{align*}
         \| u \|_{L^{p}(T)}
         &
@@ -2402,7 +1708,7 @@ The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincaref
         C_{\PF,T,F,p} \| \nabla u \|_{L^{p}(T)}
         ,
     \end{align*}
-    where $C_{\PF,T,F,p} = \frac{1}{\sqrt[p]{p}} \diam(T)$ for $p < \infty$ and $C_{\PF,T,F,\infty} = 1$. 
+    where $C_{\PF,T,F,p} = p^{-\frac 1 p} \diam(T)$ for $p < \infty$ and $C_{\PF,T,F,\infty} = \diam(T)$. 
 %     \begin{align*}
 %         C_{\PF,T,F,p}
 %         &\leq 
@@ -2475,11 +1781,11 @@ The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincaref
     Since the inequality follows from Rademacher's theorem in the limit case $p = \infty$,
     we assume $1 \leq p < \infty$. 
     Let $u \in C^{\infty}(T)$ have support disjoint from $F$.
-    We trivially extend $u$ to a function over the entire $\bbR^{n}$.
+    We extend $u$ by zero to a function over the entire $\bbR^{n}$.
     Without loss of generality, 
-    the segment from to the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
+    the segment from the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
-    We write $\bfg \in \bfL^{\infty}(\bbR^{n})$ for the trivial extension of $\nabla u$ outside of $T$.
+    We write $\bfg$ for the trivial extension of $\nabla u$ over the entire $\bbR^{n}$.
     %With the fundamental theorem of calculus and H\"older's inequality: 
     Using the fundamental theorem of calculus and H\"older's inequality, 
     \begin{align*}
@@ -2519,12 +1825,13 @@ The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincaref
     That $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
     for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
     Very briefly verify that density argument: 
-    There exists affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F$.
+    There exists affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ from the reference simplex onto $T$ that maps the convex closure of the $n$ unit vectors onto the face $F$.
     We let $\hat u := u \circ \varphi$.
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\Delta^{n}$.
     We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
     Then $\tilde u \in W^{1,p}_{0}(\hat U)$, and $\tilde u$ is the limit of a sequence $u_{m} \in C^{\infty}_{c}(\hat U)$.
-    Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ approximates $u$. 
+    Now $u_{m} \circ \varphi^{-1} \in C^{\infty}(\hat U)$ approximates $u$ within the Banach space $W^{1,p}(T)$
+    and has the desired support property. 
 \end{proof}
 
 % \begin{remark}
@@ -2532,195 +1839,429 @@ The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincaref
 % \end{remark}
 
 
+The next auxiliary result extends the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations. We point out that face patches are not necessarily convex. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-The following potential construction and upper bound for the Poincar\'e--Friedrichs constant 
-serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. \cye{It has the same building principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.}
-
-\todo[inline]{MV: Why a second theorem? We should explain the difference of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:grad}. Which is better and when?}
-
-
-
-
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:gradzwei}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a face-connected finite triangulation $\calT$.
-    Let $T_0 \in \calT$ be an $n$-simplex such that for all $n$-simplices $T \in \calT$ 
-    we fix a strong path $T_0, T_1, \dots, T_m = T$.
-    For any $1 \leq l \leq m$, let $F_{l} = T_{l} \cap T_{l-1}$.
-    Then for any $u \in W^{1,p}(\Omega)$ 
-    there exists $w \in W^{1,p}(\Omega)$ with $\nabla u = \nabla w$ 
-    and such that for all $T \in \calT$:
+\begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
+    Let $\calT$ be a triangulation.
+    Let $T_{1}, T_{2} \in \calT$ be two $n$-simplices whose intersection is a common facet $F := T_1 \cap T_2$. 
+    Write $U := T_1 \cup T_2$. 
+    If $p \in [1,\infty]$ and $u \in W^{1,p}(\Omega)$,
+    then 
     \begin{align*}
-        \| w_{m} \|_{L^{p}(T_m)}
-%         &\leq 
-%         \volumeratio(\calT)^{\frac m p}
-%         C_{\PF,T_{0},p} 
-%         \| \nabla u \|_{L^{p}( T_{0} )}
-%         +
-%         \sum_{l=1}^{m} 
-%         \volumeratio(\calT)^{\frac {m-l} p}
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}(T_{l})} 
-%         \\&\qquad 
-%         +
-%         \sum_{l=1}^{m} 
-%         \volumeratio(\calT)^{\frac {m-l} p} \reflectionestimate(\calT)
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}(T_{l-1})} 
-%         \\
-        &\leq 
-        \volumeratio(\calT)^{\frac m p}
-        C_{\PF,T_{0},p} 
-        \| \nabla u \|_{L^{p}( T_{0} )}
-        \\&\quad 
-        +
-        \sum_{l=1}^{m} 
-        \volumeratio(\calT)^{\frac {m-l} p}
-        C_{\PF,T_{l},F_{l},p} 
-        \left( 
-            \| \nabla u \|_{L^{p}(T_{l})} 
-            +
-            \volumeratio(\calT)^{\frac {1} p}
-            \reflectionestimate(\calT)
-            \| \nabla u \|_{L^{p}(T_{l-1})} 
-        \right)
+        \min\limits_{ c \in \bbR }
+        \| u - c \|_{L^{p}(U)}
+        &
+%         \leq 
+%         2 \Ceins{n} C_{\PF,{\rm EFNT},p}
+%         \max\left( 
+%             \frac{ \vol(T_1) }{ \vol(T_2) }
+%             ,
+%             \frac{ \vol(T_2) }{ \vol(T_1) }
+%         \right)^{\frac 1 p}
+%         \\&\qquad\qquad 
+%         \cdot 
+%         \max\left( \diam(T_1), \diam(T_2) \right)
+%         \| \nabla u \|_{L^{p}(U)}
+%         \\&
+        \leq 
+        C_{{\rm{PF}},T_1 \cup T_2,p}
+        \| \nabla u \|_{L^{p}(U)}
         .
     \end{align*}
-%     \begin{align*}
-%         \| w_{m} \|_{L^{p}(T_m)}
-%         &\leq 
-%         \sum_{l=1}^{m} 
-%         \volumeratio(\calT)^{\frac{m-l}{p}}
-%         \left( 1 + \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT) \right) 
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}( T_{l} )}
-%         +
-%         \volumeratio(\calT)^{\frac m p}
-%         C_{\PF,T_{0},p} 
-%         \| \nabla u \|_{L^{p}( T_{0} )}
-%         .
-%     \end{align*}
-%     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
-\end{theorem}
-\begin{theorem}%\label{theorem:poincarefriedrichsestimate:gradzwei}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with an \cye{$n$-dimensional} \cye{face-}connected finite triangulation $\calT$.
-    Let $T_0 \in \calT$ be an $n$-simplex \cye{and} for all $n$-simplices $T \in \calT$, 
-    fix a \cye{face} path $T_0, T_1, \dots, T_{\cye{M}} = T$. For any $1 \leq l \leq \cye{M}$, let $F_l = T_l \cap T_{l-1}$.
-    Then for any $u \in W^{1,p}(\Omega)$ 
-    there exists $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$ 
-    and such that for all $T \in \calT$\cye{, we have the following recursive estimate}:
-    \begin{align*}
-        \| \cye{w} \|_{L^{p}(T_{\cye{M}})}
-%         &\leq 
-%         \rho(\calT)^{\frac \cye{M} p}
-%         C_{\PF,T_{0},p} 
-%         \| \nabla u \|_{L^{p}( T_{0} )}
-%         +
-%         \sum_{l=1}^{\cye{M}} 
-%         \rho(\calT)^{\frac {\cye{M}-l} p}
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}(T_{l})} 
-%         \\&\qquad 
-%         +
-%         \sum_{l=1}^{\cye{M}} 
-%         \rho(\calT)^{\frac {\cye{M}-l} p} \xi(\calT)
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}(T_{l-1})} 
-%         \\
-        &\leq 
-        \sum_{l=1}^{\cye{M}} 
-        \rho(\calT)^{\frac {\cye{M}-l} p}
-        C_{\PF,T_{l},F_{l},p} 
-        \left( 
-            \| \nabla u \|_{L^{p}(T_{l})} 
-            +
-            \rho(\calT)^{\frac {1} p}
-            \xi(\calT)
-            \| \nabla u \|_{L^{p}(T_{l-1})} 
-        \right)
-        \\&\quad 
-        + \rho(\calT)^{\frac{\cye{M}}{p}}
-        C_{\PF,T_{0},p} 
-        \| \nabla u \|_{L^{p}( T_{0} )}
-        .
-    \end{align*}
-%     \begin{align*}
-%         \| w_{\cye{M}} \|_{L^{p}(T_{\cye{M}})}
-%         &\leq 
-%         \sum_{l=1}^{\cye{M}} 
-%         \rho(\calT)^{\frac{\cye{M}-l}{p}}
-%         \left( 1 + \rho(\calT)^{\frac 1 p} \xi(\calT) \right) 
-%         C_{\PF,T_{l},F_{l},p} 
-%         \| \nabla u \|_{L^{p}( T_{l} )}
-%         +
-%         \rho(\calT)^{\frac \cye{M} p}
-%         C_{\PF,T_{0},p} 
-%         \| \nabla u \|_{L^{p}( T_{0} )}
-%         .
-%     \end{align*}
-%     \color{red}Precise form of the inequality yet to be discussed, though the construction principle is clear.
-\end{theorem}\todo{MV: Synchronized the announcement and notation with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
-
+    Here, $C_{{\rm{PF}},T_1 \cup T_2,p} = 2 \Ceins{n} C_{\PF,{\rm EFNT},p} \volumeratio(\calT)^{\frac 1 p} \max\left( \diam(T_1), \diam(T_2) \right)$. 
+\end{lemma}
+% \begin{remark}
+%     The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
+% \end{remark}
 \begin{proof}
-\todo[inline]{MV: Reworked and simplified the proof.}
+    Without loss of generality, $F$ has the vertices $v_0, \dots, v_{n-1}$,
+    and $z_{1} \in T_{1}$ and $z_{2} \in T_{2}$ are the remaining vertices of the two triangles. 
+    Let $\Delta_{1} = \Delta^{n}$ be the reference $n$-simplex and let $\Delta_{2}$ be obtained from it by flipping the $n$-th coordinate.
+    We let $\varphi_{1} : \Delta_{1} \rightarrow T_{1}$ and $\varphi_{2} : \Delta_{2} \rightarrow T_{2}$
+    be affine transformations that the origin to $v_0$, that map each unit vector $e_{i}$ to $v_{i}$ for $i = 1, \dots, n-1$,
+    and that satisfy $\varphi_{1}(e_{n}) = z_{1}$ and $\varphi_{2}(-e_{n}) = z_{2}$.
+    Write $\hat U := \Delta_1 \cup \Delta_2$.
+    We have a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
+    
+    Suppose that $u \in W^{1,p}(U)$. Then $\hat u := u \circ \varphi \in W^{1,p}(\hat U)$. 
+    We observe 
+%     \begin{align*}
+%         \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
+%         &=
+%         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
+%         +
+%         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
+%         ,
+%         \\
+%         \| \nabla \hat u \|_{L^{p}(\hat T_1)}^{p}
+%         &\leq 
+%         |\det(\Jacobian \varphi_1^{-1})|
+%         \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
+%         \cdot 
+%         \| \nabla u \|_{L^{p}(T_1)}^{p}
+%         ,
+%         \\
+%         \| \nabla \hat u \|_{L^{p}(\hat T_2)}^{p}
+%         &\leq 
+%         |\det(\Jacobian \varphi_2^{-1})|
+%         \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
+%         \cdot 
+%         \| \nabla u \|_{L^{p}(T_2)}^{p}
+%         \\
+%         \| \nabla \hat u \|_{L^{p}(\hat U)}^{p}
+%         &\leq 
+%         \max\left( 
+%             |\det(\Jacobian \varphi_1)|^{-1} \cdot \matnorm{ \Jacobian \varphi_1 }^{p}
+%             ,
+%             |\det(\Jacobian \varphi_2)|^{-1} \cdot \matnorm{ \Jacobian \varphi_2 }^{p}
+%         \right)
+%         \| \nabla u \|_{L^{p}(U)}^{p}
+%         .
+%     \end{align*}
+%     Hence 
+    \begin{align*}
+        \| \nabla \hat u \|_{L^{p}(\hat U)}
+        &\leq 
+        \max\left( 
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_1 }
+            ,
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} \matnorm{ \Jacobian \varphi_2 }
+        \right)
+        \| \nabla u \|_{L^{p}(U)}
+        .
+    \end{align*}
+    Notice that $\hat U$ has diameter $2$ and is (crucially) convex. 
+    Thus, due to Poincar\'e--Friedrichs inequality~\eqref{math:esposito:pf}, there exists $\hat w \in W^{1,p}(\hat U)$ such that $\nabla \hat w = \nabla \hat u$ and 
+    \begin{align*}
+        \| \hat w \|_{L^{p}(\hat U)}
+        \leq 
+        2 C_{\PF,{\rm EFNT},p}
+        \| \nabla \hat u \|_{L^{p}(\hat U)}
+        .
+    \end{align*}
+    Next, setting $w := \hat w \circ \varphi^{-1}$, we find $\nabla w = \nabla u$ and 
+    \begin{align*}
+        \| w \|_{L^{p}(U)}
+        \leq 
+        \max\left( 
+            |\det(\Jacobian \varphi_1)|
+            ,
+            |\det(\Jacobian \varphi_2)|
+        \right)^{\frac 1 p}
+        \| \hat w \|_{L^{p}(\hat U)}
+        .
+    \end{align*}
+    For both $i = 1,2$, we now recall the well-known equation $|\det(\Jacobian\varphi_i)| = n! \vol(T_i)$, 
+    % which we have already employed in~\eqref{equation:Hong_Pan}, 
+    and the estimate $\matnorm{ \Jacobian \varphi_i } \leq \Ceins{n} \diam(T_i)$, which is given in Lemma~\ref{lemma:measurerelationships}. We conclude the desired result.
+\begin{comment}
+    % DONE: that abbreviation is to close to the Jacobian / total derivative 
+    Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
+    \begin{align*}
+        \| w \|_{L^{p}(U)}
+        &\leq 
+        2 C_{\PF,{\rm EFNT},p}
+        \max\left( 
+            |\det(\Jacobian \varphi_1)|
+            ,
+            |\det(\Jacobian \varphi_2)|
+        \right)^{\frac 1 p}
+        \\&\qquad 
+        \max\left( 
+            |\det(\Jacobian \varphi_1)|^{-\frac 1 p} 
+            ,
+            |\det(\Jacobian \varphi_2)|^{-\frac 1 p} 
+        \right)
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\PF,{\rm EFNT},p}
+        \max\left( 
+            |\det(\Jacobian \varphi_1)|
+            ,
+            |\det(\Jacobian \varphi_2)|
+        \right)^{\frac 1 p}
+        \\&\qquad 
+        \min\left( 
+            |\det(\Jacobian \varphi_1)|
+            ,
+            |\det(\Jacobian \varphi_2)| 
+        \right)^{-\frac 1 p} 
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\PF,{\rm EFNT},p}
+        \max\left( 
+            \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
+            ,
+            \frac{ |\det(\Jacobian \varphi_2)| }{ |\det(\Jacobian \varphi_1)| }
+        \right)^{\frac 1 p}
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        \\&
+        \leq 
+        2 C_{\PF,{\rm EFNT},p}
+        \max\left( 
+            \frac{ \vol(T_1) }{ \vol(T_2) }
+            ,
+            \frac{ \vol(T_2) }{ \vol(T_1) }
+        \right)^{\frac 1 p}
+        D
+        \| \nabla u \|_{L^{p}(U)}
+        .
+    \end{align*}
+    This gives the desired result. 
+\end{comment}
+\end{proof}
 
-\cye{We start as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}  Let $u \in W^{1,p}(\Omega)$. 
- \cye{On the first} simplex $T_{0}$, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
- \begin{gather*}
-    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
- \end{gather*}
- In particular, $c_{0} := \cye{w_0} - \cye{u}$ is a constant function. 
- \cye{We then define 
-   \begin{align*}
-    w := u + c_0
-  \end{align*} 
- (note that $w|_{T_{0}} = w_0$). Clearly,} 
- $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$. \cye{We verify that $w$ fulfills the desired estimate.}
- 
- Let $T \in \calT$ be any $n$-simplex. 
- By assumption, there exists a \cye{face} path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices \cye{from $\calT$}. 
- For any $1 \leq m \leq M$, \cye{recall that} $F_m := T_m \cap T_{m-1}$ \cye{is}  a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. 
 
-    \cye{\sout{We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.}}
-   \todo[inline]{MV: False, $\Omega_m$ is not necessarily a triangulated $n$-dimensional submanifold with boundary, see the 7-triangles example standing for $\Omega_m$ (then the 8th one gives $\Omega_{m+1} = \Omega$). As discussed online, we fortunately do not need here a submanifold with boundary (but we will need it and have it for shellable triangulations.) Actually, here we do not need $\Omega_m$ at all.}
 
-\begin{figure}[h]
-\centerline{\includegraphics[width=0.2\textwidth]{homotopic_ball.jpg}}
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+The main result of this section constructs a potential and gives an upper bound for the Poincar\'e--Friedrichs constant.  
+It has the same building principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.
+The procedure serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
+
+Two different variations of underlying idea are analyzed. 
+On the one hand, we extend the scalar gradient potentials over each intermediate domain to another simplex by solving a local auxiliary problem on that simplex. This auxiliary problem will be subject to partial boundary conditions. 
+% We present an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex}, where we compute an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
+% We emphasize that this construction of potentials and bounding of Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
+On the other hand, we can instead cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece by adjusting the local constants of integration. 
+Both estimates of Poincar\'e--Friedrichs constants capture the correct asymptotic behavior as $p$ grows to infinity.
+
+
+
+
+
+For the remainder of this section, the following combinatorial notion of triangulations is used. 
+Whenever $\calT$ is a face-connected $n$-dimensional triangulation, 
+a \emph{spanning tree} is an enumeration $T_{0}, \dots, T_{M}$ of all its $n$-dimensional simplices
+where for each index $1 \leq m \leq M$ we have a fixed index $0 \leq \iota(m) \leq m-1$ 
+such that $T_{m}$ and $T_{\iota(m)}$ are face-neighboring.
+We call $T_{\iota(m)}$ the \emph{precursor} of $T_{m}$ within the spanning tree. 
+The reader is referred to Figure~\ref{figure:spanningtree} for an illustration. 
+
+\begin{figure}[t]
+\begin{center}
+\begin{tikzpicture}[rotate=-60]
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2,0);
+    \coordinate (C) at (1,1.5);
+    \coordinate (D) at (3,1.5); 
+    \coordinate (E) at (3,3); 
+    \coordinate (F) at (4,0.25); 
+    \coordinate (X) at (1,-1.5);
+    \coordinate (Y) at (3,-1.5); 
+    \coordinate (T) at (5,2); 
+    
+    \coordinate (CentroidABC) at ($(A)!0.3333!(B)!0.3333!(C)$);
+    \coordinate (CentroidBCD) at ($(B)!0.3333!(C)!0.3333!(D)$);
+    \coordinate (CentroidCDE) at ($(C)!0.3333!(D)!0.3333!(E)$);
+    \coordinate (CentroidBDF) at ($(B)!0.3333!(D)!0.3333!(F)$);
+    \coordinate (CentroidABX) at ($(A)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBXY) at ($(Y)!0.3333!(B)!0.3333!(X)$);
+    \coordinate (CentroidBFY) at ($(Y)!0.3333!(B)!0.3333!(F)$);
+    \coordinate (CentroidDFT) at ($(D)!0.3333!(F)!0.3333!(T)$);
+    \coordinate (CentroidDET) at ($(D)!0.3333!(E)!0.3333!(T)$);
+    
+    \draw[fill=gray!10] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!10] (B) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!10] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!10] (B) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!10] (A) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!10] (Y) -- (B) -- (X) -- cycle; 
+    \draw[fill=gray!10] (Y) -- (B) -- (F) -- cycle; 
+    \draw[fill=gray!10] (T) -- (D) -- (F) -- cycle; 
+    \draw[fill=gray!10] (T) -- (D) -- (E) -- cycle; 
+    
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidBCD); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidCDE); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBCD) -- (CentroidBDF); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABC) -- (CentroidABX); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidABX) -- (CentroidBXY); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
+    \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBDF) -- (CentroidDFT); 
+    \draw[-latex, thick, shorten <=1.0pt, shorten >=2.0pt] (CentroidCDE) -- (CentroidDET); 
+    
+%     \node at (A) [below left] {$A$};
+%     \node at (B) [below right] {$B$};
+%     \node at (C) [above] {$C$};
+%     \node at (D) [above right] {$D$};
+%     \node at (T) [above right] {$T$};
+\end{tikzpicture}
+\end{center}
+\caption{Face-connected triangulation of a domain. The arrows depict a spanning tree in the face-connection graph.}
+\label{figure:spanningtree}
 \end{figure}
 
-    \cye{\sout{We use a recursive argument.}} Suppose that $\cye{1} < m \leq M$.
-    We define $w'_{m} := w\cye{|_{T_{m-1}}} \circ \Xi \in W^{1,p}(T_{m})$,
-    where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
-    %
+
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:grad}
+    Let $\calT$ be a face-connected $n$-dimensional finite triangulation 
+    with a spanning tree $T_0, T_1, \dots, T_{M}$. \mwl{should be a sequence with precursor function}
+    For any $1 \leq m \leq \cye{M}$, let $F_m = T_m \cap T_{\iota(m)}$.
+    Suppose $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$,
+    and that the domain $\Omega$ is the interior of the underlying set of $\calT$. 
+    Then for any $u \in W^{1,p}(\Omega)$ 
+    there exists $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$ 
+    and such that for all $1 \leq m \leq M$
+    we have the following recursive estimates:
+    \begin{gather*}
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+    \end{gather*}
+    and for $1 \leq m \leq M$ we have 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
+        &
+        \leq  
+        \volumeratio(\calT)^{\frac 1 p} 
+        \| w \|_{L^{p}(T_{\iota(m)})} 
+        + 
+%         C_{\PF,T_{m},F_{m},p} 
+%         \left( 
+%             \| \nabla u \|_{L^{p}(T_{m})} 
+%             + 
+%             \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+%             \| \nabla u \|_{L^{p}(T_{\iota(m)})}
+%         \right)
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
+        C_{\PF,T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(U_{F_m})} 
+        ,
+        \\
+        \| w \|_{L^{p}(T_m)}
+        &\leq 
+        \volumeratio(\calT)^{\frac 1 p} 
+        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        +
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
+        C_{{\rm{PF}},U_{F_m},p} 
+        \| \nabla u \|_{L^{p}(U_{F_m})} 
+        . 
+    \end{align*}
+\end{theorem}
+
+
+
+
+\begin{proof}
+    Let $u \in W^{1,p}(\Omega)$. 
+    We start with the Poincar\'e--Friedrichs inequality on the first simplex $T_{0}$. 
+    There exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
+    \begin{gather*}
+    \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+    \end{gather*}
+    In particular, $c_{0} := w_0 - u$ is a constant function. 
+    We then define 
+    \begin{align*}
+        w := u + c_0
+        .
+    \end{align*} 
+    Clearly, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
+    By construction $w_{|T_{0}} = w_0$. 
+    We verify that $w$ satisfies the two desired recursive estimates.
+
+    
+    
+    We continue by discussing the first recursive estimate. 
+    Suppose that $1 \leq m \leq M$.
+    Recall that we write $F_m := T_m \cap T_{\iota(m)}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$. 
+    We define $w'_{m} := w_{|T_{\iota(m)}} \circ \Xi \in W^{1,p}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow T_{\iota(m)}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
     By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
     \begin{align*}
-        \trace_{F_{\cye{m}}} w'_{m} = \trace_{F_{\cye{m}}} w\cye{|_{T_{m-1}}}
+        \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{|T_{\iota(m)}}
         .
     \end{align*}
-    We now define $w''_{m} \in W^{1,p}(T_{m})$ as
-\cye{    \begin{align}\label{equation:w''}
-        w''_{m} := u|_{T_{\cye{m}}} - w'_{m} + c_0 = w|_{T_{\cye{m}}} - w'_{m} = u|_{T_{\cye{m}}} - u\cye{|_{T_{m-1}}} \circ \Xi.
+    We now define $w''_{m} \in W^{1,p}(T_{m})$ via 
+    \begin{align}\label{equation:w''}
+        w''_{m} 
+        := 
+%         u_{|T_{m}} - w'_{m} + c_0 
+%         = 
+        w_{|T_{m}} - w'_{m} = u_{|T_{m}} - u_{|T_{\iota(m)}} \circ \Xi.
     \end{align}
-    We crucially note that $w''_{m}$ is trace free on $F_{m}$ since
+    We crucially note that $w''_{m}$ is trace-free along $F_{m}$ since
     \begin{align*}
-        \trace_{F_{m}} w''_{m} = \trace_{F_{m}} (u|_{T_{\cye{m}}} - w'_{m} + c_0) = \trace_{F_{m}} (u|_{T_{m-1}} - w\cye{|_{T_{m-1}}} + c_0) = 0.
-    \end{align*}}
-    Lemma~\ref{lemma:mixedbconsimplex} gives\cye{, from the first expression in~\eqref{equation:w''}}
+        \trace_{F_{m}} w''_{m} 
+        = 
+        \trace_{F_{m}} \left( 
+            w_{|T_{m}} - w'_{m} 
+        \right) 
+        =
+        \trace_{F_{m}} w_{|T_{m}}
+        -
+        \trace_{F_{m}} w_{|T_{\iota(m)}}
+        =
+        \trace_{F_{m}} u_{|T_{m}}
+        -
+        \trace_{F_{m}} u_{|T_{\iota(m)}}
+%         = 
+%         \trace_{F_{m}} \left( 
+%             u_{|T_{m}} - w'_{m} + c_0 
+%         \right) 
+%         = 
+%         \trace_{F_{m}} \left( 
+%             u_{|T_{\iota(m)}} - w_{|T_{\iota(m)}} + c_0 
+%         \right) 
+        = 0.
+    \end{align*}
+    We apply Lemma~\ref{lemma:mixedbconsimplex} to the first expression in~\eqref{equation:w''}, which gives 
     \begin{align*}
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
+        \leq 
+        C_{\PF,T_{m},F_{m},p} 
+        \left( 
+            \| \nabla w \|_{L^{p}(T_{m})} 
+            + 
+            \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        \right) 
         \leq 
         C_{\PF,T_{m},F_{m},p} 
         \left( 
@@ -2730,143 +2271,29 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \right) 
         .
     \end{align*}
-    We also employ\cye{~\eqref{math:reflectionmeasure} \sout{Lemma~\ref{lemma:volumecomparison}}} to find 
+    Using Lemma~\ref{lemma:volumecomparison} as well as Definitions~\eqref{math:volumeratio} and~\eqref{math:reflectionmeasure}, we find 
     \begin{align*}
         \| \nabla w'_{m} \|_{L^{p}(T_{m})}
         &
         \leq 
         |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
         \matnorm{ \Jacobian \Xi }
-        \| \nabla \cye{w} \|_{L^{p}(T_{m-1})}
+        \| \nabla w \|_{L^{p}(T_{\iota(m)})}
         \\&
         \leq 
-        \rho(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla \cye{w} \|_{L^{p}(T_{m-1})}
+        \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla w \|_{L^{p}(T_{\iota(m)})}
         \\&
-        \cye{=
-        \rho(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla u \|_{L^{p}(T_{m-1})} }
+        =
+        \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla u \|_{L^{p}(T_{\iota(m)})}
         .
     \end{align*}
-    \todo{MV: How $|\det(\Jacobian\Xi)|^{-\frac 1 p} \leq \rho(\calT)^{\frac 1 p}$ follows?}
-    \cye{From the second expression in~\eqref{equation:w''}, we then finally have} 
+    % The second expression in~\eqref{equation:w''} shows $w_{|T_{m}} = w''_{m} + w'_{m}$. We finally find 
+    Since $w_{|T_{m}} = w''_{m} + w'_{m}$, we finally find 
     \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
         &
-        \| \cye{w} \|_{L^{p}(T_{m})}
-        \\&
-        \leq  
-        \| w'_{m} \|_{L^{p}(T_{m})}
-        + 
-        \| w''_{m} \|_{L^{p}(T_{m})}
-        \\&
-        \leq  
-        \rho(\calT)^{\frac 1 p} 
-        \| \cye{w} \|_{L^{p}(T_{m-1})} 
-        + 
-        C_{\PF,T_{m},F_{m},p} 
-        \left( 
-            \| \nabla u \|_{L^{p}(T_{m})} 
-            + 
-            \cye{\rho(\calT)^{\frac 1 p} \xi(\calT)
-        \| \nabla u \|_{L^{p}(T_{m-1})}}
-        \right). 
-    \end{align*}
-\cye{Therefrom, the desired estimate follows.}
-\end{proof}
-\begin{proof}
-    Let $u \in W^{1,p}(\Omega)$. 
-    First, there exists $w_0 \in W^{1,p}(T_{0})$ satisfying $\nabla w_0 = \nabla u$ over $T_{0}$ together with 
-    \begin{gather*}
-        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
-    \end{gather*}
-    In particular, $c_{0} := u - w_0$ is a constant function. 
-
-    Now, let $T \in \calT$ be any $n$-simplex. 
-    By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
-    For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$. 
-    We write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.
-    
-    We use a recursive argument.
-    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{1,p}(\Omega_{m-1})$ with $c_{0} = u - w_{m-1}$.
-    In particular, $\nabla w_{m-1} = \nabla u$ over $\Omega_{m-1}$. 
-    By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{m-1}$. 
-    % Let $\hat T$ be the reference simplex.
-    % We fix affine diffeomorphisms $\varphi : \hat T \rightarrow T_{j(m)}$ and $\vartheta : \hat T \rightarrow T_{m+1}$,
-    % each of which maps the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
-    %
-    We define $w'_{m} := w_{m-1} \circ \Xi \in W^{1,p}(T_{m})$,
-    where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
-    %
-    By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
-    \begin{align*}
-        \trace_F w_{m-1} = \trace_F w'_{m}
-        .
-    \end{align*}
-    %Write $w''_{m} = u - w'_{m} \in W^{1,p}(T_{m})$. Then 
-    There exists $w''_{m} \in W^{1,p}(T_{m})$ such that 
-    \begin{align*}
-        \nabla w''_{m} = \nabla u_{|T_{m+1}} - \nabla w'_{m}, 
-        \quad 
-        \trace_{F_{m}} w''_{m} = 0.
-    \end{align*}
-    This is true because 
-    \begin{align*}
-        \trace_{F_{m}}( \nabla u - \nabla w'_{m} ) 
-        &= 
-        \trace_{F_{m}} \nabla u - \trace_{F_{m}} \nabla w'_{m}
-        \\&= 
-        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w'_{m}
-        = 
-        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w_{m-1}
-        = 
-        0
-        .
-    \end{align*}
-    Setting $w_{m} := w_{m-1}$ over $\Omega_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
-    we find 
-    \begin{gather*}
-        \nabla w_{m} = \nabla w'_{m} + \nabla w''_{m} = \nabla w'_{m} + \nabla u - \nabla w'_{m} = \nabla u,
-        % \end{gather*}
-        \\
-        % \begin{gather*}
-        \trace_{F_{m}} w_{m} = \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{m-1}.
-    \end{gather*}
-    That means that $w_{m} \in W^{1,p}(\Omega_{m})$ with $\nabla w_{m} = \nabla u$ over $\Omega_{m}$. 
-    In particular, $c_{0} = u - w_{m}$. 
-    Lemma~\ref{lemma:mixedbconsimplex} gives 
-    \begin{align*}
-        \| w''_{m} \|_{L^{p}(T_{m})} 
-        &
-        \leq 
-        C_{\PF,T_{m},F_{m},p} \| \nabla u - \nabla w'_{m} \|_{L^{p}(T_{m})}.
-        \\&
-        \leq 
-        C_{\PF,T_{m},F_{m},p} \| \nabla u      \|_{L^{p}(T_{m})} 
-        + 
-        C_{\PF,T_{m},F_{m},p} \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
-        .
-    \end{align*}
-    We also employ Lemma~\ref{lemma:volumecomparison} to find 
-    \begin{align*}
-        \| \nabla w'_{m} \|_{L^{p}(T_{m})}
-        &
-        \leq 
-        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
-        \matnorm{ \Jacobian \Xi   }
-        \cdot 
-        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
-        \\&
-        \leq 
-        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-        \cdot 
-        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})}
-        .
-    \end{align*}
-    Putting this all together, we use 
-    \begin{align*}
-        &
-        \| w_{m} \|_{L^{p}(T_{m})}
-        \\&
         \leq  
         \| w'_{m} \|_{L^{p}(T_{m})}
         + 
@@ -2874,113 +2301,161 @@ serves as the blueprint for constructing potentials of the curl and divergence o
         \\&
         \leq  
         \volumeratio(\calT)^{\frac 1 p} 
-        \| w_{m-1} \|_{L^{p}(T_{m-1})} 
+        \| w \|_{L^{p}(T_{\iota(m)})} 
         + 
         C_{\PF,T_{m},F_{m},p} 
         \left( 
             \| \nabla u \|_{L^{p}(T_{m})} 
             + 
-            \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
-        \right) 
+            \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+        \| \nabla u \|_{L^{p}(T_{\iota(m)})}
+        \right). 
     \end{align*}
-    and 
+    We now use H\"older's inequality. 
+    Therefrom, the first recursive estimate follows.
+    
+    
+    Now we discuss the second recursive estimate. 
+    Suppose again that $1 \leq m \leq M$. 
+    Recall that we write $U_{F_m} := T_m \cup T_{\iota(m)}$. 
+    We use the Poincar\'e--Friedrichs inequality over $U_{F_{m}}$,
+    as given in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, 
+    to find $w_{F_m} \in W^{1,p}(U_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $U_{F_m}$ and 
+    \begin{align}\label{math:wFm_inequality}
+        \| w_{F_m} \|_{L^{p}(U_{F_m})} \leq C_{{\rm{PF}},U_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(U_{F_m})}.
+    \end{align}
+%     \cye{Since $\nabla (w|_{U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u|_{U_{F_m}})$, 
+    We can define the constant
     \begin{align*}
-        \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+    c_{m} := w|_{U_{F_m}} - w_{F_{m}}.
+    \end{align*}
+    We now observe that 
+    \begin{gather*}
+        \| w \|_{L^{p}(T_m)}
+        \leq 
+        \| w_{F_m} \|_{L^{p}(T_m)}
+        +
+        \| c_{m} \|_{L^{p}(T_m)},
+        \\
+        \| c_{m} \|_{L^{p}(T_m)}
+        = 
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
+        \| c_{m} \|_{L^{p}(T_{{\iota(m)}})},
+        \\ 
+        \| c_{m} \|_{L^{p}(T_{{\iota(m)}})}
+        \leq 
+        \| w \|_{L^{p}(T_{{\iota(m)}})} + \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})} 
+        .
+    \end{gather*}
+    In combination, 
+    \begin{align*}
+        \| w \|_{L^{p}(T_m)}
         &
-        \leq  
-        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-        % C_{\PF,T_{m},F_{m},p} 
-        \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
-        \leq  
-        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-        % C_{\PF,T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(T_{m-1})} 
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         \left( 1 + \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT) \right) 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m})} 
+        \leq 
+        \| w_{F_m} \|_{L^{p}(T_m)}
+        \\&\qquad 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
+        \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})}
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{\iota(m)}})}
         .
     \end{align*}
-%     \begin{align*}
-%         &
-%         \| w_{m} \|_{L^{p}(T_{m})}
-%         \\&
-%         \leq  
-%         \| w'_{m} \|_{L^{p}(T_{m})}
-%         + 
-%         \| w''_{m} \|_{L^{p}(T_{m})}
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \left( 
-%             \| \nabla u \|_{L^{p}(T_{m})} 
-%             + 
-%             \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
-%         \right) 
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m})} 
-%         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m})} 
-%         + 
-%         \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m})} 
-%         + 
-%         \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m-1})} 
-%         \\&
-%         \leq  
-%         \volumeratio(\calT)^{\frac 1 p} 
-%         \| w_{m-1} \|_{L^{p}(T_{m-1})} 
-%         + 
-%         \left( 1 + \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT) \right) 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \| \nabla u \|_{L^{p}(T_{m})} 
-%         .
-%     \end{align*}
-    The existence of $w \in W^{1,p}(\Omega)$ satisfying the recursive estimate follows. 
+    We sum the two integrals of $w_{F_m}$. 
+    % 
+    % 1/q = 1 - 1/p = (p-1)/p 
+    When $1 < p < \infty$, recalling the complementary exponent $q = p/(p-1) \in (1,\infty)$, 
+    we use H\"older's inequality to verify 
+    \begin{align*}
+        \| w \|_{L^{p}(T_m)}
+        &\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{\iota(m)}})^{\frac q p} } \right)^{\frac 1 q}
+        \left( 
+            \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
+            +
+            \| w_{F_{m}} \|_{L^{p}(T_{{\iota(m)}})}^{p}
+        \right)^{\frac 1 p}
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        \\&\leq 
+        \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{\iota(m)}})^{\frac q p} } \right)^{\frac 1 q}
+        \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
+        +
+        \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{\iota(m)}})^{\frac 1 p} }
+        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        .
+    \end{align*}
+    In the special case $p=1$,
+    \begin{align*}
+        \| w\|_{L^{1}(T_m)}
+        \leq 
+        \max\left(
+            1, \frac{ \vol(T_m) }{ \vol(T_{{\iota(m)}}) } 
+        \right)
+        \| w_{F_m} \|_{L^{1}(U_{F_m})}
+        +
+        \frac{ \vol(T_m) }{ \vol(T_{{\iota(m)}}) }
+        \| w \|_{L^{1}(T_{{\iota(m)}})}
+        .
+    \end{align*}
+    In the limit case $p=\infty$, 
+    \begin{align*}
+        \| w \|_{L^{\infty}(T_m)}
+        \leq 
+        2
+        \| w_{F_m} \|_{L^{\infty}(U_{F_m})}
+        +
+        \| w \|_{L^{\infty}(T_{{\iota(m)}})}
+        .
+    \end{align*}
+    The local inequality~\eqref{math:wFm_inequality} now provides the second recursive estimate. 
+    The proof is complete.
 \end{proof}
 
+
+\begin{corollary}
+    Under the assumptions of Theorem~\ref{theorem:poincarefriedrichsestimate:grad},
+    whenever $T_0, T_1, \dots, T_m$ is a face-path of $n$-simplices in $\calT$,
+    we have 
+    \begin{align*}
+        \| w \|_{L^{p}(T_m)}
+        &\leq 
+        \sum_{\ell=1}^{m} 
+        \volumeratio^{\frac{m-\ell}{p}}
+        \min\left( 
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
+        C_{{\rm{PF}},U_{F_\ell},p} 
+        ,
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
+        C_{\PF,T_{\ell},F_{\ell},p} 
+        \right)
+        \| \nabla u \|_{L^{p}(U_{F_\ell})}
+        \\&
+        \qquad 
+        \qquad 
+        +
+        \volumeratio^{\frac m p}
+        C_{{\rm{PF}},T_{0},p}
+        \| \nabla u \|_{L^{p}(T_{0})}
+        .
+    \end{align*}
+\end{corollary}
+\begin{proof}
+    This follows by repeated application of the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+\end{proof}
+
+
 \begin{remark}
-    The previous theorems, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} 
-    depend on only a few parameters of the triangulation:
-    the length of any traversal from the root simplex, the ratios of the volumes of adjacent simplices,
-    the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. 
-    The aforementioned local Poincar\'e--Friedrichs constants can generally be estimated in terms of shape-parameters. 
-    If the face patches of the triangulation are convex, then better estimates are possible. 
+    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular nonconvex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
 \end{remark}
+
 
 % https://people.tamu.edu/~guermond//PUBLICATIONS/ern_guermond_m2an_2016.pdf 
 % Lemma 5.5
 
+    
 
 
 
@@ -3016,7 +2491,7 @@ The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegle
 We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
 
 \begin{figure}[h]
-\centerline{\includegraphics[width=0.2\textwidth]{homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{homotopic_ball.jpg}}
+\centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
 \label{figure:not_manifold_triang}
 \caption{A manifold triangulation (left) and not a manifold triangulation (right)}
 \end{figure}
@@ -3540,7 +3015,7 @@ We \cye{now} collect important examples of shellable triangulations. \cye{Essent
     Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
     Then there exists a triangle $T'$ that intersects $\partial M$ 
     in one edge and its opposite vertex.
-    Removing $T'$ splits the manifold into two \cye{face-}connected components, each of which is a topological $2$-\disk.
+    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk.
     By the induction assumption, each of those components contains at least two triangles 
     that are good in the respective component. 
     So each component has at least one triangle that is good in $\calT$. 
@@ -5041,18 +4516,18 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         We want to characterize the singular values of this transform. 
-        We $h_z \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $K$.
+        We $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $K$.
         We can write
         \begin{align*}
             \Theta_{|K}(x) 
             = 
             x
             - 
-            2 \frac{\langle \hat h_z, x \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+            2 \frac{\langle \hat h_{z}, x \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
             \hat z_{S'}
             .
         \end{align*}
-        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $h_z$,
+        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthgonal to $h_{z}$,
         and that it equals $-z_{S'}$ when $x = z_{S'}$.
 %         and when $x = z_{S'}$, then 
 %         \begin{align*}
@@ -5060,23 +4535,23 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
 %             =
 %             z_{S'}
 %             - 
-%             2 \hat z_{S'} \frac{\langle \hat h_z, z_{S'} \rangle}{\langle \hat h_z, \hat z_{S'} \rangle}
+%             2 \hat z_{S'} \frac{\langle \hat h_{z}, z_{S'} \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
 %             .
 %         \end{align*}
-        If we orthogonally decompose $z_{S'} = h_z + b_z$, then 
+        If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$, then 
         \begin{align*}
-            \Theta_{|K}( h_z ) 
+            \Theta_{|K}( h_{z} ) 
             &= 
-            h_z
+            h_{z}
             - 
-            2 \frac{\langle h_z, h_z \rangle}{\langle h_z, z_{S'} \rangle} z_{S'}
+            2 \frac{\langle h_{z}, h_{z} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
             = 
-            h_z
+            h_{z}
             - 
-            2 \frac{\langle h_z, z_{S'} \rangle}{\langle h_z, z_{S'} \rangle} z_{S'}
+            2 \frac{\langle h_{z}, z_{S'} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
             %\\&
             = 
-            h_z
+            h_{z}
             - 
             2 z_{S'}
             %\\&
@@ -5087,7 +4562,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        Then $\vecnorm{ h_z } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_z } = \sin(\beta) \vecnorm{ z_{S'} }$. 
+        Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
         We study the singular values of the matrix 
         \begin{align*}
             B 
@@ -5095,7 +4570,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \begin{pmatrix}
             -1                 & 0
             \\ 
-            -2 \vecnorm{ b_z }/\vecnorm{ h_z } & 1
+            -2 \vecnorm{ b_{z} }/\vecnorm{ h_{z} } & 1
             \end{pmatrix}
             =
             \begin{pmatrix}
@@ -5119,7 +4594,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         whereas all its other singular values equal $1$. 
         
 %         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        By the definition of the tangent, $\tan(\beta) \leq \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$, and we know $\vecnorm{ b_z } \leq \vecnorm{ z_{S'} }$. 
+        By the definition of the tangent, $\tan(\beta) \leq \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$, and we know $\vecnorm{ b_{z} } \leq \vecnorm{ z_{S'} }$. 
         Let $F_{z} \subseteq K$ be the face opposite to $z_{S'}$,
         which is also a face of $T$. Then $(n-k) h_{z}$ is the height vector of $F_{z}$ in $T$. 
         Thus 
@@ -5220,12 +4695,12 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \frac{1}{ 2 } 
             \hat h_{z} \otimes \hat h_{z}^{t}
             - 
-            \frac{ \vecnorm{ b_z } }{ 2 \vecnorm{ h_{z} } } 
+            \frac{ \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
             \hat b_{z} \otimes \hat h_{z}^{t}
             .
         \end{align*}
         We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
-        Hence $\tan(\beta) = \vecnorm{ b_z } / \vecnorm{ h_z }$. It remains to study the singular values of the matrix 
+        Hence $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
         \begin{align*}
             C 
             = 
@@ -5266,7 +4741,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
         Similar as above, we use the upper bound 
         \begin{align*}
-            \tan(\beta) = \frac{\vecnorm{ b_z }}{\vecnorm{ h_z }} \leq (k+1) \aspectratio(T).
+            \tan(\beta) = \frac{\vecnorm{ b_{z} }}{\vecnorm{ h_{z} }} \leq (k+1) \aspectratio(T).
         \end{align*}
         We conclude that 
         \begin{gather*}
@@ -6272,7 +5747,7 @@ The main result of this manuscript is the following theorem.
 \end{theorem}
 
 \begin{proof}
-    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
+    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
     We write $\Omega_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
 

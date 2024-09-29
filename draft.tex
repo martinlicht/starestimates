@@ -19,6 +19,303 @@
 
 
 
+
+ \mwl{First estimate, alternative description}
+    We use a recursive argument.
+    Suppose that $0 < m \leq M$ such that there exists $w_{\iota(m)} \in W^{1,p}(\Omega_{\iota(m)})$ with $c_{0} = u - w_{\iota(m)}$.
+    In particular, $\nabla w_{\iota(m)} = \nabla u$ over $\Omega_{\iota(m)}$. 
+    By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{\iota(m)}$. 
+    % Let $\hat T$ be the reference simplex.
+    % We fix affine diffeomorphisms $\varphi : \hat T \rightarrow T_{j(m)}$ and $\vartheta : \hat T \rightarrow T_{m+1}$,
+    % each of which maps the convex closure of $v_0, \dots, v_{n-1}$ onto the common face $F_{m}$.
+    %
+    We define $w'_{m} := w_{\iota(m)} \circ \Xi \in W^{1,p}(T_{m})$,
+    where $\Xi : T_{m} \rightarrow T_{\iota(m)}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
+    %
+    By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
+    \begin{align*}
+        \trace_F w_{\iota(m)} = \trace_F w'_{m}
+        .
+    \end{align*}
+    %Write $w''_{m} = u - w'_{m} \in W^{1,p}(T_{m})$. Then 
+    There exists $w''_{m} \in W^{1,p}(T_{m})$ such that 
+    \begin{align*}
+        \nabla w''_{m} = \nabla u_{|T_{m+1}} - \nabla w'_{m}, 
+        \quad 
+        \trace_{F_{m}} w''_{m} = 0.
+    \end{align*}
+    This is true because 
+    \begin{align*}
+        \trace_{F_{m}}( \nabla u - \nabla w'_{m} ) 
+        &= 
+        \trace_{F_{m}} \nabla u - \trace_{F_{m}} \nabla w'_{m}
+        \\&= 
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w'_{m}
+        = 
+        \nabla \trace_{F_{m}} u - \nabla \trace_{F_{m}} w_{\iota(m)}
+        = 
+        0
+        .
+    \end{align*}
+    Setting $w_{m} := w_{\iota(m)}$ over $\Omega_{\iota(m)}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
+    we find 
+    \begin{gather*}
+        \nabla w_{m} = \nabla w'_{m} + \nabla w''_{m} = \nabla w'_{m} + \nabla u - \nabla w'_{m} = \nabla u,
+        % \end{gather*}
+        \\
+        % \begin{gather*}
+        \trace_{F_{m}} w_{m} = \trace_{F_{m}} w'_{m} = \trace_{F_{m}} w_{\iota(m)}.
+    \end{gather*}
+    That means that $w_{m} \in W^{1,p}(\Omega_{m})$ with $\nabla w_{m} = \nabla u$ over $\Omega_{m}$. 
+    In particular, $c_{0} = u - w_{m}$. 
+    Lemma~\ref{lemma:mixedbconsimplex} gives 
+    \begin{align*}
+        \| w''_{m} \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        C_{\PF,T_{m},F_{m},p} \| \nabla u - \nabla w'_{m} \|_{L^{p}(T_{m})}.
+        \\&
+        \leq 
+        C_{\PF,T_{m},F_{m},p} \| \nabla u      \|_{L^{p}(T_{m})} 
+        + 
+        C_{\PF,T_{m},F_{m},p} \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        .
+    \end{align*}
+    We also employ Lemma~\ref{lemma:volumecomparison} to find 
+    \begin{align*}
+        \| \nabla w'_{m} \|_{L^{p}(T_{m})}
+        &
+        \leq 
+        |\det(\Jacobian \Xi  )|^{-\frac 1 p} 
+        \matnorm{ \Jacobian \Xi   }
+        \cdot 
+        \| \nabla w_{\iota(m)} \|_{L^{p}(T_{\iota(m)})}
+        \\&
+        \leq 
+        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
+        \cdot 
+        \| \nabla w_{\iota(m)} \|_{L^{p}(T_{\iota(m)})}
+        .
+    \end{align*}
+    Putting this all together, we use 
+    \begin{align*}
+        &
+        \| w_{m} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \| w'_{m} \|_{L^{p}(T_{m})}
+        + 
+        \| w''_{m} \|_{L^{p}(T_{m})}
+        \\&
+        \leq  
+        \volumeratio(\calT)^{\frac 1 p} 
+        \| w_{\iota(m)} \|_{L^{p}(T_{\iota(m)})} 
+        + 
+        C_{\PF,T_{m},F_{m},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{m})} 
+            + 
+            \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        \right) 
+    \end{align*}
+    and 
+    \begin{align*}
+        \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
+        &
+        \leq  
+        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
+        % C_{\PF,T_{m},F_{m},p} 
+        \| \nabla w_{\iota(m)} \|_{L^{p}(T_{\iota(m)})} 
+        \leq  
+        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
+        % C_{\PF,T_{m},F_{m},p} 
+        \| \nabla u \|_{L^{p}(T_{\iota(m)})} 
+        .
+    \end{align*}
+    The existence of $w \in W^{1,p}(\Omega)$ satisfying the recursive estimate follows. 
+
+        \begin{align*}
+        \| w_{m} \|_{L^{p}(T_m)}
+%         &\leq 
+%         \volumeratio(\calT)^{\frac m p}
+%         C_{\PF,T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         +
+%         \sum_{l=1}^{m} 
+%         \volumeratio(\calT)^{\frac {m-l} p}
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l})} 
+%         \\&\qquad 
+%         +
+%         \sum_{l=1}^{m} 
+%         \volumeratio(\calT)^{\frac {m-l} p} \reflectionestimate(\calT)
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l-1})} 
+%         \\
+        &\leq 
+        \volumeratio(\calT)^{\frac m p}
+        C_{\PF,T_{0},p} 
+        \| \nabla u \|_{L^{p}( T_{0} )}
+        \\&\quad 
+        +
+        \sum_{l=1}^{m} 
+        \volumeratio(\calT)^{\frac {m-l} p}
+        C_{\PF,T_{l},F_{l},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{l})} 
+            +
+            \volumeratio(\calT)^{\frac {1} p}
+            \reflectionestimate(\calT)
+            \| \nabla u \|_{L^{p}(T_{l-1})} 
+        \right)
+        .
+    \end{align*}
+    \begin{align*}
+        \| \cye{w} \|_{L^{p}(T_{\cye{M}})}
+%         &\leq 
+%         \rho(\calT)^{\frac \cye{M} p}
+%         C_{\PF,T_{0},p} 
+%         \| \nabla u \|_{L^{p}( T_{0} )}
+%         +
+%         \sum_{l=1}^{\cye{M}} 
+%         \rho(\calT)^{\frac {\cye{M}-l} p}
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l})} 
+%         \\&\qquad 
+%         +
+%         \sum_{l=1}^{\cye{M}} 
+%         \rho(\calT)^{\frac {\cye{M}-l} p} \xi(\calT)
+%         C_{\PF,T_{l},F_{l},p} 
+%         \| \nabla u \|_{L^{p}(T_{l-1})} 
+%         \\
+        &\leq 
+        \sum_{l=1}^{\cye{M}} 
+        \rho(\calT)^{\frac {\cye{M}-l} p}
+        C_{\PF,T_{l},F_{l},p} 
+        \left( 
+            \| \nabla u \|_{L^{p}(T_{l})} 
+            +
+            \rho(\calT)^{\frac {1} p}
+            \xi(\calT)
+            \| \nabla u \|_{L^{p}(T_{l-1})} 
+        \right)
+        \\&\quad 
+        + \rho(\calT)^{\frac{\cye{M}}{p}}
+        C_{\PF,T_{0},p} 
+        \| \nabla u \|_{L^{p}( T_{0} )}
+        .
+    \end{align*}
+
+    Let $T \in \calT$ be any $n$-simplex. 
+    Now, let $T \in \calT$ be any $n$-simplex. 
+    By assumption, there exists a \cye{face} path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices \cye{from $\calT$}. 
+    
+    For any $1 \leq m \leq M$ we let $F_m := T_m \cap T_{m-1}$ be a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. 
+    \cye{Recall the notation $U_{F_m} := T_m \cup T_{m-1}$.}
+    For any $1 \leq m \leq M$, \cye{recall that} $F_m := T_m \cap T_{m-1}$ \cye{is}  a face of dimension $n-1$ \cye{shared by the $n$-simplices $T_m$ and $T_{m-1}$}. 
+    
+    
+    By assumption, there exists a strong path $T_0, T_1, \dots, T_M = T$, composed of $n$-simplices. 
+    
+    \todo[inline]{MV: Why a second theorem? We should explain the difference of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:grad}. Which is better and when?}
+
+    \begin{figure}[t]
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!50] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=white  ] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!50] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=white  ] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!50] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=white  ] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+    \coordinate (A) at (0,0);   \coordinate (B) at (2,0); \coordinate (C) at (1,1.5);
+    \coordinate (D) at (0,2.9); \coordinate (E) at (2.5,3); \coordinate (F) at (3,1.25); 
+    \draw[fill=gray!25] (A) -- (B) -- (C) -- cycle; 
+    \draw[fill=gray!25] (A) -- (C) -- (D) -- cycle; 
+    \draw[fill=gray!25] (C) -- (D) -- (E) -- cycle; 
+    \draw[fill=gray!50] (B) -- (C) -- (F) -- cycle; 
+\end{tikzpicture}
+\end{center}
+\caption{Exhausting a domain step by step as in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} and \ref{theorem:poincarefriedrichsestimate:gradzwei}.
+The dark gray triangle is the one being currently added, and the light gray triangles constitute the subdomain assembled so far.}
+\label{figure:exhausting}
+\end{figure}
+
+\begin{remark}
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} depends on only a few parameters of the triangulation:
+    the length of any traversal from the root simplex, the ratios of the volumes of adjacent simplices,
+    the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. 
+    The aforementioned local Poincar\'e--Friedrichs constants can generally be estimated in terms of shape-parameters. 
+    If the face patches of the triangulation are convex, then better estimates are possible. 
+\end{remark}
+
+We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m := \cup_{j=0}^{m} T_m$, 
+    which is a triangulated $n$-dimensional submanifold with boundary.
+    \cye{\sout{We finally write $\Omega_m := \cup_{j=0}^{m} T_m$, which is a triangulated $n$-dimensional submanifold with boundary.}}
+    \todo[inline]{MV: False, $\Omega_m$ is not necessarily a triangulated $n$-dimensional submanifold with boundary, see the 7-triangles example standing for $\Omega_m$ (then the 8th one gives $\Omega_{m+1} = \Omega$). As discussed online, we fortunately do not need here a submanifold with boundary (but we will need it and have it for shellable triangulations.) Actually, here we do not need $\Omega_m$ at all.}
+
+    \mwl{Where to place that construction?}
+ We construct the potential recursively. 
+ We have seen that $c_{0} = w_{0} - u_{|\Omega_{0}}$ is a constant. 
+ Assume that $1 \leq m \leq M$ such that there exists $w_{\iota(m)} \in W^{1,p}(\Omega_{\iota(m)})$ 
+ such that $c_{0} = w_{\iota(m)} - u_{|\Omega_{\iota(m)}}$ is the constant above. 
+ % Note that this assumption is already satisfied when $m=1$.
+ Hence $\nabla w_{\iota(m)} = \nabla u$ over $\Omega_{\iota(m)}$. 
+ By assumption, $T_{m}$ shares the face $F_{m}$ with $T_{{\iota(m)}}$. 
+ Since $$\nabla w_{F_{m}|T_{{\iota(m)}}} = \nabla w_{\iota(m)|T_{{\iota(m)}}},$$
+ there exists a constant $$c_{m} := w_{\iota(m)|T_{{\iota(m)}}} - w_{F_{m}|T_{{\iota(m)}}}.$$
+ We define $w'_{F_m} := w_{F_m} + c_{m} \in W^{1,p}(U_F)$.
+ By construction, $$\nabla w'_{F_m} = \nabla w_{F_m} = \nabla u_{|U_{F_m}}$$ 
+ and 
+ $w'_{F_{m}|T_{{\iota(m)}}} = w_{\iota(m)|T_{{\iota(m)}}}$. 
+ But that already implies $w'_{F_m} = w_{|F_m} - c_{0}$. 
+ Defining $w_{m} \in W^{1,p}(\Omega_m)$ by extending $w_{\iota(m)}$ with $w'_{F_m|T_m}$,
+ we have $c_{0} = w_{m} - u_{|\Omega_{m}}$. 
+
+  
+ 
+ \mwl{Closure}
+ We obtain the desired estimate. 
+ Repeating this argument produces $w \in L^{p}(\Omega)$ 
+ such that for all $n$-simplices $T \in \calT$ we have the restriction $w_{|T} \in W^{1,p}(T)$ with $w_{|T} = u + c_{0}$.
+ In particular, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
         \color{blue}
         We study the singular values of the matrix 
         \begin{align*}
