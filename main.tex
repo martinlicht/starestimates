@@ -1694,7 +1694,7 @@ This basic idea has appeared in the different variants before, for instance rece
 
 
 We begin with an auxiliary result with independent relevance, where we estimate the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
-% This is inspired by the classical proof of what is often called Friedrichs' inequality. 
+% This is inspired by the classical proof of what is often called the Friedrichs inequality. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex}
     Let $T$ be an $n$-simplex with a face $F$ and $p \in [1,\infty]$. 
@@ -5412,7 +5412,6 @@ with or without boundary conditions.
 The analysis of the Poincar\'e potential operators in Section~\ref{section:potentialoperator}
 implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
 
-
 \begin{lemma}\label{lemma:PFexteriorsimplex}
     Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set. 
     Let $0 \leq k < n$. 
@@ -5423,20 +5422,28 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
         \| w \|_{L^{p}(\Omega)}
         &
         \leq 
+        C_{{\rm{PF}},k,\Omega,p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+    where 
+    \begin{align*}
+        C_{{\rm{PF}},k,\Omega,p} 
+        = 
         n A_{\Poinc}(n,k+1) 
         \vol_{n}(B_1(0)) 
         \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
         \diam(\Omega)
-        \| \cartan u \|_{L^{p}(\Omega)}
         .
     \end{align*}
 \end{lemma}
 \begin{proof}
     This follows from the discussion in Section~\ref{section:potentialoperator}.
+    This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{n}(B_1(0)) \diam(\Omega)^{n}$.
 \end{proof}
 
 These constants are generally not optimal. 
-For example, when $p=2$ and only the divergence is considered, 
+For example, when $p=2$ and when only the divergence is considered, 
 we have the following improved estimate. 
 
 \begin{lemma}\label{lemma:PFfordivergence}
@@ -5450,13 +5457,14 @@ we have the following improved estimate.
     \end{align*}
 \end{lemma}
 \begin{proof}
-    This is a reduction to Friedrichs' inequality. 
+    This is a reduction to the Friedrichs inequality. 
     Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
     Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
-    with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to Friedrichs inequality. 
+    with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
     The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
     which has the same smallest singular value. 
 \end{proof}
+
 
 
 
@@ -5466,42 +5474,42 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
     Let $T$ be an $n$-simplex 
-    and let $F_{0},\dots,F_{l}$ be $l+1$ different faces of $T$. 
+    and let $F_{0},\dots,F_{\ell}$ be $\ell+1$ different faces of $T$. 
     Suppose that $u \in W^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq l$.
+    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq \ell$.
     Then there exists $w \in W^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} w = 0$ for $0 \leq i \leq l$
+    $\trace_{T,F_i} w = 0$ for $0 \leq i \leq \ell$
     and  
     \begin{align*}
-        \cartan u = \cartan w,
+        \cartan w = \cartan u,
         \quad 
-        \| w \| 
+        \| w \|_{L^{p}(\Omega)} 
         \leq 
-        C_{\PF,\Gamma,l,k,p}(T)
-        \diam(T)^{k} 
-        \| \cartan u \|
+        C_{\PF,\Gamma,\ell,k,p}(T)
+        \| \cartan u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-    Here, $C_{\PF,\Gamma,l,k,p}(T) > 0$ is a constant such that 
+    Here, $C_{\PF,\Gamma,\ell,k,p}(T) > 0$ is a constant such that 
     \begin{align*}
-        C_{\PF,\Gamma,l,k,p}(T)
+        C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
         2^{\frac n p}
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
-        \Ceins{n}(T)
+        \Ceins{n}(T)^{k}
+        \diam(T)^{k} 
         % \matnorm{\Jacobian \varphi}^{k}
         .
     \end{align*}
 \end{lemma}
+\todo{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\rm{PF}},T,p}$, $C_{{\rm{PF}},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\rm{PF}},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{section: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 \begin{proof}
-    There exists $\varphi : \hat T \rightarrow T_{m+1}$ mapping the convex closure of the $n$ unit vectors onto the face $F_0$.
+    There exists $\varphi : \hat T \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F_0$.
     We can also assume that the face of $\hat T$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
     In what follows, we let $\tilde U$ be the domain obtained from reflecting $\hat T$ along the coordinate axes $l+1$ through $n$. 
     We see that $\vol(\tilde U) = (l+1)/n!$
-    
     
     We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
@@ -5530,7 +5538,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     
     In addition to that, by Proposition~\ref{proposition:pullbackestimate}:
     \begin{align*}
-        \| w \|_{L^{p}(T_{m+1})}
+        \| w \|_{L^{p}(T)}
         &\leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
@@ -5554,8 +5562,12 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \cartan u \|_{L^{p}(T)}
         .
     \end{align*}
+    \todo{MV: the norms of the Jacobians have to be fixed.}
     The second inequality follows.
+    \todo{MV: Please a few more details.}
 \end{proof}
+
+
 
 Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
@@ -5574,9 +5586,18 @@ such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m}
 We then let $U_{m}$ be the closure $\patch_{\calT}(S_{m}) \setminus T_{m}$,
 and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
+Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
+For each $1 \leq m \leq M$, there exists a simplex $S_{m\cye{-1}} \in \calT$ 
+such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $\cye{\cancel{T_{m} \in}} \patch_{\calT}(S_{m\cye{-1}})$. \cye{This is precisely $S_m \in \calT$ from Lemma~\ref{lemma:existenceofstar} (there the last simplex is called $T_{m+1}$)}.
+
+\todo[inline]{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:gradzwei}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} 
+
+We then let $U_{m \cye{-1}}$ be the closure \cye{of} $\patch_{\calT}(S_{m\cye{-1}}) \setminus T_{m}$,
+and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m\cye{-1}})$. 
 
 
-The main result of this manuscript is the following theorem. 
+
+The main result of this manuscript for shellable triangulations of domains, not necessarily convex or even star-shaped, is the following theorem. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
@@ -5625,6 +5646,36 @@ The main result of this manuscript is the following theorem.
     \end{align*}
     \mwl{The notation $U_m$ should be settled in the definition of shellings.}
 \end{theorem}
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with \cye{an $n$-dimensional} shellable triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_{\cye{M}}$ be a shelling.
+    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
+    and such that for each $T_{m} \in \calT$ in the shelling\cye{, $1 \leq m \leq M$,} 
+    we have the following recursive estimate: 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
+        &
+        \leq  
+        C_{\PF,\cye{T_m, I_{m-1}},k,p}(\calT) 
+        \diam(T)^{k} 
+        \left( 
+            \| \cartan u      \|_{L^{p}(T_{m})} 
+            +
+            \Cfive{n}{k}(\calT)^{k+1} 
+            \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+            \| \cartan u \|_{L^{p}(U_{m-1})}
+        \right)
+        \\&\qquad
+        + 
+        \Cfive{n}{k}(\calT)^{k} 
+        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+        \| w \|_{L^{p}(U_{m-1})}
+        .
+    \end{align*}
+    \todo{MWL: The notation $U_m$ should be settled in the definition of shellings.}
+\end{theorem}\todo{MV: I think we should also write down the bound for $\| w \|_{L^{p}(\Omega)}.$}
+
 
 \begin{proof}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
@@ -5747,6 +5798,100 @@ The main result of this manuscript is the following theorem.
 %     \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
+\begin{proof}
+    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
+    By assumption, there exists a shelling $T_0, T_1, \dots, T_{\cye{M}}$. 
+    We write $\Omega_m := \cup_{j=0}^{m} T_j$, \cye{$0 \leq m \leq M$,} which is \cye{by Lemma~\ref{lemma:shell_triang_man}} a triangulated $n$-dimensional submanifold with boundary. \todo[inline]{MV: It might also be good to synchronize the notations $X_{m}$ and $\Omega_m$. I would go for $X_{m}$, since this is a union of $n$-simplices (closed), whereas $\Omega_m$ has a connotation of a domain (open).}
+    For $0 < m \leq M$, by \cye{the definition of shellability in Section~\ref{section:shellability}}, $T_{m}$ and $\cye{\Omega_{m-1}}$ share the interface $\cye{I}_{m\cye{-1}}$, which is a collection of faces of $T_{m}$. 
+    \cye{It follows from} Lemma~\ref{lemma:existenceofstar} \cye{that} adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m\cye{-1}} \in \calT$, \cye{where} $U_{m-1} \subseteq \Omega_{m-1}$ is the complement of $T_{m}$ in that newly completed star.\todo{MV: Short, as already explained above in details.}
+    
+    \cye{We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound.} Let $u \in W^{p}\Alt^{k}(\Omega)$. 
+    First, \cye{on $T_0$, from Lemma~\ref{lemma:PFexteriorsimplex},} there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
+    \begin{gather*}
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
+    \end{gather*}
+    \cye{We define $w|_{T_0} := w_0$.}
+    Suppose now that $0 < m \leq M$ such that $w\cye{|_{\Omega_{m-1}}} \in W^{p}\Alt^{k}(\Omega_{m-1})$ with $\cartan w = \cartan u$ over $\Omega_{m-1}$. \cye{This is true for $m=1$. We now define, as in~\cite[equations~(5.12) and~(5.14)]{ern2020stable} or~\cite[equations~(6.7) and~(6.9)]{Chaum_Voh_p_rob_3D_H_curl_24},
+    \begin{align} \label{equation:w''_ext_der}
+    w|_{T_m} := u|_{T_m} + \Xi_{m}^{\ast}((w - u)|_{U_{m-1}}),
+    \end{align}
+\todo[inline]{MV: Direct and simple definition. Only one object. Namely avoids the checking of the compatibility of the boundary condition, which is a bit tedious and requires a rigorous apparatus.}
+    where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
+    as \cye{$\Xi_{1}$} in \cye{Proposition}~\ref{proposition:starreflection} \cye{and the pullback is defined in~\eqref{equation:pullback}}. Clearly, $w|_{T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
+    \begin{align*}
+        \trace_{\cye{I}_{m\cye{-1}}} w|_{T_m} = \trace_{\cye{I}_{m\cye{-1}}} w|_{\Omega_{m-1}},
+    \end{align*}
+    since $u$ is trace continuous over $I_{m-1}$ and $\Xi_{m}$ is the identity along $I_{m-1}$, and
+    \begin{align*}
+        \cartan w = \cartan u \text{ over } T_m,
+    \end{align*}
+    since $\cartan w = \cartan u$ over $\Omega_{m-1}$ and $\Xi_{m}^{\ast}$ preserves this. Thus
+    \begin{align*}
+    w|_{\Omega_{m}} \in W^{p}\Alt^{k}(\Omega_{m}) \text{ with } \cartan w_{m} = \cartan u \text{ over } \Omega_{m}. 
+    \end{align*}
+    }
+   
+    We want to estimate norms. 
+    By construction,
+    \begin{align*}
+        \| \cye{w} \|_{L^{p}(T_{m})}
+        \leq  
+        \| \cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        + 
+        \| \cye{u - \Xi_{m}^{\ast}(u|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        .
+    \end{align*}
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, \cye{since $\trace_{I_{m-1}} (u|_{T_m} - \Xi_{m}^{\ast}(u|_{U_{m-1}})) = 0$, we have}
+    \begin{align*}
+        \| \cye{u - \Xi_{m}^{\ast}(u|_{U_{m-1}})} \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
+        + \| \cartan (\Xi_{m}^{\ast}(u|_{U_{m-1}})) \|_{L^{p}(T_{m})} )
+        .
+    \end{align*}\todo{MV: $\diam(T)^{\cye{k}}$???}
+    We also use \cye{Proposition}~\ref{proposition:pullbackestimate} to find 
+    \begin{align*}
+        \| \cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi_{m} \|^{k}
+        \| \cye{w} \|_{L^{p}(U_{m-1})}
+        ,
+        \\
+        \| \cartan (\cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})}) \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+        \| \Jacobian \Xi_{m} \|^{k+1}
+        \| \cartan \cye{u} \|_{L^{p}(U_{m-1})}
+        ,
+    \end{align*}\todo{MV: Which norms of the Jacobians and their determinants?}
+    \cye{where we have employed} that $\cartan w = \cartan u$ \cye{over $\Omega_{m-1}$}. 
+    Using the properties of the reflection mapping in \cye{Proposition}~\ref{proposition:starreflection}, the desired recursive estimate follows. 
+%     \begin{align*}
+%         ...
+%     \end{align*}
+%     This enables the recursion
+%     \begin{align*}
+%         \| w_{m} \|_{L^{p}(T_{m})}
+%         &
+%         \leq  
+%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+%         \| \Jacobian \Xi_{m} \|^{k} 
+%         \| w_{m-1} \|_{L^{p}(U_{m-1})}
+%         \\&\qquad
+%         + 
+%         C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} 
+%         \| \cartan u      \|_{L^{p}(T_{m})} 
+%         \\&\qquad
+%         + 
+%         C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} 
+%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
+%         \| \Jacobian \Xi_{m} \|^{k+1} 
+%         \| \cartan u \|_{L^{p}(U_{m-1})}
+%         .
+%     \end{align*}
+\end{proof}
 
 
 
@@ -5799,6 +5944,57 @@ The main result of this manuscript is the following theorem.
     we have $w := \Xi_{2}^{\ast} w_{m-1}$ satisfying $\cartan w = \cartan u$. 
     Moreover, the desired estimate follow from Proposition~\ref{proposition:starreflection}.
     The proof is complete. 
+\end{proof}
+\todo[inline]{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when?}
+
+
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with an \cye{$n$-dimensional} shellable triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_{\cye{M}}$ be a shelling.
+    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
+    and such that \cye{for each $T_{m} \in \calT$ in the shelling, $1 \leq m \leq M$,
+    we have the following recursive estimate:} 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
+        \leq 
+        C_{\PF,T,k,p}(T_{0})
+        \prod_{i=0}^{m} 
+        C_{???}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    We prove this via induction. 
+    The statement is clearly satisfied when $m=0$ because then we only consider a single simplex. 
+    Let us assume that the statement is true for some integer $m-1 \geq 0$.
+    
+    We write $\Omega_{m-1} := \cup_{j=0}^{m-1} T_{j}$, 
+    which is a triangulated $n$-dimensional submanifold with boundary.
+    By assumption, $T_{m}$ and $\cye{\Omega_{m-1}}$ share the interface $\cye{I}_{m\cye{-1}} \subset \partial T_{m}$, 
+    which is a collection of faces of $T_{m}$. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S \subseteq T$, 
+    and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    
+    We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow U_{m-1}$ as discussed in \cye{Proposition}~\ref{proposition:starreflection},
+    which acts as the identity along $\partial U_{m-1} \setminus \partial T$.
+    By assumption, 
+    there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
+    such that $\cartan w_{m-1} = \Xi_{2}^{-1} \cartan u$ and 
+    \begin{align*}
+        \| w_{m-1} \|_{L^{p}(T_{m})}
+        \leq 
+        C_{\PF,T,k,p}(T_{0})
+        \prod_{i=0}^{m} 
+        C_{???}
+        \| \Xi_{2}^{-\ast} \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align*}
+    Because pullback and exterior derivative commute, 
+    we have $w := \Xi_{2}^{\ast} w_{m-1}$ satisfying $\cartan w = \cartan u$. 
+    Moreover, the desired estimate follow from \cye{Proposition}~\ref{proposition:starreflection}.
+    The proof is complete. \todo{MV: I do not get this.}
 \end{proof}
 
 

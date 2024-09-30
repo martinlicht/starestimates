@@ -41,7 +41,7 @@ Revision
 - [x] Section 7: Shellable triangulations 
 - [o] Section 8: reflections and deformations
 - [ ] Section 9: Final estimate 
-- [o] Section 10: Computation
+- [x] Section 10: Computation
 - [x] outlook 
 
 Further changes
