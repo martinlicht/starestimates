@@ -27,7 +27,7 @@ Revision
 - [x] header
 - [x] title and abstract, macros 
 - [x] library + bib style 
-- [ ] Introduction 
+- [-] Introduction 
 - [ ] Move ahead section on scalar potentials 
 - [o] Section 2: scalar potential on domains
 - [x] Section 3: triangulations (combinatorial)
@@ -39,7 +39,7 @@ Revision
         unity notation, 
 - [x] Section 7: Shellable triangulations 
 - [o] Section 8: reflections and deformations
-- [ ] Section 9: Final estimate 
+- [o] Section 9: Final estimate 
 - [x] Section 10: Computation
 - [x] outlook 
 
