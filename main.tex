@@ -2977,534 +2977,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 
-\section{Shellable triangulations of manifolds}\label{section:advancedtriangulations}
-
-We return to the theory of triangulations,
-as our main objective requires some further concepts.
-We are interested in simplicial complexes that triangulate manifolds. 
-Our particular interest are manifold triangulations that are \emph{shellable}.
-Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
-Local patches (stars) within triangulations of dimension two and three are examples of such shellable complexes. 
-The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures} are our main references for this section. 
-We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
-
-\begin{figure}[h]
-\centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
-\caption{A manifold triangulation (left) and not a manifold triangulation (right)}
-\label{figure:not_manifold_triang}
-\end{figure}
-
-
-\subsection{Triangulations of manifolds}
-
-We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
-We recall that this means that for every $x \in \underlying{\calT}$
-% there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
-there exists an open neighborhood $U(x) \subseteq \underlying{\calT}$ and an embedding $\phi : U(x) \rightarrow \bbR^{n}$
-such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the open unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| < 1 \}$
-or onto the half-ball $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
-In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
-Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional. 
-An example of a manifold triangulation and an example which is not a manifold triangulation are given in Figure~\ref{figure:not_manifold_triang}.
-
-The following special cases receive particular interest:
-an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball\mwl{, and we sometimes call this a \textit{$n$-disk} triangulation}.
-An \textit{$n$-sphere triangulation} is any triangulation of a topological $n$-sphere. 
-
-
-We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
-If $\calM$ is $n$-dimensional, then the $\partial\calM$ is a topological manifold without boundary of dimension $n-1$. 
-We gather a few helpful observations on how these notions relate to triangulations.
-While the reader might deem them obvious, we nevertheless include proofs. 
-
-\begin{lemma}\label{lemma:boundarysimplices}
-    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying set is a manifold $\calM$. 
-    \begin{itemize}
-        \item Any face $F \in \Faces(\calT)$ is not contained in the boundary if and only if it is contained in exactly two $n$-simplices.
-        \item Any face $F \in \Faces(\calT)$ is contained in the boundary if and only if it is contained in exactly one $n$-simplex.
-        \item The simplices contained in the boundary constitute a triangulation of the boundary.
-        % \item $\calT$ is non-branching, that is, every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. 
-    \end{itemize}
-\end{lemma}
-\begin{proof}
-    We prove these statements in several steps.
-    \begin{enumerate}
-    \item 
-    Let $\mathring \calM := \calM \setminus \partial \calM$ denote the interior of the manifold. 
-    We will use the following fact:\footnote{To see this, one easily constructs a continuous deformation of $\calM$ into itself to move any chosen point on $S$ to any other chosen point on $S$.} if $S \in \calT$ has an inner point that lies on $\partial \calM$, then all inner points of $S$ are on $\partial \calM$. 
-    Since the boundary $\partial \calM$ is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
-    
-    \item 
-    We recall an auxiliary result.
-    Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
-    As a consequence of the Jordan--Brouwer separation theorem~\cite[Corollary IV.5.24]{mayer1989algebraische}~\cite[Corollary VIII.6.4]{massey1981algebraic}, 
-    we know that $Y \setminus X$ has got two connected components.
-    
-    % \item 
-    % We prove an auxiliary result. 
-    % Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
-    % The embedding of $X$ into $Y$ cannot be onto~\cite[Theorem~2.55]{lee2011topological}, and so there exists $y \in Y \setminus X$. 
-    % Using the homeomorphism from $Y$ into the $m$-sphere, which maps $y$ to the north pole without loss of generality, and a stereographic projection, 
-    % we see that $Y \setminus \{y\}$ is homeomorphic to $R^{m}$.
-    % As a consequence of the Jordan--Brouwer separation theorem~\cite[Theorem IV.5.23]{mayer1989algebraische}~\cite[Corollary IV.5.24]{mayer1989algebraische}~\cite[Corollary VIII.6.4]{massey1981algebraic}, $Y \setminus (X \cup \{y\})$ has got two connected components,
-    % and thus $Y \setminus X$ has got two connected components.
-    
-    \item
-    Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
-    Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ 
-    homeomorphic to an $n$-dimensional ball 
-    so small that its closure $\overline{B_F}$ only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
-    Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
-    The intersection of any two of them is $F$, but their interiors are disjoint because otherwise they would coincide. 
-    
-    If $z_F$ is an interior point of $\calM$, 
-    then it follows by our assumptions that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere of dimension $n-1$. 
-    Consider $X = F \cap \partial \mathring B_F$.
-    If $n=1$, then $X$ is empty and $\partial \mathring B_F$ has $K$ distinct connected components. 
-    If $n > 1$, then $X$ is homeomorphic to a sphere of dimension $n-2$
-    and again $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
-    But by the auxiliary result above, $K = 2$. 
-    We conclude that $F$ is contained in two $n$-simplices of $\calT$.
-    
-    Consider the case that $z_F$ lies on the boundary of $\calM$ and suppose that $F$ is contained in $K$ distinct $n$-simplices of $\calT$.
-    By adding at least one dimension, we can double\footnote{The reader is referred to Lee's textbook~\cite{lee2012smooth} for more background and the technicalities.} the manifold $\calM$ along the boundary and obtain the doubled manifold $\calM'$. 
-    Similarly, we can construct a doubling of the triangulation $\calT'$ such that $F$ is contained in exactly $2K$ distinct $n$-simplices of $\calT'$. 
-    We know that $\calM'$ is a manifold without boundary, and hence $F$ is an interior simplex of $\calT'$.
-    This implies $K=1$.
-    So any boundary face can only be contained in one single $n$-simplex. 
-    
-    \item
-    Clearly, the simplices of $\calT$ contained in the boundary constitute a simplicial complex. 
-    Every $x \in \calM$ is an inner point of some simplex $S \in \calT$. 
-    If $x \in \partial \calM$ is a boundary point, then $S$ must be a boundary simplex, 
-    so the boundary simplices triangulate all of $\partial \calM$.
-    \end{enumerate}
-    All desired results are thus proven. 
-\end{proof}
-
-Suppose that $\calT$ is an $n$-dimensional simplicial complex that triangulates a manifold. 
-Those simplices of the manifold triangulation that are subsets of the boundary of the underlying manifold are called \emph{boundary simplices}. 
-% The simplices that lie in the boundary of the underlying set are called \emph{boundary simplices}.
-All other simplices of the manifold triangulation are called \emph{inner simplices}. 
-We have seen that the boundary simplices of a manifold triangulation constitute a triangulation of the manifolds boundary. 
-We call this simplicial complex the \emph{boundary complex}. It has dimension $n-1$. 
-% We see that the family of boundary faces constitute a simplicial complex, which we call \textit{boundary complex}.
-% Any point on the boundary lies within some boundary simplex, and hence the boundary complex is a triangulation of the boundary. 
-% Definitions imply that the boundary complex is a manifold triangulation of dimension $n-1$.
-% The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
-
-We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. This topics is surprisingly non-trivial and 
-we gather some results that are hard to find in the literature. 
-
-We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{combinatorial}
-if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simplicial ball of dimension $n$. 
-
-\begin{lemma}\label{lemma:startopology}
-    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
-    Suppose that $1 \leq n \leq 3$. Then the following holds:
-    \begin{itemize}
-        \item
-        If $S \in \calT$ is an inner simplex, 
-        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
-        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
-        \item
-        If $S \in \calT$ is a boundary subsimplex, 
-        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
-        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
-    \end{itemize}
-\end{lemma}
-\begin{proof}
-    The lemma is obvious if $n = 1$, so we assume $n \geq 2$ in what follows. 
-    We prove these statements in several steps. 
-    The reader is assumed to have some background in topology. 
-    \begin{enumerate}
-    \item 
-    Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with barycenter $z_{S}$, and dimension $k$.
-    Let $\calS := \patch_{\calT}(S)$ be its star. 
-    Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
-    has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
-    For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
-    $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
-%     \begin{align*}
-%         $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
-%     \end{align*}
-    The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
-    that triangulates the same underlying set as $\calS$.
-    Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
-    In particular, $z_{S}$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
-    So it remains to study the topology of vertex stars. 
-    
-    \item 
-    Suppose that $2 \leq n \leq 3$ and that $\calM$ is a manifold without boundary. 
-    Under these assumptions, 
-    as explained in the proof of Theorem~1 in \cite{Siebenmann1979},
-    the set $\carapace(V)$ is a triangulation of a sphere of dimension $n-1$ for any inner vertex $V$. 
-    There exists a homeomorphism from the closed cone of $\underlying{\carapace(V)}$ onto the local star $\underlying{\patch_{\calT}(V)}$.
-    But then that closed cone and hence $\underlying{\patch_{\calT}(V)}$ are homeomorphic to an $n$-dimensional ball. 
-    
-    \item 
-    If $2 \leq n \leq 3$ and $\calM$ has a non-empty boundary, then we use an approach as in the proof of Lemma~\ref{lemma:boundarysimplices}: 
-    we let $\calM'$ denote the doubling of the manifold and $\calT'$ be the doubling of the triangulation $\calT$. 
-    Let $V \in \calT$ be a vertex. 
-    If $V$ is an inner vertex of $\calT$, then $\carapace(V) \subseteq \calT \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT \subseteq \calT'$ triangulates a ball of dimension $n$, as discussed above. 
-    If $V$ is a boundary vertex of $\calT$, then it is an inner vertex of $\calT'$,
-    and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
-    We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. 
-    The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere. 
-    It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
-    Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
-    
-    
-%     Suppose that $S = \{z\}$ is a singleton simplex. 
-%     For $\delta > 0$ small enough, 
-%     \begin{align*}
-%         B_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) \leq \delta \right\},
-%         \quad 
-%         S_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) = \delta \right\},
-%     \end{align*}
-%     are compactly contained subsets of $|\patch_{\calT}(S)|$.
-%     For each simplex $K \in \patch_{\calT}(S)$ that contains the vertex $z$ and which has the opposite face $F_K$, 
-%     we easily find homeomorphisms $\phi_{K} : B_{\delta}(z) \cap K \rightarrow K$
-%     such that 
-%     $\phi_{K}(z) = z$, 
-%     such that 
-%     $\phi_{K}( K \cap S_{\delta}(z) ) = F_{K}$,
-%     such that 
-%     for all $K, K' \in \calT$ with $K' \subseteq K$ we have $\phi_{K|K'} = \phi_{K'}$,
-%     and such that 
-%     $\phi_{K}$ maps $[0,1]\cdot v$ linearly into $\bbR \cdot v$. 
-%     This is defines a homeomorphism $\phi : B_{\delta}(z) \rightarrow |\patch_{\calT}(S)|$. 
-%     Moreover, one easily verifies that $\phi$ is bi-Lipschitz.
-%     %     For $\delta > 0$ small enough, $B_{\delta}(z)$ is homeomorphic to the unit ball and that homeomorphism maps $S_{\delta}(z)$ onto the unit sphere. 
-%     \item 
-%     One sees that $\phi$ defines a mapping from the closed 
-%     homeomorphism between cone of link and ball 
-%     
-%     If $z$ is an inner vertex of $\calS'$, 
-%     then the boundary simplices of $\calS'$,
-%     which are the boundary simplices of $\calS$, triangulate a topological sphere of dimension $n-1$.
-%     
-%     Now suppose that $z$ is a boundary vertex of $\calS'$,
-%     which is the case if and only if $S$ is a boundary simplex. 
-%     Write 
-%     \[
-%         B_{H} = \left\{ x \in B_1(0) \suchthat* x_1 \leq 0 \right\},
-%         \quad 
-%         S_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 \leq 0 \right\}.
-%         \quad 
-%         D_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 = 0 \right\}.
-%     \]
-%     Provided that $\delta > 0$ is small enough, there exists a homeomorphism $\phi'$ that maps $\overline{B_{\delta}(z)} \cap \calM$ onto $B_1(0)$, which maps $\overline{B_{\delta}(z)} \cap \partial\calM$ onto $D_H$,
-%     and which maps $z$ to the origin. 
-%         %
-%     It follows that $\phi'$ maps the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$ onto $S_H$.
-%         %
-%     Assuming that $\delta$ is small enough once more, 
-%     we now verify that $\phi^{-1}$ maps $|\carapace(S)|$ onto $S_{\delta}(z) \cap |\patch_{\calT}(S)|$.
-%     The latter equals the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$.
-%     It follows that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
-    % We let $\calM'$ be the doubling of the manifold and let $\calT'$ be the doubling of the present triangulation;
-    % we refer to Lee's textbook~\cite{lee2011topological} for details. 
-    % The vertex star around $z$ within the boundary triangulation $\partial\calT$ is homeomorphic to the ball of dimension $n-1$,
-    % and it is homeomorphic to $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi$. 
-    % The underlying space of $\carapace(S)$ is homeomorphic to $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ along $\phi$.
-    % The vertex star around $z$ within the boundary triangulation $\partial\calT$ is homeomorphic to the ball of dimension $n-1$,
-    % and it is homeomorphic to $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi$. 
-    % Notice that 
-    % \begin{align*}
-    %     \partial\left( { B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)| \right)
-    %     =
-    %     S_{\delta}(z) \cap |\patch_{\calT}(S)|
-    %     \cup 
-    %     \overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|
-    %     .
-    % \end{align*}
-    % Necessarily, this homeomorphism maps the boundary of $\overline{B_{\delta}(z)} \cap |\calT|$, which contains $z$, onto the unit sphere. Since the image of $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi'$ is still homeomorphic to a disk of dimension $n-1$, so must be the image of $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ under $\phi'$.
-    % But that just means that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
-    \end{enumerate}
-    All relevant results are proven. 
-\end{proof}
-
-
-\begin{lemma}\label{lemma:connectivity}
-    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
-    If the underlying space of $\calT$ is connected, then $\calT$ is face-connected.
-\end{lemma}
-\begin{proof}
-    We first show that each vertex star is face-connected via a short induction argument.
-    Clearly, any simplicial $1$-ball and simplicial $1$-sphere are face-connected. 
-    Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
-    The induction argument implies that each vertex star in $\calT$ is face-connected.
-
-    If the underlying space $\underlying{\calT}$ is connected, 
-    then we easily see that the union of the $1$-simplices is path-connected.
-    Given $n$-simplices $S,S' \in \calT$, 
-    we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
-    As each vertex star is face-connected, 
-    we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
-    is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
-    This just means that $\calT$ is face-connected. 
-\end{proof}
-
-
-
-\begin{remark}
-    Triangulations with the property that all vertex stars are homeomorphic to a ball are also called \emph{combinatorial} \cite[Section~1]{Bagchi2005}.
-    All manifolds of dimension up to three admit smooth structures and smooth manifolds admit combinatorial triangulations. 
-    There are triangulations of manifolds in dimension higher than $3$ where not every vertex star is homeomorphic to a ball. 
-    
-    Clearly, not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
-    When the dimension is at least five, then there is no computer algorithm that, given a finite simplicial complex as input, decides whether the input is the triangulation of some fixed manifold~\cite{chernavsky2006unrecognizability}.
-    Going further, it has been shown that deciding whether a simplicial complex is the triangulation of a manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
-    % Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. ~\cite{todo}
-    We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
-
-    Conversely, not all topological manifolds, even if compact, can be described as a triangulation. 
-    Such manifolds, some even compact and simply-connected, appear in dimension four and higher~\cite{akbulut2014casson}.
-%     For each dimension $n \geq 5$ there exists an $n$-dimensional compact topological manifold without a triangulation. 
-\end{remark}
-
-
-
-
-
-
-
-
-% 3. Shellability 
-\subsection{Shellable simplicial complexes}\label{subsection:shellability}
-
-
-The notions of shelling and shellable triangulation have been discussed widely in combinatorial topology and polytopal theory. 
-Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation of a manifold. 
-This forces the intermediate triangulations to be particularly well-shaped. 
-We build upon the notion of shelling as introduced in~\cite[Definition 8.1]{ziegler1995lectures},
-where our definition of shelling is equivalent to the notion of the shellings of simplicial complexes, see also~\cite[Remark~8.3]{ziegler1995lectures}. 
-
-% \mwl{Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
-% by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
-% the gluing interface is a triangulated submanifold of the boundary. 
-% This forces the intermediate triangulations to be particularly well-shaped. 
-% We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
-%It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex, as this enables the inductive method of proof.
-% }
-
-
-
-Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
-For any enumeration, we call 
-\begin{align*}
-    \Gamma_m 
-    := 
-    \big( 
-        T_{0} \cup T_{1} \cup \dots \cup T_{m} 
-    \big) 
-    \cap 
-    T_{m+1}
-\end{align*}
-the $m$-th \textit{interface set}. 
-% Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
-We call the enumeration a \emph{shelling} if each interface set $\Gamma_m$ is a triangulated manifold of dimension $n-1$. 
-
-\begin{remark}
-    We interpret a shelling as the construction of a triangulation 
-    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
-    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
-\end{remark}
-\begin{remark}
-    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
-    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
-    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
-\end{remark}
-
-
-The reason of our interest in shellable simplicial complexes is that they can be constructed via successive adhesion of simplices.
-The resulting succession of simplicial complexes consists of simplicial balls or spheres. 
-
-\begin{lemma}\label{lemma:shell_triang_man}
-    Let $\calT$ be an $n$-dimensional simplicial complex 
-    with a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$,
-    such that each simplex of dimension $n-1$ is contained in at most two simplices. 
-    % DONE: what is non-branching?
-    Then
-    $$
-        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
-    $$ 
-    is a triangulated manifold with boundary for all $0 \leq m \leq M$.
-    % 
-    In particular, $X_{m}$ is a topological $n$-ball when $m < M$, 
-    and 
-    $X_{M}$ is either a topological $n$-ball or topological $n$-sphere. 
-\end{lemma}
-\begin{proof}  
-    We prove this claim by induction. 
-    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. Let $1 \leq m \leq M$ and suppose that 
-    \begin{align*}
-        X_{m-1} := T_{0} \cup T_{1} \cup \dots \cup T_{m-1}
-    \end{align*}
-    is a topological $n$-ball. Let $T_{m}$ is the next $n$-simplex in the shelling.
-    By definition, $\Gamma_{m} := X_{m-1} \cap T_{m}$ is a submanifold of $\partial T_{m}$,
-    and it is triangulated by some faces of $T_{m}$ and their subsimplices. 
-    
-    Let $F$ be such a face. 
-    By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m-1}$,
-    and $F$ is in the boundary of $X_{m-1}$. 
-    We conclude that $\Gamma_{m}$ triangulates a submanifold of the boundary of $X_{m-1}$.
-    
-    On the one hand, 
-    if $\Gamma_{m}$ is the entire boundary of $T_{m}$, 
-    then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
-    Hence $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
-    which requires $m = M$.
-    On the other hand, 
-    if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
-    then $X_{m-1} \cup T_{m}$ is still a topological $n$-ball.
-\end{proof}
-
-
-We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
-
-\begin{example}\label{example:shell_simpl}
-    Any simplex $T$ (trivially) has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
-    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
-\end{example}
-\begin{example}
-    The standard triangulation of the $3$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable, as are its higher-dimensional generalizations.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
-\end{example}
-\begin{example}
-    There exists a non-shellable triangulation of a tetrahedron and of a cube in $n=3$, see~\cite[Example 8.9]{ziegler1995lectures}.
-\end{example}
-
-\begin{lemma}\label{lemma:shell_2D}
-    Any simplicial $2$-\disk\ is shellable.
-    Any simplicial $2$-sphere is shellable. 
-\end{lemma}
-\begin{proof}
-    First, 
-    let $\calS$ be any triangulation of a $2$-sphere. 
-    By removing any triangle $S \in \calS$, we obtain a triangulation $\calT$ of a $2$-\disk.
-    Any shelling of that \disk\ can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
-    So it remains to show that any triangulation $\calT$ of the two-dimensional \disk\ is shellable. 
-    We will construct the shelling in reverse. 
-    
-    Write $M = |\calT|$. 
-    There is nothing to show if $\calT$ contains only one triangle. 
-    We call a triangle $T \in \calT$ \emph{good in $\calT$} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
-    Hence a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
-    and a triangle is not good in $\calT$ if that intersection is either empty, only some of its vertices, or a vertex and the opposite edge.
-    % DONE: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
-    We show by an induction argument over the number of triangles that every triangulation of a $2$-\disk\ that contains at least two triangles also contains at least two good triangles. 
-
-    Clearly, this is the case if the triangulation of the $2$-\disk\ contains two triangles. 
-    Now suppose the induction claim is true when the triangulation includes at most $N$ triangles,
-    and assume that $\calT$ includes $N+1$ triangles. 
-    There are at least two triangles with an edge on the boundary. 
-    Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
-    Then there exists a triangle $T'$ that intersects $\partial M$ 
-    in one edge and its opposite vertex.
-    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk.
-    By the induction assumption, each of those components contains at least two triangles 
-    that are good in the respective component. 
-    So each component has at least one triangle that is good in $\calT$. 
-    Hence $\calT$ contains two good triangles, which completes the induction step. 
-    
-    We conclude that whenever $\calT$ triangulates a $2$-\disk,
-    it contains a good triangle $T$. 
-    If $T$ has three edges in the boundary, then $T = M$ and we are trivially done. 
-    If $T$ intersects with the boundary in exactly one or two edges, 
-    then $\overline{M \setminus T}$ is still a topological $2$-\disk.
-    The triangulation $\calT'$ that is obtained by removing $T$
-    is a triangulation of some $2$-\disk\ that intersects $T$ only at either two or one edges.
-    Any shelling of $\calT'$ can in this way be extended to a shelling of $\calT$, and the proof is complete. 
-\end{proof}
-
-\begin{lemma}
-    Let $\calT$ be a $3$-dimensional manifold triangulation and $S \in \calT$.
-    Then $\patch_{\calT}(S)$ is shellable. 
-\end{lemma}
-\begin{proof}
-    The statement is trivially true if $S$ is a tetrahedron. 
-    The statement is clear if $S$ is an inner or boundary face of $\calT$,
-    where we only need to enumerate either one or two tetrahedra. 
-    The statement is still easily verified if $S$ is an inner or boundary edge of $\calT$:
-    one chooses a starting tetrahedron (with a boundary face if $S$ is a boundary edge) and rotates around the edge in a fixed direction to create a suitable enumeration. 
-    When $S$ is an inner vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-sphere.
-    Similarly, when $S$ is a boundary vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-\disk.
-    Both these $2$-dimensional complexes are shellable by Lemma~\ref{lemma:shell_2D}, and any such shelling immediately yields a shelling of $\patch_{\calT}(S)$ since there is a one-to-one correspondence between the tetrahedra in $\calT$ and the triangles.
-    \footnote{For $S$ an inner vertex, \cite[Lemma~B.1]{ern2020stable} also yields the claim.}
-\end{proof}
-
-
-\begin{lemma}\label{lemma:stars_are_shellable}
-    Let $\calT$ be a $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
-    Then $\patch_{\calT}(V)$ is shellable. 
-\end{lemma}
-\begin{proof}
-    This is Lemma~8.7 in \cite{ziegler1995lectures}.
-%     Without loss of generality, $V$ is the origin. 
-%     Any ray starting at $V$ intersects at most one vertex of $\patch_{\calT}(V)$.
-%     We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
-%     which does not affect shellability. 
-%     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
-%     and is thus shellable~\cite[Theorem~8.12]{ziegler1995lectures}. 
-\end{proof}
-
-
-\begin{remark}
-    Not all triangulable sets admit a triangulation that is shellable. 
-    Moreover, even if a set admits a shellable triangulation, not all of its triangulations are be shellable. For example, if we extend the non-shellable triangulation of the tetrahedron from~\cite[Example 8.9]{ziegler1995lectures} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
-    This demonstrates that patches around boundary simplices are not necessarily shellable when the space dimension $n$ is larger than three.
-\end{remark}
-\begin{remark}
-    Not all triangulable sets admit a triangulation that is also shellable. 
-    Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
-    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
-\end{remark}
-
-
-A major structural feature of shellable simplicial complexes is that each time an $n$-simplex is added, stars around lower-dimensional simplices gets completed. 
-
-\begin{lemma}\label{lemma:existenceofstar}
-    Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
-    For $0 \leq m \leq M$, write 
-    $$
-        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}.
-    $$ 
-    For $1 \leq m \leq M$, write 
-    $$
-        \Gamma_{m} := X_{m-1} \cap T_{m}.
-    $$ 
-    Then $\Gamma_{m}$ is a union of $\ell$ different faces of $T_{m}$, $1 \leq k \leq n+1$.
-    If $m < M$, then the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
-    $$
-        \patch_{X_{m}}(S_{m}) = \patch_{\calT}(S_{m}).
-    $$
-\end{lemma}
-\begin{proof}
-    We know $\Gamma_{m}$ is a triangulated submanifold of the boundary of $T_{m}$, 
-    and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n+1$.
-    Note that $k = n + 1$ can only happen for the last enumerated simplex, $m = M$, if $\calT$ triangulates an $n$-sphere. 
-    $\Gamma_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $\Gamma_{m}$.
-    By definition, $S_{m}$ is a boundary simplex of $X_{m}$, 
-    and it is an interior simplex of $X_{m+1}$. 
-    But then $S_{m}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
-    which means that $\patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m})$. 
-\end{proof}
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
 % We discuss the Sobolev spaces of vector calculus and exterior calculus 
@@ -4639,6 +4111,546 @@ though the \cye{space} dimension \cye{$n$} and the form degree \cye{$\mia$} ente
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Shellable triangulations of manifolds}\label{section:advancedtriangulations}
+
+We return to the theory of triangulations,
+as our main objective requires some further concepts.
+We are interested in simplicial complexes that triangulate manifolds. 
+Our particular interest are manifold triangulations that are \emph{shellable}.
+Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
+Local patches (stars) within triangulations of dimension two and three are examples of such shellable complexes. 
+The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures} are our main references for this section. 
+We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
+
+\begin{figure}[h]
+\centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
+\caption{A manifold triangulation (left) and not a manifold triangulation (right)}
+\label{figure:not_manifold_triang}
+\end{figure}
+
+
+\subsection{Triangulations of manifolds}
+
+We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
+We recall that this means that for every $x \in \underlying{\calT}$
+% there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
+there exists an open neighborhood $U(x) \subseteq \underlying{\calT}$ and an embedding $\phi : U(x) \rightarrow \bbR^{n}$
+such that $\phi(0) = 0$ and $\phi$ is an isomorphism either onto the open unit ball $\calB = \{ x \in \bbR^{n} \suchthat |x| < 1 \}$
+or onto the half-ball $\{ x \in \calB \suchthat x_1 \geq 0 \}$.
+In the former case, $x$ is called an \emph{interior point}, and in the latter case $x$ is called a \emph{boundary point}. 
+Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$-dimensional. 
+An example of a manifold triangulation and an example which is not a manifold triangulation are given in Figure~\ref{figure:not_manifold_triang}.
+
+The following special cases receive particular interest:
+an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball\mwl{, and we sometimes call this a \textit{$n$-disk} triangulation}.
+An \textit{$n$-sphere triangulation} is any triangulation of a topological $n$-sphere. 
+
+
+We know that any manifold $\calM$ has got a topological boundary $\partial\calM$, possibly empty. 
+If $\calM$ is $n$-dimensional, then the $\partial\calM$ is a topological manifold without boundary of dimension $n-1$. 
+We gather a few helpful observations on how these notions relate to triangulations.
+While the reader might deem them obvious, we nevertheless include proofs. 
+
+\begin{lemma}\label{lemma:boundarysimplices}
+    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying set is a manifold $\calM$. 
+    \begin{itemize}
+        \item Any face $F \in \Faces(\calT)$ is not contained in the boundary if and only if it is contained in exactly two $n$-simplices.
+        \item Any face $F \in \Faces(\calT)$ is contained in the boundary if and only if it is contained in exactly one $n$-simplex.
+        \item The simplices contained in the boundary constitute a triangulation of the boundary.
+        % \item $\calT$ is non-branching, that is, every $F \in \calT$ of dimension $n-1$ is contained in at most two $n$-simplices of $\calT$. 
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    We prove these statements in several steps.
+    \begin{enumerate}
+    \item 
+    Let $\mathring \calM := \calM \setminus \partial \calM$ denote the interior of the manifold. 
+    We will use the following fact:\footnote{To see this, one easily constructs a continuous deformation of $\calM$ into itself to move any chosen point on $S$ to any other chosen point on $S$.} if $S \in \calT$ has an inner point that lies on $\partial \calM$, then all inner points of $S$ are on $\partial \calM$. 
+    Since the boundary $\partial \calM$ is closed, every $S \in \calT$ is either a subset of the boundary or all its inner points lie in the interior $\mathring \calM$ of the manifold. 
+    
+    \item 
+    We recall an auxiliary result.
+    Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
+    As a consequence of the Jordan--Brouwer separation theorem~\cite[Corollary IV.5.24]{mayer1989algebraische}~\cite[Corollary VIII.6.4]{massey1981algebraic}, 
+    we know that $Y \setminus X$ has got two connected components.
+    
+    % \item 
+    % We prove an auxiliary result. 
+    % Suppose that $Y$ is a topological space homeomorphic to a sphere of dimension $m$ and that $X \subseteq Y$ is homeomorphic to a sphere of dimension $m-1$, where $m \geq 1$. 
+    % The embedding of $X$ into $Y$ cannot be onto~\cite[Theorem~2.55]{lee2011topological}, and so there exists $y \in Y \setminus X$. 
+    % Using the homeomorphism from $Y$ into the $m$-sphere, which maps $y$ to the north pole without loss of generality, and a stereographic projection, 
+    % we see that $Y \setminus \{y\}$ is homeomorphic to $R^{m}$.
+    % As a consequence of the Jordan--Brouwer separation theorem~\cite[Theorem IV.5.23]{mayer1989algebraische}~\cite[Corollary IV.5.24]{mayer1989algebraische}~\cite[Corollary VIII.6.4]{massey1981algebraic}, $Y \setminus (X \cup \{y\})$ has got two connected components,
+    % and thus $Y \setminus X$ has got two connected components.
+    
+    \item
+    Let $F \in \Faces(T)$ and let $z_F \in F$ be its barycenter. 
+    Since $\calT$ is finite, we let $\mathring B_F$ be an open neighborhood around $z_F$ 
+    homeomorphic to an $n$-dimensional ball 
+    so small that its closure $\overline{B_F}$ only intersects those $n$-simplices of $\calT$ that already contain $z_F$ and no faces other than $F$.
+    Suppose there are distinct $n$-simplices $T_1, T_2, \dots, T_K$ that contain $z_F$. 
+    The intersection of any two of them is $F$, but their interiors are disjoint because otherwise they would coincide. 
+    
+    If $z_F$ is an interior point of $\calM$, 
+    then it follows by our assumptions that $\mathring B_F$ is homeomorphic to an open $n$-ball and $\partial \mathring B_F$ is homeomorphic to a sphere of dimension $n-1$. 
+    Consider $X = F \cap \partial \mathring B_F$.
+    If $n=1$, then $X$ is empty and $\partial \mathring B_F$ has $K$ distinct connected components. 
+    If $n > 1$, then $X$ is homeomorphic to a sphere of dimension $n-2$
+    and again $\partial \mathring B_F \setminus X$ has $K$ distinct connected components. 
+    But by the auxiliary result above, $K = 2$. 
+    We conclude that $F$ is contained in two $n$-simplices of $\calT$.
+    
+    Consider the case that $z_F$ lies on the boundary of $\calM$ and suppose that $F$ is contained in $K$ distinct $n$-simplices of $\calT$.
+    By adding at least one dimension, we can double\footnote{The reader is referred to Lee's textbook~\cite{lee2012smooth} for more background and the technicalities.} the manifold $\calM$ along the boundary and obtain the doubled manifold $\calM'$. 
+    Similarly, we can construct a doubling of the triangulation $\calT'$ such that $F$ is contained in exactly $2K$ distinct $n$-simplices of $\calT'$. 
+    We know that $\calM'$ is a manifold without boundary, and hence $F$ is an interior simplex of $\calT'$.
+    This implies $K=1$.
+    So any boundary face can only be contained in one single $n$-simplex. 
+    
+    \item
+    Clearly, the simplices of $\calT$ contained in the boundary constitute a simplicial complex. 
+    Every $x \in \calM$ is an inner point of some simplex $S \in \calT$. 
+    If $x \in \partial \calM$ is a boundary point, then $S$ must be a boundary simplex, 
+    so the boundary simplices triangulate all of $\partial \calM$.
+    \end{enumerate}
+    All desired results are thus proven. 
+\end{proof}
+
+Suppose that $\calT$ is an $n$-dimensional simplicial complex that triangulates a manifold. 
+Those simplices of the manifold triangulation that are subsets of the boundary of the underlying manifold are called \emph{boundary simplices}. 
+% The simplices that lie in the boundary of the underlying set are called \emph{boundary simplices}.
+All other simplices of the manifold triangulation are called \emph{inner simplices}. 
+We have seen that the boundary simplices of a manifold triangulation constitute a triangulation of the manifolds boundary. 
+We call this simplicial complex the \emph{boundary complex}. It has dimension $n-1$. 
+% We see that the family of boundary faces constitute a simplicial complex, which we call \textit{boundary complex}.
+% Any point on the boundary lies within some boundary simplex, and hence the boundary complex is a triangulation of the boundary. 
+% Definitions imply that the boundary complex is a manifold triangulation of dimension $n-1$.
+% The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
+
+We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. This topics is surprisingly non-trivial and 
+we gather some results that are hard to find in the literature. 
+
+We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{combinatorial}
+if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simplicial ball of dimension $n$. 
+
+\begin{lemma}\label{lemma:startopology}
+    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
+    Suppose that $1 \leq n \leq 3$. Then the following holds:
+    \begin{itemize}
+        \item
+        If $S \in \calT$ is an inner simplex, 
+        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as an inner simplex
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-sphere. 
+        \item
+        If $S \in \calT$ is a boundary subsimplex, 
+        then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    The lemma is obvious if $n = 1$, so we assume $n \geq 2$ in what follows. 
+    We prove these statements in several steps. 
+    The reader is assumed to have some background in topology. 
+    \begin{enumerate}
+    \item 
+    Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with barycenter $z_{S}$, and dimension $k$.
+    Let $\calS := \patch_{\calT}(S)$ be its star. 
+    Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
+    has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
+    For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
+    $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+%     \begin{align*}
+%         $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+%     \end{align*}
+    The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
+    that triangulates the same underlying set as $\calS$.
+    Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
+    In particular, $z_{S}$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
+    So it remains to study the topology of vertex stars. 
+    
+    \item 
+    Suppose that $2 \leq n \leq 3$ and that $\calM$ is a manifold without boundary. 
+    Under these assumptions, 
+    as explained in the proof of Theorem~1 in \cite{Siebenmann1979},
+    the set $\carapace(V)$ is a triangulation of a sphere of dimension $n-1$ for any inner vertex $V$. 
+    There exists a homeomorphism from the closed cone of $\underlying{\carapace(V)}$ onto the local star $\underlying{\patch_{\calT}(V)}$.
+    But then that closed cone and hence $\underlying{\patch_{\calT}(V)}$ are homeomorphic to an $n$-dimensional ball. 
+    
+    \item 
+    If $2 \leq n \leq 3$ and $\calM$ has a non-empty boundary, then we use an approach as in the proof of Lemma~\ref{lemma:boundarysimplices}: 
+    we let $\calM'$ denote the doubling of the manifold and $\calT'$ be the doubling of the triangulation $\calT$. 
+    Let $V \in \calT$ be a vertex. 
+    If $V$ is an inner vertex of $\calT$, then $\carapace(V) \subseteq \calT \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT \subseteq \calT'$ triangulates a ball of dimension $n$, as discussed above. 
+    If $V$ is a boundary vertex of $\calT$, then it is an inner vertex of $\calT'$,
+    and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
+    We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. 
+    The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere. 
+    It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
+    Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
+    
+    
+%     Suppose that $S = \{z\}$ is a singleton simplex. 
+%     For $\delta > 0$ small enough, 
+%     \begin{align*}
+%         B_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) \leq \delta \right\},
+%         \quad 
+%         S_{\delta}(z) = \left\{ x \in \calM \suchthat d(x,z) = \delta \right\},
+%     \end{align*}
+%     are compactly contained subsets of $|\patch_{\calT}(S)|$.
+%     For each simplex $K \in \patch_{\calT}(S)$ that contains the vertex $z$ and which has the opposite face $F_K$, 
+%     we easily find homeomorphisms $\phi_{K} : B_{\delta}(z) \cap K \rightarrow K$
+%     such that 
+%     $\phi_{K}(z) = z$, 
+%     such that 
+%     $\phi_{K}( K \cap S_{\delta}(z) ) = F_{K}$,
+%     such that 
+%     for all $K, K' \in \calT$ with $K' \subseteq K$ we have $\phi_{K|K'} = \phi_{K'}$,
+%     and such that 
+%     $\phi_{K}$ maps $[0,1]\cdot v$ linearly into $\bbR \cdot v$. 
+%     This is defines a homeomorphism $\phi : B_{\delta}(z) \rightarrow |\patch_{\calT}(S)|$. 
+%     Moreover, one easily verifies that $\phi$ is bi-Lipschitz.
+%     %     For $\delta > 0$ small enough, $B_{\delta}(z)$ is homeomorphic to the unit ball and that homeomorphism maps $S_{\delta}(z)$ onto the unit sphere. 
+%     \item 
+%     One sees that $\phi$ defines a mapping from the closed 
+%     homeomorphism between cone of link and ball 
+%     
+%     If $z$ is an inner vertex of $\calS'$, 
+%     then the boundary simplices of $\calS'$,
+%     which are the boundary simplices of $\calS$, triangulate a topological sphere of dimension $n-1$.
+%     
+%     Now suppose that $z$ is a boundary vertex of $\calS'$,
+%     which is the case if and only if $S$ is a boundary simplex. 
+%     Write 
+%     \[
+%         B_{H} = \left\{ x \in B_1(0) \suchthat* x_1 \leq 0 \right\},
+%         \quad 
+%         S_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 \leq 0 \right\}.
+%         \quad 
+%         D_{H} = \left\{ x \in \partial B_1(0) \suchthat* x_1 = 0 \right\}.
+%     \]
+%     Provided that $\delta > 0$ is small enough, there exists a homeomorphism $\phi'$ that maps $\overline{B_{\delta}(z)} \cap \calM$ onto $B_1(0)$, which maps $\overline{B_{\delta}(z)} \cap \partial\calM$ onto $D_H$,
+%     and which maps $z$ to the origin. 
+%         %
+%     It follows that $\phi'$ maps the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$ onto $S_H$.
+%         %
+%     Assuming that $\delta$ is small enough once more, 
+%     we now verify that $\phi^{-1}$ maps $|\carapace(S)|$ onto $S_{\delta}(z) \cap |\patch_{\calT}(S)|$.
+%     The latter equals the closure of $\partial{B_{\delta}(z)} \setminus \partial\calM$.
+%     It follows that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
+    % We let $\calM'$ be the doubling of the manifold and let $\calT'$ be the doubling of the present triangulation;
+    % we refer to Lee's textbook~\cite{lee2011topological} for details. 
+    % The vertex star around $z$ within the boundary triangulation $\partial\calT$ is homeomorphic to the ball of dimension $n-1$,
+    % and it is homeomorphic to $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi$. 
+    % The underlying space of $\carapace(S)$ is homeomorphic to $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ along $\phi$.
+    % The vertex star around $z$ within the boundary triangulation $\partial\calT$ is homeomorphic to the ball of dimension $n-1$,
+    % and it is homeomorphic to $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi$. 
+    % Notice that 
+    % \begin{align*}
+    %     \partial\left( { B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)| \right)
+    %     =
+    %     S_{\delta}(z) \cap |\patch_{\calT}(S)|
+    %     \cup 
+    %     \overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|
+    %     .
+    % \end{align*}
+    % Necessarily, this homeomorphism maps the boundary of $\overline{B_{\delta}(z)} \cap |\calT|$, which contains $z$, onto the unit sphere. Since the image of $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi'$ is still homeomorphic to a disk of dimension $n-1$, so must be the image of $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ under $\phi'$.
+    % But that just means that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
+    \end{enumerate}
+    All relevant results are proven. 
+\end{proof}
+
+
+\begin{lemma}\label{lemma:connectivity}
+    Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
+    If the underlying space of $\calT$ is connected, then $\calT$ is face-connected.
+\end{lemma}
+\begin{proof}
+    We first show that each vertex star is face-connected via a short induction argument.
+    Clearly, any simplicial $1$-ball and simplicial $1$-sphere are face-connected. 
+    Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
+    The induction argument implies that each vertex star in $\calT$ is face-connected.
+
+    If the underlying space $\underlying{\calT}$ is connected, 
+    then we easily see that the union of the $1$-simplices is path-connected.
+    Given $n$-simplices $S,S' \in \calT$, 
+    we can thus choose a sequence of $\hat S_0=S,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
+    As each vertex star is face-connected, 
+    we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
+    is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
+    This just means that $\calT$ is face-connected. 
+\end{proof}
+
+
+
+\begin{remark}
+    Triangulations with the property that all vertex stars are homeomorphic to a ball are also called \emph{combinatorial} \cite[Section~1]{Bagchi2005}.
+    All manifolds of dimension up to three admit smooth structures and smooth manifolds admit combinatorial triangulations. 
+    There are triangulations of manifolds in dimension higher than $3$ where not every vertex star is homeomorphic to a ball. 
+    
+    Clearly, not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
+    When the dimension is at least five, then there is no computer algorithm that, given a finite simplicial complex as input, decides whether the input is the triangulation of some fixed manifold~\cite{chernavsky2006unrecognizability}.
+    Going further, it has been shown that deciding whether a simplicial complex is the triangulation of a manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
+    % Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. ~\cite{todo}
+    We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
+
+    Conversely, not all topological manifolds, even if compact, can be described as a triangulation. 
+    Such manifolds, some even compact and simply-connected, appear in dimension four and higher~\cite{akbulut2014casson}.
+%     For each dimension $n \geq 5$ there exists an $n$-dimensional compact topological manifold without a triangulation. 
+\end{remark}
+
+
+
+
+
+
+
+
+% 3. Shellability 
+\subsection{Shellable simplicial complexes}\label{subsection:shellability}
+
+
+The notions of shelling and shellable triangulation have been discussed widely in combinatorial topology and polytopal theory. 
+Formally, a triangulation is shellable if its full-dimensional simplices can be enumerated such that each simplex intersects the union of the previously listed simplices in a codimension one triangulation of a manifold. 
+This forces the intermediate triangulations to be particularly well-shaped. 
+We build upon the notion of shelling as introduced in~\cite[Definition 8.1]{ziegler1995lectures},
+where our definition of shelling is equivalent to the notion of the shellings of simplicial complexes, see also~\cite[Remark~8.3]{ziegler1995lectures}. 
+
+% \mwl{Roughly speaking, a triangulation is shellable if the triangulation can be built, starting from a single simplex,
+% by successively gluing simplices to intermediate triangulations such that a combinatorial-geometric condition is satisfied:
+% the gluing interface is a triangulated submanifold of the boundary. 
+% This forces the intermediate triangulations to be particularly well-shaped. 
+% We turn our attention to a different idea of how to incrementally construct a simplicial complex while maintaining well-behaved intermediate complexes. 
+%It is often very helpful if a simplicial complex can be created recursively, starting with a single simplex, as this enables the inductive method of proof.
+% }
+
+
+
+Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
+For any enumeration, we call 
+\begin{align*}
+    \Gamma_m 
+    := 
+    \big( 
+        T_{0} \cup T_{1} \cup \dots \cup T_{m} 
+    \big) 
+    \cap 
+    T_{m+1}
+\end{align*}
+the $m$-th \textit{interface set}. 
+% Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
+We call the enumeration a \emph{shelling} if each interface set $\Gamma_m$ is a triangulated manifold of dimension $n-1$. 
+
+\begin{remark}
+    We interpret a shelling as the construction of a triangulation 
+    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
+    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
+\end{remark}
+\begin{remark}
+    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
+    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
+    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
+\end{remark}
+
+
+The reason of our interest in shellable simplicial complexes is that they can be constructed via successive adhesion of simplices.
+The resulting succession of simplicial complexes consists of simplicial balls or spheres. 
+
+\begin{lemma}\label{lemma:shell_triang_man}
+    Let $\calT$ be an $n$-dimensional simplicial complex 
+    with a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$,
+    such that each simplex of dimension $n-1$ is contained in at most two simplices. 
+    % DONE: what is non-branching?
+    Then
+    $$
+        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}
+    $$ 
+    is a triangulated manifold with boundary for all $0 \leq m \leq M$.
+    % 
+    In particular, $X_{m}$ is a topological $n$-ball when $m < M$, 
+    and 
+    $X_{M}$ is either a topological $n$-ball or topological $n$-sphere. 
+\end{lemma}
+\begin{proof}  
+    We prove this claim by induction. 
+    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. Let $1 \leq m \leq M$ and suppose that 
+    \begin{align*}
+        X_{m-1} := T_{0} \cup T_{1} \cup \dots \cup T_{m-1}
+    \end{align*}
+    is a topological $n$-ball. Let $T_{m}$ is the next $n$-simplex in the shelling.
+    By definition, $\Gamma_{m} := X_{m-1} \cap T_{m}$ is a submanifold of $\partial T_{m}$,
+    and it is triangulated by some faces of $T_{m}$ and their subsimplices. 
+    
+    Let $F$ be such a face. 
+    By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m-1}$,
+    and $F$ is in the boundary of $X_{m-1}$. 
+    We conclude that $\Gamma_{m}$ triangulates a submanifold of the boundary of $X_{m-1}$.
+    
+    On the one hand, 
+    if $\Gamma_{m}$ is the entire boundary of $T_{m}$, 
+    then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
+    Hence $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
+    which requires $m = M$.
+    On the other hand, 
+    if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
+    then $X_{m-1} \cup T_{m}$ is still a topological $n$-ball.
+\end{proof}
+
+
+We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
+
+\begin{example}\label{example:shell_simpl}
+    Any simplex $T$ (trivially) has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
+    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
+\end{example}
+\begin{example}
+    The standard triangulation of the $3$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable, as are its higher-dimensional generalizations.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
+\end{example}
+\begin{example}
+    There exists a non-shellable triangulation of a tetrahedron and of a cube in $n=3$, see~\cite[Example 8.9]{ziegler1995lectures}.
+\end{example}
+
+\begin{lemma}\label{lemma:shell_2D}
+    Any simplicial $2$-\disk\ is shellable.
+    Any simplicial $2$-sphere is shellable. 
+\end{lemma}
+\begin{proof}
+    First, 
+    let $\calS$ be any triangulation of a $2$-sphere. 
+    By removing any triangle $S \in \calS$, we obtain a triangulation $\calT$ of a $2$-\disk.
+    Any shelling of that \disk\ can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
+    So it remains to show that any triangulation $\calT$ of the two-dimensional \disk\ is shellable. 
+    We will construct the shelling in reverse. 
+    
+    Write $M = |\calT|$. 
+    There is nothing to show if $\calT$ contains only one triangle. 
+    We call a triangle $T \in \calT$ \emph{good in $\calT$} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
+    Hence a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
+    and a triangle is not good in $\calT$ if that intersection is either empty, only some of its vertices, or a vertex and the opposite edge.
+    % DONE: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
+    We show by an induction argument over the number of triangles that every triangulation of a $2$-\disk\ that contains at least two triangles also contains at least two good triangles. 
+
+    Clearly, this is the case if the triangulation of the $2$-\disk\ contains two triangles. 
+    Now suppose the induction claim is true when the triangulation includes at most $N$ triangles,
+    and assume that $\calT$ includes $N+1$ triangles. 
+    There are at least two triangles with an edge on the boundary. 
+    Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
+    Then there exists a triangle $T'$ that intersects $\partial M$ 
+    in one edge and its opposite vertex.
+    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk.
+    By the induction assumption, each of those components contains at least two triangles 
+    that are good in the respective component. 
+    So each component has at least one triangle that is good in $\calT$. 
+    Hence $\calT$ contains two good triangles, which completes the induction step. 
+    
+    We conclude that whenever $\calT$ triangulates a $2$-\disk,
+    it contains a good triangle $T$. 
+    If $T$ has three edges in the boundary, then $T = M$ and we are trivially done. 
+    If $T$ intersects with the boundary in exactly one or two edges, 
+    then $\overline{M \setminus T}$ is still a topological $2$-\disk.
+    The triangulation $\calT'$ that is obtained by removing $T$
+    is a triangulation of some $2$-\disk\ that intersects $T$ only at either two or one edges.
+    Any shelling of $\calT'$ can in this way be extended to a shelling of $\calT$, and the proof is complete. 
+\end{proof}
+
+\begin{lemma}
+    Let $\calT$ be a $3$-dimensional manifold triangulation and $S \in \calT$.
+    Then $\patch_{\calT}(S)$ is shellable. 
+\end{lemma}
+\begin{proof}
+    The statement is trivially true if $S$ is a tetrahedron. 
+    The statement is clear if $S$ is an inner or boundary face of $\calT$,
+    where we only need to enumerate either one or two tetrahedra. 
+    The statement is still easily verified if $S$ is an inner or boundary edge of $\calT$:
+    one chooses a starting tetrahedron (with a boundary face if $S$ is a boundary edge) and rotates around the edge in a fixed direction to create a suitable enumeration. 
+    When $S$ is an inner vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-sphere.
+    Similarly, when $S$ is a boundary vertex, then the faces (triangles) of $\patch_{\calT}(S)$ that do not contain $V$ constitute a simplicial $2$-\disk.
+    Both these $2$-dimensional complexes are shellable by Lemma~\ref{lemma:shell_2D}, and any such shelling immediately yields a shelling of $\patch_{\calT}(S)$ since there is a one-to-one correspondence between the tetrahedra in $\calT$ and the triangles.
+    \footnote{For $S$ an inner vertex, \cite[Lemma~B.1]{ern2020stable} also yields the claim.}
+\end{proof}
+
+
+\begin{lemma}\label{lemma:stars_are_shellable}
+    Let $\calT$ be a $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
+    Then $\patch_{\calT}(V)$ is shellable. 
+\end{lemma}
+\begin{proof}
+    This is Lemma~8.7 in \cite{ziegler1995lectures}.
+%     Without loss of generality, $V$ is the origin. 
+%     Any ray starting at $V$ intersects at most one vertex of $\patch_{\calT}(V)$.
+%     We can also assume that all boundary vertices of $\patch_{\calT}(V)$ to be unit vectors,
+%     which does not affect shellability. 
+%     The simplicial boundary complex of $\calT$ is the boundary complex of a convex polytope,
+%     and is thus shellable~\cite[Theorem~8.12]{ziegler1995lectures}. 
+\end{proof}
+
+
+\begin{remark}
+    Not all triangulable sets admit a triangulation that is shellable. 
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations are be shellable. For example, if we extend the non-shellable triangulation of the tetrahedron from~\cite[Example 8.9]{ziegler1995lectures} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
+    This demonstrates that patches around boundary simplices are not necessarily shellable when the space dimension $n$ is larger than three.
+\end{remark}
+\begin{remark}
+    Not all triangulable sets admit a triangulation that is also shellable. 
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
+    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
+\end{remark}
+
+
+A major structural feature of shellable simplicial complexes is that each time an $n$-simplex is added, stars around lower-dimensional simplices gets completed. 
+
+\begin{lemma}\label{lemma:existenceofstar}
+    Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
+    For $0 \leq m \leq M$, write 
+    $$
+        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}.
+    $$ 
+    For $1 \leq m \leq M$, write 
+    $$
+        \Gamma_{m} := X_{m-1} \cap T_{m}.
+    $$ 
+    Then $\Gamma_{m}$ is a union of $\ell$ different faces of $T_{m}$, $1 \leq k \leq n+1$.
+    If $m < M$, then the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
+    $$
+        \patch_{X_{m}}(S_{m}) = \patch_{\calT}(S_{m}).
+    $$
+\end{lemma}
+\begin{proof}
+    We know $\Gamma_{m}$ is a triangulated submanifold of the boundary of $T_{m}$, 
+    and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n+1$.
+    Note that $k = n + 1$ can only happen for the last enumerated simplex, $m = M$, if $\calT$ triangulates an $n$-sphere. 
+    $\Gamma_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $\Gamma_{m}$.
+    By definition, $S_{m}$ is a boundary simplex of $X_{m}$, 
+    and it is an interior simplex of $X_{m+1}$. 
+    But then $S_{m}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
+    which means that $\patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m})$. 
+\end{proof}
+
+
+
+
+
+
+ 
 
 
 
