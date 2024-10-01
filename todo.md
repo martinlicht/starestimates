@@ -20,9 +20,8 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [ ] should all triangulations be n dimensional ? 
 - [ ] remove \Faces or use it all over the place 
 - [ ] U_T
-
-
-
+- [ ] after recursive estimates, write down the complete bound 
+- [ ] \mwl{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} \mwl{Compare with theorem earlier}
 
 Revision
 - [x] header

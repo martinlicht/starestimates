@@ -2323,10 +2323,10 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \begin{align}\label{math:wFm_inequality}
         \| w_{F_m} \|_{L^{p}(U_{F_m})} \leq C_{{\rm{PF}},U_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(U_{F_m})}.
     \end{align}
-%     \cye{Since $\nabla (w|_{U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u|_{U_{F_m}})$, 
+%     \cye{Since $\nabla (w_{|U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u_{|U_{F_m}})$, 
     We can define the constant
     \begin{align*}
-    c_{m} := w|_{U_{F_m}} - w_{F_{m}}.
+    c_{m} := w_{|U_{F_m}} - w_{F_{m}}.
     \end{align*}
     We now observe that 
     \begin{gather*}
@@ -2795,7 +2795,7 @@ where our definition of shelling is equivalent to the notion of the shellings of
 Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
 For any enumeration, we call 
 \begin{align*}
-    I_m 
+    \Gamma_m 
     := 
     \big( 
         T_{0} \cup T_{1} \cup \dots \cup T_{m} 
@@ -2805,7 +2805,7 @@ For any enumeration, we call
 \end{align*}
 the $m$-th \textit{interface set}. 
 % Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
-We call the enumeration a \emph{shelling} if each interface set $I_m$ is a triangulated manifold of dimension $n-1$. 
+We call the enumeration a \emph{shelling} if each interface set $\Gamma_m$ is a triangulated manifold of dimension $n-1$. 
 
 \begin{remark}
     We interpret a shelling as the construction of a triangulation 
@@ -2839,22 +2839,27 @@ The resulting succession of simplicial complexes consists of simplicial balls or
 \end{lemma}
 \begin{proof}  
     We prove this claim by induction. 
-    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. 
-    Suppose that $X_m := T_{0} \cup T_{1} \cup \dots \cup T_{m}$ is a topological $n$-ball and that $T_{m+1}$ is the next $n$-simplex in the shelling.
-    By definition, $I_{m} := X_{m} \cap T_{m+1}$ is a submanifold of $\partial T_{m+1}$,
-    and it is triangulated by some faces of $T_{m+1}$ and their subsimplices. 
+    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. Let $1 \leq m \leq M$ and suppose that 
+    \begin{align*}
+        X_{m-1} := T_{0} \cup T_{1} \cup \dots \cup T_{m-1}
+    \end{align*}
+    is a topological $n$-ball. Let $T_{m}$ is the next $n$-simplex in the shelling.
+    By definition, $\Gamma_{m} := X_{m-1} \cap T_{m}$ is a submanifold of $\partial T_{m}$,
+    and it is triangulated by some faces of $T_{m}$ and their subsimplices. 
     
     Let $F$ be such a face. 
-    By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m}$,
-    and $F$ is in the boundary of $X_{m}$. We conclude that $I_{m}$ triangulates a submanifold of the boundary of $X_{m}$.
+    By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m-1}$,
+    and $F$ is in the boundary of $X_{m-1}$. 
+    We conclude that $\Gamma_{m}$ triangulates a submanifold of the boundary of $X_{m-1}$.
     
     On the one hand, 
-    if $I_{m}$ is the entire boundary of $T_{m+1}$, 
-    then it must also be the boundary of the topological $n$-ball $X_{m}$. 
-    Hence $X_{m} \cup T_{m+1}$ must be a topological $n$-sphere and thus a manifold without boundary, which requires $m = M$.
+    if $\Gamma_{m}$ is the entire boundary of $T_{m}$, 
+    then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
+    Hence $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
+    which requires $m = M$.
     On the other hand, 
-    if $I_{m}$ is a proper subset of the entire boundary of $T_{m+1}$, 
-    then $X_{m} \cup T_{m+1}$ is still a topological $n$-ball.
+    if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
+    then $X_{m-1} \cup T_{m}$ is still a topological $n$-ball.
 \end{proof}
 
 
@@ -2962,20 +2967,27 @@ A major structural feature of shellable simplicial complexes is that each time a
 
 \begin{lemma}\label{lemma:existenceofstar}
     Suppose that an $n$-dimensional manifold triangulation $\calT$ has a shelling $T_{0}, T_{1}, T_{2}, \dots, T_{M}$.
-    For $0 \leq m < M$, write 
+    For $0 \leq m \leq M$, write 
     $$
-        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m},
-        \qquad 
-        I_{m} := X_{m} \cap T_{m+1}.
+        X_{m} := T_{0} \cup T_{1} \cup \dots \cup T_{m}.
     $$ 
-    Then $I_{m}$ is a union of $k$ different faces of $T$, $1 \leq k \leq n$, and the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
+    For $1 \leq m \leq M$, write 
     $$
-        \patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m}).
+        \Gamma_{m} := X_{m-1} \cap T_{m}.
+    $$ 
+    Then $\Gamma_{m}$ is a union of $\ell$ different faces of $T_{m}$, $1 \leq k \leq n+1$.
+    If $m < M$, then the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
+    $$
+        \patch_{X_{m}}(S_{m}) = \patch_{\calT}(S_{m}).
     $$
 \end{lemma}
 \begin{proof}
-    We know $I_{m}$ is a triangulated submanifold of the boundary of $T$, and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n$ ($k = n + 1$ can happen for the last enumerated simplex $m = M$ when $\calT$ is an $n$-sphere). $I_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $I_{m}$.
-    By definition, $S_{m}$ is a boundary simplex of $X_{m}$, and it is an interior simplex of $X_{m+1}$. 
+    We know $\Gamma_{m}$ is a triangulated submanifold of the boundary of $T_{m}$, 
+    and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n+1$.
+    Note that $k = n + 1$ can only happen for the last enumerated simplex, $m = M$, if $\calT$ triangulates an $n$-sphere. 
+    $\Gamma_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $\Gamma_{m}$.
+    By definition, $S_{m}$ is a boundary simplex of $X_{m}$, 
+    and it is an interior simplex of $X_{m+1}$. 
     But then $S_{m}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
     which means that $\patch_{X_{m+1}}(S_{m}) = \patch_{\calT}(S_{m})$. 
 \end{proof}
@@ -5573,62 +5585,40 @@ Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
     C_{\PF,\Gamma,k,p}(\calT) 
     :=
-    \max\limits_{ \substack{ T \in \calT \; \dim(T)=n \\ 0 \leq l \leq n } }
-    C_{\PF,\Gamma,l,k,p}(T)   
+    \max\limits_{ \substack{ T \in \calT \\ \dim(T)=n \\ 0 \leq l \leq n } }
+    C_{\PF,\Gamma,l,k,p}(T)
+    .
 \end{align*}
-
-
-
-
+We settle the following notation for our main result. 
 Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
-For each $1 \leq m \leq M$, there exists a simplex $S_{m} \in \calT$ 
+For each $1 \leq m \leq M$, the interface of the new simplex to the previous intermediate triangulation is 
+\begin{align*}
+    \Gamma_{m} := T_{m} \cap \left( T_{0} \cup \dots \cup T_{m-1} \right)
+\end{align*}
+According to Lemma~\ref{lemma:existenceofstar}, 
+there exists a simplex $S_{m} \in \calT$ 
 such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m} \in \patch_{\calT}(S_{m})$.
-We then let $U_{m}$ be the closure $\patch_{\calT}(S_{m}) \setminus T_{m}$,
-and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
-
-Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
-For each $1 \leq m \leq M$, there exists a simplex $S_{m\cye{-1}} \in \calT$ 
-such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $\cye{\cancel{T_{m} \in}} \patch_{\calT}(S_{m\cye{-1}})$. \cye{This is precisely $S_m \in \calT$ from Lemma~\ref{lemma:existenceofstar} (there the last simplex is called $T_{m+1}$)}.
-
-\todo[inline]{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:gradzwei}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} 
-
-We then let $U_{m \cye{-1}}$ be the closure \cye{of} $\patch_{\calT}(S_{m\cye{-1}}) \setminus T_{m}$,
-and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m\cye{-1}})$. 
-
-
+In particular, $\patch_{\calT}(S_{m})$ is already included in the union of the simplices up to $T_m$. 
+We write 
+\begin{align*}
+    U_{m} := \patch_{\calT}(S_{m}) \setminus T_{m}.
+\end{align*}
+for the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
 The main result of this manuscript for shellable triangulations of domains, not necessarily convex or even star-shaped, is the following theorem. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
-    Let $T_0, T_1, \dots, T_m$ be a shelling.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable $n$-dimensional triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_M$ be a shelling.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
-    and such that for each $T_{m} \in \calT$ in the shelling
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
+    and such that for each $T_{m} \in \calT$, $1 \leq m \leq M$, in the shelling
     we have the following recursive estimate: 
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
-%         &
-%         \leq  
-%         C_{\PF,\Gamma,k,p}(\calT) 
-%         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-%         \Cfive{n}{k}(\calT)^{k+1} 
-%         \diam(T)^{k} 
-%         \| \cartan u \|_{L^{p}(U_{m-1})}
-%         \\&\qquad
-%         + 
-%         C_{\PF,\Gamma,k,p}(\calT) 
-%         \diam(T)^{k} 
-%         \| \cartan u      \|_{L^{p}(T_{m})} 
-%         \\&\qquad
-%         + 
-%         \Cdetsechs{n}{k}(\calT)^{-\frac 1 p} 
-%         \Cfive{n}{k}(\calT)^{k} 
-%         \| w \|_{L^{p}(U_{m-1})}
-%         \\
         &
         \leq  
-        C_{\PF,\Gamma,k,p}(\calT) 
+        C_{\PF,T_{m},\Gamma_{m},k,p}(\calT) 
         \diam(T)^{k} 
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
@@ -5646,41 +5636,10 @@ The main result of this manuscript for shellable triangulations of domains, not 
     \end{align*}
     \mwl{The notation $U_m$ should be settled in the definition of shellings.}
 \end{theorem}
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with \cye{an $n$-dimensional} shellable triangulation $\calT$.
-    Let $T_0, T_1, \dots, T_{\cye{M}}$ be a shelling.
-    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
-    and such that for each $T_{m} \in \calT$ in the shelling\cye{, $1 \leq m \leq M$,} 
-    we have the following recursive estimate: 
-    \begin{align*}
-        \| w \|_{L^{p}(T_{m})}
-        &
-        \leq  
-        C_{\PF,\cye{T_m, I_{m-1}},k,p}(\calT) 
-        \diam(T)^{k} 
-        \left( 
-            \| \cartan u      \|_{L^{p}(T_{m})} 
-            +
-            \Cfive{n}{k}(\calT)^{k+1} 
-            \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-            \| \cartan u \|_{L^{p}(U_{m-1})}
-        \right)
-        \\&\qquad
-        + 
-        \Cfive{n}{k}(\calT)^{k} 
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(U_{m-1})}
-        .
-    \end{align*}
-    \todo{MWL: The notation $U_m$ should be settled in the definition of shellings.}
-\end{theorem}\todo{MV: I think we should also write down the bound for $\| w \|_{L^{p}(\Omega)}.$}
-
-
 \begin{proof}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
-    We write $\Omega_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
+    We write $X_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
 
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
@@ -5688,10 +5647,10 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
     %Suppose that claim is true when the domain has $m$ simplices of dimension $n$. 
-    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
-    with $\cartan w_{m-1} = \cartan u$ over $\Omega_{m-1}$. 
-    By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
+    with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
+    By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We define $w'_{m} :=  \Xi_{m}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$,
     where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
@@ -5720,14 +5679,14 @@ The main result of this manuscript for shellable triangulations of domains, not 
         0
         .
     \end{align*}
-    Setting $w_{m} := w_{m-1}$ over $\Omega_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
+    Setting $w_{m} := w_{m-1}$ over $X_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
     we find 
     \begin{gather*}
         \cartan w_{m} = \cartan w'_{m} + \cartan w''_{m} = \cartan w'_{m} + \cartan u - \cartan w'_{m} = \cartan u,
         \\
         \trace_{\Gamma_{m}} w_{m} = \trace_{\Gamma_{m}} w'_{m} = \trace_{\Gamma_{m}} w_{m-1}.
     \end{gather*}
-    That means that $w_{m} \in W^{p}\Alt^{k}(\Omega_{m})$ with $\cartan w_{m} = \cartan u$ over $\Omega_{m}$. 
+    That means that $w_{m} \in W^{p}\Alt^{k}(X_{m})$ with $\cartan w_{m} = \cartan u$ over $X_{m}$. 
     
     We want to estimate norms. 
     By construction,
@@ -5757,140 +5716,115 @@ The main result of this manuscript for shellable triangulations of domains, not 
     \begin{align*}
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \matnorm{ \Jacobian \Xi_{m} }^{k}
+        \|\det(\Jacobian \Xi_{m}  )\|_{L^{\infty}(T_{m})}^{-\frac 1 p} 
+        \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k}
         \cdot 
         \| w_{m-1} \|_{L^{p}(U_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \matnorm{ \Jacobian \Xi_{m} }^{k+1}
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m})} 
+        \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k+1}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
         .
     \end{align*}
-    We have assumed that $\cartan w_{m-1} = \cartan u_{|\Omega_{m-1}}$. 
+    \begin{align*}
+        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
+        \| w \|_{L^{p}(U_{m-1})}
+        ,
+        \\
+        \| \cartan (\Xi_{m}^{\ast}(w_{|U_{m-1}})) \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
+        \| \cartan u \|_{L^{p}(U_{m-1})}
+        ,
+    \end{align*}
+    We have assumed that $\cartan w_{m-1} = \cartan u_{|X_{m-1}}$. 
     We use the properties of the reflection mapping in Proposition~\ref{proposition:starreflection}. 
-%     \begin{align*}
-%         ...
-%     \end{align*}
-%     This enables the recursion
-%     \begin{align*}
-%         \| w_{m} \|_{L^{p}(T_{m})}
-%         &
-%         \leq  
-%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \matnorm{ \Jacobian \Xi_{m} }^{k} 
-%         \| w_{m-1} \|_{L^{p}(U_{m-1})}
-%         \\&\qquad
-%         + 
-%         C_{\PF,T_{m},\Gamma_{m},k,p} 
-%         \| \cartan u      \|_{L^{p}(T_{m})} 
-%         \\&\qquad
-%         + 
-%         C_{\PF,T_{m},\Gamma_{m},k,p} 
-%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \matnorm{ \Jacobian \Xi_{m} }^{k+1} 
-%         \| \cartan u \|_{L^{p}(U_{m-1})}
-%         .
-%     \end{align*}
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 \begin{proof}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
-    By assumption, there exists a shelling $T_0, T_1, \dots, T_{\cye{M}}$. 
-    We write $\Omega_m := \cup_{j=0}^{m} T_j$, \cye{$0 \leq m \leq M$,} which is \cye{by Lemma~\ref{lemma:shell_triang_man}} a triangulated $n$-dimensional submanifold with boundary. \todo[inline]{MV: It might also be good to synchronize the notations $X_{m}$ and $\Omega_m$. I would go for $X_{m}$, since this is a union of $n$-simplices (closed), whereas $\Omega_m$ has a connotation of a domain (open).}
-    For $0 < m \leq M$, by \cye{the definition of shellability in Section~\ref{section:shellability}}, $T_{m}$ and $\cye{\Omega_{m-1}}$ share the interface $\cye{I}_{m\cye{-1}}$, which is a collection of faces of $T_{m}$. 
-    \cye{It follows from} Lemma~\ref{lemma:existenceofstar} \cye{that} adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m\cye{-1}} \in \calT$, \cye{where} $U_{m-1} \subseteq \Omega_{m-1}$ is the complement of $T_{m}$ in that newly completed star.\todo{MV: Short, as already explained above in details.}
+    By assumption, there exists a shelling $T_0, T_1, \dots, T_{M}$. 
+    We write $X_m := \cup_{j=0}^{m} T_j$, $0 \leq m \leq M$, which is by Lemma~\ref{lemma:shell_triang_man} a triangulated $n$-dimensional submanifold with boundary. 
+    For $0 < m \leq M$, by the definition of shellability in Section~\ref{section:shellability}, 
+    $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
+    It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
+    where $U_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
     
-    \cye{We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound.} Let $u \in W^{p}\Alt^{k}(\Omega)$. 
-    First, \cye{on $T_0$, from Lemma~\ref{lemma:PFexteriorsimplex},} there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
+    We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
+    Let $u \in W^{p}\Alt^{k}(\Omega)$. 
+    First, on $T_0$, from Lemma~\ref{lemma:PFexteriorsimplex}, 
+    there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
     \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    \cye{We define $w|_{T_0} := w_0$.}
-    Suppose now that $0 < m \leq M$ such that $w\cye{|_{\Omega_{m-1}}} \in W^{p}\Alt^{k}(\Omega_{m-1})$ with $\cartan w = \cartan u$ over $\Omega_{m-1}$. \cye{This is true for $m=1$. We now define, as in~\cite[equations~(5.12) and~(5.14)]{ern2020stable} or~\cite[equations~(6.7) and~(6.9)]{Chaum_Voh_p_rob_3D_H_curl_24},
+    We define $w_{|T_0} := w_0$. 
+    Suppose now that $0 < m \leq M$ such that $w_{|X_{m-1}}} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w = \cartan u$ over $X_{m-1}$. 
+    This is true for $m = 1$. 
+    We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
     \begin{align} \label{equation:w''_ext_der}
-    w|_{T_m} := u|_{T_m} + \Xi_{m}^{\ast}((w - u)|_{U_{m-1}}),
+        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{U_{m-1}}),
     \end{align}
-\todo[inline]{MV: Direct and simple definition. Only one object. Namely avoids the checking of the compatibility of the boundary condition, which is a bit tedious and requires a rigorous apparatus.}
     where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
-    as \cye{$\Xi_{1}$} in \cye{Proposition}~\ref{proposition:starreflection} \cye{and the pullback is defined in~\eqref{equation:pullback}}. Clearly, $w|_{T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
+    as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
+    Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
     \begin{align*}
-        \trace_{\cye{I}_{m\cye{-1}}} w|_{T_m} = \trace_{\cye{I}_{m\cye{-1}}} w|_{\Omega_{m-1}},
+        \trace_{\Gamma_{m}} w_{|T_m} = \trace_{\Gamma_{m}} w_{|X_{m-1}},
     \end{align*}
-    since $u$ is trace continuous over $I_{m-1}$ and $\Xi_{m}$ is the identity along $I_{m-1}$, and
+    since $u$ is trace continuous over $\Gamma_{m-1}$ and $\Xi_{m}$ is the identity along $\Gamma_{m-1}$, and
     \begin{align*}
         \cartan w = \cartan u \text{ over } T_m,
     \end{align*}
-    since $\cartan w = \cartan u$ over $\Omega_{m-1}$ and $\Xi_{m}^{\ast}$ preserves this. Thus
+    since $\cartan w = \cartan u$ over $X_{m-1}$ and $\Xi_{m}^{\ast}$ preserves this. Thus
     \begin{align*}
-    w|_{\Omega_{m}} \in W^{p}\Alt^{k}(\Omega_{m}) \text{ with } \cartan w_{m} = \cartan u \text{ over } \Omega_{m}. 
+        w_{|X_{m}} \in W^{p}\Alt^{k}(X_{m}) \text{ with } \cartan w_{m} = \cartan u \text{ over } X_{m}. 
     \end{align*}
-    }
-   
+    
     We want to estimate norms. 
     By construction,
     \begin{align*}
-        \| \cye{w} \|_{L^{p}(T_{m})}
+        \| w \|_{L^{p}(T_{m})}
         \leq  
-        \| \cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
         + 
-        \| \cye{u - \Xi_{m}^{\ast}(u|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        \| u - \Xi_{m}^{\ast}(u_{|U_{m-1}}) \|_{L^{p}(T_{m})}
         .
     \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, \cye{since $\trace_{I_{m-1}} (u|_{T_m} - \Xi_{m}^{\ast}(u|_{U_{m-1}})) = 0$, we have}
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|U_{m-1}})) = 0$, we have
     \begin{align*}
-        \| \cye{u - \Xi_{m}^{\ast}(u|_{U_{m-1}})} \|_{L^{p}(T_{m})} 
+        \| u - \Xi_{m}^{\ast}(u_{|U_{m-1}}) \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
-        + \| \cartan (\Xi_{m}^{\ast}(u|_{U_{m-1}})) \|_{L^{p}(T_{m})} )
+        C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
+        + \| \cartan (\Xi_{m}^{\ast}(u_{|U_{m-1}})) \|_{L^{p}(T_{m})} )
         .
-    \end{align*}\todo{MV: $\diam(T)^{\cye{k}}$???}
-    We also use \cye{Proposition}~\ref{proposition:pullbackestimate} to find 
+    \end{align*}
+    We also use Proposition~\ref{proposition:pullbackestimate} to find 
     \begin{align*}
-        \| \cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})} \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi_{m} \|^{k}
-        \| \cye{w} \|_{L^{p}(U_{m-1})}
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
+        \| w \|_{L^{p}(U_{m-1})}
         ,
         \\
-        \| \cartan (\cye{\Xi_{m}^{\ast}(w|_{U_{m-1}})}) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|U_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-        \| \Jacobian \Xi_{m} \|^{k+1}
-        \| \cartan \cye{u} \|_{L^{p}(U_{m-1})}
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
+        \| \cartan u \|_{L^{p}(U_{m-1})}
         ,
-    \end{align*}\todo{MV: Which norms of the Jacobians and their determinants?}
-    \cye{where we have employed} that $\cartan w = \cartan u$ \cye{over $\Omega_{m-1}$}. 
-    Using the properties of the reflection mapping in \cye{Proposition}~\ref{proposition:starreflection}, the desired recursive estimate follows. 
-%     \begin{align*}
-%         ...
-%     \end{align*}
-%     This enables the recursion
-%     \begin{align*}
-%         \| w_{m} \|_{L^{p}(T_{m})}
-%         &
-%         \leq  
-%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \| \Jacobian \Xi_{m} \|^{k} 
-%         \| w_{m-1} \|_{L^{p}(U_{m-1})}
-%         \\&\qquad
-%         + 
-%         C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} 
-%         \| \cartan u      \|_{L^{p}(T_{m})} 
-%         \\&\qquad
-%         + 
-%         C_{\PF,T_{m},\cye{I}_{m\cye{-1}},k,p} 
-%         |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p} 
-%         \| \Jacobian \Xi_{m} \|^{k+1} 
-%         \| \cartan u \|_{L^{p}(U_{m-1})}
-%         .
-%     \end{align*}
+    \end{align*}
+    \mwl{MV: Which norms of the Jacobians and their determinants?}
+    where we have employed that $\cartan w = \cartan u$ over $X_{m-1}$. 
+    Using the properties of the reflection mapping in Proposition~\ref{proposition:starreflection}, the desired recursive estimate follows. 
 \end{proof}
 
 
@@ -5899,10 +5833,10 @@ The main result of this manuscript for shellable triangulations of domains, not 
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable triangulation $\calT$.
-    Let $T_0, T_1, \dots, T_m$ be a shelling.
+    Let $\Omega \subseteq \bbR^{n}$ be a domain with an $n$-dimensional shellable triangulation $\calT$.
+    Let $T_0, T_1, \dots, T_M$ be a shelling.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
     such that 
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
@@ -5919,17 +5853,17 @@ The main result of this manuscript for shellable triangulations of domains, not 
     The statement is clearly satisfied when $m=0$ because then we only consider a single simplex. 
     Let us assume that the statement is true for some integer $m-1 \geq 0$.
     
-    We write $\Omega_{m-1} := \cup_{j=0}^{m-1} T_{j}$, 
+    We write $X_{m-1} := \cup_{j=0}^{m-1} T_{j}$, 
     which is a triangulated $n$-dimensional submanifold with boundary.
-    By assumption, $T_{m}$ and $\overline\Omega_{m-1}$ share the interface $\Gamma_{m} \subset \partial T_{m}$, 
+    By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m} \subset \partial T_{m}$, 
     which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S \subseteq T$, 
-    and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    and we let $U_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow U_{m-1}$ as discussed in Proposition~\ref{proposition:starreflection},
     which acts as the identity along $\partial U_{m-1} \setminus \partial T$.
     By assumption, 
-    there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
+    there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
     such that $\cartan w_{m-1} = \Xi_{2}^{-1} \cartan u$ and 
     \begin{align*}
         \| w_{m-1} \|_{L^{p}(T_{m})}
@@ -5945,57 +5879,9 @@ The main result of this manuscript for shellable triangulations of domains, not 
     Moreover, the desired estimate follow from Proposition~\ref{proposition:starreflection}.
     The proof is complete. 
 \end{proof}
-\todo[inline]{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when?}
+\todo[inline]{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
 
 
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
-    Let $\Omega \subseteq \bbR^{n}$ be a domain with an \cye{$n$-dimensional} shellable triangulation $\calT$.
-    Let $T_0, T_1, \dots, T_{\cye{M}}$ be a shelling.
-    Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
-    and such that \cye{for each $T_{m} \in \calT$ in the shelling, $1 \leq m \leq M$,
-    we have the following recursive estimate:} 
-    \begin{align*}
-        \| w \|_{L^{p}(T_{m})}
-        \leq 
-        C_{\PF,T,k,p}(T_{0})
-        \prod_{i=0}^{m} 
-        C_{???}
-        \| \cartan u \|_{L^{p}(\Omega)}
-        .
-    \end{align*}
-\end{theorem}
-\begin{proof}
-    We prove this via induction. 
-    The statement is clearly satisfied when $m=0$ because then we only consider a single simplex. 
-    Let us assume that the statement is true for some integer $m-1 \geq 0$.
-    
-    We write $\Omega_{m-1} := \cup_{j=0}^{m-1} T_{j}$, 
-    which is a triangulated $n$-dimensional submanifold with boundary.
-    By assumption, $T_{m}$ and $\cye{\Omega_{m-1}}$ share the interface $\cye{I}_{m\cye{-1}} \subset \partial T_{m}$, 
-    which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S \subseteq T$, 
-    and we let $U_{m-1} \subseteq \Omega_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
-    
-    We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow U_{m-1}$ as discussed in \cye{Proposition}~\ref{proposition:starreflection},
-    which acts as the identity along $\partial U_{m-1} \setminus \partial T$.
-    By assumption, 
-    there exists $w_{m-1} \in W^{p}\Alt^{k}(\Omega_{m-1})$ 
-    such that $\cartan w_{m-1} = \Xi_{2}^{-1} \cartan u$ and 
-    \begin{align*}
-        \| w_{m-1} \|_{L^{p}(T_{m})}
-        \leq 
-        C_{\PF,T,k,p}(T_{0})
-        \prod_{i=0}^{m} 
-        C_{???}
-        \| \Xi_{2}^{-\ast} \cartan u \|_{L^{p}(\Omega)}
-        .
-    \end{align*}
-    Because pullback and exterior derivative commute, 
-    we have $w := \Xi_{2}^{\ast} w_{m-1}$ satisfying $\cartan w = \cartan u$. 
-    Moreover, the desired estimate follow from \cye{Proposition}~\ref{proposition:starreflection}.
-    The proof is complete. \todo{MV: I do not get this.}
-\end{proof}
 
 
 
