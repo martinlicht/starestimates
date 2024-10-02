@@ -271,7 +271,7 @@ which contain local finite element patches \cye{that} are not star-shaped with r
 \cye{In our proofs for triangulated domains}, we \cye{actually also} need to find potentials for the gradient, curl, and divergence operators\cye{, and in general the exterior derivative,} over a simplex subject to partial boundary conditions. 
 Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
 We are not aware of explicit estimates in the literature and \cye{we know} no regularized potential operators for these boundary conditions. 
-\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalit\cye{ies} subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
+\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalities subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
 For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. We achieve this by \cye{an affine ``symmetrization'' map of the tetrahedron to a domain consisting of two tetrahedra,} construction of an auxiliary problem subject to full boundary conditions, and then affine ``folder'' map back to the tetrahedron.
 
 %\subsection{\cye{Main results}}
@@ -2743,11 +2743,10 @@ Throughout this section, we let $\Omega \subseteq \bbR^{3}$ be any bounded open 
     W^{p}(\grad,\Omega) \cye{= W^{1,p}(\Omega)} = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
     .
 \end{gather*}
-\mwl{Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
-First, recall that $L^{p}(\Omega)$ is the space of scalar-valued $p$-integrable functions defined on $\Omega$
+Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
+We recall $L^{p}(\Omega)$, the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
 In the three-dimensional setting, we are particularly interested in the Sobolev vector analysis. 
-% $W^{p}(\grad,\Omega) := W^{1,p}(\Omega)$ is 
 The space of scalar-valued $L^{p}(\Omega)$ functions with weak gradients in $\bfL^{p}(\Omega)$ is 
 \begin{gather*}
     W^{p}(\grad,\Omega) := W^{1,p}(\Omega) = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
@@ -2759,7 +2758,7 @@ and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergence
     \bfW^{p}(\curl,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \curl \bfu \in \bfL^{p}(\Omega) \},
     \\ 
     \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
-\end{gather*}}
+\end{gather*}
 
 We are interested in transformations of these Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
@@ -2837,7 +2836,8 @@ for any $v_1, v_2, \dots, v_k \in V$ and any permutation $\pi$ of the indices \(
 By definition, $\Alt^{1}(V)$ is just the dual space of $V$, and $\Alt^{0}(V)$ is the space of real numbers. 
 Formally, we define $\Alt^{k}(V)$ to be the zero vector space when $k < 0$. 
 
-The wedge product (or exterior product) of alternating multilinear forms is a fundamental operation in exterior algebra. 
+The wedge product (or exterior product) of alternating multilinear forms is a fundamental operation in exterior algebra
+(see~Chapter 14 in \cite{lee2012smooth}). 
 Given two alternating multilinear forms \( u_1 \in \Alt^{k}(V) \) and \( u_2 \in \Alt^{l}(V) \), 
 their wedge product \( u_1 \wedge u_2 \) is a member of $\Alt^{k+l}(V)$
 defined by the formula 
@@ -2862,14 +2862,14 @@ The exterior product is bilinear and associative, and satisfies
     \quad 
     \forall u_2 \in \Alt^{l}(V).
 \end{align*}
-We use the interior product, which is in some sense dual to the exterior product, in a special case. Given $v \in V$ and $u \in \Alt^{k}(V)$, we define $v \lrcorner u \in \Alt^{k-1}(V)$ via 
+The interior product is in some sense dual to the exterior product. Given $v \in V$ and $u \in \Alt^{k}(V)$, we define the interior product $v \lrcorner u \in \Alt^{k-1}(V)$ via 
 \begin{align*}
     (v \lrcorner u)( v_1, v_2, \ldots, v_{k-1} ) = u( v, v_1, v_2, \ldots, v_{k-1} ),
     \quad 
     \forall v_1, v_2, \ldots, v_{k-1} \in V.
 \end{align*}
 
-We are interested only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
+We employ the exterior algebra only in the special case $V = \bbR^{n}$ of alternating forms over the $n$-dimensional Euclidean space. 
 Here, it is customary to identify $\Alt^{k}(V)$ with the space of antisymmetric tensors in $k$ indices. 
 Moreover, this particular setting comes with a canonical basis. 
 We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^{n}\}\) be the basis dual to the canonical unit vectors.
@@ -2929,7 +2929,7 @@ Moreover, it satisfies the Leibniz rule:
 \subsection{Sobolev spaces of differential forms}
 
 Let us now turn our attention to Sobolev spaces of differential forms. 
-Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a norm, induced from the Euclidean norm on $\bbR^{n}$, we can consider the pointwise norms of differential $k$-forms. 
+Since the exterior product space $\Alt^{k}(\bbR^{n})$ carries a norm, induced from the Euclidean norm on $\bbR^{n}$, there are pointwise norms of differential $k$-forms. 
 We let $L^{p}\Alt^{k}(\Omega)$ be the space of differential $k$-forms over $\Omega$ with locally integrable coefficients 
 such that its pointwise norm is $p$-integrable. 
 The exterior derivative is defined in the sense of distributions and we introduce 
@@ -2992,29 +2992,34 @@ The pullback of $u \in W^{p}\Alt^{k}(\Omega')$ along $\phi$ is the differential 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
 \end{align}
 for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^{p}\Alt^{k}(\Omega)$.
-We cite an explicit transformation estimate~\cite{licht2019smoothed}.
+We cite an explicit transformation estimate~ (see~\cite{licht2019smoothed}) and a special estimate when the transformation is affine (see~Corollary~6~\cite{stern2013lp}).
 
-\begin{proposition} \label{proposition:pullbackestimate}
- Let $\phi : \Omega \rightarrow \Omega'$ be a bi-Lipschitz mapping between open sets $\Omega, \Omega' \subseteq \bbR^{n}$.
- Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega)$. 
- Then 
- \begin{align}\label{math:pullbackestimate}
-  \begin{split}
-  \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
-  &\leq 
-  \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
-  \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\infty}(\Omega')}
-  \| u \|_{L^{p}\Lambda^{k}(\Omega')}
-  .
-  \end{split}
- \end{align}
+\begin{proposition}\label{proposition:pullbackestimate}
+    Let $\phi : \Omega \rightarrow \Omega'$ be a bi-Lipschitz mapping between open sets $\Omega, \Omega' \subseteq \bbR^{n}$.
+    Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega)$. 
+    Then 
+    \begin{align}
+        \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
+        &\leq 
+        \| \Jacobian \phi \|^{k}_{L^{\infty}(\Omega)}
+        \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\infty}(\Omega')}
+        \| u \|_{L^{p}\Lambda^{k}(\Omega')}
+        .
+    \end{align}
+    If $\phi$ is affine and $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_n$ are the singular values of $\Jacobian\phi$, then 
+    \begin{align}
+        \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
+        &\leq 
+        \sigma_1 \sigma_2 \cdots \sigma_k \cdot 
+        \| \det\Jacobian \phi^{-1} \|^{\frac{1}{p}}_{L^{\infty}(\Omega')}
+        \| u \|_{L^{p}\Lambda^{k}(\Omega')}
+        .
+    \end{align}
 \end{proposition}
-\notice{MWL:I have simplified the statement to what is needed later.}
-
 
 \begin{remark}
     In three dimensions, 
-    the calculus of differential forms can be translated into classical vector calculus. 
+    the calculus of differential forms is in correspondence with classical vector calculus. 
     This is expressed formally as the commuting diagram 
     \begin{gather*}
     \begin{CD}
@@ -3041,7 +3046,7 @@ We cite an explicit transformation estimate~\cite{licht2019smoothed}.
     \end{align*}
     In two dimensions, 
     the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
-    To the authors' best knowledge, neither convention is dominant in the literature.
+    To the authors' best knowledge, neither convention is dominant over the other in the literature.
     We summarize the situation in the following commuting diagram: 
     \begin{gather*} 
     \begin{CD}
@@ -3069,7 +3074,7 @@ We cite an explicit transformation estimate~\cite{licht2019smoothed}.
 \subsection{Some approximation properties}
 
 We finally review a few approximation properties. 
-Let $\mollifier$ be a non-negative scalar function supported in the unit ball around the origin and with unit integral.
+Let $\mollifier$ be a non-negative scalar function whose integral equals one and whose support lies in the unit ball around the origin.
 Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
 
 \begin{lemma}
@@ -3112,7 +3117,7 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     Next, suppose that $\Omega$ is convex. Without loss of generality, $0 \in \Omega$. 
     Let $u \in W^{p}_{0}\Lambda^{k}(\Omega)$ and extend $u$ trivially onto $\bbR^{n}$. 
     Define $\varphi_t(x) = tx$ for $t > 1$. 
-    Then $\varphi_{t}^{\ast} u \in W^{p}_{0}\Lambda^{k}(t^{-1}\Omega)$ 
+    Then $\varphi_{t}^{\ast} u \in W^{p}_{0}\Lambda^{k}(t^{-1}\Omega) \subseteq W^{p}_{0}\Lambda^{k}(\Omega)$ 
     and $\varphi_{t}^{\ast} u$ converges to $u$ as $t$ decreases towards $1$. 
     Given any $t > 1$, by taking the convolution with $\mollifier_{\epsilon}$ for $\epsilon > 0$ small enough,
     we approximate $\varphi_{t}^{\ast} u$ through members of $C^{\infty}_{c}\Lambda^{k}(\Omega)$.
@@ -3137,29 +3142,29 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
 \section{Regularized potential operators over convex sets}\label{section:potentialoperator}
 
 
-We want to bound Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
-We already know the optimal constants for the gradient operator over convex domains,
-and we know bounds for the Poincar\'e--Friedrichs constants for the entire $L^{2}$ de~Rham complex. 
-We are not aware of such bounds for the case of the $L^{p}$ de~Rham complex when $1 \leq p \leq \infty$. 
+% We want to bound Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
+% We already know the optimal constants for the gradient operator over convex domains,
+% and we know bounds for the Poincar\'e--Friedrichs constants for the entire $L^{2}$ de~Rham complex. 
+% We are not aware of such bounds for the case of the $L^{p}$ de~Rham complex when $1 \leq p \leq \infty$. 
+% % 
+% We bound the norms of regularized potential operators for the exterior derivative over convex domains.
+% We solve this for two special cases: 
 
-\mwl{We \cye{now give} bounds for Poincar\'e--Friedrichs constants for the exterior derivative over convex domains\cye{, in} two special cases:}
-For that reason, we bound the norms of regularized potential operators for the exterior derivative over convex domains.
-We solve this for two special cases: 
-either the $L^{p}$ de~Rham complex without boundary conditions, 
-or the $L^{p}$ de~Rham with full boundary conditions. 
-either the $L^{p}$ de~Rham complex without boundary conditions, 
-or the $L^{p}$ de~Rham with full boundary conditions. 
+We now develop bounds for Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
+Here, we consider two special cases: 
+either the $L^{p}$ de~Rham complex without boundary conditions, or the $L^{p}$ de~Rham with full boundary conditions. 
 The corresponding potential operators are known as the regularized Poincar\'e and regularized Bogovski\u{\i} potentials in the literature. 
 We build upon the discussion spearheaded by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 who analyze them as pseudo-differential operators over domains star-shaped with respect to a ball. 
 % 
 In comparison to their extensive work, our discussion is more modest:
 we study potential operators merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
-However, our purpose are explicit bounds for the operator norms, giving the Poincar\'e--Friedrichs constants. 
+However, our goal are explicit bounds for the operator norms, giving the Poincar\'e--Friedrichs constants. 
 
 %\mwl{In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $\diam(\Omega) > 0$.}
 Let $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $\diam(\Omega) > 0$.
-\todo{MV: Discussion already in the introduction, or in Remark~\ref{remark:reg_Poinc_Bog}}: 
+
+% \todo{MV: Discussion already in the introduction, or in Remark~\ref{remark:reg_Poinc_Bog}}: 
 
 
 
@@ -3184,9 +3189,9 @@ we then define the integral operators
   \\
   \Bogov_{\mia} u(x) &= \int_{\Omega} \calG_{\mia}(x,y) \,(x-y)\lrcorner u(y)\,dy.
 \end{align*}
-We call $\Poinc_{\mia}$ the Poincar\'e operator and $\Bogov_{\mia}$ the Bogovski\u{\i} operator. 
+We call $\Poinc_{\mia}$ the \emph{Poincar\'e operator} and $\Bogov_{\mia}$ the \emph{Bogovski\u{\i} operator}. 
 
-We show that the integrals in the definition of $\Poinc_{\mia}$ and $\Bogov_{\mia}$ actually exist. 
+We show that the integrals in the definition of $\Poinc_{\mia}$ and $\Bogov_{\mia}$ actually converge. 
 In order to analyze the properties of the potential operators,
 we first rewrite the Costabel-McIntosh kernel $\calG_{\mia}$.
 Letting $x,y \in \bbR^n$ with $x \neq y$, we find 
@@ -3303,7 +3308,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 
 We analyze the Bogovski\u{\i} potential operator by similar means. 
 Suppose that $u \in L^{\infty}\Alt^{\mia}(\bbR^{n})$ with $\supp u \subseteq \overline\Omega$ and that $x \in \bbR^{n}$.
-First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence $G(x,y) = 0$ and therefore $\Bogov_{\mia} u(x) = 0$ in that case.
+First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence $\calG_{\mia}(x,y) = 0$ and therefore $\Bogov_{\mia} u(x) = 0$ in that case.
 Consider now the case $x \in \overline\Omega$. 
 We estimate $\Bogov_{\mia} u(x)$ pointwise by 
 \begin{align*}
@@ -3380,9 +3385,9 @@ that is, the reconstructed potential has support contained within $\overline\Ome
 
 
 
-\subsection{Additional properties}
+\subsection{Interaction of potential operators with the exterior derivative}
 
-Additional properties of these operators become apparent after a change of variables. 
+More properties of these operators become apparent after a change of variables. 
 We write down the full definition of these operators and perform two substitutions.
 For the Poincar\'e operator, we substitute $a = x + t(y-x)$ and then we substitute $s = (t-1)/t$,
 leading to 
@@ -3440,9 +3445,10 @@ By definition,
 \end{align*}
 We study the interaction of these potential operator with the exterior derivative in more detail.
 % 
-That discussion is classical and establishes the exactness of several de~Rham complexes. 
-We recapitulate these arguments since our variants of the regularized potential operators 
-are not yet included in the published literature. 
+The main arguments are well-known and establishes the exactness of several de~Rham complexes. 
+We recapitulate these arguments since our variants of the regularized potential operators are not yet included in the published literature. 
+
+\mwl{Some of the notation here needs to be simplified or introducted: Sigma for all integers, possily empty. remove or add indices}
 
 Suppose that $u \in C^{\infty}\Alt^{\mia}(\bbR^n)$.
 We rewrite the Poincar\'e potential,
@@ -3467,10 +3473,9 @@ and compute its exterior derivative:
 \begin{align*}
     \cartan \Poinc_{\mia,a} u(x) 
     &= 
-    \mia
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{0}^{1} 
-    t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
+    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
@@ -3483,7 +3488,7 @@ We write the exterior derivative of $u$ as
     \cartan u(x)
     =
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
-    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} \,dt 
+    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
     ,
 \end{align*}
 and apply the Poincar\'e potential operator to this result, which gives 
@@ -3496,9 +3501,9 @@ and apply the Poincar\'e potential operator to this result, which gives
     \,\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt (x-a)_{j}
-    \,\cartanx^{\sigma}
+    \,\cartanx^{\sigma} 
     \\&\qquad 
     - 
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
@@ -3506,6 +3511,8 @@ and apply the Poincar\'e potential operator to this result, which gives
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
     \,(x-a)_{\sigma(i)} 
     \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    \\
+    &\text{ \mwl{if j wedge sigma is not too much in the first place}}
     .
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
@@ -3517,10 +3524,9 @@ Taking into account cancellations, this gives the identity
     \Poinc_{\mia+1,a} \cartan u(x)
     \\&
     =
-    \mia
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{0}^{1} 
-    t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
+    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
@@ -3528,7 +3534,7 @@ Taking into account cancellations, this gives the identity
     t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad
     - 
@@ -3538,29 +3544,33 @@ Taking into account cancellations, this gives the identity
     \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{0}^{1} 
     \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,(x-a)_{j} \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{0}^{1} \frac{\partial}{\partial t} \left( t^{\mia} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
-    \\&
     =
     \sum_{\sigma \in \Sigma(\mia,n)} 
-    u_{\sigma}(x) \,\cartanx^{\sigma}
-    =
-    u(x)
+    \left( u_{\sigma}(x) - 0^k u_{\sigma}(a) \right) \,\cartanx^{\sigma}
     .
 \end{align*}
-\mwl{What if $\mia = 0$ and $u$ is constant? The reconstruction is not complete for constants}
+We conclude that, 
+\begin{align*}
+    u(x) &= \cartan \Poinc_{0,a} u(x) - u(a)
+    \\
+    u(x) &= \cartan \Poinc_{\mia,a} u(x) + \Poinc_{\mia+1,a} \cartan u(x), \qquad 1 \leq \mia \leq n.
+\end{align*}
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
-    u(x) = \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x).
+    u(x) &= \cartan \Poinc_{0} u(x) - \vol(\Omega)^{-1} \int_\Omega u(a)
+    \\
+    u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
 \end{align*}
 In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\mia} u = u$.
 
@@ -3591,10 +3601,9 @@ and compute its exterior derivative:
 \begin{align*}
     \cartan \Bogov_{\mia,a} u(x) 
     &= 
-    \mia 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{1}^\infty 
-    t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
+    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
@@ -3620,7 +3629,7 @@ and apply the Bogovski\u{\i} potential operator to this result, which gives
     \,\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
     = 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{1}^\infty t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad 
     - 
@@ -3639,10 +3648,9 @@ Taking into account cancellations, this gives the identity
     \Bogov_{\mia+1,a} \cartan u(x)
     \\&
     =
-    \mia
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{1}^\infty 
-    t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
+    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
@@ -3650,7 +3658,7 @@ Taking into account cancellations, this gives the identity
     t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{1}^\infty t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad
     - 
@@ -3660,24 +3668,24 @@ Taking into account cancellations, this gives the identity
     \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     \\&
     =
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{1}^\infty 
     \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     +
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{1}^\infty t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (x-a)_{j} \,dt \,\cartanx^{\sigma}
     \\&
     =
     \sum_{\sigma \in \Sigma(\mia,n)} 
     \int_{1}^\infty \frac{\partial}{\partial t} \left( t^{\mia} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
     \\&
-    =
+    \mwl{=
     \sum_{\sigma \in \Sigma(\mia,n)} 
     u_{\sigma}(x) \cartanx^{\sigma}
     =
     u(x)
-    .
+    .}
 \end{align*}
 In summary, after taking the average over $a \in \Omega$:
 \begin{align*}
