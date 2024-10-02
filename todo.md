@@ -23,23 +23,23 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [ ] after recursive estimates, write down the complete bound 
 - [ ] \mwl{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} \mwl{Compare with theorem earlier}
 
-Revision
+Revision: 
 - [x] header
 - [x] title and abstract, macros 
 - [x] library + bib style 
-- [ ] Introduction 
+- [-] Introduction 
 - [ ] Move ahead section on scalar potentials 
 - [o] Section 2: scalar potential on domains
 - [x] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
 - [x] Section 4: scalar potential on triangulations
 - [ ] Move back section on shellable triangulations
-- [o] Section 5: review of vector calculus
+- [X] Section 5: review of vector calculus
 - [o] Section 6: potential operators 
         unity notation, 
 - [x] Section 7: Shellable triangulations 
 - [o] Section 8: reflections and deformations
-- [ ] Section 9: Final estimate 
+- [o] Section 9: Final estimate 
 - [x] Section 10: Computation
 - [x] outlook 
 
