@@ -2875,7 +2875,7 @@ Moreover, this particular setting comes with a canonical basis.
 We let \(\{\cartanx^1, \cartanx^2, \ldots, \cartanx^{n}\}\) be the basis dual to the canonical unit vectors.
 This is a canonical basis of $\Alt^{1}(\bbR^{n})$. 
 To define a canonical basis of $\Alt^{k}(\bbR^{n})$, 
-we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$,
+we first introduce $\Sigma(k,n)$, the set of strictly ascending mappings $\sigma : \{1,\dots,k\} \rightarrow \{1,\dots,n\}$, where $k, n \in \bbZ$, 
 and introduce the basic $k$-alternators 
 \begin{align*}
     \cartanx^{\sigma} := \cartanx^{\sigma(1)} \wedge \dots \wedge \cartanx^{\sigma(k)}, 
@@ -3478,7 +3478,8 @@ and compute its exterior derivative:
     \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
     \\&\qquad
     + 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n), \; 1 \leq i \leq \mia \\ 1 \leq j \leq n, \; j \notin [\sigma-\sigma(i)] }}
+    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
     \int_{0}^{1} 
     t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     .
@@ -3489,6 +3490,9 @@ We write the exterior derivative of $u$ as
     =
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
     \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
+    =
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }}
+    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
     ,
 \end{align*}
 and apply the Poincar\'e potential operator to this result, which gives 
@@ -3496,7 +3500,8 @@ and apply the Poincar\'e potential operator to this result, which gives
     \Poinc_{\mia+1,a} \cartan u(x)
     &=
     (x-a)\lrcorner 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }}
+    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
     \,\cartanx^{j} \wedge \cartanx^{\sigma}
     \\&
@@ -3506,13 +3511,12 @@ and apply the Poincar\'e potential operator to this result, which gives
     \,\cartanx^{\sigma} 
     \\&\qquad 
     - 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] \\ 1 \leq i \leq k }}
+    %\sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
     (-1)^{i-1}
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
     \,(x-a)_{\sigma(i)} 
     \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
-    \\
-    &\text{ \mwl{if j wedge sigma is not too much in the first place}}
     .
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
@@ -3529,7 +3533,8 @@ Taking into account cancellations, this gives the identity
     \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
     + 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n), \; 1 \leq i \leq \mia \\ 1 \leq j \leq n, \; j \notin [\sigma-\sigma(i)] }}
+    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
     \int_{0}^{1} 
     t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     \\&\qquad
@@ -3538,7 +3543,8 @@ Taking into account cancellations, this gives the identity
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
     \\&\qquad
     - 
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] \\ 1 \leq i \leq k }}
+    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
     (-1)^{i-1}
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
     \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
@@ -3551,6 +3557,11 @@ Taking into account cancellations, this gives the identity
     +
     \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
     \int_{0}^{1} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,(x-a)_{j} \,dt \,\cartanx^{\sigma}
+    \\&\qquad
+    + 
+    \sum_{\substack{ \sigma \in \Sigma(\mia,n), \\ 1 \leq i \leq \mia }}
+    \int_{0}^{1} 
+    t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{\sigma(i)}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{\sigma(i)} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     \\&
     =
     \sum_{\sigma \in \Sigma(\mia,n)} 
@@ -3581,6 +3592,7 @@ The discussion for the Bogovski\u{\i} operator is almost analogous.
 Suppose that $u \in C^{\infty}\Alt^{\mia}(\bbR^n)$ with $\supp u \subseteq \overline\Omega$.
 We rewrite the Bogovski\u{\i} potential,
 \begin{align*}
+    \minus 
     \Bogov_{\mia,a} u(x) 
     &= 
     (x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da\;
@@ -3599,6 +3611,7 @@ We rewrite the Bogovski\u{\i} potential,
 \end{align*}
 and compute its exterior derivative:
 \begin{align*}
+    \minus 
     \cartan \Bogov_{\mia,a} u(x) 
     &= 
     \sum_{\sigma \in \Sigma(\mia,n)} 
@@ -3621,6 +3634,7 @@ We write the exterior derivative of $u$ as
 \end{align*}
 and apply the Bogovski\u{\i} potential operator to this result, which gives 
 \begin{align*}
+    \minus 
     \Bogov_{\mia+1,a} \cartan u(x)
     &=
     (x-a)\lrcorner 
@@ -3643,8 +3657,9 @@ We add the exterior derivative of the potential and the potential of the exterio
 Taking into account cancellations, this gives the identity 
 \begin{align*}
     &
+    - 
     \cartan \Bogov_{\mia,a} u(x)
-    +
+    -
     \Bogov_{\mia+1,a} \cartan u(x)
     \\&
     =
