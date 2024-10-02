@@ -466,17 +466,16 @@ We gather here basic notions and definitions concerning simplicial meshes.
 \subsection{A triangulation or a simplicial complex}
 
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these points the \emph{vertices} of the simplex $T$. 
+The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
+and its remaining points constitute the \textit{boundary} of the simplex.
 If $S$ is a simplex whose vertices are also vertices of another simplex $T$, in which case $S \subseteq T$, 
 then we call $S$ a \textit{subsimplex} of $T$ and call $T$ a \textit{supersimplex} of $S$. 
 
-The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
-and its remaining points constitute the \textit{boundary} of the simplex.
 
 A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
-% (i) every subsimplex of any simplex in $\calT$ is itself part of $\calT$, and (ii) the intersection between any two simplices $T, T' \in \calT$ is either empty or a shared subsimplex of both $T$ and $T'$. 
 We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) \cye{and simply ``simplicial meshes'' in the finite element literature}.} 
-We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is \sout{defined as} the union 
+We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, which is the union 
 \begin{align*}
     \underlying{\calT} := \bigcup_{ T \in \calT } T
     .
@@ -516,11 +515,9 @@ the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}
 % Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. In practice, we not always distinguish between points and singleton simplices. 
 % Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
 Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, codimension one members) of this triangulation.\footnote{
-% \begin{remark}
     Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
-% \end{remark}
 }
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
 % and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\mwl{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
@@ -535,8 +532,8 @@ Formally,
     \qquad 
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
-We also write $U_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
-A crucial structural observation is the following.~\footnote{\todo{$U_T$ looks open but it is not. With closed simplices, the patches are disjoint if they essentially disjoint.}}  
+We also write $\Minako_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
+A crucial structural observation is the following.
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
@@ -565,7 +562,7 @@ A \emph{face-connected component} of $\calT$ is an equivalence class under this 
 and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
 
 
-\subsection{...}
+\subsection{Shape measures and related quantities}
 
 We shift gears and move from a combinatorial study of triangulations to an analytical study:
 we introduce quantitative measures for the geometric quality of triangulations. 
@@ -2170,7 +2167,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 %         \right)
         \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(U_{F_m})} 
+        \| \nabla u \|_{L^{p}(\Minako_{F_m})} 
         ,
         \\
         \| w \|_{L^{p}(T_m)}
@@ -2179,8 +2176,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_{{\iota(m)}})}
         +
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\rm{PF}},U_{F_m},p} 
-        \| \nabla u \|_{L^{p}(U_{F_m})} 
+        C_{{\rm{PF}},\Minako_{F_m},p} 
+        \| \nabla u \|_{L^{p}(\Minako_{F_m})} 
         . 
     \end{align*}
     Here, for any $1 \leq m \leq M$, let $F_m = T_m \cap T_{m-1}$.
@@ -2316,17 +2313,17 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     
     Now we discuss the second recursive estimate. 
     Suppose again that $1 \leq m \leq M$. 
-    Recall that we write $U_{F_m} := T_m \cup T_{m-1}$. 
-    We use the Poincar\'e--Friedrichs inequality over $U_{F_{m}}$,
+    Recall that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
+    We use the Poincar\'e--Friedrichs inequality over $\Minako_{F_{m}}$,
     as given in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, 
-    to find $w_{F_m} \in W^{1,p}(U_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $U_{F_m}$ and 
+    to find $w_{F_m} \in W^{1,p}(\Minako_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $\Minako_{F_m}$ and 
     \begin{align}\label{math:wFm_inequality}
-        \| w_{F_m} \|_{L^{p}(U_{F_m})} \leq C_{{\rm{PF}},U_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(U_{F_m})}.
+        \| w_{F_m} \|_{L^{p}(\Minako_{F_m})} \leq C_{{\rm{PF}},\Minako_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(\Minako_{F_m})}.
     \end{align}
-%     \cye{Since $\nabla (w_{|U_{F_m}}) = \nabla u_{F_{m}} = \nabla (u_{|U_{F_m}})$, 
+%     \cye{Since $\nabla (w_{|\Minako_{F_m}}) = \nabla u_{F_{m}} = \nabla (u_{|\Minako_{F_m}})$, 
     We can define the constant
     \begin{align*}
-    c_{m} := w_{|U_{F_m}} - w_{F_{m}}.
+    c_{m} := w_{|\Minako_{F_m}} - w_{F_{m}}.
     \end{align*}
     We now observe that 
     \begin{gather*}
@@ -2380,7 +2377,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_{{m-1}})}
         \\&\leq 
         \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-        \| w_{F_{m}} \|_{L^{p}(U_{F_m})} 
+        \| w_{F_{m}} \|_{L^{p}(\Minako_{F_m})} 
         +
         \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
         \| w \|_{L^{p}(T_{{m-1}})}
@@ -2393,7 +2390,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \max\left(
             1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
         \right)
-        \| w_{F_m} \|_{L^{1}(U_{F_m})}
+        \| w_{F_m} \|_{L^{1}(\Minako_{F_m})}
         +
         \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
         \| w \|_{L^{1}(T_{{m-1}})}
@@ -2404,7 +2401,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{\infty}(T_m)}
         \leq 
         2
-        \| w_{F_m} \|_{L^{\infty}(U_{F_m})}
+        \| w_{F_m} \|_{L^{\infty}(\Minako_{F_m})}
         +
         \| w \|_{L^{\infty}(T_{{m-1}})}
         .
@@ -2425,12 +2422,12 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \volumeratio^{\frac{m-\ell}{p}}
         \min\left( 
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\rm{PF}},U_{F_\ell},p} 
+        C_{{\rm{PF}},\Minako_{F_\ell},p} 
         ,
         \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{\ell},F_{\ell},p} 
         \right)
-        \| \nabla u \|_{L^{p}(U_{F_\ell})}
+        \| \nabla u \|_{L^{p}(\Minako_{F_\ell})}
         \\&
         \qquad 
         \qquad 
@@ -2447,7 +2444,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 \begin{remark}
-    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular nonconvex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $\{ U_m \}$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ U_m \}$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
+    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular nonconvex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $\{ \Minako_m \}$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Minako_m \}$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
 \end{remark}
 
 
@@ -5601,7 +5598,7 @@ such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m}
 In particular, $\patch_{\calT}(S_{m})$ is already included in the union of the simplices up to $T_m$. 
 We write 
 \begin{align*}
-    U_{m} := \patch_{\calT}(S_{m}) \setminus T_{m}.
+    \Minako_{m} := \patch_{\calT}(S_{m}) \setminus T_{m}.
 \end{align*}
 for the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
@@ -5625,16 +5622,16 @@ The main result of this manuscript for shellable triangulations of domains, not 
             +
             \Cfive{n}{k}(\calT)^{k+1} 
             \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-            \| \cartan u \|_{L^{p}(U_{m-1})}
+            \| \cartan u \|_{L^{p}(\Minako_{m-1})}
         \right)
         \\&\qquad
         + 
         \Cfive{n}{k}(\calT)^{k} 
         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(U_{m-1})}
+        \| w \|_{L^{p}(\Minako_{m-1})}
         .
     \end{align*}
-    \mwl{The notation $U_m$ should be settled in the definition of shellings.}
+    \mwl{The notation $\Minako_m$ should be settled in the definition of shellings.}
 \end{theorem}
 \begin{proof}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
@@ -5650,10 +5647,10 @@ The main result of this manuscript for shellable triangulations of domains, not 
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $U_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $\Minako_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We define $w'_{m} :=  \Xi_{m}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$,
-    where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
+    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
     as in Proposition~\ref{proposition:starreflection}. 
     By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
     \begin{align*}
@@ -5719,30 +5716,30 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \|\det(\Jacobian \Xi_{m}  )\|_{L^{\infty}(T_{m})}^{-\frac 1 p} 
         \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k}
         \cdot 
-        \| w_{m-1} \|_{L^{p}(U_{m-1})}
+        \| w_{m-1} \|_{L^{p}(\Minako_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m})} 
         \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k+1}
         \cdot 
-        \| \cartan w_{m-1} \|_{L^{p}(U_{m-1})}
+        \| \cartan w_{m-1} \|_{L^{p}(\Minako_{m-1})}
         .
     \end{align*}
     \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(U_{m-1})}
+        \| w \|_{L^{p}(\Minako_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|U_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(U_{m-1})}
+        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
         ,
     \end{align*}
     We have assumed that $\cartan w_{m-1} = \cartan u_{|X_{m-1}}$. 
@@ -5756,7 +5753,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
     For $0 < m \leq M$, by the definition of shellability in Section~\ref{section:shellability}, 
     $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
-    where $U_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
+    where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
     
     We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
@@ -5766,13 +5763,13 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\rm{PF}},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
     We define $w_{|T_0} := w_0$. 
-    Suppose now that $0 < m \leq M$ such that $w_{|X_{m-1}}} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w = \cartan u$ over $X_{m-1}$. 
+    Suppose now that $0 < m \leq M$ such that $w_{|X_{m-1}} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w = \cartan u$ over $X_{m-1}$. 
     This is true for $m = 1$. 
     We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
     \begin{align} \label{equation:w''_ext_der}
-        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{U_{m-1}}),
+        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\Minako_{m-1}}),
     \end{align}
-    where $\Xi_{m} : T_{m} \rightarrow U_{m-1}$ is the reflection mapping
+    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
     as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
     Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
     \begin{align*}
@@ -5792,34 +5789,34 @@ The main result of this manuscript for shellable triangulations of domains, not 
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         \leq  
-        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
         + 
-        \| u - \Xi_{m}^{\ast}(u_{|U_{m-1}}) \|_{L^{p}(T_{m})}
+        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
         .
     \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|U_{m-1}})) = 0$, we have
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) = 0$, we have
     \begin{align*}
-        \| u - \Xi_{m}^{\ast}(u_{|U_{m-1}}) \|_{L^{p}(T_{m})} 
+        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})} 
         &
         \leq 
         C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
-        + \| \cartan (\Xi_{m}^{\ast}(u_{|U_{m-1}})) \|_{L^{p}(T_{m})} )
+        + \| \cartan (\Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})} )
         .
     \end{align*}
     We also use Proposition~\ref{proposition:pullbackestimate} to find 
     \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|U_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(U_{m-1})}
+        \| w \|_{L^{p}(\Minako_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|U_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(U_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(U_{m-1})}
+        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
         ,
     \end{align*}
     \mwl{MV: Which norms of the Jacobians and their determinants?}
@@ -5858,10 +5855,10 @@ The main result of this manuscript for shellable triangulations of domains, not 
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m} \subset \partial T_{m}$, 
     which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S \subseteq T$, 
-    and we let $U_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    and we let $\Minako_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
-    We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow U_{m-1}$ as discussed in Proposition~\ref{proposition:starreflection},
-    which acts as the identity along $\partial U_{m-1} \setminus \partial T$.
+    We use the bi-Lipschitz mapping $\Xi_{2} : \patch_{\calT}(S) \rightarrow \Minako_{m-1}$ as discussed in Proposition~\ref{proposition:starreflection},
+    which acts as the identity along $\partial \Minako_{m-1} \setminus \partial T$.
     By assumption, 
     there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
     such that $\cartan w_{m-1} = \Xi_{2}^{-1} \cartan u$ and 
