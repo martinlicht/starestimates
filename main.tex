@@ -4800,7 +4800,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
 %             2 \hat z_{S'} \frac{\langle \hat h_{z}, z_{S'} \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
 %             .
 %         \end{align*}
-        If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$, then 
+        If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$ for some $b_{z} \in \bbR^{n}$, then 
         \begin{align*}
             \Theta_{|K}( h_{z} ) 
             &= 
@@ -4911,89 +4911,91 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         which will be the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
         
         Once again, $h_{z}$ denotes the height of $z_{S'}$ within $K$.
-        Any $x \in K \cup K^{c}$ has a unique representation
+        Here, we let $Q \subseteq K \cap K^{c}$ be the subsimplex 
+        that is complementary to the line segment from the origin to $z_{S'}$ in $K$.
+        Equivalently, $Q$ is complementary to the line segment from the origin to $-z_{S'}$ in $K^{c}$.
+        From the very definition of simplices, we now conclude that any $x \in K \cup K^{c}$ 
+        has a unique representation
         \begin{align*}
-            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c},
+            x = \lambda z_{S} + \mu x^{Q}, \quad \lambda \in [-1,1], \quad \mu \in [0,1], \quad |\lambda| + \mu \leq 1, \quad x^{Q} \in Q,
         \end{align*}
-        where we have 
+        Since $\mu x^{Q}$ lies in the hyperplane spanned by the origin and $Q$, we have 
         \begin{align*}
-            t = t(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+            \lambda = \lambda(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
             .
         \end{align*}
         Based on that observation, we define 
         \begin{align*}
             \Phi_{K}(x) 
+			&
 			:= 
-			x^{\perp} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            \mu x^{Q} - \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
+            \\&
             = 
-			x^{\perp} - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
-            .
-        \end{align*}
-        We can write 
-        \begin{align*}
-            \Phi_{K}(x) 
-			:= 
-			x^{\perp} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            x - \left( \frac 3 2 \lambda(x) - \frac 1 2 \right) z_{S'}
             = 
-			x^{\perp} + t(x) z_{S'} - t(x) z_{S'} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
-            = 
-			x - t(x) z_{S'} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
-            = 
-			x - t(x) z_{S'} - \frac 1 2 \left( 3 t(x) - 1 \right) z_{S'}
+            x - \left( \frac 3 2 \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - \frac 1 2 \right) z_{S'}
             .
         \end{align*}
         We readily verify that this transformation is a bi-Lipschitz mapping from $K \cup K^{c}$ onto $K^{c}$
         that satisfies the desired mapping properties. 
         It remains to analyze its Jacobian to get explicit estimates. 
         
-        We have an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$.
+        We once more introduce an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$ for some $b_{z} \in \bbR^{n}$.
         With that,
         \begin{align*}
             \Jacobian \Phi_{K}(x)
             &=
             \Id 
             - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
+            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle }  
             z_{S'} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle } 
             h_{z} \otimes h_{z}^{t}
             - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle } 
             b_{z} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
+            \frac{3}{ 2 \langle h_{z}, h_{z}\rangle } 
             h_{z} \otimes h_{z}^{t}
             - 
-            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            \frac{3}{ 2 \langle h_{z}, h_{z}\rangle } 
             b_{z} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{1}{ 2 } 
+            \frac{3}{ 2 } 
             \hat h_{z} \otimes \hat h_{z}^{t}
             - 
-            \frac{ \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
+            \frac{ 3 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
             \hat b_{z} \otimes \hat h_{z}^{t}
             .
         \end{align*}
-        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        The Jacobian acts as the identity over the span of $h_{z}$ and $z_{s'}$.
+		We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
         Hence $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
         \begin{align*}
             C 
             = 
-            \frac 1 2 
+            \begin{pmatrix}
+                -\frac 1 2             & 0 
+                \\
+                -\frac 3 2 \tan(\beta) & 2 
+            \end{pmatrix}
+			= 
+			\frac 1 2 
             \begin{pmatrix}
                 -1 & 0 
                 \\
-                -\tan(\beta) & 2 
+                -3\tan(\beta) & 2 
             \end{pmatrix}
         \end{align*}
         By building the symmetric matrix $C^{t} C$ and computing its eigenvalues, we obtain 
@@ -5012,17 +5014,29 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
             .
         \end{align*}
-        These are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Phi_{K}$, the remaining eigenvalues being equal to $1$. 
-%         Upon close inspection, we see that 
-%         \begin{align*}
-%             \sigma_{\max} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
-%             ,
-%             \\
-%             \sigma_{\min} = \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
-%             .
-%         \end{align*}
-        These are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
-        Moreover, $\sigma_{\max} \sigma_{\min} = 1/2$. 
+        \begin{align*}
+            \sigma_{\max} 
+            = 
+            \sqrt{ \frac{ 9\tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ 81\tan(\beta)^{4} + 90 \tan(\beta)^{2} + 9 } }
+            %=
+            %\frac 1 4 \sqrt{ 9 + 9\tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
+            =
+            \frac 3 4 \sqrt{ 1 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
+            ,
+            \\
+            \sigma_{\min} 
+            = 
+            \sqrt{ \frac{ 9\tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ 81\tan(\beta)^{4} + 90 \tan(\beta)^{2} + 9 } }
+            =
+            \frac 3 4 \sqrt{ 1 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
+            .
+        \end{align*}
+        Notice that $\sigma_{\max} \sigma_{\min} = 1/2$. 
+        These are monotonely increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
+        Hence, these are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Phi_{K}$, the remaining eigenvalues being equal to $1$. Therefore,
+        \begin{align*}
+            \det \Jacobian\Phi = \frac 1 2.
+        \end{align*}
         We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
         Similar as above, we use the upper bound 
         \begin{align*}
@@ -5032,22 +5046,19 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \begin{gather*}
             \matnorm{ \Jacobian\Phi_{K} } 
             \leq 
-            \frac 1 4 \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 }
+            \frac 3 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
             ,
             \\
             \matnorm{ \Jacobian\Phi_{K}^{-1} } 
             \leq 
-            \frac 1 2 \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 }
-            ,
-            \\
-            \det \Jacobian\Phi = \frac 1 2 
+            \frac 3 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
             .
         \end{gather*}
         This finishes the discussion of the transformation $\Phi$.
         
         
         \item 
-        We prove another auxiliary result.
+        We continue with an auxiliary result.
         Let $x, h_1, h_2 \in \bbR^{n}$ be non-zero. 
         Define 
         \begin{align*}
@@ -5059,16 +5070,28 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         This is defined away from the hyperplane orthogonal to $h_2$.
-        This is a radial mapping that maps each point on the hyperplane defined by the normal vector $h_1$
+        If $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \| h_1 \|^{2}$, then $\langle F(x), h_2 \rangle = \| h_2 \|^{2}$.
+        That shows that $F(x)$ is a radial mapping that maps each point on the hyperplane defined by the normal vector $h_1$
         onto the colinear point that lies on the hyperplane defined by the normal vector $h_2$. Indeed, 
-        if $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \| h_1 \|^{2}$, then $\langle F(x), h_2 \rangle = \| h_2 \|^{2}$.
         
         We identify the Lipschitz properties of this mapping by computing its Jacobian. 
-        We write $\alpha_1, \alpha_2 \geq 0$ for the two angles between $h_1$ and $h_2$, respectively, and the vector $x$.
+        We write $\alpha_1, \alpha_2 \geq 0$ for the two angles between $h_1$ and $x$ and between $h_2$ and $x$, respectively. 
         In what follows, $y \in \bbR^{n}$.
         \begin{align*}
             \Jacobian F(x) \cdot y
             &=
+            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, y \rangle }{ \| h_1 \|^{2} }
+            x
+            - 
+            \frac{ \langle h_2, h_2 \rangle \langle h_2, y \rangle }{ \langle h_2, x \rangle^{2} }
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            x 
+            +
+            \frac{ \langle h_2, h_2 \rangle }{ \langle h_2, x \rangle }
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            y 
+            \\&=
             \frac{ \langle h_2, h_2 \rangle }{ \|h_2\| \|x\| \cos(\alpha_2) }
             \left( y - \frac{ \langle h_2, y \rangle }{ \langle h_2, x \rangle } x \right)
             \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
@@ -5089,7 +5112,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \left( y - \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x \right)
             \frac{ \cos(\alpha_1) }{ \| h_1 \| }
             +
-            \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
+            \frac{ \| h_2 \| }{ \cos(\alpha_2) }
             \frac{ \langle \hat h_1, y \rangle }{ \| h_1 \| }
             \hat x
             \\&=
@@ -5105,7 +5128,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         We define $a := \cos(\alpha_1)^{-1} \hat h_1 - \cos(\alpha_2)^{-1} \hat h_2$. 
-        Notice that $a \perp \hat x$ by definition. The matrix $\Id + \hat x \otimes a^{t}$ is the identity over the orthogonal complement of the linear span of $a$ and $x$. Over that two-dimensional subspace, it can be represented by a triangular matrix.
+        Notice that $a \perp \hat x$. The matrix $\Id + \hat x \otimes a^{t}$ is the identity over the orthogonal complement of the linear span of $a$ and $x$. Over that two-dimensional subspace, it can be represented by a triangular matrix.
         Similar as above, its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are
         %~\cite{blinn1996consider} 
         \begin{align*}
@@ -5114,7 +5137,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \sigma_{\min} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}.     
         \end{align*}
         Notice that these are strictly monotonely increasing or decreasing, respectively, in $\|a\|$.
-        We notice the obvious upper bound 
+        We thus consider the upper bound 
         \begin{align*}
             \|a\| 
             \leq 
@@ -5126,6 +5149,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \end{align*}
 
         \item 
+		\mwl{Continue proof reading here.}
         We introduce a bi-Lipschitz mapping 
         \begin{align*}
             \Psi : |\calR'| \rightarrow |\calK|
