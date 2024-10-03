@@ -2309,7 +2309,7 @@ The main result of this section constructs a potential and gives an upper bound 
 It has the same building principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.
 The procedure serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
-Two different variations of underlying idea are analyzed. 
+Two different variations of underlying idea are analyzed; the resulting estimates are only slightly different.  
 On the one hand, we extend the scalar gradient potentials over each intermediate domain to another simplex by solving a local auxiliary problem on that simplex. This auxiliary problem will be subject to partial boundary conditions. 
 % We present an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex}, where we compute an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
 % We emphasize that this construction of potentials and bounding of Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
@@ -3766,12 +3766,18 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     then $\Poinc_{\mia} u \in W^{p}    \Alt^{\mia  }(\Omega)$ with $u = \cartan \Poinc_{\mia} u$.
     If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$ and $\int_\Omega u = 0$ in the case $k=n$, 
     then $\Bogov_{\mia} u \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $u = \cartan \Bogov_{\mia} u$.
+    
+    \mwl{
+    If $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
+    If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
+    }
 \end{theorem}
 
 % \todo{MV: Do $\Poinc_{\mia}$ and $\Bogov_{\mia}$ still map piecewise polynomials to piecewise polynomials? Like Raviart--Thomas and N\'ed\'elec spaces to Raviart--Thomas and N\'ed\'elec spaces??}\mwl{No, they do not respect any piecewise structure.}
 
 \begin{proof}
-    It suffices to discuss the case $1 \leq p < \infty$, because taking the limit will then imply the inequality with $p = \infty$. 
+    It suffices to discuss the case $1 \leq p < \infty$, because the domain is bounded 
+    and taking the limit will then imply the inequality with $p = \infty$. 
     The potential operators are linear and satisfy the stated bounds over $C^{\infty}_{c}\Alt^{\mia}(\Omega)$,
     which is a dense subspace of $L^{p}\Alt^{\mia}(\Omega)$. 
 
@@ -3802,6 +3808,30 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \end{align*}
     By definition, $w \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
     
+    \color{blue}
+    Let $u \in W^{p}_{ }\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$ and set $w = \Poinc_{\mia} \cartan u$.
+    There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
+    For any test form $v \in C^{\infty}_{c}\Alt^{n-\mia-1}(\Omega)$, we verify 
+    \begin{align*}
+        \int_{\Omega} \cartan v \wedge \Poinc_{\mia+1} \cartan u_{i}
+        =
+        \int_{\Omega} v \wedge \cartan \Poinc_{\mia+1} \cartan u_{i}
+        =
+        \int_{\Omega} v \wedge \cartan u_{i}
+        .
+    \end{align*}
+    By the continuity of bounded linear functionals, we find 
+    \begin{align*}
+        \int_{\Omega} v \wedge \cartan u 
+        &=
+        (-1)^{\mia(n-\mia)+1}
+        \int_{\Omega} \cartan v \wedge w
+        .
+    \end{align*}
+    By definition, $w \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
+    \color{black}
+    
+    
     Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$. 
     We write $w := \Bogov_{\mia} u$. 
     There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
@@ -3831,6 +3861,29 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \end{align*}
     By definition, $w \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
     This completes the proof. 
+    
+    \color{blue}
+    Let $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$ and set $w = \Bogov_{\mia} \cartan u$.
+    There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
+    For any test form $v \in C^{\infty}\Alt^{n-\mia-1}(\Omega)$, we verify 
+    \begin{align*}
+        \int_{\Omega} \cartan v \wedge \Bogov_{\mia+1} \cartan u_{i}
+        =
+        \int_{\Omega} v \wedge \cartan \Bogov_{\mia+1} \cartan u_{i}
+        =
+        \int_{\Omega} v \wedge \cartan u_{i}
+        .
+    \end{align*}
+    By the continuity of bounded linear functionals, we find 
+    \begin{align*}
+        \int_{\Omega} v \wedge \cartan u 
+        &=
+        (-1)^{\mia(n-\mia)+1}
+        \int_{\Omega} \cartan v \wedge w
+        .
+    \end{align*}
+    By definition, $w \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
+    \color{black}
 \end{proof}
 
 % DONE: Density of C infty mit oder ohne c. 
@@ -3845,7 +3898,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
     To the best of our knowledge, the work of Costabel and McIntosh~\cite{costabel2010bogovskiui} was the first to propose a regularized Poincar\'e operator (regularized via averaging).
     These potentials enable the analysis of de~Rham complexes without boundary conditions.
-    % 
+    % TODO: are these paragraphs in the introduction now?
     The Bogovski\u{\i}-type operators were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics~\cite{bogovskii1979solution}.
     Their generalization to differential forms was again first discussed by Costabel and McIntosh~\cite{costabel2010bogovskiui}. 
     In some sense dual to the regularized Poincar\'e operators, they establish the exactness of the $L^{p}$ de~Rham complex with full boundary conditions.
@@ -3863,13 +3916,15 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     % Guzman and Salgado have estimated the operator norm. \mwl{Describe Guzman and Salgado's contribution in more detail.} 
     
     {\color{blue}
-    Costabel and McIntosh regularize the potentials by smoothly averaging over pivot points within an interior ball, 
-    which is why they \cye{can} study domains star-shaped with respect to a ball. 
-    The\cye{ir} operators are pseudo-differential operators of negative order, 
-    because their averaging uses a smooth weight\cye{; this} proves boundedness of the operators between a variety of function spaces. 
+    Costabel and McIntosh~\cite{costabel2010bogovskiui} regularize the potentials by averaging over pivot points within an interior ball using a smooth compactly supported weight function, 
+    which is why they can study domains star-shaped with respect to a ball. 
+    Their operators are pseudo-differential operators of negative order, 
+    because their averaging uses a smooth weight; this proves boundedness of the operators between a variety of function spaces. 
     Explicit bounds for the higher-order seminorms of these pseudo-differential operators 
-    have been \cye{recently} contributed by Guzman and Salgado~\cite{guzman2021estimation}.\todo{MV: moved.}
-    Instead, we average over the entire domain, which requires a convex geometry, \cye{and we are only interested in boundedness in the Lebesgue $p$ norms.} This has not been established yet, to the best of our knowledge. \cye{Crucially, this exactly allows us to} establish \cye{computable bounds on the} Poincar\'e--Friedrichs constants.   
+    have been recently contributed by Guzman and Salgado~\cite{guzman2021estimation}. 
+    Instead, we average over the entire domain, which requires a convex geometry, and we are only interested in boundedness in the Lebesgue $p$ norms. 
+    Crucially, this exactly allows us to easily establish computable bounds on the Poincar\'e--Friedrichs constants.   
+    This had not been established yet, to the best of our knowledge. 
     }
 \end{remark}
 
@@ -4462,10 +4517,10 @@ A major structural feature of shellable simplicial complexes is that each time a
 
 This section is devoted to geometric operations that are crucial for our main result in Section~\ref{section:poincarefriedrichs} below. 
 Consider the situation where we have an $n$-dimensional local patch (star) around some simplex $S$ and some $n$-dimensional simplex $T$ within that local star. 
-We will need a homeomorphism going from the simplex $T$ onto its complement within the local star around $S$,
+We construct a homeomorphism going from the simplex $T$ onto its complement within the local star around $S$,
 similar to the two- and three-color maps in \cite[Sections~5.3 and~6.3]{ern2020stable} and the symmetrization maps in~\cite[Section~7.6]{Chaum_Voh_p_rob_3D_H_curl_24}
-This homeomorphism is required to preserve the interface and we interpret it as a nonlinear reflection. 
-We ensure that the homeomorphism is bi-Lipschitz and we are particularly interested in the norms of its Jacobian.
+This homeomorphism, which we interpret as a nonlinear reflection, is required to preserve the interface. 
+We ensure that the homeomorphism is bi-Lipschitz, and we are particularly interested in the norms of its Jacobian.
 This nonlinear reflection will be used subsequently in generalizing the discussion in Section~\ref{section:gradient} to the setting of differential forms. 
 Additionally, this endeavor produces another geometric tool:
 we construct a bi-Lipschitz deformation which contracts the entire star into the complement of the newly completed star. 
@@ -4478,7 +4533,7 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
 \begin{lemma}\label{lemma:oppositesubsimplex}
     Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
     Let $F, F'$ be the two subsimplices of $T$ with respective vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
-    Then $T$ lies on one side of the affine subspace
+    Then
     \begin{gather*}
         A 
         := 
@@ -4488,17 +4543,10 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
         +  
         \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}.
     \end{gather*}
-    Moreover, $F = T \cap A$.
+	is an affine subspace of dimension $n-1$, the simplex $T$ lies on one side of $A$,
+	and $F = T \cap A$.
 \end{lemma}
 \begin{proof}
-    Evidently, the linear spans 
-    \begin{gather*}
-        A_{0} := \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \},
-        \qquad 
-        A_{1} := \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}
-    \end{gather*}
-    intersect only at the origin, since otherwise the vertices of $T$ are not affinely independent. 
-    So $A$ has dimension $n-1$. 
     Obviously, $F \subset A \cap T$. 
     Suppose now that $x \in A \cap T$.
     There exist $\lambda_1,\dots,\lambda_{n-1} \in \bbR$ such that 
@@ -4517,10 +4565,18 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
         .
     \end{align*}
     This is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive.
-    But if $x \notin F$, then at least one of them must be negative,
-    and thus their sum must be negative, which is a contradiction. 
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive and their sum is non-negative.
     Hence $\lambda_{k+1} = \dots = \lambda_{n-1} = 0$, implying $x \in F$.
+    % 
+    Lastly, the linear spans 
+    \begin{gather*}
+        A_{0} := \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \},
+        \qquad 
+        A_{1} := \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}
+    \end{gather*}
+    intersect only at the origin, since otherwise a non-trivial affine combination of the vertices of $T$ equals zero, 
+	contradicting their affine independence. %the vertices of $T$ are not affinely independent. 
+    So $A$ has dimension $n-1$. 
 \end{proof}
 
 
@@ -4552,8 +4608,8 @@ We find a hyperplane of codimension one that intersects $T$ only at the $F$ and 
 
 
 
-Next, we observe local stars can be subdivided to vertex stars.
-The shape regularity is controlled in that process. 
+We state the simple observation that local stars can be subdivided to vertex stars.
+The shape regularity remains controlled in that process. 
 
 % \begin{lemma}\label{lemma:stardivision}
 %     Let $\calT$ be an $n$-dimensional simplicial complex
@@ -4573,7 +4629,7 @@ The shape regularity is controlled in that process.
     This is easy.
 \end{proof}
 
-\mwl{TODO: Illustration}
+\mwl{TODO: Illustration. Extend to the more general case if needed later.}
 
 
 
@@ -4601,13 +4657,23 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \qquad 
         {\Gamma_2} := \overline{ \partial T \setminus \partial U }.
     \end{align*}
+	The following holds, where the constants on the right-hand sides are as stated in the proof. 
     \begin{enumerate}
     \item 
     There exists a bi-Lipschitz mapping
     \begin{align*}
         \Xi_{1} : T \rightarrow U
     \end{align*}
-    which is the identity along ${\Gamma_1} = T \cap U$ and which satisfies the upper bounds 
+    which is the identity along ${\Gamma_1} = T \cap U$. 
+    Its singular values $\sigma_1 \geq \dots \geq \sigma_n$ satisfy 
+    \begin{align*}
+        \sigma_1 &\leq ...
+        \\
+        \sigma_i &\leq ..., \quad 2 \leq i \leq n-1,
+        \\
+        \sigma_n &\leq ...
+    \end{align*}
+    and which satisfies the upper bounds 
     \begin{gather*}
         \matnorm{ \Jacobian\Xi_{1} }          \leq \Cfive{n}{k}(\calT),
         \quad 
@@ -4615,15 +4681,23 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \\
         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
         \quad 
-        | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT),
+        | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
     \end{gather*}
-    where the constants on the right-hand sides are as stated in the proof. 
     \item 
     There exists a bi-Lipschitz mapping
     \begin{align*}
-        \Xi_{2} : \underlying{\star_{\calT}(S)} \rightarrow U
+        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U
     \end{align*}
-    which is the identity along $\partial U \setminus \partial T$ and which satisfies the upper bounds 
+    which is the identity along $\partial U \setminus \partial T$.
+    Its singular values $\sigma_1 \geq \dots \geq \sigma_n$ satisfy 
+    \begin{align*}
+        \sigma_1 &\leq ...
+        \\
+        \sigma_i &\leq ..., \quad 2 \leq i \leq n-1,
+        \\
+        \sigma_n &\leq ...
+    \end{align*}
+    and which satisfies the upper bounds 
     \begin{gather*}
         \matnorm{ \Jacobian\Xi_{2} }          \leq \Csieb{n}{k}(\calT),
         \quad 
@@ -4631,9 +4705,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \\
         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
         \quad 
-        | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT),
+        | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT).
     \end{gather*}
-    where the constants on the right-hand sides are as stated in the proof. 
     \end{enumerate}
 \end{proposition}
 \mwl{TODO: throughout this manuscript, all vector and operator norms should indicate the exponent.}
@@ -4816,11 +4889,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             (n-k) \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }            
             .
         \end{align*}
-
         
-
-
-
+        
         \item 
         We introduce another mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$ as follows. 
         Consider any $n$-simplex $K \in \calR$ and let $K^c \in \calR^{c}$ be its image under $\Phi$.
@@ -4949,14 +5019,6 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{gather*}
         This finishes the discussion of the transformation $\Phi$.
-
-
-
-
-
-
-        
-
         
         
         \item 
@@ -5242,8 +5304,6 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \mwl{TODO: not enough. Make this more explicit.}
         
         
-        
-        
         \item 
         We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
         \begin{align*}
@@ -5319,20 +5379,6 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         This completes the desired estimates for $\Xi_{1}$. 
         
         
-        
-        
-        
-
-
-
-
-
-        
-        
-        
-        
-        
-        
         \item 
         We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U $ by setting 
         \begin{align*}
@@ -5360,7 +5406,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
                 \aspectratio(\calT)
             \Big)            
             \\
-            \matnorm{ Jacobian \Xi_{2}^{-1} }
+            \matnorm{ \Jacobian \Xi_{2}^{-1} }
             &\leq  
             \Cacht{n}{k}(\calT)
             :=
@@ -5402,7 +5448,20 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         This completes the desired estimates for $\Xi_{2}$. 
+    \end{itemize}
+    The proof is complete. 
+\end{proof}
         
+
+\begin{remark}
+    We notice that the mappings $\Xi_{1}$ and $\Xi_{2}$ above are not only bi-Lipschitz, but in fact also piecewise affine, 
+    where piecewise refers to an essentially non-overlapping decomposition of their respective domains into convex polytopes.
+    While the reflection and deformation mappings in Proposition~\ref{proposition:starreflection} serve our purpose,
+    it might be possible to improve the analysis or construction and lower the Jacobian estimates. 
+\end{remark}
+
+
+
         
         
         
@@ -5659,22 +5718,9 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{gather*}
 \end{comment}
-    \end{itemize}
-    The proof is complete. 
-\end{proof}
 
 
 
-
-
-
-
-\begin{remark}
-    We notice that the mappings $\Xi_{1}$ and $\Xi_{2}$ above are not only bi-Lipschitz, but in fact also piecewise affine, 
-    where piecewise refers to an essentially non-overlapping decomposition of their respective domains into convex polytopes.
-    While the reflection and deformation mappings in Proposition~\ref{proposition:starreflection} serve our purpose,
-    it might be possible to improve the analysis or construction and lower the Jacobian estimates. 
-\end{remark}
 
 
 

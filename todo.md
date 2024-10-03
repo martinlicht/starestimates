@@ -32,16 +32,17 @@ Revision:
 - [o] Section 2: scalar potential on domains
 - [x] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
-- [x] Section 4: scalar potential on triangulations
+- [x] Section 4: scalar potential on triangulations     
 - [ ] Move back section on shellable triangulations
 - [X] Section 5: review of vector calculus
 - [o] Section 6: potential operators 
         unity notation, 
 - [x] Section 7: Shellable triangulations 
-- [o] Section 8: reflections and deformations
-- [o] Section 9: Final estimate 
+- [o] Section 8: reflections and deformations : singular values! do we need combinatorial triangulation?
+- [o] Section 9: Final estimate               : apply singular values, make complete. Combine estimates. Add examples for curl
 - [x] Section 10: Computation
 - [x] outlook 
+
 
 Further changes
 git diff 97fbcd86 21e58
