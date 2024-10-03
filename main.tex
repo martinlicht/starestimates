@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-% \usepackage[margin=0.1cm]{geometry}
+\usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{comment}          % 
@@ -4726,40 +4726,39 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         \item 
         We let $z'_{S}$ be the midpoint of $S'$. 
-        We first define a new triangulation $\calS$ by the barycentric refinement of the complementary simplex $S'$. 
-        All $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
+        We apply barycentric refinement to the complementary simplex $S'$, which produces a new triangulation $\calS$. 
+        Obviously, all $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
         
         We define another simplicial complex $\calS^c$ as follows:
-        whenever $K \in \calS$ is an $n$-simplex, 
-        we replace the vertex $z_{S}'$ by the new vertex $-z_{S}'$ at the opposite position,
-        giving us a simplex $K'$. 
+        given any $n$-simplex $K \in \calS$, 
+        we replace its vertex $z_{S}'$ by the new vertex $-z_{S}'$ at the opposite position,
+        thus obtaining a new simplex $K'$. 
+        Indeed, that $\calS^c$ is a simplicial complex follows easily from $\calS$ being a simplicial complex. 
         
-        We let $\calS'$ be the union of $\calS$ and $\calS^c$. 
-        By construction, all these $n$-simplices contain $S$ as a subsimplex,
-        and they are disjoint except for their proper subsimplices. 
-        Hence $\calS'$ is indeed a triangulation. 
+        We let the simplicial complex $\calS'$ be the union of $\calS$ and $\calS^c$. 
+        By construction, all its $n$-simplices contain $S$ as a subsimplex,
+        % Indeed, $\calS'$ is indeed a triangulation since they are disjoint except for their proper subsimplices. 
         Moreover, $S$ is an inner subsimplex of that triangulation. 
         In particular, $\calS'$ is its own star around $S$.
         
+        \mwl{Check that $\calS'$ is a triangulation...}
         
         \item 
-        In what follows, we also use $\calR'$, 
-        the simplicial complex obtained from $\calS'$ by barycentric subdivision of $S$.
-        Then $\calR'$ is the local star around the barycenter $z_S$,
-        and all $n$-simplices in $\calR'$ contain $z_{S}$. 
-        We let $\calR$ and $\calR^{c}$ be the corresponding refinements of $\calS$ and $\calS^{c}$, respectively.
+        As additional step, we introduce another simplicial complex $\calR'$ from $\calS'$ via barycentric subdivision of $S$.
+        Then $\calR'$ is its own local star around the barycenter $z_S$.
+        In particular, all $n$-simplices in $\calR'$ contain $z_{S}$. 
+        The simplicial complex $\calR'$ also contains as subcomplexes the corresponding refinements of $\calS$ and $\calS^{c}$, 
+        which we denote by $\calR$ and $\calR^{c}$, respectively.
         
-        The last simplicial complex that we introduce is called $\calK$,
-        and it is the simplicial complex obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
+        Lastly, we introduce one more simplicial complex $\calK$ obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
         
-                
         \item 
-        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$ as follows.
+        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$ between the underlying sets as follows.
         Let $K \in \calR$ be an $n$-simplex and $K' \in \calR^{c}$ be constructed from $K$.
         We let $A_{K} : \Delta^{n} \rightarrow K$ and $A_{K'} : \Delta^{n} \rightarrow K'$
         be affine reference transformations
         that agree on the vertices common to $K$ and $K'$.
-        We then define 
+        Then the mapping 
         \begin{align*}
             \Theta_{|K} := A_{K'} \circ A_{K}^{-1}.
         \end{align*}
@@ -4769,7 +4768,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         %     \\
         %     \matnorm{ \Jacobian \Theta_{|K}^{-1} } &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
         % \end{align*}
-        By construction, the mapping preserves volumes:
+        preserves volumes:
         \begin{align*}
             |\det( \Jacobian      \Theta_{|K} )|
             = 
@@ -4824,7 +4823,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             2 b_{z}
             .
         \end{align*}
-        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+		Evidently, the transformation $\Theta_{|K}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
+		Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
         Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
         We study the singular values of the matrix 
         \begin{align*}
@@ -4852,19 +4852,27 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
             .
         \end{align*}
-        They are monotonely increasing and decreasing, respectively, in $\tan(\beta)$. 
-        These are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$,
+        They are mutual reciprocals of each other and they monotonely increasing and decreasing, respectively, in $\tan(\beta)$.
+        We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$,
         whereas all its other singular values equal $1$. 
         
 %         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
-        By the definition of the tangent, $\tan(\beta) \leq \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$, and we know $\vecnorm{ b_{z} } \leq \vecnorm{ z_{S'} }$. 
-        Let $F_{z} \subseteq K$ be the face opposite to $z_{S'}$,
-        which is also a face of $T$. Then $(n-k) h_{z}$ is the height vector of $F_{z}$ in $T$. 
+        We develop explicit bounds for these singular values. 
+        The definition of the tangent and the decomposition $z_{S'} = h_{z} + b_{z}$ 
+        imply that $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$.
+        % Obviously, $\vecnorm{ b_{z} } \leq \vecnorm{ z_{S'} }$. 
+        
+        Recall that $K \in \calR$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
+        Let $F_{z} \subseteq K$ be the face opposite to the vertex $z_{S'}$,
+        which must be contained in a face $F$ of $T$. 
+        Since $S'$ has dimension $n-k-1$, the vector $(n-k) h_{z}$ is the height vector of $F$ in $T$. 
         Thus 
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
             = 
             \frac{ \vecnorm{ b_{z} } }{ (n-k)^{-1} \| (n-k) h_{z} \| }
+            = 
+            \frac{ \vecnorm{ z_{S'} } }{ (n-k)^{-1} \| (n-k) h_{z} \| }
             \leq 
             (n-k) \aspectratio(T)
 %             = 
@@ -4876,7 +4884,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         This establishes bounds on the singular values of the transformation. 
-        We write 
+        We abbreviate 
         \begin{align*}
             B_{T} 
             := 
