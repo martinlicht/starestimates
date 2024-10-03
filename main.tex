@@ -5149,14 +5149,17 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \end{align*}
 
         \item 
-		\mwl{Continue proof reading here.}
-        We introduce a bi-Lipschitz mapping 
+        We now describe the construction of a bi-Lipschitz mapping 
         \begin{align*}
-            \Psi : |\calR'| \rightarrow |\calK|
+            \Psi : |\calR'| \rightarrow |\calK|.
         \end{align*}
-        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
-        and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$. 
-        We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$. 
+		Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
+		so they must contain an open ball around the origin. 
+		\mwl{Here we need a particular result. }
+		Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
+        We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
+        that is, the scalar product of $x$ with either height vector is positive. 
         We define 
         \begin{align*}
             \Psi(x) 
@@ -5178,8 +5181,13 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             z = \Psi(x)
             .
         \end{align*}
-        Our previous observations enable estimates for the Jacobians. 
-        We have the operator norm and determinant formulas 
+        We let $\alpha_K$ and $\alpha_{{G}}$ be the angles of $x$ with the vectors $h_{{G}}$ and $h_{K}$, respectively,
+        and let 
+        \begin{align*}
+            a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K
+            .
+        \end{align*}
+        The preceding auxiliary results now contribute all information on the singular values of these Jacobians:
         \begin{gather*}
             \matnorm{ \Jacobian\Psi(x) }
             = 
@@ -5211,12 +5219,6 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \frac{ \cos(\alpha_{K}) }{ \cos(\alpha_{{G}}) }
             \right)^{n}
         \end{gather*}
-        where $\alpha_K$ and $\alpha_{{G}}$ are the angles of $x$ with the vectors $h_{{G}}$ and $h_{K}$, respectively,
-        and where 
-        \begin{align*}
-            a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K
-            .
-        \end{align*}
         We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
         By the definition of the cosine, 
         \begin{align*}
@@ -5244,26 +5246,37 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
 %             .
 %         \end{align*}
 
-        The diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$.
-        The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
-        Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of the origin in some simplex in $\calS'$
-        by scaling with $(k+1)^{-1}$. Each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $B_{T}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
-        In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
-        being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
-        It follows that $\|x_{G}\| \leq \diam(T)$. 
-        
-        We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
+		\mwl{Continue proof reading here.}
+		We need further details to complete our estimates. 
+		We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
+		That estimates the quotient $\| x_K \| / \| h_K \|$. 
+        % 
+        In oder to estimate $\|x_{G}\|$, we first notice the case $G \in \calR$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
+        In the case $G \in \calR^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        that must lie in the face of $G$ that is opposite to $-z_{S'}$. 
+        The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
+        It follows again that $\|x_{G}\| \leq \diam(T)$. 
+        % 
+        It remains to find a lower bound for $\| h_{G} \|$.
+        Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calS'$
+        by scaling with $(k+1)^{-1}$. If $G \in \calR$, then that original height was already a height of a vertex of $S$ in $T$. 
+        If instead $G \notin \calR$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $B_{T}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        %         In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        %         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
+        %         It follows that $\|x_{G}\| \leq \diam(T)$. 
+        %         
+%         We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
+%         \begin{align*}
+%             \frac{\diam(T)}{ \|h_{F}\|}
+%             \leq  
+%             \aspectratio(T)
+%             % \frac{ \vol(F) \diam(T) }{ n \vol(T) } \leq \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%             .
+%         \end{align*}
+        Putting all these technical observations together, we estimate 
         \begin{align*}
-            \frac{\diam(T)}{ \|h_{F}\|}
-            \leq  
-            \aspectratio(T)
-            % \frac{ \vol(F) \diam(T) }{ n \vol(T) } \leq \frac{ \diam(T)^{n} }{ n! \vol(T) }
-            .
-        \end{align*}
-        We conclude that 
-        \begin{gather*}
-            \frac{ \diam(K) }{ \| h_{{G}} \| }
-            \leq 
+            \frac{ \| x_{K} \| }{ \| h_{{G}} \| }
+            &\leq 
             (k+1)B_{T}
             \frac{ \diam(K) }{ \| h_{T} \| }
             \leq 
@@ -5277,7 +5290,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             ,
             \\
             \frac{ \| x_{G} \| }{ \| h_{K} \| }
-            \leq 
+            &\leq 
             (k+1)
             \sup_{ K \in \patch_{\calT}(S) }
             \frac{ \diam(T) }{ \| h_{K} \| }
@@ -5292,9 +5305,9 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \sup_{ K \in \patch_{\calT}(S) }
             \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
-        \end{gather*}
+        \end{align*}
         \begin{gather*}
-            \frac{ \diam(K) }{ \| h_{{K}} \| }
+            \frac{ \| x_{K} \| }{ \| h_{{K}} \| }
             \leq 
             (k+1)
             \sup_{ K \in \patch_{\calT}(S) }
@@ -5332,7 +5345,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \frac{\|x_{G}\|}{\|h_{G}\|} 
             + 
             \frac{\|x_{K}\|}{\|h_{K}\|} 
-            \\&
+            % \\&
             \leq 
             (k+1) 
             \left( 1 + B_{T} \right)
@@ -5350,7 +5363,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         After application of a piecewise linear Lipschitz mapping, 
         we can assume that $|\calK|$ is convex without loss of generality. 
         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        \mwl{TODO: not enough. Make this more explicit.}
+        \mwl{TODO: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
         
         
         \item 
@@ -5359,6 +5372,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
         It preserves the interface from $T$ onto $U$. 
+		Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
         % We briefly recapitulate why it is bi-Lipschitz.
 %         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
 %         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
@@ -5434,6 +5448,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \Xi_{2} := \Psi \circ \Phi.
         \end{align*}
         It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
+		Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in \underlying{\patch_{\calT}(S)}$. 
         The combination of the previous estimates for $\Psi$ and $\Phi$ now lead to 
         \begin{align*}
             \matnorm{ \Jacobian \Xi_{2} }
