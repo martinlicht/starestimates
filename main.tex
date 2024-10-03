@@ -4864,8 +4864,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         Recall that $K \in \calR$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
         Let $F_{z} \subseteq K$ be the face opposite to the vertex $z_{S'}$,
-        which must be contained in a face $F$ of $T$. 
-        Since $S'$ has dimension $n-k-1$, the vector $(n-k) h_{z}$ is the height vector of $F$ in $T$. 
+        which must be contained in some face of $T$. 
+        Since $S'$ has dimension $n-k-1$, the vector $(n-k) h_{z}$ is the height vector of that face of $T$. 
         Thus 
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
@@ -4901,28 +4901,45 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         \item 
         We introduce another mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$ as follows. 
-        Consider any $n$-simplex $K \in \calR$ and let $K^c \in \calR^{c}$ be its image under $\Phi$.
+        Consider any $n$-simplex $K \in \calR$ and let $K^c \in \calR^{c}$ be its image under $\Theta$.
         We construct a bi-Lipschitz mapping 
         \begin{align*}
-            \Phi_{K} : K \cup K^{c} \rightarrow K^{c}
+            \Phi_{K} : K \cup K^{c} \rightarrow K^{c}.
         \end{align*}
-        and analyze its properties. The construction will be such that the union of $\Phi_{K}$ for all $n$-simplices $K \in \calR$
-        will define the required mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$,
-        which will be bi-Lipschitz and the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
+        The construction will be such that the union of $\Phi_{K}$ for all $n$-simplices $K \in \calR$
+        will define the desired bi-Lipschitz mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$,
+        which will be the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
         
-        We write $h_{z}$ for the height of $z_{S'}$ within $K$.
-        Given $x \in K \cup K^{c}$, we have a unique representation
+        Once again, $h_{z}$ denotes the height of $z_{S'}$ within $K$.
+        Any $x \in K \cup K^{c}$ has a unique representation
         \begin{align*}
-            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c}.
+            x = t z_{S} + x^{\perp}, \quad t \in [-1,1], \quad x^{\perp} \in K \cap K^{c},
         \end{align*}
-        Notice that 
+        where we have 
         \begin{align*}
-            t = \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+            t = t(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
             .
         \end{align*}
         Based on that observation, we define 
         \begin{align*}
-            \Phi_{K}(x) := x - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
+            \Phi_{K}(x) 
+			:= 
+			x^{\perp} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            = 
+			x^{\perp} - \frac 1 2 \left( \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - 1 \right) z_{S'}
+            .
+        \end{align*}
+        We can write 
+        \begin{align*}
+            \Phi_{K}(x) 
+			:= 
+			x^{\perp} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            = 
+			x^{\perp} + t(x) z_{S'} - t(x) z_{S'} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            = 
+			x - t(x) z_{S'} - \frac 1 2 \left( t(x) - 1 \right) z_{S'}
+            = 
+			x - t(x) z_{S'} - \frac 1 2 \left( 3 t(x) - 1 \right) z_{S'}
             .
         \end{align*}
         We readily verify that this transformation is a bi-Lipschitz mapping from $K \cup K^{c}$ onto $K^{c}$
