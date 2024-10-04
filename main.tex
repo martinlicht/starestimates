@@ -3786,8 +3786,52 @@ The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegle
 We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
 
 \begin{figure}[h]
-\centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
-\caption{A manifold triangulation (left) and not a manifold triangulation (right)}
+% \centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
+\centering
+\begin{tikzpicture}[scale=0.8]
+    % Coordinates of the main outer triangle
+    \coordinate (B0)  at (0,-1); % Bottom left
+    \coordinate (BL)  at (-3,0); % Bottom right
+    \coordinate (BR)  at (3,0); % Bottom right
+    \coordinate (CLL) at (-3,2); % Bottom left
+    \coordinate (CL)  at (-1,1); % Bottom right
+    \coordinate (CR)  at ( 1,1); % Bottom right
+    \coordinate (CRR) at ( 3,2); % Bottom right
+    \coordinate (Z)   at (0,3.5); % Top
+    \coordinate (ML) at  (-0.8,2.2);% ($(CL)!0.3!(Z)$);
+    \coordinate (MR) at  ( 0.8,2.2);% ($(CR)!0.6!(Z)$);
+    \draw[thick,fill=gray!25] (B0) -- (CL) -- (CR) -- cycle;
+    \draw[thick,fill=gray!25] (B0) -- (CL) -- (BL) -- cycle;
+    \draw[thick,fill=gray!25] (BL) -- (CL) -- (CLL) -- cycle;
+    \draw[thick,fill=gray!25] (B0) -- (CR) -- (BR) -- cycle;
+    \draw[thick,fill=gray!25] (BR) -- (CR) -- (CRR) -- cycle;
+    \draw[thick,fill=gray!25] (ML) -- (CL) -- (CLL) -- cycle;
+    \draw[thick,fill=gray!25] (MR) -- (CR) -- (CRR) -- cycle;
+    \draw[thick,fill=gray!25] (Z) -- (ML) -- (CLL) -- cycle;
+    \draw[thick,fill=gray!25] (Z) -- (MR) -- (CRR) -- cycle;
+    \draw[thick,fill=gray!25] (Z) -- (ML) -- (MR) -- cycle;
+\end{tikzpicture}
+\qquad
+\begin{tikzpicture}[scale=0.8]
+    % Coordinates of the main outer triangle
+    \coordinate (B0)  at (0,-1); % Bottom left
+    \coordinate (BL)  at (-3,0); % Bottom right
+    \coordinate (BR)  at (3,0); % Bottom right
+    \coordinate (CLL) at (-3,2); % Bottom left
+    \coordinate (CL)  at (-1,1); % Bottom right
+    \coordinate (CR)  at ( 1,1); % Bottom right
+    \coordinate (CRR) at ( 3,2); % Bottom right
+    \coordinate (Z)   at (0,3.5); % Top
+    \draw[thick,fill=gray!25] (B0) -- (CL) -- (CR) -- cycle;
+    \draw[thick,fill=gray!25] (B0) -- (CL) -- (BL) -- cycle;
+    \draw[thick,fill=gray!25] (BL) -- (CL) -- (CLL) -- cycle;
+    \draw[thick,fill=gray!25] (B0) -- (CR) -- (BR) -- cycle;
+    \draw[thick,fill=gray!25] (BR) -- (CR) -- (CRR) -- cycle;
+    \draw[thick,fill=gray!25] (Z) -- (CL) -- (CLL) -- cycle;
+    \draw[thick,fill=gray!25] (Z) -- (CR) -- (CRR) -- cycle;
+\end{tikzpicture}
+
+\caption{Left: manifold triangulation of an anulus. Right: not a manifold triangulation.}
 \label{figure:not_manifold_triang}
 \end{figure}
 
