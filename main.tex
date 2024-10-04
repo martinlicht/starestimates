@@ -810,18 +810,21 @@ In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the n
 
 \section{Old : Review of Poincar\'e--Friedrichs constants}\label{section:poincare}
 
-In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss bounded convex domains as a special case. This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
+\mwl{
+In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss bounded convex domains as a special case. 
+This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
 
 It is generally easier to obtain upper bounds Constructing and analyzing a potential operator is generally easier if the potential is linear. 
 Constructing linear potential operators is generally easier 
 We will extend that construction of the potential when we address Poincar\'e--Friedrichs inequalities for the curl and divergence operators. 
 
 % Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
+}
 
-
-We survey variations of the Poincar\'e and Poincar\'e--Friedrichs inequalities. 
-We take the opportunity to discuss bounded convex domains as a preparatory special case.
-This survey, which we believe to be of independent interest, will serve as a building block in constructing inequalities over triangulated domains.
+This section surveys variations of the Poincar\'e--Friedrichs inequalities for the gradient operator,
+with emphasis on analytical upper bounds over bounded convex domains. 
+We explain the difference between the Poincar\'e--Friedrichs inequality, which addresses the norm-minimizing potential, and the Poincar\'e inequality, which addresses the potential with mean value zero, and rephrase this in terms of potential operators. 
+This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
 \\
 
 Let $\Omega \subseteq \bbR^{n}$ be an open connected set. 
@@ -974,7 +977,7 @@ If there is a Poincar\'e--Friedrichs constant, then by definition
     \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{\grad,\Omega,p} \| \bff \|_{L^{p}(\Omega)},
 \end{align*}
 and this inequality is sharp by definition of $\Phi$ provided that $C_{\grad,\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
-Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
+Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$. 
 
 Because $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$,
 any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
@@ -987,9 +990,9 @@ satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p
     \frac{ \| \overline\Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
     .
 \end{align*}
-A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that satisfies 
+A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that satisfies 
 \begin{align*}
-    \Phi_{{\rm P}}( \nabla u ) = u - u_{\Omega},
+    \Phi_{\varnothing}( \nabla u ) = u - u_{\Omega},
     \quad 
     \forall 
     u \in W^{1,p}(\Omega)
@@ -1272,7 +1275,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 
 We gather here basic notions and definitions concerning simplicial meshes. 
   
-\subsection{A triangulation or a simplicial complex}
+% \subsection{A triangulation or a simplicial complex}
 
 A ${k}$-dimensional \emph{simplex} $T$ is the convex hull of ${k}+1$ affinely independent points $v_0, v_1, \ldots, v_{{k}} \in \mathbb{R}^{n}$. We call these points the \emph{vertices} of the simplex $T$. 
 The strictly positive convex combinations of the vertices of the simplex constitute the \textit{ interior} of the simplex,
@@ -1448,21 +1451,21 @@ We gather a few relationships between geometric and algebraic entities and compa
     We also know that the diameter of $T$ is the length of its longest edge. 
     Our first pair of inequalities follows via standard comparisons of Euclidean norms:
     \begin{align*}
-        \frac{\diam(T)}{\sqrt 2} \leq \matnorm{ M } \leq \sqrt{n} c_{\max}(M) \leq \sqrt{n} \diam(T).
+        \frac{\diam(T)}{\sqrt 2} \leq \matnorm{ M } \leq \sqrt{n} \cdot c_{\max}(M) \leq \sqrt{n} \cdot \diam(T).
     \end{align*}
     The columns of the matrix $M^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
-    except for the vertex $\varphi(0)$. It immediately follows that 
+    except for the vertex $\varphi(0) \in T$. It immediately follows that 
     \begin{align*}
         \matnorm{ M^{-1} } \leq \sqrt{n} c_{\max}(M^{-1}) \leq \sqrt{n} \cdot \height(T)^{-1}
         .
     \end{align*}
     The smallest height in the reference simplex $\Delta^{n}$ is $\height_{\Delta} = 1/\sqrt{n}$, 
     whence $\height(T) \geq \matnorm{M^{-1}}^{-1} / \sqrt{n}$. This yields our second pair of inequalities. 
-    Notice that $\height(T)^{-1} \leq \aspectratio(T) \diam(T)$.
+    Notice that $\height(T)^{-1} \leq \aspectratio(T) \diam(T)^{-1}$.
     All relevant results follow.
 \end{proof}
 
-We are interested in the maximal ratio of volumes between face-neighboring $n$-simplices, written $\volumeratio(\calT)$,
+We will need the maximal ratio of volumes between face-neighboring $n$-simplices, written $\volumeratio(\calT)$,
 and the ratio of the diameters of any intersecting simplices, written $\diameterratio(\calT)$. Formally, 
 \begin{align}\label{math:volumeratio}
     \volumeratio(\calT) 
@@ -2653,11 +2656,11 @@ We review in this section the Sobolev spaces of vector and exterior calculus and
 
 \subsection{Vector calculus}
 
-\cye{Recall the notations~\eqref{equation:W1p} and~\eqref{equation:W_curl_div_p} from Section~\ref{section:intro}; actually, here we temporarily rather employ 
-\begin{gather*}
-    W^{p}(\grad,\Omega) \cye{= W^{1,p}(\Omega)} = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
-    .
-\end{gather*}}
+% \cye{Recall the notations~\eqref{equation:W1p} and~\eqref{equation:W_curl_div_p} from Section~\ref{section:intro}; actually, here we temporarily rather employ 
+% \begin{gather*}
+    % W^{p}(\grad,\Omega) \cye{= W^{1,p}(\Omega)} = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
+    % .
+% \end{gather*}}
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 We recall $L^{p}(\Omega)$, the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
@@ -2896,7 +2899,7 @@ Lastly, we introduce the closed subspaces
     .
 \end{gather*}
 % \cye{The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.}\todo{MV: Moved here.}
-This is a closed subspace. We know that $u \in W^{p}_{0}\Alt^{k}(\Omega)$ if and only if its extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. Moreover, $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$. We also observe that $W^{p}\Alt^{n}(\Omega) = W^{p}_{0}\Alt^{n}(\Omega)$.
+This is a closed subspace. We know that $u \in W^{p}_{0}\Alt^{k}(\Omega)$ if and only if its extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. Moreover, $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$. We also observe that $W^{p}\Alt^{n}(\Omega) = W^{p}_{0}\Alt^{n}(\Omega) = L^{p}(\Omega)$. We use the abbreviation $W^{1,p}_{0}(\Omega) := W^{p}\Lambda^{0}(\Omega)$. 
 
 
 \subsection{Transformations by bi-Lipschitz mappings}
@@ -3149,7 +3152,7 @@ If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \
 \end{align*}
 We are now in a position to show that the potentials are bounded with respect to Lebesgue norms. 
 
-\subsection{\cye{An operator norm bound with respect to the Lebesgue norm: the Poincar\'e case}}
+\subsection{An operator norm bound with respect to the Lebesgue norm: the Poincar\'e case}
 
 We begin with the Poincar\'e operator. 
 Let $B_{\diam(\Omega)}(0)$ be the $n$-dimensional ball centered at the origin.
@@ -3226,7 +3229,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 % 
 
 
-\subsection{\cye{An operator norm bound with respect to the Lebesgue norm: the Bogovski\u{\i} case}}
+\subsection{An operator norm bound with respect to the Lebesgue norm: the Bogovski\u{\i} case}
 
 We analyze the Bogovski\u{\i} potential operator by similar means. 
 Suppose that $u \in L^{\infty}\Alt^{\mia}(\bbR^{n})$ with $\supp u \subseteq \overline\Omega$ and that $x \in \bbR^{n}$.
@@ -3820,7 +3823,14 @@ we have the following improved estimate.
 
 \begin{lemma}\label{lemma:PFfordivergence}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
-    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $\bfw \in \bfH(\divergence,\Omega)$ with $\divergence \bfu = \divergence \bfw$ and 
+    % For each $u \in W^{1,2}_{0}(\Omega)$ there exists $w \in W^{1,p}_{0}(\Omega)$ with $\grad \bfw = \grad \bfu$ and 
+    % \begin{align*}
+        % \| w \|_{L^{2}(\Omega)} 
+        % \leq 
+        % \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
+        % .
+    % \end{align*}
+	For each $\bfu \in \bfW^{p}(\divergence,\Omega)$ there exists $\bfw \in \bfW^{p}(\divergence,\Omega)$ with $\divergence \bfw = \divergence \bfu$ and 
     \begin{align*}
         \| \bfw \|_{L^{2}(\Omega)} 
         \leq 
@@ -3830,7 +3840,7 @@ we have the following improved estimate.
 \end{lemma}
 \begin{proof}
     This is a reduction to the Friedrichs inequality. 
-    Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
+    The space $W^{1,2}_{0}(\Omega)$ is the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
     Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
     with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
     The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,

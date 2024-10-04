@@ -30,9 +30,9 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 
 
 Revision: 
-- [x] header
-- [x] title and abstract, macros 
-- [x] library + bib style 
+- [X] header
+- [X] title and abstract, macros 
+- [X] library + bib style 
 - [-] Introduction 
 - [X] Move ahead section on scalar potentials 
 - [X] Section 2: scalar potential on domains
