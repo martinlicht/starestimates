@@ -1,0 +1,52 @@
+We begin with the following observation. 
+Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
+We find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is on only one side of the hyperplane. 
+
+\begin{lemma}\label{lemma:oppositesubsimplex}
+    Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
+    Let $F, F'$ be the two subsimplices of $T$ with respective vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
+    Then
+    \begin{gather*}
+        A 
+        := 
+        v_0 
+        + 
+        \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} 
+        +  
+        \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}.
+    \end{gather*}
+	is an affine subspace of dimension $n-1$, the simplex $T$ lies on one side of $A$,
+	and $F = T \cap A$.
+\end{lemma}
+\begin{proof}
+    Obviously, $F \subset A \cap T$. 
+    Suppose now that $x \in A \cap T$.
+    There exist $\lambda_1,\dots,\lambda_{n-1} \in \bbR$ such that 
+    \begin{align*}
+        x &= 
+        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
+        \\&
+        = 
+        \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right) v_0 
+        + 
+        \sum_{i=1  }^{k  } \lambda_{i} v_i 
+        + 
+        \left( \sum_{i=k+1}^{n-1} \lambda_{i} \right) v_n
+        + 
+        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
+        .
+    \end{align*}
+    This is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
+    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive and their sum is non-negative.
+    Hence $\lambda_{k+1} = \dots = \lambda_{n-1} = 0$, implying $x \in F$.
+    % 
+    Lastly, the linear spans 
+    \begin{gather*}
+        A_{0} := \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \},
+        \qquad 
+        A_{1} := \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}
+    \end{gather*}
+    intersect only at the origin, since otherwise a non-trivial affine combination of the vertices of $T$ equals zero, 
+	contradicting their affine independence. %the vertices of $T$ are not affinely independent. 
+    So $A$ has dimension $n-1$. 
+\end{proof}

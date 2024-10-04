@@ -48,7 +48,7 @@
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Inria Univ. Lille and Laboratoire Paul Painlev\'e, 59655 Villeneuve-d'Ascq, France, \texttt{theophile.chaumont@inria.fr}} \and
     Martin Werner Licht\thanks{\'Ecole Polytechnique F\'ed\'erale de Lausanne, CH-1015 Lausanne, Switzerland, \texttt{martin.licht@epfl.ch}} \and
-    Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France}, \texttt{martin.vohralik@inria.fr}
+    Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
 }
 
 
@@ -1021,7 +1021,7 @@ Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \inft
 \begin{align}\label{math:chuawheeden}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    C_{{\rm P},{\rm CW},p}
+    C_{{\rm CW},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -1032,7 +1032,7 @@ Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \inft
 \end{align}
 where we use an upper bound by Chua and Wheeden:
 \begin{align*}
-    C_{{\rm P},{\rm CW},p} 
+    C_{{\rm CW},p} 
     := 
     \sup\limits_{ v \in C^\infty([0,1]) \setminus \bbR } 
     \frac{ 
@@ -1047,7 +1047,7 @@ where we use an upper bound by Chua and Wheeden:
     \left( \frac p 2 \right)^{\frac 1 p}
     .
 \end{align*} 
-Note that $C_{{\rm P},{\rm CW},p}$ is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
+Note that \eqref{math:chuawheeden} is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
 As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
 
 
@@ -1057,7 +1057,7 @@ when $1 < p < \infty$, one can show that
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{p}(\Omega)}
     \leq 
-    C_{\PF,{\rm EFNT},p}
+    C_{{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -1066,9 +1066,9 @@ when $1 < p < \infty$, one can show that
     u \in W^{1,p}(\Omega)
     ,
 \end{align}
-where $C_{\PF,{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
+where $C_{{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
 \begin{align*}
-    C_{\PF,{\rm EFNT},p}
+    C_{{\rm EFNT},p}
     :=
     \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
     .
@@ -1077,7 +1077,7 @@ Note that the last inequalities from~\eqref{math:p_vs_pf} imply, again when $1 <
 \begin{align}\label{math:esposito:poincare}
     \| u - u_{\Omega} \|_{L^{p}(\Omega)}
     \leq 
-    2^{|1-\frac 2 p|}C_{\PF,{\rm EFNT},p}
+    2^{|1-\frac 2 p|}C_{{\rm EFNT},p}
     \diam(\Omega)
     \| \nabla u \|_{L^{p}(\Omega)}
     ,
@@ -1086,7 +1086,7 @@ Note that the last inequalities from~\eqref{math:p_vs_pf} imply, again when $1 <
     u \in W^{1,p}(\Omega)
     .
 \end{align}
-When $p=1$, then the optimal Poincar\'e constant $1/2$ also bounds the Poincar\'e--Friedrichs constant:
+When $p=1$, then the optimal Poincar\'e constant also bounds the Poincar\'e--Friedrichs constant:
 \begin{align}\label{math:l1estimate}
     \min\limits_{ c \in \bbR }
     \| u - c \|_{L^{1}(\Omega)}
@@ -1129,12 +1129,12 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 \begin{remark}
     % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
     Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}. 
-    Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
-    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{\PF,{\rm EFNT},p}$. 
+    Let us compare $C_{{\rm CW},p}$ for the Poincar\'e inequality
+    with $C_{{\rm EFNT},p}$ for the Poincar\'e--Friedrichs inequality. 
     In the case $2 \leq p$, 
     \begin{align*}
         2^{1-\frac 2 p}
-        C_{\PF,{\rm EFNT},p}
+        C_{{\rm EFNT},p}
         =
         \frac{ 2^{1-\frac 2 p} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -1142,13 +1142,13 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
         \leq 
         4^{-\frac 1 p}
         \leq
-        C_{{\rm P},{\rm CW},p} 
+        C_{{\rm CW},p} 
         .
     \end{align*}
     In the case $2 \geq p$, 
     \begin{align*}
         2^{\frac 2 p - 1}
-        C_{\PF,{\rm EFNT},p}
+        C_{{\rm EFNT},p}
         =
         \frac{ 2^{\frac 2 p - 1} }{2}
         \frac{ \sin(\pi/p) }{ \pi/p }
@@ -1162,7 +1162,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
         =
         4^{\frac 1 p - 1}
         \leq
-        C_{{\rm P},{\rm CW},p} 
+        C_{{\rm CW},p} 
 %         % 
 %         .
 %         4^{\frac 1 p}
@@ -1180,7 +1180,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     % DONE: chua Wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
 % DONT: Keep ?
-%     In the limit as $p$ goes to $1$, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$,
+%     In the limit as $p$ goes to $1$, the factor $C_{{\rm EFNT},p}$ converges to $1/2$,
 %     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{1}(\Omega)}
@@ -1194,7 +1194,7 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
 %         u \in W^{1,1}(\Omega)
 %         .
 %     \end{align*}
-%     In the limit as $p$ goes to infinity, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$, 
+%     In the limit as $p$ goes to infinity, the factor $C_{{\rm EFNT},p}$ converges to $1/2$, 
 %     which implies the Poincar\'e inequality 
 %     \begin{align*}
 %         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
@@ -1976,13 +1976,12 @@ This indicator quantifies how much reflection across the shared face distorts th
 
 \section{Poincar\'e--Friedrichs inequalities over triangulated domains}\label{section:gradient}
 
-In this section, we develop stepwise computable estimates of Poincar\'e--Friedrichs constants of triangulated domains. 
+In this section, we develop stepwise computable estimates for Poincar\'e--Friedrichs constants of triangulated domains. 
 The following very classical procedure serves us as an inspiration: given a gradient vector field, we can reconstruct the scalar potential up to a constant by fixing a starting point and integrating the gradient vector field along lines emanating from that starting point. 
 We perform a discrete analogue of this procedure over triangulated domains: 
 having fixed a starting triangle, we traverse the triangulation along face-neighboring simplices.
-%We construct a scalar potential for a given gradient vector field on larger and larger triangulated subdomains.
-We always construct a gradient potential over the new simplex and fix the constant using the value already known on the connecting face, thus constructing a scalar potential over larger and larger subdomains.
-This basic idea has appeared in the different variants before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
+We always construct a gradient potential over the new simplex and fix the constant of integration using the value already known on the connecting face, thereby constructing a scalar potential over larger and larger subdomains.
+This basic idea has appeared in various forms before, for instance recently in \cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24, Voh_loc_glob_H1_24}.
 
 
 
@@ -2148,10 +2147,11 @@ We begin with an auxiliary result with independent relevance, where we estimate 
 %         \int_{\Omega} |\nabla u|^{p} \,dx
         .
     \end{align*}
-    That $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
-    for all $W^{1,p}(T)$ whose members have vanishing trace along $F$ follows from approximation via members of $u \in C^{\infty}(T)$ whose support is disjoint from $F$. 
-    Very briefly verify that density argument: 
-    There exists affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ from the reference simplex onto $T$ that maps the convex closure of the $n$ unit vectors onto the face $F$.
+    If $u \in W^{1,p}(T)$ has vanishing trace along $F$ but is not necessarily smooth, 
+	then we conclude $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
+    from approximation via members of $C^{\infty}(T)$ whose support is disjoint from $F$. 
+    We very briefly verify that density argument: 
+    There exists an affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ from the reference simplex onto $T$ that maps the convex closure of the $n$ unit vectors onto the face $F$.
     We let $\hat u := u \circ \varphi$.
     Let $\hat U$ be the unit ball of the $\ell^1$ metric, which contains $\Delta^{n}$.
     We let $\tilde u$ be the extension of $\hat u$ onto $\hat U$ by reflection across the coordinate axes.
@@ -2165,7 +2165,8 @@ We begin with an auxiliary result with independent relevance, where we estimate 
 % \end{remark}
 
 
-The next auxiliary result extends the results on Poincar\'e--Friedrichs constants over convex domains from Section~\ref{section: PX_convex} to face patches within simplicial triangulations. We emphasize that face patches are not necessarily convex. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
+The next auxiliary result establishes Poincar\'e--Friedrichs constants over face patches within simplicial triangulations. 
+We emphasize that face patches are not necessarily convex, but we can still extend the results on convex domains from Section~\ref{section: PX_convex}. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
@@ -2178,7 +2179,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
         \| u - c \|_{L^{p}(U)}
         &
 %         \leq 
-%         2 \Ceins{n} C_{\PF,{\rm EFNT},p}
+%         2 \Ceins{n} C_{{\rm EFNT},p}
 %         \max\left( 
 %             \frac{ \vol(T_1) }{ \vol(T_2) }
 %             ,
@@ -2194,7 +2195,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
         \| \nabla u \|_{L^{p}(U)}
         .
     \end{align*}
-    Here, $C_{{\PF},T_1 \cup T_2,p} = 2 \Ceins{n} C_{\PF,{\rm EFNT},p} \volumeratio(\calT)^{\frac 1 p} \max\left( \diam(T_1), \diam(T_2) \right)$. 
+    Here, $C_{{\PF},T_1 \cup T_2,p} = 2 \Ceins{n} C_{{\rm EFNT},p} \volumeratio(\calT)^{\frac 1 p} \max\left( \diam(T_1), \diam(T_2) \right)$. 
 \end{lemma}
 % \begin{remark}
 %     The result is sharp when $T_1$ and $T_2$ have equal volume and diameter, and that $U$ is not necessarily convex. 
@@ -2204,7 +2205,8 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
     and $z_{1} \in T_{1}$ and $z_{2} \in T_{2}$ are the remaining vertices of the two triangles. 
     Let $\Delta_{1} = \Delta^{n}$ be the reference $n$-simplex and let $\Delta_{2}$ be obtained from it by flipping the $n$-th coordinate.
     We let $\varphi_{1} : \Delta_{1} \rightarrow T_{1}$ and $\varphi_{2} : \Delta_{2} \rightarrow T_{2}$
-    be affine transformations that the origin to $v_0$, that map each unit vector $e_{i}$ to $v_{i}$ for $i = 1, \dots, n-1$,
+    be affine transformations 
+	that map the origin to $v_0$, that map each unit vector $e_{i}$ to $v_{i}$ for $i = 1, \dots, n-1$,
     and that satisfy $\varphi_{1}(e_{n}) = z_{1}$ and $\varphi_{2}(-e_{n}) = z_{2}$.
     Write $\hat U := \Delta_1 \cup \Delta_2$.
     We have a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
@@ -2261,7 +2263,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
     \begin{align*}
         \| \hat w \|_{L^{p}(\hat U)}
         \leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 C_{{\rm EFNT},p}
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         .
     \end{align*}
@@ -2279,14 +2281,14 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
     \end{align*}
     For both $i = 1,2$, we now recall the well-known equation $|\det(\Jacobian\varphi_i)| = n! \vol(T_i)$, 
     % which we have already employed in~\eqref{equation:Hong_Pan}, 
-    and the estimate $\matnorm{ \Jacobian \varphi_i } \leq \Ceins{n} \diam(T_i)$, which is given in Lemma~\ref{lemma:measurerelationships}. We conclude the desired result.
+    and the estimate $\matnorm{ \Jacobian \varphi_i } \leq \Ceins{n} \diam(T_i)$, which is given in Lemma~\ref{lemma:measurerelationships}. We obtain the desired result.
 \begin{comment}
     % DONE: that abbreviation is to close to the Jacobian / total derivative 
     Abbreviate $D := \max\left( \diam(T_1), \diam(T_2) \right)$. In combination, 
     \begin{align*}
         \| w \|_{L^{p}(U)}
         &\leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 C_{{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -2302,7 +2304,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 C_{{\rm EFNT},p}
         \max\left( 
             |\det(\Jacobian \varphi_1)|
             ,
@@ -2318,7 +2320,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 C_{{\rm EFNT},p}
         \max\left( 
             \frac{ |\det(\Jacobian \varphi_1)| }{ |\det(\Jacobian \varphi_2)| }
             ,
@@ -2328,7 +2330,7 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
         \| \nabla u \|_{L^{p}(U)}
         \\&
         \leq 
-        2 C_{\PF,{\rm EFNT},p}
+        2 C_{{\rm EFNT},p}
         \max\left( 
             \frac{ \vol(T_1) }{ \vol(T_2) }
             ,
@@ -2391,17 +2393,17 @@ The next auxiliary result extends the results on Poincar\'e--Friedrichs constant
 
 
 The main result of this section constructs a potential and gives an upper bound for the Poincar\'e--Friedrichs constant.  
-It has the same building principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.
-The procedure serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
+It follows the same underlying principle as the ``discrete mean Poincar\'e inequality'' of~\cite[Lemma~3.7]{Eym_Gal_Her_00}.
+This procedure serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
-Two different variations of underlying idea are analyzed; the resulting estimates are only slightly different.  
-On the one hand, we extend the scalar gradient potentials over each intermediate domain to another simplex by solving a local auxiliary problem on that simplex. This auxiliary problem will be subject to partial boundary conditions. 
-% We present an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex}, where we compute an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
-% We emphasize that this construction of potentials and bounding of Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
-On the other hand, we can instead cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we can assemble a global scalar potential piece by piece by adjusting the local constants of integration. 
+Two different variations of underlying idea are analyzed, yielding slighly different estimates. 
+On the one hand, we can extend the scalar gradient potentials over each intermediate domain to another simplex by solving a local auxiliary problem on that new simplex, subject to partial boundary conditions. 
+On the other hand, we can instead cover the domain with overlapping simplicial patches (such as face patches), over which local scalar potentials are easily found. Since these can only differ by constants at their overlaps, we assemble a global scalar potential piece by piece as we adjust the local constants of integration. 
 Both estimates of Poincar\'e--Friedrichs constants capture the correct asymptotic behavior as $p$ grows to infinity.
 
 
+% We present an auxiliary result with independent relevance, Lemma~\ref{lemma:mixedbconsimplex}, where we compute an upper bound for the Poincar\'e--Friedrichs inequality when homogeneous boundary conditions are imposed along a single face of the boundary. 
+% We emphasize that this construction of potentials and bounding of Poincar\'e--Friedrichs constants serves as the blueprint for constructing potentials of the curl and divergence operators in later sections. 
 
 
 
@@ -2487,14 +2489,14 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         &
         \leq  
         \volumeratio(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(T_{\iota(m)})} 
+        \| w \|_{L^{p}(T_{m-1})} 
         + 
 %         C_{\PF,T_{m},F_{m},p} 
 %         \left( 
 %             \| \nabla u \|_{L^{p}(T_{m})} 
 %             + 
 %             \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
-%             \| \nabla u \|_{L^{p}(T_{\iota(m)})}
+%             \| \nabla u \|_{L^{p}(T_{m-1})}
 %         \right)
         \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{m},F_{m},p} 
@@ -2504,7 +2506,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_m)}
         &\leq 
         \volumeratio(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(T_{{\iota(m)}})}
+        \| w \|_{L^{p}(T_{{m-1}})}
         +
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
         C_{{\PF},\Minako_{F_m},p} 
@@ -2535,9 +2537,10 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     We verify that $w$ satisfies the two desired recursive estimates.
     Suppose that $T_0, T_1, \dots, T_M$ is a face path in $\calT$
     and that $1 \leq m \leq M$.
-    Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$. 
+    Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$,
+	and that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
     
-    We proceed with showing the first recursive estimate. 
+    We proceed with the first recursive estimate. 
     We define $w'_{m} := w_{|T_{m-1}} \circ \Xi \in W^{1,p}(T_{m})$,
     where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
     By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
@@ -2644,7 +2647,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     
     Now we discuss the second recursive estimate. 
     Suppose again that $1 \leq m \leq M$. 
-    Recall that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
     We use the Poincar\'e--Friedrichs inequality over $\Minako_{F_{m}}$,
     as given in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, 
     to find $w_{F_m} \in W^{1,p}(\Minako_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $\Minako_{F_m}$ and 
@@ -2714,23 +2716,20 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_{{m-1}})}
         .
     \end{align*}
-    In the special case $p=1$,
+    Note that in the limit cases $p=1$ and $p=\infty$ we get, respectively, 
     \begin{align*}
         \| w\|_{L^{1}(T_m)}
-        \leq 
+        &\leq 
         \max\left(
             1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
         \right)
         \| w_{F_m} \|_{L^{1}(\Minako_{F_m})}
         +
         \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
-        \| w \|_{L^{1}(T_{{m-1}})}
-        .
-    \end{align*}
-    In the limit case $p=\infty$, 
-    \begin{align*}
+        \| w \|_{L^{1}(T_{{m-1}})},
+		\\
         \| w \|_{L^{\infty}(T_m)}
-        \leq 
+        &\leq 
         2
         \| w_{F_m} \|_{L^{\infty}(\Minako_{F_m})}
         +
@@ -2775,7 +2774,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 \begin{remark}
-    The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimates the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence target its use to local patches (stars), in particular non-convex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any non-overlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $\{ \Minako_m \}$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Minako_m \}$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
+    The Poincar\'e--Friedrichs constants obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimate the best one as number of $n$-simplices in the triangulation $\calT$ increases. We hence conceive their target application to be local patches (stars), in particular non-convex boundary stars. The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any non-overlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $\{ \Minako_m \}$ with a face-connected path. The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Minako_m \}$. This may allow for partitions of $\overline \Omega$ with signficantly less elements, which enables a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
 \end{remark}
 
 
@@ -2816,15 +2815,13 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 We review in this section the Sobolev spaces of vector and exterior calculus and their transformation behavior. We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for background material on Sobolev vector analysis and to Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth} for exterior algebra and exterior products. 
 
-Throughout this section, we let $\Omega \subseteq \bbR^{3}$ be any bounded open set.
-
 \subsection{Vector calculus}
 
-\cye{Recall the notations~\eqref{equation:W1p} and~\eqref{equation:W_curl_div_p} from Section~\ref{section:intro}; actually, here we temporarily rather employ }
+\cye{Recall the notations~\eqref{equation:W1p} and~\eqref{equation:W_curl_div_p} from Section~\ref{section:intro}; actually, here we temporarily rather employ 
 \begin{gather*}
     W^{p}(\grad,\Omega) \cye{= W^{1,p}(\Omega)} = \{ u \in L^{p}(\Omega) \suchthat \grad v \in \bfL^{p}(\Omega) \}
     .
-\end{gather*}
+\end{gather*}}
 Let $\Omega \subseteq \bbR^{3}$ be a bounded open set. 
 We recall $L^{p}(\Omega)$, the space of scalar-valued $p$-integrable functions defined on $\Omega$
 and that $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for vector-valued functions with each component in $L^{p}(\Omega)$. 
@@ -2841,7 +2838,6 @@ and the space of vector-valued $\bfL^{p}(\Omega)$ functions with weak divergence
     \\ 
     \bfW^{p}(\divergence,\Omega) = \{ \bfu \in \bfL^{p}(\Omega) \suchthat \divergence \bfu \in L^{p}(\Omega) \}.
 \end{gather*}
-
 We are interested in transformations of these Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega, \Omega' \subset \mathbb{R}^3$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
 \mwl{We introduce the} gradient-, curl-, and divergence-conforming Piola transformations, respectively, as the mappings 
@@ -2893,8 +2889,8 @@ We summarize this as a commuting diagram:
     % Our notion of Piola transform along a mapping $\phi : \Omega \rightarrow \Omega'$ goes in the opposite direction of the mapping:
     scalar and vector fields over $\Omega'$ are transformed into scalar and vector fields over $\Omega$.
     This definition is in accordance with the notion of pullback, which we will review shortly. 
-    One advantage of that definition is that it also makes sense whenever the transformation is not onto. 
-    The literature also knows the Piola transform in the direction of the original mapping. 
+    One advantage of that definition is that it also makes sense whenever the transformation is not bijective. 
+    However, the literature also knows the Piola transform in the direction of the original mapping. 
 \end{remark}
 
 
@@ -2976,6 +2972,7 @@ The basic $k$-alternators are an orthonormal basis of $\Alt^{k}(\bbR^{n})$ with 
 
 \subsection{Smooth differential forms}
 
+We let $\Omega \subseteq \bbR^{n}$ be any bounded open set.
 We write $C^{\infty}\Alt^{k}(\Omega)$ for the space of smooth differential $k$-forms over $\Omega \subseteq \bbR^{n}$,
 which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{n})$.
 The exterior derivative \( \cartan \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
@@ -4232,10 +4229,10 @@ if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simpli
     Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
     has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
     For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
-    $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
-%     \begin{align*}
-%         $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
-%     \end{align*}
+		  % $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+    \begin{align*}
+        v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}. 
+    \end{align*}
     The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
     that triangulates the same underlying set as $\calS$.
     Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
@@ -4638,58 +4635,6 @@ Additionally, this endeavor produces another geometric tool:
 we construct a bi-Lipschitz deformation which contracts the entire star into the complement of the newly completed star. 
 This deformation will enable additional estimates of Poincar\'e--Friedrichs constants. 
 
-We begin with the following observation. 
-Suppose that $T$ is any $n$-dimensional simplex with some proper subsimplex $F$.
-We find a hyperplane of codimension one that intersects $T$ only at the $F$ and such that $T$ is on only one side of the hyperplane. 
-
-\begin{lemma}\label{lemma:oppositesubsimplex}
-    Let $v_0, v_1, \dots, v_n \in \bbR^n$ be the vertices of a simplex $T$.
-    Let $F, F'$ be the two subsimplices of $T$ with respective vertices $v_0,\dots,v_k$ and $v_{k+1},\dots,v_n$.
-    Then
-    \begin{gather*}
-        A 
-        := 
-        v_0 
-        + 
-        \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \} 
-        +  
-        \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}.
-    \end{gather*}
-	is an affine subspace of dimension $n-1$, the simplex $T$ lies on one side of $A$,
-	and $F = T \cap A$.
-\end{lemma}
-\begin{proof}
-    Obviously, $F \subset A \cap T$. 
-    Suppose now that $x \in A \cap T$.
-    There exist $\lambda_1,\dots,\lambda_{n-1} \in \bbR$ such that 
-    \begin{align*}
-        x &= 
-        v_0 + \sum_{i=1}^{k} \lambda_{i} ( v_i - v_0 ) + \sum_{i=k+1}^{n-1} \lambda_{i} ( v_n - v_i )
-        \\&
-        = 
-        \left( 1 - \sum_{i=1}^{k} \lambda_{i} \right) v_0 
-        + 
-        \sum_{i=1  }^{k  } \lambda_{i} v_i 
-        + 
-        \left( \sum_{i=k+1}^{n-1} \lambda_{i} \right) v_n
-        + 
-        \sum_{i=k+1}^{n-1} (-\lambda_{i}) v_i 
-        .
-    \end{align*}
-    This is the unique expression of $x$ as non-negative linear combination of the vertices of $T$.
-    Hence the $\lambda_{k+1}, \dots, \lambda_{n-1}$ are non-positive and their sum is non-negative.
-    Hence $\lambda_{k+1} = \dots = \lambda_{n-1} = 0$, implying $x \in F$.
-    % 
-    Lastly, the linear spans 
-    \begin{gather*}
-        A_{0} := \operatorname{lin}\{ v_1 - v_0, \dots, v_k - v_0 \},
-        \qquad 
-        A_{1} := \operatorname{lin}\{ v_{k+1} - v_n, \dots, v_{n-1} - v_n \}
-    \end{gather*}
-    intersect only at the origin, since otherwise a non-trivial affine combination of the vertices of $T$ equals zero, 
-	contradicting their affine independence. %the vertices of $T$ are not affinely independent. 
-    So $A$ has dimension $n-1$. 
-\end{proof}
 
 
 % \begin{figure}
@@ -4732,16 +4677,49 @@ The shape regularity remains controlled in that process.
 %     then $\vol(T^{\star}) = \vol(T) / n$.
 % \end{lemma}
 \begin{lemma}\label{lemma:stardivision}
-    Let $T$ be an $n$-dimensional simplex with a $k$-dimensional subsimplex $S$,
-    let $z_S$ be the barycenter of $S$, 
-    and let $T'$ be one of the $n$-dimensional simplices obtained by splitting $T$ at $z_{S}$.
-    Then $\vol(T') = \vol(T) / n$. 
+    Let $T$ be an $n$-dimensional simplex with a $k$-dimensional subsimplex $S$ and let $z_S$ be the barycenter of $S$. 
+    Let $T'$ be one of the $n$-dimensional simplices obtained by splitting $T$ in accordance with the barycentric subdivision of $S$ at $z_{S}$.
+	\begin{itemize}
+		\item $\vol(T') = \vol(T) / (k+1)$. 
+		\item The height vector of $v \in \Vertices(T) \setminus \Vertices(S)$ in $T'$ is the height vector $v$ in $T$.
+		\item The height vector of $z_S$ in $T'$ is the height vector of the single vertex $v \in \Vertices(T) \setminus \Vertices(T')$ in $T$,
+scaled by $(k+1)^{-1}$.
+	\end{itemize}
 \end{lemma}
 \begin{proof}
     This is easy.
 \end{proof}
 
-\mwl{TODO: Illustration. Extend to the more general case if needed later.}
+\begin{figure}
+    \begin{center}
+    \begin{tikzpicture}
+        % Coordinates of the triangle
+        \coordinate (A) at (0,0); % Vertex A = v_0
+        \coordinate (B) at (4,0); % Vertex B = v_1
+        \coordinate (C) at (1,3); % Vertex C = v_2
+        \coordinate (M) at ($(A)!0.5!(B)$); % Midpoint M of AB
+        % Heights from each vertex
+        \coordinate (H_A) at ($(C)!(A)!(B)$); % Height from A to BC
+        \coordinate (H_B) at ($(C)!(B)!(A)$); % Height from B to AC
+        \coordinate (H_C) at ($(A)!(C)!(B)$); % Height from C to AB
+        \coordinate (H_M) at ($(B)!(M)!(C)$); % Height from M to BC
+        % Drawing the triangle
+        \draw[thick] (A) -- (B) -- (C) -- cycle;
+        % Drawing the bisector from C to AB and the height vectors 
+        %\draw[dashed] (C) -- (M);
+        \draw[] (C) -- (M);
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_A) -- (A); % Height vector from A, original 
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_M) -- (M); % Height vector from A, original 
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_C) -- (C); % Height vector from C, unaffected
+        % Marking the height points
+        \node[above right] at (C) {$v_2$};  
+        \node[below left] at (A) {$v_0$};
+        \node[below right] at (B) {$v_1$};
+        \node[below] at (M) {$z_S$};
+    \end{tikzpicture}
+    \end{center}
+    \caption{Illustration of Lemma~\ref{lemma:stardivision}. The triangle $[ v_0, v_1, v_2 ]$ is bisected at the edge $[ v_0, v_1 ]$, leading to two new triangles. The height vector from $v_2$ in all three triangles remains the same. The height vector from $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector from $v_0$ in the original triangle.}
+\end{figure}
 
 
 
@@ -6124,7 +6102,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
     Moreover, the desired estimate follow from Proposition~\ref{proposition:starreflection}.
     The proof is complete. 
 \end{proof}
-\todo{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
+\mwl{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
 
 
 

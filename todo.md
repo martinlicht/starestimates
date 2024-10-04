@@ -4,8 +4,11 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - do you have a preference for facet or face ? 
 
 - [x] replace the shape notation by C_ ...
-- [ ] scalars: condense the discussion even further
+- [x] scalars: condense the discussion even further
 - [x] introduce combinatorial triangulations, use literature referals
+- [ ] Poincare constants contain, by definition, the diameter itself. 
+      That way, there is no need to force the constants into a better shape.
+- [ ] When is the Jacobian introduced?
 - [ ] sobolev section: check later that everything needed is there 
 - [ ] potentials section: sigma notation for potential operators, rewrite
 - [ ] potentials section: additional constants notation for potential operators
@@ -23,14 +26,16 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [ ] after recursive estimates, write down the complete bound 
 - [ ] retire the separation theorem for simplices with that halfplane 
 - [ ] \mwl{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} \mwl{Compare with theorem earlier}
+- [ ] what approximation properties are needed ? How does the Bogovskii operator work?
+
 
 Revision: 
 - [x] header
 - [x] title and abstract, macros 
 - [x] library + bib style 
 - [-] Introduction 
-- [x] Move ahead section on scalar potentials 
-- [o] Section 2: scalar potential on domains
+- [X] Move ahead section on scalar potentials 
+- [X] Section 2: scalar potential on domains
 - [x] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
 - [x] Section 4: scalar potential on triangulations     
