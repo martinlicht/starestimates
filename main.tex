@@ -555,6 +555,15 @@ Estimating Poincar\'e--Friedrichs constants over domains and manifolds with shel
 \\
 
 
+\paragraph{Notation}
+
+\mwl{Fix this}
+Given a matrix $A \in \bbR^{n \times n}$, we let $\sigma_{1}(A) \geq \dots \geq \sigma_{n}(A) \geq 0$ denote the descending sequence of its singular values, 
+where $\sigma_{\max}(A) := \sigma_{1}(A)$ is the largest and $\sigma_{\min}(A) := \sigma_{n}(A)$ is the smallest. 
+We recall that the $\ell^{2}$ operator norm of $A$, written $\| A \|_{2}$, agrees with $\sigma_{\max}(A)$,
+and if $A$ is invertible, then $\|A^{-1}\| = \sigma_{\min}(A)^{-1}$.
+% Another norm on matrices, less common but useful for us, is the \emph{maximum column norm} $\|A\|_{\maxcol}$, which is defined as the largest $\ell^{2}$-norm of any column of $A$. 
+
 
 \subsection{Organization of this manuscript}
 
@@ -860,7 +869,7 @@ where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
 \end{align*}
 Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have 
 \[
-	C_{{\PF},\Omega,p} \leq C_{{\rm P},\Omega,p}.
+    C_{{\PF},\Omega,p} \leq C_{{\rm P},\Omega,p}.
 \]
 Towards a converse inequality, 
 let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
@@ -1358,40 +1367,23 @@ and we call $\calT$ \emph{face-connected} if it has only one face-connected comp
 
 \subsection{Shape measures and related quantities}
 
-We shift gears and move from a combinatorial study of triangulations to an analytical study:
-we introduce quantitative measures for the geometric quality of triangulations. 
-These indicate of the regularity of simplex shapes. 
-All these quantities have in common that they can be computed from purely local information. 
-Most of such \emph{shape measures} in the literature are based on geometric features, 
-but it will also be helpful to use indicators based on affine transformations associated with the mesh. %;this is because the properties of these transformations are what shows up in our estimates. 
-While there are many equivalent shape measures, we use the ones that most immediate appear in our proofs.
-
-\mwl{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
+We introduce several quantities that measure the regularity of a triangulation. 
+% We quantify the quality of a triangulation via so-called \emph{shape measures}. 
+These have in common that they can be computed from purely local information. 
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
 Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$,
 where the height of a vertex is defined as the distance to the affine span of its opposing face.
-
 For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
 
-Given a matrix $A \in \bbR^{n \times n}$, we let $\sigma_{1}(A) \geq \dots \geq \sigma_{n}(A) \geq 0$ denote the descending sequence of its singular values, 
-where $\sigma_{\max}(A) := \sigma_{1}(A)$ is the largest and $\sigma_{\min}(A) := \sigma_{n}(A)$ is the smallest. 
-We recall that the $\ell^{2}$ operator norm of $A$, written $\| A \|_{2}$, agrees with $\sigma_{\max}(A)$,
-and if $A$ is invertible, then $\|A^{-1}\| = \sigma_{\min}(A)^{-1}$.
-% Another norm on matrices, less common but useful for us, is the \emph{maximum column norm} $\|A\|_{\maxcol}$, which is defined as the largest $\ell^{2}$-norm of any column of $A$. 
+
 
 Whenever $T$ is any $n$-dimensional simplex $T$,
-we define the \textit{geometric shape measure} $\geometricshapemeasure(T)$,
-the \textit{aspect shape measure} $\aspectratio(T)$,
+we define the \textit{aspect shape measure} $\aspectratio(T)$,
 and 
 the \textit{algebraic shape measure} $\algebraicshapemeasure(T)$
 by 
 \begin{align}\label{math:shapemeasure}
-    \geometricshapemeasure(T)
-    := 
-    \frac{ \diam(T)^{n} }{ n! \vol(T) }
-    ,
-    \qquad 
     \aspectratio(T)
     := 
     \frac{ \diam(T) }{ \height(T) }
@@ -1400,131 +1392,65 @@ by
     \algebraicshapemeasure(T)
     := 
     \sup_{ \varphi : \Delta^n \rightarrow T } 
-    \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
-%     \sup_{ \varphi : \Delta^n \rightarrow T } \matnorm{\Jacobian \varphi}_{\maxcol} \matnorm{ \Jacobian \varphi^{-1} }_{\maxcol}
+    % \frac{ \sigma_{\max}( \Jacobian \varphi ) }{ \sigma_{\min}( \Jacobian \varphi ) }
+    \matnorm{\Jacobian \varphi} \matnorm{ \Jacobian \varphi^{-1} }
     ,
 \end{align}
 where the last supremum is taken over all affine transformation from the reference $n$-simplex onto the $n$-simplex $T$. 
 % DONE: Although this is fairly clear upon reading, we could specify in word that $\geometricshapemeasure(T)$ is (equivalent to) the usual shape regularity parameter, whereas $\volumeratio(\mathcal T)$ is the maximal ratio of volumes between neighboring elements.
-
-When $\calT$ is an $n$-dimensional simplicial complex, we naturally introduce 
+When $\calT$ is an $n$-dimensional simplicial complex, we naturally define 
 \begin{align}\label{math:shapemeasure:triangulation}
-    \geometricshapemeasure(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \geometricshapemeasure(T)
-    ,
-    \quad 
     \aspectratio(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \aspectratio(T)
     ,
     \quad 
     \algebraicshapemeasure(\calT) := \sup_{ T \in \subsimplex_{n}(\calT) } \algebraicshapemeasure(T)
     .
 \end{align}
-We call these the geometric, aspect, and algebraic shape measure, respectively, of the triangulation. 
+We call these the aspect and algebraic shape measure, respectively, of the triangulation. 
 
-We now gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
-
+We gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
 
 \begin{lemma}\label{lemma:measurerelationships}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
-    \begin{gather*}
-        \matnorm{\Jacobian \varphi}
+    \begin{gather*} % First pair 
+        \matnorm{ \Jacobian \varphi } 
         \leq 
-        \Ceins{n} \cdot \diam(T) % DONE: can this improved?
-        ,
+        \Ceins{n} \cdot \diam(T),
         \qquad 
-        \matnorm{ \Jacobian \varphi^{-1} }
+        \matnorm{ \Jacobian \varphi^{-1} } 
         \leq 
-        \Czwei{n} \cdot 
-        \geometricshapemeasure(T) 
-        \diam(T)^{-1}
+        \Czwei{n} \cdot \aspectratio(T) \height(T)^{-1}
         ,
         \\
-        \algebraicshapemeasure(T)
-        \leq 
-        \Cdrei{n}
-        % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
-        \geometricshapemeasure(T)
-        ,
-        \qquad 
-        %         \geometricshapemeasure(T)^{\frac 1 n}
-        %         \leq 
-        \aspectratio(T)
-        \leq 
-        \geometricshapemeasure(T)
-        .
+        \frac{1}{\sqrt{2n}} \aspectratio(T) \leq \algebraicshapemeasure(T) \leq n \aspectratio(T).
     \end{gather*}
-    Here,
-    \begin{align*}
-        \Ceins{n} \leq \sqrt{n},
-        \quad 
-        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{2}{n-1}}, 
-        \quad 
-        \Cdrei{n} \leq \Ceins{n}\Czwei{n} %\sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
-        . 
-    \end{align*}
+    Here, $\Ceins{n} = \Czwei{n} = \sqrt n$. 
 \end{lemma}
 \begin{proof}
-%     The columns of the matrix $\Jacobian \varphi^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
-%     except for the vertex $\varphi(0)$. It immediately follows that 
-%     \begin{align*}
-%         \matnorm{ \Jacobian \varphi^{-1} }_{2} \leq \sqrt{n} \cdot \height(T)^{-1}
-%         .
-%     \end{align*}
-%     The smallest height in the reference simplex $\Delta^{n}$ is $1/\sqrt{n}$. 
-%     
-    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
-    The Jacobian determinant is the product of these singular values. 
-    By a result of Hong and Pan \cite{hong1992lower},
+    Let $\varphi : \Delta^{n} \rightarrow T$ be an affine transformation. 
+	We abbreviate $M := \Jacobian\phi$ for its Jacobian. 
+    We begin with observing that the largest $\ell^{2}$-norm of any column of $M$,
+    which here denote by $c_{\max}(M)$, 
+    equals the maximum of the quotient $\| M x \|_{\ell^{2}} / \| x \|_{\ell^{1}}$ over all non-zero $x \in \bbR^{n}$. 
+    We also know that the diameter of $T$ is the length of its longest edge. 
+    Our first pair of inequalities follows via standard comparisons of Euclidean norms:
     \begin{align*}
-        \sigma_{n}
-        &\geq 
-        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
-        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n-1} }
-        = 
-        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
-        \frac{ n! \vol(T) }{ \diam(T)^{n-1} }
+        \frac{\diam(T)}{\sqrt 2} \leq \matnorm{ M } \leq \sqrt{n} c_{\max}(M) \leq \sqrt{n} \diam(T).
+    \end{align*}
+    The columns of the matrix $M^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
+    except for the vertex $\varphi(0)$. It immediately follows that 
+    \begin{align*}
+        \matnorm{ M^{-1} } \leq \sqrt{n} c_{\max}(M^{-1}) \leq \sqrt{n} \cdot \height(T)^{-1}
         .
     \end{align*}
-%     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
-    The second inequality follows by taking the reciprocal. 
-    The definition of the condition number now gives the third inequalities. 
-    % To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
-    Finally, 
-    if $F$ is the face of $T$ opposite to the vertex with the smallest height, then 
-    \begin{align*}
-        \frac{ \diam(T) }{ \height(T) }
-        \leq 
-        \frac{ \diam(T) \vol(F) }{ n \vol(T) }
-        \leq 
-        \frac{ \diam(T)^{n} }{ n! \vol(T) }
-        .
-    \end{align*}
-%     Since $n! \vol(T)$ is bounded from below by the product of any $n$ different heights of $T$, it follows that 
-%     \begin{align*}
-%         \frac{ \diam(T)^{n} }{ n! \vol(T) }
-%         \leq 
-%         \frac{ \diam(T)^{n} }{ \height(T)^{n} }
-%         .
-%     \end{align*}
-    That shows the fourth and last of the inequalities. 
+    The smallest height in the reference simplex $\Delta^{n}$ is $\height_{\Delta} = 1/\sqrt{n}$, 
+    whence $\height(T) \geq \matnorm{M^{-1}}^{-1} / \sqrt{n}$. This yields our second pair of inequalities. 
+    Notice that $\height(T)^{-1} \leq \aspectratio(T) \diam(T)$.
+    All relevant results follow.
 \end{proof}
 
-\begin{remark}
-    Whenever $T$ is an $n$-dimensional simplex, the ratio $\geometricshapemeasure(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    In our convention, the reference simplex has unit shape measure.
-    For example, $\geometricshapemeasure(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\geometricshapemeasure(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
-
-% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
-    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
-    The geometric ratio $\geometricshapemeasure(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
-    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}. \mwl{Update this entire paragraph.}
-    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
-    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
-% TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
-\end{remark}
-
-
-We are interested in the maximal ratio of volumes between \mwl{face?} neighboring $n$-simplices, written $\volumeratio(\calT)$,
-and the ratio of intersecting simplices, written $\diameterratio(\calT)$. Formally, 
+We are interested in the maximal ratio of volumes between face-neighboring $n$-simplices, written $\volumeratio(\calT)$,
+and the ratio of the diameters of any intersecting simplices, written $\diameterratio(\calT)$. Formally, 
 \begin{align}\label{math:volumeratio}
     \volumeratio(\calT) 
     := 
@@ -1550,16 +1476,6 @@ that preserves $F$. We then define
 to be the maximum of the operator norm of the Jacobian of any such diffeomorphism. 
 This indicator quantifies how much reflection across the shared face distorts the geometry. 
 
-
-% and $\varphi : \Delta^{n} \rightarrow T$ is an affine diffeomorphism from the reference simplex,
-% we define the quantity 
-% \begin{align*}
-%     \geometricshapemeasure(T)
-%     := 
-%     \frac{ \diam(T)^{n} }{ n! \vol(T) }
-%     .
-% \end{align*}
-
 \begin{lemma}\label{lemma:volumecomparison}
     Let $T_1$ and $T_2$ be two $n$-simplices that share a common face $F$. Then 
     \begin{align*}
@@ -1568,7 +1484,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         % \frac{ \diam(T_1)^{n} }{ n! \vol(T_1) }
         % \diam(F)
         % = 
-        \geometricshapemeasure(T_1)
+        \aspectratio(T_1)
         \diam(F)
         ,
         \qquad 
@@ -1592,48 +1508,9 @@ This indicator quantifies how much reflection across the shared face distorts th
 %     Here, $\Cvier{n} \leq \Ceins{n} \Czwei{n}$. 
 \end{lemma}
 
-% Together with analogous estimates that swap the roles of $h_1$ and $h_2$, we find 
-% \begin{align*}
-%     \max\left( \frac{h_1}{h_2}, \frac{h_2}{h_1} \right)
-%     \leq 
-%     \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
-%     \cdot 
-%     \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
-%     .
-% \end{align*}
-% DONE: REMOVE THE FACTORIAL?
-% DONE: I am not 100% sure what that means. Is really the heights of F? I imagine this is rather the heights of simplices T_1 and T_2, isn't? Maybe the wording you use is standard and I simply don't know about it, if so, please ignore the comment! (I mean, I am probably being too pedantic here, what you mean is completely clear from the next sentence).
-% DONE: clarify the first of the following inequalities
-    
-%     \begin{align*}
-%         \diam(F) \geq h_S = n \frac{ \vol(T_1) }{ \vol(S) } \geq n \frac{ \vol(T_1) }{ \diam(T_1)^{n} } \diam(T_1).
-%     \end{align*}
-%     Thus we establish the first estimate: 
-
-%     Let $h$ be the height of some face $F'$ other than $F$ in $T_1$. Then $h \leq \diam(F)$, and with similar arguments as before: 
-%     \begin{align*}
-%         \diam(F)
-%         \geq 
-%         h
-%         =
-%         n
-%         \frac{ \vol(T_1) }{ \vol(F') }
-%         \geq 
-%         \frac{ n \vol(T_1) }{ \diam(T_1)^{n} }
-%         \cdot 
-%         \diam(T_1)
-%         .
-%     \end{align*}
-%     That shows the second estimate. 
-
 
 \begin{proof}
-    The diameter of $F$ is at least as large as the height $h_S$ of some other facet $S$ of $T_{1}$. 
-%     Recursive application of the volume formula shows $n! \cdot \vol(T) = h_S h_2 \cdots h_n$,
-%     \begin{align*}
-%         n! \cdot \vol(T) = \frac{1}{n!} h_S h_2 \cdots h_n,
-%     \end{align*}
-%     where $h_S \leq \diam(F)$ and $h_2, \cdots, h_n \leq \diam(T_{1})$. 
+    The diameter of $F$ is at least as large as the height $h_S$ of some other vertex of $F$ in $T_{1}$. 
     Now, 
     \begin{align*}
 %        \diam(T) \frac{ n! \vol(T) }{ \diam(T)^{n} } \leq h_S \leq \diam(F).
@@ -1655,59 +1532,6 @@ This indicator quantifies how much reflection across the shared face distorts th
         \aspectratio(T_{1}) \aspectratio(T_{2})
         .
     \end{align*}
-\begin{comment}
-    On the other hand, 
-    \begin{align*}
-        % h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n \cdot \vol(T_1)} \diam(F),
-%         \\
-%         h_2 &= n \frac{\vol(T_2)}{\vol(F)} \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
-        h_1 \leq \aspectratio(T_{1}) \diam(F),
-        \qquad 
-        h_2 \geq \aspectratio(T_{2})^{-1} \diam(T_2)\geq \aspectratio(T_{2})^{-1} \diam(F)
-        .
-    \end{align*}
-    The second estimate follows. 
-    Lastly, $\Xi : T_1 \rightarrow T_2$ be as above
-    can be written as the composition $\Xi = \phi_{2} \phi^{-1}_{1}$ for some affine transformations $\phi_1 : \Delta^{n} \rightarrow T_1$ and $\phi_2 : \Delta^{n} \rightarrow T_2$. 
-    Lemma~\ref{lemma:measurerelationships} and the first estimate imply 
-    \begin{align*}
-        \matnorm{ \Jacobian \Xi }
-        \leq 
-        \matnorm{ \Jacobian\phi_{2} } \cdot \matnorm{ \Jacobian\phi_{1}^{-1} }
-        \leq 
-        \Ceins{n}^{2} \diam(T_2) \height(T_1)^{-1}
-        \leq 
-        \Ceins{n}^{2} \aspectratio(T_2) \diam(F) \height(T_1)^{-1}
-        \leq 
-        \Ceins{n}^{2} \aspectratio(T_2) \aspectratio(T_1)
-        .
-    \end{align*}
-%     \begin{align*}
-%         \matnorm{ \Jacobian \Xi }
-%         &
-%         \leq 
-%         \Ceins{n}
-%         \Czwei{n}
-%         \geometricshapemeasure(T_2)
-%         \diam(T_1)
-%         \diam(T_2)^{-1}
-%         \\&
-%         \leq 
-%         \Ceins{n}
-%         \Czwei{n}
-%         \geometricshapemeasure(T_2)
-%         \geometricshapemeasure(T_1) 
-%         \diam(F)
-%         \diam(T_2)^{-1}
-%         \leq 
-%         \Ceins{n}
-%         \Czwei{n}
-%         \geometricshapemeasure(T_2)
-%         \geometricshapemeasure(T_1) 
-%         .
-%     \end{align*}
-    All the desired results thus follow.
-\end{comment}
     Lastly, let $\Xi : T_1 \rightarrow T_2$ be as stated. 
     Writing $h_0$ for the unit normal in direction $z_1$, we have 
     \begin{align*}
@@ -1925,13 +1749,12 @@ This indicator quantifies how much reflection across the shared face distorts th
 \end{proof}
 
 \begin{remark}
-    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ \cye{of~\eqref{math:volumeratio}} but not $\diameterratio(\calT)$ \cye{of~\eqref{math:diameterratio}}. 
-    Lemma~\ref{lemma:volumecomparison} fully controls the shape quantity $\volumeratio(\calT)$ but not $\diameterratio(\calT)$. 
-    As seen above, we can bound the ratio of diameters and volumes of simplices that share at least one face in terms of the shape measure. 
-    If we have an upper estimate for the number of simplices sharing a given vertex, 
-    we can also bound the ratios of diameters and volumes of simplices sharing only a single common vertex. 
+    While we will utilize $\diameterratio(\calT)$ at numerous places throughout the manuscript, 
+	$\volumeratio(\calT)$ and $\reflectionestimate(\calT)$ will only be used throughout Section~\ref{section:gradient},
+	the following section.  
+	Lemma~\ref{lemma:volumecomparison} obviously shows that $\volumeratio(\calT)$ of~\eqref{math:volumeratio} is controlled by the shape measure. In a face-connected triangulation where we have an upper bound for the number of simplices sharing a vertex, 
+    this Lemma also allows control of $\diameterratio(\calT)$ of~\eqref{math:diameterratio}.
 \end{remark}
-%%%%%%%% END HERE 
 
 
 
@@ -2148,7 +1971,7 @@ We begin with an auxiliary result with independent relevance, where we estimate 
         .
     \end{align*}
     If $u \in W^{1,p}(T)$ has vanishing trace along $F$ but is not necessarily smooth, 
-	then we conclude $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
+    then we conclude $\|u\|_{L^{p}(T)} \leq \diam(T) p^{-\frac 1 p} \|\nabla u\|_{L^{p}(T)}$ 
     from approximation via members of $C^{\infty}(T)$ whose support is disjoint from $F$. 
     We very briefly verify that density argument: 
     There exists an affine diffeomorphism $\varphi : \Delta^{n} \rightarrow T$ from the reference simplex onto $T$ that maps the convex closure of the $n$ unit vectors onto the face $F$.
@@ -2206,7 +2029,7 @@ We emphasize that face patches are not necessarily convex, but we can still exte
     Let $\Delta_{1} = \Delta^{n}$ be the reference $n$-simplex and let $\Delta_{2}$ be obtained from it by flipping the $n$-th coordinate.
     We let $\varphi_{1} : \Delta_{1} \rightarrow T_{1}$ and $\varphi_{2} : \Delta_{2} \rightarrow T_{2}$
     be affine transformations 
-	that map the origin to $v_0$, that map each unit vector $e_{i}$ to $v_{i}$ for $i = 1, \dots, n-1$,
+    that map the origin to $v_0$, that map each unit vector $e_{i}$ to $v_{i}$ for $i = 1, \dots, n-1$,
     and that satisfy $\varphi_{1}(e_{n}) = z_{1}$ and $\varphi_{2}(-e_{n}) = z_{2}$.
     Write $\hat U := \Delta_1 \cup \Delta_2$.
     We have a bi-Lipschitz mapping $\varphi : \hat U \rightarrow U$. 
@@ -2495,10 +2318,10 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 %         \left( 
 %             \| \nabla u \|_{L^{p}(T_{m})} 
 %             + 
-%             \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+%             \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
 %             \| \nabla u \|_{L^{p}(T_{m-1})}
 %         \right)
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{m},F_{m},p} 
         \| \nabla u \|_{L^{p}(\Minako_{F_m})} 
         ,
@@ -2538,7 +2361,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     Suppose that $T_0, T_1, \dots, T_M$ is a face path in $\calT$
     and that $1 \leq m \leq M$.
     Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$,
-	and that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
+    and that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
     
     We proceed with the first recursive estimate. 
     We define $w'_{m} := w_{|T_{m-1}} \circ \Xi \in W^{1,p}(T_{m})$,
@@ -2611,11 +2434,11 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| \nabla w \|_{L^{p}(T_{m-1})}
         \\&
         \leq 
-        \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
         \| \nabla w \|_{L^{p}(T_{m-1})}
         \\&
         =
-        \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
         \| \nabla u \|_{L^{p}(T_{m-1})}
         .
     \end{align*}
@@ -2637,7 +2460,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \left( 
             \| \nabla u \|_{L^{p}(T_{m})} 
             + 
-            \volumeratio(\calT)^{\frac 1 p} \xi(\calT)
+            \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
         \| \nabla u \|_{L^{p}(T_{m-1})}
         \right). 
     \end{align*}
@@ -2727,7 +2550,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         +
         \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
         \| w \|_{L^{1}(T_{{m-1}})},
-		\\
+        \\
         \| w \|_{L^{\infty}(T_m)}
         &\leq 
         2
@@ -2754,7 +2577,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
         C_{{\PF},\Minako_{F_\ell},p} 
         ,
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \xi(\calT)^{q} \right)^{\frac 1 q}
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{\ell},F_{\ell},p} 
         \right)
         \| \nabla u \|_{L^{p}(\Minako_{F_\ell})}
@@ -3175,8 +2998,8 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
     Smooth forms are dense in $W^{p}\Lambda^{k}(\Omega)$.
     If $\Omega$ is convex, then $C^{\infty}_{c}\Lambda^{k}(\Omega)$ is dense in $W^{p}_{0}\Lambda^{k}(\Omega)$. 
-	\mwl{If $\Omega$ is convex and $u \in W^{p}\Lambda^{n}(\Omega)$ has average zero, 
-	then $u$ is the limit in $W^{p}\Lambda^{k}(\Omega)$ of smooth compactly supported $n$-forms with average zero.}
+    \mwl{If $\Omega$ is convex and $u \in W^{p}\Lambda^{n}(\Omega)$ has average zero, 
+    then $u$ is the limit in $W^{p}\Lambda^{k}(\Omega)$ of smooth compactly supported $n$-forms with average zero.}
 \end{lemma}
 \begin{proof}
     We notice $\mollifier_{\epsilon} \star u \in C^{\infty}\Lambda^{k}(\bbR^{n})$. 
@@ -3206,8 +3029,8 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     Given any $t > 1$, by taking the convolution with $\mollifier_{\epsilon}$ for $\epsilon > 0$ small enough,
     we approximate $\varphi_{t}^{\ast} u$ through members of $C^{\infty}_{c}\Lambda^{k}(\Omega)$.
     The desired result follows. 
-	
-	Lastly, if $k = n$ and $u$ has average zero, then so do the $\varphi_{t}^{\ast} u$ and their mollifications with sufficiently msall radius. The proof is complete. 
+    
+    Lastly, if $k = n$ and $u$ has average zero, then so do the $\varphi_{t}^{\ast} u$ and their mollifications with sufficiently msall radius. The proof is complete. 
 \end{proof}
 
 
@@ -3794,7 +3617,7 @@ Taking into account cancellations, this gives the identity
     \int_{1}^{\infty} \frac{\partial}{\partial t} \left( t^{\mia} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
     =
     -
-	\sum_{\sigma \in \Sigma(\mia,n)} 
+    \sum_{\sigma \in \Sigma(\mia,n)} 
     u_{\sigma}(x) \cartanx^{\sigma}
     =
     -u(x)
@@ -4229,7 +4052,7 @@ if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simpli
     Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
     has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
     For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
-		  % $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
+          % $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
     \begin{align*}
         v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}. 
     \end{align*}
@@ -4679,12 +4502,12 @@ The shape regularity remains controlled in that process.
 \begin{lemma}\label{lemma:stardivision}
     Let $T$ be an $n$-dimensional simplex with a $k$-dimensional subsimplex $S$ and let $z_S$ be the barycenter of $S$. 
     Let $T'$ be one of the $n$-dimensional simplices obtained by splitting $T$ in accordance with the barycentric subdivision of $S$ at $z_{S}$.
-	\begin{itemize}
-		\item $\vol(T') = \vol(T) / (k+1)$. 
-		\item The height vector of $v \in \Vertices(T) \setminus \Vertices(S)$ in $T'$ is the height vector $v$ in $T$.
-		\item The height vector of $z_S$ in $T'$ is the height vector of the single vertex $v \in \Vertices(T) \setminus \Vertices(T')$ in $T$,
+    \begin{itemize}
+        \item $\vol(T') = \vol(T) / (k+1)$. 
+        \item The height vector of $v \in \Vertices(T) \setminus \Vertices(S)$ in $T'$ is the height vector $v$ in $T$.
+        \item The height vector of $z_S$ in $T'$ is the height vector of the single vertex $v \in \Vertices(T) \setminus \Vertices(T')$ in $T$,
 scaled by $(k+1)^{-1}$.
-	\end{itemize}
+    \end{itemize}
 \end{lemma}
 \begin{proof}
     This is easy.
@@ -4747,7 +4570,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \qquad 
         {\Gamma_2} := \overline{ \partial T \setminus \partial U }.
     \end{align*}
-	The following holds, where the constants on the right-hand sides are as stated in the proof. 
+    The following holds, where the constants on the right-hand sides are as stated in the proof. 
     \begin{enumerate}
     \item 
     There exists a bi-Lipschitz mapping
@@ -4913,8 +4736,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             2 b_{z}
             .
         \end{align*}
-		Evidently, the transformation $\Theta_{|K}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
-		Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        Evidently, the transformation $\Theta_{|K}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
+        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
         Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
         We study the singular values of the matrix 
         \begin{align*}
@@ -5017,8 +4840,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         Based on that observation, we define 
         \begin{align*}
             \Phi_{K}(x) 
-			&
-			:= 
+            &
+            := 
             \mu x^{Q} - \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
             \\&
             = 
@@ -5070,7 +4893,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             .
         \end{align*}
         The Jacobian acts as the identity over the span of $h_{z}$ and $z_{s'}$.
-		We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
         Hence $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
         \begin{align*}
             C 
@@ -5080,8 +4903,8 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
                 \\
                 -\frac 3 2 \tan(\beta) & 2 
             \end{pmatrix}
-			= 
-			\frac 1 2 
+            = 
+            \frac 1 2 
             \begin{pmatrix}
                 -1 & 0 
                 \\
@@ -5243,10 +5066,10 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         \begin{align*}
             \Psi : |\calR'| \rightarrow |\calK|.
         \end{align*}
-		Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
-		so they must contain an open ball around the origin. 
-		\mwl{Here we need a particular result. }
-		Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
+        so they must contain an open ball around the origin. 
+        \mwl{Here we need a particular result. }
+        Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
         and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
         We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
         that is, the scalar product of $x$ with either height vector is positive. 
@@ -5335,9 +5158,9 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
 %             \frac{ \| x_K \| }{ \| x_{{G}} \| }
 %             .
 %         \end{align*}
-		We need further details to complete our estimates. 
-		We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
-		That estimates the quotient $\| x_K \| / \| h_K \|$. 
+        We need further details to complete our estimates. 
+        We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
+        That estimates the quotient $\| x_K \| / \| h_K \|$. 
         % 
         In oder to estimate $\|x_{G}\|$, we first notice the case $G \in \calR$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
         In the case $G \in \calR^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
@@ -5455,13 +5278,13 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         
         \item 
-		\mwl{Use interlacing inequalities.}
+        \mwl{Use interlacing inequalities.}
         We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
         It preserves the interface from $T$ onto $U$. 
-		Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
+        Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
         % We briefly recapitulate why it is bi-Lipschitz.
 %         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
 %         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
@@ -5537,7 +5360,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
             \Xi_{2} := \Psi \circ \Phi.
         \end{align*}
         It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
-		Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in \underlying{\patch_{\calT}(S)}$. 
+        Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in \underlying{\patch_{\calT}(S)}$. 
         The combination of the previous estimates for $\Psi$ and $\Phi$ now lead to 
         \begin{align*}
             \matnorm{ \Jacobian \Xi_{2} }
@@ -5705,7 +5528,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \begin{proof}
     This follows from the discussion in Section~\ref{section:potentialoperator}.
     This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{n}(B_1(0)) \diam(\Omega)^{n}$.
-	\mwl{check final form of result}
+    \mwl{check final form of result}
 \end{proof}
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
@@ -5743,7 +5566,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 \mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{section: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 \begin{proof}
     There exists an affine bijection $\varphi : \hat T \rightarrow T$ 
-	that maps the convex closure of the $n$ unit vectors onto the face $F_0$.
+    that maps the convex closure of the $n$ unit vectors onto the face $F_0$.
     We can also assume that the face of $\hat T$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 

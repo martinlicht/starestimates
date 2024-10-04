@@ -1,0 +1,222 @@
+\begin{lemma}\label{lemma:measurerelationships}
+    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
+    \begin{align*} % First pair 
+        \frac{\diam(T)}{\sqrt 2} 
+        \leq 
+        \matnorm{ \Jacobian \varphi } 
+        \leq 
+        \sqrt{n} \diam(T).
+    \end{align*}
+    \begin{align*} % Second pair
+        \sqrt{n}^{-1} \height(T)^{-1} 
+        \leq 
+        \matnorm{ \Jacobian \varphi^{-1} } 
+        \leq 
+        \sqrt{n} \cdot \height(T)^{-1}
+        .
+    \end{align*}
+    \begin{align*} % Third / fourth pair 
+        \frac{ \height(T)    }{\sqrt{n}} \leq \matnorm{ A      } \leq \algebraicshapemeasure(A) \sqrt{n} \height(T),
+        \quad 
+        \frac{ \diam(T)^{-1} }{\sqrt{n}} \leq \matnorm{ A^{-1} } \leq \algebraicshapemeasure(A) \sqrt{2} \diam(T)^{-1}.
+    \end{align*}
+    \begin{align*}
+        \frac{\aspectratio(T)}{\sqrt{2n}} \leq \algebraicshapemeasure(T) \leq n \aspectratio(T).
+    \end{align*}
+
+\end{lemma}
+\begin{proof}
+    Let $\varphi : \Delta^{n} \rightarrow T$ be an affine transformation and let $M := \Jacobian\phi$ be its Jacobian. 
+    We begin with observing that the largest $\ell^{2}$-norm of any column of $A$,
+    which here denote by $c_{\max}(A)$, 
+    equals the maximum of the quotient $\| A x\|_{\ell^{2}} / \| x \|_{\ell^{1}}$ over all non-zero $x \in \bbR^{n}$. 
+    We also know that the diameter of $T$ is the length of its longest edge. 
+    Our first pair of inequalities follows via standard comparisons of Euclidean norms
+    \begin{align*}
+        \frac{\diam(T)}{\sqrt 2} \leq \matnorm{ A } \leq \sqrt{n} c_{\max}(A) \leq \sqrt{n} \diam(T).
+    \end{align*}
+    The columns of the matrix $\Jacobian \varphi^{-1}$ are the gradients of the barycentric coordinates of the vertices of $T$,
+    except for the vertex $\varphi(0)$. It immediately follows that 
+    \begin{align*}
+        \matnorm{ \Jacobian \varphi^{-1} } \leq \sqrt{n} c_{\max}(A^{-1}) \leq \sqrt{n} \cdot \height(T)^{-1}
+        .
+    \end{align*}
+    The smallest height in the reference simplex $\Delta^{n}$ is $\height_{\Delta} = 1/\sqrt{n}$, 
+    whence $\height(T) \geq \matnorm{A^{-1}}^{-1} / \sqrt{n}$. This yields our second pair of inequalities. 
+    Notice that $\height(T)^{-1} \leq \aspectratio(T) \diam(T)$.
+    All relevant results follow.
+    
+    Next, the above results also imply 
+    \begin{align*}
+        \matnorm{ A      } \geq \matnorm{ A^{-1} }^{-1} \geq \frac{ \height(T)    }{\sqrt{n}},
+        \quad 
+        \matnorm{ A^{-1} } \geq \matnorm{ A      }^{-1} \geq \frac{ \diam(T)^{-1} }{\sqrt{n}}.
+    \end{align*}
+    \begin{align*}
+        \| A \| &\leq \algebraicshapemeasure(A) \matnorm{A^{-1}}^{-1} \leq \algebraicshapemeasure(A) \sqrt{n} \height(T),
+        \\
+        \| A^{-1} \| &\leq \algebraicshapemeasure(A) \matnorm{A}^{-1} \leq \algebraicshapemeasure(A) \sqrt{2} \diam(T)^{-1}.
+    \end{align*}
+    This shows the last two pairs of inequalities. The comparison of shape measures is a consequence. 
+\end{proof}
+
+
+
+   
+\begin{lemma}\label{lemma:measurerelationships}
+    Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
+    \begin{gather*}
+        \matnorm{\Jacobian \varphi}
+        \leq 
+        \Ceins{n} \cdot \diam(T) % DONE: can this improved?
+        ,
+        \qquad 
+        \matnorm{ \Jacobian \varphi^{-1} }
+        \leq 
+        \Czwei{n} \cdot 
+        \geometricshapemeasure(T) 
+        \diam(T)^{-1}
+        ,
+        \\
+        \algebraicshapemeasure(T)
+        \leq 
+        \Cdrei{n}
+        % \sqrt{ \frac{n}{ (n-1)^{n-1} } }
+        \geometricshapemeasure(T)
+        ,
+        \qquad 
+        %         \geometricshapemeasure(T)^{\frac 1 n}
+        %         \leq 
+        \aspectratio(T)
+        \leq 
+        \geometricshapemeasure(T)
+        .
+    \end{gather*}
+    Here,
+    \begin{align*}
+        \Ceins{n} \leq \sqrt{n},
+        \quad 
+        \Czwei{n} \leq          \left( \frac{n-1}{n} \right)^{\frac{2}{n-1}}, 
+        \quad 
+        \Cdrei{n} \leq \Ceins{n}\Czwei{n} %\sqrt{n} \left( \frac{n}{n-1} \right)^{\frac{n-1}{2}}
+        . 
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    We easily verify the first inequality. To prove the second inequality, let $\sigma_1 \geq \dots \geq \sigma_n \geq 0$ denote the singular values of the Jacobian $\Jacobian\varphi$ in descending order.
+    The Jacobian determinant is the product of these singular values. 
+    By a result of Hong and Pan \cite{hong1992lower},
+    \begin{align*}
+        \sigma_{n}
+        &\geq 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ \det(\Jacobian\varphi) }{ \diam(T)^{n-1} }
+        = 
+        \left( \frac{n-1}{n} \right)^{\frac{n-1}{2}}
+        \frac{ n! \vol(T) }{ \diam(T)^{n-1} }
+        .
+    \end{align*}
+%     To get the second inequality, we multiple the last term by $\sigma_{1} / ( \sqrt{n} \diam(T) ) \leq 1$.
+    The second inequality follows by taking the reciprocal. 
+    The definition of the condition number now gives the third inequalities. 
+    % To get the third inequality, we divide both sides by $\sigma_{1}$ and use $\sigma_{1} \leq \sqrt{n} \diam(T)$.
+    Finally, 
+    if $F$ is the face of $T$ opposite to the vertex with the smallest height, then 
+    \begin{align*}
+        \frac{ \diam(T) }{ \height(T) }
+        \leq 
+        \frac{ \diam(T) \vol(F) }{ n \vol(T) }
+        \leq 
+        \frac{ \diam(T)^{n} }{ n! \vol(T) }
+        .
+    \end{align*}
+%     Since $n! \vol(T)$ is bounded from below by the product of any $n$ different heights of $T$, it follows that 
+%     \begin{align*}
+%         \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%         \leq 
+%         \frac{ \diam(T)^{n} }{ \height(T)^{n} }
+%         .
+%     \end{align*}
+    That shows the fourth and last of the inequalities. 
+\end{proof}
+
+
+
+ 
+\begin{remark}
+    Whenever $T$ is an $n$-dimensional simplex, the ratio $\geometricshapemeasure(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    In our convention, the reference simplex has unit shape measure.
+    For example, $\geometricshapemeasure(T)=1$ whenever $T$ is a line segment, an isosceles right-angled triangle, or the generalizations of these reference simplices to higher dimensions. $\geometricshapemeasure(T)$ is slightly bigger than one for equilateral simplices and blows up with distortion.
+
+% Whenever $T$ is an $n$-dimensional simplex, the ratio $\diam(T)^{n} / \vol(T)$ measures the ``shape quality'' of a simplex and is instance of a so-called \emph{shape measure}.
+    % We can also rescale that by a factor of $1/n!$, as suggested from the above. 
+    The geometric ratio $\geometricshapemeasure(T)$ equals what is known as \emph{fatness} in differential geometry~\cite{cheeger1984curvature} and is precisely the reciprocal of the \emph{fullness} discussed by Whitney~\cite{whitney2012geometric}. 
+    The \emph{thickness} of a simplex is the ratio of its smallest height to its diameter~\cite{munkres2016elementary}. \mwl{Update this entire paragraph.}
+    Alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices.
+    One example, commonly referenced in finite element literature, is the ratio of the diameter and the radius of the largest inscribed circle of a simplex 
+% TODO     (see~\cite[p.61, Definition 5.1]{braess2001finite}, ~\cite[p.97, Definition (4.2.16)]{brenner2008mathematical},~\cite[Definition~11.2]{ern2021finite}). 
+\end{remark}
+
+
+
+
+
+
+\begin{comment}
+    On the other hand, 
+    \begin{align*}
+        % h_1 &\leq \diam(T_1) \leq \frac{\diam(T_1)^{n}}{n \cdot \vol(T_1)} \diam(F),
+%         \\
+%         h_2 &= n \frac{\vol(T_2)}{\vol(F)} \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(T_2) \geq n \cdot \frac{\vol(T_2)}{\diam(T_2)^{n}} \diam(F)
+        h_1 \leq \aspectratio(T_{1}) \diam(F),
+        \qquad 
+        h_2 \geq \aspectratio(T_{2})^{-1} \diam(T_2)\geq \aspectratio(T_{2})^{-1} \diam(F)
+        .
+    \end{align*}
+    The second estimate follows. 
+    Lastly, $\Xi : T_1 \rightarrow T_2$ be as above
+    can be written as the composition $\Xi = \phi_{2} \phi^{-1}_{1}$ for some affine transformations $\phi_1 : \Delta^{n} \rightarrow T_1$ and $\phi_2 : \Delta^{n} \rightarrow T_2$. 
+    Lemma~\ref{lemma:measurerelationships} and the first estimate imply 
+    \begin{align*}
+        \matnorm{ \Jacobian \Xi }
+        \leq 
+        \matnorm{ \Jacobian\phi_{2} } \cdot \matnorm{ \Jacobian\phi_{1}^{-1} }
+        \leq 
+        \Ceins{n}^{2} \diam(T_2) \height(T_1)^{-1}
+        \leq 
+        \Ceins{n}^{2} \aspectratio(T_2) \diam(F) \height(T_1)^{-1}
+        \leq 
+        \Ceins{n}^{2} \aspectratio(T_2) \aspectratio(T_1)
+        .
+    \end{align*}
+%     \begin{align*}
+%         \matnorm{ \Jacobian \Xi }
+%         &
+%         \leq 
+%         \Ceins{n}
+%         \Czwei{n}
+%         \geometricshapemeasure(T_2)
+%         \diam(T_1)
+%         \diam(T_2)^{-1}
+%         \\&
+%         \leq 
+%         \Ceins{n}
+%         \Czwei{n}
+%         \geometricshapemeasure(T_2)
+%         \geometricshapemeasure(T_1) 
+%         \diam(F)
+%         \diam(T_2)^{-1}
+%         \leq 
+%         \Ceins{n}
+%         \Czwei{n}
+%         \geometricshapemeasure(T_2)
+%         \geometricshapemeasure(T_1) 
+%         .
+%     \end{align*}
+    All the desired results thus follow.
+\end{comment}
+
+
+
+
+
