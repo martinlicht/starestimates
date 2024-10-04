@@ -6,20 +6,20 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] replace the shape notation by C_ ...
 - [x] scalars: condense the discussion even further
 - [x] introduce combinatorial triangulations, use literature referals
-- [ ] Poincare constants contain, by definition, the diameter itself. 
+- [x] Poincare constants contain, by definition, the diameter itself. 
       That way, there is no need to force the constants into a better shape.
-- [ ] When is the Jacobian introduced?
-- [ ] sobolev section: check later that everything needed is there 
+- [x] When is the Jacobian introduced?
+- [x] sobolev section: check later that everything needed is there 
 - [ ] potentials section: sigma notation for potential operators, rewrite
-- [ ] potentials section: additional constants notation for potential operators
-- [ ] potentials section: adapt and unify notation/tex
+- [n] potentials section: additional constants notation for potential operators
+- [x] potentials section: adapt and unify notation/tex
 - [ ] reflection: singular values listed in reflection section
-- [ ] shape: reduce the shape constant discussion once everything else is in place
+- [x] shape: reduce the shape constant discussion once everything else is in place
 - [ ] numerics: create a spanning tree and start computing the scalar estimate 
-- [ ] opnorm and vecnorm
+- [x] opnorm and vecnorm
 - [ ] final: complete the final estimate, use recursion 
     - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
-- [ ] We should use clarify face vs facet
+- [x] We should use clarify face vs facet
 - [ ] should all triangulations be n dimensional ? 
 - [ ] remove \Faces or use it all over the place 
 - [ ] U_T

@@ -665,161 +665,7 @@ We present numerical examples in Section~\ref{section:numericalexamples} and con
 
 
 
-\section{{Nonlinear and linear potentials, the Poincar\'e--Friedrichs and Poincar\'e inequalities, and {analytical} Poincar\'e--Friedrichs constants in the gradient case}} \label{section:poincare} 
-
-In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss convex domains as a special case. This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
-
-
-\subsection{Nonlinear and linear potentials}
-
-In the Banach setting $p \neq 2$, finding a norm-minimizing potential such as $\Phi_{\grad}( \bff )$ of~\eqref{math:pot_grad_def} for a given gradient $\bff$ is a nonlinear operation. Its existence may actually not be guaranteed unless $1 < p < \infty$. 
-However, any \textit{linear} potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
-satisfying $\nabla \overline\Phi_{\grad}( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ has the operator norm that \cye{gives} the upper bound 
-\begin{align}\label{math:PF_P}
-    \mwl{C_{\grad,\Omega,p} = } 
-    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }
-    \leq 
-    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \overline\Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} } \cye{=: C_{\varnothing,\Omega,p}}
-    .
-\end{align}
-This explains our interest in the construction of {\em linear potential operators}.
-
-\subsection{Poincar\'e--Friedrichs and Poincar\'e inequalities}
-
-\cye{In the setting of Section~\ref{section:intro_grad}, when $\Omega$ is of finite measure,} a natural \cye{(and unique, since the gradient potential constraint $\nabla \overline \Phi_{\grad}( \bff ) = \bff$ determines $\overline \Phi_{\grad}( \bff )$ up to a constant)} choice \cye{for a linear potential operator} is the average-free potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that is prescribed by
-\begin{align*}
-    \overline\Phi_{\grad}( \nabla u ) \cye{:}= u - u_{\Omega},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align*}
-where $u_\Omega$ denotes the average of $u$ over the domain $\Omega$, that is,
-\begin{align*}
-    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
-\end{align*}
-This potential operator can also implicitly be defined by
-\begin{align*}
-    \overline \Phi_{\grad}( \bff ) 
-    := 
-    \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \int_\Omega u = 0 } } \| \nabla u - \bff \|_{\fooL^{p}(\Omega)},
-    \quad 
-    \forall 
-    \bff \in \nabla W^{1,p}(\Omega)
-    .
-\end{align*} 
-Its operator norm is the best constant $C_{\varnothing,\Omega,p} > 0$ in the {\em Poincar\'e inequality} (or also Poincar\'e--Wirtinger inequality)
-\begin{align}\label{math:P_gradient}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\varnothing,\Omega,p} \| \nabla u \|_{\fooL^{p}(\Omega)},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    . 
-\end{align}
-Thus, rephrasing~\eqref{math:PF_P} in terms of~\eqref{math:PF_gradient_2} and~\eqref{math:P_gradient}, 
-\begin{align*}
-    C_{\grad,\Omega,p} \leq C_{\varnothing,\Omega,p}.
-\end{align*}
-
-Towards a converse inequality, 
-let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
-\begin{align} \label{math:aver_norm}
-    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
-    = 
-    \int_{\Omega} \left( \vol(\Omega)^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
-    \leq 
-    \int_{\Omega} \vol(\Omega)^{-1} \int_{\Omega} |u(x)|^{p} \;dx
-    = 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    .
-\end{align}
-Here, we have used H\"older's or Jensen's inequality. 
-In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| u_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
-We conclude that taking the average is a projection within Lebesgue spaces with unit norm. 
-The triangle inequality now shows that 
-\begin{align*}
-    \| u - u_\Omega \|_{L^{p}(\Omega)} 
-    \leq
-    2
-    \| u \|_{L^{p}(\Omega)},
-    \quad 
-    \forall
-    u \in L^{p}(\Omega)
-    .
-\end{align*}
-\begin{align*}
-    \color{Emerald}
-    \| u - u_\Omega \|_{L^{p}(\Omega)}^{p}
-    \leq 
-    2^{p-1} 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    +
-    2^{p-1} 
-    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
-    \leq 
-    2^{p} 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    .
-\end{align*}
-\mwl{Via an application of the triangle inequality, }Thus, the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
-\begin{align*}
-    C_{\grad,\Omega,p} \leq 2 C_{\varnothing,\Omega,p}.
-\end{align*}
-In the special case $p=2$, taking the average is an orthogonal projection, 
-and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. 
-Hence,
-\begin{align*}
-    C_{\varnothing,\Omega,2} = C_{\grad,\Omega,2}. 
-\end{align*}
-\mwl{
-This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
-and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
-since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
-}
-From~\eqref{math:aver_norm}, Stern's generalized projection estimate~\cite[Theorem~4.1, Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$ as 
-\begin{align*}
-    \| u - u_\Omega \|_{L^{p}(\Omega)}
-    \leq 
-    \min\left( 2, 2^{|2/p-1|} \right)
-    \| u \|_{L^{p}(\Omega)}
-    = 
-    2^{|2/p-1|} 
-    \| u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in L^{p}(\Omega)
-    .
-\end{align*}
-Here, we have used $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
-The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
-We thus conclude 
-\begin{align}\label{math:p_vs_pf}
-    C_{\grad,\Omega,p} \leq 2^{|2/p-1|} C_{\varnothing,\Omega,p}.
-\end{align}
-In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$ and that is at most $2$.
-
-%%%% 
-
-
-
-\section{Old : Review of Poincar\'e--Friedrichs constants}\label{section:poincare}
-
-\mwl{
-In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss bounded convex domains as a special case. 
-This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
-
-It is generally easier to obtain upper bounds Constructing and analyzing a potential operator is generally easier if the potential is linear. 
-Constructing linear potential operators is generally easier 
-We will extend that construction of the potential when we address Poincar\'e--Friedrichs inequalities for the curl and divergence operators. 
-
-% Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
-}
+\section{Review of Poincar\'e and Poincar\'e--Friedrichs inequalities}\label{section:poincare}
 
 This section surveys variations of the Poincar\'e--Friedrichs inequalities for the gradient operator,
 with emphasis on analytical upper bounds over bounded convex domains. 
@@ -1327,7 +1173,7 @@ the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}
 % Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. In practice, we not always distinguish between points and singleton simplices. 
 % Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
 Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, codimension one members) of this triangulation.\footnote{
-    Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
+    Our use of the term \textit{face} as is common in classical geometry and the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
 }
@@ -2009,7 +1855,7 @@ We emphasize that face patches are not necessarily convex, but we can still exte
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
-    Let $T_{1}, T_{2} \in \calT$ be two $n$-simplices whose intersection is a common facet $F := T_1 \cap T_2$. 
+    Let $T_{1}, T_{2} \in \calT$ be two $n$-simplices whose intersection is a common face $F := T_1 \cap T_2$. 
     Write $U := T_1 \cup T_2$. 
     If $p \in [1,\infty]$ and $u \in W^{1,p}(\Omega)$,
     then 
@@ -4313,7 +4159,7 @@ The resulting succession of simplicial complexes consists of simplicial balls or
 \end{proof}
 
 
-We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
+We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations are shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
 
 \begin{example}\label{example:shell_simpl}
     Any simplex $T$ (trivially) has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
@@ -4511,8 +4357,8 @@ This deformation will enable additional estimates of Poincar\'e--Friedrichs cons
 
 
 
-We state the simple observation that local stars can be subdivided to vertex stars.
-The shape regularity remains controlled in that process. 
+We will use the following observaton, which we state without proof, 
+that controls the volume and some heights when a simplex is partitioned via barycentric subdivision.
 
 % \begin{lemma}\label{lemma:stardivision}
 %     Let $\calT$ be an $n$-dimensional simplicial complex
@@ -4530,11 +4376,9 @@ The shape regularity remains controlled in that process.
         \item The height vector of $v \in \Vertices(T) \setminus \Vertices(S)$ in $T'$ is the height vector $v$ in $T$.
         \item The height vector of $z_S$ in $T'$ is the height vector of the single vertex $v \in \Vertices(T) \setminus \Vertices(T')$ in $T$,
 scaled by $(k+1)^{-1}$.
+	\hfill\qed
     \end{itemize}
 \end{lemma}
-\begin{proof}
-    This is easy.
-\end{proof}
 
 \begin{figure}
     \begin{center}
@@ -4563,8 +4407,38 @@ scaled by $(k+1)^{-1}$.
         \node[below right] at (B) {$v_1$};
         \node[below] at (M) {$z_S$};
     \end{tikzpicture}
+    \begin{tikzpicture}
+
+        % Coordinates of the triangle
+        \coordinate (A) at (0,0); % Vertex A = v_0
+        \coordinate (B) at (4,0); % Vertex B = v_1
+        \coordinate (C) at (1,3); % Vertex C = v_2
+        % Barycenter (centroid) of the triangle
+        \coordinate (G) at ($(A)!1/3!(B)!1/3!(C)$);
+        % Drawing the triangle
+        \draw[thick] (A) -- (B) -- (C) -- cycle;
+        % Tripartitioning the triangle: draw lines from vertices to the barycenter
+        \draw[] (A) -- (G);
+        \draw[] (B) -- (G);
+        \draw[] (C) -- (G);
+        % Heights from the barycenter to the sides of the triangle
+        \coordinate (H_GA) at ($(B)!(G)!(C)$); % Height from G to BC
+        \coordinate (H_GB) at ($(A)!(G)!(C)$); % Height from G to AC
+        \coordinate (H_GC) at ($(A)!(G)!(B)$); % Height from G to AB
+
+        % Drawing the height vectors from the barycenter
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_GA) -- (G); % Height from G to BC
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_GB) -- (G); % Height from G to AC
+        \draw[dashed,->,line width=1.0pt,>=latex] (H_GC) -- (G); % Height from G to AB
+
+        % Marking the points
+        \node[above right] at (C) {$v_2$};  
+        \node[below left] at (A) {$v_0$};
+        \node[below right] at (B) {$v_1$};
+        \node[right] at (G) {$z_T$};
+    \end{tikzpicture}
     \end{center}
-    \caption{Illustration of Lemma~\ref{lemma:stardivision}. The triangle $[ v_0, v_1, v_2 ]$ is bisected at the edge $[ v_0, v_1 ]$, leading to two new triangles. The height vector from $v_2$ in all three triangles remains the same. The height vector from $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector from $v_0$ in the original triangle.}
+    \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. The height vector from $v_2$ in all three triangles remains the same. The height vector from $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector from $v_0$ in the original triangle. Right: the triangle $T$ is trisected, leading to three new triangles. The height of $z_T$ to from some edge is one third of the original height of that edge.}
 \end{figure}
 
 
