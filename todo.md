@@ -21,6 +21,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [ ] remove \Faces or use it all over the place 
 - [ ] U_T
 - [ ] after recursive estimates, write down the complete bound 
+- [ ] retire the separation theorem for simplices with that halfplane 
 - [ ] \mwl{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} \mwl{Compare with theorem earlier}
 
 Revision: 
@@ -35,11 +36,11 @@ Revision:
 - [x] Section 4: scalar potential on triangulations     
 - [ ] Move back section on shellable triangulations
 - [X] Section 5: review of vector calculus
-- [o] Section 6: potential operators 
+- [x] Section 6: potential operators 
         unity notation, 
 - [x] Section 7: Shellable triangulations 
-- [o] Section 8: reflections and deformations : singular values! do we need combinatorial triangulation?
-- [o] Section 9: Final estimate               : apply singular values, make complete. Combine estimates. Add examples for curl
+- [x] Section 8: reflections and deformations : singular values! do we need combinatorial triangulation?
+- [x] Section 9: Final estimate               : apply singular values, make complete. Combine estimates. Add examples for curl
 - [x] Section 10: Computation
 - [x] outlook 
 

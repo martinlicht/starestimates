@@ -3894,6 +3894,35 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
 %     This echoes the Guerini--Savo theorem for the $L^{2}$ de~Rham complex over smoothly bounded convex domains~\cite{guerini2004eigenvalue}.
 % \end{remark}
 
+
+
+These constants are generally not optimal. 
+For example, when $p=2$ and when only the divergence is considered, 
+we have the following improved estimate. 
+
+\begin{lemma}\label{lemma:PFfordivergence}
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
+    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $\bfw \in \bfH(\divergence,\Omega)$ with $\divergence \bfu = \divergence \bfw$ and 
+    \begin{align*}
+        \| \bfw \|_{L^{2}(\Omega)} 
+        \leq 
+        \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    This is a reduction to the Friedrichs inequality. 
+    Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
+    Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
+    with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
+    The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
+    which has the same smallest singular value. 
+\end{proof}
+
+
+
+
+
 \begin{remark} \label{remark:reg_Poinc_Bog}
     The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
     To the best of our knowledge, the work of Costabel and McIntosh~\cite{costabel2010bogovskiui} was the first to propose a regularized Poincar\'e operator (regularized via averaging).
@@ -3927,8 +3956,6 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     This had not been established yet, to the best of our knowledge. 
     }
 \end{remark}
-
-
 
 
 
@@ -5365,7 +5392,7 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         
         \item 
-		\mwl{Continue proof reading here.}
+		\mwl{Use interlacing inequalities.}
         We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
@@ -5538,250 +5565,6 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
         
         
         
-        
-\begin{comment}
-        \item 
-        We introduce a bi-Lipschitz mapping 
-        \begin{align*}
-            \Psi : |\calR'| \rightarrow |\calK|
-        \end{align*}
-        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$.
-        We define 
-        \begin{align*}
-            \Psi(x) 
-            = 
-            \frac{ \| A_{{G}}^{-1} x \|_{1} }{ \| A_{K}^{-1} x \|_{1} } x
-            .
-        \end{align*}
-        One easily verifies that this defines a continuous mapping $\Psi$. 
-        By the same line of thought, we see that it is invertible with inverse 
-        \begin{align*}
-            \Psi^{-1}(x) 
-            = 
-            \frac{ \| A_{K}^{-1} x \|_{1} }{ \| A_{{G}}^{-1} x \|_{1} } x
-            .
-        \end{align*}
-        We analyze its Jacobian. 
-        First, by assumption,
-        \begin{align*}
-            \Psi(x) 
-            = 
-            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } x
-            .
-        \end{align*}
-        In what follows, $y \in \bbR^n$. We observe 
-        \begin{align*}
-            \Jacobian \Psi(x) \cdot y 
-            &= 
-            \frac{ 
-                ( A_{{G}}^{-t} \vecone \cdot y ) 
-                ( A_{K}^{-t} \vecone \cdot x )
-                -
-                ( A_{{G}}^{-t} \vecone \cdot x )
-                ( A_{K}^{-t} \vecone \cdot y ) 
-            }{ 
-                ( A_{K}^{-t} \vecone \cdot x )^2
-            } 
-            x
-            + 
-            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } y
-            \\&= 
-            \frac{ 
-                ( A_{{G}}^{-t} \vecone \cdot y ) 
-            }{ 
-                ( A_{K}^{-t} \vecone \cdot  x )
-            } 
-            x
-            -
-            \frac{ 
-                ( A_{{G}}^{-t} \vecone \cdot x )
-                ( A_{K}^{-t} \vecone \cdot y ) 
-            }{ 
-                ( A_{K}^{-t} \vecone \cdot  x )^2
-            } 
-            x
-            + 
-            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } y
-            \\&= 
-            \frac{ 
-                ( A_{{G}}^{-t} \vecone \cdot y ) 
-            }{ 
-                ( A_{K}^{-t} \vecone \cdot  x )
-            } 
-            x
-            +
-            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } 
-            \left( 
-                y
-                -
-                \frac{ 
-                    ( A_{K}^{-t} \vecone \cdot y ) 
-                }{ 
-                    ( A_{K}^{-t} \vecone \cdot  x ) 
-                } 
-                x
-            \right)
-            .
-        \end{align*}
-        We see that the last summand is an oblique projection of $y$. 
-        The vector $A_{K}^{-1} x$ has length at least $\sigma_{\min}( A_{K}^{-1} ) \| x \|$ and the product with $\vecone$ is smallest when the vector is colinear with one of the coordinate axes. We conclude that 
-        \[
-             A_{K}^{-t} \vecone \cdot x 
-             = 
-             \vecone \cdot A_{K}^{-1} x 
-             \geq 
-             \sigma_{\min}( A_{K}^{-1} ) \| x \|.
-        \]
-        Together with the Xu-Zikatanov inequality, we obtain the upper bound 
-        \begin{align*}
-            \matnorm{ \Jacobian \Psi(x) }
-            &\leq 
-            \sqrt{n}
-            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
-            \left( 
-            1
-            + 
-            n
-            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{K}^{-2} ) }
-            \right) 
-            .
-        \end{align*}
-        By completely analogous arguments, we find 
-        \begin{align*}
-            \matnorm{ \Jacobian \Psi^{-1}(x) }
-            &\leq 
-            \sqrt{n}
-            \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-1} ) }
-            \left( 
-            1
-            + 
-            n
-            \frac{ \sigma_{\max}( A_{K}^{-1} ) \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-2} ) }
-            \right) 
-            .
-        \end{align*}
-        It follows that 
-        \begin{align*}
-            \Xi := \Psi \circ \Theta
-        \end{align*}
-        is a mapping from ${G}$ onto $U = \overline{\patch_{\calT}(S) \setminus {G}}$.
-        It preserves the interface from ${G}$ onto $U$. 
-        
-        \item 
-        \color{red}
-        We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
-        We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
-        After application of a piecewise linear Lipschitz mapping, 
-        we can assume that $|\calK|$ is convex without loss of generality. 
-        Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        
-        A similar argument applies to the triangulation $\calR'$. 
-        We conclude that $\Xi$ is bi-Lipschitz. 
-        \color{black}
-        
-        \item 
-        \color{red}
-        We collect several geometric facts. 
-        
-        
-        \item 
-        We need to estimate the singular values of the transformation matrices within the bisected simplices. 
-        Each bisection step reduces the diameter by at most a factor of one half,
-        and it reduces the volume always by a factor of one half. 
-        We use the estimates in Lemma~\ref{lemma:measurerelationships}.
-        When $K \in \calK \cup \calS'r$, then 
-        \begin{align*}
-             \sigma_{\max}( A_{K}^{-1} )
-             &\leq 
-             \Czwei{n} \geometricshapemeasure(K) \diam(K)
-             \leq 
-             2 \Czwei{n} \geometricshapemeasure(\calT) \diam(K)^{-1}
-             \\
-             \sigma_{\min}( A_{K}^{-1} )^{-1}
-             &= 
-             \sigma_{\max}( A_{K} ) 
-             \leq 
-             \Ceins{n} \diam(K),
-             \\ 
-             \geometricshapemeasure( A_{K} )
-             &\leq 
-             \Cdrei{n} \geometricshapemeasure(K) \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
-             .
-        \end{align*}
-        When ${G} \in \calR'$ is not our original simplex, then 
-        \begin{align*}
-             \sigma_{\max}( A_{{G}}^{-1} )
-             &\leq 
-             \Czwei{n} \geometricshapemeasure({G}) \diam({G})
-             \leq 
-             4 \Czwei{n} \geometricshapemeasure(\calT) \diam(G)^{-1},
-             \\
-             \sigma_{\min}( A_{{G}}^{-1} )^{-1}
-             &= 
-             \sigma_{\max}( A_{{G}} ) 
-             \leq 
-             \Ceins{n} \diam({G}),
-             \\ 
-             \geometricshapemeasure( A_{{G}} )
-             &\leq 
-             \Cdrei{n} \geometricshapemeasure({G}) \leq 4 \Cdrei{n} \geometricshapemeasure(\calT)
-             .
-        \end{align*}
-        All the diameters above are comparable up to a factor of $\diameterratio(\calT)$.
-        In summary,
-        \begin{gather*}
-            \matnorm{ \Jacobian \Theta_{|K}      } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
-            ,
-            \qquad 
-            \matnorm{ \Jacobian \Theta_{|K}^{-1} } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
-            ,
-            \\
-            \matnorm{ \Jacobian \Xi(x) }
-            \leq 
-            \sqrt{n}
-            4 
-            \geometricshapemeasure(\calT) 
-            \Ceins{n} 
-            \Czwei{n} 
-            \diameterratio(\calT) % \frac{ \diam(K) }{ \diam(G) }
-            \left( 
-                1
-                + 
-                n
-                2 \Cdrei{n} \geometricshapemeasure(\calT)
-                4 
-                \geometricshapemeasure(\calT) 
-                \Ceins{n} 
-                \Czwei{n} 
-                \diameterratio(\calT) % \frac{ \diam(K) }{ \diam(G) }
-            \right) 
-            2 \Cdrei{n} \geometricshapemeasure(\calT)
-            ,
-            \\
-            \matnorm{ \Jacobian \Xi^{-1}(x) }
-            \leq 
-            \sqrt{n}
-            2 
-            \geometricshapemeasure(\calT) 
-            \Ceins{n} 
-            \Czwei{n} 
-            \diameterratio(\calT) % \frac{ \diam(G) }{ \diam(K) }
-            \left( 
-                1
-                + 
-                n
-                2 \Cdrei{n} \geometricshapemeasure(\calT)
-                2 
-                \geometricshapemeasure(\calT) 
-                \Ceins{n} 
-                \Czwei{n} 
-                \diameterratio(\calT) % \frac{ \diam(G) }{ \diam(K) }
-            \right) 
-            2 \Cdrei{n} \geometricshapemeasure(\calT)
-            .
-        \end{gather*}
-\end{comment}
-
 
 
 
@@ -5824,9 +5607,9 @@ as well as the bi-Lipschitz contraction from the local star onto the complement 
 
 \section{Constructive estimates of Poincar\'e--Friedrichs constants}\label{section:poincarefriedrichs}
 
-We are now in the position to estimate Poincar\'e--Friedrichs constants for the exterior derivative over domains with shellable triangulations; this includes the curl and divergence operators in three dimensions. 
-The estimates require local Poincar\'e--Friedrichs constants over simplices, 
-with or without boundary conditions. 
+We are now in the position to develop Poincar\'e--Friedrichs constants for the exterior derivative over domains with shellable triangulations; this includes the curl and divergence operators in three dimensions. 
+These results use local Poincar\'e--Friedrichs constants over simplices, 
+with or without boundary conditions, as subcomponents. 
 
 The analysis of the Poincar\'e potential operators in Section~\ref{section:potentialoperator}
 implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
@@ -5859,35 +5642,8 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \begin{proof}
     This follows from the discussion in Section~\ref{section:potentialoperator}.
     This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{n}(B_1(0)) \diam(\Omega)^{n}$.
+	\mwl{check final form of result}
 \end{proof}
-
-These constants are generally not optimal. 
-For example, when $p=2$ and when only the divergence is considered, 
-we have the following improved estimate. 
-
-\begin{lemma}\label{lemma:PFfordivergence}
-    Let $\Omega \subseteq \bbR^{n}$ be a bounded open set. 
-    Then for each $\bfu \in \bfH(\divergence,\Omega)$ there exists $\bfw \in \bfH(\divergence,\Omega)$ with $\divergence \bfu = \divergence \bfw$ and 
-    \begin{align*}
-        \| \bfw \|_{L^{2}(\Omega)} 
-        \leq 
-        \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
-        .
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    This is a reduction to the Friedrichs inequality. 
-    Let $W^{1,2}_{0}(\Omega)$ be the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
-    Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
-    with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
-    The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
-    which has the same smallest singular value. 
-\end{proof}
-
-
-
-
-
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
@@ -5916,14 +5672,15 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T)^{k}
-        \diam(T)^{k} 
+        \diam(T)
         % \matnorm{\Jacobian \varphi}^{k}
         .
     \end{align*}
 \end{lemma}
-\todo{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{section: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
+\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{section: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 \begin{proof}
-    There exists $\varphi : \hat T \rightarrow T$ mapping the convex closure of the $n$ unit vectors onto the face $F_0$.
+    There exists an affine bijection $\varphi : \hat T \rightarrow T$ 
+	that maps the convex closure of the $n$ unit vectors onto the face $F_0$.
     We can also assume that the face of $\hat T$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
@@ -5932,12 +5689,12 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     
     We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
-    We let $\tilde u$ be the extension of $\hat u$ onto $\tilde U$ by reflection across the coordinate axes.
-    We define $\tilde g = \cartan \tilde u$
-    and see that $\tilde g$ is the extension of $\hat g$ onto $\tilde U$ by reflection across the coordinate axes. 
+    We let $\tilde u$ be the extension of $\hat u$ onto $\tilde U$ by reflection across the coordinate axes,
+    and let $\tilde g$ is the extension of $\hat g$ onto $\tilde U$ by reflection across the coordinate axes. 
+    We observe $\tilde g = \cartan \tilde u$
     By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\tilde U)$.
     
-    The bounds for the potential operators imply 
+    The bounds for the Bogovski\u{i} potential operators, Theorem~\ref{theorem:...} imply 
     the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\tilde U)$
     with $\cartan \tilde w = \cartan \tilde u$ and 
     \begin{align*}
@@ -5951,7 +5708,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \tilde g \|_{L^{p}(\tilde U)}
         .
     \end{align*}
-    We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} \tilde w$.
+    We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\hat T} )$.
     By construction, $\cartan w = \cartan u$,
     and $w$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
     
@@ -5962,32 +5719,27 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
         \| \tilde w \|_{L^{p}(\hat T)}
-        \\&
-        \leq 
-        |\det(\Jacobian \varphi)|^{\frac 1 p} 
-        \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
-        \| \tilde w \|_{L^{p}(\tilde U)}
         ,
         \\
         \| \tilde g \|_{L^{p}(\tilde U)}
         &\leq 
-        2^{\frac n p}
+        2^{\frac {n-\ell} p}
         \| \hat g \|_{L^{p}(\hat T)}
         \leq 
-        2^{\frac n p}
+        2^{\frac {n-\ell} p}
         |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
         \matnorm{\Jacobian \varphi}^{k}
         \cdot 
         \| \cartan u \|_{L^{p}(T)}
         .
     \end{align*}
-    \todo{MV: the norms of the Jacobians have to be fixed.}
-    The second inequality follows.
-    \todo{MV: Please a few more details.}
+    It remains to use Lemma~\ref{lemma:measurerelationships}, and the desired inequality is shown. \mwl{Double check result}
 \end{proof}
 
 
 
+
+We settle the following notation for our main result. 
 Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
     C_{\PF,\Gamma,k,p}(\calT) 
@@ -5996,8 +5748,10 @@ Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
     C_{\PF,\Gamma,l,k,p}(T)
     .
 \end{align*}
-We settle the following notation for our main result. 
 Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
+\begin{align*}
+    \mwl{X_{m} := ...}
+\end{align*}
 For each $1 \leq m \leq M$, the interface of the new simplex to the previous intermediate triangulation is 
 \begin{align*}
     \Gamma_{m} := T_{m} \cap \left( T_{0} \cup \dots \cup T_{m-1} \right)
@@ -6026,7 +5780,6 @@ The main result of this manuscript for shellable triangulations of domains, not 
         &
         \leq  
         C_{\PF,T_{m},\Gamma_{m},k,p}(\calT) 
-        \diam(T)^{k} 
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
             +
@@ -6044,6 +5797,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
     \mwl{The notation $\Minako_m$ should be settled in the definition of shellings.}
 \end{theorem}
 \begin{proof}
+    \mwl{Complete the proof.}
     This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
     We write $X_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
@@ -6248,7 +6002,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \| w \|_{L^{p}(T_{m})}
         \leq 
         C_{\PF,T,k,p}(T_{0})
-        \prod_{i=0}^{m} 
+        \prod_{i=1}^{m} 
         C_{???}
         \| \cartan u \|_{L^{p}(\Omega)}
         .
@@ -6275,7 +6029,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \| w_{m-1} \|_{L^{p}(T_{m})}
         \leq 
         C_{\PF,T,k,p}(T_{0})
-        \prod_{i=0}^{m} 
+        \prod_{i=1}^{m} 
         C_{???}
         \| \Xi_{2}^{-\ast} \cartan u \|_{L^{p}(\Omega)}
         .

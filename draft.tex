@@ -30,6 +30,262 @@ We present numerical examples in Section~\ref{section:numericalexamples}.
 
 
 
+
+
+
+
+
+
+
+
+
+\begin{itemize}
+        \item 
+        We introduce a bi-Lipschitz mapping 
+        \begin{align*}
+            \Psi : |\calR'| \rightarrow |\calK|
+        \end{align*}
+        in the following manner. Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$.
+        We define 
+        \begin{align*}
+            \Psi(x) 
+            = 
+            \frac{ \| A_{{G}}^{-1} x \|_{1} }{ \| A_{K}^{-1} x \|_{1} } x
+            .
+        \end{align*}
+        One easily verifies that this defines a continuous mapping $\Psi$. 
+        By the same line of thought, we see that it is invertible with inverse 
+        \begin{align*}
+            \Psi^{-1}(x) 
+            = 
+            \frac{ \| A_{K}^{-1} x \|_{1} }{ \| A_{{G}}^{-1} x \|_{1} } x
+            .
+        \end{align*}
+        We analyze its Jacobian. 
+        First, by assumption,
+        \begin{align*}
+            \Psi(x) 
+            = 
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } x
+            .
+        \end{align*}
+        In what follows, $y \in \bbR^n$. We observe 
+        \begin{align*}
+            \Jacobian \Psi(x) \cdot y 
+            &= 
+            \frac{ 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
+                ( A_{K}^{-t} \vecone \cdot x )
+                -
+                ( A_{{G}}^{-t} \vecone \cdot x )
+                ( A_{K}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot x )^2
+            } 
+            x
+            + 
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot x } y
+            \\&= 
+            \frac{ 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )
+            } 
+            x
+            -
+            \frac{ 
+                ( A_{{G}}^{-t} \vecone \cdot x )
+                ( A_{K}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )^2
+            } 
+            x
+            + 
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } y
+            \\&= 
+            \frac{ 
+                ( A_{{G}}^{-t} \vecone \cdot y ) 
+            }{ 
+                ( A_{K}^{-t} \vecone \cdot  x )
+            } 
+            x
+            +
+            \frac{ A_{{G}}^{-t} \vecone \cdot x }{ A_{K}^{-t} \vecone \cdot  x } 
+            \left( 
+                y
+                -
+                \frac{ 
+                    ( A_{K}^{-t} \vecone \cdot y ) 
+                }{ 
+                    ( A_{K}^{-t} \vecone \cdot  x ) 
+                } 
+                x
+            \right)
+            .
+        \end{align*}
+        We see that the last summand is an oblique projection of $y$. 
+        The vector $A_{K}^{-1} x$ has length at least $\sigma_{\min}( A_{K}^{-1} ) \| x \|$ and the product with $\vecone$ is smallest when the vector is colinear with one of the coordinate axes. We conclude that 
+        \[
+             A_{K}^{-t} \vecone \cdot x 
+             = 
+             \vecone \cdot A_{K}^{-1} x 
+             \geq 
+             \sigma_{\min}( A_{K}^{-1} ) \| x \|.
+        \]
+        Together with the Xu-Zikatanov inequality, we obtain the upper bound 
+        \begin{align*}
+            \matnorm{ \Jacobian \Psi(x) }
+            &\leq 
+            \sqrt{n}
+            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{K}^{-1} ) }
+            \left( 
+            1
+            + 
+            n
+            \frac{ \sigma_{\max}( A_{{G}}^{-1} ) \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{K}^{-2} ) }
+            \right) 
+            .
+        \end{align*}
+        By completely analogous arguments, we find 
+        \begin{align*}
+            \matnorm{ \Jacobian \Psi^{-1}(x) }
+            &\leq 
+            \sqrt{n}
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-1} ) }
+            \left( 
+            1
+            + 
+            n
+            \frac{ \sigma_{\max}( A_{K}^{-1} ) \sigma_{\max}( A_{{G}}^{-1} ) }{ \sigma_{\min}( A_{{G}}^{-2} ) }
+            \right) 
+            .
+        \end{align*}
+        It follows that 
+        \begin{align*}
+            \Xi := \Psi \circ \Theta
+        \end{align*}
+        is a mapping from ${G}$ onto $U = \overline{\patch_{\calT}(S) \setminus {G}}$.
+        It preserves the interface from ${G}$ onto $U$. 
+        
+        \item 
+        \color{red}
+        We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
+        We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+        After application of a piecewise linear Lipschitz mapping, 
+        we can assume that $|\calK|$ is convex without loss of generality. 
+        Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
+        
+        A similar argument applies to the triangulation $\calR'$. 
+        We conclude that $\Xi$ is bi-Lipschitz. 
+        \color{black}
+        
+        \item 
+        \color{red}
+        We collect several geometric facts. 
+        
+        
+        \item 
+        We need to estimate the singular values of the transformation matrices within the bisected simplices. 
+        Each bisection step reduces the diameter by at most a factor of one half,
+        and it reduces the volume always by a factor of one half. 
+        We use the estimates in Lemma~\ref{lemma:measurerelationships}.
+        When $K \in \calK \cup \calS'r$, then 
+        \begin{align*}
+             \sigma_{\max}( A_{K}^{-1} )
+             &\leq 
+             \Czwei{n} \geometricshapemeasure(K) \diam(K)
+             \leq 
+             2 \Czwei{n} \geometricshapemeasure(\calT) \diam(K)^{-1}
+             \\
+             \sigma_{\min}( A_{K}^{-1} )^{-1}
+             &= 
+             \sigma_{\max}( A_{K} ) 
+             \leq 
+             \Ceins{n} \diam(K),
+             \\ 
+             \geometricshapemeasure( A_{K} )
+             &\leq 
+             \Cdrei{n} \geometricshapemeasure(K) \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
+             .
+        \end{align*}
+        When ${G} \in \calR'$ is not our original simplex, then 
+        \begin{align*}
+             \sigma_{\max}( A_{{G}}^{-1} )
+             &\leq 
+             \Czwei{n} \geometricshapemeasure({G}) \diam({G})
+             \leq 
+             4 \Czwei{n} \geometricshapemeasure(\calT) \diam(G)^{-1},
+             \\
+             \sigma_{\min}( A_{{G}}^{-1} )^{-1}
+             &= 
+             \sigma_{\max}( A_{{G}} ) 
+             \leq 
+             \Ceins{n} \diam({G}),
+             \\ 
+             \geometricshapemeasure( A_{{G}} )
+             &\leq 
+             \Cdrei{n} \geometricshapemeasure({G}) \leq 4 \Cdrei{n} \geometricshapemeasure(\calT)
+             .
+        \end{align*}
+        All the diameters above are comparable up to a factor of $\diameterratio(\calT)$.
+        In summary,
+        \begin{gather*}
+            \matnorm{ \Jacobian \Theta_{|K}      } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
+            ,
+            \qquad 
+            \matnorm{ \Jacobian \Theta_{|K}^{-1} } \leq 2 \Cdrei{n} \geometricshapemeasure(\calT)
+            ,
+            \\
+            \matnorm{ \Jacobian \Xi(x) }
+            \leq 
+            \sqrt{n}
+            4 
+            \geometricshapemeasure(\calT) 
+            \Ceins{n} 
+            \Czwei{n} 
+            \diameterratio(\calT) % \frac{ \diam(K) }{ \diam(G) }
+            \left( 
+                1
+                + 
+                n
+                2 \Cdrei{n} \geometricshapemeasure(\calT)
+                4 
+                \geometricshapemeasure(\calT) 
+                \Ceins{n} 
+                \Czwei{n} 
+                \diameterratio(\calT) % \frac{ \diam(K) }{ \diam(G) }
+            \right) 
+            2 \Cdrei{n} \geometricshapemeasure(\calT)
+            ,
+            \\
+            \matnorm{ \Jacobian \Xi^{-1}(x) }
+            \leq 
+            \sqrt{n}
+            2 
+            \geometricshapemeasure(\calT) 
+            \Ceins{n} 
+            \Czwei{n} 
+            \diameterratio(\calT) % \frac{ \diam(G) }{ \diam(K) }
+            \left( 
+                1
+                + 
+                n
+                2 \Cdrei{n} \geometricshapemeasure(\calT)
+                2 
+                \geometricshapemeasure(\calT) 
+                \Ceins{n} 
+                \Czwei{n} 
+                \diameterratio(\calT) % \frac{ \diam(G) }{ \diam(K) }
+            \right) 
+            2 \Cdrei{n} \geometricshapemeasure(\calT)
+            .
+        \end{gather*}
+\end{itemize}
+
+
+
+
+
  \mwl{First estimate, alternative description}
     We use a recursive argument.
     Suppose that $0 < m \leq M$ such that there exists $w_{\iota(m)} \in W^{1,p}(\Omega_{\iota(m)})$ with $c_{0} = u - w_{\iota(m)}$.
