@@ -29,12 +29,12 @@ Revision:
 - [x] title and abstract, macros 
 - [x] library + bib style 
 - [-] Introduction 
-- [ ] Move ahead section on scalar potentials 
+- [x] Move ahead section on scalar potentials 
 - [o] Section 2: scalar potential on domains
 - [x] Section 3: triangulations (combinatorial)
 - [o] Section 3: triangulations (shape estimate)
 - [x] Section 4: scalar potential on triangulations     
-- [ ] Move back section on shellable triangulations
+- [x] Move back section on shellable triangulations
 - [X] Section 5: review of vector calculus
 - [x] Section 6: potential operators 
         unity notation, 

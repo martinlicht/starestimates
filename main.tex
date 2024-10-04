@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-\usepackage[margin=0.1cm]{geometry}
+% \usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{comment}          % 
@@ -575,6 +575,650 @@ We present numerical examples in Section~\ref{section:numericalexamples} and con
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{{Nonlinear and linear potentials, the Poincar\'e--Friedrichs and Poincar\'e inequalities, and {analytical} Poincar\'e--Friedrichs constants in the gradient case}} \label{section:poincare} 
+
+In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss convex domains as a special case. This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
+
+
+\subsection{Nonlinear and linear potentials}
+
+In the Banach setting $p \neq 2$, finding a norm-minimizing potential such as $\Phi_{\grad}( \bff )$ of~\eqref{math:pot_grad_def} for a given gradient $\bff$ is a nonlinear operation. Its existence may actually not be guaranteed unless $1 < p < \infty$. 
+However, any \textit{linear} potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
+satisfying $\nabla \overline\Phi_{\grad}( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ has the operator norm that \cye{gives} the upper bound 
+\begin{align}\label{math:PF_P}
+    \mwl{C_{\grad,\Omega,p} = } 
+    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }
+    \leq 
+    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \overline\Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} } \cye{=: \overline C_{\grad,\Omega,p}}
+    .
+\end{align}
+This explains our interest in the construction of {\em linear potential operators}.
+
+\subsection{Poincar\'e--Friedrichs and Poincar\'e inequalities}
+
+\cye{In the setting of Section~\ref{section:intro_grad}, when $\Omega$ is of finite measure,} a natural \cye{(and unique, since the gradient potential constraint $\nabla \overline \Phi_{\grad}( \bff ) = \bff$ determines $\overline \Phi_{\grad}( \bff )$ up to a constant)} choice \cye{for a linear potential operator} is the average-free potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that is prescribed by
+\begin{align*}
+    \overline\Phi_{\grad}( \nabla u ) \cye{:}= u - u_{\Omega},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align*}
+where $u_\Omega$ denotes the average of $u$ over the domain $\Omega$, that is,
+\begin{align*}
+    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
+\end{align*}
+This potential operator can also implicitly be defined by
+\begin{align*}
+    \overline \Phi_{\grad}( \bff ) 
+    := 
+    \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \int_\Omega u = 0 } } \| \nabla u - \bff \|_{\fooL^{p}(\Omega)},
+    \quad 
+    \forall 
+    \bff \in \nabla W^{1,p}(\Omega)
+    .
+\end{align*} 
+Its operator norm is the best constant $\overline C_{\grad,\Omega,p} > 0$ in the {\em Poincar\'e inequality} (or also Poincar\'e--Wirtinger inequality)
+\begin{align}\label{math:P_gradient}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    \overline C_{\grad,\Omega,p} \| \nabla u \|_{\fooL^{p}(\Omega)},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    . 
+\end{align}
+Thus, rephrasing~\eqref{math:PF_P} in terms of~\eqref{math:PF_gradient_2} and~\eqref{math:P_gradient}, 
+\begin{align*}
+    C_{\grad,\Omega,p} \leq \overline C_{\grad,\Omega,p}.
+\end{align*}
+
+Towards a converse inequality, 
+let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
+\begin{align} \label{math:aver_norm}
+    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
+    = 
+    \int_{\Omega} \left( \vol(\Omega)^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
+    \leq 
+    \int_{\Omega} \vol(\Omega)^{-1} \int_{\Omega} |u(x)|^{p} \;dx
+    = 
+    \| u \|_{L^{p}(\Omega)}^{p}
+    .
+\end{align}
+Here, we have used H\"older's or Jensen's inequality. 
+In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| u_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
+We conclude that taking the average is a projection within Lebesgue spaces with unit norm. 
+The triangle inequality now shows that 
+\begin{align*}
+    \| u - u_\Omega \|_{L^{p}(\Omega)} 
+    \leq
+    2
+    \| u \|_{L^{p}(\Omega)},
+    \quad 
+    \forall
+    u \in L^{p}(\Omega)
+    .
+\end{align*}
+\begin{align*}
+    \color{Emerald}
+    \| u - u_\Omega \|_{L^{p}(\Omega)}^{p}
+    \leq 
+    2^{p-1} 
+    \| u \|_{L^{p}(\Omega)}^{p}
+    +
+    2^{p-1} 
+    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
+    \leq 
+    2^{p} 
+    \| u \|_{L^{p}(\Omega)}^{p}
+    .
+\end{align*}
+\mwl{Via an application of the triangle inequality, }Thus, the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
+\begin{align*}
+    C_{\grad,\Omega,p} \leq 2 \overline C_{\grad,\Omega,p}.
+\end{align*}
+In the special case $p=2$, taking the average is an orthogonal projection, 
+and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. 
+Hence,
+\begin{align*}
+    \overline C_{\grad,\Omega,2} = C_{\grad,\Omega,2}. 
+\end{align*}
+\mwl{
+This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
+and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
+Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
+since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
+}
+From~\eqref{math:aver_norm}, Stern's generalized projection estimate~\cite[Theorem~4.1, Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$ as 
+\begin{align*}
+    \| u - u_\Omega \|_{L^{p}(\Omega)}
+    \leq 
+    \min\left( 2, 2^{|2/p-1|} \right)
+    \| u \|_{L^{p}(\Omega)}
+    = 
+    2^{|2/p-1|} 
+    \| u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in L^{p}(\Omega)
+    .
+\end{align*}
+Here, we have used $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
+The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
+We thus conclude 
+\begin{align}\label{math:p_vs_pf}
+    C_{\grad,\Omega,p} \leq 2^{|2/p-1|} \overline C_{\grad,\Omega,p}.
+\end{align}
+In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$ and that is at most $2$.
+
+%%%% 
+
+
+
+\section{Old : Review of Poincar\'e--Friedrichs constants}\label{section:poincare}
+
+In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss bounded convex domains as a special case. This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
+
+It is generally easier to obtain upper bounds Constructing and analyzing a potential operator is generally easier if the potential is linear. 
+Constructing linear potential operators is generally easier 
+We will extend that construction of the potential when we address Poincar\'e--Friedrichs inequalities for the curl and divergence operators. 
+
+% Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
+
+
+We survey variations of the Poincar\'e and Poincar\'e--Friedrichs inequalities. 
+We take the opportunity to discuss bounded convex domains as a preparatory special case.
+This survey, which we believe to be of independent interest, will serve as a building block in constructing inequalities over triangulated domains.
+\\
+
+Let $\Omega \subseteq \bbR^{n}$ be an open connected set. 
+Given any $p \in [1,\infty]$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
+We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
+
+% DONE: MV move this part to the introduction, as an alternative the first few paragraphs 
+
+We say that a domain $\Omega \subseteq \bbR^{n}$ satisfies the \emph{Poincar\'e--Friedrichs inequality} with exponent $p \in [1,\infty]$
+if there exists a constant $C_{\PF,\Omega,p} \geq 0$ such that the following holds:
+for every vector field $\bff \in \nabla W^{1,p}(\Omega)$ there exists $u \in W^{1,p}(\Omega)$
+such that $\nabla u = \bff$ and 
+\begin{align}\label{math:inequalitypf:gradient}
+    \| u \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\PF,\Omega,p} 
+    \| \bff \|_{L^{p}(\Omega)}
+    .
+\end{align}
+Since $\Omega$ is connected, this is equivalent to  
+\begin{align*}
+    \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\PF,\Omega,p} 
+    \| \nabla u \|_{L^{p}(\Omega)},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align*}
+We call $C_{\PF,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
+
+\mwl{Use Martin's notation for these constants}
+
+\subsection{Relationship with Poincar\'e inequalities}
+
+We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature~\cite[Remark~\mwl{todo}]{ern2021finite}. Given $p \in [1,\infty]$ and a domain $\Omega \subseteq \bbR^{n}$ of finite measure, 
+we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
+if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
+% for all $u \in W^{1,p}(\Omega)$
+\begin{align*}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    C_{{\rm P},\Omega,p} 
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall u \in W^{1,p}(\Omega)
+    ,
+\end{align*}
+where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
+\begin{align*}
+    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
+\end{align*}
+Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have 
+\[
+	C_{{\PF},\Omega,p} \leq C_{{\rm P},\Omega,p}.
+\]
+Towards a converse inequality, 
+let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
+\begin{align} \label{math:aver_norm}
+    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
+    = 
+    \int_{\Omega} \left( \vol(\Omega)^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
+    \leq 
+    \int_{\Omega} \vol(\Omega)^{-1} \int_{\Omega} |u(x)|^{p} \;dx
+    = 
+    \| u \|_{L^{p}(\Omega)}^{p}
+    .
+\end{align}
+Here, we have used H\"older's or Jensen's inequality. 
+In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| u_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
+We conclude that taking the average is a projection within Lebesgue spaces with unit norm. 
+The triangle inequality now shows that 
+\begin{align*}
+    \| u - u_\Omega \|_{L^{p}(\Omega)} 
+    \leq
+    2
+    \| u \|_{L^{p}(\Omega)},
+    \quad 
+    \forall
+    u \in L^{p}(\Omega)
+    .
+\end{align*}
+Thus, the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
+\begin{align}\label{math:p_is_smaller_than_pf}
+    C_{\grad,\Omega,p} \leq 2 \overline C_{\grad,\Omega,p}.
+\end{align}
+In the special case $p=2$, taking the average is an orthogonal projection, 
+and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. 
+Hence,
+\begin{align}\label{math:pf_equals_p_in_hilbertspace}
+    \overline C_{\grad,\Omega,2} = C_{\grad,\Omega,2}. 
+\end{align}
+% This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$. 
+THis improvement also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
+Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
+since taking the average is a the projection onto the constants functions with unit norm, from~\eqref{math:aver_norm} it now follows that 
+% From~\eqref{math:aver_norm}, Stern's generalized projection estimate~\cite[Theorem~4.1, Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$ as 
+\begin{align*}
+    \| u - u_\Omega \|_{L^{p}(\Omega)}
+    \leq 
+    \min\left( 2, 2^{|2/p-1|} \right)
+    \| u \|_{L^{p}(\Omega)}
+    = 
+    2^{|2/p-1|} 
+    \| u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in L^{p}(\Omega)
+    .
+\end{align*}
+Here, we have used $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
+We thus conclude 
+\begin{align}\label{math:p_vs_pf}
+    C_{\grad,\Omega,p} \leq 2^{|2/p-1|} \overline C_{\grad,\Omega,p}.
+\end{align}
+In the limit cases $p = 1$ and $p = \infty$ we reproduce~\eqref{math:p_is_smaller_than_pf}, 
+and in the case $p = 2$ we achieve the identity~\eqref{math:pf_equals_p_in_hilbertspace} once again.
+In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the common notion of Poincar\'e constant, up to a numerical factor that only depends on $1 \leq p \leq \infty$ and that is at most $2$.
+
+\begin{remark}
+    Let us further remark why the above notion of Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} suits our discussion better than the Poincar\'e inequality. 
+    We want to generalize the discussion to the curl and divergence operators. 
+    The kernel of the gradient is the one-dimensional space of constant functions, and is thus complemented in the Lebesgue spaces with a canonical choice of projection. 
+    By contrast, the curl and divergence operators have infinite-dimensional kernels. 
+    Hence, it is not even trivial whether these kernels are complemented subspaces and admit a projection onto them, not to mention a canonical projection. 
+    % The kernel of those operators is infinite-dimensional, whereas the gradient only has a one-dimensional kernel. 
+    % When discussing Banach spaces, there is no canonical orthogonal projection on the kernel, unlike in the Hilbert space case, 
+    % which is why the Poincar\'e--Friedrichs inequality seems to be the more natural approach.
+\end{remark}
+
+
+
+
+
+\subsection{Relationship with potential operators}
+
+There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
+We define the potential 
+\begin{align*}
+    \Phi( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)},
+    \quad 
+    \forall 
+    \bff \in \nabla W^{1,p}(\Omega)
+    .
+\end{align*}
+If there is a Poincar\'e--Friedrichs constant, then by definition
+\begin{align*}
+    \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{\PF,\Omega,p} \| \bff \|_{L^{p}(\Omega)},
+\end{align*}
+and this inequality is sharp by definition of $\Phi$ provided that $C_{\PF,\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
+Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
+
+Because $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$,
+any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
+satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
+\begin{align*}
+    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
+    \leq 
+    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \overline\Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
+    .
+\end{align*}
+A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that satisfies 
+\begin{align*}
+    \Phi_{{\rm P}}( \nabla u ) = u - u_{\Omega},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align*}
+Its operator norm is just the optimal Poincar\'e constant $C_{{\rm P},\Omega,p}$.
+
+\begin{remark}
+    Upper bounds for Poincar\'e--Friedrichs constants~\eqref{math:inequalitypf:gradient} are easily obtained from linear potential operators. 
+    We highlight this perspective because it seems to be most promising when generalizing the discussion to the curl and divergence operators. 
+\end{remark}
+
+
+
+
+\subsection{Analytical constants in Poincar\'e--Friedrichs inequalities over bounded convex domains} \label{section: PX_convex}
+
+\mwl{Agree on a convention for these constants: diameter included or not.}
+
+We collect examples for Poincar\'e and Poincar\'e--Friedrichs inequalities for the important special case of bounded convex domains. 
+We have the Poincar\'e inequalities~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal} (or \cite[Lemma~3.24]{ern2021finite}) 
+\begin{align}\label{math:acostaduran}
+    \| u - u_{\Omega} \|_{L^{1}(\Omega)}
+    \leq 
+    \frac{\diam(\Omega)}{2}
+    \| \nabla u \|_{L^{1}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,1}(\Omega)
+    ,
+    \\
+    \| u - u_{\Omega} \|_{L^{2}(\Omega)} \label{math:bebendorf}
+    \leq 
+    \frac{\diam(\Omega)}{\pi}
+    \| \nabla u \|_{L^{2}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,2}(\Omega)
+    ,
+\end{align}
+where $\diam(\Omega)$ is the diameter of the domain $\Omega$.
+These two estimates are the best possible Poincar\'e inequalities in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
+Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite[Theorem~1.1, Theorem~1.2]{chua2006estimates}:
+\begin{align}\label{math:chuawheeden}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    C_{{\rm P},{\rm CW},p}
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align}
+where we use an upper bound by Chua and Wheeden:
+\begin{align*}
+    C_{{\rm P},{\rm CW},p} 
+    := 
+    \sup\limits_{ v \in C^\infty([0,1]) \setminus \bbR } 
+    \frac{ 
+        \| v - v_{[0,1]} \|_{L^{p}([0,1])} 
+    }{ 
+        \| \nabla v \|_{L^{p}([0,1])} 
+    }
+    \leq 
+    \sqrt[p]{p} 2^{1-\frac 1 p}
+    =
+    2
+    \left( \frac p 2 \right)^{\frac 1 p}
+    .
+\end{align*} 
+Note that $C_{{\rm P},{\rm CW},p}$ is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
+As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
+
+
+We know optimal Poincar\'e--Friedrichs constants over convex domains~(\cite[Theorem~1.1]{ferone2012remark}, \cite[Theorem~1.1]{esposito2013poincare}): 
+when $1 < p < \infty$, one can show that 
+\begin{align}\label{math:esposito:pf}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\PF,{\rm EFNT},p}
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    ,
+\end{align}
+where $C_{\PF,{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
+\begin{align*}
+    C_{\PF,{\rm EFNT},p}
+    :=
+    \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
+    .
+\end{align*}
+Note that the last inequalities from~\eqref{math:p_vs_pf} imply, again when $1 < p < \infty$, the Poincar\'e inequalities
+\begin{align}\label{math:esposito:poincare}
+    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
+    \leq 
+    2^{|1-\frac 2 p|}C_{\PF,{\rm EFNT},p}
+    \diam(\Omega)
+    \| \nabla u \|_{L^{p}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align}
+When $p=1$, then the optimal Poincar\'e constant $1/2$ also bounds the Poincar\'e--Friedrichs constant:
+\begin{align}\label{math:l1estimate}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{1}(\Omega)}
+    \leq 
+    \frac{ \diam(\Omega) }{2}
+    \| \nabla u \|_{L^{1}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,1}(\Omega)
+    .
+\end{align}
+When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theorem leads to 
+\begin{align}\label{math:lipschitzestimate}
+    \min\limits_{ c \in \bbR }
+    \| u - c \|_{L^{\infty}(\Omega)}
+    \leq 
+    \diam(\Omega)
+    \| \nabla u \|_{L^{\infty}(\Omega)}
+    ,
+    \quad 
+    \forall 
+    u \in W^{1,\infty}(\Omega)
+    .
+\end{align}
+
+
+% DONT: Keep ?
+% \begin{example}
+%     We explain why \eqref{math:l1estimate} is optimal. 
+%     Let $\Omega = (-1,1)$ and consider the family of odd function $u_{\epsilon} : \Omega \rightarrow \bbR$ for ${\epsilon} \in (0,1)$ 
+%     that satisfy $u_{\epsilon}(0)=0$, $u_{\epsilon}({\epsilon}) = 1$ and $u_t(1) = 1$ and interpolate linearly between those points. 
+%     Obviously, $\| u_{\epsilon} \|_{L^{1}(\Omega)} = 2 - {\epsilon}$ and $\| u'_{\epsilon} \|_{L^{1}(\Omega)} = 2{\epsilon} \frac{2}{2{\epsilon}} = 2$,
+%     and $\Omega$ has diameter $2$. 
+%     Since $u_{\epsilon}$ has average zero, this example shows that \eqref{math:acostaduran} is optimal among the constants that only depend on the diameter of the domain. 
+%     At the same time, for any constant $c \in \bbR$ we have $\| u_{\epsilon} - c \|_{L^1(\Omega)} = \| u_{\epsilon} + c \|_{L^1(\Omega)}$.
+%     Since norms are convex, it follows that $u_{\epsilon}$ is the potential with minimal $L^1$ norm. 
+% \end{example}
+
+\begin{remark}
+    % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
+    Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}. 
+    Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
+    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{\PF,{\rm EFNT},p}$. 
+    In the case $2 \leq p$, 
+    \begin{align*}
+        2^{1-\frac 2 p}
+        C_{\PF,{\rm EFNT},p}
+        =
+        \frac{ 2^{1-\frac 2 p} }{2}
+        \frac{ \sin(\pi/p) }{ \pi/p }
+        \frac{ 1 }{ \sqrt[p]{p-1} }
+        \leq 
+        4^{-\frac 1 p}
+        \leq
+        C_{{\rm P},{\rm CW},p} 
+        .
+    \end{align*}
+    In the case $2 \geq p$, 
+    \begin{align*}
+        2^{\frac 2 p - 1}
+        C_{\PF,{\rm EFNT},p}
+        =
+        \frac{ 2^{\frac 2 p - 1} }{2}
+        \frac{ \sin(\pi/p) }{ \pi/p }
+        \frac{ 1 }{ \sqrt[p]{p-1} }
+        \leq
+        \frac{ 2^{\frac 2 p-1} }{2}
+        &
+        =
+        2^{\frac 2 p - 2}
+        \\&
+        =
+        4^{\frac 1 p - 1}
+        \leq
+        C_{{\rm P},{\rm CW},p} 
+%         % 
+%         .
+%         4^{\frac 1 p}
+%         \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} \cdot 2 }
+%         =
+%         4^{\frac 1 p}
+%         \frac{ p \sin(\pi/p) }{ 4\pi \sqrt[p]{p-1} }
+%         \leq 
+%         \frac{1}{2}
+        .
+    \end{align*}
+    It follows that \eqref{math:esposito:poincare} is generally a tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
+    % DONE: what exactly is the limit as p -> 1 ? It converges to 1.
+    % DONT: insert the original inequality by chua and Wheeden
+    % DONE: chua Wheeden upper bound is not optimal!
+    % DONE: Theorem 1.2 in Chua Wheeden 
+% DONT: Keep ?
+%     In the limit as $p$ goes to $1$, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$,
+%     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
+%     \begin{align*}
+%         \| u - u_{\Omega} \|_{L^{1}(\Omega)}
+%         \leq 
+%         \frac{1}{2}
+%         \diam(\Omega)
+%         \| \nabla u \|_{L^{1}(\Omega)}
+%         ,
+%         \quad
+%         \forall 
+%         u \in W^{1,1}(\Omega)
+%         .
+%     \end{align*}
+%     In the limit as $p$ goes to infinity, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$, 
+%     which implies the Poincar\'e inequality 
+%     \begin{align*}
+%         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
+%         \leq 
+%         \diam(\Omega)
+%         \| \nabla u \|_{L^{\infty}(\Omega)}
+%         ,
+%         \quad
+%         \forall 
+%         u \in W^{1,\infty}(\Omega)
+%         %
+%     \end{align*}
+%     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. % DONT: cite 
+%     % DONT: review this entire result 
+\end{remark}
+
+% \notice{MWL: I have removed a few lines to shorten the discussion. We should discuss later how to set up this section and what results to present to keep a good flow.}
+
+\begin{remark}
+    The above Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
+    but individual convex domains may allow for better constants.
+    We refer to \cite{Liu_Kik_interp_10, Cars_Ged_Rim_expl_cnst_12, matculevich2016explicit} for discussions;
+    for example, triangles allow the reduction of the constant by 20\%.
+\end{remark}
 
 
 
@@ -1288,565 +1932,6 @@ This indicator quantifies how much reflection across the shared face distorts th
     we can also bound the ratios of diameters and volumes of simplices sharing only a single common vertex. 
 \end{remark}
 %%%%%%%% END HERE 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{{Nonlinear and linear potentials, the Poincar\'e--Friedrichs and Poincar\'e inequalities, and {analytical} Poincar\'e--Friedrichs constants in the gradient case}} \label{section:poincare} 
-
-In this section, we wish to explain why we employ linear potential operators to estimate the Poincar\'e--Friedrichs constants and we also address the difference of the Poincar\'e--Friedrichs inequality~\eqref{math:PF_gradient_2} with the Poincar\'e inequality where the mean value of $u$ is fixed to zero. We then review Poincar\'e--Friedrichs inequalities in the gradient case setting of Section~\ref{section:intro_grad}, with the emphasis on know results on analytical upper bounds for the constants. In particular, we take the opportunity to discuss convex domains as a special case. This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
-
-
-\subsection{Nonlinear and linear potentials}
-
-In the Banach setting $p \neq 2$, finding a norm-minimizing potential such as $\Phi_{\grad}( \bff )$ of~\eqref{math:pot_grad_def} for a given gradient $\bff$ is a nonlinear operation. Its existence may actually not be guaranteed unless $1 < p < \infty$. 
-However, any \textit{linear} potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
-satisfying $\nabla \overline\Phi_{\grad}( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ has the operator norm that \cye{gives} the upper bound 
-\begin{align}\label{math:PF_P}
-    \mwl{C_{\grad,\Omega,p} = } 
-    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }
-    \leq 
-    \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \overline\Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} } \cye{=: \overline C_{\grad,\Omega,p}}
-    .
-\end{align}
-This explains our interest in the construction of {\em linear potential operators}.
-
-\subsection{Poincar\'e--Friedrichs and Poincar\'e inequalities}
-
-\cye{In the setting of Section~\ref{section:intro_grad}, when $\Omega$ is of finite measure,} a natural \cye{(and unique, since the gradient potential constraint $\nabla \overline \Phi_{\grad}( \bff ) = \bff$ determines $\overline \Phi_{\grad}( \bff )$ up to a constant)} choice \cye{for a linear potential operator} is the average-free potential operator $\overline\Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that is prescribed by
-\begin{align*}
-    \overline\Phi_{\grad}( \nabla u ) \cye{:}= u - u_{\Omega},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align*}
-where $u_\Omega$ denotes the average of $u$ over the domain $\Omega$, that is,
-\begin{align*}
-    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
-\end{align*}
-This potential operator can also implicitly be defined by
-\begin{align*}
-    \overline \Phi_{\grad}( \bff ) 
-    := 
-    \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \int_\Omega u = 0 } } \| \nabla u - \bff \|_{\fooL^{p}(\Omega)},
-    \quad 
-    \forall 
-    \bff \in \nabla W^{1,p}(\Omega)
-    .
-\end{align*} 
-Its operator norm is the best constant $\overline C_{\grad,\Omega,p} > 0$ in the {\em Poincar\'e inequality} (or also Poincar\'e--Wirtinger inequality)
-\begin{align}\label{math:P_gradient}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    \overline C_{\grad,\Omega,p} \| \nabla u \|_{\fooL^{p}(\Omega)},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    . 
-\end{align}
-Thus, rephrasing~\eqref{math:PF_P} in terms of~\eqref{math:PF_gradient_2} and~\eqref{math:P_gradient}, 
-\begin{align*}
-    C_{\grad,\Omega,p} \leq \overline C_{\grad,\Omega,p}.
-\end{align*}
-
-Towards a converse inequality, 
-let us first observe that the average of any $u \in W^{1,p}(\Omega)$ with $p < \infty$ satisfies the bound 
-\begin{align} \label{math:aver_norm}
-    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
-    = 
-    \int_{\Omega} \left( \vol(\Omega)^{-1} \int_{\Omega} |u(x)| \;dx \right)^{p}
-    \leq 
-    \int_{\Omega} \vol(\Omega)^{-1} \int_{\Omega} |u(x)|^{p} \;dx
-    = 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    .
-\end{align}
-Here, we have used H\"older's or Jensen's inequality. 
-In the case $p = \infty$, any $u \in L^{\infty}(\Omega)$ satisfies $\| u_\Omega \|_{L^{\infty}(\Omega)} \leq \| u \|_{L^{\infty}(\Omega)}$. 
-We conclude that taking the average is a projection within Lebesgue spaces with unit norm. 
-The triangle inequality now shows that 
-\begin{align*}
-    \| u - u_\Omega \|_{L^{p}(\Omega)} 
-    \leq
-    2
-    \| u \|_{L^{p}(\Omega)},
-    \quad 
-    \forall
-    u \in L^{p}(\Omega)
-    .
-\end{align*}
-\begin{align*}
-    \color{Emerald}
-    \| u - u_\Omega \|_{L^{p}(\Omega)}^{p}
-    \leq 
-    2^{p-1} 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    +
-    2^{p-1} 
-    \| u_\Omega \|_{L^{p}(\Omega)}^{p}
-    \leq 
-    2^{p} 
-    \| u \|_{L^{p}(\Omega)}^{p}
-    .
-\end{align*}
-\mwl{Via an application of the triangle inequality, }Thus, the Poincar\'e--Friedrichs inequality implies the Poincar\'e inequality with 
-\begin{align*}
-    C_{\grad,\Omega,p} \leq 2 \overline C_{\grad,\Omega,p}.
-\end{align*}
-In the special case $p=2$, taking the average is an orthogonal projection, 
-and so this improves to $\| u - u_\Omega \|_{L^{2}(\Omega)} \leq \| u \|_{L^{2}(\Omega)}$ for any $u \in L^{2}(\Omega)$. 
-Hence,
-\begin{align*}
-    \overline C_{\grad,\Omega,2} = C_{\grad,\Omega,2}. 
-\end{align*}
-\mwl{
-This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$,
-and it also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
-Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
-since taking the average is a the projection onto the constants functions with unit norm, it now follows that 
-}
-From~\eqref{math:aver_norm}, Stern's generalized projection estimate~\cite[Theorem~4.1, Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$ as 
-\begin{align*}
-    \| u - u_\Omega \|_{L^{p}(\Omega)}
-    \leq 
-    \min\left( 2, 2^{|2/p-1|} \right)
-    \| u \|_{L^{p}(\Omega)}
-    = 
-    2^{|2/p-1|} 
-    \| u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in L^{p}(\Omega)
-    .
-\end{align*}
-Here, we have used $1 \leq 2^{|2/p-1|} \leq 2$ for $1 \leq p \leq \infty$.
-The upper bound is only attained in the limit cases $p = 1$ and $p = \infty$, and the lower bound is only attained if $p = 2$, where we reproduce the improved estimate for the Hilbert space case.
-We thus conclude 
-\begin{align}\label{math:p_vs_pf}
-    C_{\grad,\Omega,p} \leq 2^{|2/p-1|} \overline C_{\grad,\Omega,p}.
-\end{align}
-In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the notion of Poincar\'e constant in the literature, up to a numerical factor that only depends on $1 \leq p \leq \infty$ and that is at most $2$.
-
-%%%% 
-
-
-
-\subsection{Old : Review of Poincar\'e--Friedrichs constants}\label{section:poincare}
-
-We survey variations of the Poincar\'e and Poincar\'e--Friedrichs inequalities. 
-We take the opportunity to discuss convex domains as a preparatory special case.
-This survey, which we believe to be of independent interest, will serve as a building block in constructing inequalities over triangulated domains.
-\\
-
-Let us assume that $\Omega \subseteq \bbR^{n}$ is an open connected set. 
-Given any $p \in [1,\infty]$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
-We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
-
-% DONE: MV move this part to the introduction, as an alternative the first few paragraphs 
-
-We say that a domain $\Omega \subseteq \bbR^{n}$ satisfies the \emph{Poincar\'e--Friedrichs inequality} with exponent $p \in [1,\infty]$
-if there exists a constant $C_{\PF,\Omega,p} \geq 0$ such that the following holds:
-for every vector field $\bff \in \nabla W^{1,p}(\Omega)$ there exists $u \in W^{1,p}(\Omega)$
-such that $\nabla u = \bff$ and 
-\begin{align}\label{math:inequalitypf:gradient}
-    \| u \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\PF,\Omega,p} 
-    \| \bff \|_{L^{p}(\Omega)}
-    .
-\end{align}
-Since $\Omega$ is connected, this is equivalent to  
-\begin{align*}
-    \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\PF,\Omega,p} 
-    \| \nabla u \|_{L^{p}(\Omega)},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    .
-\end{align*}
-We call $C_{\PF,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
-\\
-
-We wish to clarify the relationship between the Poincar\'e--Friedrichs inequality, in the sense introduced above, with other inequalities that are known as Poincar\'e inequality (or also Poincar\'e--Wirtinger or Friedrichs inequality) in the literature~\cite{ern2021finite}. Given $p \in [1,\infty]$ and an open set $\Omega \subseteq \bbR^{n}$ of finite measure, 
-we say that $\Omega$ satisfies the Poincar\'e inequality with exponent $p$ 
-if there exists $C_{{{\rm P}},\Omega,p} \geq 0$ such that 
-% for all $u \in W^{1,p}(\Omega)$
-\begin{align*}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    C_{{\rm P},\Omega,p} 
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall u \in W^{1,p}(\Omega)
-    ,
-\end{align*}
-where $u_{\Omega}$ is the \emph{average} of $u$ over $\Omega$, that is,
-\begin{align*}
-    u_{\Omega} := \vol(\Omega)^{-1} \int_{\Omega} u(x) \;dx.
-\end{align*}
-Clearly, this Poincar\'e inequality implies the Poincar\'e--Friedrichs inequality and we have $C_{{\PF},\Omega,p} \leq C_{{\rm P},\Omega,p}$. 
-
-
-
-
-
-
-
-There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
-We define the potential 
-\begin{align*}
-    \Phi( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)},
-    \quad 
-    \forall 
-    \bff \in \nabla W^{1,p}(\Omega)
-    .
-\end{align*}
-If there is a Poincar\'e--Friedrichs constant, then by definition
-\begin{align*}
-    \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{\PF,\Omega,p} \| \bff \|_{L^{p}(\Omega)},
-\end{align*}
-and this inequality is sharp by definition of $\Phi$ provided that $C_{\PF,\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
-However, $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$. 
-Consequently, any \textit{linear} potential operator $\overline\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$
-satisfying $\nabla \overline\Phi( \bff ) = \bff$ for any $\bff \in \nabla W^{1,p}(\Omega)$ must have an operator norm that obeys the lower bound 
-\begin{align*}
-    \max\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
-    \leq 
-    \max\limits_{ u \in \nabla W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \overline\Phi(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{L^{p}(\Omega)} }
-    .
-\end{align*}
-A natural choice is the linear operator $\Phi_{{\rm P}} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ that satisfies 
-\begin{align*}
-    \Phi_{{\rm P}}( \nabla u ) = u - u_{\Omega},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    .
-\end{align*}
-Its operator norm is just the optimal Poincar\'e constant $C_{{\rm P},\Omega,p}$.
-\\
-
-In the light of these musings, we settle for the objective of constructing linear potential operators for the gradient operator.
-This task is more specific than just proving an upper bound for the Poincar\'e--Friedrichs constant. 
-Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)^{n}$. 
-We will extend that construction of the potential when we address Poincar\'e--Friedrichs inequalities for the curl and divergence operators. 
-
-\begin{remark}
-    Let us further remark why the above notion of Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} suits our discussion better than the Poincar\'e inequality. 
-    We want to generalize the discussion to the curl and divergence operators. 
-    The kernel of the gradient is the one-dimensional space of constant functions, and is thus complemented in the Lebesgue spaces with a canonical choice of projection. 
-    By contrast, the curl and divergence operators have infinite-dimensional kernels. 
-    Hence, it is not even trivial whether these kernels are complemented subspaces and admit a projection onto them, not to mention a canonical projection. 
-    % The kernel of those operators is infinite-dimensional, whereas the gradient only has a one-dimensional kernel. 
-    % When discussing Banach spaces, there is no canonical orthogonal projection on the kernel, unlike in the Hilbert space case, 
-    % which is why the Poincar\'e--Friedrichs inequality seems to be the more natural approach.
-\end{remark}
-
-% Our particular notion of Poincar\'e--Friedrichs inequality, which we interpret as an upper bound for the operator norm of a generalized inverse of the gradient is more natural for our discussion because later sections will develop analogous inequalities for the curl and the divergence operators. 
-
-
-
-
-\subsection{Analytical constants in Poincar\'e--Friedrichs inequalities over convex domains} \label{section: PX_convex}
-
-We collect examples for Poincar\'e and Poincar\'e--Friedrichs inequalities for the important special case of convex domains. 
-Over convex bounded domains, we have the Poincar\'e inequalities~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal} (or \cite[Lemma~3.24]{ern2021finite}) 
-\begin{align}\label{math:acostaduran}
-    \| u - u_{\Omega} \|_{L^{1}(\Omega)}
-    \leq 
-    \frac{\diam(\Omega)}{2}
-    \| \nabla u \|_{L^{1}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,1}(\Omega)
-    ,
-    \\
-    \| u - u_{\Omega} \|_{L^{2}(\Omega)} \label{math:bebendorf}
-    \leq 
-    \frac{\diam(\Omega)}{\pi}
-    \| \nabla u \|_{L^{2}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,2}(\Omega)
-    ,
-\end{align}
-where $\diam(\Omega)$ is the diameter of the domain $\Omega$.
-These two estimates are the best possible Poincar\'e inequalities in the cases $p=1$ and $p=2$, respectively, in terms of the diameter alone. 
-Upper bounds for the Poincar\'e constant over convex domains with $1 < p < \infty$ are known in the literature~\cite[Theorem~1.1, Theorem~1.2]{chua2006estimates}:
-\begin{align}\label{math:chuawheeden}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    C_{{\rm P},{\rm CW},p}
-    \diam(\Omega)
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align}
-where we use an upper bound by Chua and Wheeden:
-\begin{align*}
-    C_{{\rm P},{\rm CW},p} 
-    := 
-    \sup\limits_{ v \in C^\infty([0,1]) \setminus \bbR } 
-    \frac{ 
-        \| v - v_{[0,1]} \|_{L^{p}([0,1])} 
-    }{ 
-        \| \nabla v \|_{L^{p}([0,1])} 
-    }
-    \leq 
-    \sqrt[p]{p} 2^{1-\frac 1 p}
-    =
-    2
-    \left( \frac p 2 \right)^{\frac 1 p}
-    .
-\end{align*} 
-Note that $C_{{\rm P},{\rm CW},p}$ is generally not optimal among the upper bounds that only depend on the domain diameter and the Lebesgue exponent.
-As discussed above, these Poincar\'e inequalities imply Poincar\'e--Friedrichs inequalities. 
-
-
-We know optimal Poincar\'e--Friedrichs constants over convex domains~(\cite[Theorem~1.1]{ferone2012remark}, \cite[Theorem~1.1]{esposito2013poincare}): 
-when $1 < p < \infty$, one can show that 
-\begin{align}\label{math:esposito:pf}
-    \min\limits_{ c \in \bbR }
-    \| u - c \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\PF,{\rm EFNT},p}
-    \diam(\Omega)
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    ,
-\end{align}
-where $C_{\PF,{\rm EFNT},p}$ is the best possible constant that only depends on $p$ and equals 
-\begin{align*}
-    C_{\PF,{\rm EFNT},p}
-    :=
-    \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} }
-    .
-\end{align*}
-Note that the last inequalities from~\eqref{math:p_vs_pf} imply, again when $1 < p < \infty$, the Poincar\'e inequalities
-\begin{align}\label{math:esposito:poincare}
-    \| u - u_{\Omega} \|_{L^{p}(\Omega)}
-    \leq 
-    2^{|1-\frac 2 p|}C_{\PF,{\rm EFNT},p}
-    \diam(\Omega)
-    \| \nabla u \|_{L^{p}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    .
-\end{align}
-When $p=1$, then the optimal Poincar\'e constant $1/2$ also bounds the Poincar\'e--Friedrichs constant:
-\begin{align}\label{math:l1estimate}
-    \min\limits_{ c \in \bbR }
-    \| u - c \|_{L^{1}(\Omega)}
-    \leq 
-    \frac{ \diam(\Omega) }{2}
-    \| \nabla u \|_{L^{1}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,1}(\Omega)
-    .
-\end{align}
-When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theorem leads to 
-\begin{align}\label{math:lipschitzestimate}
-    \min\limits_{ c \in \bbR }
-    \| u - c \|_{L^{\infty}(\Omega)}
-    \leq 
-    \diam(\Omega)
-    \| \nabla u \|_{L^{\infty}(\Omega)}
-    ,
-    \quad 
-    \forall 
-    u \in W^{1,\infty}(\Omega)
-    .
-\end{align}
-
-
-% DONT: Keep ?
-% \begin{example}
-%     We explain why \eqref{math:l1estimate} is optimal. 
-%     Let $\Omega = (-1,1)$ and consider the family of odd function $u_{\epsilon} : \Omega \rightarrow \bbR$ for ${\epsilon} \in (0,1)$ 
-%     that satisfy $u_{\epsilon}(0)=0$, $u_{\epsilon}({\epsilon}) = 1$ and $u_t(1) = 1$ and interpolate linearly between those points. 
-%     Obviously, $\| u_{\epsilon} \|_{L^{1}(\Omega)} = 2 - {\epsilon}$ and $\| u'_{\epsilon} \|_{L^{1}(\Omega)} = 2{\epsilon} \frac{2}{2{\epsilon}} = 2$,
-%     and $\Omega$ has diameter $2$. 
-%     Since $u_{\epsilon}$ has average zero, this example shows that \eqref{math:acostaduran} is optimal among the constants that only depend on the diameter of the domain. 
-%     At the same time, for any constant $c \in \bbR$ we have $\| u_{\epsilon} - c \|_{L^1(\Omega)} = \| u_{\epsilon} + c \|_{L^1(\Omega)}$.
-%     Since norms are convex, it follows that $u_{\epsilon}$ is the potential with minimal $L^1$ norm. 
-% \end{example}
-
-\begin{remark}
-    % The main feature in proving these results is that the best constant in the Poincar\'e inequality is already the constant in the $1$-dimensional case. 
-    Any estimate for the Poincar\'e--Friedrichs constant implies an estimate for the Poincar\'e constant, via~\eqref{math:p_vs_pf}. 
-    Let us compare the estimate $C_{{\rm P},{\rm CW},p}$ for the Poincar\'e constant
-    with the estimate obtained from the Poincar\'e--Friedrichs constant $C_{\PF,{\rm EFNT},p}$. 
-    In the case $2 \leq p$, 
-    \begin{align*}
-        2^{1-\frac 2 p}
-        C_{\PF,{\rm EFNT},p}
-        =
-        \frac{ 2^{1-\frac 2 p} }{2}
-        \frac{ \sin(\pi/p) }{ \pi/p }
-        \frac{ 1 }{ \sqrt[p]{p-1} }
-        \leq 
-        4^{-\frac 1 p}
-        \leq
-        C_{{\rm P},{\rm CW},p} 
-        .
-    \end{align*}
-    In the case $2 \geq p$, 
-    \begin{align*}
-        2^{\frac 2 p - 1}
-        C_{\PF,{\rm EFNT},p}
-        =
-        \frac{ 2^{\frac 2 p - 1} }{2}
-        \frac{ \sin(\pi/p) }{ \pi/p }
-        \frac{ 1 }{ \sqrt[p]{p-1} }
-        \leq
-        \frac{ 2^{\frac 2 p-1} }{2}
-        &
-        =
-        2^{\frac 2 p - 2}
-        \\&
-        =
-        4^{\frac 1 p - 1}
-        \leq
-        C_{{\rm P},{\rm CW},p} 
-%         % 
-%         .
-%         4^{\frac 1 p}
-%         \frac{ p \sin(\pi/p) }{ 2\pi \sqrt[p]{p-1} \cdot 2 }
-%         =
-%         4^{\frac 1 p}
-%         \frac{ p \sin(\pi/p) }{ 4\pi \sqrt[p]{p-1} }
-%         \leq 
-%         \frac{1}{2}
-        .
-    \end{align*}
-    It follows that \eqref{math:esposito:poincare} is generally a tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
-    % DONE: what exactly is the limit as p -> 1 ? It converges to 1.
-    % DONT: insert the original inequality by chua and Wheeden
-    % DONE: chua Wheeden upper bound is not optimal!
-    % DONE: Theorem 1.2 in Chua Wheeden 
-% DONT: Keep ?
-%     In the limit as $p$ goes to $1$, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$,
-%     which is the optimal Poincar\'e--Friedrichs constant and also the optimal factor in the Poincar\'e inequality \eqref{math:acostaduran}
-%     \begin{align*}
-%         \| u - u_{\Omega} \|_{L^{1}(\Omega)}
-%         \leq 
-%         \frac{1}{2}
-%         \diam(\Omega)
-%         \| \nabla u \|_{L^{1}(\Omega)}
-%         ,
-%         \quad
-%         \forall 
-%         u \in W^{1,1}(\Omega)
-%         .
-%     \end{align*}
-%     In the limit as $p$ goes to infinity, the factor $C_{\PF,{\rm EFNT},p}$ converges to $1/2$, 
-%     which implies the Poincar\'e inequality 
-%     \begin{align*}
-%         \| u - u_{\Omega} \|_{L^{\infty}(\Omega)}
-%         \leq 
-%         \diam(\Omega)
-%         \| \nabla u \|_{L^{\infty}(\Omega)}
-%         ,
-%         \quad
-%         \forall 
-%         u \in W^{1,\infty}(\Omega)
-%         %
-%     \end{align*}
-%     because the $L^{\infty}$-norm is the limit of the $L^{p}$-norm. % DONT: cite 
-%     % DONT: review this entire result 
-\end{remark}
-
-% \notice{MWL: I have removed a few lines to shorten the discussion. We should discuss later how to set up this section and what results to present to keep a good flow.}
-
-\begin{remark}
-    The above Poincar\'e and Poincar\'e--Friedrichs constants are optimal for the class of convex domains, 
-    but individual convex domains may allow for better constants.
-    We refer to \cite{Liu_Kik_interp_10, Cars_Ged_Rim_expl_cnst_12, matculevich2016explicit} for discussions;
-    for example, triangles allow the reduction of the constant by 20\%.
-\end{remark}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
