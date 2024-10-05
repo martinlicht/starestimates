@@ -26,6 +26,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [n] potentials section: additional constants notation for potential operators
 - [x] potentials section: adapt and unify notation/tex
 - [ ] potentials: what approximation properties are needed ? How does the Bogovskii operator work?
+- [ ] mat and vec norms 
 - [ ] Synchronize indices shellability conditions
       - Section~\ref{section:shellability}
       - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},

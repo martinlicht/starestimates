@@ -3779,11 +3779,9 @@ we have the following improved estimate.
 
 \section{Shellable triangulations of manifolds}\label{section:advancedtriangulations}
 
-We return to the theory of triangulations,
-as our main objective requires some further concepts.
-We are interested in simplicial complexes that triangulate manifolds. 
-Our particular interest are manifold triangulations that are \emph{shellable}.
-Such simplicial complexes are constructed by successively adding simplices in a particularly well-behaved manner. 
+We return to the theory of triangulations, as our main objective requires some further concepts.
+We are interested in simplicial complexes that triangulated domains and which are \emph{shellable}.
+Such simplicial complexes are constructed by successively adding simplices in a well-structured manner. 
 Local patches (stars) within triangulations of dimension two or three are examples of such shellable complexes. 
 The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures} are our main references for this section. 
 We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
@@ -3852,7 +3850,7 @@ Any simplicial complex that triangulates an $n$-dimensional manifold must be $n$
 An example of a manifold triangulation and an example which is not a manifold triangulation are given in Figure~\ref{figure:not_manifold_triang}.
 
 The following special cases receive particular interest:
-an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball\mwl{, and we sometimes call this a \textit{$n$-disk} triangulation}.
+an \textit{$n$-ball triangulation} is any triangulation of a topological (closed) $n$-ball, and we sometimes call this an \textit{$n$-disk} triangulation.
 An \textit{$n$-sphere triangulation} is any triangulation of a topological $n$-sphere. 
 
 
@@ -3941,9 +3939,6 @@ We call this simplicial complex the \emph{boundary complex}. It has dimension $n
 We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. This topics is surprisingly non-trivial and 
 we gather some results that are hard to find in the literature. 
 
-We say that an $n$-dimensional manifold triangulation $\calT$ is \emph{combinatorial}
-if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simplicial ball of dimension $n$. 
-
 \begin{lemma}\label{lemma:startopology}
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
     Suppose that $1 \leq n \leq 3$. Then the following holds:
@@ -3967,7 +3962,7 @@ if for every vertex $V \in \calT$ the local star $\patch_{\calT}(V)$ is a simpli
     Let $S$ be any simplex with vertices $v_0, v_1, \dots, v_k$, with barycenter $z_{S}$, and dimension $k$.
     Let $\calS := \patch_{\calT}(S)$ be its star. 
     Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
-    has vertices $v_0, v_1, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$. 
+    has vertices $v_0$, $v_1$, $\dots$, $v_k$, $v_{k+1}^{S}$, $\dots$, $v_{l}^{S}$. 
     For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
           % $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
     \begin{align*}
@@ -4151,18 +4146,6 @@ the $m$-th \textit{interface set}.
 % Note that this intersection is automatically a subcomplex of the boundary complex of the last simplex $T_{m}$.
 We call the enumeration a \emph{shelling} if each interface set $\Gamma_m$ is a triangulated manifold of dimension $n-1$. 
 
-\begin{remark}
-    We interpret a shelling as the construction of a triangulation 
-    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
-    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
-\end{remark}
-\begin{remark}
-    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
-    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
-    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
-\end{remark}
-
-
 The reason of our interest in shellable simplicial complexes is that they can be constructed via successive adhesion of simplices.
 The resulting succession of simplicial complexes consists of simplicial balls or spheres. 
 
@@ -4210,8 +4193,9 @@ The resulting succession of simplicial complexes consists of simplicial balls or
 We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations are shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
 
 \begin{example}\label{example:shell_simpl}
-    Any simplex $T$ (trivially) has a shelling. The boundary complex $\partial \calT(T)$ has a shelling:
-    in fact, any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
+    Any simplex $T$ (trivially) has a shelling, consisting only of $T$ itself. 
+	The boundary complex $\partial \calT(T)$ has a shelling:
+    any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
 \end{example}
 \begin{example}
     The standard triangulation of the $3$-dimensional cube by six tetrahedra, the Kuhn triangulation~\cite{kuhn1960some}, is shellable, as are its higher-dimensional generalizations.\footnote{We remark that Kuhn attributes this triangulation to Lefschetz~\cite{lefschetz2015introduction}.}
@@ -4243,14 +4227,15 @@ We now collect important examples of shellable triangulations. Essentially, in t
     Clearly, this is the case if the triangulation of the $2$-\disk\ contains two triangles. 
     Now suppose the induction claim is true when the triangulation includes at most $N$ triangles,
     and assume that $\calT$ includes $N+1$ triangles. 
-    There are at least two triangles with an edge on the boundary. 
+	As we travel along the boundary, we traverse along edges of at least two simplices, 
+	and therefore there are at least two triangles with an edge on the boundary. 
     Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
     Then there exists a triangle $T'$ that intersects $\partial M$ 
     in one edge and its opposite vertex.
-    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk.
+    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk. % TODO: why are those two disks?
     By the induction assumption, each of those components contains at least two triangles 
     that are good in the respective component. 
-    So each component has at least one triangle that is good in $\calT$. 
+    So each component has at least one triangle that is also good in $\calT$. 
     Hence $\calT$ contains two good triangles, which completes the induction step. 
     
     We conclude that whenever $\calT$ triangulates a $2$-\disk,
@@ -4297,7 +4282,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
 
 \begin{remark}
     Not all triangulable sets admit a triangulation that is shellable. 
-    Moreover, even if a set admits a shellable triangulation, not all of its triangulations are be shellable. For example, if we extend the non-shellable triangulation of the tetrahedron from~\cite[Example 8.9]{ziegler1995lectures} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
+    Moreover, even if a set admits a shellable triangulation, not all of its triangulations are shellable. For example, if we extend the non-shellable triangulation of the tetrahedron from~\cite[Example 8.9]{ziegler1995lectures} to a triangulation of a hypertetrahedron by suspending it from a new point $v_\star$, then the resulting new triangulation is non-shellable and coincides with the patch around $v_\star$.
     This demonstrates that patches around boundary simplices are not necessarily shellable when the space dimension $n$ is larger than three.
 \end{remark}
 \begin{remark}
@@ -4341,6 +4326,21 @@ A major structural feature of shellable simplicial complexes is that each time a
 
 
 
+\begin{remark}
+    We interpret a shelling as the construction of a triangulation 
+    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
+    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
+\end{remark}
+\begin{remark}
+    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
+    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
+    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
+\end{remark}
+
+
+
+
+
  
 
 
@@ -4362,6 +4362,30 @@ A major structural feature of shellable simplicial complexes is that each time a
 
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 \section{Reflections and Deformations on shellable stars}\label{section:extension}
 
 This section is devoted to geometric operations that are crucial for our main result in Section~\ref{section:poincarefriedrichs} below. 
@@ -4506,8 +4530,8 @@ and on the other hand, the bi-Lipschitz contraction from the local star onto the
 We give detailed estimates for the singular values of their Jacobians.
 
 \begin{proposition}\label{proposition:starreflection}
-    Let $\calT$ be an $n$-dimensional triangulation of an $n$-dimensional domain. 
-    Let $S \in \calT$ be a simplex of dimension $k < n$,
+    Let $\calT$ be a triangulation of an $n$-dimensional domain. 
+    Let $S \in \calT$ be an inner simplex of dimension $k < n$,
     let $T \in \patch_{\calT}(S)$ be of dimension $n$,
     and let 
     \begin{align*}
@@ -4525,51 +4549,62 @@ We give detailed estimates for the singular values of their Jacobians.
         \Xi_{1} : T \rightarrow U
     \end{align*}
     which is the identity along ${\Gamma_1} = T \cap U$. 
-    Its singular values $\sigma_1 \geq \dots \geq \sigma_n$ satisfy 
-    \begin{align*}
-        \sigma_1 &\leq ...
-        \\
-        \sigma_i &\leq ..., \quad 2 \leq i \leq n-1,
-        \\
-        \sigma_n &\leq ...
-    \end{align*}
-    and which satisfies the upper bounds 
+    At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
-        \matnorm{ \Jacobian\Xi_{1} }          \leq \Cfive{n}{k}(\calT),
+        \sigma_1 \leq \Cfive{n}{k}(\calT),
         \quad 
-        \matnorm{ \Jacobian\Xi_{1}^{-1} }     \leq \Csechs{n}{k}(\calT),
-        \\
+        \sigma_2,\dots,\sigma_n \leq \Cfiveprime{n}{k}(\calT),
+        \quad 
         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
+        \\
+        \sigma_n \leq \Csechs{n}{k}(\calT),
+        \quad 
+        \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Csechsprime{n}{k}(\calT),
         \quad 
         | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
     \end{gather*}
+%     and which satisfies the upper bounds 
+%     \begin{gather*}
+%         \matnorm{ \Jacobian\Xi_{1} }          \leq \Cfive{n}{k}(\calT),
+%         \quad 
+%         \matnorm{ \Jacobian\Xi_{1}^{-1} }     \leq \Csechs{n}{k}(\calT),
+%         \\
+%         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
+%         \quad 
+%         | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
+%     \end{gather*}
     \item 
     There exists a bi-Lipschitz mapping
     \begin{align*}
         \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U
     \end{align*}
     which is the identity along $\partial U \setminus \partial T$.
-    Its singular values $\sigma_1 \geq \dots \geq \sigma_n$ satisfy 
-    \begin{align*}
-        \sigma_1 &\leq ...
-        \\
-        \sigma_i &\leq ..., \quad 2 \leq i \leq n-1,
-        \\
-        \sigma_n &\leq ...
-    \end{align*}
-    and which satisfies the upper bounds 
+    At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
-        \matnorm{ \Jacobian\Xi_{2} }          \leq \Csieb{n}{k}(\calT),
+        \sigma_1 \leq \Csieb{n}{k}(\calT),
         \quad 
-        \matnorm{ \Jacobian\Xi_{2}^{-1} }     \leq \Cacht{n}{k}(\calT),
-        \\
+        \sigma_2,\dots,\sigma_n \leq \Csiebprime{n}{k}(\calT),
+        \quad 
         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
+        \\
+        \sigma_n \leq \Cacht{n}{k}(\calT),
+        \quad 
+        \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Cachtprime{n}{k}(\calT),
         \quad 
         | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT).
     \end{gather*}
+%     and which satisfies the upper bounds 
+%     \begin{gather*}
+%         \matnorm{ \Jacobian\Xi_{2} }          \leq \Csieb{n}{k}(\calT),
+%         \quad 
+%         \matnorm{ \Jacobian\Xi_{2}^{-1} }     \leq \Cacht{n}{k}(\calT),
+%         \\
+%         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
+%         \quad 
+%         | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT).
+%     \end{gather*}
     \end{enumerate}
 \end{proposition}
-\mwl{TODO: throughout this manuscript, all vector and operator norms should indicate the exponent.}
 \begin{proof}
     We derive the estimate in several steps. 
     In what follows, we use the notation $\hat z$ for the normalization of any vector $z \in \bbR^{n}$.
@@ -4601,7 +4636,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Moreover, $S$ is an inner subsimplex of that triangulation. 
         In particular, $\calS'$ is its own star around $S$.
         
-        \mwl{Check that $\calS'$ is a triangulation...}
+        % TODO Check that $\calS'$ is a triangulation...
         
         \item 
         As additional step, we introduce another simplicial complex $\calR'$ from $\calS'$ via barycentric subdivision of $S$.
@@ -4705,13 +4740,13 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         We compute the eigenvalues of the symmetric matrix $B^{\ast} B$. 
         Its square roots are the desired singular values of $B$:
-        \begin{align*}
-            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta)
+        \begin{align}
+            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta) \label{math:theta_max}
             ,
             \\
-            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta)
+            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) \label{math:theta_min}
             .
-        \end{align*}
+        \end{align}
         They are mutual reciprocals of each other and they monotonely increasing and decreasing, respectively, in $\tan(\beta)$.
         We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$,
         whereas all its other singular values equal $1$. 
@@ -4745,7 +4780,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         This establishes bounds on the singular values of the transformation. 
         We abbreviate 
-        \begin{align*}
+        \begin{align}\label{math:upper_bound_for_theta}
             B_{T} 
             := 
 %             \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) 
@@ -4756,7 +4791,7 @@ We give detailed estimates for the singular values of their Jacobians.
             + 
             (n-k) \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }            
             .
-        \end{align*}
+        \end{align}
         
         
         \item 
@@ -4903,17 +4938,23 @@ We give detailed estimates for the singular values of their Jacobians.
             \tan(\beta) = \frac{\vecnorm{ b_{z} }}{\vecnorm{ h_{z} }} \leq (k+1) \aspectratio(T).
         \end{align*}
         We conclude that 
-        \begin{gather*}
+        \begin{gather}
             \matnorm{ \Jacobian\Phi_{K} } 
             \leq 
             \frac 3 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
+			\leq 
+            1 + \frac{3}{2} (k+1) \aspectratio(T) 
+			\label{math:phi_max}
             ,
             \\
             \matnorm{ \Jacobian\Phi_{K}^{-1} } 
             \leq 
             \frac 3 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
+            \leq 
+            2 + 3 (k+1) \aspectratio(T) 
+			\label{math:phi_min}
             .
-        \end{gather*}
+        \end{gather}
         This finishes the discussion of the transformation $\Phi$.
         
         
@@ -5011,11 +5052,11 @@ We give detailed estimates for the singular values of their Jacobians.
         \item 
         We now describe the construction of a bi-Lipschitz mapping 
         \begin{align*}
-            \Psi : |\calR'| \rightarrow |\calK|.
+            \Psi : |\calR'| \rightarrow \underlying{\calK}.
         \end{align*}
         Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
         so they must contain an open ball around the origin. 
-        \mwl{Here we need a particular result. }
+        % TODO \mwl{Here we need to show that it is indeed a ball. It must be a domain triangulation.}
         Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
         and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
         We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
@@ -5084,6 +5125,8 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \frac{ \| h_K \| }{ \| h_{{G}} \| }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            = 
+            \frac{ \| x_K \| }{ \| x_{{G}} \| }
             \leq 
             \frac{ \| x_K \| }{ \| h_{{G}} \| }
             \leq 
@@ -5092,6 +5135,8 @@ We give detailed estimates for the singular values of their Jacobians.
             \qquad 
             \frac{ \| h_{{G}} \| }{ \| h_K \| }
             \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
+            = 
+            \frac{ \| x_{G} \| }{ \| x_{K} \| }
             \leq 
             \frac{ \| x_{G} \| }{ \| h_{K} \| }
             \leq 
@@ -5211,39 +5256,75 @@ We give detailed estimates for the singular values of their Jacobians.
             \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{align*}
-        
+        In summary, using that $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$, we find the upper bounds 
+        \begin{align*}
+            \matnorm{ \Jacobian\Psi(x) }
+            &\leq  
+            (k+1)B_{T}
+            \diameterratio(\calT)
+            \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \cdot 
+			\left( 
+                1 
+				+ 
+				(k+1) 
+				\left( 1 + B_{T} \right)
+				\aspectratio(\calT) 
+            \right)
+			,
+            \\
+            \matnorm{ \Jacobian\Psi(z)^{-1} }
+            &\leq  
+            (k+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+			\left( 
+                1 
+				+ 
+				(k+1) 
+				\left( 1 + B_{T} \right)
+				\aspectratio(\calT) 
+            \right)
+			,
+            \\
+            \det\Jacobian\Psi(x)
+            &\leq 
+            \left( 
+            (k+1)B_{T}
+            \diameterratio(\calT)
+            \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \right)^{n},
+            \\
+            \det\Jacobian\Psi^{-1}(x)
+            &\leq 
+            \left( 
+            (k+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \right)^{n}
+        \end{align*}
         We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz with respect to some essentially disjoint closed partitions over their respective domains.
-        It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
-        Rademacher's theorem then shows that both have essentially bounded weak Jacobians. 
-        
-        We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
-        We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
-        After application of a piecewise linear Lipschitz mapping, 
-        we can assume that $|\calK|$ is convex without loss of generality. 
-        Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-        \mwl{TODO: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
+        % It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
+        % Rademacher's theorem then shows that both have essentially bounded weak Jacobians. 
+        Every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $\underlying{\calK}$, since there exists a bi-Lipschitz transformation from $\underlying{\calK}$ onto the unit ball.
+        % We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+        % After application of a piecewise linear Lipschitz mapping, 
+        % we can assume that $\underlying{\calK}$ is convex without loss of generality. 
+        % Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $\underlying{\calK}$. 
+        % \mwl{TODO: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
         
         
         \item 
-        \mwl{Use interlacing inequalities.}
         We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
         It preserves the interface from $T$ onto $U$. 
         Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
-        % We briefly recapitulate why it is bi-Lipschitz.
-%         We show that every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $|\calK|$. 
-%         We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
-%         After application of a piecewise linear Lipschitz mapping, 
-%         we can assume that $|\calK|$ is convex without loss of generality. 
-%         Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $|\calK|$. 
-%         By an application of Rademacher's theorem, we conclude that $\calK$ is bi-Lipschitz. 
-        The combination of the previous estimates for $\Psi$ and $\Theta$,
-        as well as the upper bound $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$,
-        provide 
+        Combining the previous estimates for $\Psi$ and $\Theta$ with interlacing inequalities for the singular values of product matrices provides 
         \begin{align*}
-            \matnorm{ \Jacobian \Xi_{1} }
+            \sigma_1(x) = \matnorm{ \Jacobian \Xi_{1} }
             &\leq 
             \Cfive{n}{k}(\calT)
             :=
@@ -5260,8 +5341,18 @@ We give detailed estimates for the singular values of their Jacobians.
             \Big)            
             ,
             \\
-            \matnorm{ \Jacobian \Xi_{1}^{-1} }
-            &\leq  
+            \sigma_2(x), \dots, \sigma_n(x) 
+            &\leq 
+            \Cfiveprime{n}{k}(\calT)
+            :=
+            (k+1)B_{T}
+            \diameterratio(\calT)
+            \aspectratio(T) 
+			\cdot 
+			B_T
+            \\
+            \sigma_n(x)^{-1} = \matnorm{ \Jacobian \Xi_{1}^{-1} }
+            &\leq
             \Csechs{n}{k}(\calT)
             :=
             (k+1) 
@@ -5274,7 +5365,17 @@ We give detailed estimates for the singular values of their Jacobians.
                 (k+1) 
                 \left( 1 + B_{T} \right)
                 \aspectratio(\calT)
-            \Big)            
+            \Big)
+            \\
+            \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
+            &\leq 
+            \Csechsprime{n}{k}(\calT)
+            :=
+            (k+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+			B_T
             .
         \end{align*}
         We get the determinant estimates
@@ -5308,15 +5409,15 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
         Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in \underlying{\patch_{\calT}(S)}$. 
-        The combination of the previous estimates for $\Psi$ and $\Phi$ now lead to 
+        The combination of the previous estimates for $\Psi$ and $\Phi$ with standard interlacing inequalities now lead to 
         \begin{align*}
+            \sigma_1(x)
+            = 
             \matnorm{ \Jacobian \Xi_{2} }
             &\leq 
             \Csieb{n}{k}(\calT)
             :=
-            \frac 1 4
-            % \left( \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } \right)
-            \left( 4 + (k+1) \aspectratio(T) \right)
+            \left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
             \cdot 
             (k+1) 
             \aspectratio(\calT)
@@ -5329,13 +5430,23 @@ We give detailed estimates for the singular values of their Jacobians.
                 \aspectratio(\calT)
             \Big)            
             \\
+            \sigma_2(x), \dots, \sigma_n(x) 
+            &\leq 
+            \Csiebprime{n}{k}(\calT)
+            :=
+            (k+1)B_{T}
+            \diameterratio(\calT)
+            \aspectratio(T) 
+			\cdot 
+			\left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
+            \\
+            \sigma_n(x)^{-1}
+            = 
             \matnorm{ \Jacobian \Xi_{2}^{-1} }
             &\leq  
             \Cacht{n}{k}(\calT)
             :=
-            \frac 1 2
-            %\left( \sqrt{ 9 + (k+1)^2 \aspectratio(T)^2 } + \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } \right)
-            \left( 4 + (k+1) \aspectratio(T) \right)
+            \left( 2 + 3 (k+1) \aspectratio(T) \right)
             \cdot 
             (k+1) 
             \aspectratio(\calT)
@@ -5346,8 +5457,19 @@ We give detailed estimates for the singular values of their Jacobians.
                 \left( 1 + B_{T} \right)
                 \aspectratio(\calT)
             \Big)            
+            \\
+            \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
+            &\leq 
+            \Cachtprime{n}{k}(\calT)
+            :=
+            (k+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+			\left( 2 + 3 (k+1) \aspectratio(T) \right)
+            .
         \end{align*}
-        We get the determinant estimate 
+        We get the determinant estimates 
         \begin{align*}
             |\det(\Xi_{2})|
             &\leq 
@@ -5982,6 +6104,390 @@ MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, and 
 
 \bibliographystyle{acm_mod}
 \bibliography{library}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{proof}
+    We begin with the following preparatory observations. 
+    Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
+    We let $A_{T} \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
+    That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
+    Then the mapping 
+    \begin{align}
+        F_T(x) 
+        = 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x
+    \end{align}
+    maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
+    \begin{align}
+        F_T^{-1}(x) 
+        = 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
+        .
+    \end{align}
+    We analyze its Lipschitz properties.
+    % 
+    In what follows, $y \in \bbR^{n}$. 
+    On the one hand, 
+    we compute the Jacobian at any $x \in \mathring T$:
+    \begin{align*}
+        \Jacobian F_T(x) \cdot y
+        &= 
+        \frac{ \|x\| y - x \|x\|^{-1} x^t y }{\|x\|^2} 
+        \left( \vecone \cdot A_{T}^{-1} x \right)
+        + 
+        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} y \right)
+        \\&= 
+        \left( \Id - \|x\|^{-2} x \otimes x^t \right)
+        \frac{ 1 }{ \|x\| } 
+        \left( \vecone \cdot A_{T}^{-1} x \right)
+        + 
+        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        \left( \Id - \hat x \otimes \hat x^t \right) y
+        + 
+        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
+        .
+    \end{align*}
+    This is an orthogonal sum of two vectors. Its norm satisfies:
+\begin{align*}
+        \| \Jacobian F_T(x) \cdot y \|^{2}
+        &= 
+        \left| A_{T}^{-t} \vecone \cdot \hat x \right|^{2}
+        \| \left( \Id - \hat x \otimes \hat x^t \right) y \|^{2}
+        + 
+        \left| A_{T}^{-t} \vecone \cdot y \right|^{2} \| \hat x \|^{2}
+        .
+    \end{align*}
+    The Euclidean operator norm satisfies 
+    \begin{align*}
+        \| \Jacobian F_T(x) \| 
+        \leq 
+        \sqrt 2 \left\| A_{T}^{-t} \vecone \right\|_{2}
+        \leq 
+        \sqrt{2n} \cdot \sigma_{\max}(A_{T}^{-1}) 
+        .
+    \end{align*}
+    On the other hand, we can rewrite the Jacobian as:
+    \begin{align*}
+        \Jacobian F_T(x) \cdot y
+        &= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        \left( \hat x \otimes \hat x^t \right) y
+        + 
+        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x^{t}
+            -
+            \vecone^{t} A_{T}^{-1} 
+        \right) y
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+            -
+            A_{T}^{-t} \vecone
+        \right)^{t} y
+        .
+    \end{align*}
+    Its inverse is found via the Woodbury formula: 
+    % Its inverse is easily verified to be:
+    \begin{align*}
+        \Jacobian F_T(x)^{-1}
+        &= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+        \Id
+        - 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-2}
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+            -
+            A_{T}^{-t} \vecone
+        \right)^{t} 
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+        \left( 
+            \Id
+            - 
+            \hat x 
+            \left( 
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                \hat x
+                -
+                \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                A_{T}^{-t} \vecone
+            \right)^{t}
+        \right)
+        \\&= 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        \left( 
+            \Id
+            - 
+            \hat x 
+            \left( 
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                \hat x
+                -
+                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+                A_{T}^{-t} \vecone
+            \right)^{t}
+        \right)
+        \\&= 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        \left( 
+            \Id - \hat x \otimes \hat x^{t}
+            + 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \hat x \otimes \vecone^{t} A_{T}^{-1}
+        \right)
+        .
+    \end{align*}
+    The inverse acts via multiplication with $\left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}$ on the span of $\hat x$.
+    We notice the upper bound 
+    \begin{align*}
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        &= 
+        \| A_{T}^{-1} \hat x \|^{-1}_{1}
+        \\&\leq  
+        \| A_{T}^{-1} \hat x \|^{-1}_{2}
+        \leq 
+        \sigma_{\min}( A_{T}^{-1} )^{-1}
+        = 
+        \sigma_{\max}( A_{T} )
+        .
+    \end{align*}
+    This holds because $A_{T}^{-1} \hat x$ is in the positive quadrant.
+    %, and its scalar product with $\vecone$ is minimized when it is colinear with a coordinate axis.
+    If $y \in \bbR^{n}$ is orthogonal to $\hat x$, then 
+    \begin{align*}
+        \| \Jacobian F_T(x)^{-1} \cdot y \|^{2}
+        &\leq 
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left\| 
+%                 y
+%             \right\|^{2}
+%             +
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left| 
+%                 \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+%                 \vecone^{t} A_{T}^{-1} y 
+%             \right|^{2}
+%             \\&\leq 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+        \left\| 
+            y
+        \right\|^{2}
+        +
+        \frac{ 
+        \left| 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \vecone^{t} A_{T}^{-1} y 
+        \right|^{2}
+        }{
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{2}
+        }
+        .
+    \end{align*}
+    The operator norm of that inverse is:
+    \begin{align*}
+        \| \Jacobian F_T(x)^{-1} \|
+        \leq 
+        \sigma_{\max}( A_{T} )
+        \left( 1 + n \frac{ \sigma_{\max}(A_{T})^{2} }{ \sigma_{\min}(A_{T})^{2} } \right)^{\frac 1 2}
+        .
+    \end{align*}
+    Since the domain and codomain of $F_{T}$ are convex, 
+    this also implies bounds on the Lipschitz constants of $F_{T}$ and its inverse. 
+\color{red}
+    On the one hand, given $x, y \in T$, 
+    where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T(x) - F_T(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \\&\qquad 
+        \leq 
+        2\sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    On the one hand, given $x, y \in T$, 
+    where $\| x \|_{2} \leq \| y \|_{2}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T(x) - F_T(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \frac{\|y\|}{\|x\|}
+        +
+        \|A_{T}^{-1} y\|_1 \|y\|_{2}
+        \left| \frac{1}{\|x\|} - \frac{1}{\|y\|} \right|
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \frac{\|y\|}{\|x\|}
+        +
+        \|A_{T}^{-1} y\|_1 \|y\|_{2}
+        \left| \frac{ \|y\|_{2} - \|x\|_{2} }{\|x\|_{2} \|y\|_{2}} \right|
+        \\&\qquad 
+        \leq 
+        3 \sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    On the other hand, given $x, y \in F_T(T)$, 
+    where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|x\|_2 - \|y\|_2 \right|
+        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} }
+        +
+        \|y\|_2^{2}
+        \left| 
+        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} \| A_{T}^{-1} y \|_{1} }
+        \right|
+        \\&\qquad 
+        \leq 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{2} } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|x\|_2 - \|y\|_2 \right|
+        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{2} }
+        +
+        \|y\|_2^{2}
+        \left| 
+        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{2} \| A_{T}^{-1} y \|_{2} }
+        \right|
+        \\&\qquad 
+        \leq 
+        \left( 2 + \sqrt{n} \frac{\sigma_{\max}(A_{T}^{-1}) }{ \sigma_{\min}(A_{T}^{-1}) } \right) \sigma_{\min}(A_{T}^{-1})^{-1} 
+        \left\| x - y \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left( 2 + \sqrt{n} \kappa(A_{T}) \right) \sigma_{\max}(A_{T})
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    By convexity of the range of $F_T(T)$, 
+    we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
+    We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
+    \color{black}
+\end{proof}        
+
+
+
+
+
 
 \end{document}
     
