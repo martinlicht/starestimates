@@ -3,30 +3,34 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - how much redundancy is achievable?
 - do you have a preference for facet or face ? 
 
+- [x] opnorm and vecnorm
 - [x] replace the shape notation by C_ ...
 - [x] scalars: condense the discussion even further
 - [x] introduce combinatorial triangulations, use literature referals
 - [x] Poincare constants contain, by definition, the diameter itself. 
       That way, there is no need to force the constants into a better shape.
 - [x] When is the Jacobian introduced?
+- [x] We should use clarify face vs facet
+- [x] remove \Faces or use it all over the place 
+- [x] U_T
+- [x] retire the separation theorem for simplices with that halfplane 
+- [x] shape: reduce the shape constant discussion once everything else is in place
 - [x] sobolev section: check later that everything needed is there 
+- [ ] reflection: singular values listed in reflection section
+- [ ] numerics: create a spanning tree and start computing the scalar estimate 
+- [ ] final: complete the final estimate, use recursion 
+    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
+- [ ] should all triangulations be n dimensional ? 
+- [ ] after recursive estimates, write down the complete bound 
 - [ ] potentials section: sigma notation for potential operators, rewrite
 - [n] potentials section: additional constants notation for potential operators
 - [x] potentials section: adapt and unify notation/tex
-- [ ] reflection: singular values listed in reflection section
-- [x] shape: reduce the shape constant discussion once everything else is in place
-- [ ] numerics: create a spanning tree and start computing the scalar estimate 
-- [x] opnorm and vecnorm
-- [ ] final: complete the final estimate, use recursion 
-    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
-- [x] We should use clarify face vs facet
-- [ ] should all triangulations be n dimensional ? 
-- [ ] remove \Faces or use it all over the place 
-- [ ] U_T
-- [ ] after recursive estimates, write down the complete bound 
-- [ ] retire the separation theorem for simplices with that halfplane 
-- [ ] \mwl{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} \mwl{Compare with theorem earlier}
-- [ ] what approximation properties are needed ? How does the Bogovskii operator work?
+- [ ] potentials: what approximation properties are needed ? How does the Bogovskii operator work?
+- [ ] Synchronize indices shellability conditions
+      - Section~\ref{section:shellability}
+      - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},
+      - \ref{theorem:poincarefriedrichsestimate:exterior}, 
+      - \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.}
 
 
 Revision: 
@@ -34,20 +38,21 @@ Revision:
 - [X] title and abstract, macros 
 - [X] library + bib style 
 - [-] Introduction 
-- [X] Move ahead section on scalar potentials 
 - [X] Section 2: scalar potential on domains
 - [X] Section 3: triangulations (combinatorial)
 - [X] Section 3: triangulations (shape estimate)
 - [X] Section 4: scalar potential on triangulations     
-- [X] Move back section on shellable triangulations
 - [X] Section 5: review of vector calculus
 - [x] Section 6: potential operators 
-        unity notation, 
+      : unity notation, 
+      -----------
 - [x] Section 7: Shellable triangulations 
-- [x] Section 8: reflections and deformations : singular values! do we need combinatorial triangulation?
-- [x] Section 9: Final estimate               : apply singular values, make complete. Combine estimates. Add examples for curl
+- [x] Section 8: reflections and deformations 
+      : singular values! do we need combinatorial triangulation?
+- [x] Section 9: Final estimate
+      : apply singular values, make complete. Combine estimates. Add examples for curl
 - [x] Section 10: Computation
-- [x] outlook 
+- [X] Section 11: outlook 
 
 
 Further changes
