@@ -2667,7 +2667,12 @@ The exterior derivative \( \cartan \) is an operator that takes a \( k \)-form \
 to a \((k+1)\)-form \( \cartan\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
 Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
 \begin{gather*}
-    \omega = 
+    \omega 
+	= 
+    \sum_{ \sigma \in \Sigma(k,n) } 
+    \omega_{\sigma} \, 
+    \cartanx^{\sigma}
+	= 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \omega_{\sigma} \, 
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
@@ -2863,8 +2868,8 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $1 \leq p < \infty$. 
     Smooth forms are dense in $W^{p}\Lambda^{k}(\Omega)$.
     If $\Omega$ is convex, then $C^{\infty}_{c}\Lambda^{k}(\Omega)$ is dense in $W^{p}_{0}\Lambda^{k}(\Omega)$. 
-    \mwl{If $\Omega$ is convex and $u \in W^{p}\Lambda^{n}(\Omega)$ has average zero, 
-    then $u$ is the limit in $W^{p}\Lambda^{k}(\Omega)$ of smooth compactly supported $n$-forms with average zero.}
+    %\mwl{If $\Omega$ is convex and $u \in W^{p}\Lambda^{n}(\Omega)$ has average zero, 
+    %then $u$ is the limit in $W^{p}\Lambda^{k}(\Omega)$ of smooth compactly supported $n$-forms with average zero.}
 \end{lemma}
 \begin{proof}
     We notice $\mollifier_{\epsilon} \star u \in C^{\infty}\Lambda^{k}(\bbR^{n})$. 
@@ -2894,8 +2899,8 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
     Given any $t > 1$, by taking the convolution with $\mollifier_{\epsilon}$ for $\epsilon > 0$ small enough,
     we approximate $\varphi_{t}^{\ast} u$ through members of $C^{\infty}_{c}\Lambda^{k}(\Omega)$.
     The desired result follows. 
-    
-    Lastly, if $k = n$ and $u$ has average zero, then so do the $\varphi_{t}^{\ast} u$ and their mollifications with sufficiently msall radius. The proof is complete. 
+    % 
+    % Lastly, if $k = n$ and $u$ has average zero, then so do the $\varphi_{t}^{\ast} u$ and their mollifications with sufficiently msall radius. The proof is complete. 
 \end{proof}
 
 
@@ -3034,7 +3039,7 @@ We recall the radial integrals
 \end{align*}
 where $S_1 \subseteq \bbR^{n}$ stands for the unit sphere of dimension $n-1$. 
 We compute 
-\begin{align}
+\begin{align*}
     &
     \int_{\bbR^{n}} \sum_{\jeza=0}^{n-\mia} \tbinom{n-\mia}{\jeza} \frac{ \diam(\Omega)^{n-\jeza} }{n-\jeza} \chi_{B_{\diam(\Omega)}(0)}(z) |z|^{\jeza+1-n} \,dz
     \\&
@@ -3048,9 +3053,14 @@ We compute
     \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: A_{\Poinc}(n,\mia) \leq 2^{n-\mia}}
     \label{equation:A_Poinc}
     .
-\end{align}
-Here, $A_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ 
-and which is bounded by $2^{n-\mia}$. 
+\end{align*}
+% Here, $A_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
+Here we introduce the numerical constant 
+\begin{gather}\label{equation:A_Bogov}
+	A_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
+\end{gather}
+which depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
+
 In particular, the integral $\Poinc_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \Omega$. 
 So the convolution of $u$ is taken against an integrable function. 
 Young's convolution inequality now implies: 
@@ -3063,7 +3073,7 @@ Young's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Poinc}(n,\mia) \frac{ \vol_{n}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+    n A_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3074,7 +3084,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Poinc_{\mia} : L^{p}\Alt^{\mia}(\Omega) \rightarrow L^{p}\Alt^{\mia-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Poinc}(n,\mia) \vol(\Omega)^{-1} \vol_{n}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
+% Its operator norm is bounded by $n A_{\Poinc}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
 % 
 
 
@@ -3122,11 +3132,14 @@ Using once more the radial integrals discussed above, we compute
     %\\&
     =
     \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: A_{\Bogov}(n,\mia) \leq 2^{\mia-1}}
-    \label{equation:A_Bogov}
     .
 \end{align*}
-Here, $A_{\Bogov}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ 
-and which is bounded by $2^{\mia-1}$. 
+% Here, $A_{\Bogov}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
+Here we introduce the numerical constant 
+\begin{gather}\label{equation:A_Bogov}
+	A_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
+\end{gather}
+which depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
 In particular, the integral $\Bogov_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
 So the convolution of $u$ is taken against an integrable function. 
 Young's convolution inequality now implies: 
@@ -3139,7 +3152,7 @@ Young's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Bogov}(n,\mia) \frac{ \vol_{n}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+    n A_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3150,7 +3163,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Bogov_{\mia} : L^{p}\Alt^{\mia}(\Omega) \rightarrow L^{p}\Alt^{\mia-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Bogov}(n,\mia) \vol(\Omega)^{-1} \vol_{n}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
+% Its operator norm is bounded by $n A_{\Bogov}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
 Moreover, $\supp \Bogov_{\mia} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
 \\
@@ -3168,12 +3181,14 @@ leading to
 \begin{align*}
     \Poinc_{\mia} u(x) 
     &= 
-    \int_{\Omega} \int_{1}^\infty (t-1)^{\mia-1}t^{n-\mia} 
+    \vol(\Omega)^{-1}
+	\int_{\Omega} \int_{1}^\infty (t-1)^{\mia-1}t^{n-\mia} 
     \chi_{\Omega}\left(x+t(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
+    \vol(\Omega)^{-1}
+	\int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 For the Bogoski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
@@ -3181,12 +3196,15 @@ leading to
 \begin{align*}
     \Bogov_{\mia} u(x) 
     &= 
-    \int_{\Omega} \int_{1}^\infty (t-1)^{n-\mia}t^{\mia-1} 
+    \vol(\Omega)^{-1}
+	\int_{\Omega} \int_{1}^\infty (t-1)^{n-\mia}t^{\mia-1} 
     \chi_{\Omega}\left(y+t(x-y)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
-    - \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
+    - 
+	\vol(\Omega)^{-1}
+	\int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 % We first discuss the support properties of this operator. 
@@ -3210,11 +3228,13 @@ By definition,
 \begin{align*}
     \Poinc_{\mia} u(x) 
     =
-    \int_{\Omega} \Poinc_{\mia,a} u(x) \,da,
+    \vol(\Omega)^{-1}
+	\int_{\Omega} \Poinc_{\mia,a} u(x) \,da,
     \quad 
     \Bogov_{\mia} u(x) 
     =
-    \int_{\Omega} \Bogov_{\mia,a} u(x) \,da
+    \vol(\Omega)^{-1}
+	\int_{\Omega} \Bogov_{\mia,a} u(x) \,da
     .
 \end{align*}
 We study the interaction of these potential operator with the exterior derivative in more detail.
@@ -3295,8 +3315,9 @@ and apply the Poincar\'e potential operator to this result, which gives
 \end{align*}
 We add the exterior derivative of the potential and the potential of the exterior derivative.
 Taking into account cancellations, this gives the identity 
+\begingroup\allowdisplaybreaks
 \begin{align*}
-    &
+	&
     \cartan \Poinc_{\mia,a} u(x)
     +
     \Poinc_{\mia+1,a} \cartan u(x)
@@ -3345,22 +3366,19 @@ Taking into account cancellations, this gives the identity
     \left( u_{\sigma}(x) - 0^k u_{\sigma}(a) \right) \,\cartanx^{\sigma}
     .
 \end{align*}
+\endgroup
 We conclude that, 
 \begin{align*}
-    u(x) &= \cartan \Poinc_{0,a} u(x) - u(a)
+    u(x) &= \Poinc_{1,a} \cartan u(x) - u(a), \qquad k = 0,
     \\
     u(x) &= \cartan \Poinc_{\mia,a} u(x) + \Poinc_{\mia+1,a} \cartan u(x), \qquad 1 \leq \mia \leq n.
 \end{align*}
 In summary, after taking the average over $a \in \Omega$:
-\begin{align*}
-    u(x) &= \cartan \Poinc_{0} u(x) - \vol(\Omega)^{-1} \int_\Omega u(a)
+\begin{align}\label{math:hodgedecomposition:poinc}
+    u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a) \,da, \qquad k = 0,
     \\
     u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
-\end{align*}
-In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\mia} u = u$.
-
-
-
+\end{align}
 
 The discussion for the Bogovski\u{\i} operator is analogous. 
 Suppose that $u \in C^{\infty}\Alt^{\mia}(\bbR^n)$ with $\supp u \subseteq \overline\Omega$.
@@ -3488,12 +3506,19 @@ Taking into account cancellations, this gives the identity
     -u(x)
     .
 \end{align*}
-In summary, after taking the average over $a \in \Omega$:
-\begin{align*}\label{math:hodgedecomposition:bogov}
-    u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n.
+We conclude that 
+\begin{align*}
+    u(x) &= \cartan \Bogov_{\mia,a} u(x) + \Bogov_{\mia+1,a} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
+    \\
+    u(x) &= \cartan \Bogov_{n,a} u(x) - \left( \int_{\Omega} u(a) \,da\right) \delta_a, \qquad k = n.
 \end{align*}
-In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\mia} u = u$.
-We remark that the apparent structural difference between \eqref{math:hodgedecomposition:poinc} and \eqref{math:hodgedecomposition:bogov} is due to our assumption that $u$ extends to a smooth function with support within $\overline\Omega$. This structural difference will disappear soon when we discuss operators between Sobolev spaces of differential forms. 
+Here, $\delta_a$ denotes the Dirac delta at $a$. 
+In summary, after taking the average over $a \in \Omega$:
+\begin{align}\label{math:hodgedecomposition:bogov}
+    u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
+    \\
+    u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \,da\right) \chi_{\Omega}, \qquad k = n.
+\end{align}
 
 
 \subsection{Operator norms as bounds for the Poincar\'e--Friedrichs constants}
@@ -3520,39 +3545,62 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \begin{align*}
         \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Poinc}(n,\mia) \frac{ \vol_{n}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+        n A_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
         \diam(\Omega)
         \| u \|_{L^{p}(\Omega)}
         ,
         \\
         \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Bogov}(n,\mia) \frac{ \vol_{n}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+        n A_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
         \diam(\Omega)
         \| u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-    If $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $1 \leq \mia \leq n$ and $\cartan u = 0$, 
-    then $\Poinc_{\mia} u \in W^{p}    \Alt^{\mia  }(\Omega)$ with $u = \cartan \Poinc_{\mia} u$.
-    If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$ and $\int_\Omega u = 0$ in the case $k=n$, 
-    then $\Bogov_{\mia} u \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $u = \cartan \Bogov_{\mia} u$.
+	For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
+	\begin{align}
+		u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a)
+		\label{math:theorem:PF_EC:poincare:zero}
+		\\
+		u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
+		\label{math:theorem:PF_EC:poincare:k}
+	\end{align}
+	In particular, if $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
-    \mwl{
-    If $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
-    If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
-    }
+	For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds that 
+	\begin{align}
+		u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
+		\label{math:theorem:PF_EC:bogov:k}
+		\\
+		u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \,da\right) \chi_{\Omega}.
+		\label{math:theorem:PF_EC:bogov:n}
+	\end{align}
+	In particular, if $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
+    
+    % If $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $1 \leq \mia \leq n$ and $\cartan u = 0$, 
+    % then $\Poinc_{\mia} u \in W^{p}    \Alt^{\mia  }(\Omega)$ with $u = \cartan \Poinc_{\mia} u$.
+    % If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$ and $\int_\Omega u = 0$ in the case $k=n$, 
+    % then $\Bogov_{\mia} u \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $u = \cartan \Bogov_{\mia} u$.
+    % In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\mia} u = u$.
+	% In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\mia} u = u$.
+
 \end{theorem}
 
 % \todo{MV: Do $\Poinc_{\mia}$ and $\Bogov_{\mia}$ still map piecewise polynomials to piecewise polynomials? Like Raviart--Thomas and N\'ed\'elec spaces to Raviart--Thomas and N\'ed\'elec spaces??}\mwl{No, they do not respect any piecewise structure.}
 
 \begin{proof}
-    It suffices to discuss the case $1 \leq p < \infty$, because the domain is bounded 
-    and taking the limit will then imply the inequality with $p = \infty$. 
-    The potential operators are linear and satisfy the stated bounds over $C^{\infty}_{c}\Alt^{\mia}(\Omega)$,
-    which is a dense subspace of $L^{p}\Alt^{\mia}(\Omega)$. 
-
-    Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$ and $\cartan u = 0$. 
-    We write $w := \Poinc_{\mia  } u$. 
+    Consider the case $1 \leq p < \infty$.
+	%
+	Because the domain is bounded, 
+	the subspaces $C^{\infty}_{c}\Alt^{\mia}(\Omega)$ are dense in $L^{p}\Alt^{\mia}(\Omega)$,
+	and so the stated operator norm bounds follow by an approximation argument. 
+	% 
+	Taking the limit on both sides of equation then implies the inequality with $p = \infty$
+	because the $L^{\infty}$ norm is the limit of the Lebesgue norms as $p$ goes to infinity. 
+	
+	
+	Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$. 
+    We write $\zeta := \Poinc_{\mia  } u$. 
     There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}_{c}\Alt^{n-\mia-1}(\Omega)$, we verify 
     \begin{align*}
@@ -3571,13 +3619,57 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     By the continuity of bounded linear functionals, we find 
     \begin{align*}
         \int_{\Omega} v \wedge u 
+		-
+		\int_{\Omega} v \wedge \Poinc_{\mia+1} \cartan u 
         &=
         (-1)^{\mia(n-\mia)+1}
-        \int_{\Omega} \cartan v \wedge \Poinc_{\mia  } u_{i}
+        \int_{\Omega} \cartan v \wedge \Poinc_{\mia  } u 
         .
     \end{align*}
-    By definition, $w \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
-    
+    By definition, $\zeta \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Poinc_{\mia+1} \cartan u$.
+	This shows \eqref{math:theorem:PF_EC:poincare:k}, and \eqref{math:theorem:PF_EC:poincare:zero} follows by an approximation argument.
+	
+	
+	
+	Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$. 
+    We write $\ := \Bogov_{\mia} u$. 
+    There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
+    For any test form $v \in C^{\infty}\Alt^{n-\mia-1}(\Omega)$, 
+    which is the restriction of some member of $C^{\infty}\Alt^{n-\mia-1}(\bbR^{n})$, 
+    it holds that 
+    \begin{align*}
+        \int_{\Omega} v \wedge u_{i} 
+        &=
+        \int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u_{i}
+        +
+        \int_{\Omega} v \wedge \cartan \Bogov_{\mia  } u_{i}
+        \\&=
+        \int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u_{i}
+        +
+        (-1)^{\mia(n-\mia)+1}
+        \int_{\Omega} \cartan v \wedge \Bogov_{\mia  } u_{i}
+        .
+    \end{align*}
+    By the continuity of bounded linear functionals, we find 
+    \begin{align*}
+        \int_{\Omega} v \wedge u 
+        -
+		\int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u
+        &=
+        (-1)^{\mia(n-\mia)+1}
+        \int_{\Omega} \cartan v \wedge \Bogov_{\mia  } u 
+        .
+    \end{align*}
+    By definition, $\zeta \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Bogov_{\mia+1} \cartan u$.
+    This shows \eqref{math:theorem:PF_EC:bogov:k}, and \eqref{math:theorem:PF_EC:bogov:n} follows by an approximation argument.
+	
+	Everything else is now apparent, and the proof is complete. 
+\begin{comment}
+    It suffices to discuss the case $1 \leq p < \infty$, because the domain is bounded 
+    and taking the limit will then imply the inequality with $p = \infty$. 
+    The potential operators are linear and satisfy the stated bounds over $C^{\infty}_{c}\Alt^{\mia}(\Omega)$,
+    which is a dense subspace of $L^{p}\Alt^{\mia}(\Omega)$. 
+
     \color{blue}
     Let $u \in W^{p}_{ }\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$ and set $w = \Poinc_{\mia} \cartan u$.
     There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
@@ -3602,36 +3694,6 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \color{black}
     
     
-    Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$. 
-    We write $w := \Bogov_{\mia} u$. 
-    There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
-    For any test form $v \in C^{\infty}\Alt^{n-\mia-1}(\Omega)$, 
-    which is the restriction of some member of $C^{\infty}\Alt^{n-\mia-1}(\bbR^{n})$, 
-    it holds that 
-    \begin{align*}
-        \int_{\Omega} v \wedge u_{i} 
-        &=
-        \int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u_{i}
-        +
-        \int_{\Omega} v \wedge \cartan \Bogov_{\mia  } u_{i}
-        \\&=
-        \int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u_{i}
-        +
-        (-1)^{\mia(n-\mia)+1}
-        \int_{\Omega} \cartan v \wedge \Bogov_{\mia  } u_{i}
-        .
-    \end{align*}
-    By the continuity of bounded linear functionals, we find 
-    \begin{align*}
-        \int_{\Omega} v \wedge u 
-        &=
-        (-1)^{\mia(n-\mia)+1}
-        \int_{\Omega} \cartan v \wedge \Bogov_{\mia  } u_{i}
-        .
-    \end{align*}
-    By definition, $w \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
-    This completes the proof. 
-    
     \color{blue}
     Let $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$ and set $w = \Bogov_{\mia} \cartan u$.
     There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
@@ -3654,9 +3716,8 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \end{align*}
     By definition, $w \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan w = u$.
     \color{black}
+\end{comment}
 \end{proof}
-
-% DONE: Density of C infty mit oder ohne c. 
 
 % \begin{remark}
 %     The operator norm bounds for the Poincar\'e operator are decreasing in the form degree,
@@ -3679,7 +3740,7 @@ we have the following improved estimate.
         % \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
         % .
     % \end{align*}
-	For each $\bfu \in \bfW^{p}(\divergence,\Omega)$ there exists $\bfw \in \bfW^{p}(\divergence,\Omega)$ with $\divergence \bfw = \divergence \bfu$ and 
+	For each $\bfu \in \bfW^{2}(\divergence,\Omega)$ there exists $\bfw \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfw = \divergence \bfu$ and 
     \begin{align*}
         \| \bfw \|_{L^{2}(\Omega)} 
         \leq 
@@ -3692,7 +3753,7 @@ we have the following improved estimate.
     The space $W^{1,2}_{0}(\Omega)$ is the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
     Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
     with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
-    The adjoint is the closed densely-defined linear operator $\bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
+    The adjoint is the closed densely-defined linear operator $-\divergence : \bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
     which has the same smallest singular value. 
 \end{proof}
 
@@ -3964,10 +4025,10 @@ we gather some results that are hard to find in the literature.
     Each $l$-dimensional simplex $T \in \calS$ that contains $S$ 
     has vertices $v_0$, $v_1$, $\dots$, $v_k$, $v_{k+1}^{S}$, $\dots$, $v_{l}^{S}$. 
     For any such simplex, we introduce a decomposition $T_{0}, \dots, T_{k}$, where each $T_{i}$ has vertices 
-          % $v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}$.
-    \begin{align*}
-        v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}. 
-    \end{align*}
+    $v_0$, $\dots$, $v_{i-1}$, $z_{S}$, $v_{i+1}$, $\dots$, $v_k$, $v_{k+1}^{S}$, $\dots$, $v_{l}^{S}$.
+    % \begin{align*}
+        % v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}. 
+    % \end{align*}
     The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
     that triangulates the same underlying set as $\calS$.
     Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
@@ -3990,7 +4051,8 @@ we gather some results that are hard to find in the literature.
     If $V$ is a boundary vertex of $\calT$, then it is an inner vertex of $\calT'$,
     and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
     We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. 
-    The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere. 
+    The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere,
+	by the topological Sch\"onfliess theorem. 
     It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
     Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
     
@@ -4059,7 +4121,7 @@ we gather some results that are hard to find in the literature.
     %     \overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|
     %     .
     % \end{align*}
-    % Necessarily, this homeomorphism maps the boundary of $\overline{B_{\delta}(z)} \cap |\calT|$, which contains $z$, onto the unit sphere. Since the image of $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi'$ is still homeomorphic to a disk of dimension $n-1$, so must be the image of $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ under $\phi'$.
+    % Necessarily, this homeomorphism maps the boundary of $\overline{B_{\delta}(z)} \cap \underlying{\calT}$, which contains $z$, onto the unit sphere. Since the image of $\overline{ B_{\delta}(z) } \cap |\partial\patch_{\calT}(S)|$ along $\phi'$ is still homeomorphic to a disk of dimension $n-1$, so must be the image of $S_{\delta}(z) \cap |\patch_{\calT}(S)|$ under $\phi'$.
     % But that just means that $\carapace(S)$ triangulates a topological ball of dimension $n-1$. 
     \end{enumerate}
     All relevant results are proven. 
@@ -4190,6 +4252,17 @@ The resulting succession of simplicial complexes consists of simplicial balls or
 \end{proof}
 
 
+\begin{remark}
+    We interpret a shelling as the construction of a triangulation 
+    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
+    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
+\end{remark}
+\begin{remark}
+    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
+    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
+    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
+\end{remark}
+
 We now collect important examples of shellable triangulations. Essentially, in two space dimensions, interesting triangulations are shellable, but starting from three space dimensions, non-shellable situations can arise. Our main interest are local patches (stars) within triangulations: these are shellable up to three space dimensions, but not necessarily beyond. 
 
 \begin{example}\label{example:shell_simpl}
@@ -4216,7 +4289,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
     So it remains to show that any triangulation $\calT$ of the two-dimensional \disk\ is shellable. 
     We will construct the shelling in reverse. 
     
-    Write $M = |\calT|$. 
+    Write $M = \underlying{\calT}$. 
     There is nothing to show if $\calT$ contains only one triangle. 
     We call a triangle $T \in \calT$ \emph{good in $\calT$} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
     Hence a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
@@ -4326,16 +4399,6 @@ A major structural feature of shellable simplicial complexes is that each time a
 
 
 
-\begin{remark}
-    We interpret a shelling as the construction of a triangulation 
-    by successively attaching simplices such that the intermediate triangulations are well-behaved. 
-    Conversely, the reverse enumeration describes a successive decomposition of the triangulation, hence the name ``shelling''.
-\end{remark}
-\begin{remark}
-    Whether a simplicial complex is shellable can be checked, in principle, simply by trying out all the possible enumerations.
-    That we cannot do much better than this is captured in the result that testing for shellability is NP-complete~\cite{goaoc2019shellability}:
-    this complexity result is even true if we merely consider simplicial complexes of dimension two embedded in some Euclidean space.
-\end{remark}
 
 
 
@@ -4535,7 +4598,7 @@ We give detailed estimates for the singular values of their Jacobians.
     let $T \in \patch_{\calT}(S)$ be of dimension $n$,
     and let 
     \begin{align*}
-        U := \overline{ |\patch_{\calT}(S)| \setminus T },
+        U := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
         \qquad 
         {\Gamma_1} := U \cap T,
         \qquad 
@@ -4648,7 +4711,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Lastly, we introduce one more simplicial complex $\calK$ obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
         
         \item 
-        We introduce a new mapping $\Theta : |\calR| \rightarrow |\calR^c|$ between the underlying sets as follows.
+        We introduce a new mapping $\Theta : \underlying{\calR} \rightarrow \underlying{\calR^c}$ between the underlying sets as follows.
         Let $K \in \calR$ be an $n$-simplex and $K' \in \calR^{c}$ be constructed from $K$.
         We let $A_{K} : \Delta^{n} \rightarrow K$ and $A_{K'} : \Delta^{n} \rightarrow K'$
         be affine reference transformations
@@ -5052,7 +5115,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \item 
         We now describe the construction of a bi-Lipschitz mapping 
         \begin{align*}
-            \Psi : |\calR'| \rightarrow \underlying{\calK}.
+            \Psi : \underlying{\calR'} \rightarrow \underlying{\calK}.
         \end{align*}
         Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
         so they must contain an open ball around the origin. 
@@ -5588,7 +5651,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
         C_{{\PF},k,\Omega,p} 
         = 
         n A_{\Poinc}(n,k+1) 
-        \vol_{n}(B_1(0)) 
+        \vol_{}(B_1(0)) 
         \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
         \diam(\Omega)
         .
@@ -5596,7 +5659,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \end{lemma}
 \begin{proof}
     This follows from the discussion in Section~\ref{section:potentialoperator}.
-    This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{n}(B_1(0)) \diam(\Omega)^{n}$.
+    This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
     \mwl{check final form of result}
 \end{proof}
 
@@ -5624,7 +5687,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
         2^{\frac n p}
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (\ell+1)/n! } 
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T)^{k}
         \diam(T)
@@ -5655,11 +5718,11 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         \| \tilde w \|_{L^{p}(\tilde U)}
         &\leq 
-        n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_2(0)) }{ \vol(\tilde U) } 
+        n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\tilde U) } 
         2
         \| \tilde g \|_{L^{p}(\tilde U)}
         \\&\leq 
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{n}(B_1(0)) }{ (l+1)/n! } 
+        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
         \| \tilde g \|_{L^{p}(\tilde U)}
         .
     \end{align*}

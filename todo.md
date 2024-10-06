@@ -16,23 +16,22 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] retire the separation theorem for simplices with that halfplane 
 - [x] shape: reduce the shape constant discussion once everything else is in place
 - [x] sobolev section: check later that everything needed is there 
-- [ ] reflection: singular values listed in reflection section
+- [x] reflection: singular values listed in reflection section
+- [x] should all triangulations be n dimensional ? No
+- [x] mat and vec norms 
 - [ ] numerics: create a spanning tree and start computing the scalar estimate 
-- [ ] final: complete the final estimate, use recursion 
-    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
-- [ ] should all triangulations be n dimensional ? 
 - [ ] after recursive estimates, write down the complete bound 
 - [ ] potentials section: sigma notation for potential operators, rewrite
 - [n] potentials section: additional constants notation for potential operators
 - [x] potentials section: adapt and unify notation/tex
-- [ ] potentials: what approximation properties are needed ? How does the Bogovskii operator work?
-- [ ] mat and vec norms 
+- [ ] final: complete the final estimate, use recursion 
+    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
 - [ ] Synchronize indices shellability conditions
       - Section~\ref{section:shellability}
       - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},
       - \ref{theorem:poincarefriedrichsestimate:exterior}, 
       - \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.}
-
+- ( ) if we cut a simplicial ball along a single line, is the result a ball?
 
 Revision: 
 - [X] header
@@ -45,10 +44,10 @@ Revision:
 - [X] Section 4: scalar potential on triangulations     
 - [X] Section 5: review of vector calculus
 - [x] Section 6: potential operators 
-      : unity notation, 
+      : write out the asymptotic argument, unity notation, 
       -----------
-- [x] Section 7: Shellable triangulations 
-- [x] Section 8: reflections and deformations 
+- [X] Section 7: Shellable triangulations 
+- [X] Section 8: reflections and deformations 
       : singular values! do we need combinatorial triangulation?
 - [x] Section 9: Final estimate
       : apply singular values, make complete. Combine estimates. Add examples for curl
