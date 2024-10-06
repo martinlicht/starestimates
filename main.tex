@@ -1264,10 +1264,10 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
 
 \begin{remark}
     The ratio $\aspectratio(T)$ measures the ``shape quality'' of an $n$-dimensional simplex $T$ and is instance of a so-called \emph{shape measure}.
-	For example, the reference triangle has aspect shape measure $1$ and the reference tetrahedron has aspect shape measure $\sqrt{3/2}$. 
-	Numerous alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices (see~\cite[p.61, Definition 5.1]{braess2001finite}, 
-	\cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here.
-	\cite[Definition~11.2]{ern2021finite}). 
+    For example, the reference triangle has aspect shape measure $1$ and the reference tetrahedron has aspect shape measure $\sqrt{3/2}$. 
+    Numerous alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices (see~\cite[p.61, Definition 5.1]{braess2001finite}, 
+    \cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here.
+    \cite[Definition~11.2]{ern2021finite}). 
 \end{remark}
 
 We gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
@@ -1290,7 +1290,7 @@ We gather a few relationships between geometric and algebraic entities and compa
 \end{lemma}
 \begin{proof}
     Let $\varphi : \Delta^{n} \rightarrow T$ be an affine transformation. 
-	We abbreviate $M := \Jacobian\phi$ for its Jacobian. 
+    We abbreviate $M := \Jacobian\phi$ for its Jacobian. 
     We begin with observing that the largest $\ell^{2}$-norm of any column of $M$,
     which here denote by $c_{\max}(M)$, 
     equals the maximum of the quotient $\| M x \|_{\ell^{2}} / \| x \|_{\ell^{1}}$ over all non-zero $x \in \bbR^{n}$. 
@@ -1612,9 +1612,9 @@ This indicator quantifies how much reflection across the shared face distorts th
 
 \begin{remark}
     While we will utilize $\diameterratio(\calT)$ at numerous places throughout the manuscript, 
-	$\volumeratio(\calT)$ and $\reflectionestimate(\calT)$ will only be used throughout Section~\ref{section:gradient},
-	the following section.  
-	Lemma~\ref{lemma:volumecomparison} obviously shows that $\volumeratio(\calT)$ of~\eqref{math:volumeratio} is controlled by the shape measure. In a face-connected triangulation where we have an upper bound for the number of simplices sharing a vertex, 
+    $\volumeratio(\calT)$ and $\reflectionestimate(\calT)$ will only be used throughout Section~\ref{section:gradient},
+    the following section.  
+    Lemma~\ref{lemma:volumecomparison} obviously shows that $\volumeratio(\calT)$ of~\eqref{math:volumeratio} is controlled by the shape measure. In a face-connected triangulation where we have an upper bound for the number of simplices sharing a vertex, 
     this Lemma also allows, at least in principle, control of $\diameterratio(\calT)$ of~\eqref{math:diameterratio}.
 \end{remark}
 
@@ -2668,11 +2668,11 @@ to a \((k+1)\)-form \( \cartan\omega \in C^{\infty}\Alt^{k+1}(\Omega) \).
 Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
 \begin{gather*}
     \omega 
-	= 
+    = 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \omega_{\sigma} \, 
     \cartanx^{\sigma}
-	= 
+    = 
     \sum_{ \sigma \in \Sigma(k,n) } 
     \omega_{\sigma} \, 
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
@@ -3056,7 +3056,7 @@ We compute
 % Here, $A_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 Here we introduce the numerical constant 
 \begin{gather}\label{equation:A_Poinc}
-	A_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
+    A_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 
@@ -3136,7 +3136,7 @@ Using once more the radial integrals discussed above, we compute
 % Here, $A_{\Bogov}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
 Here we introduce the numerical constant 
 \begin{gather}\label{equation:A_Bogov}
-	A_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
+    A_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
 In particular, the integral $\Bogov_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
@@ -3181,13 +3181,13 @@ leading to
     \Poinc_{\mia} u(x) 
     &= 
     \vol(\Omega)^{-1}
-	\int_{\Omega} \int_{1}^\infty (t-1)^{\mia-1}t^{n-\mia} 
+    \int_{\Omega} \int_{1}^\infty (t-1)^{\mia-1}t^{n-\mia} 
     \chi_{\Omega}\left(x+t(y-x)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
     \vol(\Omega)^{-1}
-	\int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
+    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 For the Bogoski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
@@ -3196,14 +3196,14 @@ leading to
     \Bogov_{\mia} u(x) 
     &= 
     \vol(\Omega)^{-1}
-	\int_{\Omega} \int_{1}^\infty (t-1)^{n-\mia}t^{\mia-1} 
+    \int_{\Omega} \int_{1}^\infty (t-1)^{n-\mia}t^{\mia-1} 
     \chi_{\Omega}\left(y+t(x-y)\right) 
     (x-y)\lrcorner u(y) \,dt\,dy 
     \\
     &=
     - 
-	\vol(\Omega)^{-1}
-	\int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
+    \vol(\Omega)^{-1}
+    \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
 % We first discuss the support properties of this operator. 
@@ -3228,12 +3228,12 @@ By definition,
     \Poinc_{\mia} u(x) 
     =
     \vol(\Omega)^{-1}
-	\int_{\Omega} \Poinc_{\mia,a} u(x) \,da,
+    \int_{\Omega} \Poinc_{\mia,a} u(x) \,da,
     \quad 
     \Bogov_{\mia} u(x) 
     =
     \vol(\Omega)^{-1}
-	\int_{\Omega} \Bogov_{\mia,a} u(x) \,da
+    \int_{\Omega} \Bogov_{\mia,a} u(x) \,da
     .
 \end{align*}
 We study the interaction of these potential operator with the exterior derivative in more detail.
@@ -3250,7 +3250,7 @@ We rewrite the Poincar\'e potential,
 \begin{align*}
     \Poinc_{\mia,a} u(x) 
     &= 
-    (x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    (x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt 
     \\&
     = 
     (x-a)\lrcorner 
@@ -3280,7 +3280,7 @@ and compute its exterior derivative:
     .
 \end{align*}
 We write the exterior derivative of $u$ as 
-\begin{align*}
+\begin{align}\label{math:exteriorderivative_of_u_in_hodgediscussion}
     \cartan u(x)
     =
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
@@ -3289,7 +3289,7 @@ We write the exterior derivative of $u$ as
     \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }}
     \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
     ,
-\end{align*}
+\end{align}
 and apply the Poincar\'e potential operator to this result, which gives 
 \begin{align*}
     \Poinc_{\mia+1,a} \cartan u(x)
@@ -3318,7 +3318,7 @@ We add the exterior derivative of the potential and the potential of the exterio
 Taking into account cancellations, this gives the identity 
 \begingroup\allowdisplaybreaks
 \begin{align*}
-	&
+    &
     \cartan \Poinc_{\mia,a} u(x)
     +
     \Poinc_{\mia+1,a} \cartan u(x)
@@ -3388,7 +3388,7 @@ We rewrite the Bogovski\u{\i} potential,
     \minus 
     \Bogov_{\mia,a} u(x) 
     &= 
-    (x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da\;
+    (x-a)\lrcorner \int_{1}^\infty t^{\mia-1} u\left(a+t(x-a)\right)\,dt 
     \\&
     = 
     (x-a)\lrcorner 
@@ -3402,7 +3402,9 @@ We rewrite the Bogovski\u{\i} potential,
     t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} \,(x-a)_{\sigma(i) } \,\cartanx^{\sigma-\sigma(i)} \,dt 
     .
 \end{align*}
-and compute its exterior derivative:
+We want to take its exterior derivative, but we can generally only do that in the distributional sense. 
+Away from the pivot point $a$, the form $\Bogov_{\mia,a} u(x)$ is differentiable in $x$, 
+and so we compute its exterior derivative over $\Omega \setminus \{a\}$:
 \begin{align*}
     \minus 
     \cartan \Bogov_{\mia,a} u(x) 
@@ -3418,17 +3420,99 @@ and compute its exterior derivative:
     t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
     .
 \end{align*}
-We write the exterior derivative of $u$ as 
+The derivative of $\Bogov_{\mia,a} u$ over the whole domain, which is what we need, can only be taken in the sense of distributions. 
+Let $\phi \in C^{\infty}\Alt^{n-\mia}(\Omega)$ be smooth and compactly supported over $\Omega$. 
+We let $\epsilon > 0$ and calculate 
 \begin{align*}
-    \cartan u(x)
+    (-1)^{n(k-1)} % deg B u x deg phi = (k-1)(n-k) = nk-n-kk + k = nk - n = n(k-1)
+    \int_{ \Omega \setminus B_\epsilon(a) }
+    \Bogov_{\mia,a} u(x) \wedge \cartan \phi 
     =
-    \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
-    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} \,dt 
-    =
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }}
-    \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
+    \int_{ S_\epsilon(a) }
+    \trace_{S_\epsilon(a)}{ \Bogov_{\mia,a} u(x) \wedge \phi } 
+    -
+    \int_{ \Omega \setminus B_\epsilon(a) }
+    \cartan \Bogov_{\mia,a} u(x) \wedge \phi 
     ,
 \end{align*}
+where $\trace_{S_{\epsilon}(a)}$ denotes the trace onto the sphere $S_{\epsilon}(a)$. 
+In the limit as $\epsilon$ goes to zero, the two integrals over $\Omega \setminus B_\epsilon(a)$ in the above equation converge to the integrals of the respective integrands over $\Omega \setminus \{a\}$. 
+To understand the derivative of $\Bogov_{\mia,a} u$ over the domain $\Omega$, 
+we study the remaining surface integral. 
+We apply several substitutions:
+\begin{align*}
+    &\int_{ S_\epsilon(a) }
+    \trace_{S_\epsilon(a)}{ \Bogov_{\mia,a} u(x) \wedge \phi(x) } 
+    \\&\quad 
+    =
+    % x = a + e n = a - e a + e a + e n = e ( a + n ) + (1-e) a
+    \epsilon^{n-1}
+    \int_{ S_1(a) }
+    \trace_{S_1(a)}{ \Bogov_{\mia,a} u( \epsilon x + a - \epsilon a ) \wedge \phi( \epsilon x + a - \epsilon a ) }
+    \\&\quad 
+    =
+    \epsilon^{n-1}
+    \int_{ S_1(a) }
+    \int_{1}^\infty 
+    \trace_{S_1(a)}{ 
+        \epsilon t^{\mia-1} (x-a)\lrcorner u\left( a + \epsilon t( x - a )\right) 
+        \wedge \phi( \epsilon (x-a) + a ) 
+    }
+    \,dt 
+    \\&\quad 
+    =
+    % s = \epsilon t 
+    \epsilon^{n-1}
+    \int_{ S_1(a) }
+    \int_{\epsilon}^\infty 
+    \trace_{S_1(a)}{ 
+        \epsilon^{-\mia+1} s^{\mia-1} (x-a)\lrcorner u\left( a + s( x - a )\right) 
+        \wedge \phi( \epsilon (x-a) + a ) 
+    }
+    \,ds 
+    \\&\quad 
+    =
+    % s = \epsilon t 
+    \epsilon^{n-\mia}
+    \int_{ S_1(a) }
+    \int_{\epsilon}^\infty 
+    \trace_{S_1(a)}{ 
+        s^{\mia-1} (x-a)\lrcorner u\left( a + s( x - a )\right) 
+        \wedge \phi( \epsilon (x-a) + a ) 
+    }
+    \,ds 
+    .
+\end{align*}
+We make a case distinction. When $k<n$, then the double integral itself is bounded uniformly in $\epsilon > 0$ and so the last expression vanishes as $\epsilon$ goes to zero. When instead $k=n$, then the last expression equals 
+\begin{align*}
+	& 
+    \int_{ S_1(a) }
+    \int_{\epsilon}^\infty 
+    \trace_{S_1(a)}{ 
+        s^{n-1} (x-a)\lrcorner u\left( a + s( x - a )\right) 
+        \wedge \phi( \epsilon (x-a) + a ) 
+    }
+    \,ds 
+    \\&\quad 
+	=
+	\int_{\bbR^{n} \setminus B_{\epsilon}(0)}
+	    u\left( y \right) 
+        \wedge \phi\left( \epsilon \frac{y-a}{\|y-a\|} + a \right) 
+    \,dy 
+    .
+\end{align*}
+The limit of this is $\phi(a) \int_\Omega u(x)$ as $\epsilon$ goes to zero. 
+To complete the discussion, we write the exterior derivative of $u$ as in \eqref{math:exteriorderivative_of_u_in_hodgediscussion}, 
+% \begin{align*}
+    % \cartan u(x)
+    % =
+    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{j=1}^{n}
+    % \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} \,dt 
+    % =
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }}
+    % \frac{ \partial u }{\partial x_{j}}(x) \,\cartanx^{j} \wedge \cartanx^{\sigma} 
+    % ,
+% \end{align*}
 and apply the Bogovski\u{\i} potential operator to this result, which gives 
 \begin{align*}
     \minus 
@@ -3451,74 +3535,76 @@ and apply the Bogovski\u{\i} potential operator to this result, which gives
     (x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
-We add the exterior derivative of the potential and the potential of the exterior derivative.
-Taking into account cancellations, this gives the identity 
-\begin{align*}
-    &
-    - 
-    \cartan \Bogov_{\mia,a} u(x)
-    -
-    \Bogov_{\mia+1,a} \cartan u(x)
-    \\&
-    =
-    \sum_{\sigma \in \Sigma(\mia,n)} 
-    \int_{1}^{\infty} 
-    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
-    \\&\qquad
-    + 
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n), \; 1 \leq i \leq \mia \\ 1 \leq j \leq n, \; j \notin [\sigma-\sigma(i)] }}
-    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
-    \int_{1}^{\infty} 
-    t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
-    \\&\qquad
-    +
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
-    \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
-    \\&\qquad
-    - 
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] \\ 1 \leq i \leq k }}
-    % \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia} \sum_{j=1}^{n}
-    (-1)^{i-1}
-    \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
-    \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
-    \\&
-    =
-    \sum_{\sigma \in \Sigma(\mia,n)} 
-    \int_{1}^{\infty} 
-    \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
-    \\&\qquad
-    +
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
-    \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,(x-a)_{j} \,dt \,\cartanx^{\sigma}
-    \\&\qquad
-    + 
-    \sum_{\substack{ \sigma \in \Sigma(\mia,n), \\ 1 \leq i \leq \mia }}
-    \int_{1}^{\infty} 
-    t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{\sigma(i)}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{\sigma(i)} \wedge \cartanx^{\sigma} \,dt 
-    \\&
-    =
-    \sum_{\sigma \in \Sigma(\mia,n)} 
-    \int_{1}^{\infty} \frac{\partial}{\partial t} \left( t^{\mia} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
-    =
-    -
-    \sum_{\sigma \in \Sigma(\mia,n)} 
-    u_{\sigma}(x) \cartanx^{\sigma}
-    =
-    -u(x)
-    .
-\end{align*}
-We conclude that 
+We add the (distributional) exterior derivative of the potential and the potential of the exterior derivative.
+In a manner that fully analogous to the discussion of the averaged Poincar\'e operator save for the modification when $k=n$, 
+we come to the conclusion that 
+% Taking into account cancellations, this gives the identity 
+% \begingroup\allowdisplaybreaks
+% \begin{align*}
+    % &
+    % - 
+    % \cartan \Bogov_{\mia,a} u(x)
+    % -
+    % \Bogov_{\mia+1,a} \cartan u(x)
+    % \\&
+    % =
+    % \sum_{\sigma \in \Sigma(\mia,n)} 
+    % \int_{1}^{\infty} 
+    % \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
+    % \\&\qquad
+    % + 
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n), \; 1 \leq i \leq \mia \\ 1 \leq j \leq n, \; j \notin [\sigma-\sigma(i)] }}
+    % \int_{1}^{\infty} 
+    % t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)} \,dt 
+    % \\&\qquad
+    % +
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
+    % \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt \,(x-a)_{j} \,\cartanx^{\sigma}
+    % \\&\qquad
+    % - 
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] \\ 1 \leq i \leq k }}
+    % (-1)^{i-1}
+    % \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,dt 
+    % \,(x-a)_{\sigma(i)} \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
+    % \\&
+    % =
+    % \sum_{\sigma \in \Sigma(\mia,n)} 
+    % \int_{1}^{\infty} 
+    % \mia t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) \,\cartanx^{\sigma} \,dt 
+    % \\&\qquad
+    % +
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n) \\ 1 \leq j \leq n, \; j \notin [\sigma] }} 
+    % \int_{1}^{\infty} t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{j}}\left(a+t(x-a)\right) \,(x-a)_{j} \,dt \,\cartanx^{\sigma}
+    % \\&\qquad
+    % + 
+    % \sum_{\substack{ \sigma \in \Sigma(\mia,n), \\ 1 \leq i \leq \mia }}
+    % \int_{1}^{\infty} 
+    % t^{\mia} \frac{ \partial u_{\sigma} }{\partial x_{\sigma(i)}}\left(a+t(x-a)\right) (-1)^{i-1} (x-a)_{\sigma(i) } \,\cartanx^{\sigma(i)} \wedge \cartanx^{\sigma} \,dt 
+    % \\&
+    % =
+    % \sum_{\sigma \in \Sigma(\mia,n)} 
+    % \int_{1}^{\infty} \frac{\partial}{\partial t} \left( t^{\mia} u_{\sigma}\left(a+t(x-a)\right) \right) \,dt \,\cartanx^{\sigma}
+    % =
+    % -
+    % \sum_{\sigma \in \Sigma(\mia,n)} 
+    % u_{\sigma}(x) \cartanx^{\sigma}
+    % =
+    % -u(x)
+    % .
+% \end{align*}
+% \endgroup
+% We conclude that 
 \begin{align*}
     u(x) &= \cartan \Bogov_{\mia,a} u(x) + \Bogov_{\mia+1,a} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
     \\
-    u(x) &= \cartan \Bogov_{n,a} u(x) - \left( \int_{\Omega} u(a) \,da\right) \delta_a, \qquad k = n.
+    u(x) &= \cartan \Bogov_{n,a} u(x) - \left( \int_{\Omega} u(a) \right) \delta_a, \qquad k = n.
 \end{align*}
 Here, $\delta_a$ denotes the Dirac delta at $a$. 
 In summary, after taking the average over $a \in \Omega$:
 \begin{align}\label{math:hodgedecomposition:bogov}
     u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
     \\
-    u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \,da\right) \chi_{\Omega}, \qquad k = n.
+    u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \right) \chi_{\Omega}, \qquad k = n.
 \end{align}
 
 
@@ -3558,32 +3644,32 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
         \| u \|_{L^{p}(\Omega)}
         .
     \end{align*}
-	For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
-	\begin{align}
-		u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a)
-		\label{math:theorem:bogovpoinc:poincare:zero}
-		\\
-		u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
-		\label{math:theorem:bogovpoinc:poincare:k}
-	\end{align}
-	In particular, if $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
+    For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
+    \begin{align}
+        u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a) \;da
+        \label{math:theorem:bogovpoinc:poincare:zero}
+        \\
+        u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
+        \label{math:theorem:bogovpoinc:poincare:k}
+    \end{align}
+    In particular, if $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
-	For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds that 
-	\begin{align}
-		u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
-		\label{math:theorem:bogovpoinc:bogov:k}
-		\\
-		u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \,da\right) \chi_{\Omega}.
-		\label{math:theorem:bogovpoinc:bogov:n}
-	\end{align}
-	In particular, if $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
+    For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds that 
+    \begin{align}
+        u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
+        \label{math:theorem:bogovpoinc:bogov:k}
+        \\
+        u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \right) \chi_{\Omega}.
+        \label{math:theorem:bogovpoinc:bogov:n}
+    \end{align}
+    In particular, if $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
     % If $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $1 \leq \mia \leq n$ and $\cartan u = 0$, 
     % then $\Poinc_{\mia} u \in W^{p}    \Alt^{\mia  }(\Omega)$ with $u = \cartan \Poinc_{\mia} u$.
     % If $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $\cartan u = 0$ and $\int_\Omega u = 0$ in the case $k=n$, 
     % then $\Bogov_{\mia} u \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $u = \cartan \Bogov_{\mia} u$.
     % In particular, if $\cartan u = 0$, then $\cartan \Poinc_{\mia} u = u$.
-	% In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\mia} u = u$.
+    % In particular, if $\cartan u = 0$, then $\cartan \Bogov_{\mia} u = u$.
 
 \end{theorem}
 
@@ -3591,16 +3677,16 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
 
 \begin{proof}
     Consider the case $1 \leq p < \infty$.
-	%
-	Because the domain is bounded, 
-	the subspaces $C^{\infty}_{c}\Alt^{\mia}(\Omega)$ are dense in $L^{p}\Alt^{\mia}(\Omega)$,
-	and so the stated operator norm bounds follow by an approximation argument. 
-	% 
-	Taking the limit on both sides of equation then implies the inequality with $p = \infty$
-	because the $L^{\infty}$ norm is the limit of the Lebesgue norms as $p$ goes to infinity. 
-	
-	
-	Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$. 
+    %
+    Because the domain is bounded, 
+    the subspaces $C^{\infty}_{c}\Alt^{\mia}(\Omega)$ are dense in $L^{p}\Alt^{\mia}(\Omega)$,
+    and so the stated operator norm bounds follow by an approximation argument. 
+    % 
+    Taking the limit on both sides of equation then implies the inequality with $p = \infty$
+    because the $L^{\infty}$ norm is the limit of the Lebesgue norms as $p$ goes to infinity. 
+    
+    
+    Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$. 
     We write $\zeta := \Poinc_{\mia  } u$. 
     There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}_{c}\Alt^{n-\mia-1}(\Omega)$, we verify 
@@ -3620,19 +3706,19 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     By the continuity of bounded linear functionals, we find 
     \begin{align*}
         \int_{\Omega} v \wedge u 
-		-
-		\int_{\Omega} v \wedge \Poinc_{\mia+1} \cartan u 
+        -
+        \int_{\Omega} v \wedge \Poinc_{\mia+1} \cartan u 
         &=
         (-1)^{\mia(n-\mia)+1}
         \int_{\Omega} \cartan v \wedge \Poinc_{\mia  } u 
         .
     \end{align*}
     By definition, $\zeta \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Poinc_{\mia+1} \cartan u$.
-	This shows \eqref{math:theorem:bogovpoinc:poincare:k}, and \eqref{math:theorem:bogovpoinc:poincare:zero} follows by an approximation argument.
-	
-	
-	
-	Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$. 
+    This shows \eqref{math:theorem:bogovpoinc:poincare:k}, and \eqref{math:theorem:bogovpoinc:poincare:zero} follows by an approximation argument.
+    
+    
+    
+    Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$. 
     We write $\ := \Bogov_{\mia} u$. 
     There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}\Alt^{n-\mia-1}(\Omega)$, 
@@ -3655,7 +3741,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \begin{align*}
         \int_{\Omega} v \wedge u 
         -
-		\int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u
+        \int_{\Omega} v \wedge \Bogov_{\mia+1} \cartan u
         &=
         (-1)^{\mia(n-\mia)+1}
         \int_{\Omega} \cartan v \wedge \Bogov_{\mia  } u 
@@ -3663,8 +3749,8 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \end{align*}
     By definition, $\zeta \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Bogov_{\mia+1} \cartan u$.
     This shows \eqref{math:theorem:bogovpoinc:bogov:k}, and \eqref{math:theorem:bogovpoinc:bogov:n} follows by an approximation argument.
-	
-	Everything else is now apparent, and the proof is complete. 
+    
+    Everything else is now apparent, and the proof is complete. 
 \begin{comment}
     It suffices to discuss the case $1 \leq p < \infty$, because the domain is bounded 
     and taking the limit will then imply the inequality with $p = \infty$. 
@@ -3741,7 +3827,7 @@ we have the following improved estimate.
         % \diam(\Omega) \| \divergence \bfu \|_{L^{2}(\Omega)}
         % .
     % \end{align*}
-	For each $\bfu \in \bfW^{2}(\divergence,\Omega)$ there exists $\bfw \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfw = \divergence \bfu$ and 
+    For each $\bfu \in \bfW^{2}(\divergence,\Omega)$ there exists $\bfw \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfw = \divergence \bfu$ and 
     \begin{align*}
         \| \bfw \|_{L^{2}(\Omega)} 
         \leq 
@@ -4053,7 +4139,7 @@ we gather some results that are hard to find in the literature.
     and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
     We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. 
     The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere,
-	by the topological Sch\"onfliess theorem. 
+    by the topological Sch\"onfliess theorem. 
     It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
     Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
     
@@ -4268,7 +4354,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
 
 \begin{example}\label{example:shell_simpl}
     Any simplex $T$ (trivially) has a shelling, consisting only of $T$ itself. 
-	The boundary complex $\partial \calT(T)$ has a shelling:
+    The boundary complex $\partial \calT(T)$ has a shelling:
     any enumeration of the boundary faces of $T$ constitutes a shelling\mwl{; see Example 8.2.(iii) in~\cite{ziegler1995lectures}}.
 \end{example}
 \begin{example}
@@ -4301,8 +4387,8 @@ We now collect important examples of shellable triangulations. Essentially, in t
     Clearly, this is the case if the triangulation of the $2$-\disk\ contains two triangles. 
     Now suppose the induction claim is true when the triangulation includes at most $N$ triangles,
     and assume that $\calT$ includes $N+1$ triangles. 
-	As we travel along the boundary, we traverse along edges of at least two simplices, 
-	and therefore there are at least two triangles with an edge on the boundary. 
+    As we travel along the boundary, we traverse along edges of at least two simplices, 
+    and therefore there are at least two triangles with an edge on the boundary. 
     Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
     Then there exists a triangle $T'$ that intersects $\partial M$ 
     in one edge and its opposite vertex.
@@ -4504,7 +4590,7 @@ that controls the volume and some heights when a simplex is partitioned via bary
         \item The height vector of $v \in \Vertices(T) \setminus \Vertices(S)$ in $T'$ is the height vector $v$ in $T$.
         \item The height vector of $z_S$ in $T'$ is the height vector of the single vertex $v \in \Vertices(T) \setminus \Vertices(T')$ in $T$,
 scaled by $(k+1)^{-1}$.
-	\hfill\qed
+    \hfill\qed
     \end{itemize}
 \end{lemma}
 
@@ -4998,9 +5084,9 @@ We give detailed estimates for the singular values of their Jacobians.
             \matnorm{ \Jacobian\Phi_{K} } 
             \leq 
             \frac 3 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
-			\leq 
+            \leq 
             1 + \frac{3}{2} (k+1) \aspectratio(T) 
-			\label{math:phi_max}
+            \label{math:phi_max}
             ,
             \\
             \matnorm{ \Jacobian\Phi_{K}^{-1} } 
@@ -5008,7 +5094,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac 3 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
             \leq 
             2 + 3 (k+1) \aspectratio(T) 
-			\label{math:phi_min}
+            \label{math:phi_min}
             .
         \end{gather}
         This finishes the discussion of the transformation $\Phi$.
@@ -5320,14 +5406,14 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             \cdot 
-			\left( 
+            \left( 
                 1 
-				+ 
-				(k+1) 
-				\left( 1 + B_{T} \right)
-				\aspectratio(\calT) 
+                + 
+                (k+1) 
+                \left( 1 + B_{T} \right)
+                \aspectratio(\calT) 
             \right)
-			,
+            ,
             \\
             \matnorm{ \Jacobian\Psi(z)^{-1} }
             &\leq  
@@ -5335,14 +5421,14 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-			\left( 
+            \left( 
                 1 
-				+ 
-				(k+1) 
-				\left( 1 + B_{T} \right)
-				\aspectratio(\calT) 
+                + 
+                (k+1) 
+                \left( 1 + B_{T} \right)
+                \aspectratio(\calT) 
             \right)
-			,
+            ,
             \\
             \det\Jacobian\Psi(x)
             &\leq 
@@ -5404,8 +5490,8 @@ We give detailed estimates for the singular values of their Jacobians.
             (k+1)B_{T}
             \diameterratio(\calT)
             \aspectratio(T) 
-			\cdot 
-			B_T
+            \cdot 
+            B_T
             \\
             \sigma_n(x)^{-1} = \matnorm{ \Jacobian \Xi_{1}^{-1} }
             &\leq
@@ -5431,7 +5517,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-			B_T
+            B_T
             .
         \end{align*}
         We get the determinant estimates
@@ -5493,8 +5579,8 @@ We give detailed estimates for the singular values of their Jacobians.
             (k+1)B_{T}
             \diameterratio(\calT)
             \aspectratio(T) 
-			\cdot 
-			\left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
+            \cdot 
+            \left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
             \\
             \sigma_n(x)^{-1}
             = 
@@ -5522,7 +5608,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-			\left( 2 + 3 (k+1) \aspectratio(T) \right)
+            \left( 2 + 3 (k+1) \aspectratio(T) \right)
             .
         \end{align*}
         We get the determinant estimates 
@@ -5767,7 +5853,7 @@ For each $0 \leq m \leq M$, we write
 For each $1 \leq m \leq M$, the interface of the new simplex to the previous intermediate triangulation is 
 \begin{align*}
     \Gamma_{m} := T_{m} \cap X_{m-1} %\left( T_{0} \cup \dots \cup T_{m-1} \right)
-	.
+    .
 \end{align*}
 According to Lemma~\ref{lemma:existenceofstar}, 
 there exists a simplex $S_{m} \in \calT$ 

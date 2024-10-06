@@ -19,11 +19,11 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] reflection: singular values listed in reflection section
 - [x] should all triangulations be n dimensional ? No
 - [x] mat and vec norms 
+- [x] potentials section: sigma notation for potential operators, rewrite
+- [x] potentials section: additional constants notation for potential operators
+- [x] potentials section: adapt and unify notation/tex
 - [ ] numerics: create a spanning tree and start computing the scalar estimate 
 - [ ] after recursive estimates, write down the complete bound 
-- [ ] potentials section: sigma notation for potential operators, rewrite
-- [n] potentials section: additional constants notation for potential operators
-- [x] potentials section: adapt and unify notation/tex
 - [ ] final: complete the final estimate, use recursion 
     - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
 - [ ] Synchronize indices shellability conditions
@@ -31,7 +31,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
       - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},
       - \ref{theorem:poincarefriedrichsestimate:exterior}, 
       - \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.}
-- ( ) if we cut a simplicial ball along a single line, is the result a ball?
+- (x) if we cut a simplicial ball along a single line, is the result a ball?
 
 Revision: 
 - [X] header
@@ -43,7 +43,7 @@ Revision:
 - [X] Section 3: triangulations (shape estimate)
 - [X] Section 4: scalar potential on triangulations     
 - [X] Section 5: review of vector calculus
-- [x] Section 6: potential operators 
+- [X] Section 6: potential operators 
       : write out the asymptotic argument, unity notation, 
       -----------
 - [X] Section 7: Shellable triangulations 
