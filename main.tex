@@ -292,7 +292,7 @@ The computable Poincar\'e--Friedrichs constants obtained here depend on only a f
 \cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei}.}
 
-\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:PF_EC}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:PF_EC} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
+\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
 
 
 
@@ -3051,12 +3051,11 @@ We compute
     %\\&
     =
     \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: A_{\Poinc}(n,\mia) \leq 2^{n-\mia}}
-    \label{equation:A_Poinc}
     .
 \end{align*}
 % Here, $A_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 Here we introduce the numerical constant 
-\begin{gather}\label{equation:A_Bogov}
+\begin{gather}\label{equation:A_Poinc}
 	A_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
@@ -3242,7 +3241,9 @@ We study the interaction of these potential operator with the exterior derivativ
 The main arguments are well-known and establishes the exactness of several de~Rham complexes. 
 We recapitulate these arguments since our variants of the regularized potential operators are not yet included in the published literature. 
 
-\mwl{Some of the notation here needs to be simplified or introducted: Sigma for all integers, possily empty. remove or add indices}
+We make use of the following notation~\cite{licht2022basis}:
+for any mapping $\sigma \in \Sigma(k,n)$, we let $[\sigma] := \{ \sigma(1), \dots, \sigma(k) \}$ be its image. 
+When $p \in [\sigma]$, then the member of $\Sigma(k-1,n)$ with image $[\sigma] \setminus \{p\}$ is written $\sigma-p$.
 
 Suppose that $u \in C^{\infty}\Alt^{\mia}(\bbR^n)$.
 We rewrite the Poincar\'e potential,
@@ -3531,7 +3532,7 @@ However, though the space dimension $n$ and the form degree $\mia$ enter the est
 namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov} of respectively $A_{\Poinc}(n,\mia)$ and $A_{\Bogov}(n,\mia)$. 
 
 
-\begin{theorem}\label{theorem:PF_EC}
+\begin{theorem}\label{theorem:bogovpoinc}
     Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set and let $1 \leq p \leq \infty$. 
     We have bounded operators 
     \begin{align*}
@@ -3560,20 +3561,20 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
 	For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
 	\begin{align}
 		u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a)
-		\label{math:theorem:PF_EC:poincare:zero}
+		\label{math:theorem:bogovpoinc:poincare:zero}
 		\\
 		u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
-		\label{math:theorem:PF_EC:poincare:k}
+		\label{math:theorem:bogovpoinc:poincare:k}
 	\end{align}
 	In particular, if $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
 	For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds that 
 	\begin{align}
 		u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
-		\label{math:theorem:PF_EC:bogov:k}
+		\label{math:theorem:bogovpoinc:bogov:k}
 		\\
 		u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \,da\right) \chi_{\Omega}.
-		\label{math:theorem:PF_EC:bogov:n}
+		\label{math:theorem:bogovpoinc:bogov:n}
 	\end{align}
 	In particular, if $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
@@ -3627,7 +3628,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
         .
     \end{align*}
     By definition, $\zeta \in W^{p}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Poinc_{\mia+1} \cartan u$.
-	This shows \eqref{math:theorem:PF_EC:poincare:k}, and \eqref{math:theorem:PF_EC:poincare:zero} follows by an approximation argument.
+	This shows \eqref{math:theorem:bogovpoinc:poincare:k}, and \eqref{math:theorem:bogovpoinc:poincare:zero} follows by an approximation argument.
 	
 	
 	
@@ -3661,7 +3662,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
         .
     \end{align*}
     By definition, $\zeta \in W^{p}_{0}\Alt^{\mia-1}(\Omega)$ with $\cartan \zeta = u - \Bogov_{\mia+1} \cartan u$.
-    This shows \eqref{math:theorem:PF_EC:bogov:k}, and \eqref{math:theorem:PF_EC:bogov:n} follows by an approximation argument.
+    This shows \eqref{math:theorem:bogovpoinc:bogov:k}, and \eqref{math:theorem:bogovpoinc:bogov:n} follows by an approximation argument.
 	
 	Everything else is now apparent, and the proof is complete. 
 \begin{comment}
@@ -3898,7 +3899,7 @@ We also refer to Lee's monograph~\cite{lee2011topological} for any further backg
 \end{figure}
 
 
-\subsection{Triangulations of manifolds}
+\subsection{Triangulations of manifolds}\label{subsection:manifoldtriangulation}
 
 We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
 We recall that this means that for every $x \in \underlying{\calT}$
@@ -4495,14 +4496,6 @@ This deformation will enable additional estimates of Poincar\'e--Friedrichs cons
 We will use the following observaton, which we state without proof, 
 that controls the volume and some heights when a simplex is partitioned via barycentric subdivision.
 
-% \begin{lemma}\label{lemma:stardivision}
-%     Let $\calT$ be an $n$-dimensional simplicial complex
-%     such that $\calT = \patch_{\calT}(S)$ for some $S \in \calT$.
-%     Let $z_S$ be the barycenter of $S$ 
-%     and let $\calT^{\star}$ be the simplicial complex obtained from barycentric subdivision of $S$.
-%     If $T^{\star} \in \calT^{\star}$ and $T \in \calT$ are both $n$-dimensional with $T^{\star} \subseteq T$,
-%     then $\vol(T^{\star}) = \vol(T) / n$.
-% \end{lemma}
 \begin{lemma}\label{lemma:stardivision}
     Let $T$ be an $n$-dimensional simplex with a $k$-dimensional subsimplex $S$ and let $z_S$ be the barycenter of $S$. 
     Let $T'$ be one of the $n$-dimensional simplices obtained by splitting $T$ in accordance with the barycentric subdivision of $S$ at $z_{S}$.
@@ -4549,7 +4542,7 @@ scaled by $(k+1)^{-1}$.
         \coordinate (B) at (4,0); % Vertex B = v_1
         \coordinate (C) at (1,3); % Vertex C = v_2
         % Barycenter (centroid) of the triangle
-        \coordinate (G) at ($(A)!1/3!(B)!1/3!(C)$);
+        \coordinate (G) at (1.666666666,1); %($(A)!1/3!(B)!1/3!(C)$);
         % Drawing the triangle
         \draw[thick] (A) -- (B) -- (C) -- cycle;
         % Tripartitioning the triangle: draw lines from vertices to the barycenter
@@ -5659,7 +5652,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \end{lemma}
 \begin{proof}
     This follows from the discussion in Section~\ref{section:potentialoperator}.
-    This follows from Theorem~\ref{theorem:PF_EC} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
+    This follows from Theorem~\ref{theorem:bogovpoinc} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
     \mwl{check final form of result}
 \end{proof}
 
@@ -5712,7 +5705,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     We observe $\tilde g = \cartan \tilde u$
     By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\tilde U)$.
     
-    The bounds for the Bogovski\u{i} potential operators, Theorem~\ref{theorem:...} imply 
+    The bounds for the Bogovski\u{i} potential operators, Theorem~\ref{theorem:bogovpoinc} imply 
     the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\tilde U)$
     with $\cartan \tilde w = \cartan \tilde u$ and 
     \begin{align*}
@@ -5929,10 +5922,9 @@ The main result of this manuscript for shellable triangulations of domains, not 
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
 \end{proof}
 \begin{proof}
-    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:gradzwei}.
     By assumption, there exists a shelling $T_0, T_1, \dots, T_{M}$. 
     We write $X_m := \cup_{j=0}^{m} T_j$, $0 \leq m \leq M$, which is by Lemma~\ref{lemma:shell_triang_man} a triangulated $n$-dimensional submanifold with boundary. 
-    For $0 < m \leq M$, by the definition of shellability in Section~\ref{section:shellability}, 
+    For $0 < m \leq M$, by the definition of shellability in Section~\ref{subsection:shellability}, 
     $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
     where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
