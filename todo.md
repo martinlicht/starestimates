@@ -1,8 +1,8 @@
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
-- how much redundancy is achievable?
-- do you have a preference for facet or face ? 
-
+- [x] do you have a preference for facet or face ? 
+- [x] see whether being formally correct, distinguishing points and singletons, is feasible  
+- [x] Use the following result? Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
 - [x] opnorm and vecnorm
 - [x] replace the shape notation by C_ ...
 - [x] scalars: condense the discussion even further
@@ -22,17 +22,9 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] potentials section: sigma notation for potential operators, rewrite
 - [x] potentials section: additional constants notation for potential operators
 - [x] potentials section: adapt and unify notation/tex
+- [x] does cartan commute with pullback ? 
+- [x] final: complete the final estimate, use recursion 
 - [ ] numerics: create a spanning tree and start computing the scalar estimate 
-- [ ] after recursive estimates, write down the complete bound 
-- [ ] final: complete the final estimate, use recursion 
-    - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
-- [ ] does cartan commute with pullback ? 
-- [ ] Synchronize indices shellability conditions
-      - Section~\ref{section:shellability}
-      - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},
-      - \ref{theorem:poincarefriedrichsestimate:exterior}, 
-      - \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.}
-- (x) if we cut a simplicial ball along a single line, is the result a ball?
 
 Revision: 
 - [X] header
@@ -50,10 +42,20 @@ Revision:
 - [X] Section 7: Shellable triangulations 
 - [X] Section 8: reflections and deformations 
       : singular values! do we need combinatorial triangulation?
-- [x] Section 9: Final estimate
-      : apply singular values, make complete. Combine estimates. Add examples for curl
+- [X] Section 9: Final estimate 
 - [x] Section 10: Computation
 - [X] Section 11: outlook 
+
+
+
+POST-REVISION:
+- (x) if we cut a simplicial ball along a single line, is the result a ball?
+- [ ] add examples for the curl operator 
+
+
+
+
+
 
 
 Further changes
@@ -68,31 +70,22 @@ git diff 97fbcd86 21e58
 % Every time we add a simplex according to the shelling sequence, 
 % we complete the local star of the some simplex in the triangulation (see Lemma~\ref{lemma:existenceofstar}).
 
+FURTHER WORK 
 
 [ ] prove Guerini Savo theorem for Lipschitz domains
 Every convex is a continuous graph over a unit ball. Mollify that graph and measure the difference.
 Problem: no separation of exterior derivatives between Hodge Laplacians
 Can approximate convex domains by strictly convex domains?
 
-[ ] double check what bounds on P and PF constants are actually known in the literature 
 
-[ ] see whether being formally correct, distinguishing points and singletons, is feasible  
 
-[ ] Use the following result? Ziegler, Lemma 8.7: if a complex has a shelling, then this gives a shelling of the stars 
+
 
 [ ] snippet on shellable, compare with paper 
 A simplicial $n$-dimensional complex $\calT$ is called shellable if its $n$-simplices can be arranged in linear order $T_0, T_1, \dots$ in such a way that the subcomplex $( \cup_{i=0}^{k-1} T_i ) \cap T_k$ has dimension $n-1$ for all $k > 0$.
 
-
-
-Cite
-[x] \cite{bebendorf2003note}
-[x] \cite{vohralik2005discrete}
-[x] Veeser & Verfurth 
-
-
 [o] nice snippet 
-"Thus, for this lecture no knowledg is needed of the wonderful subleties of piecewise linear topology, nor of the powerful machinery of algebraic topology."
+"Thus, for this lecture no knowledge is needed of the wonderful subleties of piecewise linear topology, nor of the powerful machinery of algebraic topology."
 
 [o] Combinatorics
 copy and adapt the content of Ziegler and Kozlov as necessary

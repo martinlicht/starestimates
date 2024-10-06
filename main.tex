@@ -1167,7 +1167,7 @@ We call any set triangulable if it is the underlying set of some triangulation.
 Given any simplex $T$, we write $\subsimplex(T)$ for the simplicial complex that contains all subsimplices of $T$,
 and $\subsimplex_{{k}}(T) \subseteq \subsimplex(T)$ denotes the set of $k$-dimensional subsimplices of $T$. 
 We write $\Vertices(T) := \subsimplex_{0}(T)$ for the set of vertices of $T$.
-
+% 
 Whenever $\calT$ is a simplicial complex, 
 the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
 % Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. In practice, we not always distinguish between points and singleton simplices. 
@@ -1177,6 +1177,7 @@ Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Face
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
 }
+In practice, we do not always distinguish between points and singleton simplices. 
 % Given $T \in \calT$, we let $\supsimplex(\calT,T)$ be the set of simplices in $\calT$ that contain $T$,
 % and we write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in $\supsimplex(\calT,T)$.\footnote{\mwl{MWL: It might be more economical to get rid of the supersimplex set, it is only used in this section to define patches.}}
 
@@ -2697,6 +2698,68 @@ Moreover, it satisfies the Leibniz rule:
     \qquad \forall \omega \in C^{\infty}\Alt^{k}(\Omega), 
     \qquad \forall \eta \in C^{\infty}\Alt^{l}(\Omega).
 \end{gather*}
+The integral of a differential $n$-form is uniquely defined via 
+\begin{gather*}
+    \int_{\Omega} \omega \cartanx^{1} \wedge \dots \wedge \cartanx^{n} = \int_{\Omega} \omega(x) \;dx
+    . 
+\end{gather*}
+
+
+
+\begin{remark}
+    In three dimensions, 
+    the calculus of differential forms is in correspondence with classical vector calculus. 
+    This is expressed formally as the commuting diagram 
+    \begin{gather*}
+    \begin{CD}
+        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) @>{\cartan}>> C^\infty\Alt^3(\Omega) 
+        \\
+        @VV{\varpi^{0}}V 
+        @VV{\varpi^{1}}V 
+        @VV{\varpi^{2}}V 
+        @VV{\varpi^{3}}V 
+        \\
+        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
+    \end{CD}
+    \cye{\, ,}
+    \end{gather*}
+    where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
+    \begin{align*}
+     \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} + u_3 \cartanx^{3} \right) 
+     &= 
+     \left( u_1, u_2, u_3 \right), 
+     \\
+     \varpi^{2}\left( u_{12} \cartanx^{1} \wedge \cartanx^{2} + u_{13} \cartanx^{1} \wedge \cartanx^{3} + u_{23} \cartanx^{2} \wedge \cartanx^{3} \right) 
+     &= 
+     \left( u_{23}, - u_{13}, u_{12} \right).   
+    \end{align*}
+    In two dimensions, 
+    the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
+    To the authors' best knowledge, neither convention is dominant over the other in the literature.
+    We summarize the situation in the following commuting diagram: 
+    \begin{gather*} 
+    \begin{CD}
+        C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
+        \\
+        @AA{\varkappa^{0}}A 
+        @AA{\varkappa^{1}}A 
+        @AA{\varkappa^{2}}A 
+        \\
+        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) 
+        \\
+        @VV{\varpi^{0}}V 
+        @VV{\varpi^{1}}V 
+        @VV{\varpi^{2}}V 
+        \\
+        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
+    \end{CD}
+    \cye{\,.}
+    \end{gather*}
+    Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
+    The other vertical arrows are the identity. 
+    The utility of exterior calculus is that the operators of vector calculus can be translated into a common framework that does not depend on the dimension.
+\end{remark}
+
 
 \subsection{Sobolev spaces of differential forms}
 
@@ -2760,19 +2823,19 @@ This is a closed subspace. We know that $u \in W^{p}_{0}\Alt^{k}(\Omega)$ if and
 
 We are interested in transformations of Sobolev tensor fields from one domain onto another. 
 Suppose that $\Omega,\Omega' \subset \bbR^{n}$ are open sets and suppose that $\phi: \Omega \to \Omega'$ is a bi-Lipschitz mapping.
-The pullback of $u \in W^{p}\Alt^{k}(\Omega')$ along $\phi$ is the differential form 
+The pullback of $u \in L^{p}\Alt^{k}(\Omega')$ along $\phi$ is the (measurable) differential form 
 \begin{align} \label{equation:pullback}
     \phi^{\ast}u_{|x}( v_{1}, v_{2}, \ldots, v_{k} ) 
     := 
     u_{|\phi(x)}( \Jacobian\phi_{|x} \cdot v_1, \Jacobian\phi_{|x} \cdot v_2, \ldots, \Jacobian\phi_{|x} \cdot v_k ) 
 \end{align}
-for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. One can show that $\phi^{\ast}u \in W^{p}\Alt^{k}(\Omega)$.
-We cite an explicit transformation estimate~ (see~\cite{licht2019smoothed}) and a special estimate when the transformation is affine (see~Corollary~6~\cite{stern2013lp}).
+for any $v_1, v_2, \dots, v_k \in \bbR^{n}$ and any $x \in \Omega$. 
+One can show that $\phi^{\ast}u \in L^{p}\Alt^{k}(\Omega)$ and the following estimates.
 
 \begin{proposition}\label{proposition:pullbackestimate}
     Let $\phi : \Omega \rightarrow \Omega'$ be a bi-Lipschitz mapping between open sets $\Omega, \Omega' \subseteq \bbR^{n}$.
-    Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega)$. 
-    Then 
+    Let $p \in [1,\infty]$ and $u \in L^{p}\Lambda^{k}(\Omega')$. 
+    Then $\phi^{\ast} u \in L^{p}\Lambda^{k}(\Omega)$ and 
     \begin{align}
         \| \phi^{\ast} u \|_{L^{p}\Lambda^{k}(\Omega)}
         &\leq 
@@ -2790,65 +2853,18 @@ We cite an explicit transformation estimate~ (see~\cite{licht2019smoothed}) and 
         \| u \|_{L^{p}\Lambda^{k}(\Omega')}
         .
     \end{align}
+	Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
 \end{proposition}
+\begin{proof}
+	See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}).
+\end{proof}
 
-\begin{remark}
-    In three dimensions, 
-    the calculus of differential forms is in correspondence with classical vector calculus. 
-    This is expressed formally as the commuting diagram 
-    \begin{gather*}
-    \begin{CD}
-        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) @>{\cartan}>> C^\infty\Alt^3(\Omega) 
-        \\
-        @VV{\varpi^{0}}V 
-        @VV{\varpi^{1}}V 
-        @VV{\varpi^{2}}V 
-        @VV{\varpi^{3}}V 
-        \\
-        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
-    \end{CD}
-    \cye{\, ,}
-    \end{gather*}
-    where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
-    \begin{align*}
-     \varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} + u_3 \cartanx^{3} \right) 
-     &= 
-     \left( u_1, u_2, u_3 \right), 
-     \\
-     \varpi^{2}\left( u_{12} \cartanx^{1} \wedge \cartanx^{2} + u_{13} \cartanx^{1} \wedge \cartanx^{3} + u_{23} \cartanx^{2} \wedge \cartanx^{3} \right) 
-     &= 
-     \left( u_{23}, - u_{13}, u_{12} \right).   
-    \end{align*}
-    In two dimensions, 
-    the calculus of differential forms can be translated into 2D vector calculus in two different ways. 
-    To the authors' best knowledge, neither convention is dominant over the other in the literature.
-    We summarize the situation in the following commuting diagram: 
-    \begin{gather*} 
-    \begin{CD}
-        C^\infty(\Omega) @>{\curl}>> C^\infty(\Omega)^{2} @>{\divergence}>> C^\infty(\Omega)
-        \\
-        @AA{\varkappa^{0}}A 
-        @AA{\varkappa^{1}}A 
-        @AA{\varkappa^{2}}A 
-        \\
-        C^\infty\Alt^0(\Omega) @>{\cartan}>> C^\infty\Alt^1(\Omega) @>{\cartan}>> C^\infty\Alt^2(\Omega) 
-        \\
-        @VV{\varpi^{0}}V 
-        @VV{\varpi^{1}}V 
-        @VV{\varpi^{2}}V 
-        \\
-        C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
-    \end{CD}
-    \cye{\,.}
-    \end{gather*}
-    Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
-    The other vertical arrows are the identity. 
-    The utility of exterior calculus is that the operators of vector calculus can be translated into a common framework that does not depend on the dimension.
-\end{remark}
+
+
 
 \subsection{Some approximation properties}
 
-We finally review a few approximation properties. 
+We review a few approximation properties. 
 Let $\mollifier$ be a non-negative scalar function whose integral equals one and whose support lies in the unit ball around the origin.
 Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
 
@@ -4464,17 +4480,17 @@ A major structural feature of shellable simplicial complexes is that each time a
     $$
         \Gamma_{m} := X_{m-1} \cap T_{m}.
     $$ 
-    Then $\Gamma_{m}$ is a union of $\ell$ different faces of $T_{m}$, $1 \leq k \leq n+1$.
-    If $m < M$, then the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-k$ that satisfies 
+    Then $\Gamma_{m}$ is a union of $\ell$ different faces of $T_{m}$, $1 \leq \ell \leq n+1$.
+    If $m < M$, then the intersection of those faces is an interior simplex $S_{m} \in \calT$ of dimension $n-\ell$ that satisfies 
     $$
         \patch_{X_{m}}(S_{m}) = \patch_{\calT}(S_{m}).
     $$
 \end{lemma}
 \begin{proof}
     We know $\Gamma_{m}$ is a triangulated submanifold of the boundary of $T_{m}$, 
-    and so it must be a collection of $k$ faces of $T$, $1 \leq k \leq n+1$.
-    Note that $k = n + 1$ can only happen for the last enumerated simplex, $m = M$, if $\calT$ triangulates an $n$-sphere. 
-    $\Gamma_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-k$ in $\Gamma_{m}$.
+    and so it must be a collection of $\ell$ faces of $T$, $1 \leq \ell \leq n+1$.
+    Note that $\ell = n + 1$ can only happen for the last enumerated simplex, $m = M$, if $\calT$ triangulates an $n$-sphere. 
+    $\Gamma_{m}$ also constitutes a local patch (star) of $(n-1)$-dimensional simplices around some simplex $S_{m}$ of dimension $n-\ell$ in $\Gamma_{m}$.
     By definition, $S_{m}$ is a boundary simplex of $X_{m}$, 
     and it is an interior simplex of $X_{m+1}$. 
     But then $S_{m}$ cannot be a subsimplex of any of the simplices $T_{m+1}, \dots, T_{M}$,
@@ -4652,7 +4668,12 @@ scaled by $(k+1)^{-1}$.
         \node[right] at (G) {$z_T$};
     \end{tikzpicture}
     \end{center}
-    \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. The height vector from $v_2$ in all three triangles remains the same. The height vector from $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector from $v_0$ in the original triangle. Right: the triangle $T$ is trisected, leading to three new triangles. The height of $z_T$ to from some edge is one third of the original height of that edge.}
+    \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: 
+	the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. 
+	The height vector to $v_2$ in all three triangles remains the same. The height vector to $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector to $v_0$ in the original triangle. 
+	Right: 
+	the triangle $T$ is trisected, leading to three new triangles. 
+	The height vector to $z_T$ from the opposite edge in any triangle is one third of the original height vector of that edge.}
 \end{figure}
 
 
@@ -5851,7 +5872,7 @@ For each $1 \leq m \leq M$, the interface of the new simplex to the previous int
     .
 \end{align*}
 According to Lemma~\ref{lemma:existenceofstar}, 
-there exists a simplex $S_{m} \in \calT$ 
+there exists an interior simplex $S_{m} \in \calT$ 
 such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m} \in \patch_{\calT}(S_{m})$.
 In particular, already $\patch_{\calT}(S_{m}) \subseteq X_{m}$. % is already included in the union of the simplices up to $T_m$. 
 
@@ -6095,8 +6116,6 @@ The second one is specific to the fact that shellable triangulations are contrac
 \end{proof}
 
 
-\mwl{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
-\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 
 
 
