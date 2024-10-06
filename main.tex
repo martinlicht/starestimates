@@ -76,7 +76,7 @@
     %     This includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
     %     The main application that we envision are computable estimates over finite element patches. 
     %
-    As a result with independent standing, we also establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over convex bounded domains. 
+    As a result with independent standing, we also establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over bounded convex domains. 
     This is achieved via a suitable construction of regularized Poincar\'e and Bogovski\u{\i} potential operators whose operator norms we bound.
     \mwl{We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances.} 
     Computational examples illustrate the theoretical findings.
@@ -90,217 +90,19 @@
 
 \section{Introduction}\label{section:intro}
 
-Potentials for the differential operators of vector calculus and exterior calculus are of fundamental importance. The operator norms of the\cye{se} potentials are upper bounds for the Poincar\'e--Friedrichs constants, which quantify the fundamental stability features of a variety of partial differential equations. In numerical methods, estimates for the Poincar\'e--Friedrichs constant\cye{s} enter the stability and convergence theory and spectral bounds for \cye{stiffness} matrices. \cye{Computable upper bounds on the Poincar\'e--Friedrichs constants also give computable lower bounds for the eigenvalues of the associated Laplacians}. However, while potential operators and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study, quantifiable results regarding the curl and divergence operators or \cye{more generally} the exterior derivative are \cye{largely unavailable}. 
+Potentials for the differential operators of vector calculus and exterior calculus are of fundamental importance. 
+The operator norms of these potentials are upper bounds for the Poincar\'e--Friedrichs constants, 
+which quantify the fundamental stability features of a variety of partial differential equations. 
+In numerical methods, estimates for the Poincar\'e--Friedrichs constants enter the stability and convergence theory and spectral bounds for stiffness matrices. 
+Computable upper bounds on the Poincar\'e--Friedrichs constants also give computable lower bounds for the eigenvalues of the associated Laplacians. 
+However, while potential operators and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
+quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
-\cye{Our main purpose here is to fill this gap. In the gradient case, we can go over with so-called face-connected triangulations. However, to proceed} in the \cye{general exterior derivative case, we are brought to} so-called shellable triangulations. 
+This manuscript aims to fill this gap. \cye{In the gradient case, we can go over with so-called face-connected triangulations. However, to proceed in the general exterior derivative case, we are brought to so-called shellable triangulations.} 
 Even though only contractible domains can ever admit a shellable triangulation, 
-having computable upper bounds for such domains is an important stepping stone towards more general cases. \cye{Still, we cover most practical non-convex and non-star-shaped triangulated domains, and as a particular example, local triangulations} around a simplex within a larger triangulation \cye{(the so-called local patches or stars), which are} shellable in two and three spaces dimensions. \cye{Over convex bounded domains, we derive Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex.}
+having computable upper bounds for such domains is an important stepping stone towards more general cases. \cye{We cover most practical non-convex and non-star-shaped triangulated domains,} and as a particular example, local triangulations around a simplex within a larger triangulation (the so-called local patches or stars), which are shellable in two and three spaces dimensions. Additionally, we derive Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex over bounded convex domains.
 
-Let $\Omega \subseteq \bbR^n$, $n \geq 1$, be a bounded connected open set. Given any $1 \leq p \leq \infty$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$. Then $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ is the corresponding Lebesgue space of vector  fields. 
-
-
-\subsection{\cye{Potential for the gradient operator and the corresponding Poincar\'e--Friedrichs inequality}} \label{subsection:intro_grad}
-
-Let $W^{1,p}(\Omega)$ denote the first-order Sobolev space over $\Omega$ with integrability exponent $p$, 
-\begin{align} \label{equation:W1p}
-    W^{1,p}(\Omega) := \left\{u \in L^{p}(\Omega) \cye{\suchthat} \nabla u \in \bfL^{p}(\Omega) \right\}.
-\end{align}
-For a vector-valued field $\bff$ that is a distributional gradient of an object from $W^{1,p}(\Omega)$, $\bff \in \nabla W^{1,p}(\Omega)$, we are \cye{interested in} {\em potentials}, i.e., scalar-valued functions $\Phi_{\grad}( \bff ) \in W^{1,p}(\Omega)$ such that $\nabla \Phi_{\grad}( \bff ) = \bff$. Then, 
-%
-\begin{align*}
-    \Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)
-\end{align*}
-is the {\em potential operator}. A particular example of our interest is
-%
-\begin{subequations}\label{math:pot_grad}\begin{align}\label{math:pot_grad_def}
-    \Phi_{\grad}( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)}.
-\end{align}
-%
-Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant\cye{, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
-
-\cye{We want to see whether the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$, i.e., we want to evaluate the {\em operator norm}
-\begin{align}\label{math:pot_grad_norm}
-    C_{\grad,\Omega,p} := \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
-    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
-\end{align}\end{subequations}}
-This operator norm is indeed finite and it equivalently turns out to be the best constant in the {\em Poincar\'e--Friedrichs inequality}: for every vector field $\bff \in \nabla W^{1,p}(\Omega)$, there exists $u \in W^{1,p}(\Omega)$ such that $\nabla u = \bff$ and 
-\begin{subequations}\label{math:PF_gradient}\begin{align} \label{math:PF_gradient_1}
-    \| u \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\grad,\Omega,p} 
-    \| \bff \|_{\fooL^{p}(\Omega)}.
-\end{align}
-Actually, \eqref{math:PF_gradient_1} is further equivalent to the more conventional writing
-\begin{align} \label{math:PF_gradient_2}
-    \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
-    \leq 
-    C_{\grad,\Omega,p}
-    \| \nabla u \|_{\fooL^{p}(\Omega)},
-    \quad 
-    \forall 
-    u \in W^{1,p}(\Omega)
-    .
-\end{align}\end{subequations}
-We call $C_{\grad,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} for the gradient operator with exponent $p$. \cye{A concise writing of all~\eqref{math:pot_grad}--\eqref{math:PF_gradient} is
-\begin{align} \label{math:pot_PF_grad}
-    \min\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } 
-    \| u \|_{L^{p}(\Omega)}
-    &\leq 
-    C_{\grad,\Omega,p}
-    \| \bff \|_{\fooL^{p}(\Omega)}.
-\end{align}
-for all $\bff \in \nabla W^{1,p}(\Omega)$.}
-
-Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:pot_PF_grad}. Most research on optimal constants has addressed the case of convex domains. 
-Notably, if the constants are required to depend on the convex domain only via its diameter, 
-then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
-When the domain is not convex but star-shaped with respect to a ball,
-then polynomial interpolation estimates already imply the Poincar\'e\cye{--Friedrichs} inequality~\cite{brenner2008mathematical,ern2021finite}. 
-Poincar\'e--Friedrichs inequalities actually hold over merely star-shaped open bounded sets~\cite[Theorem~3.1]{hurri1988poincare}. 
-\cye{We present a more profound discussion below in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:pot_grad_def}.} 
-
-\subsection{\cye{Potentials for the curl and divergence operators and the corresponding Poincar\'e--Friedrichs inequalities}} \label{section:intro_curl_div}
-
-Consider the vector-valued spaces
-\begin{subequations}\label{equation:W_curl_div_p} \begin{align}
-    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \curl \bfu \in \bfL^{p}(\Omega) \right\}
-    ,
-    \\
-    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \divergence \bfu \in L^{p}(\Omega) \right\}
-    .
-\end{align}\end{subequations}
-The members of these spaces are those vector fields whose distributional curls and divergences are \cye{respectively} in \cye{the} Lebesgue spaces \cye{$\bfL^{p}$ or $L^{p}(\Omega)$}.  
-This only requires that certain sums of distributional partial derivatives are integrable, 
-and hence these spaces are not classical Sobolev spaces of vector  fields. 
-
-\cye{Let a vector field $\bff$ that is a distributional curl of an object from $\bfW^{p}(\curl,\Omega)$, $\bff \in \curl \bfW^{p}(\curl,\Omega)$, and scalar-valued field $f$ that is a distributional divergence of an object from $\bfW^{p}(\divergence,\Omega)$, $f \in \divergence \bfW^{p}(\divergence,\Omega)$, be given.} 
-We are interested in constants for inequalities such as 
-\begin{subequations}\label{math:pot_PF_curl_div} \begin{align}
-    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\curl,\Omega) \\ \curl \bfu = \bff } } 
-    \| \bfu \|_{L^{p}(\Omega)}
-    &\leq 
-    C_{\curl,\Omega,p}
-    \| \bff \|_{L^{p}(\Omega)} \label{math:pot_PF_curl}
-    ,
-    \\
-    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfu = f } } 
-    \| \bfu \|_{L^{p}(\Omega)}
-    &\leq 
-    C_{\divergence,\Omega,p}
-    \| f \|_{L^{p}(\Omega)} \label{math:pot_PF_div}
-    ,
-\end{align}\end{subequations}
-and how these constants can be estimated by the operator norms of {\em linear} potential operators 
-\begin{align*}
-    &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
-    ,
-    \\
-    &\Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
-    .
-\end{align*}
-The fundamental difference \cye{with respect to Section~\ref{subsection:intro_grad}} is that the curl and divergence have infinite-dimensional kernels. In Section~\ref{subsection:intro_grad}, the kernel of the gradient is the one-dimensional space of constant functions. It is thus trivially complemented for all $p$, with a canonical choice of projection. By contrast, in the Banach space case $p \neq 2$, it is not immediately evident that the kernels of the curl and divergence operators are complemented, and a canonical projection only exists here in the Hilbert setting $p=2$. \cye{Actually,} the existence of a bounded linear potential operator here is a non-trivial fact even in the Hilbert space case $p = 2$. 
-
-\cye{Let for a moment the topology of $\Omega$ be trivial, let $\Omega$ be weakly Lipschitz, and consider the Hilbert case $p=2$. Then, \eqref{math:pot_PF_curl} is related to the so-called Poincar\'e--Friedrichs--Weber inequality
-\begin{align}
-    \label{math:Weber}
-    \| \bfu\|_{L^{2}(\Omega)} \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)},
-\end{align}
-for all $\bfu \in \bfW^{2}(\curl,\Omega) \cap \bfW^{2}(\divergence,\Omega)$ with either the tangential or the normal trace zero on $\partial \Omega$ and $\divergence \bfu = 0$. 
-Yet another writing is 
-\label{math:PF_orth} \begin{align}
-    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)}, \label{math:PF_orth_curl}\\
-    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,p} \| \divergence \bfu \|_{L^{2}(\Omega)} \label{math:PF_orth_div}
-\end{align}
-for respectively all functions $\bfu$ from $\bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$ and all functions $\bfu$ from $\bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. We refer to Equation~(5) in~\cite{Fried_diff_forms_55}, Equation~(2) in Gaffney~\cite{Gaff_Hilbert_harm_55}, Weber~\cite{Web_compact_Maxw_80}, \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. Still} in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with \cye{homogeneous} Dirichlet boundary conditions \cye{on $\partial \Omega$} implies, via duality~\eqref{math:pot_PF_div}. However, that easy observation seems restricted to $p=2$. 
-
-Not much attention\cye{, however,} seems to have been given to the study of \cye{computable} constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. \cye{Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of} the exterior calculus formalism\cye{, but the Banach case $p \neq 2$ seems largely unexplored.}
-
-\subsection{\cye{Potentials for the exterior derivative and the corresponding Poincar\'e--Fried\-richs inequalities}} \label{section:intro_EC}
-
-Exterior calculus~\cite{greub1967multilinear,lee2012smooth} is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite, gross2004electromagnetic, arnold2006finite, arnold2009geometric, arnold2010finite, demlow2014posteriori, licht2021local, arnold2021complexes}. 
-This formalism is independent of the \cye{space} dimension and highlights \cye{extends the} underlying geometric structures common to the gradient, curl, and divergence operators \cye{in three space dimensions}.
-\cye{In this setting, the common writing of the Poincar\'e--Friedrichs inequalities we are interested in is just as~\eqref{math:PF_gradient_1}: for every $w \in W^{p}\Alt^{k}(\Omega)$, there exists $u \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ and such that (all the notation is in detail fixed in Section~\ref{section:calculus} below)
-\begin{align} \label{math:PF_DF} 
-    \| u \|_{L^{p}(\Omega} \leq  C_{k,\Omega,p} \| \cartan w \|_{L^{p}(\Omega)}.
-\end{align} 
-}\mwl{MV: The roles of $u$ and $w$ are flipped in the various parts of the paper, see~\eqref{math:PF_DF} in comparison with Lemma~\ref{lemma:PFexteriorsimplex}. It would be great to unify.}
-
-In the Hilbert space case $p=2$, Guerini and Savo~\cite{guerini2004eigenvalue} provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence \cye{in particular} for the curl and divergence operators.
-\cye{A comparison result} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also \cye{gives} upper estimate\cye{s} of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence \cye{operators} subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
-\cye{Computable constants for Lipschitz domains have recently been addressed in Pauly and Valdman~\cite{Paul_Vald_PF_grad_curl_div_20}, see also the references therein.}
-
-Unfortunately, no results as those of~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} are known over \cye{(}convex\cye{)} \cye{(}Lipschitz\cye{)} domains and general Lebesgue exponents $1 \leq p \leq \infty$. 
-\cye{A conceptual approach to obtain computable} estimates for the Poincar\'e--Friedrichs constants \cye{for any $1 \leq p \leq \infty$} and when the domain is star-shaped with respect to a ball is to bound operator norms of regularized Poincar\'e operators \cye{such as those of} Costabel and McIntosh~\cite{costabel2010bogovskiui} as mappings between Lebesgue spaces. 
-Here, estimates for the higher-order seminorms of these potentials \cye{are available in}~\cite{guzman2021estimation}, but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
-
-\subsection{\cye{Numerically computed guaranteed bounds on Poincar\'e--Friedrichs constants seen as eigenvalues}}
-
-\cye{The constant in~\eqref{math:pot_PF_grad} for $p=2$ corresponds to a lower bound for the Laplace eigenvalues and quantifies the stability properties of the Laplacian on the domain $\Omega$.} 
-\cye{Similarly, t}he constant \cye{in~\eqref{math:pot_PF_curl} for $p=2$} corresponds to a lower bound for the Maxwell eigenvalues and quantifies the stability properties of the Maxwell system on $\Omega$. 
-Thus, computable upper bounds on the Poincar\'e--Friedrichs constants also give computable lower bounds for the eigenvalues of the associated Laplacians \cye{and vice versa}. 
-\cye{This eigenvalues optics, upon employing a suitable numerical simulation} over a general triangulation \cye{and some clever post-processing estimates, enables to numerically compute guaranteed upper bounds on the Poincar\'e--Friedrichs constants, see~\cite{Cars_Ged_LB_eigs_14,Liu_fram_eigs_15} for~\eqref{math:pot_PF_grad} and~\cite{gallistl2023computational} for \eqref{math:pot_PF_curl}}. \cye{Our approaches, in contrast, are either analytical or combinatorial, and in any case we only employ the given geometry but no computer simulation.}
-
-
-
-\subsection{\cye{Objectives and methodology}}
-
-The main objective of this manuscript is the construction of linear potential operators with explicitly computable upper bounds on their operator norms (i.e., of computable bounds on the Poincar\'e--Friedrichs constants) for the gradient, curl, and divergence operators\cye{, and more broadly in the general case~\eqref{math:PF_DF}}. 
-\cye{We consider not necessarily} convex subdomains and focus on \cye{local patches (stars) of simplicial elements within triangulated domains, but we will also devote an important effort specifically to} convex domains. 
-
-\subsubsection{\cye{Combinatorial constants over face-connected triangulated domains}}
-
-Domains that admit finite triangulations allow for techniques \cye{using some form of passing through the triangulation and construction of the potentials step-by-step}. For scalar-valued functions in the context of Section~\ref{subsection:intro_grad}, Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for \cye{vertex} stars. 
-%Naturally, these estimates deteriorates when the shape regularity of the mesh deteriorates. 
-Such approaches were also previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. Triangle by triangle, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
-
-In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face\cye{; face-connected triangulations are sufficient here}. We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
-
-\subsubsection{\cye{Combinatorial constants over shellable triangulated domains}}
-
-For vector fields, new challenges arise \cye{because of} the infinite-dimensional kernels. We, \cye{however, overcome these challenges and succeed in generalizing} the sequential construction of the potential operator for the gradient to vector potentials\cye{, including in particular} the curl and divergence. The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. Having already defined a potential operator over a \cye{set of simplices that we term} a subtriangulation, we then construct a potential over a simplex \cye{neighboring through some $(n-1)$-dimensional faces}. However, the potential \cye{on the new simplex} might \cye{here} not have the same tangential trace along the interface between the new simplex and the previous ones. Actually, the passage through the triangulation has to be such that the intermediate subtriangulations are manifolds with boundary and the interface is a boundary submanifold of the intermediate subtriangulation and the new simplex. 
-Then, we can define a well-posed \cye{mapping from the already visited simplices.} Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
-These stronger conditions on the triangulations are exactly those of a so-called \emph{shellable} triangulations. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} or Ziegler~\cite{ziegler1995lectures}.
-With respect to our main interest, local \cye{patches} (stars) in 2D and 3D triangulations are shellable. 
-
-\subsubsection{\cye{Analytical constants over convex domains}}
-
-\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (non-convex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
-The resulting operator features generally lower regularity \cye{but} its properties are sufficient for our purposes. \cye{Crucially, this allows us to} easily estimate their operator norms. 
-
-\subsubsection{\cye{Domains star-shaped with respect to a ball}}
-
-\cye{Let us only briefly discuss why don't we treat local \cye{patches} (stars) in triangulations as} domains star-shaped with respect to a ball, which they are. This \cye{would enable} the use of averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. Unfortunately, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
-This \cye{would not be} as much a problem over local patches (stars) around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
-\cye{Unfortunately,} the interior ball can be arbitrarily small when the local patch is around a boundary simplex, even if the mesh has good shape regularity: 
-this \cye{in particular} occurs when the domain has sharp reentrant corners. Some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, 
-which contain local finite element patches \cye{that} are not star-shaped with respect to any ball. 
-
-\subsubsection{\cye{Potentials subject to partial boundary conditions}}
-
-\cye{In our proofs for triangulated domains}, we \cye{actually also} need to find potentials for the gradient, curl, and divergence operators\cye{, and in general the exterior derivative,} over a simplex subject to partial boundary conditions. 
-Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
-We are not aware of explicit estimates in the literature and \cye{we know} no regularized potential operators for these boundary conditions. 
-\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalities subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
-For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. We achieve this by \cye{an affine ``symmetrization'' map of the tetrahedron to a domain consisting of two tetrahedra,} construction of an auxiliary problem subject to full boundary conditions, and then affine ``folder'' map back to the tetrahedron.
-
-\subsection{\cye{Main results}}
-
-\cye{We treat specifically the gradient operator (the setting of Section~\ref{subsection:intro_grad}) on triangulated domains that can be non-convex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} is our main results.} 
-\mwl{MV: remark from after Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.} 
-The computable Poincar\'e--Friedrichs constants obtained here depend on only a few parameters of the \cye{given} triangulation: the length of any traversal from the root simplex, the ratios of the volumes of \cye{the} adjacent simplices, the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. \cye{Here,} the \cye{face patch} Poincar\'e--Friedrichs constants \cye{are} estimated in terms of shape \cye{regularity parameters of the triangulation}; if the face patches of the triangulation are convex, then better estimates are possible. 
-
-\cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
-They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
-
-\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
-
-
-
-
-
-
-\section{Introduction}\label{section:intro}
-
+% old
 Potentials for the differential operators of vector calculus and exterior calculus are of fundamental importance.
 The operator norms of the potentials are upper bounds for the Poincar\'e--Friedrichs constants, 
 which quantify the fundamental stability features of a variety of partial differential equations.
@@ -321,8 +123,6 @@ Broadly speaking, upper bounds for the Poincar\'e--Friedrichs constants correspo
 In numerical methods, estimates for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods, as well as spectral bounds for finite element matrices. 
 \\
 
-
-
 Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
 The majority of estimates in the literature address only gradient potentials. 
 We carry out this endeavor in the special case where $\Omega$ admits a so-called \emph{shellable} triangulation. 
@@ -332,6 +132,8 @@ For example, local stars around a simplex within a larger 2D or 3D triangulation
 Poincar\'e--Friedrichs inequalities over local stars are our main goal in this exposition. 
 \\
 
+
+\subsection{Conceptual overview: gradient}
 
 Before we outline the main results of this exposition in more detail, 
 we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
@@ -403,6 +205,142 @@ Poincar\'e inequalities hold over star-shaped open sets~\cite[Theorem~3.1]{hurri
 
 
 
+
+
+
+\subsection{Conceptual overview: Potential for the gradient operator and the corresponding Poincar\'e--Friedrichs inequality} \label{subsection:intro_grad}
+
+Let $\Omega \subseteq \bbR^n$, $n \geq 1$, be a bounded connected open set. Given any $1 \leq p \leq \infty$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$. Then $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ is the corresponding Lebesgue space of vector  fields. 
+
+Let $W^{1,p}(\Omega)$ denote the first-order Sobolev space over $\Omega$ with integrability exponent $p$, 
+\begin{align} \label{equation:W1p}
+    W^{1,p}(\Omega) := \left\{u \in L^{p}(\Omega) \cye{\suchthat} \nabla u \in \bfL^{p}(\Omega) \right\}.
+\end{align}
+For a vector-valued field $\bff$ that is a distributional gradient of an object from $W^{1,p}(\Omega)$, $\bff \in \nabla W^{1,p}(\Omega)$, we are \cye{interested in} {\em potentials}, i.e., scalar-valued functions $\Phi_{\grad}( \bff ) \in W^{1,p}(\Omega)$ such that $\nabla \Phi_{\grad}( \bff ) = \bff$. Then, 
+%
+\begin{align*}
+    \Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)
+\end{align*}
+is the {\em potential operator}. A particular example of our interest is
+%
+\begin{subequations}\label{math:pot_grad}\begin{align}\label{math:pot_grad_def}
+    \Phi_{\grad}( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)}.
+\end{align}
+%
+Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant\cye{, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
+
+\cye{We want to see whether the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$, i.e., we want to evaluate the {\em operator norm}
+\begin{align}\label{math:pot_grad_norm}
+    C_{\grad,\Omega,p} := \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
+\end{align}\end{subequations}}
+This operator norm is indeed finite and it equivalently turns out to be the best constant in the {\em Poincar\'e--Friedrichs inequality}: for every vector field $\bff \in \nabla W^{1,p}(\Omega)$, there exists $u \in W^{1,p}(\Omega)$ such that $\nabla u = \bff$ and 
+\begin{subequations}\label{math:PF_gradient}\begin{align} \label{math:PF_gradient_1}
+    \| u \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\grad,\Omega,p} 
+    \| \bff \|_{\fooL^{p}(\Omega)}.
+\end{align}
+Actually, \eqref{math:PF_gradient_1} is further equivalent to the more conventional writing
+\begin{align} \label{math:PF_gradient_2}
+    \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\grad,\Omega,p}
+    \| \nabla u \|_{\fooL^{p}(\Omega)},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align}\end{subequations}
+We call $C_{\grad,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} for the gradient operator with exponent $p$. \cye{A concise writing of all~\eqref{math:pot_grad}--\eqref{math:PF_gradient} is
+\begin{align} \label{math:pot_PF_grad}
+    \min\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } 
+    \| u \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\grad,\Omega,p}
+    \| \bff \|_{\fooL^{p}(\Omega)}.
+\end{align}
+for all $\bff \in \nabla W^{1,p}(\Omega)$.}
+
+Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:pot_PF_grad}. Most research on optimal constants has addressed the case of convex domains. 
+Notably, if the constants are required to depend on the convex domain only via its diameter, 
+then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
+When the domain is not convex but star-shaped with respect to a ball,
+then polynomial interpolation estimates already imply the Poincar\'e\cye{--Friedrichs} inequality~\cite{brenner2008mathematical,ern2021finite}. 
+Poincar\'e--Friedrichs inequalities actually hold over merely star-shaped open bounded sets~\cite[Theorem~3.1]{hurri1988poincare}. 
+\cye{We present a more profound discussion below in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:pot_grad_def}.} 
+
+
+
+
+
+
+
+
+
+
+\subsection{Conceptual overview: Potentials for the curl and divergence operators and the corresponding Poincar\'e--Friedrichs inequalities} \label{section:intro_curl_div}
+
+Consider the vector-valued spaces
+\begin{subequations}\label{equation:W_curl_div_p} \begin{align}
+    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \curl \bfu \in \bfL^{p}(\Omega) \right\}
+    ,
+    \\
+    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \divergence \bfu \in L^{p}(\Omega) \right\}
+    .
+\end{align}\end{subequations}
+The members of these spaces are those vector fields whose distributional curls and divergences are \cye{respectively} in \cye{the} Lebesgue spaces \cye{$\bfL^{p}$ or $L^{p}(\Omega)$}.  
+This only requires that certain sums of distributional partial derivatives are integrable, 
+and hence these spaces are not classical Sobolev spaces of vector  fields. 
+
+\cye{Let a vector field $\bff$ that is a distributional curl of an object from $\bfW^{p}(\curl,\Omega)$, $\bff \in \curl \bfW^{p}(\curl,\Omega)$, and scalar-valued field $f$ that is a distributional divergence of an object from $\bfW^{p}(\divergence,\Omega)$, $f \in \divergence \bfW^{p}(\divergence,\Omega)$, be given.} 
+We are interested in constants for inequalities such as 
+\begin{subequations}\label{math:pot_PF_curl_div} \begin{align}
+    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\curl,\Omega) \\ \curl \bfu = \bff } } 
+    \| \bfu \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\curl,\Omega,p}
+    \| \bff \|_{L^{p}(\Omega)} \label{math:pot_PF_curl}
+    ,
+    \\
+    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfu = f } } 
+    \| \bfu \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\divergence,\Omega,p}
+    \| f \|_{L^{p}(\Omega)} \label{math:pot_PF_div}
+    ,
+\end{align}\end{subequations}
+and how these constants can be estimated by the operator norms of {\em linear} potential operators 
+\begin{align*}
+    &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
+    ,
+    \\
+    &\Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
+    .
+\end{align*}
+The fundamental difference \cye{with respect to Section~\ref{subsection:intro_grad}} is that the curl and divergence have infinite-dimensional kernels. In Section~\ref{subsection:intro_grad}, the kernel of the gradient is the one-dimensional space of constant functions. It is thus trivially complemented for all $p$, with a canonical choice of projection. By contrast, in the Banach space case $p \neq 2$, it is not immediately evident that the kernels of the curl and divergence operators are complemented, and a canonical projection only exists here in the Hilbert setting $p=2$. \cye{Actually,} the existence of a bounded linear potential operator here is a non-trivial fact even in the Hilbert space case $p = 2$. 
+
+\cye{Let for a moment the topology of $\Omega$ be trivial, let $\Omega$ be weakly Lipschitz, and consider the Hilbert case $p=2$. Then, \eqref{math:pot_PF_curl} is related to the so-called Poincar\'e--Friedrichs--Weber inequality
+\begin{align}
+    \label{math:Weber}
+    \| \bfu\|_{L^{2}(\Omega)} \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)},
+\end{align}
+for all $\bfu \in \bfW^{2}(\curl,\Omega) \cap \bfW^{2}(\divergence,\Omega)$ with either the tangential or the normal trace zero on $\partial \Omega$ and $\divergence \bfu = 0$. 
+Yet another writing is 
+\label{math:PF_orth} \begin{align}
+    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)}, \label{math:PF_orth_curl}\\
+    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,p} \| \divergence \bfu \|_{L^{2}(\Omega)} \label{math:PF_orth_div}
+\end{align}
+for respectively all functions $\bfu$ from $\bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$ and all functions $\bfu$ from $\bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. We refer to Equation~(5) in~\cite{Fried_diff_forms_55}, Equation~(2) in Gaffney~\cite{Gaff_Hilbert_harm_55}, Weber~\cite{Web_compact_Maxw_80}, \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. Still} in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with \cye{homogeneous} Dirichlet boundary conditions \cye{on $\partial \Omega$} implies, via duality~\eqref{math:pot_PF_div}. However, that easy observation seems restricted to $p=2$. 
+
+Not much attention\cye{, however,} seems to have been given to the study of \cye{computable} constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. \cye{Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of} the exterior calculus formalism\cye{, but the Banach case $p \neq 2$ seems largely unexplored.}
+
+
+
+
+
+\subsection{Conceptual overview: curl, divergence, exterior derivative}
+
 The situation is less clear cut when we study the curl or divergence operators in vector calculus.
 We use the vector field spaces
 \begin{align*}
@@ -457,6 +395,46 @@ who provide lower bounds for the spectrum of the Hodge--Laplace operator on conv
 thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators, when $p=2$.
 By duality, that implies lower bounds for the case of full boundary conditions.
 
+
+
+
+
+\subsection{Conceptual overview: Potentials for the exterior derivative and the corresponding Poincar\'e--Fried\-richs inequalities} \label{section:intro_EC}
+
+Exterior calculus~\cite{greub1967multilinear,lee2012smooth} is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite, gross2004electromagnetic, arnold2006finite, arnold2009geometric, arnold2010finite, demlow2014posteriori, licht2021local, arnold2021complexes}. 
+This formalism is independent of the \cye{space} dimension and highlights \cye{extends the} underlying geometric structures common to the gradient, curl, and divergence operators \cye{in three space dimensions}.
+\cye{In this setting, the common writing of the Poincar\'e--Friedrichs inequalities we are interested in is just as~\eqref{math:PF_gradient_1}: for every $w \in W^{p}\Alt^{k}(\Omega)$, there exists $u \in W^{p}\Alt^{k}(\Omega)$ with $\cartan u = \cartan w$ and such that (all the notation is in detail fixed in Section~\ref{section:calculus} below)
+\begin{align} \label{math:PF_DF} 
+    \| u \|_{L^{p}(\Omega} \leq  C_{k,\Omega,p} \| \cartan w \|_{L^{p}(\Omega)}.
+\end{align} 
+}\mwl{MV: The roles of $u$ and $w$ are flipped in the various parts of the paper, see~\eqref{math:PF_DF} in comparison with Lemma~\ref{lemma:PFexteriorsimplex}. It would be great to unify.}
+
+In the Hilbert space case $p=2$, Guerini and Savo~\cite{guerini2004eigenvalue} provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence \cye{in particular} for the curl and divergence operators.
+\cye{A comparison result} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also \cye{gives} upper estimate\cye{s} of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence \cye{operators} subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
+\cye{Computable constants for Lipschitz domains have recently been addressed in Pauly and Valdman~\cite{Paul_Vald_PF_grad_curl_div_20}, see also the references therein.}
+
+Unfortunately, no results as those of~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} are known over \cye{(}convex\cye{)} \cye{(}Lipschitz\cye{)} domains and general Lebesgue exponents $1 \leq p \leq \infty$. 
+\cye{A conceptual approach to obtain computable} estimates for the Poincar\'e--Friedrichs constants \cye{for any $1 \leq p \leq \infty$} and when the domain is star-shaped with respect to a ball is to bound operator norms of regularized Poincar\'e operators \cye{such as those of} Costabel and McIntosh~\cite{costabel2010bogovskiui} as mappings between Lebesgue spaces. 
+Here, estimates for the higher-order seminorms of these potentials \cye{are available in}~\cite{guzman2021estimation}, but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
+
+
+\mwl{What is the best place for this paragraph?}
+Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
+For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
+\\ 
+
+
+
+
+
+
+
+\subsection{Review: Analytical constants over convex domains}
+
+\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (non-convex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
+The resulting operator features generally lower regularity \cye{but} its properties are sufficient for our purposes. \cye{Crucially, this allows us to} easily estimate their operator norms. 
+\\
+
 When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constants 
 follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
 as mappings between Lebesgue spaces. 
@@ -464,6 +442,15 @@ We are aware of estimates for the higher-order seminorms of these potentials~\ci
 but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
 \\
 
+
+\subsection{Review: Domains star-shaped with respect to a ball}
+
+\cye{Let us only briefly discuss why don't we treat local \cye{patches} (stars) in triangulations as} domains star-shaped with respect to a ball, which they are. This \cye{would enable} the use of averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. Unfortunately, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
+This \cye{would not be} as much a problem over local patches (stars) around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
+\cye{Unfortunately,} the interior ball can be arbitrarily small when the local patch is around a boundary simplex, even if the mesh has good shape regularity: 
+this \cye{in particular} occurs when the domain has sharp reentrant corners. Some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, 
+which contain local finite element patches \cye{that} are not star-shaped with respect to any ball. 
+\\
 
 The main objective of this manuscript is bounding the Poincar\'e--Friedrichs constants over local stars within triangulated domains. 
 Clearly, not all local stars describe convex subdomains. 
@@ -475,45 +462,30 @@ But that interior ball can be arbitrarily small when the patch is around a bound
 this occurs when the domain has sharp reentrant corners, and some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, % DONE: MV : find the examples in the paper by verfurth and veeser 
 which contain finite element patches are not star-shaped with respect to any ball. 
 
-Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
-However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
-We review some of the main outcomes. 
-Veeser and Verf\"urth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
-% 
-The literature~\cite{Eym_Gal_Her_00,vohralik2005discrete,ern2020stable,ern2021finite,Chaum_Voh_p_rob_3D_H_curl_23,Voh_loc_glob_H1_24} knows different variations of a popular avenue towards Poincar\'e--Friedrichs constants that circumvents the effect of low boundary regularity and constructs potentials step-by-step: 
-starting with a single triangle, the potential is constructed over increasing subdomains, until the entire domain is exhausted. That procedure applies to general triangulated domains, not only local stars, though the latter is our main interest here. 
-The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
-Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
-along the interfacing intersection, the two potentials will only differ by a constant, 
-and that difference can easily be removed to ensure continuity across that interface. 
 
-While we know Poincar\'e--Friedrichs constants over local stars for scalar-valued Sobolev spaces, 
-we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)$ and $\bfW^{p}(\divergence,\Omega)$ over finite element stars. 
-In the Hilbert space setting, with $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with Dirichlet boundary conditions implies, 
-via duality, the Poincar\'e--Friedrichs inequality for the divergence operator. However, that easy observation seems restricted to the Hilbert space case $p=2$. 
-We also remark that recent work~\cite{gallistl2023computational} addresses eigenvalues for the curl--curl operator over general triangulations,
-which gives rise to an estimate for the Poincar\'e--Friedrichs constant when $p=2$. However, the use case of these estimates are sequences of triangulations after sufficiently many levels of refinement, whereas our main application are estimates that work with fixed but small triangulations, such as local stars. 
-We are not aware of any estimates for the curl operator, even in the Hilbert space situation. 
+\subsection{Review: Potentials subject to partial boundary conditions}
 
-Towards our main objective of constructing linear potential operators for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
+\cye{In our proofs for triangulated domains}, we \cye{actually also} need to find potentials for the gradient, curl, and divergence operators\cye{, and in general the exterior derivative,} over a simplex subject to partial boundary conditions. 
+Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
+We are not aware of explicit estimates in the literature and \cye{we know} no regularized potential operators for these boundary conditions. 
+\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalities subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
+For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. We achieve this by \cye{an affine ``symmetrization'' map of the tetrahedron to a domain consisting of two tetrahedra,} construction of an auxiliary problem subject to full boundary conditions, and then affine ``folder'' map back to the tetrahedron.
+\\
+
+In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
+Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
+We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
+The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. 
+For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
+we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
+We achieve this by constructing an auxiliary problem subject to full boundary conditions.
 \\
 
 
 
 
-% General outline 
-We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. Having already defined a potential operator over a subtriangulation, we then construct a potential over a neighboring simplex. However, the two potentials might not have the same tangential trace along the interface between the subtriangulation and the new simplex. 
-% 
-To ensure the correct continuity properties, we require stronger conditions on the triangulations than in the case of gradient potentials. We postulate that the intermediate subtriangulations are manifolds with boundary, and that the aforementioned interface is, more specifically, a boundary submanifold of the intermediate subtriangulation and the new simplex. Under those conditions, which are met by so-called \textit{shellable} triangulations, we define a well-posed auxiliary problem for the curl operator with partial tangential boundary conditions. Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
-\\
 
-Shellable triangulations are defined by a special constructive property:
-we can assemble such triangulations sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.
-Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved.
-Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler1995lectures}, which we only employ in a simple special case. 
-In particular, local stars in 2D and 3D triangulations are shellable. 
-\\
-
+\subsection{Objectives: convex domains}
 
 Estimating the norm of local potential operators over convex domains is an important subcomponent of our agenda. 
 Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients.
@@ -532,34 +504,103 @@ however, their properties are sufficient for our purposes. We easily estimate th
 We consider the latter outcome to be of independent interest. 
 
 
-In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
-Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
-We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
-The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. 
-For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
-we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
-We achieve this by constructing an auxiliary problem subject to full boundary conditions.
+
+\subsection{Review: Numerically computed guaranteed bounds on Poincar\'e--Friedrichs constants seen as eigenvalues}
+
+\cye{The constant in~\eqref{math:pot_PF_grad} for $p=2$ corresponds to a lower bound for the Laplace eigenvalues and quantifies the stability properties of the Laplacian on the domain $\Omega$.} 
+\cye{Similarly, t}he constant \cye{in~\eqref{math:pot_PF_curl} for $p=2$} corresponds to a lower bound for the Maxwell eigenvalues and quantifies the stability properties of the Maxwell system on $\Omega$. 
+Thus, computable upper bounds on the Poincar\'e--Friedrichs constants also give computable lower bounds for the eigenvalues of the associated Laplacians \cye{and vice versa}. 
+\cye{This eigenvalues optics, upon employing a suitable numerical simulation} over a general triangulation \cye{and some clever post-processing estimates, enables to numerically compute guaranteed upper bounds on the Poincar\'e--Friedrichs constants, see~\cite{Cars_Ged_LB_eigs_14,Liu_fram_eigs_15} for~\eqref{math:pot_PF_grad} and~\cite{gallistl2023computational} for \eqref{math:pot_PF_curl}}. \cye{Our approaches, in contrast, are either analytical or combinatorial, and in any case we only employ the given geometry but no computer simulation.}
+
+
+
+\subsection{Objectives and methodology}
+
+The main objective of this manuscript is the construction of linear potential operators with explicitly computable upper bounds on their operator norms (i.e., of computable bounds on the Poincar\'e--Friedrichs constants) for the gradient, curl, and divergence operators\cye{, and more broadly in the general case~\eqref{math:PF_DF}}. 
+\cye{We consider not necessarily} convex subdomains and focus on \cye{local patches (stars) of simplicial elements within triangulated domains, but we will also devote an important effort specifically to} convex domains. 
+
+\subsection{Combinatorial constants over face-connected triangulated domains}
+
+Domains that admit finite triangulations allow for techniques \cye{using some form of passing through the triangulation and construction of the potentials step-by-step}. For scalar-valued functions in the context of Section~\ref{subsection:intro_grad}, Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for \cye{vertex} stars. 
+%Naturally, these estimates deteriorates when the shape regularity of the mesh deteriorates. 
+Such approaches were also previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. Triangle by triangle, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
+
+In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face\cye{; face-connected triangulations are sufficient here}. We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
+
+\subsection{Combinatorial constants over shellable triangulated domains}
+
+For vector fields, new challenges arise \cye{because of} the infinite-dimensional kernels. We, \cye{however, overcome these challenges and succeed in generalizing} the sequential construction of the potential operator for the gradient to vector potentials\cye{, including in particular} the curl and divergence. The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. Having already defined a potential operator over a \cye{set of simplices that we term} a subtriangulation, we then construct a potential over a simplex \cye{neighboring through some $(n-1)$-dimensional faces}. However, the potential \cye{on the new simplex} might \cye{here} not have the same tangential trace along the interface between the new simplex and the previous ones. Actually, the passage through the triangulation has to be such that the intermediate subtriangulations are manifolds with boundary and the interface is a boundary submanifold of the intermediate subtriangulation and the new simplex. 
+Then, we can define a well-posed \cye{mapping from the already visited simplices.} Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
+These stronger conditions on the triangulations are exactly those of a so-called \emph{shellable} triangulations. Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} or Ziegler~\cite{ziegler1995lectures}.
+With respect to our main interest, local \cye{patches} (stars) in 2D and 3D triangulations are shellable. 
+
+
+
+\subsection{Main results}
+
+\cye{We treat specifically the gradient operator (the setting of Section~\ref{subsection:intro_grad}) on triangulated domains that can be non-convex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} is our main results.} 
+\mwl{MV: remark from after Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.} 
+The computable Poincar\'e--Friedrichs constants obtained here depend on only a few parameters of the \cye{given} triangulation: the length of any traversal from the root simplex, the ratios of the volumes of \cye{the} adjacent simplices, the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. \cye{Here,} the \cye{face patch} Poincar\'e--Friedrichs constants \cye{are} estimated in terms of shape \cye{regularity parameters of the triangulation}; if the face patches of the triangulation are convex, then better estimates are possible. 
+
+\cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
+
+\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
+
+
+\subsection{Review: Triangulated domains}
+
+Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
+However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
+We review some of the main outcomes. 
+Veeser and Verf\"urth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimate deteriorates when the shape regularity of the mesh deteriorates. 
+
+The literature~\cite{Eym_Gal_Her_00,vohralik2005discrete,ern2020stable,ern2021finite,Chaum_Voh_p_rob_3D_H_curl_23,Voh_loc_glob_H1_24} knows different variations of a popular avenue towards Poincar\'e--Friedrichs constants that circumvents the effect of low boundary regularity and constructs potentials step-by-step: 
+starting with a single triangle, the potential is constructed over increasing subdomains, until the entire domain is exhausted. 
+That procedure applies to general triangulated domains, not only local stars, though the latter is our main interest here. 
+The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
+Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
+along the interfacing intersection, the two potentials will only differ by a constant, 
+and that difference can easily be removed to ensure continuity across that interface. 
+
+While we know Poincar\'e--Friedrichs constants over local stars for scalar-valued Sobolev spaces, 
+we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)$ and $\bfW^{p}(\divergence,\Omega)$ over finite element stars. 
+In the Hilbert space setting, with $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with Dirichlet boundary conditions implies, 
+via duality, the Poincar\'e--Friedrichs inequality for the divergence operator. However, that easy observation seems restricted to the Hilbert space case $p=2$. 
+We also remark that recent work~\cite{gallistl2023computational} addresses eigenvalues for the curl--curl operator over general triangulations,
+which gives rise to an estimate for the Poincar\'e--Friedrichs constant when $p=2$. However, the use case of these estimates are sequences of triangulations after sufficiently many levels of refinement, whereas our main application are estimates that work with fixed but small triangulations, such as local stars. 
+We are not aware of any estimates for the curl operator, even in the Hilbert space situation. 
+
+Towards our main objective of constructing linear potential operators for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
+\\
+
+\subsection{Objective: sequential approach} 
+We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. Having already defined a potential operator over a subtriangulation, we then construct a potential over a neighboring simplex. However, the two potentials might not have the same tangential trace along the interface between the subtriangulation and the new simplex. 
+% 
+To ensure the correct continuity properties, we require stronger conditions on the triangulations than in the case of gradient potentials. We postulate that the intermediate subtriangulations are manifolds with boundary, and that the aforementioned interface is, more specifically, a boundary submanifold of the intermediate subtriangulation and the new simplex. Under those conditions, which are met by so-called \textit{shellable} triangulations, we define a well-posed auxiliary problem for the curl operator with partial tangential boundary conditions. Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
+\\
+
+\subsection{Objective: shellable triangulations}
+Shellable triangulations are defined by a special constructive property:
+we can assemble such triangulations sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.
+Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved.
+Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler1995lectures}, which we only employ in a simple special case. 
+In particular, local stars in 2D and 3D triangulations are shellable. 
 \\
 
 
 
-\mwl{What is the best place for this paragraph?}
-Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus~\cite{greub1967multilinear,lee2012smooth}. Exterior calculus is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite,gross2004electromagnetic,arnold2006finite,arnold2009geometric,arnold2010finite,demlow2014posteriori,licht2021local,arnold2021complexes}. Loosely speaking, exterior calculus is the calculus of antisymmetric tensor fields. The formalism is independent of the dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
-For the purpose of our discussion, this formalism allows us to leverage results from a larger body of literature in differential geometry and functional analysis. 
-\\ 
 
 
 
 
+\subsection{Notation}
 
-\paragraph{Notation}
+Whenever $x \in \bbR^{n}$ is a vector, we write $\|x\| = \|x\|_{2}$ for its Euclidean norm, 
+and whenever $A \in \bbR^{n \times n}$, we let $\| A \|_{2}$ be its operator norm with respect to the Euclidean norm. 
+Furthermore, $\Jacobian F$ always denotes the Jacobian of any mapping $F$. 
 
-\mwl{Fix this}
-Given a matrix $A \in \bbR^{n \times n}$, we let $\sigma_{1}(A) \geq \dots \geq \sigma_{n}(A) \geq 0$ denote the descending sequence of its singular values, 
-where $\sigma_{\max}(A) := \sigma_{1}(A)$ is the largest and $\sigma_{\min}(A) := \sigma_{n}(A)$ is the smallest. 
-We recall that the $\ell^{2}$ operator norm of $A$, written $\| A \|_{2}$, agrees with $\sigma_{\max}(A)$,
-and if $A$ is invertible, then $\|A^{-1}\| = \sigma_{\min}(A)^{-1}$.
-% Another norm on matrices, less common but useful for us, is the \emph{maximum column norm} $\|A\|_{\maxcol}$, which is defined as the largest $\ell^{2}$-norm of any column of $A$. 
+
 
 
 \subsection{Organization of this manuscript}
@@ -2933,8 +2974,8 @@ In comparison to their extensive work, our discussion is more modest:
 we study potential operators merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
 However, our goal is explicit bounds for the operator norms, giving the Poincar\'e--Friedrichs constants. 
 
-%\mwl{In what follows, $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $\diam(\Omega) > 0$.}
-Let $\Omega \subseteq \bbR^{n}$ is a convex bounded open set with diameter $\diam(\Omega) > 0$.
+%\mwl{In what follows, $\Omega \subseteq \bbR^{n}$ is a bounded convex open set with diameter $\diam(\Omega) > 0$.}
+Let $\Omega \subseteq \bbR^{n}$ is a bounded convex open set with diameter $\diam(\Omega) > 0$.
 
 % \todo{MV: Discussion already in the introduction, or in Remark~\ref{remark:reg_Poinc_Bog}}: 
 
@@ -3612,7 +3653,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
 
 
 \begin{theorem}\label{theorem:bogovpoinc}
-    Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set and let $1 \leq p \leq \infty$. 
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded convex open set and let $1 \leq p \leq \infty$. 
     We have bounded operators 
     \begin{align*}
         \Poinc_{\mia} : L^{p}\Alt^{\mia}(\Omega) \rightarrow \bfW^{p}\Alt^{\mia-1}(\Omega)
@@ -3862,7 +3903,7 @@ we have the following improved estimate.
     have been contributed by Guzman and Salgado~\cite{guzman2021estimation}. % DONE: THEO That requires more comments 
     % Guzman and Salgado have estimated the operator norm. \mwl{Describe Guzman and Salgado's contribution in more detail.} 
     
-    {\color{blue}
+    \mwl{ 
     Costabel and McIntosh~\cite{costabel2010bogovskiui} regularize the potentials by averaging over pivot points within an interior ball using a smooth compactly supported weight function, 
     which is why they can study domains star-shaped with respect to a ball. 
     Their operators are pseudo-differential operators of negative order, 
@@ -5711,7 +5752,7 @@ The analysis of the Poincar\'e potential operators in Section~\ref{section:poten
 implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
 
 \begin{lemma}\label{lemma:PFexteriorsimplex}
-    Let $\Omega \subseteq \bbR^{n}$ be a convex bounded open set. 
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded convex open set. 
     Let $0 \leq k < n$. 
     Then for each $u \in W^{p}\Lambda^{k}(\Omega)$ 
     there exists $w \in W^{p}\Lambda^{k}(\Omega)$ 
