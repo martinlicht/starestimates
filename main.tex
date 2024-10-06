@@ -99,7 +99,7 @@ having computable upper bounds for such domains is an important stepping stone t
 Let $\Omega \subseteq \bbR^n$, $n \geq 1$, be a bounded connected open set. Given any $1 \leq p \leq \infty$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$. Then $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ is the corresponding Lebesgue space of vector  fields. 
 
 
-%\subsection{\cye{Potential for the gradient operator and the corresponding Poincar\'e--Friedrichs inequality}} \label{section:intro_grad}
+%\subsection{\cye{Potential for the gradient operator and the corresponding Poincar\'e--Friedrichs inequality}} \label{subsection:intro_grad}
 
 Let $W^{1,p}(\Omega)$ denote the first-order Sobolev space over $\Omega$ with integrability exponent $p$, 
 \begin{align} \label{equation:W1p}
@@ -198,7 +198,7 @@ and how these constants can be estimated by the operator norms of {\em linear} p
     &\Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
     .
 \end{align*}
-The fundamental difference \cye{with respect to Section~\ref{section:intro_grad}} is that the curl and divergence have infinite-dimensional kernels. In Section~\ref{section:intro_grad}, the kernel of the gradient is the one-dimensional space of constant functions. It is thus trivially complemented for all $p$, with a canonical choice of projection. By contrast, in the Banach space case $p \neq 2$, it is not immediately evident that the kernels of the curl and divergence operators are complemented, and a canonical projection only exists here in the Hilbert setting $p=2$. \cye{Actually,} the existence of a bounded linear potential operator here is a non-trivial fact even in the Hilbert space case $p = 2$. 
+The fundamental difference \cye{with respect to Section~\ref{subsection:intro_grad}} is that the curl and divergence have infinite-dimensional kernels. In Section~\ref{subsection:intro_grad}, the kernel of the gradient is the one-dimensional space of constant functions. It is thus trivially complemented for all $p$, with a canonical choice of projection. By contrast, in the Banach space case $p \neq 2$, it is not immediately evident that the kernels of the curl and divergence operators are complemented, and a canonical projection only exists here in the Hilbert setting $p=2$. \cye{Actually,} the existence of a bounded linear potential operator here is a non-trivial fact even in the Hilbert space case $p = 2$. 
 
 \cye{Let for a moment the topology of $\Omega$ be trivial, let $\Omega$ be weakly Lipschitz, and consider the Hilbert case $p=2$. Then, \eqref{math:pot_PF_curl} is related to the so-called Poincar\'e--Friedrichs--Weber inequality
 \begin{align}
@@ -249,11 +249,11 @@ The main objective of this manuscript is the construction of linear potential op
 
 % \subsubsection{\cye{Combinatorial constants over face-connected triangulated domains}}
 
-Domains that admit finite triangulations allow for techniques \cye{using some form of passing through the triangulation and construction of the potentials step-by-step}. For scalar-valued functions in the context of Section~\ref{section:intro_grad}, Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for \cye{vertex} stars. 
+Domains that admit finite triangulations allow for techniques \cye{using some form of passing through the triangulation and construction of the potentials step-by-step}. For scalar-valued functions in the context of Section~\ref{subsection:intro_grad}, Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for \cye{vertex} stars. 
 %Naturally, these estimates deteriorates when the shape regularity of the mesh deteriorates. 
 Such approaches were also previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. Triangle by triangle, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
 
-In the gradient case of Section~\ref{section:intro_grad}, it is possible to perform a simple pass through the triangulation, where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face\cye{; face-connected triangulations are sufficient here}. We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
+In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face\cye{; face-connected triangulations are sufficient here}. We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
 
 %\subsubsection{\cye{Combinatorial constants over shellable triangulated domains}}
 
@@ -285,12 +285,12 @@ For example, given a divergence-free vector field over a tetrahedron with vanish
 
 %\subsection{\cye{Main results}}
 
-\cye{We treat specifically the gradient operator (the setting of Section~\ref{section:intro_grad}) on triangulated domains that can be non-convex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} are our main results.} 
-\mwl{MV: remark from after Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} moved here.} 
+\cye{We treat specifically the gradient operator (the setting of Section~\ref{subsection:intro_grad}) on triangulated domains that can be non-convex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} is our main results.} 
+\mwl{MV: remark from after Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.} 
 The computable Poincar\'e--Friedrichs constants obtained here depend on only a few parameters of the \cye{given} triangulation: the length of any traversal from the root simplex, the ratios of the volumes of \cye{the} adjacent simplices, the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. \cye{Here,} the \cye{face patch} Poincar\'e--Friedrichs constants \cye{are} estimated in terms of shape \cye{regularity parameters of the triangulation}; if the face patches of the triangulation are convex, then better estimates are possible. 
 
 \cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
-They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei}.}
+They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 
 \cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
 
@@ -854,7 +854,7 @@ Its operator norm is just the optimal Poincar\'e constant $C_{\varnothing,\Omega
 
 
 
-\subsection{Analytical constants in Poincar\'e--Friedrichs inequalities over bounded convex domains} \label{section: PX_convex}
+\subsection{Analytical constants in Poincar\'e--Friedrichs inequalities over bounded convex domains} \label{subsection: PX_convex}
 
 We collect examples for Poincar\'e and Poincar\'e--Friedrichs inequalities for the important special case of bounded convex domains. 
 We have the Poincar\'e inequalities~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal} (or \cite[Lemma~3.24]{ern2021finite}) 
@@ -1851,7 +1851,7 @@ We begin with an auxiliary result with independent relevance, where we estimate 
 
 
 The next auxiliary result establishes Poincar\'e--Friedrichs constants over face patches within simplicial triangulations. 
-We emphasize that face patches are not necessarily convex, but we can still extend the results on convex domains from Section~\ref{section: PX_convex}. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
+We emphasize that face patches are not necessarily convex, but we can still extend the results on convex domains from Section~\ref{subsection: PX_convex}. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
 \begin{lemma}\label{lemma:poincarefriedrichsoverfacepatch}
     Let $\calT$ be a triangulation.
@@ -3381,7 +3381,7 @@ In summary, after taking the average over $a \in \Omega$:
     u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
 \end{align}
 
-The discussion for the Bogovski\u{\i} operator is analogous. 
+Even though the discussion for the Bogovski\u{\i} operator is large analogous, some modifications are needed. 
 Suppose that $u \in C^{\infty}\Alt^{\mia}(\bbR^n)$ with $\supp u \subseteq \overline\Omega$.
 We rewrite the Bogovski\u{\i} potential,
 \begin{align*}
@@ -3400,7 +3400,7 @@ We rewrite the Bogovski\u{\i} potential,
     \sum_{\sigma \in \Sigma(\mia,n)} \sum_{i=1}^{\mia}
     \int_{1}^\infty 
     t^{\mia-1} u_{\sigma}\left(a+t(x-a)\right) (-1)^{i-1} \,(x-a)_{\sigma(i) } \,\cartanx^{\sigma-\sigma(i)} \,dt 
-    ,
+    .
 \end{align*}
 and compute its exterior derivative:
 \begin{align*}
@@ -5372,7 +5372,7 @@ We give detailed estimates for the singular values of their Jacobians.
         
         
         \item 
-        We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{\patch_{\calT}(S) \setminus T}$ by setting 
+        We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
@@ -5688,7 +5688,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         .
     \end{align*}
 \end{lemma}
-\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{section: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
+\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 \begin{proof}
     There exists an affine bijection $\varphi : \hat T \rightarrow T$ 
     that maps the convex closure of the $n$ unit vectors onto the face $F_0$.
@@ -5760,12 +5760,14 @@ Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
     .
 \end{align*}
 Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
+For each $0 \leq m \leq M$, we write 
 \begin{align*}
-    \mwl{X_{m} := ...}
+    X_{m} := T_0 \cup T_1 \cup \dots \cup T_{m}.
 \end{align*}
 For each $1 \leq m \leq M$, the interface of the new simplex to the previous intermediate triangulation is 
 \begin{align*}
-    \Gamma_{m} := T_{m} \cap \left( T_{0} \cup \dots \cup T_{m-1} \right)
+    \Gamma_{m} := T_{m} \cap X_{m-1} %\left( T_{0} \cup \dots \cup T_{m-1} \right)
+	.
 \end{align*}
 According to Lemma~\ref{lemma:existenceofstar}, 
 there exists a simplex $S_{m} \in \calT$ 
@@ -6176,368 +6178,6 @@ MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, and 
 
 
 
-
-
-
-\begin{proof}
-    We begin with the following preparatory observations. 
-    Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
-    We let $A_{T} \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
-    That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
-    Then the mapping 
-    \begin{align}
-        F_T(x) 
-        = 
-        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x
-    \end{align}
-    maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
-    \begin{align}
-        F_T^{-1}(x) 
-        = 
-        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
-        .
-    \end{align}
-    We analyze its Lipschitz properties.
-    % 
-    In what follows, $y \in \bbR^{n}$. 
-    On the one hand, 
-    we compute the Jacobian at any $x \in \mathring T$:
-    \begin{align*}
-        \Jacobian F_T(x) \cdot y
-        &= 
-        \frac{ \|x\| y - x \|x\|^{-1} x^t y }{\|x\|^2} 
-        \left( \vecone \cdot A_{T}^{-1} x \right)
-        + 
-        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} y \right)
-        \\&= 
-        \left( \Id - \|x\|^{-2} x \otimes x^t \right)
-        \frac{ 1 }{ \|x\| } 
-        \left( \vecone \cdot A_{T}^{-1} x \right)
-        + 
-        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
-        \\&= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-        \left( \Id - \hat x \otimes \hat x^t \right) y
-        + 
-        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
-        .
-    \end{align*}
-    This is an orthogonal sum of two vectors. Its norm satisfies:
-\begin{align*}
-        \| \Jacobian F_T(x) \cdot y \|^{2}
-        &= 
-        \left| A_{T}^{-t} \vecone \cdot \hat x \right|^{2}
-        \| \left( \Id - \hat x \otimes \hat x^t \right) y \|^{2}
-        + 
-        \left| A_{T}^{-t} \vecone \cdot y \right|^{2} \| \hat x \|^{2}
-        .
-    \end{align*}
-    The Euclidean operator norm satisfies 
-    \begin{align*}
-        \| \Jacobian F_T(x) \| 
-        \leq 
-        \sqrt 2 \left\| A_{T}^{-t} \vecone \right\|_{2}
-        \leq 
-        \sqrt{2n} \cdot \sigma_{\max}(A_{T}^{-1}) 
-        .
-    \end{align*}
-    On the other hand, we can rewrite the Jacobian as:
-    \begin{align*}
-        \Jacobian F_T(x) \cdot y
-        &= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-        y
-        - 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-        \left( \hat x \otimes \hat x^t \right) y
-        + 
-        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
-        \\&= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-        y
-        - 
-        \hat x 
-        \left( 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x^{t}
-            -
-            \vecone^{t} A_{T}^{-1} 
-        \right) y
-        \\&= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
-        y
-        - 
-        \hat x 
-        \left( 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
-            -
-            A_{T}^{-t} \vecone
-        \right)^{t} y
-        .
-    \end{align*}
-    Its inverse is found via the Woodbury formula: 
-    % Its inverse is easily verified to be:
-    \begin{align*}
-        \Jacobian F_T(x)^{-1}
-        &= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-        \Id
-        - 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-2}
-        \hat x 
-        \left( 
-            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
-            -
-            A_{T}^{-t} \vecone
-        \right)^{t} 
-        \\&= 
-        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-        \left( 
-            \Id
-            - 
-            \hat x 
-            \left( 
-                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
-                \hat x
-                -
-                \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                A_{T}^{-t} \vecone
-            \right)^{t}
-        \right)
-        \\&= 
-        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-        \left( 
-            \Id
-            - 
-            \hat x 
-            \left( 
-                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
-                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
-                \hat x
-                -
-                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-                A_{T}^{-t} \vecone
-            \right)^{t}
-        \right)
-        \\&= 
-        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-        \left( 
-            \Id - \hat x \otimes \hat x^{t}
-            + 
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-            \hat x \otimes \vecone^{t} A_{T}^{-1}
-        \right)
-        .
-    \end{align*}
-    The inverse acts via multiplication with $\left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}$ on the span of $\hat x$.
-    We notice the upper bound 
-    \begin{align*}
-        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-        &= 
-        \| A_{T}^{-1} \hat x \|^{-1}_{1}
-        \\&\leq  
-        \| A_{T}^{-1} \hat x \|^{-1}_{2}
-        \leq 
-        \sigma_{\min}( A_{T}^{-1} )^{-1}
-        = 
-        \sigma_{\max}( A_{T} )
-        .
-    \end{align*}
-    This holds because $A_{T}^{-1} \hat x$ is in the positive quadrant.
-    %, and its scalar product with $\vecone$ is minimized when it is colinear with a coordinate axis.
-    If $y \in \bbR^{n}$ is orthogonal to $\hat x$, then 
-    \begin{align*}
-        \| \Jacobian F_T(x)^{-1} \cdot y \|^{2}
-        &\leq 
-%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-%             \left\| 
-%                 y
-%             \right\|^{2}
-%             +
-%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-%             \left| 
-%                 \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-%                 \vecone^{t} A_{T}^{-1} y 
-%             \right|^{2}
-%             \\&\leq 
-        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
-        \left\| 
-            y
-        \right\|^{2}
-        +
-        \frac{ 
-        \left| 
-            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
-            \vecone^{t} A_{T}^{-1} y 
-        \right|^{2}
-        }{
-        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{2}
-        }
-        .
-    \end{align*}
-    The operator norm of that inverse is:
-    \begin{align*}
-        \| \Jacobian F_T(x)^{-1} \|
-        \leq 
-        \sigma_{\max}( A_{T} )
-        \left( 1 + n \frac{ \sigma_{\max}(A_{T})^{2} }{ \sigma_{\min}(A_{T})^{2} } \right)^{\frac 1 2}
-        .
-    \end{align*}
-    Since the domain and codomain of $F_{T}$ are convex, 
-    this also implies bounds on the Lipschitz constants of $F_{T}$ and its inverse. 
-\color{red}
-    On the one hand, given $x, y \in T$, 
-    where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
-    \begin{align*}
-        &
-        \left\| F_T(x) - F_T(y) \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
-        \right\|_{2}
-        +
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
-        \left\| 
-            x - y
-        \right\|_{2}
-        +
-        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
-        \\&\qquad 
-        \leq 
-        2\sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
-        \left\| x - y \right\|_{2}
-        .
-    \end{align*}
-    On the one hand, given $x, y \in T$, 
-    where $\| x \|_{2} \leq \| y \|_{2}$ without loss of generality, we find 
-    \begin{align*}
-        &
-        \left\| F_T(x) - F_T(y) \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
-        \right\|_{2}
-        +
-        \left\| 
-            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y
-        \right\|_{2}
-        +
-        \left\| 
-            \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
-        \left\| 
-            x - y
-        \right\|_{2}
-        +
-        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
-        \frac{\|y\|}{\|x\|}
-        +
-        \|A_{T}^{-1} y\|_1 \|y\|_{2}
-        \left| \frac{1}{\|x\|} - \frac{1}{\|y\|} \right|
-        \\&\qquad 
-        \leq 
-        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
-        \left\| 
-            x - y
-        \right\|_{2}
-        +
-        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
-        \frac{\|y\|}{\|x\|}
-        +
-        \|A_{T}^{-1} y\|_1 \|y\|_{2}
-        \left| \frac{ \|y\|_{2} - \|x\|_{2} }{\|x\|_{2} \|y\|_{2}} \right|
-        \\&\qquad 
-        \leq 
-        3 \sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
-        \left\| x - y \right\|_{2}
-        .
-    \end{align*}
-    On the other hand, given $x, y \in F_T(T)$, 
-    where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
-    \begin{align*}
-        &
-        \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left\| 
-            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
-        \right\|_{2}
-        +
-        \left\| 
-            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
-        \right\|_{2}
-        +
-        \left\| 
-            \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
-        \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
-        \left\| 
-            x - y
-        \right\|_{2}
-        +
-        \left| \|x\|_2 - \|y\|_2 \right|
-        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} }
-        +
-        \|y\|_2^{2}
-        \left| 
-        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} \| A_{T}^{-1} y \|_{1} }
-        \right|
-        \\&\qquad 
-        \leq 
-        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{2} } 
-        \left\| 
-            x - y
-        \right\|_{2}
-        +
-        \left| \|x\|_2 - \|y\|_2 \right|
-        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{2} }
-        +
-        \|y\|_2^{2}
-        \left| 
-        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{2} \| A_{T}^{-1} y \|_{2} }
-        \right|
-        \\&\qquad 
-        \leq 
-        \left( 2 + \sqrt{n} \frac{\sigma_{\max}(A_{T}^{-1}) }{ \sigma_{\min}(A_{T}^{-1}) } \right) \sigma_{\min}(A_{T}^{-1})^{-1} 
-        \left\| x - y \right\|_{2}
-        \\&\qquad 
-        \leq 
-        \left( 2 + \sqrt{n} \kappa(A_{T}) \right) \sigma_{\max}(A_{T})
-        \left\| x - y \right\|_{2}
-        .
-    \end{align*}
-    By convexity of the range of $F_T(T)$, 
-    we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
-    We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
-    \color{black}
-\end{proof}        
 
 
 

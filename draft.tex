@@ -13,6 +13,381 @@
 
 
 
+
+\begin{proof}
+    We begin with the following preparatory observations. 
+    Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
+    We let $A_{T} \in \bbR^{n \times n}$ be the matrix that maps the $i$-th unit vector to $v_i$.
+    That matrix maps the reference simplex $\Delta^{n}$ onto $T$. 
+    Then the mapping 
+    \begin{align}
+        F_T(x) 
+        = 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x
+    \end{align}
+    maps $T$ onto a ``simplex with a curved face'' inside the Euclidean unit ball. Its inverse is
+    \begin{align}
+        F_T^{-1}(x) 
+        = 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x
+        .
+    \end{align}
+    We analyze its Lipschitz properties.
+    % 
+    In what follows, $y \in \bbR^{n}$. 
+    On the one hand, 
+    we compute the Jacobian at any $x \in \mathring T$:
+    \begin{align*}
+        \Jacobian F_T(x) \cdot y
+        &= 
+        \frac{ \|x\| y - x \|x\|^{-1} x^t y }{\|x\|^2} 
+        \left( \vecone \cdot A_{T}^{-1} x \right)
+        + 
+        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} y \right)
+        \\&= 
+        \left( \Id - \|x\|^{-2} x \otimes x^t \right)
+        \frac{ 1 }{ \|x\| } 
+        \left( \vecone \cdot A_{T}^{-1} x \right)
+        + 
+        \frac{x}{\|x\|} \left( \vecone \cdot A_{T}^{-1} x \right)
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        \left( \Id - \hat x \otimes \hat x^t \right) y
+        + 
+        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
+        .
+    \end{align*}
+    This is an orthogonal sum of two vectors. Its norm satisfies:
+\begin{align*}
+        \| \Jacobian F_T(x) \cdot y \|^{2}
+        &= 
+        \left| A_{T}^{-t} \vecone \cdot \hat x \right|^{2}
+        \| \left( \Id - \hat x \otimes \hat x^t \right) y \|^{2}
+        + 
+        \left| A_{T}^{-t} \vecone \cdot y \right|^{2} \| \hat x \|^{2}
+        .
+    \end{align*}
+    The Euclidean operator norm satisfies 
+    \begin{align*}
+        \| \Jacobian F_T(x) \| 
+        \leq 
+        \sqrt 2 \left\| A_{T}^{-t} \vecone \right\|_{2}
+        \leq 
+        \sqrt{2n} \cdot \sigma_{\max}(A_{T}^{-1}) 
+        .
+    \end{align*}
+    On the other hand, we can rewrite the Jacobian as:
+    \begin{align*}
+        \Jacobian F_T(x) \cdot y
+        &= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        \left( \hat x \otimes \hat x^t \right) y
+        + 
+        \left( A_{T}^{-t} \vecone \cdot y \right) \hat x 
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x^{t}
+            -
+            \vecone^{t} A_{T}^{-1} 
+        \right) y
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)
+        y
+        - 
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+            -
+            A_{T}^{-t} \vecone
+        \right)^{t} y
+        .
+    \end{align*}
+    Its inverse is found via the Woodbury formula: 
+    % Its inverse is easily verified to be:
+    \begin{align*}
+        \Jacobian F_T(x)^{-1}
+        &= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+        \Id
+        - 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-2}
+        \hat x 
+        \left( 
+            \left( A_{T}^{-t} \vecone \cdot \hat x \right) \hat x
+            -
+            A_{T}^{-t} \vecone
+        \right)^{t} 
+        \\&= 
+        \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+        \left( 
+            \Id
+            - 
+            \hat x 
+            \left( 
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                \hat x
+                -
+                \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                A_{T}^{-t} \vecone
+            \right)^{t}
+        \right)
+        \\&= 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        \left( 
+            \Id
+            - 
+            \hat x 
+            \left( 
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right)^{-1}
+                % \left( A_{T}^{-t} \vecone \cdot \hat x \right) 
+                \hat x
+                -
+                \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+                A_{T}^{-t} \vecone
+            \right)^{t}
+        \right)
+        \\&= 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        \left( 
+            \Id - \hat x \otimes \hat x^{t}
+            + 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \hat x \otimes \vecone^{t} A_{T}^{-1}
+        \right)
+        .
+    \end{align*}
+    The inverse acts via multiplication with $\left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}$ on the span of $\hat x$.
+    We notice the upper bound 
+    \begin{align*}
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+        &= 
+        \| A_{T}^{-1} \hat x \|^{-1}_{1}
+        \\&\leq  
+        \| A_{T}^{-1} \hat x \|^{-1}_{2}
+        \leq 
+        \sigma_{\min}( A_{T}^{-1} )^{-1}
+        = 
+        \sigma_{\max}( A_{T} )
+        .
+    \end{align*}
+    This holds because $A_{T}^{-1} \hat x$ is in the positive quadrant.
+    %, and its scalar product with $\vecone$ is minimized when it is colinear with a coordinate axis.
+    If $y \in \bbR^{n}$ is orthogonal to $\hat x$, then 
+    \begin{align*}
+        \| \Jacobian F_T(x)^{-1} \cdot y \|^{2}
+        &\leq 
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left\| 
+%                 y
+%             \right\|^{2}
+%             +
+%             \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+%             \left| 
+%                 \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+%                 \vecone^{t} A_{T}^{-1} y 
+%             \right|^{2}
+%             \\&\leq 
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-2}
+        \left\| 
+            y
+        \right\|^{2}
+        +
+        \frac{ 
+        \left| 
+            \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{-1}
+            \vecone^{t} A_{T}^{-1} y 
+        \right|^{2}
+        }{
+        \left( \vecone \cdot A_{T}^{-1} \hat x \right)^{2}
+        }
+        .
+    \end{align*}
+    The operator norm of that inverse is:
+    \begin{align*}
+        \| \Jacobian F_T(x)^{-1} \|
+        \leq 
+        \sigma_{\max}( A_{T} )
+        \left( 1 + n \frac{ \sigma_{\max}(A_{T})^{2} }{ \sigma_{\min}(A_{T})^{2} } \right)^{\frac 1 2}
+        .
+    \end{align*}
+    Since the domain and codomain of $F_{T}$ are convex, 
+    this also implies bounds on the Lipschitz constants of $F_{T}$ and its inverse. 
+\color{red}
+    On the one hand, given $x, y \in T$, 
+    where $\| y \|_{1} \leq \| x \|_{1}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T(x) - F_T(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \\&\qquad 
+        \leq 
+        2\sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    On the one hand, given $x, y \in T$, 
+    where $\| x \|_{2} \leq \| y \|_{2}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T(x) - F_T(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } x - \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \| A_{T}^{-1} y \|_{1} }{ \|x\|_2 } y - \frac{ \| A_{T}^{-1} y \|_{1} }{ \|y\|_2 } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \frac{\|y\|}{\|x\|}
+        +
+        \|A_{T}^{-1} y\|_1 \|y\|_{2}
+        \left| \frac{1}{\|x\|} - \frac{1}{\|y\|} \right|
+        \\&\qquad 
+        \leq 
+        \frac{ \| A_{T}^{-1} x \|_{1} }{ \|x\|_2 } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|A_{T}^{-1} x\|_1 - \|A_{T}^{-1} y\|_1 \right|
+        \frac{\|y\|}{\|x\|}
+        +
+        \|A_{T}^{-1} y\|_1 \|y\|_{2}
+        \left| \frac{ \|y\|_{2} - \|x\|_{2} }{\|x\|_{2} \|y\|_{2}} \right|
+        \\&\qquad 
+        \leq 
+        3 \sqrt{n} \sigma_{\max}(A_{T}^{-1}) 
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    On the other hand, given $x, y \in F_T(T)$, 
+    where $\| A_{T}^{-1} y \|_{1} \leq \| A_{T}^{-1} x \|_{1}$ without loss of generality, we find 
+    \begin{align*}
+        &
+        \left\| F_T^{-1}(x) - F_T^{-1}(y) \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } x - \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y
+        \right\|_{2}
+        +
+        \left\| 
+            \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} } y - \frac{ \|y\|_2 }{ \| A_{T}^{-1} y \|_{1} } y
+        \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{1} } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|x\|_2 - \|y\|_2 \right|
+        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{1} }
+        +
+        \|y\|_2^{2}
+        \left| 
+        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{1} \| A_{T}^{-1} y \|_{1} }
+        \right|
+        \\&\qquad 
+        \leq 
+        \frac{ \|x\|_2 }{ \| A_{T}^{-1} x \|_{2} } 
+        \left\| 
+            x - y
+        \right\|_{2}
+        +
+        \left| \|x\|_2 - \|y\|_2 \right|
+        \frac{ \|y\|_2 }{ \| A_{T}^{-1} x \|_{2} }
+        +
+        \|y\|_2^{2}
+        \left| 
+        \frac{ \| A_{T}^{-1} y \|_{1} - \| A_{T}^{-1} x \|_{1} }{ \| A_{T}^{-1} x \|_{2} \| A_{T}^{-1} y \|_{2} }
+        \right|
+        \\&\qquad 
+        \leq 
+        \left( 2 + \sqrt{n} \frac{\sigma_{\max}(A_{T}^{-1}) }{ \sigma_{\min}(A_{T}^{-1}) } \right) \sigma_{\min}(A_{T}^{-1})^{-1} 
+        \left\| x - y \right\|_{2}
+        \\&\qquad 
+        \leq 
+        \left( 2 + \sqrt{n} \kappa(A_{T}) \right) \sigma_{\max}(A_{T})
+        \left\| x - y \right\|_{2}
+        .
+    \end{align*}
+    By convexity of the range of $F_T(T)$, 
+    we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
+    We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
+    \color{black}
+\end{proof}        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{{Nonlinear and linear potentials, the Poincar\'e--Friedrichs and Poincar\'e inequalities, and {analytical} Poincar\'e--Friedrichs constants in the gradient case}} \label{section:poincare} 
 
 \mwl{
