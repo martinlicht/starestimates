@@ -1191,7 +1191,7 @@ Formally,
     \qquad 
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
-We also write $\Minako_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
+We also write $\Makoto_T := | \patch_{\calT}(T) |$ for the underlying set of the local patch. 
 A crucial structural observation is the following.
 
 \begin{lemma}
@@ -1846,11 +1846,6 @@ We begin with an auxiliary result with independent relevance, where we estimate 
     and has the desired support property. 
 \end{proof}
 
-% \begin{remark}
-%     While it may not be obvious, the second estimate is tighter than the first estimate when using the optimal Poincar\'e--Friedrichs constants for convex domains.  
-% \end{remark}
-
-
 The next auxiliary result establishes Poincar\'e--Friedrichs constants over face patches within simplicial triangulations. 
 We emphasize that face patches are not necessarily convex, but we can still extend the results on convex domains from Section~\ref{subsection: PX_convex}. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
@@ -2144,12 +2139,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBXY) -- (CentroidBFY); 
     \draw[-latex, thick, shorten <=2.5pt, shorten >=2.5pt] (CentroidBDF) -- (CentroidDFT); 
     \draw[-latex, thick, shorten <=1.0pt, shorten >=2.0pt] (CentroidCDE) -- (CentroidDET); 
-    
-%     \node at (A) [below left] {$A$};
-%     \node at (B) [below right] {$B$};
-%     \node at (C) [above] {$C$};
-%     \node at (D) [above right] {$D$};
-%     \node at (T) [above right] {$T$};
 \end{tikzpicture}
 \end{center}
 \caption{Face-connected triangulation of a domain. The arrows depict a spanning tree in the face-connection graph.}
@@ -2186,7 +2175,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 %         \right)
         \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(\Minako_{F_m})} 
+        \| \nabla u \|_{L^{p}(\Makoto_{F_m})} 
         ,
         \\
         \| w \|_{L^{p}(T_m)}
@@ -2195,8 +2184,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_{{m-1}})}
         +
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\PF},\Minako_{F_m},p} 
-        \| \nabla u \|_{L^{p}(\Minako_{F_m})} 
+        C_{{\PF},\Makoto_{F_m},p} 
+        \| \nabla u \|_{L^{p}(\Makoto_{F_m})} 
         . 
     \end{align*}
     Here, for any $1 \leq m \leq M$, let $F_m = T_m \cap T_{m-1}$.
@@ -2224,7 +2213,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     Suppose that $T_0, T_1, \dots, T_M$ is a face path in $\calT$
     and that $1 \leq m \leq M$.
     Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$,
-    and that we write $\Minako_{F_m} := T_m \cup T_{m-1}$. 
+    and that we write $\Makoto_{F_m} := T_m \cup T_{m-1}$. 
     
     We proceed with the first recursive estimate. 
     We define $w'_{m} := w_{|T_{m-1}} \circ \Xi \in W^{1,p}(T_{m})$,
@@ -2333,16 +2322,16 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     
     Now we discuss the second recursive estimate. 
     Suppose again that $1 \leq m \leq M$. 
-    We use the Poincar\'e--Friedrichs inequality over $\Minako_{F_{m}}$,
+    We use the Poincar\'e--Friedrichs inequality over $\Makoto_{F_{m}}$,
     as given in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, 
-    to find $w_{F_m} \in W^{1,p}(\Minako_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $\Minako_{F_m}$ and 
+    to find $w_{F_m} \in W^{1,p}(\Makoto_{F_m})$ such that $\nabla w_{F_m} = \nabla u$ over $\Makoto_{F_m}$ and 
     \begin{align}\label{math:wFm_inequality}
-        \| w_{F_m} \|_{L^{p}(\Minako_{F_m})} \leq C_{{\PF},\Minako_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(\Minako_{F_m})}.
+        \| w_{F_m} \|_{L^{p}(\Makoto_{F_m})} \leq C_{{\PF},\Makoto_{F_m},p} \| \nabla w_{F_m} \|_{L^{p}(\Makoto_{F_m})}.
     \end{align}
-%     \cye{Since $\nabla (w_{|\Minako_{F_m}}) = \nabla u_{F_{m}} = \nabla (u_{|\Minako_{F_m}})$, 
+%     \cye{Since $\nabla (w_{|\Makoto_{F_m}}) = \nabla u_{F_{m}} = \nabla (u_{|\Makoto_{F_m}})$, 
     We can define the constant
     \begin{align*}
-    c_{m} := w_{|\Minako_{F_m}} - w_{F_{m}}.
+    c_{m} := w_{|\Makoto_{F_m}} - w_{F_{m}}.
     \end{align*}
     We now observe that 
     \begin{gather*}
@@ -2396,7 +2385,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{p}(T_{{m-1}})}
         \\&\leq 
         \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
-        \| w_{F_{m}} \|_{L^{p}(\Minako_{F_m})} 
+        \| w_{F_{m}} \|_{L^{p}(\Makoto_{F_m})} 
         +
         \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
         \| w \|_{L^{p}(T_{{m-1}})}
@@ -2409,7 +2398,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \max\left(
             1, \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) } 
         \right)
-        \| w_{F_m} \|_{L^{1}(\Minako_{F_m})}
+        \| w_{F_m} \|_{L^{1}(\Makoto_{F_m})}
         +
         \frac{ \vol(T_m) }{ \vol(T_{{m-1}}) }
         \| w \|_{L^{1}(T_{{m-1}})},
@@ -2417,7 +2406,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| w \|_{L^{\infty}(T_m)}
         &\leq 
         2
-        \| w_{F_m} \|_{L^{\infty}(\Minako_{F_m})}
+        \| w_{F_m} \|_{L^{\infty}(\Makoto_{F_m})}
         +
         \| w \|_{L^{\infty}(T_{{m-1}})}
         .
@@ -2438,12 +2427,12 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \volumeratio^{\frac{m-\ell}{p}}
         \min\left( 
         \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\PF},\Minako_{F_\ell},p} 
+        C_{{\PF},\Makoto_{F_\ell},p} 
         ,
         \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
         C_{\PF,T_{\ell},F_{\ell},p} 
         \right)
-        \| \nabla u \|_{L^{p}(\Minako_{F_\ell})}
+        \| \nabla u \|_{L^{p}(\Makoto_{F_\ell})}
         \\&
         \qquad 
         \qquad 
@@ -2462,8 +2451,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 \begin{remark}
     The Poincar\'e--Friedrichs constants obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimate the best one as the number of $n$-simplices in the triangulation $\calT$ increases. 
     Hence, we conceive their target application to be local patches (stars), in particular non-convex boundary stars. 
-    The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any non-overlapping partition of $\overline \Omega$ into convex local patches $\{ \Minako_m \}$ of $n$-simplices with an appropriate notion of connectivity. 
-    The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Minako_m \}$. 
+    The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any non-overlapping partition of $\overline \Omega$ into convex local patches $\{ \Makoto_m \}$ of $n$-simplices with an appropriate notion of connectivity. 
+    The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Makoto_m \}$. 
     This may allow for partitions of $\overline \Omega$ with significantly fewer elements, which enables a largely improved estimate of the best Poincar\'e--Friedrichs constant. 
 \end{remark}
 
@@ -4003,6 +3992,7 @@ We also refer to Lee's monograph~\cite{lee2011topological} for any further backg
 
 \subsection{Triangulations of manifolds}\label{subsection:manifoldtriangulation}
 
+Our discussion requires some notions and results concerning triangulated manifolds. 
 We define an $n$-dimensional simplicial complex to be a \emph{manifold triangulation} if the underlying set $\underlying{\calT}$ is an $n$-dimensional manifold with boundary.
 We recall that this means that for every $x \in \underlying{\calT}$
 % there exists $\epsilon > 0$ and an embedding $\phi : \Ball_\epsilon(x) \cap \underlying{\calT} \rightarrow \bbR^{n}$
@@ -4408,7 +4398,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
     Suppose that $\calT$ does not have at least two triangles that are good in $\calT$.
     Then there exists a triangle $T'$ that intersects $\partial M$ 
     in one edge and its opposite vertex.
-    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk. % TODO: why are those two disks?
+    Removing $T'$ splits the manifold into two face-connected components, each of which is a topological $2$-\disk. 
     By the induction assumption, each of those components contains at least two triangles 
     that are good in the respective component. 
     So each component has at least one triangle that is also good in $\calT$. 
@@ -4698,20 +4688,20 @@ We give detailed estimates for the singular values of their Jacobians.
     let $T \in \patch_{\calT}(S)$ be of dimension $n$,
     and let 
     \begin{align*}
-        \Minako := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
+        \Makoto := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
         \qquad 
-        {\Gamma_1} := \Minako \cap T,
+        {\Gamma_1} := \Makoto \cap T,
         \qquad 
-        {\Gamma_2} := \overline{ \partial T \setminus \partial \Minako }.
+        {\Gamma_2} := \overline{ \partial T \setminus \partial \Makoto }.
     \end{align*}
     The following holds, where the constants on the right-hand sides are as stated in the proof. 
     \begin{enumerate}
     \item 
     There exists a bi-Lipschitz piecewise affine mapping
     \begin{align*}
-        \Xi_{1} : T \rightarrow \Minako
+        \Xi_{1} : T \rightarrow \Makoto
     \end{align*}
-    which is the identity along ${\Gamma_1} = T \cap \Minako$. 
+    which is the identity along ${\Gamma_1} = T \cap \Makoto$. 
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Cfive{n}{k}(\calT),
@@ -4739,9 +4729,9 @@ We give detailed estimates for the singular values of their Jacobians.
     \item 
     There exists a bi-Lipschitz piecewise affine mapping
     \begin{align*}
-        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Minako
+        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto
     \end{align*}
-    which is the identity along $\partial \Minako \setminus \partial T$.
+    which is the identity along $\partial \Makoto \setminus \partial T$.
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Csieb{n}{k}(\calT),
@@ -4774,12 +4764,12 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{itemize}
         \item 
         Without loss of generality, the barycenter $z_{S}$ of $S$ is the origin. 
-        % Let $I := \Minako \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
+        % Let $I := \Makoto \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
         %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
         %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
         We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
         Note that ${\Gamma_2}$ is the union of exactly those faces of $T$ that contain $S'$,
-        whereas ${\Gamma_1} = \Minako \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
+        whereas ${\Gamma_1} = \Makoto \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
         
         \item 
@@ -5479,11 +5469,11 @@ We give detailed estimates for the singular values of their Jacobians.
         
         
         \item 
-        We define a mapping $ \Xi_{1} : T \rightarrow \Minako = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
+        We define a mapping $ \Xi_{1} : T \rightarrow \Makoto = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
-        It preserves the interface from $T$ onto $\Minako$. 
+        It preserves the interface from $T$ onto $\Makoto$. 
         Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
         Combining the previous estimates for $\Psi$ and $\Theta$ with interlacing inequalities for the singular values of product matrices provides 
         \begin{align*}
@@ -5566,7 +5556,7 @@ We give detailed estimates for the singular values of their Jacobians.
         
         
         \item 
-        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Minako $ by setting 
+        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto $ by setting 
         \begin{align*}
             \Xi_{2} := \Psi \circ \Phi.
         \end{align*}
@@ -5798,28 +5788,28 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     We can also assume that the face of $\Delta^n$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
-    In what follows, we let $\widetilde \Minako$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $l+1$ through $n$. 
-    We see that $\vol(\widetilde \Minako) = (l+1)/n!$
+    In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $l+1$ through $n$. 
+    We see that $\vol(\widetilde \Makoto) = (l+1)/n!$
     
     We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
-    We let $\tilde u$ be the extension of $\hat u$ onto $\widetilde \Minako$ by reflection across the coordinate axes,
-    and let $\tilde g$ is the extension of $\hat g$ onto $\widetilde \Minako$ by reflection across the coordinate axes. 
+    We let $\tilde u$ be the extension of $\hat u$ onto $\widetilde \Makoto$ by reflection across the coordinate axes,
+    and let $\tilde g$ is the extension of $\hat g$ onto $\widetilde \Makoto$ by reflection across the coordinate axes. 
     We observe $\tilde g = \cartan \tilde u$. 
-    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Minako)$.
+    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$.
     
     The bounds for the Bogovski\u{i} potential operators, Theorem~\ref{theorem:bogovpoinc} imply 
-    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\widetilde \Minako)$
+    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
     with $\cartan \tilde w = \cartan \tilde u$ and 
     \begin{align*}
-        \| \tilde w \|_{L^{p}(\widetilde \Minako)}
+        \| \tilde w \|_{L^{p}(\widetilde \Makoto)}
         &\leq 
-        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Minako) } 
+        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Makoto) } 
         2
-        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
+        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         \\&\leq 
         2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
-        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
+        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         .
     \end{align*}
     We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\Delta^n} )$.
@@ -5835,7 +5825,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \tilde w \|_{L^{p}(\Delta^n)}
         ,
         \\
-        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
+        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         \leq 
         2^{\frac {n-\ell} p}
         \| \hat g \|_{L^{p}(\Delta^n)}
@@ -5878,9 +5868,9 @@ In particular, already $\patch_{\calT}(S_{m}) \subseteq X_{m}$. % is already inc
 
 In addition to that, we introduce 
 \begin{align*}
-    \Minako_{m-1} := \patch_{\calT}(S_{m}) \setminus T_{m}.
+    \Makoto_{m-1} := \patch_{\calT}(S_{m}) \setminus T_{m}.
 \end{align*}
-for the complement $\Minako_{m-1} \subseteq X_{m-1}$ of the simplex $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
+for the complement $\Makoto_{m-1} \subseteq X_{m-1}$ of the simplex $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
 The two main results of this manuscript for shellable triangulations of domains, not necessarily convex or even star-shaped, is the following theorems. 
 The first one is inspired by the recursive construction of gradient potentials in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
@@ -5911,14 +5901,14 @@ The second one is specific to the fact that shellable triangulations are contrac
             \Cfive{n}{k}(\calT)
             \Cfiveprime{n}{k}(\calT)^{k} 
             \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-            \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+            \| \cartan u \|_{L^{p}(\Makoto_{m-1})}
         \right)
         \\&\qquad
         + 
         \Cfive{n}{k}(\calT) 
         \Cfiveprime{n}{k}(\calT)^{k-1} 
         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(\Minako_{m-1})}
+        \| w \|_{L^{p}(\Makoto_{m-1})}
         .
     \end{align*}
 \end{theorem}
@@ -5932,9 +5922,9 @@ The second one is specific to the fact that shellable triangulations are contrac
     with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S_{m}$, 
-	and we let $\Minako_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+	and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
-    We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Minako_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
+    We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
     We define $w'_{m} :=  \Xi_{1}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$. 
     By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
     \begin{align*}
@@ -5997,17 +5987,17 @@ The second one is specific to the fact that shellable triangulations are contrac
         % \| w'_{m} \|_{L^{p}(T_{m})}
         % &\leq 
         % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k}
-        % \|\det \Jacobian \Xi_{1}^{-1}  \|_{L^{\infty}(\Minako_{m-1})}^{\frac 1 p} 
+        % \|\det \Jacobian \Xi_{1}^{-1}  \|_{L^{\infty}(\Makoto_{m-1})}^{\frac 1 p} 
         % \cdot 
-        % \| w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        % \| w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         % ,
         % \\
         % \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         % &\leq 
         % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k+1}
-        % \|\det \Jacobian \Xi_{1}^{-1}  \|^{\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        % \|\det \Jacobian \Xi_{1}^{-1}  \|^{\frac 1 p}_{L^{\infty}(\Makoto_{m-1})} 
         % \cdot 
-        % \| \cartan w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        % \| \cartan w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         % .
     % \end{align*}
     \begin{align*}
@@ -6017,7 +6007,7 @@ The second one is specific to the fact that shellable triangulations are contrac
         \Cfiveprime{n}{k}(\calT)^{k-1}
         \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
-        \| w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        \| w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
@@ -6026,7 +6016,7 @@ The second one is specific to the fact that shellable triangulations are contrac
         \Cfiveprime{n}{k}(\calT)^{k}
         \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
-        \| \cartan w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        \| \cartan w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         .
     \end{align*}
     We have assumed that $\cartan w_{m-1} = \cartan u_{|X_{m-1}}$. 
@@ -6070,10 +6060,10 @@ The second one is specific to the fact that shellable triangulations are contrac
 	Recall that $X_M$ is an $n$-dimensional submanifold with boundary with a triangulation that has a shelling $T_0, T_1, \dots, T_{M-1}$. 
 	Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
 	By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
-	and we let $\Minako_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
+	and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
 	
-	We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Minako_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
-	This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Minako_{M-1} \setminus \partial T$.
+	We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
+	This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
     We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{M} \rightarrow X_{M-1}$ by requiring that it is the identity over $X_{M-1} \setminus A_{M-1}$.
 	
 	Let $u \in W^{p}\Alt^{k}(\Omega)$ and write $g = \cartan u$. We define $g' = \Xi_{2}^{-\ast} \cartan u = \cartan \Xi_{2}^{-\ast} u$. 
@@ -6131,7 +6121,7 @@ Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenva
 
 We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
 which relies on estimates for the Bogovski\u{i} operator over an auxiliary reference domain.
-Our experiments over triangles and tetrahedra indicate we overestimate by several magnitudes.
+Our experiments over triangles and tetrahedra indicate that we overestimate the constant by several magnitudes.
 %
 We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
@@ -6186,18 +6176,20 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 The most important outcome of this manuscript is the computation of upper bounds of Poincar\'e--Friedrichs constants for the curl and divergence operators over local patches in low dimensions. 
 There are several avenues for further research. 
+In particular, our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars), 
+as there are at least two areas where the present techniques could see further improvement. 
 
-Our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars), as there are at least two areas where the present techniques could see further improvement. 
-First, we use local Poincar\'e--Friedrichs inequalities over single simplices, subject to various boundary conditions, but these local estimates over simplices (and, more generally, convex domains) likely allow room for improvement.
-Second, our construction uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
-In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques could lead to better estimates. 
 
-With regard to estimating Poincar\'e--Friedrichs constants over single simplices, we conjecture that the Guerini--Savo~\cite{guerini2004eigenvalue} estimates, hitherto only known when $p=2$ and over bounded convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and convex Lipschitz domains. 
-We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized potential operators in the spirit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we currently employ. 
+Firstly, we use local Poincar\'e--Friedrichs inequalities over single simplices, subject to various boundary conditions, but these local estimates over simplices (and, more generally, convex domains) likely allow room for improvement. We conjecture that the Guerini--Savo~\cite{guerini2004eigenvalue} estimates, hitherto only known when $p=2$ and over bounded convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and convex Lipschitz domains. 
+We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized Poincar\'e operators in the spirit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we currently employ. Similarly, Poincar\'e--Friedrichs constants subject to boundary conditions allow for upper bounds tighter than what we currently achieve via regularized Bogovski\u{i} operators. 
+
+Secondly, our construction uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
+In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques could lead to better estimates,
+such as via trace and extension operators.
 
 Lastly, estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is restricted to topological balls and spheres. 
-In particular, domains with shellable triangulations are contractible. 
-We expect forthcoming works to utilize these estimates as subcomponents in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
+In particular, the underlying set of any shellable triangulations is contractible. 
+We expect forthcoming works to utilize our estimates over local patches as subcomponents in computing upper bounds for Poincar\'e--Friedrichs constants over simplicial triangulations of general $n$-dimensional manifolds. 
 
 % Future work % DONE: Theo : parts already mentioned ??? 
 % Computable reliable estimates are important: 
