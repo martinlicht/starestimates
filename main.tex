@@ -3050,13 +3050,13 @@ We compute
     \vol_{n-1}(S_1) \sum_{\jeza=0}^{n-\mia} \tbinom{n-\mia}{\jeza} \frac{ \diam(\Omega)^{n-\jeza} }{n-\jeza} \frac{\diam(\Omega)^{\jeza+1}}{\jeza+1}
     %\\&
     =
-    \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: A_{\Poinc}(n,\mia) \leq 2^{n-\mia}}
+    \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: C_{\Poinc}(n,\mia) \leq 2^{n-\mia}}
     .
 \end{align*}
-% Here, $A_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
+% Here, $C_{\Poinc}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 Here we introduce the numerical constant 
 \begin{gather}\label{equation:A_Poinc}
-    A_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
+    C_{\Poinc}(n,\mia) := \sum_{\jeza=0}^{n-\mia} \frac{ \tbinom{n-\mia}{\jeza} }{ (n-\jeza)(\jeza+1) },
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 
@@ -3067,12 +3067,12 @@ Young's convolution inequality now implies:
     \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}
     &
     \leq 
-    \vol_{n-1}(S_1) A_{\Poinc}(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
+    \vol_{n-1}(S_1) C_{\Poinc}(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+    n C_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3083,7 +3083,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Poinc_{\mia} : L^{p}\Alt^{\mia}(\Omega) \rightarrow L^{p}\Alt^{\mia-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Poinc}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
+% Its operator norm is bounded by $n C_{\Poinc}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
 % 
 
 
@@ -3130,13 +3130,13 @@ Using once more the radial integrals discussed above, we compute
     \vol_{n-1}(S_1) \sum_{\jeza=0}^{\mia-1} \tbinom{\mia-1}{\jeza} \frac{ \diam(\Omega)^{n-\jeza} }{n-\jeza} \frac{\diam(\Omega)^{\jeza+1}}{\jeza+1}
     %\\&
     =
-    \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: A_{\Bogov}(n,\mia) \leq 2^{\mia-1}}
+    \vol_{n-1}(S_1) \diam(\Omega)^{n+1} \underbrace{ \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) } }_{ =: C_{\Bogov}(n,\mia) \leq 2^{\mia-1}}
     .
 \end{align*}
-% Here, $A_{\Bogov}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
+% Here, $C_{\Bogov}(n,\mia)$ is a numerical constant that depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
 Here we introduce the numerical constant 
 \begin{gather}\label{equation:A_Bogov}
-    A_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
+    C_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
 In particular, the integral $\Bogov_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
@@ -3151,7 +3151,7 @@ Young's convolution inequality now implies:
     \| u \|_{L^{p}(\Omega)}
     \\&
     \leq 
-    n A_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+    n C_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     .
@@ -3162,7 +3162,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \begin{gather*}
     \Bogov_{\mia} : L^{p}\Alt^{\mia}(\Omega) \rightarrow L^{p}\Alt^{\mia-1}(\bbR^n).
 \end{gather*}
-% Its operator norm is bounded by $n A_{\Bogov}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
+% Its operator norm is bounded by $n C_{\Bogov}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
 Moreover, $\supp \Bogov_{\mia} u \subseteq \overline\Omega$,
 that is, the reconstructed potential has support contained within $\overline\Omega$. 
 \\
@@ -3615,7 +3615,7 @@ We are now state the main results of this section.
 Recall that $\diam(\Omega) > 0$ is the diameter of $\Omega$ and that $B_{\diam(\Omega)}(0)$ is the $n$-dimensional ball centered at the origin.
 The following upper bounds for the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$.
 However, though the space dimension $n$ and the form degree $\mia$ enter the estimates, 
-namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov} of respectively $A_{\Poinc}(n,\mia)$ and $A_{\Bogov}(n,\mia)$. 
+namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov} of respectively $C_{\Poinc}(n,\mia)$ and $C_{\Bogov}(n,\mia)$. 
 
 
 \begin{theorem}\label{theorem:bogovpoinc}
@@ -3632,14 +3632,14 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \begin{align*}
         \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+        n C_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
         \diam(\Omega)
         \| u \|_{L^{p}(\Omega)}
         ,
         \\
         \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n A_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+        n C_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
         \diam(\Omega)
         \| u \|_{L^{p}(\Omega)}
         .
@@ -4677,20 +4677,20 @@ We give detailed estimates for the singular values of their Jacobians.
     let $T \in \patch_{\calT}(S)$ be of dimension $n$,
     and let 
     \begin{align*}
-        U := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
+        \Minako := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
         \qquad 
-        {\Gamma_1} := U \cap T,
+        {\Gamma_1} := \Minako \cap T,
         \qquad 
-        {\Gamma_2} := \overline{ \partial T \setminus \partial U }.
+        {\Gamma_2} := \overline{ \partial T \setminus \partial \Minako }.
     \end{align*}
     The following holds, where the constants on the right-hand sides are as stated in the proof. 
     \begin{enumerate}
     \item 
-    There exists a bi-Lipschitz mapping
+    There exists a bi-Lipschitz piecewise affine mapping
     \begin{align*}
-        \Xi_{1} : T \rightarrow U
+        \Xi_{1} : T \rightarrow \Minako
     \end{align*}
-    which is the identity along ${\Gamma_1} = T \cap U$. 
+    which is the identity along ${\Gamma_1} = T \cap \Minako$. 
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Cfive{n}{k}(\calT),
@@ -4716,11 +4716,11 @@ We give detailed estimates for the singular values of their Jacobians.
 %         | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
 %     \end{gather*}
     \item 
-    There exists a bi-Lipschitz mapping
+    There exists a bi-Lipschitz piecewise affine mapping
     \begin{align*}
-        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U
+        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Minako
     \end{align*}
-    which is the identity along $\partial U \setminus \partial T$.
+    which is the identity along $\partial \Minako \setminus \partial T$.
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Csieb{n}{k}(\calT),
@@ -4753,12 +4753,12 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{itemize}
         \item 
         Without loss of generality, the barycenter $z_{S}$ of $S$ is the origin. 
-        % Let $I := U \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
+        % Let $I := \Minako \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
         %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
         %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
         We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
         Note that ${\Gamma_2}$ is the union of exactly those faces of $T$ that contain $S'$,
-        whereas ${\Gamma_1} = U \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
+        whereas ${\Gamma_1} = \Minako \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
         
         \item 
@@ -5458,11 +5458,11 @@ We give detailed estimates for the singular values of their Jacobians.
         
         
         \item 
-        We define a mapping $ \Xi_{1} : T \rightarrow U = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
+        We define a mapping $ \Xi_{1} : T \rightarrow \Minako = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
         \begin{align*}
             \Xi_{1} := \Psi \circ \Theta.
         \end{align*}
-        It preserves the interface from $T$ onto $U$. 
+        It preserves the interface from $T$ onto $\Minako$. 
         Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
         Combining the previous estimates for $\Psi$ and $\Theta$ with interlacing inequalities for the singular values of product matrices provides 
         \begin{align*}
@@ -5545,7 +5545,7 @@ We give detailed estimates for the singular values of their Jacobians.
         
         
         \item 
-        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow U $ by setting 
+        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Minako $ by setting 
         \begin{align*}
             \Xi_{2} := \Psi \circ \Phi.
         \end{align*}
@@ -5729,7 +5729,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
     \begin{align*}
         C_{{\PF},k,\Omega,p} 
         = 
-        n A_{\Poinc}(n,k+1) 
+        n C_{\Poinc}(n,k+1) 
         \vol_{}(B_1(0)) 
         \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
         \diam(\Omega)
@@ -5737,20 +5737,18 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
     \end{align*}
 \end{lemma}
 \begin{proof}
-    This follows from the discussion in Section~\ref{section:potentialoperator}.
     This follows from Theorem~\ref{theorem:bogovpoinc} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
-    \mwl{check final form of result}
 \end{proof}
 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
     Let $T$ be an $n$-simplex 
-    and let $F_{0},\dots,F_{\ell}$ be $\ell+1$ different faces of $T$. 
+    and let $\Gamma = F_{0} \cup \dots \cup F_{\ell}$ be the union of $\ell+1$ different faces of $T$. 
     Suppose that $u \in W^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} u = 0$ for $0 \leq i \leq \ell$.
+    $\trace_{T,\Gamma} u = 0$.
     Then there exists $w \in W^{p}\Lambda^{k}(T)$ such that 
-    $\trace_{T,F_i} w = 0$ for $0 \leq i \leq \ell$
+    $\trace_{T,\Gamma} w = 0$
     and  
     \begin{align*}
         \cartan w = \cartan u,
@@ -5765,49 +5763,47 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        2^{\frac n p}
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
+        2^{\frac{n-\ell}{p}}
+        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
-        \Ceins{n}(T)^{k}
+        \Ceins{n}(T) 
         \diam(T)
-        % \matnorm{\Jacobian \varphi}^{k}
         .
     \end{align*}
 \end{lemma}
-\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 \begin{proof}
-    There exists an affine bijection $\varphi : \hat T \rightarrow T$ 
+    There exists an affine bijection $\varphi : \Delta^n \rightarrow T$ 
     that maps the convex closure of the $n$ unit vectors onto the face $F_0$.
-    We can also assume that the face of $\hat T$
+    We can also assume that the face of $\Delta^n$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
-    In what follows, we let $\tilde U$ be the domain obtained from reflecting $\hat T$ along the coordinate axes $l+1$ through $n$. 
-    We see that $\vol(\tilde U) = (l+1)/n!$
+    In what follows, we let $\widetilde \Minako$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $l+1$ through $n$. 
+    We see that $\vol(\widetilde \Minako) = (l+1)/n!$
     
-    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\hat T)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
-    We let $\tilde u$ be the extension of $\hat u$ onto $\tilde U$ by reflection across the coordinate axes,
-    and let $\tilde g$ is the extension of $\hat g$ onto $\tilde U$ by reflection across the coordinate axes. 
-    We observe $\tilde g = \cartan \tilde u$
-    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\tilde U)$.
+    We let $\tilde u$ be the extension of $\hat u$ onto $\widetilde \Minako$ by reflection across the coordinate axes,
+    and let $\tilde g$ is the extension of $\hat g$ onto $\widetilde \Minako$ by reflection across the coordinate axes. 
+    We observe $\tilde g = \cartan \tilde u$. 
+    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Minako)$.
     
     The bounds for the Bogovski\u{i} potential operators, Theorem~\ref{theorem:bogovpoinc} imply 
-    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\tilde U)$
+    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\widetilde \Minako)$
     with $\cartan \tilde w = \cartan \tilde u$ and 
     \begin{align*}
-        \| \tilde w \|_{L^{p}(\tilde U)}
+        \| \tilde w \|_{L^{p}(\widetilde \Minako)}
         &\leq 
-        n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\tilde U) } 
+        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Minako) } 
         2
-        \| \tilde g \|_{L^{p}(\tilde U)}
+        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
         \\&\leq 
-        2^{n+1} n A_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
-        \| \tilde g \|_{L^{p}(\tilde U)}
+        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
+        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
         .
     \end{align*}
-    We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\hat T} )$.
+    We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\Delta^n} )$.
     By construction, $\cartan w = \cartan u$,
-    and $w$ has vanishing trace along the faces $F_{0},\dots,F_{l}$.
+    and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{l}$.
     
     In addition to that, by Proposition~\ref{proposition:pullbackestimate}:
     \begin{align*}
@@ -5815,14 +5811,14 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         &\leq 
         |\det(\Jacobian \varphi)|^{\frac 1 p} 
         \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
-        \| \tilde w \|_{L^{p}(\hat T)}
+        \| \tilde w \|_{L^{p}(\Delta^n)}
         ,
         \\
-        \| \tilde g \|_{L^{p}(\tilde U)}
-        &\leq 
-        2^{\frac {n-\ell} p}
-        \| \hat g \|_{L^{p}(\hat T)}
+        \| \tilde g \|_{L^{p}(\widetilde \Minako)}
         \leq 
+        2^{\frac {n-\ell} p}
+        \| \hat g \|_{L^{p}(\Delta^n)}
+        &\leq 
         2^{\frac {n-\ell} p}
         |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
         \matnorm{\Jacobian \varphi}^{k}
@@ -5830,13 +5826,11 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \cartan u \|_{L^{p}(T)}
         .
     \end{align*}
-    It remains to use Lemma~\ref{lemma:measurerelationships}, and the desired inequality is shown. \mwl{Double check result}
+    It remains to use Lemma~\ref{lemma:measurerelationships}, and the desired inequality is shown. 
 \end{proof}
 
 
-
-
-We settle the following notation for our main result. 
+We prepare some further notation for our main result. 
 Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
 \begin{align*}
     C_{\PF,\Gamma,k,p}(\calT) 
@@ -5845,7 +5839,7 @@ Whenever $\calT$ is an $n$-dimensional triangulation, we use the abbreviation
     C_{\PF,\Gamma,l,k,p}(T)
     .
 \end{align*}
-Suppose that an $n$-dimensional triangulation $\calT$ has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
+Suppose that $\calT$ is an $n$-dimensional triangulation and has a shelling $T_{0}, T_{1}, \dots, T_{M}$. 
 For each $0 \leq m \leq M$, we write 
 \begin{align*}
     X_{m} := T_0 \cup T_1 \cup \dots \cup T_{m}.
@@ -5858,22 +5852,29 @@ For each $1 \leq m \leq M$, the interface of the new simplex to the previous int
 According to Lemma~\ref{lemma:existenceofstar}, 
 there exists a simplex $S_{m} \in \calT$ 
 such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $T_{m} \in \patch_{\calT}(S_{m})$.
-In particular, $\patch_{\calT}(S_{m})$ is already included in the union of the simplices up to $T_m$. 
-We write 
+In particular, already $\patch_{\calT}(S_{m}) \subseteq X_{m}$. % is already included in the union of the simplices up to $T_m$. 
+
+In addition to that, we introduce 
 \begin{align*}
-    \Minako_{m} := \patch_{\calT}(S_{m}) \setminus T_{m}.
+    \Minako_{m-1} := \patch_{\calT}(S_{m}) \setminus T_{m}.
 \end{align*}
-for the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
+for the complement $\Minako_{m-1} \subseteq X_{m-1}$ of the simplex $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
 The main result of this manuscript for shellable triangulations of domains, not necessarily convex or even star-shaped, is the following theorem. 
+
+
+
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable $n$-dimensional triangulation $\calT$.
     Let $T_0, T_1, \dots, T_M$ be a shelling.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
-    and such that for each $T_{m} \in \calT$, $1 \leq m \leq M$, in the shelling
-    we have the following recursive estimate: 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$
+	and such that the following estimates hold:
+	\begin{gather*}
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
+    \end{gather*}
+    and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         &
@@ -5882,25 +5883,21 @@ The main result of this manuscript for shellable triangulations of domains, not 
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
             +
-            \Cfive{n}{k}(\calT)^{k+1} 
+            \Cfive{n}{k}(\calT)
+            \Cfiveprime{n}{k}(\calT)^{k} 
             \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
             \| \cartan u \|_{L^{p}(\Minako_{m-1})}
         \right)
         \\&\qquad
         + 
-        \Cfive{n}{k}(\calT)^{k} 
+        \Cfive{n}{k}(\calT) 
+        \Cfiveprime{n}{k}(\calT)^{k-1} 
         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
         \| w \|_{L^{p}(\Minako_{m-1})}
         .
     \end{align*}
-    \mwl{The notation $\Minako_m$ should be settled in the definition of shellings.}
 \end{theorem}
 \begin{proof}
-    \mwl{Complete the proof.}
-    This proof is similar to the proof of Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-    By assumption, there exists a shelling $T_0, T_1, \dots, T_m$. 
-    We write $X_m := \cup_{j=0}^{m} T_j$, which is a triangulated $n$-dimensional submanifold with boundary.
-
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
     First, there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
     \begin{gather*}
@@ -5910,11 +5907,11 @@ The main result of this manuscript for shellable triangulations of domains, not 
     Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
     with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex, and we let $\Minako_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S_{m}$, 
+	and we let $\Minako_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
-    We define $w'_{m} :=  \Xi_{m}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$,
-    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
-    as in Proposition~\ref{proposition:starreflection}. 
+    We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Minako_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
+    We define $w'_{m} :=  \Xi_{1}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$. 
     By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
     \begin{align*}
         \trace_F w_{m-1} = \trace_F w'_{m}
@@ -5948,8 +5945,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
     \end{gather*}
     That means that $w_{m} \in W^{p}\Alt^{k}(X_{m})$ with $\cartan w_{m} = \cartan u$ over $X_{m}$. 
     
-    We want to estimate norms. 
-    By construction,
+    We want to estimate norms. By the triangle inequality, 
     \begin{align*}
         \| w_{m} \|_{L^{p}(T_{m})}
         \leq  
@@ -5959,7 +5955,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
         .
     \end{align*}
     Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
-    we can assume 
+    we can assume that $w''_{m}$ satisfies 
     \begin{align*}
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
@@ -5972,117 +5968,45 @@ The main result of this manuscript for shellable triangulations of domains, not 
         C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
         .
     \end{align*}
-    We also employ Proposition~\ref{proposition:pullbackestimate} to find 
+    Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} now show 
+    % \begin{align*}
+        % \| w'_{m} \|_{L^{p}(T_{m})}
+        % &\leq 
+        % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k}
+        % \|\det \Jacobian \Xi_{1}^{-1}  \|_{L^{\infty}(\Minako_{m-1})}^{\frac 1 p} 
+        % \cdot 
+        % \| w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        % ,
+        % \\
+        % \| \cartan w'_{m} \|_{L^{p}(T_{m})}
+        % &\leq 
+        % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k+1}
+        % \|\det \Jacobian \Xi_{1}^{-1}  \|^{\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        % \cdot 
+        % \| \cartan w_{m-1} \|_{L^{p}(\Minako_{m-1})}
+        % .
+    % \end{align*}
     \begin{align*}
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|_{L^{\infty}(T_{m})}^{-\frac 1 p} 
-        \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k}
+        \Cfive{n}{k}(\calT)
+        \Cfiveprime{n}{k}(\calT)^{k-1}
+        \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
         \| w_{m-1} \|_{L^{p}(\Minako_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m})} 
-        \| \Jacobian \Xi_{m} \|_{L^{\infty}(T_{m})}^{k+1}
+        \Cfive{n}{k}(\calT)
+        \Cfiveprime{n}{k}(\calT)^{k}
+        \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(\Minako_{m-1})}
         .
     \end{align*}
-    \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
-        &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
-        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
-        ,
-        \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
-        &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
-        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
-        ,
-    \end{align*}
     We have assumed that $\cartan w_{m-1} = \cartan u_{|X_{m-1}}$. 
-    We use the properties of the reflection mapping in Proposition~\ref{proposition:starreflection}. 
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
-\end{proof}
-\begin{proof}
-    By assumption, there exists a shelling $T_0, T_1, \dots, T_{M}$. 
-    We write $X_m := \cup_{j=0}^{m} T_j$, $0 \leq m \leq M$, which is by Lemma~\ref{lemma:shell_triang_man} a triangulated $n$-dimensional submanifold with boundary. 
-    For $0 < m \leq M$, by the definition of shellability in Section~\ref{subsection:shellability}, 
-    $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
-    It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
-    where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
-    
-    We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
-    Let $u \in W^{p}\Alt^{k}(\Omega)$. 
-    First, on $T_0$, from Lemma~\ref{lemma:PFexteriorsimplex}, 
-    there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
-    \begin{gather*}
-        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
-    \end{gather*}
-    We define $w_{|T_0} := w_0$. 
-    Suppose now that $0 < m \leq M$ such that $w_{|X_{m-1}} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w = \cartan u$ over $X_{m-1}$. 
-    This is true for $m = 1$. 
-    We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
-    \begin{align} \label{equation:w''_ext_der}
-        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\Minako_{m-1}}),
-    \end{align}
-    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
-    as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
-    Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
-    \begin{align*}
-        \trace_{\Gamma_{m}} w_{|T_m} = \trace_{\Gamma_{m}} w_{|X_{m-1}},
-    \end{align*}
-    since $u$ is trace continuous over $\Gamma_{m-1}$ and $\Xi_{m}$ is the identity along $\Gamma_{m-1}$, and
-    \begin{align*}
-        \cartan w = \cartan u \text{ over } T_m,
-    \end{align*}
-    since $\cartan w = \cartan u$ over $X_{m-1}$ and $\Xi_{m}^{\ast}$ preserves this. Thus
-    \begin{align*}
-        w_{|X_{m}} \in W^{p}\Alt^{k}(X_{m}) \text{ with } \cartan w_{m} = \cartan u \text{ over } X_{m}. 
-    \end{align*}
-    
-    We want to estimate norms. 
-    By construction,
-    \begin{align*}
-        \| w \|_{L^{p}(T_{m})}
-        \leq  
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
-        + 
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
-        .
-    \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) = 0$, we have
-    \begin{align*}
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})} 
-        &
-        \leq 
-        C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
-        + \| \cartan (\Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})} )
-        .
-    \end{align*}
-    We also use Proposition~\ref{proposition:pullbackestimate} to find 
-    \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
-        &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
-        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
-        ,
-        \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
-        &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
-        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
-        ,
-    \end{align*}
-    where we have employed that $\cartan w = \cartan u$ over $X_{m-1}$. 
-    Using the properties of the reflection mapping in Proposition~\ref{proposition:starreflection}, the desired recursive estimate follows. 
 \end{proof}
 
 
@@ -6150,6 +6074,7 @@ The main result of this manuscript for shellable triangulations of domains, not 
 
 
 
+\mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
 
 
 

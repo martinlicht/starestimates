@@ -14,6 +14,128 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+\begin{proof}
+    By assumption, there exists a shelling $T_0, T_1, \dots, T_{M}$. 
+    We write $X_m := \cup_{j=0}^{m} T_j$, $0 \leq m \leq M$, 
+    which is by Lemma~\ref{lemma:shell_triang_man} a triangulated $n$-dimensional submanifold with boundary. 
+    For $0 < m \leq M$, by the definition of shellability in Section~\ref{subsection:shellability}, 
+    $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
+    It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
+    where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
+    
+    We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
+    Let $u \in W^{p}\Alt^{k}(\Omega)$. 
+    First, on $T_0$, from Lemma~\ref{lemma:PFexteriorsimplex}, 
+    there exists $w_0 \in W^{p}\Alt^{k}(T_{0})$ satisfying $\cartan w_0 = \cartan u$ over $T_{0}$ together with 
+    \begin{gather*}
+        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
+    \end{gather*}
+    We define $w_{|T_0} := w_0$. 
+    Suppose now that $0 < m \leq M$ such that $w_{|X_{m-1}} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w = \cartan u$ over $X_{m-1}$. 
+    This is true for $m = 1$. 
+    We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
+    \begin{align} \label{equation:w''_ext_der}
+        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\Minako_{m-1}}),
+    \end{align}
+    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
+    as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
+    Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
+    \begin{align*}
+        \trace_{\Gamma_{m}} w_{|T_m} = \trace_{\Gamma_{m}} w_{|X_{m-1}},
+    \end{align*}
+    since $u$ is trace continuous over $\Gamma_{m-1}$ and $\Xi_{m}$ is the identity along $\Gamma_{m-1}$, and
+    \begin{align*}
+        \cartan w = \cartan u \text{ over } T_m,
+    \end{align*}
+    since $\cartan w = \cartan u$ over $X_{m-1}$ and $\Xi_{m}^{\ast}$ preserves this. Thus
+    \begin{align*}
+        w_{|X_{m}} \in W^{p}\Alt^{k}(X_{m}) \text{ with } \cartan w_{m} = \cartan u \text{ over } X_{m}. 
+    \end{align*}
+    
+    We want to estimate norms. 
+    By construction,
+    \begin{align*}
+        \| w \|_{L^{p}(T_{m})}
+        \leq  
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        + 
+        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        .
+    \end{align*}
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) = 0$, we have
+    \begin{align*}
+        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
+        + \| \cartan (\Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})} )
+        .
+    \end{align*}
+    We also use Proposition~\ref{proposition:pullbackestimate} to find 
+    \begin{align*}
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        &\leq 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
+        \| w \|_{L^{p}(\Minako_{m-1})}
+        ,
+        \\
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        &\leq 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
+        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        ,
+    \end{align*}
+	\begin{align*}
+        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
+        \| w \|_{L^{p}(\Minako_{m-1})}
+        ,
+        \\
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        &\leq 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
+        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        ,
+    \end{align*}
+    where we have employed that $\cartan w = \cartan u$ over $X_{m-1}$. 
+    Using the properties of the reflection mapping in Proposition~\ref{proposition:starreflection}, the desired recursive estimate follows. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{proof}
     We begin with the following preparatory observations. 
     Consider any $n$-simplex $T$ with vertices $v_0, v_1, \dots, v_n$, where $v_0$ is the origin. 
