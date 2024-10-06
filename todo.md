@@ -26,6 +26,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [ ] after recursive estimates, write down the complete bound 
 - [ ] final: complete the final estimate, use recursion 
     - [ ] in a shellable triangulation, the interior subsimplices of a star already have got stars 
+- [ ] does cartan commute with pullback ? 
 - [ ] Synchronize indices shellability conditions
       - Section~\ref{section:shellability}
       - Theorems~\ref{theorem:poincarefriedrichsestimate:grad},
