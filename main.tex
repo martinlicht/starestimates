@@ -361,6 +361,12 @@ Not much attention however seems to have been given to the study of computable c
 Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of the exterior calculus formalism, 
 but the Banach case $p \neq 2$ seems largely unexplored.
 
+
+Still in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space
+with homogeneous Dirichlet boundary conditions on $\partial \Omega$ implies~\eqref{math:intro:Wdiv} via duality. 
+However, that easy observation seems restricted to $p=2$. 
+
+The two
 Poincar\'e--Friedrich inequalities for vector fields have appeared under different names. 
 Let us assume for a moment that $\Omega$ is a weakly Lipschitz domain with trivial topology, and consider only the Hilbert case $p=2$. 
 Then the constant in \eqref{math:intro:Wcurl:pf} agrees with the constant in the so-called Poincar\'e--Friedrichs--Weber inequality
@@ -371,21 +377,21 @@ Then the constant in \eqref{math:intro:Wcurl:pf} agrees with the constant in the
 valid for all $\bfu \in \bfW^{2}(\curl,\Omega) \cap \bfW^{2}(\divergence,\Omega)$ that satisfy $\divergence \bfu = 0$ and have vanishing normal or vanishing tangential trace along $\partial \Omega$. 
 Equivalently, \eqref{math:intro:weber} is valid for all $\bfu \in \bfW^{2}(\curl,\Omega)$ that are $L^{2}$-orthogonal to the gradients of scalar fields in $W^{1,2}(\Omega)$
 or that have vanishing tangential trace and are $L^{2}$-orthogonal to the gradients of those scalar fields in $W^{1,2}(\Omega)$ that satisfy Dirichlet boundary conditions.
+% Yet another rewriting is 
+% \label{math:PF_orth} \begin{align}
+%     \| \bfu\|_{L^{2}(\Omega)} & \leq C_{\curl,\Omega,2} \| \curl \bfu \|_{L^{2}(\Omega)}, 
+% 	\label{math:PF_orth_curl}
+% 	\\
+%     \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,2} \| \divergence \bfu \|_{L^{2}(\Omega)}, 
+% 	\label{math:PF_orth_div}
+% \end{align}
+% where the former holds for all vector fields $\bfu \in \bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$,
+% and where the latter holds for all functions $\bfu \in \bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. 
+We refer to Equation~(5) in~\cite{Fried_diff_forms_55}, Equation~(2) in \cite{Gaff_Hilbert_harm_55}, \cite{Web_compact_Maxw_80} as well as \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. 
+The general case of $L^p$ differential forms over Lipschitz manifolds subject to partial boundary conditions is discussed in~\cite{goldshtein2011hodge}.
 
-% 
-Yet another rewriting is 
-\label{math:PF_orth} \begin{align}
-    \| \bfu\|_{L^{2}(\Omega)} & \leq C_{\curl,\Omega,2} \| \curl \bfu \|_{L^{2}(\Omega)}, 
-	\label{math:PF_orth_curl}
-	\\
-    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,2} \| \divergence \bfu \|_{L^{2}(\Omega)}, 
-	\label{math:PF_orth_div}
-\end{align}
-where the former holds for all vector fields $\bfu \in \bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$,
-and where the latter holds for all functions $\bfu \in \bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. 
-We refer to Equation~(5) in~\cite{Fried_diff_forms_55}, Equation~(2) in Gaffney~\cite{Gaff_Hilbert_harm_55}, Weber~\cite{Web_compact_Maxw_80}, \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. 
-Still in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with homogeneous Dirichlet boundary conditions on $\partial \Omega$ implies, via duality~\eqref{math:intro:Wdiv}. However, that easy observation seems restricted to $p=2$. 
-
+However, while many of the above results rely on non-constructive estimates, 
+we are interested in practically computable upper bounds. 
 
 
 \subsection{Objectives and methodology}
