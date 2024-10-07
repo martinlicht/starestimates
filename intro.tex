@@ -44,3 +44,154 @@ By duality, that implies lower bounds for the case of full boundary conditions.
 
 
 Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant\cye{, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
+
+
+
+
+\subsection{Conceptual overview: Potential for the gradient operator and the corresponding Poincar\'e--Friedrichs inequality} \label{subsection:intro_grad}
+
+Let $\Omega \subseteq \bbR^n$, $n \geq 1$, be a bounded connected open set. Given any $1 \leq p \leq \infty$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$. Then $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ is the corresponding Lebesgue space of vector  fields. 
+
+Let $W^{1,p}(\Omega)$ denote the first-order Sobolev space over $\Omega$ with integrability exponent $p$, 
+\begin{align} \label{equation:W1p}
+    W^{1,p}(\Omega) := \left\{u \in L^{p}(\Omega) \cye{\suchthat} \nabla u \in \bfL^{p}(\Omega) \right\}.
+\end{align}
+For a vector field $\bff$ that is a distributional gradient of an object from $W^{1,p}(\Omega)$, $\bff \in \nabla W^{1,p}(\Omega)$, we are \cye{interested in} \emph{potentials}, i.e., scalar-valued functions $\Phi_{\grad}( \bff ) \in W^{1,p}(\Omega)$ such that $\nabla \Phi_{\grad}( \bff ) = \bff$. Then, 
+%
+\begin{align*}
+    \Phi_{\grad} : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)
+\end{align*}
+is the \emph{potential operator}. A particular example of our interest is
+%
+\begin{align}\label{math:pot_grad_def}
+    \Phi_{\grad}( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)}.
+\end{align}
+%
+Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem. 
+
+We want to see whether the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$, i.e., we want to evaluate the \emph{operator norm}
+\begin{align}\label{math:pot_grad_norm}
+    C_{\grad,\Omega,p} := \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
+    \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
+\end{align}
+This operator norm is indeed finite and it equivalently turns out to be the best constant in the \emph{Poincar\'e--Friedrichs inequality}: for every vector field $\bff \in \nabla W^{1,p}(\Omega)$, there exists $u \in W^{1,p}(\Omega)$ such that $\nabla u = \bff$ and 
+\begin{align} \label{math:PF_gradient_1}
+    \| u \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\grad,\Omega,p} 
+    \| \bff \|_{\fooL^{p}(\Omega)}.
+\end{align}
+Actually, \eqref{math:PF_gradient_1} is further equivalent to the more conventional writing
+\begin{align} \label{math:PF_gradient_2}
+    \min_{ c \in \bbR } \| u - c \|_{L^{p}(\Omega)}
+    \leq 
+    C_{\grad,\Omega,p}
+    \| \nabla u \|_{\fooL^{p}(\Omega)},
+    \quad 
+    \forall 
+    u \in W^{1,p}(\Omega)
+    .
+\end{align}
+We call $C_{\grad,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} for the gradient operator with exponent $p$. \cye{A concise writing of all~\eqref{math:pot_grad}--\eqref{math:PF_gradient} is
+\begin{align} \label{math:pot_PF_grad}
+    \min\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } 
+    \| u \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\grad,\Omega,p}
+    \| \bff \|_{\fooL^{p}(\Omega)}.
+\end{align}
+for all $\bff \in \nabla W^{1,p}(\Omega)$.}
+
+\cye{We present a more profound discussion below in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:pot_grad_def}.} 
+
+
+
+
+
+
+
+
+
+
+\subsection{Conceptual overview: Potentials for the curl and divergence operators and the corresponding Poincar\'e--Friedrichs inequalities} \label{section:intro_curl_div}
+
+Consider the vector-valued spaces
+\begin{align}\label{equation:W_curl_div_p} 
+    \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in L^{p}(\Omega)^{3} \cye{\suchthat} \curl \bfu \in L^{p}(\Omega)^{3} \right\}
+    ,
+    \\
+    \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in L^{p}(\Omega)^{3} \cye{\suchthat} \divergence \bfu \in L^{p}(\Omega) \right\}
+    .
+\end{align}
+The members of these spaces are those vector fields whose distributional curls and divergences are \cye{respectively} in \cye{the} Lebesgue spaces \cye{$\bfL^{p}$ or $L^{p}(\Omega)$}.  
+This only requires that certain sums of distributional partial derivatives are integrable, 
+and hence these spaces are not classical Sobolev spaces of vector  fields. 
+
+\cye{Let a vector field $\bff$ that is a distributional curl of an object from $\bfW^{p}(\curl,\Omega)$, $\bff \in \curl \bfW^{p}(\curl,\Omega)$, and scalar-valued field $f$ that is a distributional divergence of an object from $\bfW^{p}(\divergence,\Omega)$, $f \in \divergence \bfW^{p}(\divergence,\Omega)$, be given.} 
+We are interested in constants for inequalities such as 
+\begin{align}\label{math:pot_PF_curl_div}
+    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\curl,\Omega) \\ \curl \bfu = \bff } } 
+    \| \bfu \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\curl,\Omega,p}
+    \| \bff \|_{L^{p}(\Omega)} \label{math:pot_PF_curl}
+    ,
+    \\
+    \min\limits_{ \substack{ \bfu \in \bfW^{p}(\divergence,\Omega) \\ \divergence \bfu = f } } 
+    \| \bfu \|_{L^{p}(\Omega)}
+    &\leq 
+    C_{\divergence,\Omega,p}
+    \| f \|_{L^{p}(\Omega)} \label{math:pot_PF_div}
+    ,
+\end{align}
+and how these constants can be estimated by the operator norms of \emph{linear} potential operators 
+\begin{align*}
+    &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
+    ,
+    \\
+    &\Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
+    .
+\end{align*}
+The fundamental difference \cye{with respect to Section~\ref{subsection:intro_grad}} is that the curl and divergence have infinite-dimensional kernels. In Section~\ref{subsection:intro_grad}, the kernel of the gradient is the one-dimensional space of constant functions. It is thus trivially complemented for all $p$, with a canonical choice of projection. By contrast, in the Banach space case $p \neq 2$, it is not immediately evident that the kernels of the curl and divergence operators are complemented, and a canonical projection only exists here in the Hilbert setting $p=2$. \cye{Actually,} the existence of a bounded linear potential operator here is a non-trivial fact even in the Hilbert space case $p = 2$. 
+
+\cye{Let for a moment the topology of $\Omega$ be trivial, let $\Omega$ be weakly Lipschitz, and consider the Hilbert case $p=2$. Then, \eqref{math:pot_PF_curl} is related to the so-called Poincar\'e--Friedrichs--Weber inequality
+\begin{align}
+    \label{math:Weber}
+    \| \bfu\|_{L^{2}(\Omega)} \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)},
+\end{align}
+for all $\bfu \in \bfW^{2}(\curl,\Omega) \cap \bfW^{2}(\divergence,\Omega)$ with either the tangential or the normal trace zero on $\partial \Omega$ and $\divergence \bfu = 0$. 
+Yet another writing is 
+\label{math:PF_orth} \begin{align}
+    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\curl,\Omega,p} \| \curl \bfu \|_{L^{2}(\Omega)}, \label{math:PF_orth_curl}\\
+    \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,p} \| \divergence \bfu \|_{L^{2}(\Omega)} \label{math:PF_orth_div}
+\end{align}
+for respectively all functions $\bfu$ from $\bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$ and all functions $\bfu$ from $\bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. We refer to Equation~(5) in~\cite{Fried_diff_forms_55}, Equation~(2) in Gaffney~\cite{Gaff_Hilbert_harm_55}, Weber~\cite{Web_compact_Maxw_80}, \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. Still} in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with \cye{homogeneous} Dirichlet boundary conditions \cye{on $\partial \Omega$} implies, via duality~\eqref{math:pot_PF_div}. However, that easy observation seems restricted to $p=2$. 
+
+Not much attention\cye{, however,} seems to have been given to the study of \cye{computable} constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. \cye{Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of} the exterior calculus formalism\cye{, but the Banach case $p \neq 2$ seems largely unexplored.}
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
