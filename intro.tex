@@ -215,6 +215,50 @@ One possible avenue towards Poincar\'e--Friedrichs constants is the observation 
 
 
 
+
+
+\subsection{Review: Triangulated domains}
+
+% Intro DONE
+Domains that admit finite triangulations allow for different techniques to attain Poincar\'e--Friedrichs inequalities. 
+However, the majority of results only address such inequalities for scalar-valued functions, not for vector fields. 
+We review some of the main outcomes. 
+
+% veeser and verfurth ... unknown DONE 
+Veeser and Verf\"urth provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for finite element stars~\cite{veeser2012poincare}. Naturally, their estimates depend on the shape regularity of the mesh.
+
+% sequential approach 
+The literature~\cite{Eym_Gal_Her_00,vohralik2005discrete,ern2020stable,ern2021finite,Chaum_Voh_p_rob_3D_H_curl_23,Voh_loc_glob_H1_24} knows different variations of a popular avenue towards Poincar\'e--Friedrichs constants that circumvents the effect of low boundary regularity and constructs potentials step-by-step: 
+starting with a single triangle, the potential is constructed over increasing subdomains, until the entire domain is exhausted. 
+That procedure applies to general triangulated domains, not only local stars, though the latter is our main interest here. 
+The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
+Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
+along the interfacing intersection, the two potentials will only differ by a constant, 
+and that difference can easily be removed to ensure continuity across that interface. 
+
+% sequential approach DONE
+Domains that admit finite triangulations allow for techniques \cye{using some form of passing through the triangulation and construction of the potentials step-by-step}. For scalar-valued functions in the context of Section~\ref{subsection:intro_grad}, Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for \cye{vertex} stars. 
+%Naturally, these estimates deteriorates when the shape regularity of the mesh deteriorates. 
+Such approaches were also previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. Triangle by triangle, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
+
+% eigenvalue and maxwell
+We also remark that recent work~\cite{gallistl2023computational} addresses eigenvalues for the curl--curl operator over general triangulations,
+which gives rise to an estimate for the Poincar\'e--Friedrichs constant when $p=2$. However, the use case of these estimates are sequences of triangulations after sufficiently many levels of refinement, whereas our main application are estimates that work with fixed but small triangulations, such as local stars. 
+We are not aware of any estimates for the curl operator, even in the Hilbert space situation. 
+
+\subsection{Review: Numerically computed guaranteed bounds on Poincar\'e--Friedrichs constants seen as eigenvalues}
+
+Estimates for Laplacian eigenvalues over triangulated domains have received much attention. 
+The constant in~\eqref{math:pot_PF_grad} for $p=2$ corresponds to a lower bound for the Laplace eigenvalues and quantifies the stability properties of the Laplacian on the domain $\Omega$. 
+Similarly, the constant in~\eqref{math:pot_PF_curl} for $p=2$ corresponds to a lower bound for the Maxwell eigenvalues and quantifies the stability properties of the Maxwell system on $\Omega$. 
+Thus, computable upper bounds on the Poincar\'e--Friedrichs constants also give computable lower bounds for the eigenvalues of the associated Laplacians and vice versa. 
+Prominent methods numerically compute guaranteed upper bounds on the Poincar\'e--Friedrichs constants upon solving a finite element system over a sufficiently fine triangulation and using some clever post-processing estimates.
+This technique is used for estimating scalar Laplacian eigenvalues~\cite{Cars_Ged_LB_eigs_14,Liu_fram_eigs_15} and vector Laplacian eigenvalues~\cite{gallistl2023computational}. 
+We remark that we wish to avoid the solution of (global) finite element systems in our computations. 
+% Our approaches, in contrast, are either analytical or combinatorial, and in any case we only employ the given geometry but no computer simulation.
+
+
+
  
  
 
