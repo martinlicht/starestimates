@@ -1,0 +1,46 @@
+We illustrate the subject of our discussion with the curl operator. 
+If $\bff \in \bfL^{2}(\Omega)$ is a square-integrable vector field on some domain $\Omega \subseteq \bbR^3$, 
+we want to find a potential $\bfu \in \bfL^2(\Omega)$ under the curl operator, i.e., $\curl \bfu = \bff$, such that the $\bfL^2$ norm of the potential is bounded in terms of the source field $\bff$. Specifically, we want the Poincar\'e--Friedrichs inequality % DONE: Theo prefers not using ``expressed''
+\begin{align*}
+    \min\limits_{ \substack{ \bfv \in \bfL^{2}(\Omega) \\ \curl \bfv = \bff } } \| \bfv \|_{L^{2}(\Omega)}
+    \leq 
+    C_{\curl}
+    \| \bff \|_{L^{2}(\Omega)}
+    .
+\end{align*}
+The constant in this inequality corresponds to a lower bound for the Maxwell eigenvalues and quantifies the stability properties of the Maxwell system on that domain. 
+Broadly speaking, upper bounds for the Poincar\'e--Friedrichs constants correspond to lower bounds for the non-zero eigenvalues of the scalar and vector Laplacians.
+In numerical methods, estimates for the Poincar\'e--Friedrichs constant enter the stability and convergence theory of finite element methods, as well as spectral bounds for finite element matrices. 
+\\
+
+Finding a potential operator, whether linear or non-linear, and bounding the Poincar\'e--Friedrichs constant is generally not an easy undertaking. 
+The majority of estimates in the literature address only gradient potentials. 
+We carry out this endeavor in the special case where $\Omega$ admits a so-called \emph{shellable} triangulation. 
+Even though only contractible domains can ever admit a shellable triangulation, 
+having computable upper bounds for such domains is an important stepping stone towards the more general case. 
+For example, local stars around a simplex within a larger 2D or 3D triangulation are shellable.
+Poincar\'e--Friedrichs inequalities over local stars are our main goal in this exposition. 
+\\
+
+
+Before we outline the main results of this exposition in more detail, 
+we first review the state of the literature on Poincar\'e--Friedrichs inequalities on specific classes of domains. 
+
+
+Most research on optimal constants has addressed the case of convex domains. 
+Notably, if the constants are required to depend on the convex domain only via its diameter, 
+then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
+When the domain is not convex but star-shaped with respect to a ball,
+then polynomial interpolation estimates already imply the Poincar\'e inequality~\cite{brenner2008mathematical,ern2021finite}. 
+Poincar\'e inequalities hold over star-shaped open sets~\cite[Theorem~3.1]{hurri1988poincare}. % DONE: strange sentence 
+
+We can access some estimates from the literature in the formalism of exterior calculus. 
+We are aware of work by Guerini and Savo~\cite{guerini2004eigenvalue},
+who provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, % DONE: Theo : smoothly bounded -> with smooth boundary
+thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence for the curl and divergence operators, when $p=2$.
+By duality, that implies lower bounds for the case of full boundary conditions.
+
+
+
+
+Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant\cye{, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
