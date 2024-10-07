@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-\usepackage[margin=0.1cm]{geometry}
+% \usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{comment}          % 
@@ -78,7 +78,7 @@
     %
     As a result with independent standing, we also establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over bounded convex domains. 
     This is achieved via a suitable construction of regularized Poincar\'e and Bogovski\u{\i} potential operators whose operator norms we bound.
-    {We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances.} 
+    We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances. 
     Computational examples illustrate the theoretical findings.
 \end{abstract}
 
@@ -138,11 +138,10 @@ This inequality is therefore equivalent to
     u \in W^{1,p}(\Omega) 
     .\tag{PF} 
 \end{align}
-
-In the present setting, where $\Omega$ is connected and the potential of a gradient is thus already determined up to a constant, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
+In the present setting, where $\Omega$ is connected and the potential of a gradient is thus already determined up to a constant, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem. 
 
 Finding a norm-minimizing potential of a given gradient $\nabla u$ is generally a nonlinear operation.
-\begin{subequations}\label{math:pot_grad}\begin{align}\label{math:pot_grad_def}
+\begin{align}\label{math:pot_grad_def}
     \Phi_{\grad}( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)}.
 \end{align}
 \mwl{remove all references to poincare inequality from the introduction. emphasize the difference.}
@@ -171,7 +170,7 @@ where $u_\Omega$ denotes the average of $u$.
 Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:intro:poincarefriedrichs:grad} or Poincar\'e inequalities~\eqref{math:intro:poincare:grad}. 
 Computing a linear potential is generally easier than solving the nonlinear minimization problem~\eqref{math:intro:poincarefriedrichs:gradientpotential}. 
 %
-We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:pot_grad_def}.} 
+We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:pot_grad_def}. 
 
 
 
@@ -199,19 +198,19 @@ For a vector field $\bff$ that is a distributional gradient of an object from $W
 \end{align*}
 is the {\em potential operator}. A particular example of our interest is
 %
-\begin{subequations}\label{math:pot_grad}\begin{align}\label{math:pot_grad_def}
+\begin{align}\label{math:pot_grad_def}
     \Phi_{\grad}( \bff ) := \argmin\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } \| u \|_{L^{p}(\Omega)}.
 \end{align}
 %
-Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant\cye{, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem}. 
+Actually, in the present gradient setting and since $\Omega$ is connected, already the gradient constraint determines $\Phi_{\grad}( \bff )$ up to a constant, so that~\eqref{math:pot_grad_def} is a one-dimensional minimization problem. 
 
-\cye{We want to see whether the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$, i.e., we want to evaluate the {\em operator norm}
+We want to see whether the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$, i.e., we want to evaluate the \emph{operator norm}
 \begin{align}\label{math:pot_grad_norm}
     C_{\grad,\Omega,p} := \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
     \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
-\end{align}\end{subequations}}
+\end{align}
 This operator norm is indeed finite and it equivalently turns out to be the best constant in the {\em Poincar\'e--Friedrichs inequality}: for every vector field $\bff \in \nabla W^{1,p}(\Omega)$, there exists $u \in W^{1,p}(\Omega)$ such that $\nabla u = \bff$ and 
-\begin{subequations}\label{math:PF_gradient}\begin{align} \label{math:PF_gradient_1}
+\begin{align} \label{math:PF_gradient_1}
     \| u \|_{L^{p}(\Omega)}
     \leq 
     C_{\grad,\Omega,p} 
@@ -227,7 +226,7 @@ Actually, \eqref{math:PF_gradient_1} is further equivalent to the more conventio
     \forall 
     u \in W^{1,p}(\Omega)
     .
-\end{align}\end{subequations}
+\end{align}
 We call $C_{\grad,\Omega,p}$ the \emph{Poincar\'e--Friedrichs constant} for the gradient operator with exponent $p$. \cye{A concise writing of all~\eqref{math:pot_grad}--\eqref{math:PF_gradient} is
 \begin{align} \label{math:pot_PF_grad}
     \min\limits_{ \substack{ u \in W^{1,p}(\Omega) \\ \nabla u = \bff } } 
@@ -252,20 +251,20 @@ for all $\bff \in \nabla W^{1,p}(\Omega)$.}
 \subsection{Conceptual overview: Potentials for the curl and divergence operators and the corresponding Poincar\'e--Friedrichs inequalities} \label{section:intro_curl_div}
 
 Consider the vector-valued spaces
-\begin{subequations}\label{equation:W_curl_div_p} \begin{align}
+\begin{align}\label{equation:W_curl_div_p} 
     \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \curl \bfu \in \bfL^{p}(\Omega) \right\}
     ,
     \\
     \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in \bfL^{p}(\Omega) \cye{\suchthat} \divergence \bfu \in L^{p}(\Omega) \right\}
     .
-\end{align}\end{subequations}
+\end{align}
 The members of these spaces are those vector fields whose distributional curls and divergences are \cye{respectively} in \cye{the} Lebesgue spaces \cye{$\bfL^{p}$ or $L^{p}(\Omega)$}.  
 This only requires that certain sums of distributional partial derivatives are integrable, 
 and hence these spaces are not classical Sobolev spaces of vector  fields. 
 
 \cye{Let a vector field $\bff$ that is a distributional curl of an object from $\bfW^{p}(\curl,\Omega)$, $\bff \in \curl \bfW^{p}(\curl,\Omega)$, and scalar-valued field $f$ that is a distributional divergence of an object from $\bfW^{p}(\divergence,\Omega)$, $f \in \divergence \bfW^{p}(\divergence,\Omega)$, be given.} 
 We are interested in constants for inequalities such as 
-\begin{subequations}\label{math:pot_PF_curl_div} \begin{align}
+\begin{align}\label{math:pot_PF_curl_div}
     \min\limits_{ \substack{ \bfu \in \bfW^{p}(\curl,\Omega) \\ \curl \bfu = \bff } } 
     \| \bfu \|_{L^{p}(\Omega)}
     &\leq 
@@ -279,7 +278,7 @@ We are interested in constants for inequalities such as
     C_{\divergence,\Omega,p}
     \| f \|_{L^{p}(\Omega)} \label{math:pot_PF_div}
     ,
-\end{align}\end{subequations}
+\end{align}
 and how these constants can be estimated by the operator norms of {\em linear} potential operators 
 \begin{align*}
     &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
@@ -589,7 +588,6 @@ We subsequently review shellable triangulations of manifolds in Section~\ref{sec
 and we construct an important geometric reflection operator in Section~\ref{section:extension}. 
 We finally provide computable upper bounds for Poincar\'e--Friedrichs constants for the exterior derivative over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 We present numerical examples in Section~\ref{section:numericalexamples} and conclude by some outlook in Section~\ref{section:outlook}. 
-
 
 
 
