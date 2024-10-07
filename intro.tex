@@ -173,6 +173,43 @@ Not much attention\cye{, however,} seems to have been given to the study of \cye
 
 
 
+In the Hilbert space case, $p=2$, and when the domain has a smooth boundary, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. 
+By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
+However, no such results are known over convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$.
+
+
+There is a wealth of literature for gradient Poincar\'e inequalities over convex domains, where optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known.
+
+
+
+
+The literature is less extensive it comes to the estimates for the curl and divergence potentials.
+
+
+
+A conceptual approach to obtain computable estimates for the Poincar\'e--Friedrichs constants \cye{for any $1 \leq p \leq \infty$} and when the domain is star-shaped with respect to a ball is to bound operator norms of 
+regularized Poincar\'e operators \cye{such as those of} Costabel and McIntosh~\cite{costabel2010bogovskiui} as mappings between Lebesgue spaces. 
+
+When the domain is star-shaped with respect to a ball, 
+then estimates for the Poincar\'e--Friedrichs constants 
+follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
+as mappings between Lebesgue spaces. 
+We are aware of estimates for the higher-order seminorms of these potentials~\cite{guzman2021estimation} (see also~\cite{gallistl2023computational}),
+but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
+\\
+
+
+
+\cye{Let us only briefly discuss why don't we treat local \cye{patches} (stars) in triangulations as} domains star-shaped with respect to a ball, which they are. 
+However, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
+This is not as much a problem over patches around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
+But that interior ball can be arbitrarily small when the patch is around a boundary simplex, even if the mesh has good shape regularity: 
+this occurs when the domain has sharp reentrant corners, and some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, 
+which contain finite element patches are not star-shaped with respect to any ball. 
+
+One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local stars in triangulations are star-shaped with respect to a ball.
+
+
 
 
 

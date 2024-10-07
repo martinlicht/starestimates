@@ -116,6 +116,8 @@ Our conceptual point of reference is the Poincar\'e--Friedrichs inequality for t
 which has been subject to extensive research.
 \\
 
+\subsection{Potentials and Poincar\'e--Friedrichs inequalities for the gradient}
+
 For this illustration, we le $\Omega \subseteq \bbR^3$ be a bounded connected open set. 
 We let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $1 \leq p \leq \infty$, 
 and we write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
@@ -190,6 +192,8 @@ The relationship between the Poincar\'e constant and the Poincar\'e--Friedrichs 
 \\
 
 
+\subsection{Potentials and Poincar\'e--Friedrichs inequalities for the curl and divergence}
+
 We study potential operators and Poincar\'e--Friedrichs inequalities for the curl or divergence operators in vector calculus.
 There are substantial changes and much less results are available in the literature. 
 We use the spaces of vector field 
@@ -249,7 +253,7 @@ not much attention seems to have been given to the study of computable constants
 
 
 
-
+\subsection{Potentials and Poincar\'e--Friedrichs inequalities for the exterior derivative}
 
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. 
 Exterior calculus~\cite{greub1967multilinear,lee2012smooth} is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite, gross2004electromagnetic, arnold2006finite, arnold2009geometric, arnold2010finite, demlow2014posteriori, licht2021local, arnold2021complexes}. 
@@ -266,85 +270,67 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 \subsection{Literature review}
 
 
-We review the literature on Poincar\'e--Friedrichs inequalities and identify the approaches that we want to generalize. 
-
-
+We review the literature on Poincar\'e--Friedrichs inequalities. We also identify the obstructions of presently known results that we want to overcome with our contributions. 
 
 \subsection{Review: Analytical constants over convex domains}
 
-Not much attention however seems to have been given to the study of computable constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. 
-Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of the exterior calculus formalism, 
-but the Banach case $p \neq 2$ seems largely unexplored.
-
-
-\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (non-convex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
-The resulting operator features generally lower regularity \cye{but} its properties are sufficient for our purposes. \cye{Crucially, this allows us to} easily estimate their operator norms. 
-\\
-
-When the domain is star-shaped with respect to a ball, then estimates for the Poincar\'e--Friedrichs constants 
-follow from bounds on the operator norms of regularized Poincar\'e operators~\cite{costabel2010bogovskiui}
-as mappings between Lebesgue spaces. 
-We are aware of estimates for the higher-order seminorms of these potentials~\cite{guzman2021estimation} (see also~\cite{gallistl2023computational}),
-but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
-\\
-
-In the Hilbert space case $p=2$, Guerini and Savo~\cite{guerini2004eigenvalue} provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence \cye{in particular} for the curl and divergence operators.
-\cye{A comparison result} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also \cye{gives} upper estimate\cye{s} of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence \cye{operators} subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
-\cye{Computable constants for Lipschitz domains have recently been addressed in Pauly and Valdman~\cite{Paul_Vald_PF_grad_curl_div_20}, see also the references therein.}
-
-Unfortunately, no results as those of~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} are known over \cye{(}convex\cye{)} \cye{(}Lipschitz\cye{)} domains and general Lebesgue exponents $1 \leq p \leq \infty$. 
-\cye{A conceptual approach to obtain computable} estimates for the Poincar\'e--Friedrichs constants \cye{for any $1 \leq p \leq \infty$} and when the domain is star-shaped with respect to a ball is to bound operator norms of regularized Poincar\'e operators \cye{such as those of} Costabel and McIntosh~\cite{costabel2010bogovskiui} as mappings between Lebesgue spaces. 
-Here, estimates for the higher-order seminorms of these potentials \cye{are available in}~\cite{guzman2021estimation}, but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
-
-Considerable research effort has gone into finding (or estimating) the optimal constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:pot_PF_grad}. Most research on optimal constants has addressed the case of convex domains. 
+% gradient over convex domains
+Considerable research effort has gone into computing explicit upper estimates for the constants in the Poincar\'e--Friedrichs inequalities over convex domains. 
 Notably, if the constants are required to depend on the convex domain only via its diameter, 
-then the optimal constants $C_{\grad,\Omega,p}$ for any $1 \leq p < \infty$ are known explicitly~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
-When the domain is not convex but star-shaped with respect to a ball,
-then polynomial interpolation estimates already imply the Poincar\'e\cye{--Friedrichs} inequality~\cite{brenner2008mathematical,ern2021finite}. 
-Poincar\'e--Friedrichs inequalities actually hold over merely star-shaped open bounded sets~\cite[Theorem~3.1]{hurri1988poincare}. 
+then the optimal gradient Poincar\'e--Friedrichs and Poincar\'e constants for the entire range of Lebesgue exponent $1 \leq p < \infty$ are known explicitly~\cite{Pay_Wei_Poin_conv_60,bebendorf2003note,acosta2004optimal,esposito2013poincare,ferone2012remark}.
+
+% Guerini Savo  
+The literature on Poincar\'e--Friedrichs constants and potentials of curls and divergences is less extensive than for potentials of gradients, even over convex domains.
+Guerini and Savo~\cite{guerini2004eigenvalue} provide explicit lower bounds for the spectrum of the Hodge--Laplace operator on bounded convex domains with smooth boundary in the Hilbert space case $p=2$.
+These bounds are only in terms of the dimension and diameter of the convex domain. 
+They thus give upper estimates for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence in particular for the curl and divergence operators.
+Additionally, a comparison result shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. 
+Using a duality argument, this also gives upper estimates of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence \cye{operators} subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
+However, these upper bounds are not necessarily optimal. 
+Moreover, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. 
+
+
+
 
 
 \subsection{Review: Domains star-shaped with respect to a ball}
 
-\cye{Let us only briefly discuss why don't we treat local \cye{patches} (stars) in triangulations as} domains star-shaped with respect to a ball, which they are. This \cye{would enable} the use of averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. Unfortunately, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
-This \cye{would not be} as much a problem over local patches (stars) around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
-\cye{Unfortunately,} the interior ball can be arbitrarily small when the local patch is around a boundary simplex, even if the mesh has good shape regularity: 
-this \cye{in particular} occurs when the domain has sharp reentrant corners. Some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, 
-which contain local finite element patches \cye{that} are not star-shaped with respect to any ball. 
-\\
+When the domain is not convex but star-shaped with respect to a ball,
+then several estimates for Poincar\'e--Friedrichs constants are known. 
+Poincar\'e--Friedrichs inequalities actually hold over merely star-shaped open bounded sets~\cite[Theorem~3.1]{hurri1988poincare}. 
+Polynomial interpolation estimates already imply the Poincar\'e--Friedrichs inequality~\cite{brenner2008mathematical,ern2021finite}. 
+We pay particular attention to the regularized Poincar\'e and Bogovski\u{i} potential operators for the exterior derivative,
+such as those of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
+In principle, the operator norms of those potential operators as mapping between Lebesgue spaces of differential forms 
+are upper estimates for the Poincar\'e--Friedrichs constants of the domain. 
+Here, estimates for the higher-order seminorms of these potentials are available in~\cite{guzman2021estimation}, 
+but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
+We particularly emphasize that these estimates for domains star-shaped with respect to a ball have in common that they rely on upper bounds for the \emph{eccentricity} of the domain.
 
-The main objective of this manuscript is bounding the Poincar\'e--Friedrichs constants over local stars within triangulated domains. 
-Clearly, not all local stars describe convex subdomains. 
-One possible avenue towards Poincar\'e--Friedrichs constants is the observation that local stars in triangulations are star-shaped with respect to a ball,
-which enables tools such as averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. 
+
+
+% Technical restriction of star-shaped domains
+
+Let us briefly discuss the practical limitations of the aforementioend estimates for Poincar\'e--Friedrichs constants for convex domains or domains that are star-shaped with respect to a ball. 
+Recall that the main objective of this manuscript is bounding these constants over local stars within triangulated domains. 
+Clearly, not all local stars describe convex subdomains, but most local stars are star-shaped with respect to a ball. 
+This observation would enable, e.g., the averaged Poincar\'e and Bogovski\u{\i} operators~\cite{costabel2010bogovskiui}. 
 However, estimates that rely on this geometric condition deteriorate when the aforementioned ball has radius much smaller than the domain diameter. 
-This is not as much a problem over patches around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
-But that interior ball can be arbitrarily small when the patch is around a boundary simplex, even if the mesh has good shape regularity: 
-this occurs when the domain has sharp reentrant corners, and some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, % DONE: MV : find the examples in the paper by verfurth and veeser 
-which contain finite element patches are not star-shaped with respect to any ball. 
+This would not be as much a problem over local patches (stars) around interior subsimplices, where the size of the interior ball only depends on the shape regularity of the triangulation. 
+But the interior ball can be arbitrarily small when the local patch is around a boundary simplex, even if the mesh has good shape regularity: 
+this occurs most prominently when the domain has sharp reentrant corners. Some illustrative limit cases include the slit domain~\cite{veeser2012poincare} and the crossed bricks domain~\cite{licht2019smoothed}, 
+which contain local finite element patches that are not star-shaped with respect to any ball. 
+In view of this, we refrain from treating local patches (stars) in triangulations as domains star-staped with respect to a ball. 
 
 
-\subsection{Review: Potentials subject to partial boundary conditions}
-
-\cye{In our proofs for triangulated domains}, we \cye{actually also} need to find potentials for the gradient, curl, and divergence operators\cye{, and in general the exterior derivative,} over a simplex subject to partial boundary conditions. 
-Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
-We are not aware of explicit estimates in the literature and \cye{we know} no regularized potential operators for these boundary conditions. 
-\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalities subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
-For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. We achieve this by \cye{an affine ``symmetrization'' map of the tetrahedron to a domain consisting of two tetrahedra,} construction of an auxiliary problem subject to full boundary conditions, and then affine ``folder'' map back to the tetrahedron.
-\\
-
-In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
-Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
-We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
-The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. 
-For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
-we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
-We achieve this by constructing an auxiliary problem subject to full boundary conditions.
-\\
 
 
 
 \subsection{General results}
+
+Not much attention however seems to have been given to the study of computable constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. 
+Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of the exterior calculus formalism, 
+but the Banach case $p \neq 2$ seems largely unexplored.
 
 Let for a moment the topology of $\Omega$ be trivial, let $\Omega$ be weakly Lipschitz, and consider the Hilbert case $p=2$. 
 Then, \eqref{math:pot_PF_curl} is related to the so-called Poincar\'e--Friedrichs--Weber inequality
@@ -370,15 +356,10 @@ Still in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1
 
 
 \subsection{Objectives: convex domains}
+\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (non-convex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
+The resulting operator features generally lower regularity \cye{but} its properties are sufficient for our purposes. \cye{Crucially, this allows us to} easily estimate their operator norms. 
 
-Estimating the norm of local potential operators over convex domains is an important subcomponent of our agenda. 
-Again, the situation is more complicated for potentials of curls and divergences than for potentials of gradients.
-While there is a wealth of literature for gradient Poincar\'e inequalities over convex domains, where optimal gradient Poincar\'e--Friedrichs constants for the entire range $1 \leq p < \infty$ are known,
-the literature is more sparse when it comes to the corresponding estimates for the curl and divergence potentials.
-
-In the Hilbert space case, $p=2$, and when the domain has a smooth boundary, the work of Guerini and Savo~\cite{guerini2004eigenvalue} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also is an upper estimate of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
-
-However, no such results are known over convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$, which is why we rely on regularized potential operators as a remedy. 
+We rely on regularized potential operators as a remedy. 
 We follow closely the discussions by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators over domains star-shaped with respect to a ball. 
 In comparison to their exposition, our variants of the regularized potential operators are simplified:
@@ -387,6 +368,26 @@ The resulting operator features generally lower regularity properties in compari
 however, their properties are sufficient for our purposes. We easily estimate their operator norms. 
 We consider the latter outcome to be of independent interest. 
 
+
+\subsection{Review: Potentials subject to partial boundary conditions}
+
+\cye{In our proofs for triangulated domains}, we \cye{actually also} need to find potentials for the gradient, curl, and divergence operators\cye{, and in general the exterior derivative,} over a simplex subject to partial boundary conditions. 
+Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
+We are not aware of explicit estimates in the literature and \cye{we know} no regularized potential operators for these boundary conditions. 
+\cye{Our basic idea here is to reuse} the Poincar\'e--Friedrichs inequalities subject to boundary conditions \cye{on the entire boundary in order} to prove Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
+For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. We achieve this by \cye{an affine ``symmetrization'' map of the tetrahedron to a domain consisting of two tetrahedra,} construction of an auxiliary problem subject to full boundary conditions, and then affine ``folder'' map back to the tetrahedron.
+\\
+
+In addition to that, we need to find potentials for the gradient, curl and divergence operators over a simplex subject to partial boundary conditions. 
+Again, we want to address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents. 
+We are not aware of any explicit estimates in the literature and there are no regularized potential operators for these boundary conditions. 
+The Poincar\'e--Friedrichs inequality subject to full boundary conditions is repurposed to prove Poincar\'e--Friedrichs inequalities for differential forms over simplices and subject to partial boundary conditions. 
+For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
+we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
+We achieve this by constructing an auxiliary problem subject to full boundary conditions.
+\\
+
+\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
 
 
 \subsection{Review: Numerically computed guaranteed bounds on Poincar\'e--Friedrichs constants seen as eigenvalues}
@@ -429,7 +430,6 @@ The computable Poincar\'e--Friedrichs constants obtained here depend on only a f
 \cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 
-\cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:bogovpoinc}.} \mwl{MV: The discussion from before Theorem~\ref{theorem:bogovpoinc} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
 
 
 \subsection{Review: Triangulated domains}
