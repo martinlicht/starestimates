@@ -378,16 +378,13 @@ Thus, computable upper bounds on the Poincar\'e--Friedrichs constants also give 
 Prominent methods numerically compute guaranteed upper bounds on the Poincar\'e--Friedrichs constants upon solving a finite element system over a sufficiently fine triangulation and using some clever post-processing estimates.
 This has led to estimates for scalar Laplacian eigenvalues~\cite{Cars_Ged_LB_eigs_14,Liu_fram_eigs_15} and vector Laplacian eigenvalues~\cite{gallistl2023computational}. 
 We remark that for the purposes of this manuscript, we aim for computable upper bounds that do not rely on the solution of (global) finite element systems. 
-% Our approaches, in contrast, are either analytical or combinatorial, and in any case we only employ the given geometry but no computer simulation.
 
 
 % veeser and verfurth 
 % sequential methodology
 There are numerous estimates for Poincar\'e--Friedrichs constants that only rely on locally computable geometric quantities, such as the diameter and volumes of simplices. 
-% TODO V & V do the same sequential estimate 
 Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for vertex stars. Naturally, their estimates depend on the shape regularity of the mesh.
-Another class of upper bounds for Poincar\'e--Friedrichs inequalities uses some form of passing through the triangulation and constructs the potentials step-by-step. 
-% Starting with a single triangle, the potential is constructed over increasing subdomains, until the entire domain is exhausted. 
+A whole class of upper bounds for Poincar\'e--Friedrichs inequalities uses some form of passing through the triangulation and constructs the potentials step-by-step. 
 The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
 Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
 along the interfacing intersection, the two potentials will only differ by a constant, 
@@ -407,8 +404,10 @@ we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)
 
 \subsection{Objectives and methodology}
 
-The main objective of this manuscript is the construction of potentials for the gradient, curl, and divergence, and more generally the exterior derivative. The operator norms of our potentials satisfy computable upper bounds, which are computable upper bounds of the Poincar\'e--Friedrichs constants. As we elaborate in what follows, we focus on domains with shellable triangulations, which include local patches (stars) in two and three dimensions as important special cases. 
-Towards that goal, we also devote an important effort specifically to convex domains. 
+The main objective of this manuscript is the construction of potentials for the gradient, curl, and divergence, and more generally the exterior derivative. 
+The operator norms of our potentials satisfy computable upper bounds, thus yielding computable upper estimates of the Poincar\'e--Friedrichs constants as well. 
+As we will elaborate in what follows, we focus on domains with shellable triangulations, which include local patches (stars) in two and three dimensions as important special cases. 
+To that end, we also devote an important effort specifically to convex domains. 
 
 
 \subsubsection{Objectives: convex domains}
@@ -418,7 +417,7 @@ This is summarized in Theorem~\ref{theorem:bogovpoinc}.
 The upper bounds for the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are bounded in terms of the domain's eccentricity. 
 The bounds are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the space dimension and the form degree enter the estimates. 
 
-The reasons for our study of Poincar\'e--Friedrichs constants over convex domains is two-fold: 
+The reasons for our study of Poincar\'e--Friedrichs constants over convex domains is twofold: 
 firstly, they are of evident independent interest, and secondly, we will need them as a component for our main results on triangulations. 
 Our exposition of regularized Poincar\'e and Bogovski\u{\i}-type potential operators follows the general methodology of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
 By comparison, our variants of these operators are simplified: 
@@ -430,14 +429,16 @@ Crucially, this allows us to easily estimate their operator norms and thus bound
 
 \subsubsection{Objectives: Potentials subject to partial boundary conditions}
 
-We also address the construction of potential operators for the gradient, curl, and divergence operators, and in general the exterior derivative, over a simplex subject to partial boundary conditions. 
+We also address the construction of potential operators for the gradient, curl, divergence, and more generally the exterior derivative over a simplex subject to partial boundary conditions. 
 We are not aware of explicit estimates or regularized potential operators for these boundary conditions in the published literature. 
 For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
-we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
-We achieve this by constructing an auxiliary problem subject to full boundary conditions.
+we want to find the unique vector field potential that not only is a preimage under the curl operator but that also has vanishing tangential trace along the same three faces. 
+We achieve this by constructing an auxiliary problem subject to full boundary conditions,
 so that we can build upon the regularized Bogovski\u{\i} operators and the Poincar\'e--Friedrichs inequalities subject to boundary conditions on the entire boundary.
 We thus obtain Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
 Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents and our Poincar\'e--Friedrichs constants are explicitly computable. 
+
+
 
 
 
@@ -446,49 +447,52 @@ Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents 
 
 % 1. intro paragraph : outline what we will do and why 
 
-Our main objective remains to find potential operators for the differential operators of vector calculus and exterior calculus, including the curl and the divergence, over triangulated domains. 
-The operator norms of these potentials will serve as our computable Poincar\'e--Friedrichs constants.
-In light of the different approaches listed before, we aim for constants that be explicitly computed in terms of mesh geometry, that do not require the solution of global finite element problems, and that do not depend on the boundary regularity of the domain. 
-
+Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, such as the curl and divergence, over triangulated domains. 
+The operator norms of these potentials will serve as computable Poincar\'e--Friedrichs constants. 
+In light of the different approaches iscussed above, we seek constants that can be explicitly computed in terms of the mesh geometry, that do not require solving global finite element problems, and that are independent of the boundary regularity of the domain.
 % 2. the gradient construction as blueprint 
 % outline the essential features 
 
-The sequential construction of potentials for gradient vector fields, as discussed above, is well-known in the literature and serves as our conceptual blueprint.
-Gradient potentials are easily computed over each individual simplex but the constants of integration will generally not match: the scalar piecewise potential will be a in broken Sobolev space. 
-In particular, the local potentials will only differ by a constant along the simplex boundary. 
-However, we can generate an actual potential in Sobolev spaces over larger and larger intermediate subdomains that we build up sequentially.
-At each step, the we choose a simplex that shares a face with one of the preceding simplices and adjust the constant of integration of the local potential. 
-The global potential is constructed cell by cell until the entire domain is exhausted. 
-Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+The sequential construction of potentials for gradient vector fields, as discussed earlier, is well-established in the literature and serves as our conceptual blueprint. 
+Gradient potentials are easily computed over each individual simplex, but the constants of integration generally do not match: 
+the scalar piecewise potential will belong to a broken Sobolev space. 
+In particular, the local potentials will differ only by a constant along the simplex boundaries. 
+However, we can produce a potential in Sobolev spaces over increasingly larger intermediate subdomains, which we construct sequentially. 
+At each step, we select a simplex that shares a face with one of the previously processed simplices and adjust the constant of integration of the local potential. 
+The global potential is built cell by cell until the entire domain is covered. 
+Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate}.
 
 % 3. generalization to vector fields 
 
-We generalize this sequential construction of potentials to curl, the divergence, and the exterior derivative. 
-However, we need to overcome new challenges here that are due to the infinite-dimensional kernels of these differential operators, as we now explain in more detail. 
+We generalize this sequential construction of potentials to the curl, the divergence, and the exterior derivative. 
+However, we need to overcome new challenges that are arise due to the infinite-dimensional kernels of these differential operators, as we now explain in more detail. 
 The basic inductive strategy remains the same. 
-We start by constructing, say, a curl potential, over a single simplex. 
-Having already defined a potential operator over a subtriangulation, we choose a neighboring simplex whose intersection with the preceding simplices includes at least one common face. 
-We then construct a potential for the curl operator whose tangential traces along the intersection match the already existing potential.
-Repeating this procedure eventually completes the original triangulation and provides the desired potential.
+We start by constructing, say, a curl potential over a single simplex. 
+Having already defined a potential operator over a subtriangulation, we select a neighboring simplex whose intersection with the preceding simplices includes at least one common face. 
+We then construct a potential for the curl operator whose tangential traces along the intersection match those of the already existing potential.
+Repeating this procedure eventually exhausts the original triangulation. 
 Here, Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} is our main result. 
 
 % 4. highlight the difficulty with the kernels
 
-However, unlike for the potential construction of the gradient, is not immediately evident whether the construction of local curl potential with given tangential traces is a well-posed auxiliary problem. 
-For the case of the gradient, it was sufficient that the sequential traversal of the triangulation ensured that each new simplex shares at least one face with one of previous simplices was sufficient. 
+However, unlike in the potential construction of the gradient, it is not immediately evident whether the construction of the local curl potential with given tangential traces is a well-posed auxiliary problem. 
+For the case of the gradient, it is sufficient that the sequential traversal of the triangulation satisfies that each new simplex shares at least one face with one of the previous simplices. 
 For the differential operators of vector calculus and exterior calculus, we choose to be more restrictive: 
 we ensure that the new simplex intersects with the existing subtriangulation along an $(n-1)$-dimensional boundary submanifold.
 This allows us to define a well-posed auxiliary problem and to extend the existing curl potential to the new simplex. 
 Whether a triangulation admits such a particular traversal is a non-trivial condition and defines the class of \emph{shellable} triangulations.
 
-% 4. introduce shellable
-
-Shellable simplicial complexes, and more generally polytopal complexes, are a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} or Ziegler~\cite{ziegler1995lectures}, and the references therein.
-Any shellable simplicial complexes must necessarily triangulate a contractible space. 
+ 
+ 
+ 
+ 
+% 5. Shellable
+Shellable simplicial complexes, and more generally polytopal complexes, are a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures}, and the references therein.
+Any shellable simplicial complex must necessarily triangulate a contractible space. 
 With respect to our main interest, local patches (stars) in 2D and 3D triangulations are shellable. 
 
-% 5. Contractible 
-Inspired by contractibility of shellable triangulations, we pursuit an additional estimate for Poincar\'e--Friedrichs constants. 
+% 6. Contractible 
+Inspired by the contractibility of shellable triangulations, we pursuit an additional estimate for Poincar\'e--Friedrichs constants. 
 Every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations. 
 Their bi-Lipschitz constants are controlled by the shape regularity of the domain. 
 This reduces the construction of potentials over shellable triangulations to the construction of potentials over convex domains.
