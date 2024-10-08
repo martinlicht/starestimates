@@ -98,7 +98,7 @@ Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds o
 However, while potential operators and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
 quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
-This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrich inequalities for the differential operators of vector calculus. 
+This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrichs inequalities for the differential operators of vector calculus. 
 How to construct potentials for the gradient over triangulated domains is well-documented in the literature. 
 We apply this construction principle to the curl and divergence operators, as well as the exterior derivative. 
 However, to proceed in the general exterior derivative case, we restrict our efforts to so-called shellable triangulations. 
@@ -298,7 +298,7 @@ However, that easy duality argument, which yields an explicit upper bound propor
 
 % curl 
 The core challenges can be found in the discussion of the curl operator in three dimensions,
-where Poincar\'e--Friedrich inequalities have appeared under different names. 
+where Poincar\'e--Friedrichs inequalities have appeared under different names. 
 Let us assume for a moment that $\Omega$ is a weakly Lipschitz domain with trivial topology, and consider only the Hilbert case $p=2$. 
 Then the constant in \eqref{math:intro:Wcurl:pf} agrees with the constant in the so-called Poincar\'e--Friedrichs--Weber inequality
 \begin{align}
@@ -458,7 +458,7 @@ Gradient potentials are easily computed over each individual simplex but the con
 In particular, the local potentials will only differ by a constant along the simplex boundary. 
 However, we can generate an actual potential in Sobolev spaces over larger and larger intermediate subdomains that we build up sequentially.
 At each step, the we choose a simplex that shares a face with one of the preceding simplices and adjust the constant of integration of the local potential. 
-The global potential is contructed cell by cell until the entire domain is exhausted. 
+The global potential is constructed cell by cell until the entire domain is exhausted. 
 Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 
 % 3. generalization to vector fields 
@@ -472,7 +472,7 @@ We then construct a potential for the curl operator whose tangential traces alon
 Repeating this procedure eventually completes the original triangulation and provides the desired potential.
 Here, Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} is our main result. 
 
-% 4. hightlight the difficulty with the kernels
+% 4. highlight the difficulty with the kernels
 
 However, unlike for the potential construction of the gradient, is not immediately evident whether the construction of local curl potential with given tangential traces is a well-posed auxiliary problem. 
 For the case of the gradient, it was sufficient that the sequential traversal of the triangulation ensured that each new simplex shares at least one face with one of previous simplices was sufficient. 
@@ -983,8 +983,8 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     \end{align*}
     It follows that \eqref{math:esposito:poincare} is generally a tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
     % DONE: what exactly is the limit as p -> 1 ? It converges to 1.
-    % DONT: insert the original inequality by chua and Wheeden
-    % DONE: chua Wheeden upper bound is not optimal!
+    % DONT: insert the original inequality by Chua and Wheeden
+    % DONE: Chua Wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
 % DONT: Keep ?
 %     In the limit as $p$ goes to $1$, the factor $C_{{\rm EFNT},p}$ converges to $1/2$,
