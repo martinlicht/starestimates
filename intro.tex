@@ -563,9 +563,24 @@ In particular, local stars in 2D and 3D triangulations are shellable.
 
 
 
+\cye{Computable constants for Lipschitz domains have recently been addressed in Pauly and Valdman~\cite{Paul_Vald_PF_grad_curl_div_20}, see also the references therein.}
 
 
 
+
+
+
+Extending our method to vector fields--specifically for the curl and divergence operators introduces new challenges due to their infinite-dimensional kernels. 
+To address these challenges, we generalize the sequential construction used for the gradient to develop vector potentials. 
+The basic inductive strategy remains: 
+we start by constructing a potential over a single simplex and then extend it to neighboring simplices. 
+However, unlike in the gradient case, the potentials over adjacent simplices may not have matching tangential traces along their shared interfaces.
+
+To ensure the correct continuity properties of the vector potentials, we impose stronger conditions on the triangulations. We require that the intermediate subtriangulations formed during the sequential process are manifolds with boundary, and that the interface between the existing subtriangulation and the new simplex is a boundary submanifold of both. Under these conditions--which are satisfied by shellable triangulations--we can define well-posed auxiliary problems for the curl and divergence operators with partial boundary conditions. By iterating this procedure, we exhaust the entire triangulation and obtain the desired potentials. Our main results for the curl and divergence operators are presented in Theorems \ref{theorem:poincarefriedrichsestimate} and \ref{theorem:poincarefriedrichsestimate:exterior}.
+
+Shellability is a well-established concept in discrete geometry and combinatorics, referring to a property of simplicial or polytopal complexes that allows them to be built sequentially in a controlled manner. A triangulation is shellable if it can be assembled by adding one simplex at a time such that each new simplex shares a boundary submanifold with the existing complex. This property ensures that interfaces between simplices are well-behaved, which is crucial for the continuity of vector potentials.
+
+While shellable triangulations are slightly less general than merely face-connected ones, they encompass important cases such as local stars in two and three dimensions--patches of simplices sharing a common vertex, edge, face, or nn-simplex. These local patches are inherently shellable, making our approach widely applicable. For more details on shellability, see Kozlov \cite{kozlov2008combinatorial} and Ziegler \cite{ziegler1995lectures}.
 
 
 \begin{remark} \label{remark:reg_Poinc_Bog}
