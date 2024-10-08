@@ -4,12 +4,13 @@
 % \usepackage[margin=0.1cm]{geometry}
 \input{header}
 
+\usepackage{xcolor}          % 
 \usepackage{comment}          % 
 \usepackage[colorlinks=true]{hyperref}         % For hypertext links
 % Make the hyperlinks look similar to arXiv's
 \hypersetup{
     colorlinks=true,
-    linkcolor=green,    % Color of internal links (sections)
+    linkcolor=Maroon,    % Color of internal links (sections)
     citecolor=red,    % Color of citations
     urlcolor=blue,     % Color for URLs
     urlbordercolor={1 1 1},
@@ -83,7 +84,7 @@
 \end{abstract}
 
 
-% \tableofcontents
+\tableofcontents
  
 
 
@@ -280,7 +281,7 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 
 We review the literature on Poincar\'e--Friedrichs inequalities. We also identify the obstructions inherent to presently known results that we wish to overcome with our contributions. 
 
-\subsubsection{Review: General results}
+\subsubsection{General results}
 
 The qualitative existence of Poincar\'e--Friedrichs inequalities for the differential operators of vector calculus and exterior calculus is known for a large class of domains. 
 There is a particularly large body of literature on the Poincar\'e inequality for the gradient and its numerous variants,
@@ -324,7 +325,7 @@ However, while many of the above results rely on non-constructive estimates,
 we are interested in practically computable upper bounds. 
 
 
-\subsubsection{Review: Analytical constants over convex domains}
+\subsubsection{Analytical constants over convex domains}
 
 % gradient over convex domains
 Considerable research effort has gone into computing explicit upper estimates for the constants in the Poincar\'e--Friedrichs inequalities over convex domains. 
@@ -339,7 +340,7 @@ They also provide explicit (but not necessarily optimal) upper bounds for Poinca
 A duality argument also yields upper estimates of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
 Unfortunately, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. 
 
-\subsubsection{Review: Domains star-shaped with respect to a ball}
+\subsubsection{Domains star-shaped with respect to a ball}
 
 When the domain is not convex but star-shaped with respect to a ball,
 then several estimates for Poincar\'e--Friedrichs constants are known. 
@@ -366,7 +367,7 @@ this occurs most prominently when the domain has sharp reentrant corners. Some i
 which contain local finite element patches that are not star-shaped with respect to any ball. 
 In view of this, we refrain from treating local patches (stars) in triangulations as domains star-shaped with respect to a ball. 
 
-\subsubsection{Review: Triangulated domains}
+\subsubsection{Triangulated domains}
 
 Geometric settings that admit finite triangulations enable different pathways to obtain Poincar\'e--Friedrichs inequalities. 
 We review some of the main outcomes. 
@@ -410,7 +411,7 @@ As we will elaborate in what follows, we focus on domains with shellable triangu
 To that end, we also devote an important effort specifically to convex domains. 
 
 
-\subsubsection{Objectives: convex domains}
+\subsubsection{Convex domains}
 
 Our main result for convex domains in the exterior calculus setting is the construction of regularized Poincar\'e and Bogovski\u{\i} potential operators with explicitly bounded operator norms. 
 This is summarized in Theorem~\ref{theorem:bogovpoinc}. 
@@ -427,7 +428,7 @@ While the resulting potential operators feature generally lower regularity, they
 Crucially, this allows us to easily estimate their operator norms and thus bound Poincar\'e--Friedrichs constants. 
 
 
-\subsubsection{Objectives: Potentials subject to partial boundary conditions}
+\subsubsection{Potentials subject to partial boundary conditions}
 
 We also address the construction of potential operators for the gradient, curl, divergence, and more generally the exterior derivative over a simplex subject to partial boundary conditions. 
 We are not aware of explicit estimates or regularized potential operators for these boundary conditions in the published literature. 
@@ -442,7 +443,7 @@ Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents 
 
 
 
-\subsubsection{Objective: Main results}
+\subsubsection{Main results}
 
 
 % 1. intro paragraph : outline what we will do and why 
@@ -450,6 +451,7 @@ Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents 
 Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, such as the curl and divergence, over triangulated domains. 
 The operator norms of these potentials will serve as computable Poincar\'e--Friedrichs constants. 
 In light of the different approaches iscussed above, we seek constants that can be explicitly computed in terms of the mesh geometry, that do not require solving global finite element problems, and that are independent of the boundary regularity of the domain.
+
 % 2. the gradient construction as blueprint 
 % outline the essential features 
 
@@ -460,7 +462,7 @@ In particular, the local potentials will differ only by a constant along the sim
 However, we can produce a potential in Sobolev spaces over increasingly larger intermediate subdomains, which we construct sequentially. 
 At each step, we select a simplex that shares a face with one of the previously processed simplices and adjust the constant of integration of the local potential. 
 The global potential is built cell by cell until the entire domain is covered. 
-Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate}.
+Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 
 % 3. generalization to vector fields 
 
@@ -1079,7 +1081,7 @@ then we call $S$ a \textit{subsimplex} of $T$ and call $T$ a \textit{supersimple
 
 A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
-We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) \cye{and simply ``simplicial meshes'' in the finite element literature}.} 
+We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) and simply ``simplicial meshes'' in the finite element literature.} 
 We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, 
 which is the union $\underlying{\calT} = \bigcup \calT$ of all simplices in $\calT$.
 % \begin{align*}
@@ -2665,7 +2667,7 @@ The integral of a differential $n$-form is uniquely defined via
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
     \end{CD}
-    \cye{\, ,}
+    \, ,
     \end{gather*}
     where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
     \begin{align*}
@@ -2697,7 +2699,7 @@ The integral of a differential $n$-form is uniquely defined via
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
     \end{CD}
-    \cye{\,.}
+    \,.
     \end{gather*}
     Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
     The other vertical arrows are the identity. 
