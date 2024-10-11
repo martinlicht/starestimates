@@ -1,7 +1,7 @@
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-% \usepackage[margin=0.1cm]{geometry}
+\usepackage[margin=0.1cm]{geometry}
 \input{header}
 
 \usepackage{xcolor}          % 
@@ -60,6 +60,7 @@
     Martin Werner Licht\thanks{\'Ecole Polytechnique F\'ed\'erale de Lausanne, CH-1015 Lausanne, Switzerland, \texttt{martin.licht@epfl.ch}} \and
     Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
 }
+\date{}
 
 
 \begin{document}
@@ -84,7 +85,7 @@
 \end{abstract}
 
 
-\tableofcontents
+% \tableofcontents
  
 
 
@@ -2399,6 +2400,127 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 
 \begin{remark}
+    \color{red}
+    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+    The potential $w$ for the gradient $\nabla u$ satisfies 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
+        \qquad 
+        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
+    \end{align*}
+    where $A_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
+    Unwrapping the recursion for the norm over the $m$-th simplex, we thus get
+    \begin{align}\label{math:fullrecursivesum}
+        \| w \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        \sum_{\ell=0}^{m} \left( B_{m} \cdots B_{\ell+1} \right) A_{\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+        =:
+        \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+        .
+    \end{align}
+    Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
+    The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \sum_{\ell=0}^{M} 
+        \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+        \right)
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+    In other words, the Poincar\'e--Friedrichs inequality is estimated by first taking the $q$-norm of the coefficients in the full sum~\eqref{math:fullrecursivesum} and then taking $p$-norm of these intermediate sums.
+    \color{green}Hence 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \nabla u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+\end{remark}
+
+\begin{remark}
     The computable Poincar\'e--Friedrichs constants obtained in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} depend on only a few parameters of the given triangulation: 
     the length of any traversal from the root simplex, 
     the ratios of the volumes of any pair of adjacent simplices, 
@@ -2799,7 +2921,7 @@ One can show that $\phi^{\ast}u \in L^{p}\Alt^{k}(\Omega)$ and the following est
         \| u \|_{L^{p}\Lambda^{k}(\Omega')}
         .
     \end{align}
-	Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
+    Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
 \end{proposition}
 \begin{proof}
 	See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}).
@@ -6104,6 +6226,12 @@ The second one is specific to the fact that shellable triangulations are contrac
         \end{align*}
     \end{itemize}
 \end{theorem}
+
+
+
+
+
+
 
 
 
