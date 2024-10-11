@@ -3230,7 +3230,7 @@ Young's convolution inequality now implies:
     \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
     &
     \leq 
-    \vol_{n-1}(S_1) A(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
+    \vol_{n-1}(S_1) C_{\Bogov}(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     \\&
@@ -5830,8 +5830,9 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        2^{\frac{n-\ell}{p}}
-        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
+        2^{\frac{n-\ell}{p} + n + 1}
+        %2^{n+1} 
+        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T) 
         \diam(T)
@@ -6249,10 +6250,32 @@ Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenva
 
 We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
 which relies on estimates for the Bogovski\u{\i} operator over an auxiliary reference domain.
-Our experiments over triangles and tetrahedra indicate that we overestimate the constant by several magnitudes.
+We compare computed Poincar\'e--Friedrichs constants over the tetrahedron with tangential boundary conditions along a few faces. Our experiments and tetrahedra indicate that we overestimate the constant by several magnitudes.
 %
 We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c}
+        \hline
+        $\ell$ & simulation & theorem & ratio & GS & ratio \\
+        \hline
+        0 & 5.37161130e+00 & 6.96498956e+03 & 2.41385574e+02 & 1.34450672e+01 & 2.50298587e+00 \\ 
+        1 & 4.08721544e+00 & 2.46249567e+03 & 1.47407784e+02 & 1.90141963e+01 & 4.65211501e+00 \\
+        2 & 6.42794893e+00 & 8.20831891e+02 & 1.98659522e+01 & 2.68901344e+01 & 4.18331487e+00 \\
+        3 & 6.71227069e+00 & 6.15623918e+02 & 1.36639593e+01 & 3.80283927e+01 & 5.66550344e+00 \\
+        3 & 6.71227069e+00 & 2.51327412e+02 & 5.57828803e+00 & 7.76251317e+00 & 1.15646605e+00 \\
+        \hline
+    \end{tabular}
+    \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
+    The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
+    The second column contains estimates obtained via     Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
+    and Theorem~\ref{theorem:bogovpoinc} in the last line. 
+    The fourth column uses the same type of estimate but replaces all applications of Theorem~\ref{theorem:bogovpoinc} with an estimate by Guerini and Savo~\cite{guerini2004eigenvalue}.
+    The last estimate, though clearly the most competitive, technically does not apply because the reference proves it only for bounded convex domains with smooth boundaries.
+    }
+    % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
+\end{table}
 
 
 
