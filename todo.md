@@ -25,7 +25,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] does cartan commute with pullback ? 
 - [x] final: complete the final estimate, use recursion 
 - [ ] numerics: create a spanning tree and start computing the scalar estimate
-- [ ] In potential section, check any occurance of 'A('
+- [x] In potential section, check any occurance of 'A('
 
 Revision: 
 - [X] header
