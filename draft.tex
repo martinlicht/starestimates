@@ -22,6 +22,137 @@
 
 
 
+\begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
+    Let $T$ be an $n$-simplex 
+    and let $\Gamma = F_{1} \cup \dots \cup F_{\ell}$ be the union of $\ell+1$ different faces of $T$. 
+    Suppose that $u \in W^{2}\Lambda^{k}(T)$ such that 
+    $\trace_{T,\Gamma} u = 0$.
+    Then there exists $w \in W^{2}\Lambda^{k}(T)$ such that 
+    $\trace_{T,\Gamma} w = 0$
+    and  
+    \begin{align*}
+        \cartan w = \cartan u,
+        \quad 
+        \| w \|_{L^{2}(\Omega)} 
+        \leq 
+        C_{\PF,\Gamma,\ell,k,2}(T)
+        \| \cartan u \|_{L^{2}(\Omega)}
+        .
+    \end{align*}
+    Here, $C_{\PF,\Gamma,\ell,k,2}(T) > 0$ is a constant such that 
+    \begin{align*}
+        C_{\PF,\Gamma,\ell,k,2}(T)
+        \leq 
+        \diam(T)
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    If $\ell = n$, then the Poincar\'e--Friedrichs constant is obtained via duality from the case without boundary conditions, 
+    so we only consider the case $\ell < n$.
+    There exists an affine bijection $\varphi : \Delta^n \rightarrow T$ 
+    that maps 
+    the face of $\Delta^n$
+    orthogonal to the $i$-th coordinate axis, written $\hat F_{i} \subseteq \Delta^n$ here, is mapped onto the face $F_{i-1}$ for $1 \leq i \leq \ell+1$.
+    We write $\hat \Gamma := \hat F_{1} \cup \dots \cup \hat F_{\ell+1}$.
+    Note that $\hat\Gamma$ does not include the face of the reference simplex whose vertices are the $n$ canonical unit vectors. 
+    
+    Let $\hat u \in W^{2}\Lambda^{k}(\hat T)$ such that $\trace_{\hat T,\hat\Gamma} u = 0$.
+    By exactness of the de~Rham complex over the reference with simplex 
+    with tangential boundary conditions along $\hat\Gamma$, which is a topological ball, 
+    we conclude that there exists $w \in W^{2}\Lambda^{k}(T)$ satisfying the conditions $\trace_{T,\Gamma} w = 0$
+    and $\cartan w = \cartan u$ and such that $w$ has minimal norm among the members of $W^{2}\Lambda^{k}(T)$ satisfying these two conditions.
+    Under these conditions, we have the Gaffney inequality 
+    \begin{align}\color{red}
+        \| \nabla \hat w \|_{L^{2}(\Delta^{n})}
+        \leq 
+        C_{??}
+        \| \cartan \hat w \|_{L^{2}(\Delta^{n})}
+        .
+    \end{align}
+    We write $w$ as in \eqref{math:canonicalrepresentation},
+    \begin{gather}
+        w
+        = 
+        \sum_{ \sigma \in \Sigma(k,n) } 
+        w_{\sigma} \, 
+        \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
+    \end{gather}
+    If $\sigma \in \Sigma(k,n)$ and its range does not contain some $1 \leq i \leq \ell+1$,
+    then the boundary conditions imply that $\trace_{T,F_{i}} w_{\sigma} = 0$.
+    Then Friedrichs inequality with partial boundary conditions, Lemma~\ref{lemma:mixedbconsimplex},
+    implies 
+    \begin{align*}
+        \| w_{\sigma} \|_{L^{2}(T)}
+        &
+        \leq 
+        \frac{\diam(T)}{\sqrt{2}}
+        \| \nabla w \|_{L^{2}(T)}
+        .
+    \end{align*}
+    We then define $w'_{\sigma} := w_{\sigma}$.
+    
+    If $\sigma \in \Sigma(k,n)$ and its range does not contain any $1 \leq i \leq \ell+1$,
+    then no boundary conditions are imposed on that component but the classical Poincar\'e--Friedrichs inequality implies 
+    \begin{align*}
+        \| w_{\sigma} - w_{\sigma,\Omega} \|_{L^{2}(T)}
+        &
+        \leq 
+        \frac{\diam(T)}{\pi}
+        \| \nabla w \|_{L^{2}(T)}
+        .
+    \end{align*}
+    We then define $w'_{\sigma} = w_{\sigma} - w_{\sigma,\Omega}$. 
+    
+    This defines a new differential form 
+    \begin{gather}
+        w'
+        = 
+        \sum_{ \sigma \in \Sigma(k,n) } 
+        w'_{\sigma} \, 
+        \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)}
+        \in
+        W^{2}\Lambda^{k-1}(\Omega)
+    \end{gather}
+    that satisfies $\cartan w' = \cartan u$ and $\trace_{\hat T,\hat\Gamma} w' = 0$. By construction, 
+    \begin{align*}
+        \| w' \|_{L^{2}(\hat T)}
+        \leq 
+        \| w \|_{L^{2}(\hat T)}
+        \leq 
+        2^{-\frac 1 2}
+        \| \nabla w \|_{L^{2}(\hat T)}
+        \leq 
+        2^{-\frac 1 2}
+        C_{??} % TODO
+        \| \cartan u \|_{L^{2}(\hat T)}
+        .
+    \end{align*}
+    
+    In addition to that, by Proposition~\ref{proposition:pullbackestimate}:
+    \begin{align*}
+        \| w \|_{L^{p}(T)}
+        &\leq 
+        |\det(\Jacobian \varphi)|^{\frac 1 p} 
+        \matnorm{ \Jacobian \varphi^{-1} }^{k-1}
+        \| \tilde w \|_{L^{p}(\Delta^n)}
+        ,
+        \\
+        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
+        \leq 
+        2^{\frac {n-\ell} p}
+        \| \hat g \|_{L^{p}(\Delta^n)}
+        &\leq 
+        2^{\frac {n-\ell} p}
+        |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
+        \matnorm{\Jacobian \varphi}^{k}
+        \cdot 
+        \| \cartan u \|_{L^{p}(T)}
+        .
+    \end{align*}
+    It remains to use Lemma~\ref{lemma:measurerelationships}, and the desired inequality is shown. 
+\end{proof}
+
 
 
 

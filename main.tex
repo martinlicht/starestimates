@@ -95,7 +95,7 @@ The operator norms of these potentials are upper bounds for the Poincar\'e--Frie
 These quantify the fundamental stability properties of partial differential equations
 and enter the stability and convergence theory of numerical methods. 
 Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds of the eigenvalues of the associated Laplacians and the eigenvalues of finite element matrices. 
-However, while potential operators and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
+However, while potentials and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
 quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
 This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrich inequalities for the differential operators of vector calculus. 
@@ -161,7 +161,7 @@ Such an inequality holds if we can bound the \emph{operator norm} of this gradie
     \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
 \end{align}
 Finding the norm-minimizing potential and the optimal Poincar\'e--Friedrichs constant is generally difficult. 
-Attention has been given to \emph{linear} potential operators instead of the norm-minimizing nonlinear potential~\eqref{math:intro:gradientpotential}. 
+Attention has been given to \emph{linear} potentials instead of the norm-minimizing nonlinear potential~\eqref{math:intro:gradientpotential}. 
 The operator norm of any linear potential construction serves as an upper bound for the Poincar\'e--Friedrichs constant. 
 One very simple example for such a bounded linear potential operator is the average-free potential, 
 \begin{align}\label{math:intro:poincarepotential}
@@ -188,13 +188,13 @@ where $u_\Omega$ denotes the average of $u$. We emphasize that the average-free 
 Hence the optimal Poincar\'e constant and the optimal Poincar\'e--Friedrichs differ in general. 
 Considerable research efforts have gone into determining constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:intro:poincarefriedrichs:grad} or Poincar\'e inequalities~\eqref{math:intro:poincare:grad}. Upper estimates for these constants also correspond to lower bounds for the spectra of Neumann--Laplacians over those domains. 
 The relationship between the Poincar\'e constant and the Poincar\'e--Friedrichs constant will be elaborated upon in later sections of this manuscript. 
-% We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potential operators to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potential operators such as~\eqref{math:intro:gradientpotential}. 
+% We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potentials to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potentials such as~\eqref{math:intro:gradientpotential}. 
 
 
 
 \subsubsection{Potentials and Poincar\'e--Friedrichs inequalities for the curl and divergence}
 
-We study potential operators and Poincar\'e--Friedrichs inequalities for the curl or divergence operators in vector calculus.
+We study potentials and Poincar\'e--Friedrichs inequalities for the curl or divergence operators in vector calculus.
 There are substantial changes and much less results are available in the literature. 
 We use the spaces of vector field 
 \begin{align}
@@ -242,7 +242,7 @@ and a canonical projection only exists here in the Hilbert setting $p=2$.
 In that sense, there generally is no natural analogue to the Poincar\'e inequality~\eqref{math:intro:poincare:grad} for the curl and divergence. 
 
 In the Banach space case, it is not even trivial whether a norm-minimizing potential actually exists. 
-We are therefore interested in any potential operators 
+We are therefore interested in any potentials 
 \begin{align}
     &\Phi_{\curl} : \curl \bfW^{p}(\curl,\Omega) \rightarrow \bfW^{p}(\curl,\Omega)
     ,
@@ -347,7 +347,7 @@ Poincar\'e--Friedrichs inequalities actually hold over any star-shaped open boun
 Polynomial interpolation estimates already imply the Poincar\'e--Friedrichs inequality~\cite{brenner2008mathematical,ern2021finite}. 
 We pay particular attention to the regularized Poincar\'e and Bogovski\u{\i} potential operators for the exterior derivative,
 such as those of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
-In principle, the operator norms of those potential operators as mapping between Lebesgue spaces of differential forms 
+In principle, the operator norms of those potentials as mapping between Lebesgue spaces of differential forms 
 are upper estimates for the Poincar\'e--Friedrichs constants of the domain. 
 Here, estimates for the higher-order seminorms of these potentials are available in~\cite{guzman2021estimation}, 
 but estimates in Lebesgue norms have not been made explicit in the literature yet, to the best of our knowledge.
@@ -424,14 +424,14 @@ Our exposition of regularized Poincar\'e and Bogovski\u{\i}-type potential opera
 By comparison, our variants of these operators are simplified: 
 we only study them over convex domains, instead of domains star-shaped with respect to a ball, 
 and we use simpler (constant) weight functions. 
-While the resulting potential operators feature generally lower regularity, they are conductive for our purposes. 
+While the resulting potentials feature generally lower regularity, they are conductive for our purposes. 
 Crucially, this allows us to easily estimate their operator norms and thus bound Poincar\'e--Friedrichs constants. 
 
 
 \subsubsection{Objectives: Potentials subject to partial boundary conditions}
 
-We also address the construction of potential operators for the gradient, curl, and divergence operators, and in general the exterior derivative, over a simplex subject to partial boundary conditions. 
-We are not aware of explicit estimates or regularized potential operators for these boundary conditions in the published literature. 
+We also address the construction of potentials for the gradient, curl, and divergence operators, and in general the exterior derivative, over a simplex subject to partial boundary conditions. 
+We are not aware of explicit estimates or regularized potentials for these boundary conditions in the published literature. 
 For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
 we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
 We achieve this by constructing an auxiliary problem subject to full boundary conditions.
@@ -451,13 +451,13 @@ Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents 
 
 % 1. intro paragraph : outline what we will do and why 
 
-Our main objective remains to find potential operators for the differential operators of vector calculus and exterior calculus, including in particular the curl and divergence, over triangulated domains. 
+Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, including in particular the curl and divergence, over triangulated domains. 
 The operator norms of these potentials will serve as our computable Poincar\'e--Friedrichs constants.
 In light of the different approaches listed before, 
 we aim for constants that be explicitly computed in terms of mesh geometry, that do not require the solution of global finite element problems, 
 and that do not depend on the boundary regularity of the domain. 
 
-% In this work, we aim to construct linear potential operators for the gradient, curl, and divergence on triangulated domains, 
+% In this work, we aim to construct linear potentials for the gradient, curl, and divergence on triangulated domains, 
 % providing explicitly computable upper bounds. Our approach extends to domains that may be non-convex and non-star-shaped, 
 % focusing on triangulations that are face-connected or possess the special property of shellability.
 
@@ -498,25 +498,25 @@ formed merely by constants, it is enough to fix this constant using the value al
 
 
 
-Extending our method to vector fields—specifically for the curl and divergence operators introduces new challenges due to their infinite-dimensional kernels. 
+Extending our method to vector fields, specifically for the curl and divergence operators introduces new challenges due to their infinite-dimensional kernels. 
 To address these challenges, we generalize the sequential construction used for the gradient to develop vector potentials. 
 The basic inductive strategy remains: 
 we start by constructing a potential over a single simplex and then extend it to neighboring simplices. 
 However, unlike in the gradient case, the potentials over adjacent simplices may not have matching tangential traces along their shared interfaces.
 
-To ensure the correct continuity properties of the vector potentials, we impose stronger conditions on the triangulations. We require that the intermediate subtriangulations formed during the sequential process are manifolds with boundary, and that the interface between the existing subtriangulation and the new simplex is a boundary submanifold of both. Under these conditions—which are satisfied by shellable triangulations—we can define well-posed auxiliary problems for the curl and divergence operators with partial boundary conditions. By iterating this procedure, we exhaust the entire triangulation and obtain the desired potentials. Our main results for the curl and divergence operators are presented in Theorems \ref{theorem:poincarefriedrichsestimate
+To ensure the correct continuity properties of the vector potentials, we impose stronger conditions on the triangulations. We require that the intermediate subtriangulations formed during the sequential process are manifolds with boundary, and that the interface between the existing subtriangulation and the new simplex is a boundary submanifold of both. Under these conditions, which are satisfied by shellable triangulations, we can define well-posed auxiliary problems for the curl and divergence operators with partial boundary conditions. By iterating this procedure, we exhaust the entire triangulation and obtain the desired potentials. Our main results for the curl and divergence operators are presented in Theorems \ref{theorem:poincarefriedrichsestimate
 } and \ref{theorem:poincarefriedrichsestimate:exterior
 }.
 
 Shellability is a well-established concept in discrete geometry and combinatorics, referring to a property of simplicial or polytopal complexes that allows them to be built sequentially in a controlled manner. A triangulation is shellable if it can be assembled by adding one simplex at a time such that each new simplex shares a boundary submanifold with the existing complex. This property ensures that interfaces between simplices are well-behaved, which is crucial for the continuity of vector potentials.
 
-While shellable triangulations are slightly less general than merely face-connected ones, they encompass important cases such as local stars in two and three dimensions—patches of simplices sharing a common vertex, edge, face, or nn-simplex. These local patches are inherently shellable, making our approach widely applicable. For more details on shellability, see Kozlov \cite{kozlov2008combinatorial} and Ziegler \cite{ziegler1995lectures}.
+While shellable triangulations are slightly less general than merely face-connected ones, they encompass important cases such as local stars in two and three dimensions, patches of simplices sharing a common vertex, edge, face, or nn-simplex. These local patches are inherently shellable, making our approach widely applicable. For more details on shellability, see Kozlov \cite{kozlov2008combinatorial} and Ziegler \cite{ziegler1995lectures}.
 
 
 
 \subsubsection{Objective: Combinatorial constants over shellable triangulated domains}
 
-Towards our main objective of constructing linear potential operators for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. 
+Towards our main objective of constructing linear potentials for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. 
 
 Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
 
@@ -590,11 +590,11 @@ Furthermore, $\Jacobian F$ always denotes the Jacobian of any mapping $F$.
 
 The remainder of this manuscript is structured as follows.
 We review Poincar\'e--Friedrichs constants for the gradient over convex domains in Section~\ref{section:poincare}. 
-We also discuss there the difference with the Poincar\'e inequality and motivate our interest in linear potential operators.
+We also discuss there the difference with the Poincar\'e inequality and motivate our interest in linear potentials.
 We review basic notions of triangulations in Section~\ref{section:triangulations}.
 We develop computable upper bounds for the Poincar\'e--Friedrichs constants for the gradient over face-connected triangulated domains in Section~\ref{section:gradient}.
 We move on to the Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}. 
-Our regularized potential operators over convex sets are then introduced in Section~\ref{section:potentialoperator}, 
+Our regularized potentials over convex sets are then introduced in Section~\ref{section:potentialoperator}, 
 giving rise to to computable Poincar\'e--Friedrichs constants as their operator norms. 
 We subsequently review shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations},
 and we construct an important geometric reflection operator in Section~\ref{section:extension}. 
@@ -680,7 +680,7 @@ We present numerical examples in Section~\ref{section:numericalexamples} and con
 
 This section surveys variations of the Poincar\'e--Friedrichs inequalities for the gradient operator,
 with emphasis on analytical upper bounds over bounded convex domains. 
-We explain the difference between the Poincar\'e--Friedrichs inequality, which addresses the norm-minimizing potential, and the Poincar\'e inequality, which addresses the potential with mean value zero, and rephrase this in terms of potential operators. 
+We explain the difference between the Poincar\'e--Friedrichs inequality, which addresses the norm-minimizing potential, and the Poincar\'e inequality, which addresses the potential with mean value zero, and rephrase this in terms of potentials. 
 This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
 \\
 
@@ -818,7 +818,7 @@ In summary, our notion of Poincar\'e--Friedrichs constant is equivalent to the c
 
 
 
-\subsection{Relationship with potential operators}
+\subsection{Relationship with potentials}
 
 There is yet another characterization of the Poincar\'e--Friedrichs inequality that we like to point out. 
 We define the potential 
@@ -858,7 +858,7 @@ A natural choice is the linear operator $\Phi_{\varnothing} : \nabla W^{1,p}(\Om
 Its operator norm is just the optimal Poincar\'e constant $C_{\varnothing,\Omega,p}$.
 
 \begin{remark}
-    Upper bounds for Poincar\'e--Friedrichs constants~\eqref{math:inequalitypf:gradient} are easily obtained from linear potential operators. 
+    Upper bounds for Poincar\'e--Friedrichs constants~\eqref{math:inequalitypf:gradient} are easily obtained from linear potentials. 
     We highlight this perspective because it seems to be most promising when generalizing the discussion to the curl and divergence operators. 
 \end{remark}
 
@@ -2668,7 +2668,7 @@ which is the vector space of smooth mappings from $\Omega$ into $\Alt^{k}(\bbR^{
 The exterior derivative \( \cartan \) is an operator that takes a \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) 
 to a \((k+1)\)-form \( \cartan\omega \in C^{\infty}\Alt^{k+1}(\Omega) \). 
 Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written 
-\begin{gather*}
+\begin{gather}\label{math:canonicalrepresentation}
     \omega 
     = 
     \sum_{ \sigma \in \Sigma(k,n) } 
@@ -2678,7 +2678,7 @@ Every \( k \)-form \( \omega \in C^{\infty}\Alt^{k}(\Omega) \) can be written
     \sum_{ \sigma \in \Sigma(k,n) } 
     \omega_{\sigma} \, 
     \cartanx^{\sigma(1)} \wedge \cartanx^{\sigma(2)} \wedge \cdots \wedge \cartanx^{\sigma(k)},
-\end{gather*}
+\end{gather}
 where \( \omega_{\sigma} : \Omega \rightarrow \bbR \) are smooth functions.
 The exterior derivative \( \cartan\omega \) is defined by
 \begin{gather*}
@@ -2935,7 +2935,7 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
 
 
 
-\section{Regularized potential operators over convex sets}\label{section:potentialoperator}
+\section{Regularized potentials over convex sets}\label{section:potentialoperator}
 
 
 % We want to bound Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
@@ -2943,18 +2943,18 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
 % and we know bounds for the Poincar\'e--Friedrichs constants for the entire $L^{2}$ de~Rham complex. 
 % We are not aware of such bounds for the case of the $L^{p}$ de~Rham complex when $1 \leq p \leq \infty$. 
 % % 
-% We bound the norms of regularized potential operators for the exterior derivative over convex domains.
+% We bound the norms of regularized potentials for the exterior derivative over convex domains.
 % We solve this for two special cases: 
 
 We now develop bounds for Poincar\'e--Friedrichs constants for the exterior derivative over convex domains.
 Here, we consider two special cases: 
 either the $L^{p}$ de~Rham complex without boundary conditions, or the $L^{p}$ de~Rham with full boundary conditions. 
-The corresponding potential operators are known as the regularized Poincar\'e and regularized Bogovski\u{\i} potentials in the literature. 
+The corresponding linear potentials are known as the regularized Poincar\'e and regularized Bogovski\u{\i} potentials in the literature. 
 We build upon the discussion spearheaded by Costabel and McIntosh~\cite{costabel2010bogovskiui},
 who analyze them as pseudo-differential operators over domains star-shaped with respect to a ball. 
 % 
 In comparison to their extensive work, our discussion is more modest:
-we study potential operators merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
+we study potentials merely over convex sets, and we are only interested in their operator norms between Lebesgue spaces.
 However, our goal is explicit bounds for the operator norms, giving the Poincar\'e--Friedrichs constants. 
 
 %\mwl{In what follows, $\Omega \subseteq \bbR^{n}$ is a bounded convex open set with diameter $\diam(\Omega) > 0$.}
@@ -2988,7 +2988,7 @@ we then define the integral operators
 We call $\Poinc_{\mia}$ the \emph{Poincar\'e operator} and $\Bogov_{\mia}$ the \emph{Bogovski\u{\i} operator}. 
 
 We show that the integrals in the definition of $\Poinc_{\mia}$ and $\Bogov_{\mia}$ actually converge. 
-In order to analyze the properties of the potential operators,
+In order to analyze the properties of the potentials,
 we first rewrite the Costabel-McIntosh kernel $\calG_{\mia}$.
 Letting $x,y \in \bbR^n$ with $x \neq y$, we find 
 \begin{align*}
@@ -3188,7 +3188,7 @@ that is, the reconstructed potential has support contained within $\overline\Ome
 
 
 
-\subsection{Interaction of potential operators with the exterior derivative}
+\subsection{Interaction of potentials with the exterior derivative}
 
 More properties of these operators become apparent after a change of variables. 
 We write down the full definition of these operators and perform two substitutions.
@@ -3228,7 +3228,7 @@ leading to
 % Then $\Bogov_{\mia} u(x) = 0$ whenever $x \notin \overline\Omega$,
 % meaning $\supp \Bogov_{\mia} u \subseteq \overline\Omega$.
 % 
-Given $a \in \Omega$, we introduce the potential operators 
+Given $a \in \Omega$, we introduce the potentials 
 \begin{align*}
     \Poinc_{\mia,a} u(x) 
     &:= 
@@ -5786,7 +5786,6 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        2^{\frac{n-\ell}{p}}
         2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T) 
@@ -5807,14 +5806,21 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     Then $\cartan \hat u = \hat g$. 
     We let $\tilde u$ be the extension of $\hat u$ onto $\widetilde \Makoto$ by reflection across the coordinate axes,
     and let $\tilde g$ is the extension of $\hat g$ onto $\widetilde \Makoto$ by reflection across the coordinate axes. 
-    We observe $\tilde g = \cartan \tilde u$. 
-    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$.
-    
-    The bounds for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc} imply 
-    the existence of $\tilde w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
-    with $\cartan \tilde w = \cartan \tilde u$ and 
+    By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$ with $\tilde g = \cartan \tilde u$.
+    We observe 
     \begin{align*}
-        \| \tilde w \|_{L^{p}(\widetilde \Makoto)}
+        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
+        \leq 
+        2^{\frac {n-\ell} p}
+        \| \hat g \|_{L^{p}(\Delta^n)}
+        .
+    \end{align*}
+    \color{red}
+    The bounds for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, imply 
+    the existence of $\mathring w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
+    with $\cartan \mathring w = \cartan \tilde u$ and 
+    \begin{align*}
+        \| \mathring w \|_{L^{p}(\widetilde \Makoto)}
         &\leq 
         n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Makoto) } 
         2
@@ -5824,6 +5830,18 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         .
     \end{align*}
+    \color{blue}
+    We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $l+1$ through $n$. Thus,
+    \begin{align*}
+        \| \tilde w \|_{L^{p}(\Delta^{n})}
+        =
+        2^{-\frac{n-\ell}{p}}
+        \| \tilde w \|_{L^{p}(\widetilde \Makoto)}
+        .
+    \end{align*}
+    Since $\tilde g$ has got the same symmetries, $\cartan \tilde w = \tilde g$.
+    \color{black}
+    
     We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\Delta^n} )$.
     By construction, $\cartan w = \cartan u$,
     and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{l}$.
@@ -5837,12 +5855,8 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \tilde w \|_{L^{p}(\Delta^n)}
         ,
         \\
-        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
-        \leq 
-        2^{\frac {n-\ell} p}
         \| \hat g \|_{L^{p}(\Delta^n)}
         &\leq 
-        2^{\frac {n-\ell} p}
         |\det( \Jacobian \varphi^{-1} )|^{\frac 1 p} 
         \matnorm{\Jacobian \varphi}^{k}
         \cdot 
@@ -5851,6 +5865,9 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \end{align*}
     It remains to use Lemma~\ref{lemma:measurerelationships}, and the desired inequality is shown. 
 \end{proof}
+
+
+
 
 
 We prepare some further notation for our two main results. 
