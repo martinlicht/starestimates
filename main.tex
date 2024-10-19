@@ -4,12 +4,13 @@
 % \usepackage[margin=0.1cm]{geometry}
 \input{header}
 
+\usepackage{xcolor}          % 
 \usepackage{comment}          % 
 \usepackage[colorlinks=true]{hyperref}         % For hypertext links
 % Make the hyperlinks look similar to arXiv's
 \hypersetup{
     colorlinks=true,
-    linkcolor=green,    % Color of internal links (sections)
+    linkcolor=Maroon,    % Color of internal links (sections)
     citecolor=red,    % Color of citations
     urlcolor=blue,     % Color for URLs
     urlbordercolor={1 1 1},
@@ -53,12 +54,13 @@
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
 
-\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de Rham complex over convex domains and domains with shellable triangulations}
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de~Rham complex over convex domains and domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Inria Univ. Lille and Laboratoire Paul Painlev\'e, 59655 Villeneuve-d'Ascq, France, \texttt{theophile.chaumont@inria.fr}} \and
     Martin Werner Licht\thanks{\'Ecole Polytechnique F\'ed\'erale de Lausanne, CH-1015 Lausanne, Switzerland, \texttt{martin.licht@epfl.ch}} \and
     Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
 }
+\date{}
 
 
 \begin{document}
@@ -98,7 +100,7 @@ Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds o
 However, while potentials and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
 quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
-This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrich inequalities for the differential operators of vector calculus. 
+This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrichs inequalities for the differential operators of vector calculus. 
 How to construct potentials for the gradient over triangulated domains is well-documented in the literature. 
 We apply this construction principle to the curl and divergence operators, as well as the exterior derivative. 
 However, to proceed in the general exterior derivative case, we restrict our efforts to so-called shellable triangulations. 
@@ -199,11 +201,11 @@ There are substantial changes and much less results are available in the literat
 We use the spaces of vector field 
 \begin{align}
     \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in L^{p}(\Omega)^{3} : \curl \bfu \in L^{p}(\Omega)^{3} \right\}
-	\label{math:intro:Wcurl}
+    \label{math:intro:Wcurl}
     ,
     \\
     \bfW^{p}(\divergence,\Omega) &:= \left\{ \bfu \in L^{p}(\Omega)^{3} : \divergence \bfu \in L^{p}(\Omega) \right\}
-	\label{math:intro:Wdiv}
+    \label{math:intro:Wdiv}
     .
 \end{align}
 Their members are those vector fields in Lebesgue spaces whose distributional curls and divergences, respectively, are in Lebesgue spaces. 
@@ -280,7 +282,7 @@ For the purpose of our discussion, this formalism allows us to leverage results 
 
 We review the literature on Poincar\'e--Friedrichs inequalities. We also identify the obstructions inherent to presently known results that we wish to overcome with our contributions. 
 
-\subsubsection{Review: General results}
+\subsubsection{General results}
 
 The qualitative existence of Poincar\'e--Friedrichs inequalities for the differential operators of vector calculus and exterior calculus is known for a large class of domains. 
 There is a particularly large body of literature on the Poincar\'e inequality for the gradient and its numerous variants,
@@ -298,7 +300,7 @@ However, that easy duality argument, which yields an explicit upper bound propor
 
 % curl 
 The core challenges can be found in the discussion of the curl operator in three dimensions,
-where Poincar\'e--Friedrich inequalities have appeared under different names. 
+where Poincar\'e--Friedrichs inequalities have appeared under different names. 
 Let us assume for a moment that $\Omega$ is a weakly Lipschitz domain with trivial topology, and consider only the Hilbert case $p=2$. 
 Then the constant in \eqref{math:intro:Wcurl:pf} agrees with the constant in the so-called Poincar\'e--Friedrichs--Weber inequality
 \begin{align}
@@ -311,10 +313,10 @@ or that have vanishing tangential trace and are $L^{2}$-orthogonal to the gradie
 % Yet another rewriting is 
 % \label{math:PF_orth} \begin{align}
 %     \| \bfu\|_{L^{2}(\Omega)} & \leq C_{\curl,\Omega,2} \| \curl \bfu \|_{L^{2}(\Omega)}, 
-% 	\label{math:PF_orth_curl}
-% 	\\
+%     \label{math:PF_orth_curl}
+%     \\
 %     \| \bfu\|_{L^{2}(\Omega)} & \leq \tilde C_{\divergence,\Omega,2} \| \divergence \bfu \|_{L^{2}(\Omega)}, 
-% 	\label{math:PF_orth_div}
+%     \label{math:PF_orth_div}
 % \end{align}
 % where the former holds for all vector fields $\bfu \in \bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$,
 % and where the latter holds for all functions $\bfu \in \bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv \in \bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. 
@@ -324,7 +326,7 @@ However, while many of the above results rely on non-constructive estimates,
 we are interested in practically computable upper bounds. 
 
 
-\subsubsection{Review: Analytical constants over convex domains}
+\subsubsection{Analytical constants over convex domains}
 
 % gradient over convex domains
 Considerable research effort has gone into computing explicit upper estimates for the constants in the Poincar\'e--Friedrichs inequalities over convex domains. 
@@ -339,7 +341,7 @@ They also provide explicit (but not necessarily optimal) upper bounds for Poinca
 A duality argument also yields upper estimates of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
 Unfortunately, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. 
 
-\subsubsection{Review: Domains star-shaped with respect to a ball}
+\subsubsection{Domains star-shaped with respect to a ball}
 
 When the domain is not convex but star-shaped with respect to a ball,
 then several estimates for Poincar\'e--Friedrichs constants are known. 
@@ -366,7 +368,7 @@ this occurs most prominently when the domain has sharp reentrant corners. Some i
 which contain local finite element patches that are not star-shaped with respect to any ball. 
 In view of this, we refrain from treating local patches (stars) in triangulations as domains star-shaped with respect to a ball. 
 
-\subsubsection{Review: Triangulated domains}
+\subsubsection{Triangulated domains}
 
 Geometric settings that admit finite triangulations enable different pathways to obtain Poincar\'e--Friedrichs inequalities. 
 We review some of the main outcomes. 
@@ -378,16 +380,13 @@ Thus, computable upper bounds on the Poincar\'e--Friedrichs constants also give 
 Prominent methods numerically compute guaranteed upper bounds on the Poincar\'e--Friedrichs constants upon solving a finite element system over a sufficiently fine triangulation and using some clever post-processing estimates.
 This has led to estimates for scalar Laplacian eigenvalues~\cite{Cars_Ged_LB_eigs_14,Liu_fram_eigs_15} and vector Laplacian eigenvalues~\cite{gallistl2023computational}. 
 We remark that for the purposes of this manuscript, we aim for computable upper bounds that do not rely on the solution of (global) finite element systems. 
-% Our approaches, in contrast, are either analytical or combinatorial, and in any case we only employ the given geometry but no computer simulation.
 
 
 % veeser and verfurth 
 % sequential methodology
 There are numerous estimates for Poincar\'e--Friedrichs constants that only rely on locally computable geometric quantities, such as the diameter and volumes of simplices. 
-% TODO V & V do the same sequential estimate 
 Veeser and Verf\"urth~\cite{veeser2012poincare} provide computable upper bounds in the case of the classical Sobolev space $W^{1,p}(\Omega)$ over triangulated domains, with focus on efficient estimates for vertex stars. Naturally, their estimates depend on the shape regularity of the mesh.
-Another class of upper bounds for Poincar\'e--Friedrichs inequalities uses some form of passing through the triangulation and constructs the potentials step-by-step. 
-% Starting with a single triangle, the potential is constructed over increasing subdomains, until the entire domain is exhausted. 
+A whole class of upper bounds for Poincar\'e--Friedrichs inequalities uses some form of passing through the triangulation and constructs the potentials step-by-step. 
 The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
 Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
 along the interfacing intersection, the two potentials will only differ by a constant, 
@@ -407,18 +406,20 @@ we are not aware of computable estimates for the case of $\bfW^{p}(\curl,\Omega)
 
 \subsection{Objectives and methodology}
 
-The main objective of this manuscript is the construction of potentials for the gradient, curl, and divergence, and more generally the exterior derivative. The operator norms of our potentials satisfy computable upper bounds, which are computable upper bounds of the Poincar\'e--Friedrichs constants. As we elaborate in what follows, we focus on domains with shellable triangulations, which include local patches (stars) in two and three dimensions as important special cases. 
-Towards that goal, we also devote an important effort specifically to convex domains. 
+The main objective of this manuscript is the construction of potentials for the gradient, curl, and divergence, and more generally the exterior derivative. 
+The operator norms of our potentials satisfy computable upper bounds, thus yielding computable upper estimates of the Poincar\'e--Friedrichs constants as well. 
+As we will elaborate in what follows, we focus on domains with shellable triangulations, which include local patches (stars) in two and three dimensions as important special cases. 
+To that end, we also devote an important effort specifically to convex domains. 
 
 
-\subsubsection{Objectives: convex domains}
+\subsubsection{Convex domains}
 
 Our main result for convex domains in the exterior calculus setting is the construction of regularized Poincar\'e and Bogovski\u{\i} potential operators with explicitly bounded operator norms. 
 This is summarized in Theorem~\ref{theorem:bogovpoinc}. 
 The upper bounds for the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are bounded in terms of the domain's eccentricity. 
 The bounds are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the space dimension and the form degree enter the estimates. 
 
-The reasons for our study of Poincar\'e--Friedrichs constants over convex domains is two-fold: 
+The reasons for our study of Poincar\'e--Friedrichs constants over convex domains is twofold: 
 firstly, they are of evident independent interest, and secondly, we will need them as a component for our main results on triangulations. 
 Our exposition of regularized Poincar\'e and Bogovski\u{\i}-type potential operators follows the general methodology of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
 By comparison, our variants of these operators are simplified: 
@@ -428,34 +429,37 @@ While the resulting potentials feature generally lower regularity, they are cond
 Crucially, this allows us to easily estimate their operator norms and thus bound Poincar\'e--Friedrichs constants. 
 
 
-\subsubsection{Objectives: Potentials subject to partial boundary conditions}
+\subsubsection{Potentials subject to partial boundary conditions}
 
 We also address the construction of potentials for the gradient, curl, and divergence operators, and in general the exterior derivative, over a simplex subject to partial boundary conditions. 
 We are not aware of explicit estimates or regularized potentials for these boundary conditions in the published literature. 
 For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
-we want to find the unique vector field potential that is the preimage under the curl operator and which has vanishing tangential trace along the same three faces. 
-We achieve this by constructing an auxiliary problem subject to full boundary conditions.
+we want to find the unique vector field potential that not only is a preimage under the curl operator but that also has vanishing tangential trace along the same three faces. 
+We achieve this by constructing an auxiliary problem subject to full boundary conditions,
 so that we can build upon the regularized Bogovski\u{\i} operators and the Poincar\'e--Friedrichs inequalities subject to boundary conditions on the entire boundary.
 We thus obtain Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
 Again, we address the entire range $1 \leq p \leq \infty$ of Lebesgue exponents and our Poincar\'e--Friedrichs constants are explicitly computable. 
 
 
 
-\subsubsection{Objective: Main results}
 
-% 3. hightlight the difficulty with the kernels
-% 4. introduce shellable
-% 5. Apply shellable triangulations
-% 6. Contractible 
-% [ ] remove face-connected completely 
+
+\subsubsection{Main results}
+
 
 % 1. intro paragraph : outline what we will do and why 
 
-Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, including in particular the curl and divergence, over triangulated domains. 
+Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, including the curl and divergence in particular, over triangulated domains. 
 The operator norms of these potentials will serve as our computable Poincar\'e--Friedrichs constants.
 In light of the different approaches listed before, 
 we aim for constants that be explicitly computed in terms of mesh geometry, that do not require the solution of global finite element problems, 
 and that do not depend on the boundary regularity of the domain. 
+
+% TODO: Figure out whether to use the following paragraph.
+% Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, such as the curl and divergence, over triangulated domains. 
+% The operator norms of these potentials will serve as computable Poincar\'e--Friedrichs constants. 
+% In light of the different approaches listed before, 
+% we seek constants that can be explicitly computed in terms of the mesh geometry, that do not require solving global finite element problems, and that are independent of the boundary regularity of the domain.
 
 % In this work, we aim to construct linear potentials for the gradient, curl, and divergence on triangulated domains, 
 % providing explicitly computable upper bounds. Our approach extends to domains that may be non-convex and non-star-shaped, 
@@ -464,109 +468,94 @@ and that do not depend on the boundary regularity of the domain.
 % 2. the gradient construction as blueprint 
 % outline the essential features 
 
-\mwl{
-The underlying idea is that we first construct a potential for the gradient over an initial simplex. 
-Every time we have found a potential over a subdomain, we construct a potential over a neighboring simplex or patch:
-along the interfacing intersection, the two potentials will only differ by a constant, 
-and that difference can easily be removed to ensure continuity across that interface. 
-Cell by cell, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
-}
-
-The sequential construction of potentials for gradient vector fields, as discussed above, 
-is well-known in the literature and serves as our conceptual blueprint.
-% TODO: improve the description here.
-We start by constructing a scalar potential over a single simplex
-and successively define scalar potentials over larger and larger intermediate subtriangulations until the full domain is finally exhausted.
-At each step, we construct a potential over some successive simplex that shares a face with one of the preceding simplices.
-The difference of the two scalar potentials along that interface is a constant,
-and we can easily fix the constant along the shared face to build the extend the scalar potential. 
+The sequential construction of potentials for gradient vector fields, as discussed earlier, is well-established in the literature and serves as our conceptual blueprint. 
+Gradient potentials are easily computed over each individual simplex, but the constants of integration generally do not match: 
+the scalar piecewise potential will belong to a broken Sobolev space. 
+In particular, the local potentials will differ only by a constant along the simplex boundaries. 
+However, we can produce a potential in Sobolev spaces over increasingly larger intermediate subdomains, which we construct sequentially. 
+At each step, we select a simplex that shares a face with one of the previously processed simplices and adjust the constant of integration of the local potential. 
+The global potential is built cell by cell until the entire domain is covered. 
 Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 
-% 
-For the gradient operator, our method involves a straightforward sequential traversal of the triangulation. 
-Each simplex is connected to the preceding ones via a shared (n?1)(n?1)-dimensional face. 
-We construct a gradient potential over each new simplex, and since the kernel of the gradient consists solely of constants, 
-we can fix the constant by matching the value on the shared face. 
+% 3. generalization to vector fields 
 
+% TODO: check whether introduction is readable
+% In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, 
+% where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face. 
+% We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, 
+% formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
 
-% seq construction 
-In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, 
-where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face. 
-We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, 
-formed merely by constants, it is enough to fix this constant using the value already known on the $(n-1)$-dimensional face.
+% Extending our method to vector fields, specifically for the curl and divergence operators introduces new challenges due to their infinite-dimensional kernels. 
+% To address these challenges, we generalize the sequential construction used for the gradient to develop vector potentials. 
+% The basic inductive strategy remains: 
+% we start by constructing a potential over a single simplex and then extend it to neighboring simplices. 
+% However, unlike in the gradient case, the potentials over adjacent simplices may not have matching tangential traces along their shared interfaces.
 
+% To ensure the correct continuity properties of the vector potentials, we impose stronger conditions on the triangulations. We require that the intermediate subtriangulations formed during the sequential process are manifolds with boundary, and that the interface between the existing subtriangulation and the new simplex is a boundary submanifold of both. Under these conditions, which are satisfied by shellable triangulations, we can define well-posed auxiliary problems for the curl and divergence operators with partial boundary conditions. By iterating this procedure, we exhaust the entire triangulation and obtain the desired potentials. Our main results for the curl and divergence operators are presented in Theorems \ref{theorem:poincarefriedrichsestimate
+% } and \ref{theorem:poincarefriedrichsestimate:exterior}.
 
+% Shellability is a well-established concept in discrete geometry and combinatorics, referring to a property of simplicial or polytopal complexes that allows them to be built sequentially in a controlled manner. A triangulation is shellable if it can be assembled by adding one simplex at a time such that each new simplex shares a boundary submanifold with the existing complex. This property ensures that interfaces between simplices are well-behaved, which is crucial for the continuity of vector potentials.
 
+% While shellable triangulations are slightly less general than merely face-connected ones, they encompass important cases such as local stars in two and three dimensions, patches of simplices sharing a common vertex, edge, face, or nn-simplex. These local patches are inherently shellable, making our approach widely applicable. For more details on shellability, see Kozlov \cite{kozlov2008combinatorial} and Ziegler \cite{ziegler1995lectures}.
 
-Extending our method to vector fields, specifically for the curl and divergence operators introduces new challenges due to their infinite-dimensional kernels. 
-To address these challenges, we generalize the sequential construction used for the gradient to develop vector potentials. 
-The basic inductive strategy remains: 
-we start by constructing a potential over a single simplex and then extend it to neighboring simplices. 
-However, unlike in the gradient case, the potentials over adjacent simplices may not have matching tangential traces along their shared interfaces.
+% \subsubsection{Objective: Combinatorial constants over shellable triangulated domains}
 
-To ensure the correct continuity properties of the vector potentials, we impose stronger conditions on the triangulations. We require that the intermediate subtriangulations formed during the sequential process are manifolds with boundary, and that the interface between the existing subtriangulation and the new simplex is a boundary submanifold of both. Under these conditions, which are satisfied by shellable triangulations, we can define well-posed auxiliary problems for the curl and divergence operators with partial boundary conditions. By iterating this procedure, we exhaust the entire triangulation and obtain the desired potentials. Our main results for the curl and divergence operators are presented in Theorems \ref{theorem:poincarefriedrichsestimate
-} and \ref{theorem:poincarefriedrichsestimate:exterior
-}.
+% Towards our main objective of constructing linear potentials for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. 
 
-Shellability is a well-established concept in discrete geometry and combinatorics, referring to a property of simplicial or polytopal complexes that allows them to be built sequentially in a controlled manner. A triangulation is shellable if it can be assembled by adding one simplex at a time such that each new simplex shares a boundary submanifold with the existing complex. This property ensures that interfaces between simplices are well-behaved, which is crucial for the continuity of vector potentials.
+% Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
 
-While shellable triangulations are slightly less general than merely face-connected ones, they encompass important cases such as local stars in two and three dimensions, patches of simplices sharing a common vertex, edge, face, or nn-simplex. These local patches are inherently shellable, making our approach widely applicable. For more details on shellability, see Kozlov \cite{kozlov2008combinatorial} and Ziegler \cite{ziegler1995lectures}.
+% For vector fields, new challenges arise because of the infinite-dimensional kernels. 
+% We, however, overcome these challenges and succeed in generalizing the sequential construction of the potential operator for the gradient to vector potentials, including in particular the curl and divergence. 
+% The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. 
+% Having already defined a potential operator over a set of simplices that we term a subtriangulation, 
+% we then construct a potential over a simplex neighboring through some $(n-1)$-dimensional faces. 
+% However, the potential on the new simplex might here not have the same tangential trace along the interface between the new simplex and the previous ones. 
+% Actually, the passage through the triangulation has to be such that the intermediate subtriangulations are manifolds with boundary and the interface is a boundary submanifold of the intermediate subtriangulation and the new simplex. 
+% Then, we can define a well-posed \cye{mapping from the already visited simplices.} Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
+% These stronger conditions on the triangulations are exactly those of a so-called \emph{shellable} triangulations. 
+% Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} or Ziegler~\cite{ziegler1995lectures}.
+% With respect to our main interest, local \cye{patches} (stars) in 2D and 3D triangulations are shellable. 
 
-
-
-\subsubsection{Objective: Combinatorial constants over shellable triangulated domains}
-
-Towards our main objective of constructing linear potentials for the gradient, curl, and divergence, satisfying explicitly computable upper bounds, we closely follow the philosophy of the aforementioned sequential approach. 
-
-Transitioning to vector fields incurs new challenges due to the infinite-dimensional kernels. We overcome these challenges on a special class of triangulated domains, namely domains with so-called \emph{shellable} triangulations. 
-
-For vector fields, new challenges arise because of the infinite-dimensional kernels. 
-We, however, overcome these challenges and succeed in generalizing the sequential construction of the potential operator for the gradient to vector potentials, including in particular the curl and divergence. 
-The basic inductive strategy remains the same. We start by constructing, say, a curl potential, over a single simplex. 
-Having already defined a potential operator over a set of simplices that we term a subtriangulation, 
-we then construct a potential over a simplex neighboring through some $(n-1)$-dimensional faces. 
-However, the potential on the new simplex might here not have the same tangential trace along the interface between the new simplex and the previous ones. 
-Actually, the passage through the triangulation has to be such that the intermediate subtriangulations are manifolds with boundary and the interface is a boundary submanifold of the intermediate subtriangulation and the new simplex. 
-Then, we can define a well-posed \cye{mapping from the already visited simplices.} Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
-These stronger conditions on the triangulations are exactly those of a so-called \emph{shellable} triangulations. 
-Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} or Ziegler~\cite{ziegler1995lectures}.
-With respect to our main interest, local \cye{patches} (stars) in 2D and 3D triangulations are shellable. 
-
-We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. 
+% We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. 
+We generalize this sequential construction of potentials to the curl, the divergence, and the exterior derivative. 
+However, we need to overcome new challenges that are arise due to the infinite-dimensional kernels of these differential operators, as we now explain in more detail. 
 The basic inductive strategy remains the same. 
-We start by constructing, say, a curl potential, over a single simplex. 
-Having already defined a potential operator over a subtriangulation, 
-we then construct a potential over a neighboring simplex. 
-However, the two potentials might not have the same tangential trace along the interface between the subtriangulation and the new simplex. 
-% 
-To ensure the correct continuity properties, we require stronger conditions on the triangulations than in the case of gradient potentials. 
-We postulate that the intermediate subtriangulations are manifolds with boundary, and that the aforementioned interface is, more specifically, a boundary submanifold of the intermediate subtriangulation and the new simplex. 
-Under those conditions, which are met by so-called \textit{shellable} triangulations, 
-we define a well-posed auxiliary problem for the curl operator with partial tangential boundary conditions. 
-Repeating this procedure exhausts the original triangulation and eventually provides the desired potential.
+We start by constructing, say, a curl potential over a single simplex. 
+Having already defined a potential operator over a subtriangulation, we select a neighboring simplex whose intersection with the preceding simplices includes at least one common face. 
+We then construct a potential for the curl operator whose tangential traces along the intersection match those of the already existing potential.
+Repeating this procedure eventually exhausts the original triangulation. 
+Here, Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} is our main result. 
 
-Shellable triangulations are defined by a special constructive property:
-we can assemble such triangulations sequentially, adding one simplex after another, such that the interface between the previous intermediate triangulation and the next simplex is always a boundary submanifold of both.
-Loosely speaking, this guarantees that the interface with each successive simplex is sufficiently well-behaved.
-Shellability of simplicial complexes and, more generally, of polytopal complexes is a well-established notion in discrete geometry and combinatorics~\cite{ziegler1995lectures}, which we only employ in a simple special case. 
-In particular, local stars in 2D and 3D triangulations are shellable. 
+% 4. highlight the difficulty with the kernels
+
+However, unlike in the potential construction of the gradient, it is not immediately evident whether the construction of the local curl potential with given tangential traces is a well-posed auxiliary problem. 
+For the case of the gradient, it is sufficient that the sequential traversal of the triangulation satisfies that each new simplex shares at least one face with one of the previous simplices. 
+For the differential operators of vector calculus and exterior calculus, we choose to be more restrictive: 
+we ensure that the new simplex intersects with the existing subtriangulation along an $(n-1)$-dimensional boundary submanifold.
+This allows us to define a well-posed auxiliary problem and to extend the existing curl potential to the new simplex. 
+Whether a triangulation admits such a particular traversal is a non-trivial condition and defines the class of \emph{shellable} triangulations.
+
+ 
+ 
+ 
+ 
+% 5. Shellable
+Shellable simplicial complexes, and more generally polytopal complexes, are a well-established notion in discrete geometry and combinatorics, see, e.g., Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegler1995lectures}, and the references therein.
+Any shellable simplicial complex must necessarily triangulate a contractible space. 
+With respect to our main interest, local patches (stars) in 2D and 3D triangulations are shellable. 
+
+% 6. Contractible 
+Inspired by the contractibility of shellable triangulations, we pursuit an additional estimate for Poincar\'e--Friedrichs constants. 
+Every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations. 
+Their bi-Lipschitz constants are controlled by the shape regularity of the domain. 
+This reduces the construction of potentials over shellable triangulations to the construction of potentials over convex domains.
+We refer to Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} as the main result of this approach. 
 
 
 
-% exterior PF 
-\cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
-They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.}
 
-\begin{remark}
-    % TODO: Reintegrate in that section
-    \mwl{MV: remark from after Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.} 
-    The computable Poincar\'e--Friedrichs constants obtained here depend on only a few parameters of the given triangulation: 
-    the length of any traversal from the root simplex, the ratios of the volumes of any pair of adjacent simplices, 
-    and the Poincar\'e--Friedrichs constants on each face patch or each simplex. 
-    %, and the Poincar\'e--Friedrichs constant of the initial simplex. 
-    Here, Poincar\'e--Friedrichs constants on face patches are estimated in terms of shape regularity parameters of the triangulation; 
-    if the face patches of the triangulation are convex, then better estimates are possible. 
-\end{remark}
+
+
 
 
 
@@ -1051,8 +1040,8 @@ When $p=\infty$, since convex domains are Lipschitz domains, Rademacher's theore
     \end{align*}
     It follows that \eqref{math:esposito:poincare} is generally a tighter estimate than \eqref{math:chuawheeden} for $1 < p < \infty$.
     % DONE: what exactly is the limit as p -> 1 ? It converges to 1.
-    % DONT: insert the original inequality by chua and Wheeden
-    % DONE: chua Wheeden upper bound is not optimal!
+    % DONT: insert the original inequality by Chua and Wheeden
+    % DONE: Chua Wheeden upper bound is not optimal!
     % DONE: Theorem 1.2 in Chua Wheeden 
 % DONT: Keep ?
 %     In the limit as $p$ goes to $1$, the factor $C_{{\rm EFNT},p}$ converges to $1/2$,
@@ -1143,7 +1132,7 @@ then we call $S$ a \textit{subsimplex} of $T$ and call $T$ a \textit{supersimple
 
 A finite family of simplices $\calT$ is a \emph{simplicial complex} or \emph{triangulation} if it satisfies the following conditions: 
 (i) $\calT$ contains all the subsimplices of its members (ii) any non-empty intersection of two members of $\calT$ is a common subsimplex of each of them. 
-We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) \cye{and simply ``simplicial meshes'' in the finite element literature}.} 
+We say that a simplicial complex $\calT$ has \textit{dimension $n$} or is \textit{$n$-dimensional} if each of its simplices is a subset of an $n$-dimensional member of that triangulation.\footnote{Simplicial complexes that we call $n$-dimensional are called purely $n$-dimensional in the literature on polytopes~(cf.\ \cite{ziegler1995lectures}) and simply ``simplicial meshes'' in the finite element literature.} 
 We also write $\underlying{\calT}$ for the \textit{underlying set} of the simplicial complex $\calT$, 
 which is the union $\underlying{\calT} = \bigcup \calT$ of all simplices in $\calT$.
 % \begin{align*}
@@ -1277,7 +1266,7 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
 
 \begin{remark}
     The ratio $\aspectratio(T)$ measures the ``shape quality'' of an $n$-dimensional simplex $T$ and is instance of a so-called \emph{shape measure}.
-    For example, the reference triangle has aspect shape measure $1$ and the reference tetrahedron has aspect shape measure $\sqrt{3/2}$. 
+    For example, the reference triangle has aspect shape measure $2$ and the reference tetrahedron has aspect shape measure $\sqrt{6}$. 
     Numerous alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices (see~\cite[p.61, Definition 5.1]{braess2001finite}, 
     \cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here.
     \cite[Definition~11.2]{ern2021finite}). 
@@ -1361,6 +1350,9 @@ This indicator quantifies how much reflection across the shared face distorts th
         % = 
         \aspectratio(T_1)
         \diam(F)
+        \leq 
+		\aspectratio(T_1)
+        \diam(T_2)
         ,
         \qquad 
         \frac{ \vol(T_1) }{ \vol(T_2) }
@@ -1372,11 +1364,12 @@ This indicator quantifies how much reflection across the shared face distorts th
         \aspectratio(T_1) \aspectratio(T_2)
         .
     \end{align*}
-    If $\Xi : T_1 \rightarrow T_2$ is an affine diffeomorphism that is the identity over $F$, then 
+    If $\Xi : T_1 \rightarrow T_2$ is the affine diffeomorphism that is the identity over $F$, then 
     \begin{align*}
         \matnorm{ \Jacobian \Xi }
         \leq 
-        ( 1 + \aspectratio(T_2) ) \aspectratio(T_1)
+        \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2}
+        % ( 1 + \aspectratio(T_2) ) \aspectratio(T_1)
         % \Cvier{n} \geometricshapemeasure(T_2) \geometricshapemeasure(T_1) 
         .
     \end{align*}
@@ -1408,31 +1401,46 @@ This indicator quantifies how much reflection across the shared face distorts th
         .
     \end{align*}
     Lastly, let $\Xi : T_1 \rightarrow T_2$ be as stated. 
-    Writing $h_0$ for the unit normal in direction $z_1$, we have 
+    We estimate the Lipschitz constant of $\Xi$ as follows. 
+    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and contains the origin, 
+	and the unit height vector $h_0$ goes in the direction of the vertex $z_1$ is in the $n$-th coordinate direction.
+    Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha h_0$ and $x' = b' + \alpha' h_0$.
+    Since $\Xi(h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
     \begin{align*}
-        \Xi(x) 
-        = 
-        x 
-        - \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_1
-        + \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_2
-        ,
-        \qquad 
-        x \in \bbR^{n}
+        \| \Xi(x) - \Xi(x') \|
+        \leq  
+        \| b - b' \| + | \alpha - \alpha' | \cdot \| z_2 \|
+        \leq  
+        \| b - b' \| + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \| h_0 \|
+        \leq 
+        \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \| x-x' \|
         .
     \end{align*}
-    Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
-    By the Xu-Zikanatov estimate,
-    \begin{align*}
-        \matnorm{ \Jacobian \Xi }
-        \leq 
-        \frac{ \diam(T_1) }{ \height(T_1) }
-        +
-        \frac{ \diam(T_2) }{ \height(T_1) }
-        \leq 
-        \left( 1 + \aspectratio(T_2) \right)
-        \aspectratio(T_1)
-        .
-    \end{align*}
+    % Writing $h_0$ for the unit normal in direction $z_1$, we have 
+    % \begin{align*}
+        % \Xi(x) 
+        % = 
+        % x 
+        % - \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_1
+        % + \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_2
+        % ,
+        % \qquad 
+        % x \in \bbR^{n}
+        % .
+    % \end{align*}
+    % Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
+    % By the Xu-Zikanatov estimate,
+    % \begin{align*}
+        % \matnorm{ \Jacobian \Xi }
+        % \leq 
+        % \frac{ \diam(T_1) }{ \height(T_1) }
+        % +
+        % \frac{ \diam(T_2) }{ \height(T_1) }
+        % \leq 
+        % \left( 1 + \aspectratio(T_2) \right)
+        % \aspectratio(T_1)
+        % .
+    % \end{align*}
     The desired estimates are shown.
 \begin{comment}
     \mwl{Tighter estimate via geometry}
@@ -2460,8 +2468,162 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 \end{proof}
 
 
+\begin{remark}\label{remark:fullrecursivesum}
+    \color{red}
+    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+    The potential $w$ for the gradient $\nabla u$ satisfies 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
+        \qquad 
+        % \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m} \cup T_{m-1})}                             + B_{m} \| w \|_{L^{p}(T_{m-1})},
+        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + A'_{m} \| \nabla u \|_{L^{p}(T_{m-1})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
+    \end{align*}
+    where $A_{m}, A'_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
+    Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
+    \begin{align}\label{math:fullrecursivesum}
+        \| w \|_{L^{p}(T_{m})} 
+        &
+        \leq 
+        \sum_{\ell=0}^{m}   \left( B_{m} \cdots B_{\ell+1} \right) A_{\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+        +
+        \sum_{\ell=0}^{m-1} \left( B_{m} \cdots B_{\ell+2} \right) A'_{\ell+1} \| \nabla u \|_{L^{p}(T_{\ell})}
+        =:
+        \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+        .
+    \end{align}
+    Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
+    The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        % \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \sum_{\ell=0}^{M} 
+        \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+        \right)
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+    In other words, the Poincar\'e--Friedrichs inequality is estimated by first taking the $q$-norm of the coefficients in the full sum~\eqref{math:fullrecursivesum} and then taking $p$-norm of these intermediate sums.
+    Alternatively, when $L$ denotes the longest path, then a different application of H\"older's inequality shows:
+    % \begin{align*}
+        % \| w \|_{L^{p}(\Omega)}^{p}
+        % &
+        % \leq 
+        % \sum_{m=0}^{M}
+        % \| w \|_{L^{p}(T_{m})}^{p}
+        % \\&
+        % \leq 
+        % \sum_{m=0}^{M}
+        % L^{\frac p q}
+        % \sum_{\ell=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        % \leq 
+        % L^{\frac p q}
+        % \sum_{m=0}^{M} 
+        % \max_{ 0 \leq \ell \leq M }
+        % C_{m,\ell}^{p} 
+        % \cdot 
+        % \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        % ,
+    % \end{align*}
+    
+    \color{green}Hence 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \nabla u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+\end{remark}
+
 \begin{remark}
-    The Poincar\'e--Friedrichs constants obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} increasingly overestimate the best one as the number of $n$-simplices in the triangulation $\calT$ increases. 
+    The computable Poincar\'e--Friedrichs constants obtained in Theorem~\ref{theorem:poincarefriedrichsestimate:grad} depend on only a few parameters of the given triangulation: 
+    the length of any traversal from the root simplex, 
+    the ratios of the volumes of any pair of adjacent simplices, 
+    and the Poincar\'e--Friedrichs constants on each face patch or each simplex. 
+    Poincar\'e--Friedrichs constants on face patches are estimated in terms of shape regularity parameters of the triangulation; 
+    if the face patches of the triangulation are convex, then better estimates are possible. 
+    
+    % obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}
+    These computable Poincar\'e--Friedrichs constants increasingly overestimate the best one as the number of $n$-simplices in the triangulation $\calT$ increases. 
     Hence, we conceive their target application to be local patches (stars), in particular non-convex boundary stars. 
     The latter occur inevitably at reentrant corners. Clearly, the same building principle applies whenever we have any non-overlapping partition of $\overline \Omega$ into convex local patches $\{ \Makoto_m \}$ of $n$-simplices with an appropriate notion of connectivity. 
     The proof proceeds verbatim, where we merely replace the simplices $\{ T_{m} \}$ by the convex local patches $\{ \Makoto_m \}$. 
@@ -2473,7 +2635,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 % Lemma 5.5
 
     
-
 
 
 
@@ -2722,7 +2883,7 @@ The integral of a differential $n$-form is uniquely defined via
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{3} @>{\curl}>> C^\infty(\Omega)^{3} @>{\divergence}>> C^\infty(\Omega)
     \end{CD}
-    \cye{\, ,}
+    \, ,
     \end{gather*}
     where $\varpi^{0}$ and $\varpi^{3}$ are the identity mappings and where 
     \begin{align*}
@@ -2754,7 +2915,7 @@ The integral of a differential $n$-form is uniquely defined via
         \\
         C^\infty(\Omega) @>{\grad}>> C^\infty(\Omega)^{2} @>{\rot}>> C^\infty(\Omega)
     \end{CD}
-    \cye{\,.}
+    \,.
     \end{gather*}
     Here, $\varpi^{1}\left( u_1 \cartanx^{1} + u_2 \cartanx^{2} \right) = \left( u_1, u_2 \right)$ is the lower middle isomorphism. We introduce the rotation operator $J(x,y) = (y,-x)$ and define $\varkappa = J \varpi$ and $\rot = \divergence J$.
     The other vertical arrows are the identity. 
@@ -2854,10 +3015,10 @@ One can show that $\phi^{\ast}u \in L^{p}\Alt^{k}(\Omega)$ and the following est
         \| u \|_{L^{p}\Lambda^{k}(\Omega')}
         .
     \end{align}
-	Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
+    Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
 \end{proposition}
 \begin{proof}
-	See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}).
+    See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}).
 \end{proof}
 
 
@@ -3163,7 +3324,7 @@ Young's convolution inequality now implies:
     \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
     &
     \leq 
-    \vol_{n-1}(S_1) A(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
+    \vol_{n-1}(S_1) C_{\Bogov}(n,\mia) \frac{ \diam(\Omega)^{n} }{\vol(\Omega)} 
     \diam(\Omega)
     \| u \|_{L^{p}(\Omega)}
     \\&
@@ -3502,7 +3663,7 @@ We apply several substitutions:
 \end{align*}
 We make a case distinction. When $k<n$, then the double integral itself is bounded uniformly in $\epsilon > 0$ and so the last expression vanishes as $\epsilon$ goes to zero. When instead $k=n$, then the last expression equals 
 \begin{align*}
-	& 
+    & 
     \int_{ S_1(a) }
     \int_{\epsilon}^\infty 
     \trace_{S_1(a)}{ 
@@ -3511,9 +3672,9 @@ We make a case distinction. When $k<n$, then the double integral itself is bound
     }
     \,ds 
     \\&\quad 
-	=
-	\int_{\bbR^{n} \setminus B_{\epsilon}(0)}
-	    u\left( y \right) 
+    =
+    \int_{\bbR^{n} \setminus B_{\epsilon}(0)}
+        u\left( y \right) 
         \wedge \phi\left( \epsilon \frac{y-a}{\|y-a\|} + a \right) 
     \,dy 
     .
@@ -3861,42 +4022,19 @@ we have the following improved estimate.
     which has the same smallest singular value. 
 \end{proof}
 
-
-
-
-
 \begin{remark} \label{remark:reg_Poinc_Bog}
     The classical Poincar\'e operator is known for its role in proving the exactness of the smooth de~Rham complex over star-shaped domains~\cite{lee2012smooth}.
-    To the best of our knowledge, the work of Costabel and McIntosh~\cite{costabel2010bogovskiui} was the first to propose a regularized Poincar\'e operator (regularized via averaging).
-    These potentials enable the analysis of de~Rham complexes without boundary conditions.
-    % TODO: are these paragraphs in the introduction now?
     The Bogovski\u{\i}-type operators were first studied for the divergence operator and are a staple in the mathematics of hydrodynamics~\cite{bogovskii1979solution}.
-    Their generalization to differential forms was again first discussed by Costabel and McIntosh~\cite{costabel2010bogovskiui}. 
-    In some sense dual to the regularized Poincar\'e operators, they establish the exactness of the $L^{p}$ de~Rham complex with full boundary conditions.
-    % 
-    Costabel and McIntosh regularize the potentials by smoothly averaging over pivot points within an interior ball, 
-    which is why they can study domains star-shaped with respect to a ball. 
-    Instead, we average over the entire domain, which requires a convex geometry. 
-    The resulting potential operators are sufficient for establishing Poincar\'e--Friedrichs constants over bounded convex domains. 
-    The $L^{p}$ continuity constants of the regularized potential operators have not yet been established, to the best of our knowledge.
-    
-    The operators discussed by Costabel and McIntosh are pseudo-differential operators of negative order, 
-    because their averaging uses a smooth weight, and thus they are bounded operators between a variety of function spaces. 
-    Explicit bounds for the higher-order seminorms of these pseudo-differential operators 
-    have been contributed by Guzman and Salgado~\cite{guzman2021estimation}. % DONE: THEO That requires more comments 
-    % Guzman and Salgado have estimated the operator norm. \mwl{Describe Guzman and Salgado's contribution in more detail.} 
-    
-    \mwl{ 
     Costabel and McIntosh~\cite{costabel2010bogovskiui} regularize the potentials by averaging over pivot points within an interior ball using a smooth compactly supported weight function, 
     which is why they can study domains star-shaped with respect to a ball. 
     Their operators are pseudo-differential operators of negative order, 
     because their averaging uses a smooth weight; this proves that the operators are bounded between a variety of function spaces. 
     Explicit bounds for the higher-order seminorms of these pseudo-differential operators 
     have been recently contributed by Guzman and Salgado~\cite{guzman2021estimation}. 
-    Instead, we average over the entire domain, which requires a convex geometry, and we are only interested in boundedness in the Lebesgue $p$ norms. 
-    Crucially, this exactly allows us to easily establish computable bounds on the Poincar\'e--Friedrichs constants.   
-    This had not been established yet, to the best of our knowledge. 
-    }
+    Instead, we average over the entire domain, which requires a convex geometry, 
+    and we are interested in boundedness in the Lebesgue $p$-norms. 
+    We establish computable bounds on the Poincar\'e--Friedrichs constants,
+    which had not been established yet, to the best of our knowledge. 
 \end{remark}
 
 
@@ -4671,11 +4809,11 @@ scaled by $(k+1)^{-1}$.
     \end{tikzpicture}
     \end{center}
     \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: 
-	the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. 
-	The height vector to $v_2$ in all three triangles remains the same. The height vector to $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector to $v_0$ in the original triangle. 
-	Right: 
-	the triangle $T$ is trisected, leading to three new triangles. 
-	The height vector to $z_T$ from the opposite edge in any triangle is one third of the original height vector of that edge.}
+    the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. 
+    The height vector to $v_2$ in all three triangles remains the same. The height vector to $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector to $v_0$ in the original triangle. 
+    Right: 
+    the triangle $T$ is trisected, leading to three new triangles. 
+    The height vector to $z_T$ from the opposite edge in any triangle is one third of the original height vector of that edge.}
 \end{figure}
 
 
@@ -5786,7 +5924,8 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
+        2^{n+1} 
+        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T) 
         \diam(T)
@@ -5910,12 +6049,12 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
     % Let $\Omega \subseteq \bbR^{n}$ be a domain with a shellable $n$-dimensional triangulation $\calT$.
-	Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
+    Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
     Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$, where $1 \leq p \leq \infty$, 
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$
-	and such that the following estimates hold:
-	\begin{gather*}
+    and such that the following estimates hold:
+    \begin{gather*}
         \| w \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
     and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
@@ -5951,7 +6090,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S_{m}$, 
-	and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     
     We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
     We define $w'_{m} :=  \Xi_{1}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$. 
@@ -6058,7 +6197,7 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
-	Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
+    Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
     Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$, where $1 \leq p \leq \infty$, 
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
@@ -6084,18 +6223,18 @@ The second one is specific to the fact that shellable triangulations are contrac
     The statement is clearly satisfied when $M=0$ because then we only consider a single simplex,
     so that the Poincar\'e--Friedrichs inequality over a simplex can be used. 
     Let us assume that the statement is true for some integer $M-1 \geq 0$.
-	
-	
-	Recall that $X_M$ is an $n$-dimensional submanifold with boundary with a triangulation that has a shelling $T_0, T_1, \dots, T_{M-1}$. 
-	Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
-	By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
-	and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
-	
-	We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
-	This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
+    
+    
+    Recall that $X_M$ is an $n$-dimensional submanifold with boundary with a triangulation that has a shelling $T_0, T_1, \dots, T_{M-1}$. 
+    Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
+    By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
+    and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
+    
+    We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
+    This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
     We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{M} \rightarrow X_{M-1}$ by requiring that it is the identity over $X_{M-1} \setminus A_{M-1}$.
-	
-	Let $u \in W^{p}\Alt^{k}(\Omega)$ and write $g = \cartan u$. We define $g' = \Xi_{2}^{-\ast} \cartan u = \cartan \Xi_{2}^{-\ast} u$. 
+    
+    Let $u \in W^{p}\Alt^{k}(\Omega)$ and write $g = \cartan u$. We define $g' = \Xi_{2}^{-\ast} \cartan u = \cartan \Xi_{2}^{-\ast} u$. 
     Then Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} give  
     \begin{align*}
         \| g' \|_{L^{p}(\Omega')}  
@@ -6207,6 +6346,12 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 
 
+
+
+
+
+
+
 \section{Numerical examples}\label{section:numericalexamples}
 
 We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
@@ -6216,10 +6361,32 @@ Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenva
 
 We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
 which relies on estimates for the Bogovski\u{\i} operator over an auxiliary reference domain.
-Our experiments over triangles and tetrahedra indicate that we overestimate the constant by several magnitudes.
+We compare computed Poincar\'e--Friedrichs constants over the tetrahedron with tangential boundary conditions along a few faces. Our experiments and tetrahedra indicate that we overestimate the constant by several magnitudes.
 %
 We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
+\begin{table}[h!]
+    \centering % TODO: recompute all those numbers
+    \begin{tabular}{c|c|c|c|c|c}
+        \hline
+        $\ell$ & simulation & theorem & ratio & GS & ratio \\
+        \hline
+        0 & 5.37161130e+00 & 6.96498956e+03 & 2.41385574e+02 & 1.34450672e+01 & 2.50298587e+00 \\ 
+        1 & 4.08721544e+00 & 2.46249567e+03 & 1.47407784e+02 & 1.90141963e+01 & 4.65211501e+00 \\
+        2 & 6.42794893e+00 & 8.20831891e+02 & 1.98659522e+01 & 2.68901344e+01 & 4.18331487e+00 \\
+        3 & 6.71227069e+00 & 6.15623918e+02 & 1.36639593e+01 & 3.80283927e+01 & 5.66550344e+00 \\
+        3 & 6.71227069e+00 & 2.51327412e+02 & 5.57828803e+00 & 7.76251317e+00 & 1.15646605e+00 \\
+        \hline
+    \end{tabular}
+    \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
+    The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
+    The second column contains estimates obtained via     Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
+    and Theorem~\ref{theorem:bogovpoinc} in the last line. 
+    The fourth column uses the same type of estimate but replaces all applications of Theorem~\ref{theorem:bogovpoinc} with an estimate by Guerini and Savo~\cite{guerini2004eigenvalue}.
+    The last estimate, though clearly the most competitive, technically does not apply because the reference proves it only for bounded convex domains with smooth boundaries.
+    }
+    % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
+\end{table}
 
 
 
