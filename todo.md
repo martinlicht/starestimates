@@ -24,7 +24,7 @@ https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transfo
 - [x] potentials section: adapt and unify notation/tex
 - [x] does cartan commute with pullback ? 
 - [x] final: complete the final estimate, use recursion 
-- [ ] numerics: create a spanning tree and start computing the scalar estimate
+- [x] numerics: create a spanning tree and start computing the scalar estimate
 - [x] In potential section, check any occurance of 'A('
 
 Revision: 
@@ -47,6 +47,16 @@ Revision:
 - [x] Section 10: Computation
 - [X] Section 11: outlook 
 
+
+
+Further changes:
+- [ ] improve the estimate for the face reflection to get a precise analysis of the eigenvalues 
+- [ ] add a remark whether or not you reproduce that particular estimate later in the general reflection 
+- [ ] CODE: include that possible improvement in the C++ estimate
+- [ ] compare the results 
+- [ ] implement the shelling2 construction in full
+- [ ] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
+      Furthermore, it must respect the depth of each simplex
 
 
 POST-REVISION:
