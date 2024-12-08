@@ -3239,8 +3239,8 @@ Here we introduce the numerical constant
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{n-\mia}$. 
 
-In particular, the integral $\Poinc_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \Omega$. 
-So the convolution of $u$ is taken against an integrable function. 
+In particular, the integral $\Poinc_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \Omega$
+and its magnitude is pointwise dominated by the convolution of $|u|$ against an integrable function.
 Young's convolution inequality now implies: 
 \begin{align*}
     \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}
@@ -3318,8 +3318,9 @@ Here we introduce the numerical constant
     C_{\Bogov}(n,\mia) := \sum_{\jeza=0}^{\mia-1} \frac{ \tbinom{\mia-1}{\jeza} }{ (n-\jeza)(\jeza+1) }, 
 \end{gather}
 which depends only on $n$ and $\mia$ and which is bounded by $2^{\mia-1}$. 
-In particular, the integral $\Bogov_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$. 
-So the convolution of $u$ is taken against an integrable function. 
+Similar as above,
+the integral $\Bogov_{\mia} u(x)$ is absolutely convergent for any choice of $x \in \bbR^{n}$
+and its magnitude is pointwise dominated by the convolution of $|u|$ against an integrable function.
 Young's convolution inequality now implies: 
 \begin{align*}
     \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
@@ -3350,6 +3351,7 @@ that is, the reconstructed potential has support contained within $\overline\Ome
 
 
 
+\color{blue}
 \subsection{Interaction of potentials with the exterior derivative}
 
 More properties of these operators become apparent after a change of variables. 
@@ -3415,9 +3417,143 @@ By definition,
     \int_{\Omega} \Bogov_{\mia,a} u(x) \,da
     .
 \end{align*}
-We study the interaction of these potential operator with the exterior derivative in more detail.
+On the background of this rewriting, we can establish additional operator norm bounds for the operator norms. 
+These do not depend on the eccentricity of the domain. 
+
+We begin with the Poincar\'e operator. 
+By an application of Jensen's inequality, operator norm estimates, and substitutions, we find 
+\begin{align*}
+    \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{0}^{1} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{0}^{1} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{red}
+A comparable estimate follows for the Bogovski\u{\i} operator with the substitution 
+\begin{align*}
+    \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{1}^{\infty} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{1}^{\infty} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{blue}
+We estimate 
+\begin{align*}
+    \int_{0}^{1}
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    &
+    \leq 
+    \int_{0}^{1}
+    \min\left( 
+        \vol\left(\Omega\right), 
+        \vol\left( \tfrac{t}{1-t} \Omega \right) 
+    \right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{p(k-1)} 
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{k-1} 
+    \ dt
+    .
+\end{align*}
+\begin{align*}
+    \int_{\frac 1 2}^{1}
+    t^{-n+k-1}
+    \ dt
+    =
+    \frac{2^{n-k}-1}{n-k}
+    \\
+    \int_{0}^{\frac 1 2} 
+    \frac{ t^{k-1} }{ (1-t)^{n} }
+    \ dt
+    \leq 
+    \int_{0}^{\frac 1 2} 
+    (1-t)^{-n+k-1}
+    \ dt
+    =
+    \frac{2^{n-k}-1}{n-k}
+    .
+\end{align*}
+
+
+
+
+
+\subsection{Interaction of potentials with the exterior derivative}
+\color{black}
+We study the interaction of the Poincar\'e and Bogovski\u{\i} operators with the exterior derivative in more detail.
 % 
-The main arguments are well-known and establishes the exactness of several de~Rham complexes. 
+The main arguments are well-known and establish the exactness of several de~Rham complexes. 
 We recapitulate these arguments since our variants of the regularized potential operators are not yet included in the published literature. 
 
 We make use of the following notation~\cite{licht2022basis}:
