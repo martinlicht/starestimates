@@ -4481,10 +4481,10 @@ we gather some results that are hard to find in the literature.
     % \begin{align*}
         % v_0, \dots, v_{i-1}, z_{S}, v_{i+1}, \dots, v_k, v_{k+1}^{S}, \dots, v_{l}^{S}. 
     % \end{align*}
-    The collection $\calS'$ of these simplices and their subsimplices constitute a simplicial complex 
+    The collection $\calS^\ast$ of these simplices and their subsimplices constitute a simplicial complex 
     that triangulates the same underlying set as $\calS$.
-    Moreover, $\calS' = \patch_{\calS'}(z_{S})$. 
-    In particular, $z_{S}$ is a boundary vertex of $\calS'$ if and only if $S$ is a boundary simplex of $\calS$. 
+    Moreover, $\calS^\ast = \patch_{\calS^\ast}(z_{S})$. 
+    In particular, $z_{S}$ is a boundary vertex of $\calS^\ast$ if and only if $S$ is a boundary simplex of $\calS$. 
     So it remains to study the topology of vertex stars. 
     
     \item 
@@ -4534,11 +4534,11 @@ we gather some results that are hard to find in the literature.
 %     One sees that $\phi$ defines a mapping from the closed 
 %     homeomorphism between cone of link and ball 
 %     
-%     If $z$ is an inner vertex of $\calS'$, 
-%     then the boundary simplices of $\calS'$,
+%     If $z$ is an inner vertex of $\calS^\ast$, 
+%     then the boundary simplices of $\calS^\ast$,
 %     which are the boundary simplices of $\calS$, triangulate a topological sphere of dimension $n-1$.
 %     
-%     Now suppose that $z$ is a boundary vertex of $\calS'$,
+%     Now suppose that $z$ is a boundary vertex of $\calS^\ast$,
 %     which is the case if and only if $S$ is a boundary simplex. 
 %     Write 
 %     \[
@@ -5035,7 +5035,7 @@ scaled by $(k+1)^{-1}$.
 
 
 
-
+\clearpage
 We now provide the desired bi-Lipschitz transformation:
 on the one hand, the nonlinear reflection across the interface between the selected simplex and the remainder of the local star,
 and on the other hand, the bi-Lipschitz contraction from the local star onto the complement of the selected simplex. 
@@ -5069,22 +5069,12 @@ We give detailed estimates for the singular values of their Jacobians.
         \quad 
         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
         \\
-        \sigma_n \leq \Csechs{n}{k}(\calT),
+        \sigma_n^{-1} \leq \Csechs{n}{k}(\calT),
         \quad 
         \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Csechsprime{n}{k}(\calT),
         \quad 
         | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
     \end{gather*}
-%     and which satisfies the upper bounds 
-%     \begin{gather*}
-%         \matnorm{ \Jacobian\Xi_{1} }          \leq \Cfive{n}{k}(\calT),
-%         \quad 
-%         \matnorm{ \Jacobian\Xi_{1}^{-1} }     \leq \Csechs{n}{k}(\calT),
-%         \\
-%         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
-%         \quad 
-%         | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{k}(\calT).
-%     \end{gather*}
     \item 
     There exists a bi-Lipschitz piecewise affine mapping
     \begin{align*}
@@ -5099,22 +5089,12 @@ We give detailed estimates for the singular values of their Jacobians.
         \quad 
         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
         \\
-        \sigma_n \leq \Cacht{n}{k}(\calT),
+        \sigma_n^{-1} \leq \Cacht{n}{k}(\calT),
         \quad 
         \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Cachtprime{n}{k}(\calT),
         \quad 
         | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT).
     \end{gather*}
-%     and which satisfies the upper bounds 
-%     \begin{gather*}
-%         \matnorm{ \Jacobian\Xi_{2} }          \leq \Csieb{n}{k}(\calT),
-%         \quad 
-%         \matnorm{ \Jacobian\Xi_{2}^{-1} }     \leq \Cacht{n}{k}(\calT),
-%         \\
-%         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
-%         \quad 
-%         | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{k}(\calT).
-%     \end{gather*}
     \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -5122,73 +5102,74 @@ We give detailed estimates for the singular values of their Jacobians.
     In what follows, we use the notation $\hat z$ for the normalization of any vector $z \in \bbR^{n}$.
     \begin{itemize}
         \item 
-        Without loss of generality, the barycenter $z_{S}$ of $S$ is the origin. 
+        Without loss of generality, after shifting the coordinate system, the barycenter $z_{S}$ of $S$ is the origin. 
         % Let $I := \Makoto \cap T$, which is the union of $k$ different faces of $T$, with $1 \leq k \leq n$.
         %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-k$ faces of $T$.
         %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
-        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$.
-        Note that ${\Gamma_2}$ is the union of exactly those faces of $T$ that contain $S'$,
+        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$ within the simplex $T$.
+        Note that ${\Gamma_2} \subseteq \partial T$ is the union of exactly those faces of $T$ that contain $S'$,
         whereas ${\Gamma_1} = \Makoto \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
         
         \item 
-        We let $z'_{S}$ be the midpoint of $S'$. 
-        We apply barycentric refinement to the complementary simplex $S'$, which produces a new triangulation $\calS$. 
-        Obviously, all $n$-simplices in $\calS$ contain $S$ and $z'_{S}$.
+        We let $z_{S'}$ be the midpoint of $S'$. 
+        We apply barycentric refinement to the complementary simplex $S'$, which produces a new triangulation $\calD$ of the underlying set $\underlying{T}$. 
+        Obviously, all $n$-simplices in $\calD$ contain $S$ and $z_{S'}$.
         
-        We define another simplicial complex $\calS^c$ as follows:
-        given any $n$-simplex $K \in \calS$, 
+        We define another simplicial complex $\calD^c$ as follows:
+        given any $n$-simplex $K \in \calD$, 
         we replace its vertex $z_{S}'$ by the new vertex $-z_{S}'$ at the opposite position,
-        thus obtaining a new simplex $K'$. 
-        Indeed, that $\calS^c$ is a simplicial complex follows easily from $\calS$ being a simplicial complex. 
+        thus obtaining a new simplex $K^{c}$. 
+        Indeed, that $\calD^c$ is a simplicial complex follows easily from $\calD$ being a simplicial complex. 
         
-        We let the simplicial complex $\calS'$ be the union of $\calS$ and $\calS^c$. 
+        We let the simplicial complex $\calD^\ast$ be the union of $\calD$ and $\calD^c$. 
         By construction, all its $n$-simplices contain $S$ as a subsimplex,
-        % Indeed, $\calS'$ is indeed a triangulation since they are disjoint except for their proper subsimplices. 
+        % Indeed, $\calD^\ast$ is indeed a triangulation since they are disjoint except for their proper subsimplices. 
         Moreover, $S$ is an inner subsimplex of that triangulation. 
-        In particular, $\calS'$ is its own star around $S$.
+        In particular, $\calD^\ast$ is its own star around $S$.
         
-        % TODO Check that $\calS'$ is a triangulation
+        % TODO Check that $\calD^\ast$ is a triangulation
         
         \item 
-        As additional step, we introduce another simplicial complex $\calR'$ from $\calS'$ via barycentric subdivision of $S$.
-        Then $\calR'$ is its own local star around the barycenter $z_S$.
-        In particular, all $n$-simplices in $\calR'$ contain $z_{S}$. 
-        The simplicial complex $\calR'$ also contains as subcomplexes the corresponding refinements of $\calS$ and $\calS^{c}$, 
-        which we denote by $\calR$ and $\calR^{c}$, respectively.
+        As additional step, we introduce another simplicial complex $\calG^\ast$ from $\calD^\ast$ via barycentric subdivision of $S$.
+        Then $\calG^\ast$ is its own local star around the barycenter $z_S$.
+        In particular, all $n$-simplices in $\calG^\ast$ contain $z_{S}$. 
+        The simplicial complex $\calG^\ast$ also contains as subcomplexes the corresponding refinements of $\calD$ and $\calD^{c}$, 
+        which we denote by $\calG$ and $\calG^{c}$, respectively.
+        Given any $n$-simplex in $\calG$, replacing its vertex $z_{S}$ with its opposite $-z_{S}$ gives an associated $n$-simplex in $\calG^{c}$.
         
         Lastly, we introduce one more simplicial complex $\calK$ obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
         
         \item 
-        We introduce a new mapping $\Theta : \underlying{\calR} \rightarrow \underlying{\calR^c}$ between the underlying sets as follows.
-        Let $K \in \calR$ be an $n$-simplex and $K' \in \calR^{c}$ be constructed from $K$.
-        We let $A_{K} : \Delta^{n} \rightarrow K$ and $A_{K'} : \Delta^{n} \rightarrow K'$
+        % Notice that $A_{G^{c}}$ and $A_{G}$ have the same singular values. Thus
+        % \begin{align*}
+        %     \matnorm{ \Jacobian \Theta_{|G}      } &\leq \| A_{G^{c}} \| \cdot \| A_{G}^{-1} \| \leq \geometricshapemeasure(A_{G}),
+        %     \\
+        %     \matnorm{ \Jacobian \Theta_{|G}^{-1} } &\leq \| A_{G^{c}}^{-1} \| \cdot \| A_{G} \| \leq \geometricshapemeasure(A_{G}).
+        % \end{align*}
+        We introduce a new mapping $\Theta : \underlying{\calG} \rightarrow \underlying{\calG^c}$ between the underlying sets as follows.
+        Let $G \in \calG$ be an $n$-simplex and $G^{c} \in \calG^{c}$ be constructed from $G$.
+        We let $A_{G} : \Delta^{n} \rightarrow G$ and $A_{G^{c}} : \Delta^{n} \rightarrow G^{c}$
         be affine reference transformations
-        that agree on the vertices common to $K$ and $K'$.
+        that agree on the vertices common to $G$ and $G^{c}$.
         Then the mapping 
         \begin{align*}
-            \Theta_{|K} := A_{K'} \circ A_{K}^{-1}.
+            \Theta_{|G} := A_{G^{c}} \circ A_{G}^{-1}
         \end{align*}
-        % Notice that $A_{K'}$ and $A_{K}$ have the same singular values. Thus
-        % \begin{align*}
-        %     \matnorm{ \Jacobian \Theta_{|K}      } &\leq \| A_{K'} \| \cdot \| A_{K}^{-1} \| \leq \geometricshapemeasure(A_{K}),
-        %     \\
-        %     \matnorm{ \Jacobian \Theta_{|K}^{-1} } &\leq \| A_{K'}^{-1} \| \cdot \| A_{K} \| \leq \geometricshapemeasure(A_{K}).
-        % \end{align*}
         preserves volumes:
         \begin{align*}
-            |\det( \Jacobian      \Theta_{|K} )|
+            |\det( \Jacobian      \Theta_{|G} )|
             = 
-            |\det( \Jacobian^{-1} \Theta_{|K} )|
+            |\det( \Jacobian^{-1} \Theta_{|G} )|
             =
             1
             .
         \end{align*}
         We want to characterize the singular values of this transform. 
-        We $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $K$.
+        We $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
         We can write
         \begin{align*}
-            \Theta_{|K}(x) 
+            \Theta_{|G}(x) 
             = 
             x
             - 
@@ -5209,7 +5190,7 @@ We give detailed estimates for the singular values of their Jacobians.
 %         \end{align*}
         If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$ for some $b_{z} \in \bbR^{n}$, then 
         \begin{align*}
-            \Theta_{|K}( h_{z} ) 
+            \Theta_{|G}( h_{z} ) 
             &= 
             h_{z}
             - 
@@ -5230,12 +5211,12 @@ We give detailed estimates for the singular values of their Jacobians.
             2 b_{z}
             .
         \end{align*}
-        Evidently, the transformation $\Theta_{|K}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
+        Evidently, the transformation $\Theta_{|G}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
         Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
         We study the singular values of the matrix 
         \begin{align*}
-            B 
+            M_{\Theta,G} 
             := 
             \begin{pmatrix}
             -1                 & 0
@@ -5250,17 +5231,17 @@ We give detailed estimates for the singular values of their Jacobians.
             \end{pmatrix}
             .
         \end{align*}
-        We compute the eigenvalues of the symmetric matrix $B^{\ast} B$. 
-        Its square roots are the desired singular values of $B$:
+        We compute the eigenvalues of the symmetric matrix $M_{\Theta,G}^{\ast} M_{\Theta,G}$. 
+        Its square roots are the desired singular values of $M_{\Theta,G}$:
         \begin{align}
-            \sigma_{\max} = \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta) \label{math:theta_max}
+            \sigma_{\max}(\Theta,G) := \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta) \label{math:theta_max}
             ,
             \\
-            \sigma_{\min} = \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) \label{math:theta_min}
+            \sigma_{\min}(\Theta,G) := \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) \label{math:theta_min}
             .
         \end{align}
         They are mutual reciprocals of each other and they monotonely increasing and decreasing, respectively, in $\tan(\beta)$.
-        We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|K}$,
+        We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|G}$,
         whereas all its other singular values equal $1$. 
         
 %         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
@@ -5269,8 +5250,8 @@ We give detailed estimates for the singular values of their Jacobians.
         imply that $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$.
         % Obviously, $\vecnorm{ b_{z} } \leq \vecnorm{ z_{S'} }$. 
         
-        Recall that $K \in \calR$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
-        Let $F_{z} \subseteq K$ be the face opposite to the vertex $z_{S'}$,
+        Recall that $G \in \calG$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
+        Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$,
         which must be contained in some face of $T$. 
         Since $S'$ has dimension $n-k-1$, the vector $(n-k) h_{z}$ is the height vector of that face of $T$. 
         Thus 
@@ -5293,7 +5274,7 @@ We give detailed estimates for the singular values of their Jacobians.
         This establishes bounds on the singular values of the transformation. 
         We abbreviate 
         \begin{align}\label{math:upper_bound_for_theta}
-            B_{T} 
+            \mu_{T,k} 
             := 
 %             \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) 
 %             \geq 
@@ -5304,39 +5285,45 @@ We give detailed estimates for the singular values of their Jacobians.
             (n-k) \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }            
             .
         \end{align}
-        
-        
+        In summary, the singular values of the Jacobian of $\Theta$ at almost every $x$ satisfy 
+        \begin{align}
+            \sigma_{1}(\Theta,x) \leq \mu_{T,k},
+            \quad 
+            \sigma_{2}(\Theta,x) = \dots = \sigma_{n-1}(\Theta) = 1,
+            \quad 
+            \sigma_{n}(\Theta,x)^{-1} \leq \mu_{T,k}.
+        \end{align}
         \item 
-        We introduce another mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$ as follows. 
-        Consider any $n$-simplex $K \in \calR$ and let $K^c \in \calR^{c}$ be its image under $\Theta$.
+        We introduce another mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$ as follows. 
+        Consider any $n$-simplex $G \in \calG$ and let $G^c \in \calG^{c}$ be its image under $\Theta$.
         We construct a bi-Lipschitz mapping 
         \begin{align*}
-            \Phi_{K} : K \cup K^{c} \rightarrow K^{c}.
+            \Phi_{G} : G \cup G^{c} \rightarrow G^{c}.
         \end{align*}
-        The construction will be such that the union of $\Phi_{K}$ for all $n$-simplices $K \in \calR$
-        will define the desired bi-Lipschitz mapping $\Phi : \underlying{\calR'} \rightarrow \underlying{\calR^{c}}$,
-        which will be the identity along $\partial\underlying{\calR'} \setminus \partial\underlying{\calR}$.
+        The construction will be such that the union of $\Phi_{G}$ for all $n$-simplices $G \in \calG$
+        will define the desired bi-Lipschitz mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$,
+        which will be the identity along $\partial\underlying{\calG^\ast} \setminus \partial\underlying{\calG}$.
         
-        Once again, $h_{z}$ denotes the height of $z_{S'}$ within $K$.
-        Here, we let $Q \subseteq K \cap K^{c}$ be the subsimplex 
-        that is complementary to the line segment from the origin to $z_{S'}$ in $K$.
-        Equivalently, $Q$ is complementary to the line segment from the origin to $-z_{S'}$ in $K^{c}$.
-        From the very definition of simplices, we now conclude that any $x \in K \cup K^{c}$ 
+        Once again, $h_{z}$ denotes the height of $z_{S'}$ within $G$.
+        Here, we let $Q \subseteq G \cap G^{c}$ be the subsimplex 
+        that is complementary to the line segment from the origin to $z_{S'}$ in $G$.
+        Equivalently, $Q$ is complementary to the line segment from the origin to $-z_{S'}$ in $G^{c}$.
+        From the definition of simplices, we now conclude that any $x \in G \cup G^{c}$ 
         has a unique representation
         \begin{align*}
-            x = \lambda z_{S} + \mu x^{Q}, \quad \lambda \in [-1,1], \quad \mu \in [0,1], \quad |\lambda| + \mu \leq 1, \quad x^{Q} \in Q,
+            x = \lambda z_{S'} + \mu x_{Q}, \quad \lambda \in [-1,1], \quad \mu \in [0,1], \quad |\lambda| + \mu \leq 1, \quad x_{Q} \in Q,
         \end{align*}
-        Since $\mu x^{Q}$ lies in the hyperplane spanned by the origin and $Q$, we have 
+        Since $\mu x_{Q}$ lies in the hyperplane spanned by the origin and $Q$, we have 
         \begin{align*}
             \lambda = \lambda(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
             .
         \end{align*}
         Based on that observation, we define 
         \begin{align*}
-            \Phi_{K}(x) 
+            \Phi_{G}(x) 
             &
             := 
-            \mu x^{Q} - \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
+            \mu x_{Q} - \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
             \\&
             = 
             x - \left( \frac 3 2 \lambda(x) - \frac 1 2 \right) z_{S'}
@@ -5344,14 +5331,14 @@ We give detailed estimates for the singular values of their Jacobians.
             x - \left( \frac 3 2 \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - \frac 1 2 \right) z_{S'}
             .
         \end{align*}
-        We readily verify that this transformation is a bi-Lipschitz mapping from $K \cup K^{c}$ onto $K^{c}$
+        We readily verify that this transformation is a bi-Lipschitz mapping from $G \cup G^{c}$ onto $G^{c}$
         that satisfies the desired mapping properties. 
         It remains to analyze its Jacobian to get explicit estimates. 
         
         We once more introduce an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$ for some $b_{z} \in \bbR^{n}$.
         With that,
         \begin{align*}
-            \Jacobian \Phi_{K}(x)
+            \Jacobian \Phi_{G}(x)
             &=
             \Id 
             - 
@@ -5390,7 +5377,7 @@ We give detailed estimates for the singular values of their Jacobians.
         We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
         Hence $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
         \begin{align*}
-            C 
+            M_{\Phi,G} 
             = 
             \begin{pmatrix}
                 -\frac 1 2             & 0 
@@ -5405,25 +5392,26 @@ We give detailed estimates for the singular values of their Jacobians.
                 -3\tan(\beta) & 2 
             \end{pmatrix}
         \end{align*}
-        By building the symmetric matrix $C^{t} C$ and computing its eigenvalues, we obtain 
+        By building the symmetric matrix $M_{\Phi,G}^{t} M_{\Phi,G}$ and computing its eigenvalues, 
+        we obtain the singular values 
         \begin{align*}
-            \sigma_{\max} 
-            = 
+            \sigma_{\max}(\Phi,G) 
+            := 
             \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
             =
             \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
             ,
             \\
-            \sigma_{\min} 
-            = 
+            \sigma_{\min}(\Phi,G)
+            := 
             \sqrt{ \frac{ \tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ \tan(\beta)^{4} + 10 \tan(\beta)^{2} + 9 } }
             =
             \frac 1 4 \sqrt{ 9 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + \tan(\beta)^2 }
             .
         \end{align*}
         \begin{align*}
-            \sigma_{\max} 
-            = 
+            \sigma_{\max}(\Phi,G) 
+            := 
             \sqrt{ \frac{ 9\tan(\beta)^{2} + 5 }{8} + \frac 1 8 \sqrt{ 81\tan(\beta)^{4} + 90 \tan(\beta)^{2} + 9 } }
             %=
             %\frac 1 4 \sqrt{ 9 + 9\tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
@@ -5431,27 +5419,28 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac 3 4 \sqrt{ 1 + \tan(\beta)^2 } + \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
             ,
             \\
-            \sigma_{\min} 
-            = 
+            \sigma_{\min}(\Phi,G) 
+            := 
             \sqrt{ \frac{ 9\tan(\beta)^{2} + 5 }{8} - \frac 1 8 \sqrt{ 81\tan(\beta)^{4} + 90 \tan(\beta)^{2} + 9 } }
             =
             \frac 3 4 \sqrt{ 1 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
             .
         \end{align*}
-        Notice that $\sigma_{\max} \sigma_{\min} = 1/2$. 
         These are monotonely increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
-        Hence, these are also the maximal and minimal eigenvalues of the Jacobian $\Jacobian \Phi_{K}$, the remaining eigenvalues being equal to $1$. Therefore,
+        Hence, these are also the maximal and minimal singular values of the Jacobian $\Jacobian \Phi_{G}$, the remaining singular values being equal to $1$. 
+        Notice that $\sigma_{\max}(\Phi,G) \sigma_{\min}(\Phi,G) = 1/2$. 
+        Therefore,
         \begin{align*}
             \det \Jacobian\Phi = \frac 1 2.
         \end{align*}
-        We now recall that the height of $h_{z}$ in $K \in \calR$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
+        We now recall that the height of $h_{z}$ in $G \in \calG$ equals $(k+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
         Similar as above, we use the upper bound 
         \begin{align*}
             \tan(\beta) = \frac{\vecnorm{ b_{z} }}{\vecnorm{ h_{z} }} \leq (k+1) \aspectratio(T).
         \end{align*}
-        We conclude that 
+        We conclude that the singular values of the Jacobian of $\Phi$ at almost every $x$ satisfy 
         \begin{gather}
-            \matnorm{ \Jacobian\Phi_{K} } 
+            \sigma_{1}(\Phi,x) % \matnorm{ \Jacobian\Phi_{G} } 
             \leq 
             \frac 3 4 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
             \leq 
@@ -5459,7 +5448,9 @@ We give detailed estimates for the singular values of their Jacobians.
             \label{math:phi_max}
             ,
             \\
-            \matnorm{ \Jacobian\Phi_{K}^{-1} } 
+            \sigma_{2}(\Phi,x) = \dots = \sigma_{n-1}(\Phi,x) = 1,
+            \\
+            \sigma_{n}(\Phi,x)^{-1} % \matnorm{ \Jacobian\Phi_{G}^{-1} } 
             \leq 
             \frac 3 2 \sqrt{ 1 + (k+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + 9(k+1)^2 \aspectratio(T)^2 }
             \leq 
@@ -5564,12 +5555,12 @@ We give detailed estimates for the singular values of their Jacobians.
         \item 
         We now describe the construction of a bi-Lipschitz mapping 
         \begin{align*}
-            \Psi : \underlying{\calR'} \rightarrow \underlying{\calK}.
+            \Psi : \underlying{\calG^\ast} \rightarrow \underlying{\calK}.
         \end{align*}
-        Recall that $\calR'$ and $\calK$ are their own respective stars around the origin,
+        Recall that $\calG^\ast$ and $\calK$ are their own respective stars around the origin,
         so they must contain an open ball around the origin. 
         % TODO \mwl{Here we need to show that it is indeed a ball. It must be a domain triangulation.}
-        Let ${G} \in \calR'$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        Let ${G} \in \calG^\ast$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
         and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
         We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
         that is, the scalar product of $x$ with either height vector is positive. 
@@ -5602,21 +5593,30 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         The preceding auxiliary results now contribute all information on the singular values of these Jacobians:
         \begin{gather*}
-            \matnorm{ \Jacobian\Psi(x) }
+            % \matnorm{ \Jacobian\Psi(x) }
+            \sigma_{1}( \Jacobian\Psi(x) )
             = 
             \frac{ \| h_K \| }{ \| h_{{G}} \| }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             \left( 
                 \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2}
             \right)
+            ,
             \\
-            \matnorm{ \Jacobian\Psi(z)^{-1} }
+            % \matnorm{ \Jacobian\Psi(z)^{-1} }
+            \sigma_{1}( \Jacobian\Psi(z)^{-1} )
             = 
             \frac{ \| h_{{G}} \| }{ \| h_K \| }
             \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
             \left( 
                 \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}
             \right)^{-1},
+            \\
+            \sigma_{2}( \Jacobian\Psi(x) ) = \dots = \sigma_{n-1}( \Jacobian\Psi(x) )
+            =
+            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            ,
             \\
             \det\Jacobian\Psi(x)
             =
@@ -5625,12 +5625,13 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             \right)^{n},
             \qquad
-            \det\Jacobian\Psi^{-1}(x)
+            \det\Jacobian\Psi^{-1}(z)
             =
             \left( 
             \frac{ \| h_{{G}} \| }{ \| h_{K} \| }
             \frac{ \cos(\alpha_{K}) }{ \cos(\alpha_{{G}}) }
             \right)^{n}
+            .
         \end{gather*}
         We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
         By the definition of the cosine, 
@@ -5666,16 +5667,16 @@ We give detailed estimates for the singular values of their Jacobians.
         We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
         That estimates the quotient $\| x_K \| / \| h_K \|$. 
         % 
-        In oder to estimate $\|x_{G}\|$, we first notice the case $G \in \calR$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
-        In the case $G \in \calR^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        In oder to estimate $\|x_{G}\|$, we first notice the case $G \in \calG$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
+        In the case $G \in \calG^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         that must lie in the face of $G$ that is opposite to $-z_{S'}$. 
         The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
         It follows again that $\|x_{G}\| \leq \diam(T)$. 
         % 
         It remains to find a lower bound for $\| h_{G} \|$.
-        Every height of the origin in some simplex of $\calR'$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calS'$
-        by scaling with $(k+1)^{-1}$. If $G \in \calR$, then that original height was already a height of a vertex of $S$ in $T$. 
-        If instead $G \notin \calR$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calS$, multiplied by $B_{T}$. The height of any vertex of $S$ in some simplex of $\calS$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        Every height of the origin in some simplex of $\calG^\ast$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calD^\ast$
+        by scaling with $(k+1)^{-1}$. If $G \in \calG$, then that original height was already a height of a vertex of $S$ in $T$. 
+        If instead $G \notin \calG$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calD$, multiplied by $\mu_{T,k}$. The height of any vertex of $S$ in some simplex of $\calD$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
         %         In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         %         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
         %         It follows that $\|x_{G}\| \leq \diam(T)$. 
@@ -5692,16 +5693,17 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \frac{ \| x_{K} \| }{ \| h_{{G}} \| }
             &\leq 
-            (k+1)B_{T}
+            (k+1)\mu_{T,k}
             \frac{ \diam(K) }{ \| h_{T} \| }
             \leq 
-            (k+1)B_{T}
+            (k+1)\mu_{T,k}
             \diameterratio(\calT)
             \frac{ \diam(T) }{ \| h_{T} \| }
             \leq 
-            (k+1)B_{T}
+            (k+1)
             \diameterratio(\calT)
             \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \mu_{T,k}
             ,
             \\
             \frac{ \| x_{G} \| }{ \| h_{K} \| }
@@ -5731,8 +5733,8 @@ We give detailed estimates for the singular values of their Jacobians.
             \qquad 
             \frac{ \| x_{G} \| }{ \| h_{G} \| }
             \leq 
-            (k+1)B_{T}
-            \aspectratio({G}) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            (k+1)
+            \aspectratio({G}) \mu_{T,k} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             .
         \end{gather*}
 
@@ -5741,8 +5743,8 @@ We give detailed estimates for the singular values of their Jacobians.
         %         when $T$ is an $n$-dimensional simplex with a $k$-dimensional subsimplex $S \subseteq T$,
         %         and $h > 0$ is the height of some vertex $v \in S$ opposite to a face $F$,
         %         then the barycenter $z_S$ of $S$ has distance $h/(k+1)$ from the face $F$. 
-        %         From this observation we infer that the height vectors at the origin of the simplices in $\calR'$ and $\calK$
-        %         are obtained by rescaling the height vectors in $\calS'$ and $\patch_{\calT}(S)$
+        %         From this observation we infer that the height vectors at the origin of the simplices in $\calG^\ast$ and $\calK$
+        %         are obtained by rescaling the height vectors in $\calD^\ast$ and $\patch_{\calT}(S)$
         %         with the factor $(k+1)^{-1}$.
         
         The vector $a$ is the difference between $\hat h_{G}$ and $\hat h_{K}$ after both are rescaled such that they lie on the affine hyperplane with normal vector $\hat x$. That difference has length at most $\tan(\alpha_{G}) + \tan(\alpha_{K})$.
@@ -5763,49 +5765,53 @@ We give detailed estimates for the singular values of their Jacobians.
             % \\&
             \leq 
             (k+1) 
-            \left( 1 + B_{T} \right)
+            \left( 1 + \mu_{T,k} \right)
             \sup_{ K \in \patch_{\calT}(S) }
             \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             .
         \end{align*}
-        In summary, using that $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$, we find the upper bounds 
-        \begin{align*}
-            \matnorm{ \Jacobian\Psi(x) }
+        We define 
+        \begin{align}
+            \nu_{T,k} := \sqrt{ 1 + \frac{ (k+1)^{2}\left( 1 + \mu_{T,k} \right)^{2} \aspectratio(\calT)^{2} }{4} } + \frac{ (k+1)\left( 1 + \mu_{T,k} \right) \aspectratio(\calT) }{2}
+            .
+        \end{align}
+        In summary, 
+        the singular values of the Jacobian of $\Psi$ at almost every $x$ satisfy 
+        % using that $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$, 
+        \begin{align}
+            \sigma_{1}(\Psi,x) % \matnorm{ \Jacobian\Psi(x) }
             &\leq  
-            (k+1)B_{T}
+            (k+1)
             \diameterratio(\calT)
-            \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \aspectratio(T)\mu_{T,k} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             \cdot 
-            \left( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT) 
-            \right)
+            \nu_{T,k}
             ,
             \\
-            \matnorm{ \Jacobian\Psi(z)^{-1} }
+            \sigma_{n}(\Psi,x)^{-1} % \matnorm{ \Jacobian\Psi(z)^{-1} }
             &\leq  
             (k+1)
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-            \left( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT) 
-            \right)
+            \nu_{T,k}
+            ,
+            \\
+            \sigma_{  2}(\Psi,x) 
+            &= 
+            \dots
+            =
+            \sigma_{n-1}(\Psi,x) 
+            \leq 
+            (k+1) \diameterratio(\calT) \aspectratio(T)\mu_{T,k}
             ,
             \\
             \det\Jacobian\Psi(x)
             &\leq 
             \left( 
-            (k+1)B_{T}
+            (k+1)
             \diameterratio(\calT)
-            \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \aspectratio(T)\mu_{T,k} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
             \right)^{n},
             \\
             \det\Jacobian\Psi^{-1}(x)
@@ -5815,7 +5821,8 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \right)^{n}
-        \end{align*}
+            .
+        \end{align}
         We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz with respect to some essentially disjoint closed partitions over their respective domains.
         % It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
         % Rademacher's theorem then shows that both have essentially bounded weak Jacobians. 
@@ -5843,25 +5850,18 @@ We give detailed estimates for the singular values of their Jacobians.
             (k+1) 
             \diameterratio(\calT)
             \aspectratio(\calT)
-            B_{T}^{2}
-            \Big( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT)
-            \Big)            
+            \mu_{T,k}^{2}
+            \nu_{T,k}           
             ,
             \\
             \sigma_2(x), \dots, \sigma_n(x) 
             &\leq 
             \Cfiveprime{n}{k}(\calT)
             :=
-            (k+1)B_{T}
+            (k+1)
             \diameterratio(\calT)
-            \aspectratio(T) 
-            \cdot 
-            B_T
+            \aspectratio(T) \mu_{T,k}^{2}
+            ,
             \\
             \sigma_n(x)^{-1} = \matnorm{ \Jacobian \Xi_{1}^{-1} }
             &\leq
@@ -5870,14 +5870,9 @@ We give detailed estimates for the singular values of their Jacobians.
             (k+1) 
             \diameterratio(\calT)
             \aspectratio(\calT)
-            B_{T}
-            \Big( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT)
-            \Big)
+            \mu_{T,k}
+            \nu_{T,k}
+            ,
             \\
             \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
             &\leq 
@@ -5887,7 +5882,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-            B_T
+            \mu_{T,k}
             .
         \end{align*}
         We get the determinant estimates
@@ -5898,7 +5893,7 @@ We give detailed estimates for the singular values of their Jacobians.
             :=
             (k+1)^{n}
             \diameterratio(\calT)^{n}
-            B_{T}^{n}
+            \mu_{T,k}^{n}
             \aspectratio(\calT)^{n}
             ,
             \\
@@ -5929,28 +5924,25 @@ We give detailed estimates for the singular values of their Jacobians.
             &\leq 
             \Csieb{n}{k}(\calT)
             :=
-            \left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
-            \cdot 
             (k+1) 
             \aspectratio(\calT)
-            B_{T}
-            \Big( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT)
-            \Big)            
+            \diameterratio(\calT)
+            \mu_{T,k}
+            \nu_{T,k}         
+            \cdot 
+            \left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
+            ,
             \\
             \sigma_2(x), \dots, \sigma_n(x) 
             &\leq 
             \Csiebprime{n}{k}(\calT)
             :=
-            (k+1)B_{T}
+            (k+1)
             \diameterratio(\calT)
-            \aspectratio(T) 
+            \aspectratio(T)\mu_{T,k} 
             \cdot 
             \left( 1 + \frac{3}{2} (k+1) \aspectratio(T) \right)
+            ,
             \\
             \sigma_n(x)^{-1}
             = 
@@ -5958,17 +5950,13 @@ We give detailed estimates for the singular values of their Jacobians.
             &\leq  
             \Cacht{n}{k}(\calT)
             :=
-            \left( 2 + 3 (k+1) \aspectratio(T) \right)
-            \cdot 
             (k+1) 
+            \diameterratio(\calT)
             \aspectratio(\calT)
-            \Big( 
-                1 
-                + 
-                (k+1) 
-                \left( 1 + B_{T} \right)
-                \aspectratio(\calT)
-            \Big)            
+            \nu_{T,k}           
+            \cdot 
+            \left( 2 + 3 (k+1) \aspectratio(T) \right)
+            ,
             \\
             \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
             &\leq 
@@ -5990,7 +5978,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac 1 2 
             (k+1)^{n}
             \diameterratio(\calT)^{n}
-            B_{T}^{n}
+            \mu_{T,k}^{n}
             \aspectratio(\calT)^{n}
             ,
             \\
@@ -6006,7 +5994,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         This completes the desired estimates for $\Xi_{2}$. 
     \end{itemize}
-    The proof is complete. 
+    Having shown all the desired estimates, and the proof is complete. 
 \end{proof}
         
 
