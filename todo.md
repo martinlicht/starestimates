@@ -50,8 +50,10 @@ Revision:
 
 
 Further changes:
-- [ ] improve the estimate for the face reflection to get a precise analysis of the eigenvalues 
-- [ ] add a remark whether or not you reproduce that particular estimate later in the general reflection 
+- [x] improve the estimate for the face reflection to get a precise analysis of the eigenvalues 
+- [x] add a remark whether or not you reproduce that particular estimate later in the general reflection 
+- [ ] use the product inequality for singular values 
+- [ ] pairwise inequality (topics: p.178)
 - [ ] CODE: include that possible improvement in the C++ estimate
 - [ ] compare the results 
 - [ ] implement the shelling2 construction in full

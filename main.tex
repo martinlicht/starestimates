@@ -49,7 +49,7 @@
 
 
 
-
+% LTeX: enabled=false
 % Title, authors, and affiliations
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
@@ -61,6 +61,7 @@
     Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
 }
 \date{}
+% LTeX: enabled=true
 
 
 \begin{document}
@@ -100,7 +101,7 @@ Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds o
 However, while potentials and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
 quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
-This manuscript contributes to the theory of computable estimates for Poincar\'--Friedrichs inequalities for the differential operators of vector calculus. 
+This manuscript contributes to the theory of computable estimates for Poincar\'e--Friedrichs inequalities for the differential operators of vector calculus. 
 How to construct potentials for the gradient over triangulated domains is well-documented in the literature. 
 We apply this construction principle to the curl and divergence operators, as well as the exterior derivative. 
 However, to proceed in the general exterior derivative case, we restrict our efforts to so-called shellable triangulations. 
@@ -137,7 +138,7 @@ such that $\nabla u = \bff$ and
     \| \bff \|_{L^{p}(\Omega)}
     .
 \end{align}
-We call this inequality \emph{Poincar\'e--Friedrichs inequality} and the constant $C_{\grad,\Omega,p}$ is called the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
+This inequality is called \emph{Poincar\'e--Friedrichs inequality} and the constant $C_{\grad,\Omega,p}$ is called the \emph{Poincar\'e--Friedrichs constant} with exponent $p$. 
 The question is therefore whether we can always find a gradient potential of sufficiently small norm so this inequality holds. 
 One possible choice is the norm-minimizing potential 
 \begin{align}\label{math:intro:gradientpotential}
@@ -157,7 +158,7 @@ This inequality is therefore equivalent to
 \end{align}
 Such an inequality holds if we can bound the \emph{operator norm} of this gradient potential operator, and then the best constant is  
 %the $L^{p}(\Omega)$ norm of the potential $\Phi_{\grad}( \bff )$ is bounded in terms of the $\bfL^{p}(\Omega)$ norm of the source field $\bff$.
-%Hence we want to evaluate the \emph{operator norm} of the potential operator 
+%Hence, we want to evaluate the \emph{operator norm} of the potential operator 
 \begin{align}\label{math:intro:gradient:potentialnorm}
     C_{\grad,\Omega,p} := \max\limits_{ u \in W^{1,p}(\Omega) \setminus \bbR } 
     \frac{ \| \Phi_{\grad}(\nabla u) \|_{L^{p}(\Omega)} }{ \| \nabla u \|_{\fooL^{p}(\Omega)} }.
@@ -187,7 +188,7 @@ Its operator norm is the Poincar\'e constant $C_{\varnothing,\Omega,p} > 0$ that
     , \tag{P} 
 \end{align}
 where $u_\Omega$ denotes the average of $u$. We emphasize that the average-free potential is generally not the norm-minimizing potential unless $p = 2$.
-Hence the optimal Poincar\'e constant and the optimal Poincar\'e--Friedrichs differ in general. 
+Hence, the optimal Poincar\'e constant and the optimal Poincar\'e--Friedrichs differ in general. 
 Considerable research efforts have gone into determining constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:intro:poincarefriedrichs:grad} or Poincar\'e inequalities~\eqref{math:intro:poincare:grad}. Upper estimates for these constants also correspond to lower bounds for the spectra of Neumann--Laplacians over those domains. 
 The relationship between the Poincar\'e constant and the Poincar\'e--Friedrichs constant will be elaborated upon in later sections of this manuscript. 
 % We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potentials to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potentials such as~\eqref{math:intro:gradientpotential}. 
@@ -197,7 +198,7 @@ The relationship between the Poincar\'e constant and the Poincar\'e--Friedrichs 
 \subsubsection{Potentials and Poincar\'e--Friedrichs inequalities for the curl and divergence}
 
 We study potentials and Poincar\'e--Friedrichs inequalities for the curl or divergence operators in vector calculus.
-There are substantial changes and much less results are available in the literature. 
+There are substantial changes and much fewer results are available in the literature. 
 We use the spaces of vector field 
 \begin{align}
     \bfW^{p}(\curl,\Omega) &:= \left\{ \bfu \in L^{p}(\Omega)^{3} : \curl \bfu \in L^{p}(\Omega)^{3} \right\}
@@ -250,7 +251,6 @@ We are therefore interested in any potentials
     ,
     \\
     &\Phi_{\divergence} : \divergence \bfW^{p}(\divergence,\Omega) \rightarrow \bfW^{p}(\divergence,\Omega)
-    .
 \end{align}
 and their operator norms. We remark that upper bounds for the Poincar\'e--Friedrichs inequality of the curl operator correspond to lower bounds for the so-called Maxwell eigenvalues. 
 In sharp contrast to the extensive research on gradient potentials, 
@@ -264,8 +264,9 @@ not much attention seems to have been given to the study of computable constants
 Though we present our results in vector calculus, our main arguments are given in the formalism of exterior calculus. 
 Exterior calculus~\cite{greub1967multilinear,lee2012smooth} is used ubiquitously in the mathematical literature of physics and engineering and has found widespread adoption in the theoretical and numerical analysis for vector-valued partial differential equations~\cite{hiptmair2002finite, gross2004electromagnetic, arnold2006finite, arnold2009geometric, arnold2010finite, demlow2014posteriori, licht2021local, arnold2021complexes}. 
 This formalism is independent of the spatial dimension and highlights extends the underlying geometric structures common to the gradient, curl, and divergence operators in three space dimensions.
-% This formalism is independent of the spatial dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.In this setting, the common writing of the Poincar\'e--Friedrichs inequalities we are interested in is just as~\eqref{math:PF_gradient_1}: 
-for every $u \in W^{p}\Alt^{k}(\Omega)$, there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ and such that (all the notation is fixed in detail in Section~\ref{section:calculus} later)
+% This formalism is independent of the spatial dimension and highlights underlying geometric structures common to the gradient, curl, and divergence operators.
+% In this setting, the common writing of the Poincar\'e--Friedrichs inequalities we are interested in is just as~\eqref{math:PF_gradient_1}: 
+For every $u \in W^{p}\Alt^{k}(\Omega)$, there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ and such that (all the notation is fixed in detail in Section~\ref{section:calculus} later)
 \begin{align} \label{math:intro:exterior:pf} 
     \| u \|_{L^{p}(\Omega)} \leq  C_{k,\Omega,p} \| \cartan w \|_{L^{p}(\Omega)}.
 \end{align} 
@@ -434,7 +435,7 @@ Crucially, this allows us to easily estimate their operator norms and thus bound
 We also address the construction of potentials for the gradient, curl, and divergence operators, and in general the exterior derivative, over a simplex subject to partial boundary conditions. 
 We are not aware of explicit estimates or regularized potentials for these boundary conditions in the published literature. 
 For example, given a divergence-free vector field over a tetrahedron with vanishing normal trace along three of the tetrahedron's faces, 
-we want to find the unique vector field potential that not only is a preimage under the curl operator but that also has vanishing tangential trace along the same three faces. 
+we want to find the unique vector field potential that not only is a preimage under the curl operator but also has vanishing tangential trace along the same three faces. 
 We achieve this by constructing an auxiliary problem subject to full boundary conditions,
 so that we can build upon the regularized Bogovski\u{\i} operators and the Poincar\'e--Friedrichs inequalities subject to boundary conditions on the entire boundary.
 We thus obtain Poincar\'e--Friedrichs inequalities over simplices and subject to partial boundary conditions. 
@@ -518,7 +519,7 @@ Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestima
 
 % We want to generalize the sequential construction of the potential operator for the gradient to vector potentials for the curl and divergence. 
 We generalize this sequential construction of potentials to the curl, the divergence, and the exterior derivative. 
-However, we need to overcome new challenges that are arise due to the infinite-dimensional kernels of these differential operators, as we now explain in more detail. 
+However, we need to overcome new challenges that arise due to the infinite-dimensional kernels of these differential operators, as we now explain in more detail. 
 The basic inductive strategy remains the same. 
 We start by constructing, say, a curl potential over a single simplex. 
 Having already defined a potential operator over a subtriangulation, we select a neighboring simplex whose intersection with the preceding simplices includes at least one common face. 
@@ -545,7 +546,7 @@ Any shellable simplicial complex must necessarily triangulate a contractible spa
 With respect to our main interest, local patches (stars) in 2D and 3D triangulations are shellable. 
 
 % 6. Contractible 
-Inspired by the contractibility of shellable triangulations, we pursuit an additional estimate for Poincar\'e--Friedrichs constants. 
+Inspired by the contractibility of shellable triangulations, we pursue an additional estimate for Poincar\'e--Friedrichs constants. 
 Every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations. 
 Their bi-Lipschitz constants are controlled by the shape regularity of the domain. 
 This reduces the construction of potentials over shellable triangulations to the construction of potentials over convex domains.
@@ -577,6 +578,7 @@ Furthermore, $\Jacobian F$ always denotes the Jacobian of any mapping $F$.
 
 \subsection{Organization of this manuscript}
 
+% LTeX: enabled=false
 The remainder of this manuscript is structured as follows.
 We review Poincar\'e--Friedrichs constants for the gradient over convex domains in Section~\ref{section:poincare}. 
 We also discuss there the difference with the Poincar\'e inequality and motivate our interest in linear potentials.
@@ -584,11 +586,12 @@ We review basic notions of triangulations in Section~\ref{section:triangulations
 We develop computable upper bounds for the Poincar\'e--Friedrichs constants for the gradient over face-connected triangulated domains in Section~\ref{section:gradient}.
 We move on to the Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}. 
 Our regularized potentials over convex sets are then introduced in Section~\ref{section:potentialoperator}, 
-giving rise to to computable Poincar\'e--Friedrichs constants as their operator norms. 
+giving rise to computable Poincar\'e--Friedrichs constants as their operator norms. 
 We subsequently review shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations},
 and we construct an important geometric reflection operator in Section~\ref{section:extension}. 
 We finally provide computable upper bounds for Poincar\'e--Friedrichs constants for the exterior derivative over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
 We present numerical examples in Section~\ref{section:numericalexamples} and conclude by some outlook in Section~\ref{section:outlook}. 
+% LTeX: enabled=true
 
 
 
@@ -670,10 +673,10 @@ We present numerical examples in Section~\ref{section:numericalexamples} and con
 This section surveys variations of the Poincar\'e--Friedrichs inequalities for the gradient operator,
 with emphasis on analytical upper bounds over bounded convex domains. 
 We explain the difference between the Poincar\'e--Friedrichs inequality, which addresses the norm-minimizing potential, and the Poincar\'e inequality, which addresses the potential with mean value zero, and rephrase this in terms of potentials. 
-This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below but we believe it is also of independent interest.
+This survey serves as a building block in constructing computable constants over triangulated domains in a combinatorial way below, but we believe it is also of independent interest.
 \\
 
-Let $\Omega \subseteq \bbR^{n}$ be an open connected set. 
+Let $\Omega \subseteq \bbR^{n}$ be a connected open set. 
 Given any $p \in [1,\infty]$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$, and we write $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ for the corresponding Lebesgue space of vector fields. 
 We also write $W^{1,p}(\Omega)$ for the first-order Sobolev space over $\Omega$ with integrability exponent $p$. 
 
@@ -767,7 +770,7 @@ Hence,
 % This improvement follows from the orthogonality of constant functions to average-free functions in $L^2(\Omega)$. 
 This improvement also follows from the projection estimate (see, e.g.,~\cite{xu2003some}).
 Stern's generalized projection estimate~\cite[Theorem~4.1,Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$:
-since taking the average is a the projection onto the constants functions with unit norm, from~\eqref{math:aver_norm} it now follows that 
+since taking the average is a projection onto the constants functions with unit norm, from~\eqref{math:aver_norm} it now follows that 
 % From~\eqref{math:aver_norm}, Stern's generalized projection estimate~\cite[Theorem~4.1, Remark~5.1]{stern2015banach} implies improved estimate for all $L^{p}$ spaces with $1 \leq p \leq \infty$ as 
 \begin{align*}
     \| u - u_\Omega \|_{L^{p}(\Omega)}
@@ -822,7 +825,7 @@ If there is a Poincar\'e--Friedrichs constant, then by definition
 \begin{align*}
     \| \Phi(\bff) \|_{L^{p}(\Omega)} \leq C_{\grad,\Omega,p} \| \bff \|_{L^{p}(\Omega)},
 \end{align*}
-and this inequality is sharp by definition of $\Phi$ provided that $C_{\grad,\Omega,p}$ is smallest possible constant in \eqref{math:inequalitypf:gradient}. 
+and this inequality is sharp by definition of $\Phi$ provided that $C_{\grad,\Omega,p}$ is the smallest possible constant in \eqref{math:inequalitypf:gradient}. 
 Any Poincar\'e--Friedrichs inequality~\eqref{math:inequalitypf:gradient} is comparable to an upper bound for the generalized (possibly nonlinear) inverse of the gradient operator $\nabla : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$. 
 
 Because $\Phi : \nabla W^{1,p}(\Omega) \rightarrow L^{p}(\Omega)$ is generally a nonlinear operator for $p \neq 2$,
@@ -1139,7 +1142,7 @@ which is the union $\underlying{\calT} = \bigcup \calT$ of all simplices in $\ca
     % \underlying{\calT} := \bigcup_{ T \in \calT } T
     % .
 % \end{align*}
-We call any set triangulable if it is the underlying set of some triangulation. 
+One calls any set triangulable if it is the underlying set of some triangulation. 
 
 
 \begin{comment}
@@ -1173,7 +1176,7 @@ Whenever $\calT$ is a simplicial complex,
 the set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
 % Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. In practice, we not always distinguish between points and singleton simplices. 
 % Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
-Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, codimension one members) of this triangulation.\footnote{
+Similarly, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ refer to the vertices and the faces (that is, members with codimension one) of this triangulation.\footnote{
     Our use of the term \textit{face} as is common in classical geometry and the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
@@ -1213,6 +1216,7 @@ A crucial structural observation is the following.
  where $S'' \in \calT$ is the convex closure of $S$ and $S'$.
 \end{proof}
 
+% LTeX: enabled=false
 We introduce a specific notion of connectivity when we are given an $n$-dimensional simplicial complex $\calT$. 
 We call two $n$-dimensional simplices $S, S' \in \calT$ \emph{face-neighboring} if $S \cap S'$ is a common face of both of them. 
 We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S=S_0,S_1,\dots,S_m=S' \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
@@ -1220,6 +1224,7 @@ We call such a sequence a \emph{face path} from $S$ to $S'$ in $\calT$.
 Clearly, face-connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{face-connected component} of $\calT$ is an equivalence class under this equivalence relation, 
 and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
+% LTeX: enabled=true
 
 
 \subsection{Shape measures and related quantities}
@@ -1229,7 +1234,7 @@ We introduce several quantities that measure the regularity of a triangulation.
 These have in common that they can be computed from purely local information. 
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
-Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$,
+Moreover, $\height(T)$ refers to the smallest height of any vertex of the simplex $T$,
 where the height of a vertex is defined as the distance to the affine span of its opposing face.
 For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
 
@@ -1296,7 +1301,7 @@ We gather a few relationships between geometric and algebraic entities and compa
     We begin with observing that the largest $\ell^{2}$-norm of any column of $M$,
     which here denote by $c_{\max}(M)$, 
     equals the maximum of the quotient $\| M x \|_{\ell^{2}} / \| x \|_{\ell^{1}}$ over all non-zero $x \in \bbR^{n}$. 
-    We also know that the diameter of $T$ is the length of its longest edge. 
+    The diameter of $T$ is the length of its longest edge. 
     Our first pair of inequalities follows via standard comparisons of Euclidean norms:
     \begin{align*}
         \frac{\diam(T)}{\sqrt 2} \leq \matnorm{ M } \leq \sqrt{n} \cdot c_{\max}(M) \leq \sqrt{n} \cdot \diam(T).
@@ -2020,7 +2025,7 @@ We emphasize that face patches are not necessarily convex, but we can still exte
 %         \| \nabla u \|_{L^{p}(U)}^{p}
 %         .
 %     \end{align*}
-%     Hence 
+%     Hence, 
     \begin{align*}
         \| \nabla \hat u \|_{L^{p}(\hat U)}
         &\leq 
@@ -2250,8 +2255,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    and whenever $T_0, T_1, \dots, T_M$ is a face path,
-    then for all $1 \leq m \leq$ we the following recursive estimates:
+    Whenever $T_0, T_1, \dots, T_M$ is a face path,
+    then for all $1 \leq m \leq$ the following recursive estimates:
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         &
@@ -2349,7 +2354,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 %         \right) 
         = 0.
     \end{align*}
-    We apply Lemma~\ref{lemma:mixedbconsimplex} to the first expression in~\eqref{equation:w''}, which gives 
+    An application of Lemma~\ref{lemma:mixedbconsimplex} to the first expression in~\eqref{equation:w''} gives 
     \begin{align*}
         \| w''_{m} \|_{L^{p}(T_{m})} 
         &
@@ -2426,7 +2431,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \begin{align*}
     c_{m} := w_{|\Makoto_{F_m}} - w_{F_{m}}.
     \end{align*}
-    We now observe that 
+    Now we observe that 
     \begin{gather*}
         \| w \|_{L^{p}(T_m)}
         \leq 
@@ -2610,7 +2615,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         % ,
     % \end{align*}
     
-    \color{green}Hence 
+    \color{green}Hence, 
     \begin{align}
         \| w \|_{L^{p}(\Omega)}^{p}
         &
@@ -2655,7 +2660,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \right)^{\frac 1 q}
         .
     \end{align}
-    Instead if $p \leq q$, that is, $p \leq 2$, then 
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
     \begin{align}
         \left(
             \sum_{m=0}^{M}
@@ -2771,7 +2776,7 @@ $\phi^{\curl}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$, and
 $\phi^{\divergence}: \bfL^{p}(\Omega') \to \bfL^{p}(\Omega)$.
 We also introduce 
 $\phi^{\rm b}: L^{p}(\Omega') \to L^{p}(\Omega)$. 
-We define them 
+These are defined 
 for any $v \in L^{p}(\Omega')$ and $\bfw \in \bfL^{p}(\Omega')$ by setting 
 \begin{subequations}\label{eq_definition_piola}
 \begin{align*}
@@ -3010,7 +3015,7 @@ The exterior derivative is defined in the sense of distributions and we introduc
     .
 \end{gather*}
 We observe that $u \in L^{p}\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^{p}\Alt^{k+1}(\Omega)$
-if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
+if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration-by-parts formula
 \begin{align*}
     \int_{\Omega} \cartan v \wedge u
     &=
@@ -3026,10 +3031,10 @@ if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the
 Lastly, we are also interested in differential forms whose trace vanishes along a part of the boundary. 
 Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
 We say that $u \in W^{p}\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
-% such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration by parts formula
+% such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration-by-parts formula
 such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\bbR^{n})$ 
 whose support lies in the open ball $B_r(x)$
-we have the integration by parts formula
+we have the integration-by-parts formula
 \begin{align*}
     \int_{B_r(x)} \cartan v \wedge \tilde u
     &=
@@ -3091,7 +3096,7 @@ One can show that $\phi^{\ast}u \in L^{p}\Alt^{k}(\Omega)$ and the following est
     Moreover, if $u \in W^{p}\Lambda^{k}(\Omega')$, then $\phi^{\ast} u \in W^{p}\Lambda^{k}(\Omega)$ and $\cartan \phi^{\ast} u = \phi^{\ast} \cartan u$. 
 \end{proposition}
 \begin{proof}
-    See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}).
+    See~\cite{licht2019smoothed} and Corollary~6 in~\cite{stern2013lp}.
 \end{proof}
 
 
@@ -3140,7 +3145,7 @@ Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the fol
         \int_{\bbR^{n}} ( \mollifier_{\epsilon} \star \cartan u ) \wedge v 
         .
     \end{align*}
-    Hence $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $W^{p}\Lambda^{k}(\Omega)$.
+    Hence, $C^{\infty}\Lambda^{k}(\Omega)$ is dense in $W^{p}\Lambda^{k}(\Omega)$.
     
     Next, suppose that $\Omega$ is convex. Without loss of generality, $0 \in \Omega$. 
     Let $u \in W^{p}_{0}\Lambda^{k}(\Omega)$ and extend $u$ trivially onto $\bbR^{n}$. 
@@ -3262,7 +3267,7 @@ We are now in a position to show that the potentials are bounded with respect to
 We begin with the Poincar\'e operator. 
 Let $B_{\diam(\Omega)}(0)$ be the $n$-dimensional ball centered at the origin.
 Suppose that $u \in L^{\infty}\Alt^{\mia}(\Omega)$ with $1 \leq \mia \leq n$.
-We pointwise estimate $\Poinc_{\mia} u(x)$ for any $x \in \Omega$ by the result of a convolution of a locally integrable function with $u$:
+We estimate $\Poinc_{\mia} u(x)$ pointwise for any $x \in \Omega$ by the result of a convolution of a locally integrable function with $u$:
 \begin{align*}
     \left| \Poinc_{\mia} u(x) \right|
     &=
@@ -3289,7 +3294,7 @@ We recall the radial integrals
     ,
 \end{align*}
 where $S_1 \subseteq \bbR^{n}$ stands for the unit sphere of dimension $n-1$. 
-We compute 
+One computes 
 \begin{align*}
     &
     \int_{\bbR^{n}} \sum_{\jeza=0}^{n-\mia} \tbinom{n-\mia}{\jeza} \frac{ \diam(\Omega)^{n-\jeza} }{n-\jeza} \chi_{B_{\diam(\Omega)}(0)}(z) |z|^{\jeza+1-n} \,dz
@@ -3342,7 +3347,7 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 
 We analyze the Bogovski\u{\i} potential operator by similar means. 
 Suppose that $u \in L^{\infty}\Alt^{\mia}(\bbR^{n})$ with $\supp u \subseteq \overline\Omega$ and that $x \in \bbR^{n}$.
-First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence $\calG_{\mia}(x,y) = 0$ and therefore $\Bogov_{\mia} u(x) = 0$ in that case.
+First, if $x \notin \Omega$, then the convexity of $\Omega$ implies that $y + t( x - y ) \notin \Omega$ for all $t > 1$. Hence, $\calG_{\mia}(x,y) = 0$ and therefore $\Bogov_{\mia} u(x) = 0$ in that case.
 Consider now the case $x \in \overline\Omega$. 
 We estimate $\Bogov_{\mia} u(x)$ pointwise by 
 \begin{align*}
@@ -3428,7 +3433,7 @@ that is, the reconstructed potential has support contained within $\overline\Ome
 
 More properties of these operators become apparent after a change of variables. 
 We write down the full definition of these operators and perform two substitutions.
-For the Poincar\'e operator, we substitute $a = x + t(y-x)$ and then we substitute $s = (t-1)/t$,
+For the Poincar\'e operator, we substitute $a = x + t(y-x)$, and then we substitute $s = (t-1)/t$,
 leading to 
 \begin{align*}
     \Poinc_{\mia} u(x) 
@@ -3443,7 +3448,7 @@ leading to
     \int_{\bbR^{n}} \chi_{\Omega}(a) \,(x-a)\lrcorner \int_{0}^{1} t^{\mia-1} u\left(a+t(x-a)\right)\,dt\,da
     .
 \end{align*}
-For the Bogovski\u{\i} operator, we substitute $a = y + t(x-y)$ and then we substitute $s = t/(t-1)$,
+For the Bogovski\u{\i} operator, we first substitute $a = y + t(x-y)$, and then we substitute $s = t/(t-1)$,
 leading to 
 \begin{align*}
     \Bogov_{\mia} u(x) 
@@ -3701,7 +3706,7 @@ and apply the Poincar\'e potential operator to this result, which gives
     \,\cartanx^{j} \wedge \cartanx^{\sigma-\sigma(i)}
     .
 \end{align*}
-We add the exterior derivative of the potential and the potential of the exterior derivative.
+Next, we add the exterior derivative of the potential and the potential of the exterior derivative.
 Taking into account cancellations, this gives the identity 
 \begingroup\allowdisplaybreaks
 \begin{align*}
@@ -4226,7 +4231,7 @@ we have the following improved estimate.
     This is a reduction to the Friedrichs inequality. 
     The space $W^{1,2}_{0}(\Omega)$ is the closure of the smooth functions with support in $\Omega$ in the Hilbert space $W^{1,2}(\Omega)$. 
     Then $\nabla : W^{1,2}_{0}(\Omega) \subseteq L^{2}(\Omega) \rightarrow \bfL^{2}(\Omega)$ is a closed densely-defined linear operator 
-    with smallest singular value bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
+    whose smallest singular value is bounded from below by $\diam(\Omega)^{-1}$, according to the Friedrichs inequality. 
     The adjoint is the closed densely-defined linear operator $-\divergence : \bfW^{2}(\divergence,\Omega) \subseteq \bfL^{2}(\Omega) \rightarrow L^{2}(\Omega)$,
     which has the same smallest singular value. 
 \end{proof}
@@ -4442,15 +4447,15 @@ Suppose that $\calT$ is an $n$-dimensional simplicial complex that triangulates 
 Those simplices of the manifold triangulation that are subsets of the boundary of the underlying manifold are called \emph{boundary simplices}. 
 % The simplices that lie in the boundary of the underlying set are called \emph{boundary simplices}.
 All other simplices of the manifold triangulation are called \emph{inner simplices}. 
-We have seen that the boundary simplices of a manifold triangulation constitute a triangulation of the manifolds boundary. 
+We have seen that the boundary simplices of a manifold triangulation constitute a triangulation of the manifold's boundary. 
 We call this simplicial complex the \emph{boundary complex}. It has dimension $n-1$. 
 % We see that the family of boundary faces constitute a simplicial complex, which we call \textit{boundary complex}.
 % Any point on the boundary lies within some boundary simplex, and hence the boundary complex is a triangulation of the boundary. 
 % Definitions imply that the boundary complex is a manifold triangulation of dimension $n-1$.
 % The boundary simplices of a manifold triangulation of dimension $n$ constitute a manifold triangulation themselves, of dimension $n-1$, which triangulate the boundary of the underlying space. 
 
-We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. This topics is surprisingly non-trivial and 
-we gather some results that are hard to find in the literature. 
+We continue with a few more observations about the topology of local patches (stars) of manifold triangulations. 
+This topic is surprisingly non-trivial. We only gather some results that are hard to find in the literature. 
 
 \begin{lemma}\label{lemma:startopology}
     Let $\calT$ be a finite $n$-dimensional simplicial complex whose underlying space is a manifold $\calM$.
@@ -4645,7 +4650,7 @@ where our definition of shelling is equivalent to the notion of the shellings of
 
 
 
-Suppose that $\calT$ is an $n$-dimensional simplicial complex and we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
+Suppose that $\calT$ is an $n$-dimensional simplicial complex and that we have an enumeration of the $n$-simplices $T_{0}, T_{1}, T_{2}, \dots \in \subsimplex_{n}(\calT)$.
 For any enumeration, we call 
 \begin{align*}
     \Gamma_m 
@@ -4696,7 +4701,7 @@ The resulting succession of simplicial complexes consists of simplicial balls or
     On the one hand, 
     if $\Gamma_{m}$ is the entire boundary of $T_{m}$, 
     then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
-    Hence $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
+    Hence, $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
     which requires $m = M$.
     On the other hand, 
     if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
@@ -4744,7 +4749,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
     Write $M = \underlying{\calT}$. 
     There is nothing to show if $\calT$ contains only one triangle. 
     We call a triangle $T \in \calT$ \emph{good in $\calT$} if it intersects the boundary $\partial M$ in a non-empty union of edges. 
-    Hence a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
+    Hence, a triangle is good in $\calT$ if its intersection with $\partial M$ is either one, two, or three edges,
     and a triangle is not good in $\calT$ if that intersection is either empty, only some of its vertices, or a vertex and the opposite edge.
     % DONE: I understand what it means from the rest of the proof, but I believe it could a bit more explicit.
     We show by an induction argument over the number of triangles that every triangulation of a $2$-\disk\ that contains at least two triangles also contains at least two good triangles. 
@@ -4761,7 +4766,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
     By the induction assumption, each of those components contains at least two triangles 
     that are good in the respective component. 
     So each component has at least one triangle that is also good in $\calT$. 
-    Hence $\calT$ contains two good triangles, which completes the induction step. 
+    Hence, $\calT$ contains two good triangles, which completes the induction step. 
     
     We conclude that whenever $\calT$ triangulates a $2$-\disk,
     it contains a good triangle $T$. 
@@ -4791,7 +4796,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
 
 
 \begin{lemma}\label{lemma:stars_are_shellable}
-    Let $\calT$ be a $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
+    Let $\calT$ be an $n$-dimensional shellable triangulation and $V \in \Vertices(\calT)$ be a vertex.
     Then $\patch_{\calT}(V)$ is shellable. 
 \end{lemma}
 \begin{proof}
@@ -4813,7 +4818,7 @@ We now collect important examples of shellable triangulations. Essentially, in t
 \begin{remark}
     Not all triangulable sets admit a triangulation that is also shellable. 
     Moreover, even if a set admits a shellable triangulation, not all of its triangulations might be shellable. 
-    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an examples of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
+    We refer to~\cite[Example 8.9]{ziegler1995lectures} for an example of non-shellable triangulations of cubes and tetrahedra in three dimensions. 
 \end{remark}
 
 
@@ -5166,8 +5171,8 @@ We give detailed estimates for the singular values of their Jacobians.
             .
         \end{align*}
         We want to characterize the singular values of this transform. 
-        We $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
-        We can write
+        Let $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
+        We verify that 
         \begin{align*}
             \Theta_{|G}(x) 
             = 
@@ -5240,7 +5245,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{\min}(\Theta,G) := \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) \label{math:theta_min}
             .
         \end{align}
-        They are mutual reciprocals of each other and they monotonely increasing and decreasing, respectively, in $\tan(\beta)$.
+        They are mutual reciprocals of each other, and they are monotonically increasing and decreasing, respectively, in $\tan(\beta)$.
         We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|G}$,
         whereas all its other singular values equal $1$. 
         
@@ -5254,7 +5259,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$,
         which must be contained in some face of $T$. 
         Since $S'$ has dimension $n-k-1$, the vector $(n-k) h_{z}$ is the height vector of that face of $T$. 
-        Thus 
+        Thus, 
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
             = 
@@ -5293,6 +5298,12 @@ We give detailed estimates for the singular values of their Jacobians.
             \quad 
             \sigma_{n}(\Theta,x)^{-1} \leq \mu_{T,k}.
         \end{align}
+        \color{red}It is also evident that the eigenvalues of the Jacobian almost everywhere have magnitude $1$.\color{black}
+        
+        
+        
+        
+        
         \item 
         We introduce another mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$ as follows. 
         Consider any $n$-simplex $G \in \calG$ and let $G^c \in \calG^{c}$ be its image under $\Theta$.
@@ -5375,7 +5386,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         The Jacobian acts as the identity over the span of $h_{z}$ and $z_{s'}$.
         We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
-        Hence $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
+        Hence, $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
         \begin{align*}
             M_{\Phi,G} 
             = 
@@ -5390,6 +5401,22 @@ We give detailed estimates for the singular values of their Jacobians.
                 -1 & 0 
                 \\
                 -3\tan(\beta) & 2 
+            \end{pmatrix}
+            \\
+            \color{red}
+            M_{\Phi,G} 
+            = 
+            \begin{pmatrix}
+                -\frac 1 2             & 0 
+                \\
+                -\frac 3 2 \tan(\beta) & 1 
+            \end{pmatrix}
+            = 
+            \frac 1 2 
+            \begin{pmatrix}
+                -1 & 0 
+                \\
+                -3\tan(\beta) & 1 
             \end{pmatrix}
         \end{align*}
         By building the symmetric matrix $M_{\Phi,G}^{t} M_{\Phi,G}$ and computing its eigenvalues, 
@@ -5426,7 +5453,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac 3 4 \sqrt{ 1 + \tan(\beta)^2 } - \frac 1 4 \sqrt{ 1 + 9\tan(\beta)^2 }
             .
         \end{align*}
-        These are monotonely increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
+        These are monotonically increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
         Hence, these are also the maximal and minimal singular values of the Jacobian $\Jacobian \Phi_{G}$, the remaining singular values being equal to $1$. 
         Notice that $\sigma_{\max}(\Phi,G) \sigma_{\min}(\Phi,G) = 1/2$. 
         Therefore,
@@ -5458,6 +5485,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \label{math:phi_min}
             .
         \end{gather}
+        \color{red}Moreover, it is evident that the eigenvalues of the Jacobian are $1$ with multiplicity $n-1$ and $-\tfrac 1 2$ with multiplicity $1$.\color{black}
         This finishes the discussion of the transformation $\Phi$.
         
         
@@ -5540,7 +5568,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \qquad 
             \sigma_{\min} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}.     
         \end{align*}
-        Notice that these are strictly monotonely increasing or decreasing, respectively, in $\|a\|$.
+        Notice that these are strictly monotonically increasing or decreasing, respectively, in $\|a\|$.
         We thus consider the upper bound 
         \begin{align*}
             \|a\| 
@@ -5551,6 +5579,8 @@ We give detailed estimates for the singular values of their Jacobians.
             \right)
             .
         \end{align*}
+        \color{red}Lastly, the matrix $\Id + \hat x \otimes a^{t}$ has the eigenvalue $1$ with multiplicity $n-1$ and a trace of $n + \langle a, \hat x \rangle$,
+        so it has one eigenvalue $1 + \langle a, \hat x \rangle$.\color{black}
 
         \item 
         We now describe the construction of a bi-Lipschitz mapping 
@@ -5560,7 +5590,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Recall that $\calG^\ast$ and $\calK$ are their own respective stars around the origin,
         so they must contain an open ball around the origin. 
         % TODO \mwl{Here we need to show that it is indeed a ball. It must be a domain triangulation.}
-        Let ${G} \in \calG^\ast$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normals of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        Let ${G} \in \calG^\ast$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normal vectors of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
         and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
         We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
         that is, the scalar product of $x$ with either height vector is positive. 
@@ -5667,7 +5697,7 @@ We give detailed estimates for the singular values of their Jacobians.
         We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(k+1)^{-1}$.
         That estimates the quotient $\| x_K \| / \| h_K \|$. 
         % 
-        In oder to estimate $\|x_{G}\|$, we first notice the case $G \in \calG$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
+        In order to estimate $\|x_{G}\|$, we first notice the case $G \in \calG$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
         In the case $G \in \calG^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         that must lie in the face of $G$ that is opposite to $-z_{S'}$. 
         The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
@@ -6077,7 +6107,7 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
         \leq 
         C_{{\PF},k,\Omega,p}
         \| \cartan u \|_{L^{p}(\Omega)}
-        .
+        ,
     \end{align*}
     where 
     \begin{align*}
@@ -6228,7 +6258,7 @@ In particular, already $\patch_{\calT}(S_{m}) \subseteq X_{m}$. % is already inc
 
 In addition to that, we introduce 
 \begin{align*}
-    \Makoto_{m-1} := \patch_{\calT}(S_{m}) \setminus T_{m}.
+    \Makoto_{m-1} := \patch_{\calT}(S_{m}) \setminus T_{m}
 \end{align*}
 for the complement $\Makoto_{m-1} \subseteq X_{m-1}$ of the simplex $T_{m}$ in the star $\patch_{\calT}(S_{m})$. 
 
@@ -6247,7 +6277,8 @@ The second one is specific to the fact that shellable triangulations are contrac
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$
     and such that the following estimates hold:
     \begin{gather*}
-        \| w \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
+        \| w \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}
+        ,
     \end{gather*}
     and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
     \begin{align*}
@@ -6571,7 +6602,7 @@ The second one is specific to the fact that shellable triangulations are contrac
         ,
     \end{align*}
     
-    Hence 
+    Hence, 
     \begin{align}
         \| w \|_{L^{p}(\Omega)}^{p}
         &
@@ -6616,7 +6647,7 @@ The second one is specific to the fact that shellable triangulations are contrac
         \right)^{\frac 1 q}
         .
     \end{align}
-    Instead if $p \leq q$, that is, $p \leq 2$, then 
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
     \begin{align}
         \left(
             \sum_{m=0}^{M}
@@ -6658,15 +6689,15 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:curl}
-    Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
-    Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$.
-    Let $1 \leq p \leq \infty$ and $\bfu \in \bfW^{p}(\Omega,\curl)$.
+    Let $\calT$ be a shellable $n$-dimensional triangulation, 
+    and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
+    Assume that $T_0, T_1, \dots, T_M$ be a shelling of $\calT$ and that $\bfu \in \bfW^{p}(\Omega,\curl)$ for some $1 \leq p \leq \infty$.
     \begin{itemize}
         \item 
         There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$
         and such that the following estimates hold:
         \begin{gather*}
-            \| \bfw \|_{L^{p}(T_{0})} \leq C_{{\PF},1,T_{0},p} \| \curl \bfu \|_{L^{p}(T_{0})}.
+            \| \bfw \|_{L^{p}(T_{0})} \leq C_{{\PF},1,T_{0},p} \| \curl \bfu \|_{L^{p}(T_{0})}
         \end{gather*}
         and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
         \begin{align*}
@@ -6832,8 +6863,9 @@ We expect forthcoming works to utilize our estimates over local patches as subco
 
 
 \section*{Acknowledgments}
-
-MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, and by John M.\ Lee.
+% LTeX: enabled=false
+MWL appreciates helpful remarks by Abdellatif Aitelhad, by Martin Costabel, by John M.\ Lee, and G\"unther M.\ Ziegler.
+% LTeX: enabled=true
 
 \bibliographystyle{acm_mod}
 \bibliography{library}
