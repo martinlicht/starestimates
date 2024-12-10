@@ -1356,27 +1356,64 @@ This indicator quantifies how much reflection across the shared face distorts th
         ,
         \qquad 
         \frac{ \vol(T_1) }{ \vol(T_2) }
-        \leq 
         % \frac{\diam(T_1)^{n}}{n! \cdot \vol(T_1)} 
         % \cdot 
         % \frac{\diam(T_2)^{n}}{n! \vol(T_2)} 
         % = 
+        \leq 
+        \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_2)
+        \leq 
         \aspectratio(T_1) \aspectratio(T_2)
         .
     \end{align*}
     If $\Xi : T_1 \rightarrow T_2$ is the affine diffeomorphism that is the identity over $F$, then 
+    at least $n-2$ of its Jacobian's singular values equal $1$, and we have 
     \begin{align*}
-        \matnorm{ \Jacobian \Xi }
+        \matnorm{ \Jacobian \Xi^{  } } 
+        &
         \leq 
-        \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2}
-        % ( 1 + \aspectratio(T_2) ) \aspectratio(T_1)
-        % \Cvier{n} \geometricshapemeasure(T_2) \geometricshapemeasure(T_1) 
+        \frac{1}{2} 
+        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        \sqrt{ \left( \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_{1}) + 1 \right)^{2} + \aspectratio(T_{1})^{2} }
+        +
+        \frac{1}{2} 
+        \sqrt{ \left( \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_{1}) - 1 \right)^{2} + \aspectratio(T_{1})^{2} }
+        ,
+        \\
+        \matnorm{ \Jacobian \Xi^{-1} } 
+        &
+        \leq 
+        \frac{1}{2} 
+        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        \sqrt{ \left( \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_{2}) + 1 \right)^{2} + \aspectratio(T_{2})^{2} }
+        +
+        \frac{1}{2} 
+        \sqrt{ \left( \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_{2}) - 1 \right)^{2} + \aspectratio(T_{2})^{2} }
+        ,
+        \\
+        \det(\Jacobian \Xi)
+        &\leq 
+        \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_2)
         .
     \end{align*}
-%     Here, $\Cvier{n} \leq \Ceins{n} \Czwei{n}$. 
+%     \begin{align*}
+%         \matnorm{ \Jacobian \Xi }
+%         \leq 
+%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2}
+%         % ( 1 + \aspectratio(T_2) ) \aspectratio(T_1)
+%         % \Cvier{n} \geometricshapemeasure(T_2) \geometricshapemeasure(T_1) 
+%         .
+%     \end{align*}
+%     \begin{gather*}
+%         \matnorm{ \Jacobian \Xi^{  } } 
+%         \leq 
+%         \aspectratio(T_1) + \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_2)
+%         \quad 
+%         \matnorm{ \Jacobian \Xi^{-1} } \leq \aspectratio(T_2) + \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_1),
+%         \\
+%         \det(\Jacobian \Xi)            \leq \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_2),
+%     \end{gather*}
 \end{lemma}
-
-
 \begin{proof}
     The diameter of $F$ is at least as large as the height $h_S$ of some other vertex of $F$ in $T_{1}$. 
     Now, 
@@ -1398,32 +1435,102 @@ This indicator quantifies how much reflection across the shared face distorts th
         \aspectratio(T_{1}) \frac{ \diam(F) }{ h_2 }
         \leq
         \aspectratio(T_{1}) \aspectratio(T_{2})
+        ,
+        \qquad 
+        \frac{ \diam(T_1) }{ h_2 }
+        \leq
+        \frac{ \diam(T_1) }{ \diam(T_2) } \aspectratio(T_{2})
         .
     \end{align*}
     Lastly, let $\Xi : T_1 \rightarrow T_2$ be as stated. 
-    We estimate the Lipschitz constant of $\Xi$ as follows. 
-    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and contains the origin, 
-    and the unit height vector $h_0$ goes in the direction of the vertex $z_1$ is in the $n$-th coordinate direction.
-    Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha h_0$ and $x' = b' + \alpha' h_0$.
-    Since $\Xi(h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
+    To estimate the Lipschitz constant of $\Xi$, we study the singular values of its Jacobian. 
+    Without loss of generality, $F$ lies in the span of the first $n-1$ coordinates and contains the origin. 
+    Write $z_1 \in T_1$ and $z_2 \in T_2$ for the two vertices not contained in $F$.
+    There exists a unit height vector $\hat h_0$ that goes in the direction of the vertex $z_1$. 
+    Without loss of generality, $\hat h_0$ is in the $n$-th coordinate direction.
+    Suppose that $b_1, b_2 \in F$ such that $z_1 = b_1 + h_1 \hat h_0$ and $x_2 = b_2 + h_2 \hat h_0$.
+    The mapping $\Xi$ is linear, being the identity over $F$ and mapping $z_1$ to $z_2$. Hence,
     \begin{align*}
-        \| \Xi(x) - \Xi(x') \|
-        \leq  
-        \| b - b' \| + | \alpha - \alpha' | \cdot \| z_2 \|
-        \leq  
-        \| b - b' \| + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \| h_0 \|
-        \leq 
-        \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \| x-x' \|
+        \Xi( \hat h_0 ) = h_1^{-1} ( b_2 - b_1 ) + h_2 h_{1}^{-1} \hat h_0.
+    \end{align*}
+    We see that $\Xi$ equals the identity over the orthogonal complement of the span of $\hat h_0$ and $b_2 - b_1$.
+    The only singular values of its Jacobian are the two singular values $\sigma_{-} \leq 1 \leq \sigma_{+}$ of the matrix 
+    \begin{align*}
+        \begin{pmatrix}
+            a & 0 
+            \\
+            c & 1
+        \end{pmatrix},
+        \qquad 
+        a = h_2 / h_1,
+        \qquad 
+        c = \|b_2-b_1\| / h_1
         .
     \end{align*}
+    These are 
+    \begin{align*}
+        \sigma_{\pm} 
+        &
+        = 
+        \frac{1}{\sqrt{2}} \sqrt{ 1 + a^2 + c^2 \pm \sqrt{ \left( 1 + a^2 + c^2 \right)^{2} - 4a^{2} } } 
+        \\&
+        =
+        \frac{1}{\sqrt{2}} \sqrt{ 1 + a^2 + c^2 \pm \sqrt{ \left( (1+a)^2 + c^2 \right)\left( (1-a)^2 + c^2 \right) } } 
+        \\&
+        =
+        \frac{1}{2} 
+        \left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        .
+    \end{align*}
+    We remark that this provides the upper bound 
+    \begin{align*}
+        \sigma_{+} 
+        &
+        \leq 
+        \frac{1}{2} 
+        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        \sqrt{ \left( \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_{1}) + 1 \right)^{2} + \aspectratio(T_{1})^{2} }
+        +
+        \frac{1}{2} 
+        \sqrt{ \left( \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_{1}) - 1 \right)^{2} + \aspectratio(T_{1})^{2} }
+        .
+    \end{align*}
+    The desired estimates are shown.
+%     This implies the determinant identity and estimate 
+%     \begin{align*}
+%         \det( \Jacobian \Xi ) 
+%         = 
+%         \frac 1 4 \left( (1+a)^2 - (1-a)^2 \right) 
+%         &
+%         = 
+%         a
+%         \leq 
+%         \aspectratio(T_{1}) \aspectratio(T_{2}) 
+%         .
+%     \end{align*}
+%     % Now we see that if $a \leq 1$, then $\sigma_{+} \leq 1 + c$, and if $a \geq 1$, then $\sigma_{+} \leq a + c$.
+%     Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha \hat h_0$ and $x' = b' + \alpha' \hat h_0$.
+%     Since $\Xi(\hat h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
+%     \begin{align*}
+%         \| \Xi(x) - \Xi(x') \|
+%         \leq  
+%         \| b - b' \| + | \alpha - \alpha' | \cdot \| z_2 \|
+%         \leq  
+%         \| b - b' \| + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \| \hat h_0 \|
+%         \leq 
+%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \| x-x' \|
+%         .
+%     \end{align*}
+    \color{blue}
     \color{red}
-    Writing $h_0$ for the unit normal in direction $z_1$, we have 
+    The linear mapping $\Xi$ takes the form 
+    % Writing $\hat h_0$ for the unit normal in direction $z_1$, we have 
     \begin{align*}
         \Xi(x) 
         = 
         x 
-        - \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_1
-        + \frac{ \langle h_0, x \rangle }{ \langle h_0, z_1 \rangle } z_2
+        - \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_1
+        + \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_2
         ,
         \qquad 
         x \in \bbR^{n}
@@ -1432,18 +1539,22 @@ This indicator quantifies how much reflection across the shared face distorts th
     Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
     By the Xu-Zikanatov estimate,
     \begin{align*}
-        \matnorm{ \Jacobian \Xi }
+        % \matnorm{ \Jacobian \Xi }
+        \sigma_{+} 
         \leq 
         \frac{ \diam(T_1) }{ \height(T_1) }
         +
         \frac{ \diam(T_2) }{ \height(T_1) }
         \leq 
-        \left( 1 + \aspectratio(T_2) \right)
-        \aspectratio(T_1)
+        \aspectratio(T_1) + \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_2)
         .
     \end{align*}
-    The desired estimates are shown.
-\begin{comment}
+    Analogous upper bound holds for $\sigma^{-1}_{-}$.
+%     \begin{align}
+%         \sigma_{-}^{-1} \leq \left( 1 + \aspectratio(T_1) \right) \aspectratio(T_2)
+%     \end{align}
+% \begin{comment}
+    \color{Mulberry}
     \mwl{Tighter estimate via geometry}
     Matrix inverse lemma:
     \begin{align*}
@@ -1629,7 +1740,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         \frac{\langle \hat h, z_2 \rangle}{\langle \hat h, z_1 \rangle} \det(A)
         .
     \end{align*}
-\end{comment}
+% \end{comment}
 \end{proof}
 
 \begin{remark}
@@ -3352,7 +3463,7 @@ that is, the reconstructed potential has support contained within $\overline\Ome
 
 
 \color{blue}
-\subsection{Interaction of potentials with the exterior derivative}
+\subsection{Rewriting the potentials operators}
 
 More properties of these operators become apparent after a change of variables. 
 We write down the full definition of these operators and perform two substitutions.
@@ -3526,7 +3637,7 @@ We estimate
     \ dt
     .
 \end{align*}
-We estimate the last integral via the basic observations
+The last integral is handled via the basic observations
 \begin{align*}
     \int_{0}^{\frac 1 2} 
     \frac{ t^{k-1} }{ (1-t)^{n} }
@@ -4999,7 +5110,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \quad 
         | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{k}(\calT),
         \\
-        \sigma_n \leq \Csechs{n}{k}(\calT),
+        \sigma_n^{-1} \leq \Csechs{n}{k}(\calT),
         \quad 
         \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Csechsprime{n}{k}(\calT),
         \quad 
@@ -5029,7 +5140,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \quad 
         | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{k}(\calT),
         \\
-        \sigma_n \leq \Cacht{n}{k}(\calT),
+        \sigma_n^{-1} \leq \Cacht{n}{k}(\calT),
         \quad 
         \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Cachtprime{n}{k}(\calT),
         \quad 
@@ -5949,7 +6060,56 @@ We give detailed estimates for the singular values of their Jacobians.
 
 
 
-
+\begin{remark}\label{remark:improved_starreflection}
+    The estimates in Proposition~\ref{proposition:starreflection} should be considered as \textit{proof-of-concept} but not as optimal in any sense.
+    Some improvements are immediately possible if $k=n-1$. 
+    Then the reflection $\Xi$ in Lemma~\ref{lemma:volumecomparison} satisfies the same properties as the mapping $\Xi_{1}$,
+    mapping the simplex $T$ bijectively onto the $\Makoto$ and being the identity along the common face $S$.
+    However, at any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of the Jacobian of $\Xi$ satisfy 
+    %     \begin{gather*}
+    %         \sigma_1      \leq \aspectratio(\calT) ( 1 + \diameterratio(\calT) ),
+    %         \quad 
+    %         \sigma_2,\dots,\sigma_{n-1} \leq 1,
+    %         \quad 
+    %         \sigma^{-1}_n \leq \aspectratio(\calT) ( 1 + \diameterratio(\calT) ),
+    %         \\ 
+    %         | \det\Jacobian\Xi^{  } |      \leq \aspectratio(\calT) \diameterratio(\calT),
+    %         \quad 
+    %         | \det\Jacobian\Xi^{-1} |      \leq \aspectratio(\calT) \diameterratio(\calT).
+    %     \end{gather*}
+    \begin{gather*} 
+        | \det\Jacobian\Xi^{  } |      \leq \aspectratio(\calT) \diameterratio(\calT),
+        \quad 
+        | \det\Jacobian\Xi^{-1} |      \leq \aspectratio(\calT) \diameterratio(\calT),
+        \\
+        \sigma_{1}
+        %&
+        \leq 
+        \frac{1}{2} 
+        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
+        +
+        \frac{1}{2} 
+        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) - 1 \right)^{2} + \aspectratio(\calT)^{2} }
+        ,
+        \\
+        \sigma_{n}^{-1}
+        %&
+        \leq 
+        \frac{1}{2} 
+        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
+        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
+        +
+        \frac{1}{2} 
+        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) - 1 \right)^{2} + \aspectratio(\calT)^{2} }
+        ,
+        \\
+        \sigma_2,\dots,\sigma_{n-1} \leq 1.
+        %         \det(\Jacobian \Xi) &\leq \diameterratio(\calT) \aspectratio(T_2)
+    \end{gather*}
+    These estimates improve over the ones in Proposition~\ref{proposition:starreflection} when the reflection is over a single face.
+    We believe that better estimates can be computed from the geometric data also in the other cases.
+\end{remark}
 
 
 
