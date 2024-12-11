@@ -6098,22 +6098,40 @@ implies the following estimate for Poincar\'e--Friedrichs constants over convex 
 \begin{lemma}\label{lemma:PFexteriorsimplex}
     Let $\Omega \subseteq \bbR^{n}$ be a bounded convex open set. 
     Let $0 \leq k < n$. 
-    Then for each $u \in W^{p}\Lambda^{k}(\Omega)$ 
+    For each $u \in W^{p}\Lambda^{k}(\Omega)$ 
     there exists $w \in W^{p}\Lambda^{k}(\Omega)$ 
     with $\cartan u = \cartan w$ and 
     \begin{align*}
         \| w \|_{L^{p}(\Omega)}
         &
         \leq 
-        C_{{\PF},k,\Omega,p}
+        C_{{\PF},\Poinc,k,\Omega,p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        ,
+    \end{align*}
+    and for each $u \in W^{p}_{0}\Lambda^{k}(\Omega)$ 
+    there exists $w \in W^{p}_{0}\Lambda^{k}(\Omega)$ 
+    with $\cartan u = \cartan w$ and 
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        C_{{\PF},\Bogov,k,\Omega,p}
         \| \cartan u \|_{L^{p}(\Omega)}
         ,
     \end{align*}
     where 
     \begin{align*}
-        C_{{\PF},k,\Omega,p} 
+        C_{{\PF},\Poinc,k,\Omega,p} 
         = 
         n C_{\Poinc}(n,k+1) 
+        \vol_{}(B_1(0)) 
+        \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
+        \diam(\Omega)
+        \\
+        C_{{\PF},\Bogov,k,\Omega,p} 
+        = 
+        n C_{\Bogov}(n,k+1) 
         \vol_{}(B_1(0)) 
         \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
         \diam(\Omega)
@@ -6161,8 +6179,8 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     We can also assume that the face of $\Delta^n$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
-    In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $l+1$ through $n$. 
-    We see that $\vol(\widetilde \Makoto) = (l+1)/n!$
+    In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $\ell+1$ through $n$. 
+    We see that $\vol(\widetilde \Makoto) = (\ell+1)/n!$
     
     We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
@@ -6188,12 +6206,12 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         2
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         \\&\leq 
-        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
+        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         .
     \end{align*}
     \color{blue}
-    We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $l+1$ through $n$. Thus,
+    We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $\ell+1$ through $n$. Thus,
     \begin{align*}
         \| \tilde w \|_{L^{p}(\Delta^{n})}
         =
@@ -6206,7 +6224,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     
     We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\Delta^n} )$.
     By construction, $\cartan w = \cartan u$,
-    and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{l}$.
+    and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{\ell}$.
     
     In addition to that, by Proposition~\ref{proposition:pullbackestimate}:
     \begin{align*}

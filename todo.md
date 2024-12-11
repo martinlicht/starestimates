@@ -52,6 +52,8 @@ Revision:
 Further changes:
 - [x] improve the estimate for the face reflection to get a precise analysis of the eigenvalues 
 - [x] add a remark whether or not you reproduce that particular estimate later in the general reflection 
+- [ ] move the constants for P and B into Section 6
+- [ ] stable Boovskii estimate possible? Stable Poincare estimate earlier?
 - [ ] use the product inequality for singular values 
 - [ ] pairwise inequality (topics: p.178)
 - [ ] CODE: include that possible improvement in the C++ estimate
