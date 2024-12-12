@@ -55,6 +55,9 @@ Further changes:
 - [x] use the product inequality for singular values 
 - [x] proofread the geometric estimate; 
 - [ ] update the application of geometric estimate in the following section
+- [x] move the constants for P and B into Section 6
+- [ ] stable Boovskii estimate possible? Stable Poincare estimate earlier?
+- [ ] use the product inequality for singular values 
 - [ ] pairwise inequality (topics: p.178)
 - [ ] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
 - [ ] CODE: include that possible improvement in the C++ estimate

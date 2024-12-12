@@ -4065,18 +4065,26 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \begin{align*}
         \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n C_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
-        \diam(\Omega)
+        % n C_{\Poinc}(n,\mia) \frac{ \vol_{}(B_{1}(0)) }{\vol(\Omega)} 
+        C_{{\PF},\Poinc,k,\Omega,p}
         \| u \|_{L^{p}(\Omega)}
         ,
         \\
         \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}
         &\leq 
-        n C_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
-        \diam(\Omega)
+        % n C_{\Bogov}(n,\mia) \frac{ \vol_{}(B_{\diam(\Omega)}(0)) }{\vol(\Omega)} 
+        C_{{\PF},\Bogov,k,\Omega,p}
         \| u \|_{L^{p}(\Omega)}
-        .
+        ,
     \end{align*}
+    where 
+    \begin{align}
+        C_{{\PF},\Poinc,k,\Omega,p} := C_{\Poinc}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
+        ,
+        \quad 
+        C_{{\PF},\Bogov,k,\Omega,p} := C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
+        .
+    \end{align}
     For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
     \begin{align}
         u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a) \;da
@@ -4152,7 +4160,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     
     
     Analogously, suppose that $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$. 
-    We write $\ := \Bogov_{\mia} u$. 
+    We write $\zeta := \Bogov_{\mia} u$. 
     There exists a sequence $u_{i} \in C^{\infty}_{c}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}\Alt^{n-\mia-1}(\Omega)$, 
     which is the restriction of some member of $C^{\infty}\Alt^{n-\mia-1}(\bbR^{n})$, 
@@ -6253,6 +6261,16 @@ We give detailed estimates for the singular values of their Jacobians.
 
 
 
+        
+        
+        
+        
+        
+        
+        
+        
+
+
 
 
 
@@ -6265,38 +6283,7 @@ We are now in the position to develop Poincar\'e--Friedrichs constants for the e
 These results use local Poincar\'e--Friedrichs constants over simplices, 
 with or without boundary conditions, as subcomponents. 
 
-The analysis of the Poincar\'e potential operators in Section~\ref{section:potentialoperator}
-implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
-
-\begin{lemma}\label{lemma:PFexteriorsimplex}
-    Let $\Omega \subseteq \bbR^{n}$ be a bounded convex open set. 
-    Let $0 \leq k < n$. 
-    Then for each $u \in W^{p}\Lambda^{k}(\Omega)$ 
-    there exists $w \in W^{p}\Lambda^{k}(\Omega)$ 
-    with $\cartan u = \cartan w$ and 
-    \begin{align*}
-        \| w \|_{L^{p}(\Omega)}
-        &
-        \leq 
-        C_{{\PF},k,\Omega,p}
-        \| \cartan u \|_{L^{p}(\Omega)}
-        ,
-    \end{align*}
-    where 
-    \begin{align*}
-        C_{{\PF},k,\Omega,p} 
-        = 
-        n C_{\Poinc}(n,k+1) 
-        \vol_{}(B_1(0)) 
-        \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
-        \diam(\Omega)
-        .
-    \end{align*}
-\end{lemma}
-\begin{proof}
-    This follows from Theorem~\ref{theorem:bogovpoinc} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
-\end{proof}
-
+The analysis of the Poincar\'e potential operators in Section~\ref{section:potentialoperator} has produced Poincar\'e--Friedrichs constants for convex domains and their analogues for the case of full boundary conditions. 
 We also need a Poincar\'e--Friedrichs inequality for differential forms over a simplex but subject to homogeneous boundary conditions along a collection of faces. 
 
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
@@ -6320,8 +6307,10 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        2^{n+1} 
-        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (\ell+1)/n! } 
+        n! \cdot 2^{\ell+1} 
+        C_{\Bogov}(n,k+1) 
+        \vol_{n-1}(S_1(0))
+        \cdot 
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T) 
         \diam(T)
@@ -6334,13 +6323,13 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     We can also assume that the face of $\Delta^n$
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
-    In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $l+1$ through $n$. 
-    We see that $\vol(\widetilde \Makoto) = (l+1)/n!$
+    In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $\ell+1$ through $n$. 
+    We see that $\vol(\widetilde \Makoto) = 2^{n-\ell}/n!$
     
-    We let $\hat u := \varphi^{\ast} u$ and define $\hat g \in L^{p}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
+    We let $\hat u := \varphi^{\ast} u \in W^{p}\Lambda^{k}(\Delta^n)$ and define $\hat g \in L^{p}\Lambda^{k+1}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
-    We let $\tilde u$ be the extension of $\hat u$ onto $\widetilde \Makoto$ by reflection across the coordinate axes,
-    and let $\tilde g$ is the extension of $\hat g$ onto $\widetilde \Makoto$ by reflection across the coordinate axes. 
+    We let $\tilde u \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be the extension of $\hat u$ onto $\widetilde \Makoto$ by reflection across the coordinate axes,
+    and let $\tilde g \in L^{p}\Lambda^{k+1}(\widetilde \Makoto)$ is the extension of $\hat g$ onto $\widetilde \Makoto$ by reflection across the coordinate axes. 
     By construction, $\tilde u \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$ with $\tilde g = \cartan \tilde u$.
     We observe 
     \begin{align*}
@@ -6350,38 +6339,51 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \hat g \|_{L^{p}(\Delta^n)}
         .
     \end{align*}
-    \color{red}
-    The bounds for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, imply 
+    The analysis for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, imply 
     the existence of $\mathring w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
-    with $\cartan \mathring w = \cartan \tilde u$ and 
+    with $\cartan \mathring w = \cartan \tilde u$ satisfying the bounds 
     \begin{align*}
         \| \mathring w \|_{L^{p}(\widetilde \Makoto)}
         &\leq 
-        n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Makoto) } 
-        2
+        C_{{\PF},\Poinc,k,\widetilde \Makoto,p}
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
-        \\&\leq 
-        2^{n+1} n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0)) }{ (l+1)/n! } 
+        %\\&
+        \leq 
+        % n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Makoto) } 2
+        % 2^n n   C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0))    }{ \vol(\widetilde \Makoto) } 2
+        % 2^n     C_{\Bogov}(n,k+1) \frac{ \vol_{n-1}(S_1(0)) }{ \vol(\widetilde \Makoto) } 2
+        % 2^{n+1} C_{\Bogov}(n,k+1) \frac{ \vol_{n-1}(S_1(0)) }{ \vol(\widetilde \Makoto) }
+        % 2^{n+1} C_{\Bogov}(n,k+1) \frac{ \vol_{n-1}(S_1(0)) }{ 2^{n-\ell}/n! }
+        %
+        % n! 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
+        %
+        n! 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         .
     \end{align*}
-    \color{blue}
-    We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $l+1$ through $n$. Thus,
+    We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $\ell+1$ through $n$. Thus,
     \begin{align*}
         \| \tilde w \|_{L^{p}(\Delta^{n})}
         =
         2^{-\frac{n-\ell}{p}}
         \| \tilde w \|_{L^{p}(\widetilde \Makoto)}
+        ,
+        \qquad 
+        \| \tilde w \|_{L^{p}(\widetilde \Makoto)}
+        \leq 
+        \| \mathring w \|_{L^{p}(\widetilde \Makoto)}
         .
     \end{align*}
     Since $\tilde g$ has got the same symmetries, $\cartan \tilde w = \tilde g$.
+    \color{red}
+    \color{blue}
     \color{black}
     
     We let $w \in W^{p}\Lambda^{k}(T)$ be defined by $w := \varphi^{-\ast} ( \tilde w_{|\Delta^n} )$.
     By construction, $\cartan w = \cartan u$,
-    and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{l}$.
+    and $w$ has vanishing trace along $F_{0} \cup \dots \cup F_{\ell}$.
     
-    In addition to that, by Proposition~\ref{proposition:pullbackestimate}:
+    To complete the discussion, we recall by Proposition~\ref{proposition:pullbackestimate} that 
     \begin{align*}
         \| w \|_{L^{p}(T)}
         &\leq 
