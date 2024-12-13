@@ -22,6 +22,57 @@
 
 
 
+This implies the following estimate for Poincar\'e--Friedrichs constants over convex domains. 
+
+\begin{lemma}\label{lemma:PFexteriorsimplex}
+    Let $\Omega \subseteq \bbR^{n}$ be a bounded convex open set. 
+    Let $0 \leq k < n$. 
+    For each $u \in W^{p}\Lambda^{k}(\Omega)$ 
+    there exists $w \in W^{p}\Lambda^{k}(\Omega)$ 
+    with $\cartan u = \cartan w$ and 
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        C_{{\PF},\Poinc,k,\Omega,p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        ,
+    \end{align*}
+    and for each $u \in W^{p}_{0}\Lambda^{k}(\Omega)$ 
+    there exists $w \in W^{p}_{0}\Lambda^{k}(\Omega)$ 
+    with $\cartan u = \cartan w$ and 
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        C_{{\PF},\Bogov,k,\Omega,p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        ,
+    \end{align*}
+    where 
+    \begin{align*}
+        C_{{\PF},\Poinc,k,\Omega,p} 
+        = 
+        n C_{\Poinc}(n,k+1) 
+        \vol_{}(B_1(0)) 
+        \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
+        \diam(\Omega)
+        \\
+        C_{{\PF},\Bogov,k,\Omega,p} 
+        = 
+        n C_{\Bogov}(n,k+1) 
+        \vol_{}(B_1(0)) 
+        \frac{ \diam(\Omega)^{n} }{ \vol(\Omega) } 
+        \diam(\Omega)
+        .
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    This follows from Theorem~\ref{theorem:bogovpoinc} using $\vol(B_{\diam(\Omega)}(0)) = \vol_{}(B_1(0)) \diam(\Omega)^{n}$.
+\end{proof}
+
+
+
 \begin{lemma}\label{lemma:mixedbconsimplex:exteriorderivative}
     Let $T$ be an $n$-simplex 
     and let $\Gamma = F_{1} \cup \dots \cup F_{\ell}$ be the union of $\ell+1$ different faces of $T$. 
@@ -154,6 +205,20 @@
 \end{proof}
 
 
+
+    Lastly, we show a modification of this prove when $p=2$. 
+    We choose $\mathring w \in W^{2}\Lambda^{k}(\widetilde \Makoto)$ to have minimum norm among those members of $W^{2}\Lambda^{k}(\widetilde \Makoto)$ whose exterior derivative equals $\cartan \tilde u$. Since then $\tilde w \in W^{2}\Lambda^{k}(\widetilde \Makoto)$ has the same properties,
+    it follows that $\tilde w = \mathring w$. 
+    
+    Under these conditions, we can use Gaffney's inequality: % TODO: cite specific inequality 
+    $\tilde w \in W^{1,2}(\Omega) \otimes \Alt^{k}(\bbR^{n})$ with 
+    \begin{align}\color{red}
+        \| \nabla \tilde w \|_{L^{2}(\Delta^{n})}
+        \leq 
+        \| \cartan \tilde w \|_{L^{2}(\Delta^{n})}
+        .
+    \end{align} % TODO: what exactly is the norm being measured on the left hand side?
+    
 
 
 
