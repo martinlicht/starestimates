@@ -54,12 +54,12 @@ Further changes:
 - [x] add a remark whether or not you reproduce that particular estimate later in the general reflection 
 - [x] use the product inequality for singular values 
 - [x] proofread the geometric estimate; 
-- [ ] update the application of geometric estimate in the following section
 - [x] move the constants for P and B into Section 6
-- [ ] stable Boovskii estimate possible? Stable Poincare estimate earlier?
-- [ ] use the product inequality for singular values 
-- [ ] pairwise inequality (topics: p.178)
-- [ ] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
+- [o] stable Boovskii estimate possible? Stable Poincare estimate earlier?
+- [x] use the product inequality for singular values 
+- [x] pairwise inequality (topics: p.178)
+- [x] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
+- [ ] Section 9: update the application of geometric estimate in the following section
 - [ ] CODE: include that possible improvement in the C++ estimate
 - [ ] compare the results 
 - [ ] implement the shelling2 construction in full

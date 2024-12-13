@@ -5133,11 +5133,11 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{align*}
         \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{1} |^{-\frac 1 p}
         \leq 
-        \Cfivetrafo{n}{k}{\ell}(\calT),
+        \Cfivetrafo{n}{k}{\ell}{p}(\calT),
         \qquad 
         \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{1} |^{\frac 1 p}
         \leq 
-        \Csechstrafo{n}{k}{\ell}(\calT).
+        \Csechstrafo{n}{k}{\ell}{p}(\calT).
     \end{align*}
 
     \item 
@@ -5164,11 +5164,11 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{align*}
         \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{2} |^{-\frac 1 p}
         \leq 
-        \Csiebtrafo{n}{k}{\ell}(\calT),
+        \Csiebtrafo{n}{k}{\ell}{p}(\calT),
         \qquad 
         \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{2} |^{\frac 1 p}
         \leq 
-        \Cachttrafo{n}{k}{\ell}(\calT).
+        \Cachttrafo{n}{k}{\ell}{p}(\calT).
     \end{align*}
     \end{enumerate}
 \end{proposition}
@@ -6002,7 +6002,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{1} |^{-\frac 1 p}
             &
             \leq 
-            \Cfivetrafo{n}{k}{\ell}(\calT)
+            \Cfivetrafo{n}{k}{\ell}{p}(\calT)
             \\&
             :=
             \left( 
@@ -6018,7 +6018,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{1} |^{\frac 1 p}
             &
             \leq 
-            \Csechstrafo{n}{k}{\ell}(\calT)
+            \Csechstrafo{n}{k}{\ell}{p}(\calT)
             \\&
             :=
             \left(
@@ -6124,7 +6124,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{2} |^{-\frac 1 p}
             &
             \leq 
-            \Csiebtrafo{n}{k}{\ell}(\calT)
+            \Csiebtrafo{n}{k}{\ell}{p}(\calT)
             \\&
             :=
             \left( 
@@ -6140,7 +6140,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{2} |^{\frac 1 p}
             &
             \leq 
-            \Cachttrafo{n}{k}{\ell}(\calT)
+            \Cachttrafo{n}{k}{\ell}{p}(\calT)
             \\&
             :=
             \left(
@@ -6464,19 +6464,22 @@ The second one is specific to the fact that shellable triangulations are contrac
         \left( 
             \| \cartan u      \|_{L^{p}(T_{m})} 
             +
-            \Cfive{n}{k}(\calT)
-            \Cfiveprime{n}{k}(\calT)^{k} 
-            \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+            \Cfivetrafo{n}{k}{\ell}{p}(\calT)
+            % \Cfive{n}{k}(\calT)
+            % \Cfiveprime{n}{k}(\calT)^{k} 
+            % \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
             \| \cartan u \|_{L^{p}(\Makoto_{m-1})}
         \right)
-        \\&\qquad
+        %\\&\qquad
         + 
-        \Cfive{n}{k}(\calT) 
-        \Cfiveprime{n}{k}(\calT)^{k-1} 
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+        \Cfivetrafo{n}{k}{\ell}{p}(\calT)
+        % \Cfive{n}{k}(\calT) 
+        % \Cfiveprime{n}{k}(\calT)^{k-1} 
+        % \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
         \| w \|_{L^{p}(\Makoto_{m-1})}
-        .
+        ,
     \end{align*}
+    where $0 \leq \ell < n$ is such that $T_{m}$ has $n - \ell$ faces in common with the previous simplices. 
 \end{theorem}
 \begin{proof}
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
@@ -6489,6 +6492,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S_{m}$, 
     and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    We write $\ell$ for the dimension of $S_{m}$.
     
     We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
     We define $w'_{m} :=  \Xi_{1}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m})$. 
@@ -6569,18 +6573,20 @@ The second one is specific to the fact that shellable triangulations are contrac
     \begin{align*}
         \| w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        \Cfive{n}{k}(\calT)
-        \Cfiveprime{n}{k}(\calT)^{k-1}
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
+        \Cfivetrafo{n}{k}{\ell}{p}(\calT)
+        % \Cfive{n}{k}(\calT)
+        % \Cfiveprime{n}{k}(\calT)^{k-1}
+        % \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
         \| w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         ,
         \\
         \| \cartan w'_{m} \|_{L^{p}(T_{m})}
         &\leq 
-        \Cfive{n}{k}(\calT)
-        \Cfiveprime{n}{k}(\calT)^{k}
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
+        \Cfivetrafo{n}{k}{\ell}{p}(\calT)
+        % \Cfive{n}{k}{\ell}(\calT)
+        % \Cfiveprime{n}{k}(\calT)^{k}
+        % \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
         \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         .
@@ -6601,20 +6607,28 @@ The second one is specific to the fact that shellable triangulations are contrac
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
     such that 
     \begin{align*}
-        \| w \|_{L^{p}(T_{m})}
+        \| w \|_{L^{p}(\Omega)}
         \leq 
+%         \left( 
+%             \Cachttrafo{n}{k}{\ell}(\calT)
+            % \Cacht{n}{k}(\calT)
+            % \Cachtprime{n}{k}(\calT)^{k} 
+            % \Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
+%             \Csiebtrafo{n}{k}{\ell}(\calT)
+            % \Csieb{n}{k}(\calT)
+            % \Csiebprime{n}{k}(\calT)^{k-1} 
+            % \Cdetacht{n}{k}(\calT)^{\frac 1 p} 
+%         \right)^{M}
         \left( 
-        \Cacht{n}{k}(\calT)
-        \Cachtprime{n}{k}(\calT)^{k} 
-        \Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
-        \Csieb{n}{k}(\calT)
-        \Csiebprime{n}{k}(\calT)^{k-1} 
-        \Cdetacht{n}{k}(\calT)^{\frac 1 p} 
-        \right)^{M}
+        \prod_{m=1}^{M}
+            \Cachttrafo{n}{k}{\ell_{m}}{p}(\calT)
+            \Csiebtrafo{n}{k}{\ell_{m}}{p}(\calT)
+        \right)
         C_{{\PF},k,T_{0},p}
         \| \cartan u \|_{L^{p}(\Omega)}
-        .
+        ,
     \end{align*}
+    where $0 \leq \ell_{m} < n$ is such that $T_{m}$ has $n - \ell$ faces in common with the previous simplices.
 \end{theorem}
 \begin{proof}\color{blue}
     We first fix some notation. 
@@ -6645,6 +6659,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
     By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
     and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
+    We let $\ell_{M}$ be the dimension of $S_{M}$.
     
     We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
     This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
@@ -6655,38 +6670,37 @@ The second one is specific to the fact that shellable triangulations are contrac
     \begin{align*}
         \| g' \|_{L^{p}(\Omega')}  
         \leq 
-        \Cacht{n}{k}(\calT)
-        \Cachtprime{n}{k}(\calT)^{k} 
-        \Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
+        \Cachttrafo{n}{k}{\ell_{M}}{p}(\calT)
+        %\Cacht{n}{k}(\calT)
+        %\Cachtprime{n}{k}(\calT)^{k} 
+        %\Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
         \| g \|_{L^{p}(\Omega)}  
         .
     \end{align*}
-    By induction assumption, there exists $w' \in W^{p}\Alt^{k}(\Omega')$ such that $\cartan w' = g'$ and 
-    \begin{align*}
-        \| w' \|_{L^{p}(\Omega')} 
-        \leq 
-        \left( 
-        \Cacht{n}{k}(\calT)
-        \Cachtprime{n}{k}(\calT)^{k} 
-        \Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
-        \Csieb{n}{k}(\calT)
-        \Csiebprime{n}{k}(\calT)^{k-1} 
-        \Cdetacht{n}{k}(\calT)^{\frac 1 p} 
-        \right)^{M-1}
-        C_{{\PF},k,T_{0},p}
-        \| g' \|_{L^{p}(\Omega')}  
-    \end{align*}
+    By induction assumption, there exists $w' \in W^{p}\Alt^{k}(\Omega')$ such that $\cartan w' = g'$.
+%     We have 
+%     \begin{align*}
+%         \| w' \|_{L^{p}(\Omega')} 
+%         \leq 
+%         \left( 
+%         \Cachttrafo{n}{k}{\ell_{M}}{p}(\calT)
+%         \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
+%         \right)^{M-1}
+%         C_{{\PF},k,T_{0},p}
+%         \| g' \|_{L^{p}(\Omega')}  
+%     \end{align*}
     Finally, $w = \Xi_{2}^{\ast} w' \in W^{p}\Alt^{k}(\Omega)$ satisfies $\cartan w = g$.
     Moreover, Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} show 
     \begin{align*}
         \| w \|_{L^{p}(\Omega)}  
         \leq 
-        \Csieb{n}{k}(\calT)
-        \Csiebprime{n}{k}(\calT)^{k-1} 
-        \Cdetacht{n}{k}(\calT)^{\frac 1 p} 
+        \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
+        %\Csieb{n}{k}(\calT)
+        %\Csiebprime{n}{k}(\calT)^{k-1} 
+        %\Cdetacht{n}{k}(\calT)^{\frac 1 p} 
         \| w' \|_{L^{p}(\Omega')} 
     \end{align*}
-    The induction step is complete, and the desired result follows. 
+    We use the induction assumption to complete the estimates in the induction step is complete. The desired result follows. 
 \end{proof}
 
 
@@ -6710,15 +6724,15 @@ The second one is specific to the fact that shellable triangulations are contrac
         \\&\qquad
         +
         C_{\PF,T_{m},\Gamma_{m},k,p}(\calT) 
-        \Cfive{n}{k}(\calT)
-        \Cfiveprime{n}{k}(\calT)^{k} 
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+        \Cfivetrafo{n}{k}{\ell_{m}}{p}(\calT)
+%         \Cfiveprime{n}{k}(\calT)^{k} 
+%         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
         \| \cartan u \|_{L^{p}(\Makoto_{m-1})}
         \\&\qquad
         + 
-        \Cfive{n}{k}(\calT) 
-        \Cfiveprime{n}{k}(\calT)^{k-1} 
-        \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
+        \Cfivetrafo{n}{k}{\ell_{m}}{p}(\calT) 
+%         \Cfiveprime{n}{k}(\calT)^{k-1} 
+%         \Cdetsechs{n}{k}(\calT)^{\frac 1 p} 
         \| w \|_{L^{p}(\Makoto_{m-1})}
         .
     \end{align*}
@@ -6776,7 +6790,6 @@ The second one is specific to the fact that shellable triangulations are contrac
         \| \cartan u \|_{L^{p}(\Omega)}^{p} 
         ,
     \end{align*}
-    
     Hence, 
     \begin{align}
         \| w \|_{L^{p}(\Omega)}^{p}
@@ -6867,6 +6880,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     Let $\calT$ be a shellable $n$-dimensional triangulation, 
     and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
     Assume that $T_0, T_1, \dots, T_M$ be a shelling of $\calT$ and that $\bfu \in \bfW^{p}(\Omega,\curl)$ for some $1 \leq p \leq \infty$.
+    Let $0 \leq \ell_{m} < n$ be such that $T_{m}$ shares $n - \ell$ faces with the previous simplices.
     \begin{itemize}
         \item 
         There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$
@@ -6883,15 +6897,12 @@ The second one is specific to the fact that shellable triangulations are contrac
             \left( 
                 \| \curl u      \|_{L^{p}(T_{m})} 
                 +
-                \Cfive{n}{1}(\calT)
-                \Cfiveprime{n}{1}(\calT)^{1} 
-                \Cdetsechs{n}{1}(\calT)^{\frac 1 p} 
+                \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
                 \| \curl u \|_{L^{p}(\Makoto_{m-1})}
             \right)
             \\&\qquad
             + 
-            \Cfive{n}{1}(\calT) 
-            \Cdetsechs{n}{1}(\calT)^{\frac 1 p} 
+            \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
             \| \bfw \|_{L^{p}(\Makoto_{m-1})}
             .
         \end{align*}
@@ -6902,12 +6913,10 @@ The second one is specific to the fact that shellable triangulations are contrac
             \| \bfw \|_{L^{p}(T_{m})}
             \leq 
             \left( 
-            \Cacht{n}{1}(\calT)
-            \Cachtprime{n}{1}(\calT) 
-            \Cdetsieb{n}{1}(\calT)^{\frac 1 p} 
-            \Csieb{n}{1}(\calT)
-            \Cdetacht{n}{1}(\calT)^{\frac 1 p} 
-            \right)^{M}
+            \prod_{i=1}^{M}
+            \Cachttrafo{n}{1}{\ell_{m}}{p}(\calT)
+            \Csiebtrafo{n}{1}{\ell_{m}}{p}(\calT)
+            \right)
             C_{{\PF},1,T_{0},p}
             \| \curl \bfu \|_{L^{p}(\Omega)}
             .
