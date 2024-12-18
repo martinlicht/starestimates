@@ -5401,15 +5401,19 @@ We give detailed estimates for the singular values of their Jacobians.
         \end{align*}
         Based on that observation, we define 
         \begin{align*}
-            \Phi_{G}(x) 
+            \Phi_{G}(x) % TODO : Sign error. Check values for 0 and 1. Then proceed from there ... 
             &
             := 
-            \mu x_{Q} - \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
+            \mu x_{Q} + \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
             \\&
             = 
-            x - \left( \frac 3 2 \lambda(x) - \frac 1 2 \right) z_{S'}
+            x - \lambda(x) z_{S'} + \frac{ \lambda(x)}{ 2 } z_{S'} - \frac{ 1 }{ 2 } z_{S'}
+            \\&
             = 
-            x - \left( \frac 3 2 \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} - \frac 1 2 \right) z_{S'}
+            x - \frac{ \lambda(x) }{2} z_{S'} - \frac{ 1 }{ 2 } z_{S'}
+            \\&
+            = 
+            x - \frac{\langle h_{z},x\rangle}{2\langle h_{z},z_{S'}\rangle} z_{S'} - \frac 1 2 z_{S'}
             .
         \end{align*}
         We readily verify that this transformation is a bi-Lipschitz mapping from $G \cup G^{c}$ onto $G^{c}$
@@ -5423,47 +5427,55 @@ We give detailed estimates for the singular values of their Jacobians.
             &=
             \Id 
             - 
-            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle }  
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
             z_{S'} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle } 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
             h_{z} \otimes h_{z}^{t}
             - 
-            \frac{3}{ 2 \langle h_{z},z_{S'}\rangle } 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
             b_{z} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{3}{ 2 \langle h_{z}, h_{z}\rangle } 
+            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
             h_{z} \otimes h_{z}^{t}
             - 
-            \frac{3}{ 2 \langle h_{z}, h_{z}\rangle } 
+            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
             b_{z} \otimes h_{z}^{t}
             \\
             &=
             \Id 
             - 
-            \frac{3}{ 2 } 
+            \frac{1}{ 2 } 
             \hat h_{z} \otimes \hat h_{z}^{t}
             - 
-            \frac{ 3 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
+            \frac{ 1 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
             \hat b_{z} \otimes \hat h_{z}^{t}
             .
         \end{align*}
-        The Jacobian acts as the identity over the span of $h_{z}$ and $z_{s'}$.
+        The Jacobian acts as the identity over the orthogonal complement of the span of $h_{z}$ and $z_{s'}$.
         We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
-        Hence, $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. It remains to study the singular values of the matrix 
+        Hence, $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. 
+        We verify that 
+        \begin{align}
+            \Jacobian \Phi_{G}(x) \cdot \hat b_{z} = \hat b_{z},
+            \qquad 
+            \Jacobian \Phi_{G}(x) \cdot \hat h_{z} = \frac 1 2 h_{z} - \frac{ 1 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } \hat b_{z}
+            .
+        \end{align}
+        It remains to study the singular values of the matrix 
         \begin{align*}
             M_{\Phi,G} 
             = 
             \begin{pmatrix}
-                -\frac 1 2             & 0 
+                 \frac 1 2             & 0 
                 \\
-                -\frac 3 2 \tan(\beta) & 1 
+                -\frac 1 2 \tan(\beta) & 1 
             \end{pmatrix}
 %             = 
 %             \frac 1 2 
@@ -5480,29 +5492,13 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{\max}(\Phi,G) 
             &
             =
-%             \frac{1}{2} 
-%             \left( \sqrt{ \left( 1 + \frac 1 2 \right)^2 + \frac 9 4 \tan(\beta)^2 } + \sqrt{ \left( 1 - \frac 1 2 \right)^2 + \frac 9 4 \tan(\beta)^2 } \right)
-%             \\&
-%             =
-%             \frac{1}{2} 
-%             \left( \sqrt{ \frac 9 4 + \frac 9 4 \tan(\beta)^2 } + \sqrt{ \frac 1 4 + \frac 9 4 \tan(\beta)^2 } \right)
-%             \\&
-%             =
-            \frac{3}{4} \sqrt{ 1 + \tan(\beta)^2 } + \frac{1}{4} \sqrt{ 1 + 9 \tan(\beta)^2 } 
+            \frac{1}{4} \sqrt{ 9 + \tan(\beta)^2 } + \frac{1}{4} \sqrt{ 1 + \tan(\beta)^2 } 
             ,
             \\
             \sigma_{\min}(\Phi,G) 
             &
             =
-%             \frac{1}{2} 
-%             \left( \sqrt{ \left( 1 + \frac 1 2 \right)^2 + \frac 9 4 \tan(\beta)^2 } - \sqrt{ \left( 1 - \frac 1 2 \right)^2 + \frac 9 4 \tan(\beta)^2 } \right)
-%             \\&
-%             =
-%             \frac{1}{2} 
-%             \left( \sqrt{ \frac 9 4 + \frac 9 4 \tan(\beta)^2 } - \sqrt{ \frac 1 4 + \frac 9 4 \tan(\beta)^2 } \right)
-%             \\&
-%             =
-            \frac{3}{4} \sqrt{ 1 + \tan(\beta)^2 } - \frac{1}{4} \sqrt{ 1 + 9 \tan(\beta)^2 } 
+            \frac{1}{4} \sqrt{ 9 + \tan(\beta)^2 } - \frac{1}{4} \sqrt{ 1 + \tan(\beta)^2 } 
             .
         \end{align*}
         These are monotonically increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
@@ -5520,9 +5516,9 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{gather}
             \sigma_{1}(\Phi,x) % \matnorm{ \Jacobian\Phi_{G} } 
             \leq 
-            \frac 3 4 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + 9(\ell+1)^2 \aspectratio(T)^2 }
+            \frac 1 4 \sqrt{ 9 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 }
             \leq 
-            1 + \frac{3}{2} (\ell+1) \aspectratio(T) 
+            1 + \frac{1}{2} (\ell+1) \aspectratio(T) 
             \label{math:phi_max}
             ,
             \\
@@ -5530,14 +5526,14 @@ We give detailed estimates for the singular values of their Jacobians.
             \\
             \sigma_{n}(\Phi,x)^{-1} % \matnorm{ \Jacobian\Phi_{G}^{-1} } 
             \leq 
-            \frac 3 2 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + 9(\ell+1)^2 \aspectratio(T)^2 }
+            \frac 1 2 \sqrt{ 9 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 }
             \leq 
-            2 + 3 (\ell+1) \aspectratio(T) 
+            2 + (\ell+1) \aspectratio(T) 
             \label{math:phi_min}
             .
         \end{gather}
-        \color{red}Moreover, it is evident that the eigenvalues of the Jacobian are $1$ with multiplicity $n-1$ and $-\tfrac 1 2$ with multiplicity $1$.\color{black}
-        This finishes the discussion of the transformation $\Phi$.
+        \color{red}Moreover, it is evident that the eigenvalues of the Jacobian are $1$ with multiplicity $n-1$ and $\tfrac 1 2$ with multiplicity $1$.\color{black}
+        This finishes the discussion of the transformation $\Phi$. 
         
         
         \item 
@@ -6056,7 +6052,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \mu_{T,\ell}
             \nu_{T,\ell}         
             \cdot 
-            \left( 1 + \frac{3}{2} (\ell+1) \aspectratio(T) \right)
+            \left( 1 + \frac{1}{2} (\ell+1) \aspectratio(T) \right)
             ,
             \\
             \sigma_2(x), \dots, \sigma_n(x) 
@@ -6067,7 +6063,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(T)\mu_{T,\ell} 
             \cdot 
-            \left( 1 + \frac{3}{2} (\ell+1) \aspectratio(T) \right)
+            \left( 1 + \frac{1}{2} (\ell+1) \aspectratio(T) \right)
             ,
             \\
             \sigma_n(x)^{-1}
@@ -6081,7 +6077,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \aspectratio(\calT)
             \nu_{T,\ell}           
             \cdot 
-            \left( 2 + 3 (\ell+1) \aspectratio(T) \right)
+            \left( 2 + (\ell+1) \aspectratio(T) \right)
             ,
             \\
             \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
@@ -6092,7 +6088,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \diameterratio(\calT)
             \aspectratio(\calT) 
             \cdot 
-            \left( 2 + 3 (\ell+1) \aspectratio(T) \right)
+            \left( 2 + (\ell+1) \aspectratio(T) \right)
             .
         \end{align*}
         We get the determinant estimates 
@@ -6129,7 +6125,7 @@ We give detailed estimates for the singular values of their Jacobians.
             :=
             \left( 
             % Phi max 
-            \left( 1 + \frac 3 2 ( \ell+1 )\aspectratio(\calT) \right)
+            \left( 1 + \frac 1 2 ( \ell+1 )\aspectratio(\calT) \right)
             % Psi max 
             \nu_{T,\ell}
             \right)
@@ -6145,7 +6141,7 @@ We give detailed estimates for the singular values of their Jacobians.
             :=
             \left(
             % Phi^{-1} max 
-            \left( 2 + 3 ( \ell+1 )\aspectratio(\calT) \right)
+            \left( 2 + ( \ell+1 )\aspectratio(\calT) \right)
             % Psi^{-1} max 
             \nu_{T,\ell}
             \right)
@@ -6189,7 +6185,7 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{gather*} 
         | \det\Jacobian\Xi^{  } |      \leq \volumeratio(\calT),
         \\
-        \sigma_{1}
+        \sigma_{1}, \sigma_{n}^{-1}
         \leq 
         \frac{1}{2} 
         \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
@@ -6230,7 +6226,359 @@ We give detailed estimates for the singular values of their Jacobians.
 
 
 
-
+\begin{proof}\color{magenta}
+    We derive the estimate in several steps. 
+    In what follows, we use the notation $\hat z$ for the normalization of any vector $z \in \bbR^{n}$.
+    \begin{itemize}
+        \item 
+        Without loss of generality, after shifting the coordinate system, the barycenter $z_{S}$ of $S$ is the origin. 
+        
+        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$ within the simplex $T$.
+        Note that ${\Gamma_2} \subseteq \partial T$ is the union of exactly those faces of $T$ that contain $S'$,
+        whereas ${\Gamma_1} = \Makoto \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
+        We let $z_{S'}$ be the midpoint of $S'$. 
+        
+        We apply barycentric refinement to the simplex $S$ and then the complementary simplex $S'$.
+        This produces a triangulation $\calG$ of $\underlying{|T|}$ whose $n$-dimensional simplices contain the vertices $z_{S} = 0$ and $z_{S'}$.
+        
+        \item 
+        There exists $\varrho > 0$ such that $\patch_{\calT}(S)$ is star-shaped with respect to the closed ball $\overline{\Ball_{\varrho}(z_S)}$.
+        % TODO: prove this observation 
+        
+        \item 
+        
+        Let us write $\rho = \min(1,\varrho)$. 
+        We define $y = - \rho \hat z_{S'}$ as vector in the opposite direction of $z_{S'}$ and with length $\rho$. 
+        By construction, the closed line segment from $z_{S}$ to $y$ is contained in $\overline{\Ball_{\varrho}(z_S)}$,
+        and we conclude that the convex closure of $T$ and $y$ must lie in $\patch_{\calT}(S)$.
+        
+        We define another triangulation $\calG^{c}$ as follows:
+        given any $n$-simplex $G \in \calG$, 
+        we replace its vertex $z_{S}'$ by the vertex $y$ at the opposite position,
+        thus obtaining a new $n$-simplex $G^{c}$. 
+        Indeed, that $\calG^c$ is a simplicial complex follows easily from $\calD$ being a simplicial complex. 
+        
+        We let the simplicial complex $\calG^\ast$ be the union of $\calG$ and $\calG^c$. 
+        By construction, all its $n$-simplices contain $z_{S}$ as a subsimplex, which is an inner vertex of that triangulation. 
+        In particular, $\calD^\ast$ is its own star around $z_{S}$.
+        
+        
+        \item 
+        We introduce a new mapping $\Theta : \underlying{\calG} \rightarrow \underlying{\calG^c}$ between the underlying sets as follows.
+        Let $G \in \calG$ be an $n$-simplex and $G^{c} \in \calG^{c}$ be constructed from $G$.
+        We let $A_{G} : \Delta^{n} \rightarrow G$ and $A_{G^{c}} : \Delta^{n} \rightarrow G^{c}$
+        be affine reference transformations
+        that agree on the vertices common to $G$ and $G^{c}$.
+        We then define the piecewise affine mapping 
+        \begin{align*}
+            \Theta_{|G} := A_{G^{c}} \circ A_{G}^{-1}.
+        \end{align*}
+        It follows that 
+        \begin{align*}
+            |\det( \Jacobian      \Theta_{|G} )| = \frac{\vol(G^{c})}{\vol(G)}
+            .
+        \end{align*}
+        We want to further characterize the singular values of this transform. 
+        Let $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
+        We verify that 
+        \begin{align*}
+            \Theta_{|G}(x) 
+            = 
+            x
+            - 
+            (1+\rho) \frac{\langle \hat h_{z}, x \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
+            \hat z_{S'}
+            .
+        \end{align*}
+        Indeed, the right-hand side equals $x$ whenever $x$ lies in the plane orthogonal to $h_{z}$,
+        and when $x = z_{S'}$, then 
+        \begin{align*}
+            y 
+            =
+            z_{S'}
+            - 
+            (1+\rho) \hat z_{S'} \frac{\langle \hat h_{z}, z_{S'} \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
+            =
+            z_{S'}
+            - 
+            (1+\rho) \hat z_{S'} \vecnorm{z_{S'}}
+            =
+            - z_{S'}
+            .
+        \end{align*}
+        If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$ for some $b_{z} \in \bbR^{n}$, then 
+        \begin{align*}
+            \Theta_{|G}( h_{z} ) 
+            &= 
+            h_{z}
+            - 
+            (1+\rho) \frac{\langle h_{z}, h_{z} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
+            \\&
+            = 
+            h_{z}
+            - 
+            (1+\rho) \frac{\langle h_{z}, z_{S'} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
+            %\\&
+            = 
+            h_{z}
+            - 
+            (1+\rho) z_{S'}
+            %\\&
+            = 
+            - \rho h_{z}
+            - 
+            (1+\rho) b_{z}
+            .
+        \end{align*}
+        Evidently, the transformation $\Theta_{|G}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
+        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
+        We study the singular values of the matrix 
+        \begin{align*}
+            M_{\Theta,G} 
+            := 
+            \begin{pmatrix}
+            -\rho                                         & 0
+            \\ 
+            -(1+\rho) \vecnorm{ b_{z} }/\vecnorm{ h_{z} } & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            -\rho                 & 0
+            \\ 
+            -(1+\rho) \tan(\beta) & 1
+            \end{pmatrix}
+            .
+        \end{align*}
+        Its two singular values are:
+        \begin{align}
+            \sigma_{\max}(\Theta,G) 
+            := 
+            \frac 1 2 \sqrt{ \left( 1 + \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} } + \frac 1 2 \sqrt{ \left( 1 - \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} }
+            \label{math:theta_max}
+            ,
+            \\
+            \sigma_{\min}(\Theta,G) 
+            = 
+            \frac 1 2 \sqrt{ \left( 1 + \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} } - \frac 1 2 \sqrt{ \left( 1 - \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} }
+            \label{math:theta_min}
+            .
+        \end{align}
+        All other singular values of $\Jacobian\Theta_{|G}$ equal $1$. 
+        The singular value $\sigma_{\max}(\Theta,G) \geq 1$ is monotonically increasing in $\tan(\beta)$ and must hence be the maximal singular value of $\Jacobian\Theta_{|G}$.
+        Moreover, $\sigma_{\min}(\Theta,G) = \rho / \sigma_{\max}(\Theta,G) \leq \rho \leq 1$ must be the smallest singular value of $\Jacobian\Theta_{|G}$.
+        It is evident that $\rho = \vol(G^{c}) / \vol(G)$. 
+        
+        We develop explicit bounds for these singular values. 
+        The definition of the tangent and the decomposition $z_{S'} = h_{z} + b_{z}$ 
+        imply that $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$.
+        
+        Recall that $G \in \calG$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
+        Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$,
+        which must be contained in some face of $T$. 
+        Since $S'$ has dimension $n-\ell-1$, the vector $(n-\ell) h_{z}$ is the height vector of that face of $T$. 
+        Thus, 
+        \begin{align*}
+            \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
+            = 
+            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            = 
+            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            \leq 
+            (n-\ell) \aspectratio(T)
+%             = 
+%             \frac{ \vecnorm{ b_{z} } \vol(F_{z}) }{ (n-\ell)^{-1} n \vol(T) }
+%             \leq 
+%             \frac{ n-\ell }{n!}
+%             \cdot 
+%             \frac{ \diam(T)^{n} }{ \vol(T) }
+            .
+        \end{align*}
+        We abbreviate 
+        \begin{align}\label{math:upper_bound_for_theta}
+            \mu_{T,\ell} 
+            := 
+            \frac 1 2 \sqrt{ \left( 1 + \rho \right)^{2} + (1+\rho)^{2} (n-\ell)^{2} \aspectratio(T)^{2} } 
+            + 
+            \frac 1 2 \sqrt{ \left( 1 - \rho \right)^{2} + (1+\rho)^{2} (n-\ell)^{2} \aspectratio(T)^{2} }
+            .
+        \end{align}
+        This establishes bounds on the singular values of the transformation. 
+        In summary, the singular values of the Jacobian of $\Theta$ at almost every $x$ satisfy 
+        \begin{align}
+            \sigma_{1}(\Theta,x) \leq \mu_{T,\ell},
+            \quad 
+            \sigma_{2}(\Theta,x) = \dots = \sigma_{n-1}(\Theta) = 1,
+            \quad 
+            \sigma_{n}(\Theta,x)^{-1} \leq \mu_{T,\ell} / \rho.
+        \end{align}
+        
+        
+        
+        
+        
+        \item 
+        We introduce another mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$ as follows. 
+        Consider any $n$-simplex $G \in \calG$ and let $G^c \in \calG^{c}$ be its image under $\Theta$.
+        We construct a bi-Lipschitz mapping 
+        \begin{align*}
+            \Phi_{G} : G \cup G^{c} \rightarrow G^{c}.
+        \end{align*}
+        The construction will be such that the union of $\Phi_{G}$ for all $n$-simplices $G \in \calG$
+        will define the desired bi-Lipschitz mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$,
+        which will be the identity along $\partial\underlying{\calG^\ast} \setminus \partial\underlying{\calG}$.
+        
+        Once again, $h_{z}$ denotes the height of $z_{S'}$ within $G$.
+        Here, we let $Q \subseteq G \cap G^{c}$ be the subsimplex 
+        that is complementary to the line segment from the origin to $z_{S'}$ in $G$.
+        Equivalently, $Q$ is complementary to the line segment from the origin to $y$ in $G^{c}$.
+        From the definition of simplices, we now conclude that any $x \in G \cup G^{c}$ 
+        has a unique representation
+        \begin{align*}
+            x = \lambda z_{S'} + \mu x_{Q}, \quad \lambda \in [-\rho,1], \quad \mu \in [0,1], \quad |\lambda| + \mu \leq 1, \quad x_{Q} \in Q,
+        \end{align*}
+        Since $\mu x_{Q}$ lies in the hyperplane spanned by the origin and $Q$, we have 
+        \begin{align*}
+            \lambda = \lambda(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+            .
+        \end{align*}
+        Based on that observation, we define 
+        \begin{align*}
+            \Phi_{G}(x) 
+            &
+            := 
+            \mu x_{Q} + \frac{\rho}{\rho+1} \left( \lambda(x) - 1 \right) z_{S'}
+            \\&
+            = 
+            \mu x_{Q} + \frac{\rho}{\rho+1} \lambda(x) z_{S'} - \frac{\rho}{\rho+1} z_{S'}
+            \\&
+            = 
+            x - \frac{\rho+1}{\rho+1} \lambda(x) z_{S'} + \frac{\rho}{\rho+1} \lambda(x) z_{S'} - \frac{\rho}{\rho+1} z_{S'}
+            \\&
+            = 
+            x - \frac{1}{\rho+1} \lambda(x) z_{S'} - \frac{\rho}{\rho+1} z_{S'}
+            \\&
+            = 
+            x - \frac{1}{\rho+1} \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} z_{S'} - \frac{\rho}{\rho+1} z_{S'}
+            .
+        \end{align*}
+        We readily verify that this transformation is a bi-Lipschitz mapping from $G \cup G^{c}$ onto $G^{c}$
+        that satisfies the desired mapping properties. 
+        It remains to analyze its Jacobian and get explicit estimates for its singular values. 
+        
+        We once more introduce an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$ for some $b_{z} \in \bbR^{n}$.
+        With that,
+        \begin{align*}
+            \Jacobian \Phi_{G}(x)
+            &=
+            \Id 
+            - 
+            \frac{ 1 }{ 1 + \rho }  
+            \frac{ z_{S'} \otimes h_{z}^{t} }{ \langle h_{z},z_{S'}\rangle }  
+            \\
+            &=
+            \Id 
+            - 
+            \frac{ 1 }{ 1 + \rho }  
+            \frac{ z_{S'} \otimes h_{z}^{t} }{ \langle h_{z},h_{z}\rangle }  
+            \\
+            &=
+            \Id 
+            - 
+            \frac{ 1 }{ 1 + \rho }  
+            \frac{ h_{z} \otimes h_{z}^{t} }{ \langle h_{z},h_{z}\rangle } 
+            - 
+            \frac{ 1 }{ 1 + \rho }  
+            \frac{ b_{z} \otimes h_{z}^{t} }{ \langle h_{z},h_{z}\rangle } 
+            \\
+            &=
+            \Id 
+            - 
+            \frac{ 1 }{ 1 + \rho }  
+            \hat h_{z} \otimes \hat h_{z}^{t}
+            - 
+            \frac{ \vecnorm{ b_{z} } / \vecnorm{ h_{z} } }{ 1 + \rho }  
+            \hat b_{z} \otimes \hat h_{z}^{t}
+            .
+        \end{align*}
+        The Jacobian acts as the identity over the orthogonal complement of the span of $h_{z}$ and $z_{s'}$.
+        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        Hence, $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. 
+        Direct computation shows 
+        \begin{align}
+            \Jacobian \Phi_{G}(x) \cdot \hat b_{z} = \hat b_{z}
+            ,
+            \qquad 
+            \Jacobian \Phi_{G}(x) \cdot \hat h_{z} = \frac{ \rho }{ 1 + \rho } \hat h_{z} - \frac{ \vecnorm{ b_{z} } / \vecnorm{ h_{z} } }{ 1 + \rho } \hat b_{z}
+            .
+        \end{align}
+        It remains to study the singular values of the matrix 
+        \begin{align*}
+            M_{\Phi,G} 
+            = 
+            \begin{pmatrix}
+                 \frac{ \rho }{ 1 + \rho }    & 0 
+                \\
+                -\frac{ \tan(\beta) }{1+\rho} & 1 
+            \end{pmatrix}
+            .
+        \end{align*}
+        By building the symmetric matrix $M_{\Phi,G}^{t} M_{\Phi,G}$ and computing its eigenvalues, 
+        we obtain the singular values 
+        \begin{align*}
+            \sigma_{\max}(\Phi,G) 
+            &
+            =
+            \frac{1}{2(1+\rho)} \sqrt{ (2\rho + 1)^{2} + \tan(\beta)^2 } + \frac{1}{2(1+\rho)} \sqrt{ 1 + \tan(\beta)^2 } 
+            ,
+            \\
+            \sigma_{\min}(\Phi,G) 
+            &
+            =
+            \frac{1}{2(1+\rho)} \sqrt{ (2\rho + 1)^{2} + \tan(\beta)^2 } - \frac{1}{2(1+\rho)} \sqrt{ 1 + \tan(\beta)^2 } 
+            .
+        \end{align*}
+        These are monotonically increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
+        Hence, these are also the maximal and minimal singular values of the Jacobian $\Jacobian \Phi_{G}$, the remaining singular values being equal to $1$. 
+        Notice that 
+        \begin{align*}
+            \det \Jacobian\Phi = \sigma_{\max}(\Phi,G) \sigma_{\min}(\Phi,G) = \frac{\rho(1+\rho)}{(1+\rho)^2}.
+        \end{align*}
+        We now recall that the height of $h_{z}$ in $G \in \calG$ equals $(\ell+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
+        Similar as above, we use the upper bound 
+        \begin{align*}
+            \tan(\beta) = \frac{\vecnorm{ b_{z} }}{\vecnorm{ h_{z} }} \leq (\ell+1) \aspectratio(T).
+        \end{align*}
+        We conclude that the singular values of the Jacobian of $\Phi$ at almost every $x$ satisfy 
+        \begin{gather}
+            \sigma_{1}(\Phi,x) % \matnorm{ \Jacobian\Phi_{G} } 
+            \leq 
+            \frac{1}{2(1+\rho)} \sqrt{ (2\rho + 1)^{2} + (\ell+1)^2 \aspectratio(T)^2 } 
+            + 
+            \frac{1}{2(1+\rho)} \sqrt{               1 + (\ell+1)^2 \aspectratio(T)^2 }
+            \label{math:phi_max}
+            ,
+            \\
+            \sigma_{2}(\Phi,x) = \dots = \sigma_{n-1}(\Phi,x) = 1,
+            \\
+            \sigma_{n}(\Phi,x)^{-1} % \matnorm{ \Jacobian\Phi_{G}^{-1} } 
+            \leq 
+            % \frac{(1+\rho)^2}{\rho(1+\rho)}
+            % \frac{1}{2(1+\rho)} 
+            \frac{1}{2\rho}
+            \sqrt{ (2\rho + 1)^{2} + (\ell+1)^2 \aspectratio(T)^2 } 
+            + 
+            % \frac{(1+\rho)^2}{\rho(1+\rho)}
+            % \frac{1}{2(1+\rho)} 
+            \frac{1}{2\rho}
+            \sqrt{               1 + (\ell+1)^2 \aspectratio(T)^2 }
+            \label{math:phi_min}
+            .
+        \end{gather}
+        This finishes the discussion of the transformation $\Phi$. 
+    \end{itemize}
+    Having shown all the desired estimates, and the proof is complete. 
+\end{proof}
 
 
 
