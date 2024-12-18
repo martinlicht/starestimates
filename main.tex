@@ -6187,35 +6187,33 @@ We give detailed estimates for the singular values of their Jacobians.
     %         | \det\Jacobian\Xi^{-1} |      \leq \aspectratio(\calT) \diameterratio(\calT).
     %     \end{gather*}
     \begin{gather*} 
-        | \det\Jacobian\Xi^{  } |      \leq \aspectratio(\calT) \diameterratio(\calT),
-        \quad 
-        | \det\Jacobian\Xi^{-1} |      \leq \aspectratio(\calT) \diameterratio(\calT),
+        | \det\Jacobian\Xi^{  } |      \leq \volumeratio(\calT),
         \\
         \sigma_{1}
-        %&
         \leq 
         \frac{1}{2} 
-        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
         \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
         +
         \frac{1}{2} 
         \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) - 1 \right)^{2} + \aspectratio(\calT)^{2} }
         ,
         \\
-        \sigma_{n}^{-1}
-        %&
-        \leq 
-        \frac{1}{2} 
-        %\left( \sqrt{ (1 + a)^2 + c^2 } \pm \sqrt{ (1 - a)^2 + c^2 } \right)
-        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
-        +
-        \frac{1}{2} 
-        \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) - 1 \right)^{2} + \aspectratio(\calT)^{2} }
-        ,
-        \\
-        \sigma_2,\dots,\sigma_{n-1} \leq 1.
-        %         \det(\Jacobian \Xi) &\leq \diameterratio(\calT) \aspectratio(T_2)
+        \sigma_2,\dots,\sigma_{n-1},\sigma_{n} \leq 1.
     \end{gather*}
+    In particular,
+    \begin{align*}
+        \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{2} |^{-\frac 1 p}
+        \leq 
+        \left( 
+            \frac{1}{2} 
+            \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) + 1 \right)^{2} + \aspectratio(\calT)^{2} }
+            +
+            \frac{1}{2} 
+            \sqrt{ \left( \diameterratio(\calT) \aspectratio(\calT) - 1 \right)^{2} + \aspectratio(\calT)^{2} }
+        \right)
+        \volumeratio(\calT)^{\frac 1 p}
+        .
+    \end{align*}
     These estimates improve over the ones in Proposition~\ref{proposition:starreflection} when the reflection is over a single face.
     We believe that better estimates can be computed from the geometric data also in the other cases.
 \end{remark}
@@ -6621,8 +6619,8 @@ The second one is specific to the fact that shellable triangulations are contrac
 %         \right)^{M}
         \left( 
         \prod_{m=1}^{M}
-            \Cachttrafo{n}{k}{\ell_{m}}{p}(\calT)
-            \Csiebtrafo{n}{k}{\ell_{m}}{p}(\calT)
+            \Cachttrafo{n}{k+1}{\ell_{m}}{p}(\calT)
+            \Csiebtrafo{n}{k  }{\ell_{m}}{p}(\calT)
         \right)
         C_{{\PF},k,T_{0},p}
         \| \cartan u \|_{L^{p}(\Omega)}
@@ -6670,7 +6668,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     \begin{align*}
         \| g' \|_{L^{p}(\Omega')}  
         \leq 
-        \Cachttrafo{n}{k}{\ell_{M}}{p}(\calT)
+        \Cachttrafo{n}{k+1}{\ell_{M}}{p}(\calT)
         %\Cacht{n}{k}(\calT)
         %\Cachtprime{n}{k}(\calT)^{k} 
         %\Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
@@ -6880,7 +6878,7 @@ The second one is specific to the fact that shellable triangulations are contrac
     Let $\calT$ be a shellable $n$-dimensional triangulation, 
     and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
     Assume that $T_0, T_1, \dots, T_M$ be a shelling of $\calT$ and that $\bfu \in \bfW^{p}(\Omega,\curl)$ for some $1 \leq p \leq \infty$.
-    Let $0 \leq \ell_{m} < n$ be such that $T_{m}$ shares $n - \ell$ faces with the previous simplices.
+    Let $0 \leq \ell_{m} < n$ be such that $T_{m}$ shares $n - \ell_{m}$ faces with the previous simplices.
     \begin{itemize}
         \item 
         There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$
@@ -6895,10 +6893,10 @@ The second one is specific to the fact that shellable triangulations are contrac
             \leq  
             C_{\PF,T_{m},\Gamma_{m},1,p}(\calT) 
             \left( 
-                \| \curl u      \|_{L^{p}(T_{m})} 
+                \| \curl \bfu      \|_{L^{p}(T_{m})} 
                 +
                 \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
-                \| \curl u \|_{L^{p}(\Makoto_{m-1})}
+                \| \curl \bfu \|_{L^{p}(\Makoto_{m-1})}
             \right)
             \\&\qquad
             + 
@@ -6914,7 +6912,7 @@ The second one is specific to the fact that shellable triangulations are contrac
             \leq 
             \left( 
             \prod_{i=1}^{M}
-            \Cachttrafo{n}{1}{\ell_{m}}{p}(\calT)
+            \Cachttrafo{n}{2}{\ell_{m}}{p}(\calT)
             \Csiebtrafo{n}{1}{\ell_{m}}{p}(\calT)
             \right)
             C_{{\PF},1,T_{0},p}
