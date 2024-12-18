@@ -59,12 +59,11 @@ Further changes:
 - [x] use the product inequality for singular values 
 - [x] pairwise inequality (topics: p.178)
 - [x] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
+- [x] CODE: include that possible improvement in the C++ estimate
+- [x] implement the shelling2 construction in full
 - [ ] Section 9: update the application of geometric estimate in the following section
-- [ ] CODE: include that possible improvement in the C++ estimate
-- [ ] compare the results 
-- [ ] implement the shelling2 construction in full
-- [ ] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
-      Furthermore, it must respect the depth of each simplex
+- [ ] 
+
 
 
 POST-REVISION:
