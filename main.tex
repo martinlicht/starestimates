@@ -6246,9 +6246,9 @@ We give detailed estimates for the singular values of their Jacobians.
         % TODO: prove this observation 
         
         \item 
-        
-        Let us write $\rho = \min(1,\varrho)$. 
-        We define $y = - \rho \hat z_{S'}$ as vector in the opposite direction of $z_{S'}$ and with length $\rho$. 
+        Let $\rho \in (0,1]$, yet to be determined. 
+        We define $y = - \rho z_{S'}$ as vector in the opposite direction of $z_{S'}$ and with length $\rho \|z_{S'}\|$. 
+        Henceforth, we assume $\rho \leq \varrho / \|z_{S'}\|$ so that $y \in \overline{\Ball_{\varrho}(z_S)}$.  
         By construction, the closed line segment from $z_{S}$ to $y$ is contained in $\overline{\Ball_{\varrho}(z_S)}$,
         and we conclude that the convex closure of $T$ and $y$ must lie in $\patch_{\calT}(S)$.
         
@@ -6279,7 +6279,8 @@ We give detailed estimates for the singular values of their Jacobians.
             .
         \end{align*}
         We want to further characterize the singular values of this transform. 
-        Let $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
+        Let $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$,
+        that is, the vector pointing to $z_{S'}$ and standing orthogonally on the affine hull of the face $G$ that opposes $z_{S'}$
         We verify that 
         \begin{align*}
             \Theta_{|G}(x) 
@@ -6293,17 +6294,23 @@ We give detailed estimates for the singular values of their Jacobians.
         Indeed, the right-hand side equals $x$ whenever $x$ lies in the plane orthogonal to $h_{z}$,
         and when $x = z_{S'}$, then 
         \begin{align*}
-            y 
+            \Theta_{|G}\left( z_{S'} \right) 
+            &
             =
             z_{S'}
             - 
             (1+\rho) \hat z_{S'} \frac{\langle \hat h_{z}, z_{S'} \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
+            \\&
             =
             z_{S'}
             - 
             (1+\rho) \hat z_{S'} \vecnorm{z_{S'}}
             =
-            - z_{S'}
+            z_{S'}
+            - 
+            (1+\rho) z_{S'} 
+            =
+            - \rho z_{S'} = y
             .
         \end{align*}
         If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$ for some $b_{z} \in \bbR^{n}$, then 
@@ -6359,24 +6366,30 @@ We give detailed estimates for the singular values of their Jacobians.
             ,
             \\
             \sigma_{\min}(\Theta,G) 
-            = 
+            := 
             \frac 1 2 \sqrt{ \left( 1 + \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} } - \frac 1 2 \sqrt{ \left( 1 - \rho \right)^{2} + (1+\rho)^{2} \tan(\beta)^{2} }
             \label{math:theta_min}
             .
         \end{align}
         All other singular values of $\Jacobian\Theta_{|G}$ equal $1$. 
-        The singular value $\sigma_{\max}(\Theta,G) \geq 1$ is monotonically increasing in $\tan(\beta)$ and must hence be the maximal singular value of $\Jacobian\Theta_{|G}$.
-        Moreover, $\sigma_{\min}(\Theta,G) = \rho / \sigma_{\max}(\Theta,G) \leq \rho \leq 1$ must be the smallest singular value of $\Jacobian\Theta_{|G}$.
+        The singular values $\sigma_{\max}(\Theta,G) \geq 1$ and $\sigma_{\min}(\Theta,G) \leq 1$ is monotonically increasing and decreasing, respectively, in $\tan(\beta)$. Hence they must the extremal maximal singular values of $\Jacobian\Theta_{|G}$.
         It is evident that $\rho = \vol(G^{c}) / \vol(G)$. 
         
         We develop explicit bounds for these singular values. 
         The definition of the tangent and the decomposition $z_{S'} = h_{z} + b_{z}$ 
         imply that $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$.
         
-        Recall that $G \in \calG$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
-        Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$,
-        which must be contained in some face of $T$. 
-        Since $S'$ has dimension $n-\ell-1$, the vector $(n-\ell) h_{z}$ is the height vector of that face of $T$. 
+        Recall that $G \in \calG$ is obtained from $T$ via barycentric subdivisions: 
+        first at $z_{S}$, leading to some intermediate $n$-simplex $T'$, and then at $z_{S'}$, leading to $G \subseteq T'$. 
+        Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$, which is some face of $T'$.
+        Now, the height of $F_{z}$ in $G$ is $(n-\ell)$-th of the height of $F_{z}$ in $T'$
+        since $S'$ has dimension $n-\ell-1$. 
+        The height of $F_{z}$ in $T'$ is just the height of the its opposing vertex, which lies in $S'$,
+        and which equals the height of that vertex in $T$.
+%         which must be contained in some face of $T$ containing $S$. 
+%         The height vector $h_{z}$ is orthogonal to $F_{z}$. 
+%         Since $S'$ has dimension $n-\ell-1$, the vector $(n-\ell) h_{z}$ is the height vector of that face of $T$,
+%         pointing to some vertex of $S'$ and standing orthogonally on the face opposite to that vertex. 
         Thus, 
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
@@ -6410,7 +6423,7 @@ We give detailed estimates for the singular values of their Jacobians.
             \quad 
             \sigma_{2}(\Theta,x) = \dots = \sigma_{n-1}(\Theta) = 1,
             \quad 
-            \sigma_{n}(\Theta,x)^{-1} \leq \mu_{T,\ell} / \rho.
+            \sigma_{n}(\Theta,x)^{-1} = \frac{ \sigma_{1}(\Theta,x) }{ \left| \det \Jacobian\Theta_{|G} \right| } \leq \mu_{T,\ell} / \rho.
         \end{align}
         
         
@@ -6562,6 +6575,8 @@ We give detailed estimates for the singular values of their Jacobians.
             \sigma_{2}(\Phi,x) = \dots = \sigma_{n-1}(\Phi,x) = 1,
             \\
             \sigma_{n}(\Phi,x)^{-1} % \matnorm{ \Jacobian\Phi_{G}^{-1} } 
+            =
+            \frac{ \sigma_{1}(\Phi,x) }{ \left| \det \Jacobian\Phi \right| }
             \leq 
             % \frac{(1+\rho)^2}{\rho(1+\rho)}
             % \frac{1}{2(1+\rho)} 

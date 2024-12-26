@@ -64,6 +64,10 @@ Further changes:
 - [x] implement the shelling2 construction in full
 - [x] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
       Furthermore, it must respect the depth of each simplex
+- [ ] improve the constant \rho to have no arbitrary scale and adjust all subsequent estimates
+      \rho should be the ratio target height / source height 
+      adjust subsequent estimates after that and implement the details in C++.
+- [ ] .
 - [ ] create an improved geometric estimate for vertex stars 
 
 
