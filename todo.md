@@ -59,11 +59,16 @@ Further changes:
 - [x] use the product inequality for singular values 
 - [x] pairwise inequality (topics: p.178)
 - [x] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
+- [x] Section 9: update the application of geometric estimate in the following section
 - [x] CODE: include that possible improvement in the C++ estimate
 - [x] implement the shelling2 construction in full
-- [ ] Section 9: update the application of geometric estimate in the following section
-- [ ] 
-
+- [x] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
+      Furthermore, it must respect the depth of each simplex
+- [ ] improve the constant \rho to have no arbitrary scale and adjust all subsequent estimates
+      \rho should be the ratio target height / source height 
+      adjust subsequent estimates after that and implement the details in C++.
+- [ ] .
+- [ ] create an improved geometric estimate for vertex stars 
 
 
 POST-REVISION:

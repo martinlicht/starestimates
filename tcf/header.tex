@@ -1,0 +1,552 @@
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{calc}
+\usepackage{amscd}
+
+\usepackage{bbm}
+
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\makeatletter
+\newcommand\suchthat{%
+ \@ifstar
+  {\mathrel{}\middle|\mathrel{}}
+  {\mid}%
+}
+\makeatother
+
+% TODO: macro names in correct order, this is messy ...
+\newcommand{\Ceins}[1]{\tcf{\sqrt{#1}}} %% \newcommand{\Ceins}[1]{C_{1,#1}}
+\newcommand{\Czwei}[1]{\tcf{\sqrt{#1}}} %% \newcommand{\Czwei}[1]{C_{2,#1}}
+\newcommand{\Cdrei}[1]{C_{3,#1}}
+\newcommand{\Cvier}[1]{C_{4,#1}}
+\newcommand{\Cfive}[2]{C_{5,#1,#2}}
+\newcommand{\Cfiveprime}[2]{C'_{5,#1,#2}}
+\newcommand{\Cdetfive}[2]{C^{\det}_{5,#1,#2}}
+\newcommand{\Csechs}[2]{C_{6,#1,#2}}
+\newcommand{\Csechsprime}[2]{C'_{6,#1,#2}}
+\newcommand{\Cdetsechs}[2]{C^{\det}_{6,#1,#2}}
+\newcommand{\Csieb}[2]{C_{7,#1,#2}}
+\newcommand{\Csiebprime}[2]{C'_{7,#1,#2}}
+\newcommand{\Cacht}[2]{C_{8,#1,#2}}
+\newcommand{\Cachtprime}[2]{C'_{8,#1,#2}}
+\newcommand{\Cdetsieb}[2]{C^{\det}_{7,#1,#2}}
+\newcommand{\Cdetacht}[2]{C^{\det}_{8,#1,#2}}
+% \newcommand{\Ceins}{\sqrt{n}}
+% \newcommand{\Czwei}{\sqrt{2n}}
+
+\newcommand{\fooL}{L}
+
+\newcommand{\PF}{{\rm PF}}
+
+\newcommand{\maxcol}{{\rm A}}
+
+\newcommand{\minus}{-}
+
+\newcommand{\aspectratio}{\kappa_{\rm A}}
+\newcommand{\algebraicshapemeasure}{\kappa_{\rm M}}
+%\newcommand{\geometricshapemeasure}{\kappa_{}}
+\newcommand{\volumeratio}{C_\rho}
+\newcommand{\diameterratio}{C_\theta}
+\newcommand{\reflectionestimate}{C_\xi}
+
+\newcommand{\Cxi}[1]{C_{\Xi,#1}}
+\newcommand{\Cxidet}[1]{C_{\Xi,#1}}
+
+\newcommand{\vecnorm}[1]{ \| #1 \| }
+\newcommand{\matnorm}[1]{ \| #1 \|_{2} }
+
+\newcommand{\sphere}[1]{{\mathfrak S}^{#1}}
+\newcommand{\ball}[1]{{\mathfrak B}^{#1}}
+
+\newcommand{\Perm}{{\operatorname{Perm}}}
+
+\newcommand{\linhull}{{\operatorname{span}}}
+\newcommand{\convexhull}{{\operatorname{convex}}}
+
+\newcommand{\Poinc}{\calP}
+\newcommand{\Bogov}{\calB}
+
+\newcommand{\mollifier}{\frakm}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\Id}{{\rm Id}}
+
+\newcommand{\Lip}{{\rm Lip}}
+
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+
+\newcommand{\mia}{k}
+\newcommand{\jeza}{\ell}
+
+%\newcommand{\Makoto}{{\color{blue}A}}
+\newcommand{\Makoto}{A}
+
+
+\DeclareMathOperator{\adj}{adj}
+%\newcommand{\adj}{{\rm adj}}
+\newcommand{\inv}{{-1}}
+\newcommand{\invt}{{-t}}
+\newcommand{\tinv}{{-t}}
+\newcommand{\determinant}{{\operatorname{det}}}
+% \DeclareMathOperator{\Jacobian}{{\rm Jac}}
+% \DeclareMathOperator{\Jacobian}{{\mathbf{J}}}
+% \newcommand{\Jacobian}{{\rm Jac}}
+\newcommand{\Jacobian}{{\mathbf{J}}}
+\newcommand{\dimension}{\operatorname{dim}}
+\newcommand{\sgn}{\operatorname{sgn}}
+\newcommand{\adjugate}{\operatorname{adj}}
+\newcommand{\sym}{\operatorname{sym}}
+\newcommand{\signum}{\operatorname{sgn}}
+\newcommand{\kronecker}{{\hat\delta}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\codom}{\operatorname{codom}}
+\newcommand{\rng}{\operatorname{ran}}
+\newcommand{\convex}{\operatorname{convex}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\coran}{\operatorname{coran}}
+
+\newcommand{\dif}{{\mathrm d}}
+\newcommand{\Dif}{{\mathrm D}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\Grad}{\operatorname{Grad}}
+\newcommand{\curl}{\operatorname{curl}}
+\newcommand{\Curl}{\operatorname{Curl}}
+\newcommand{\rot}{\operatorname{rot}}
+\newcommand{\divergence}{\operatorname{div}}
+\newcommand{\diver}{\operatorname{div}}
+\newcommand{\svcurl}{\operatorname{sv-curl}}
+\newcommand{\vscurl}{\operatorname{vs-curl}}
+\newcommand{\sdiver}{\operatorname{sdiv}}
+\newcommand{\Sdiver}{\operatorname{Sdiv}}
+\newcommand{\sgrad}{\operatorname{sgrad}}
+\newcommand{\Sgrad}{\operatorname{Sgrad}}
+\newcommand{\Laplace}{\bigtriangleup}
+\newcommand{\laplace}{\bigtriangleup}
+\newcommand{\laplacian}{\laplace}
+\newcommand{\Laplacian}{\laplace}
+% \newcommand{\cartan}{{\mathsf d}}
+% \newcommand{\cartanx}{{\mathsf d}x}
+\newcommand{\cartan}{d}
+\newcommand{\cartanx}{dx}
+
+%\newcommand{\argmin}{\operatorname{argmin}}
+\DeclareMathOperator*{\argmin}{{\rm argmin}}
+
+% \DeclareMathOperator*{\carapace}{{\rm corona}}
+\newcommand{\carapace}{{\partial \rm st}}
+
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\esssup}{{\operatorname{esssup}}}
+\newcommand{\essinf}{{\operatorname{essinf}}}
+
+\newcommand{\equivalent}{ \Longleftrightarrow }
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\st}{ \mid }
+\newcommand{\diam}{{\delta}} %% \newcommand{\diam}{{\operatorname{diam}}}
+\newcommand{\height}{h} %% \newcommand{\height}{{\rm h}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\patch}{\operatorname{st}}
+
+\newcommand{\Trace}{\operatorname{Tr}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\normaltrace}{\operatorname{nm}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Ext}{\operatorname{Ext}}
+\newcommand{\Ex}{\operatorname{Ex}}
+\newcommand{\ext}{\operatorname{ext}}
+
+\newcommand{\Poincare}{\sfP}
+\newcommand*{\volsphere}[1]{\color{red}{S_{#1}}}
+\newcommand*{\volball}[1]{B_{#1}}
+
+\newcommand{\subsimplex}{\calS^{\downarrow}}
+\newcommand{\supsimplex}{\calS^{\uparrow}}
+\newcommand{\supersimplex}{\supsimplex}
+\newcommand{\orientation}{\mathscr{O}}
+\newcommand{\restrict}{R}
+
+\newcommand{\Mesh}{\calT}
+\newcommand{\Vertices}{\calV}
+\newcommand{\Edges}{\calE}
+\newcommand{\Faces}{\calF}
+\newcommand{\Ball}{\calB}
+\newcommand{\Sphere}{S}
+\newcommand{\underlying}[1]{\left| #1 \right|}
+
+\newcommand{\Distr}{\calD}
+\newcommand{\Cont}{\calC}
+\newcommand{\Lebesgue}{L}
+\newcommand{\Sobolev}{W}
+\newcommand{\SOBOLEV}{\bfW}
+\newcommand{\SobolevLambda}{W\Lambda}
+\newcommand{\Alt}{\Lambda}
+\newcommand{\loc}{{\rm loc}}
+
+\newcommand{\Ned}{{\calN d}}
+\newcommand{\RT}{{\calR T}}
+\newcommand{\BDM}{{\calB \calD \calM}}
+  
+
+\newcommand*{\ConstantPF}{C_{{\rm PF}}}
+
+\newcommand{\vecone}{{\mathbbm 1}}
+
+
+
+
+
+
+
+
+
+
+
+
+\newcommand{\bbA}{{\mathbb A}}
+\newcommand{\bbB}{{\mathbb B}}
+\newcommand{\bbC}{{\mathbb C}}
+\newcommand{\bbD}{{\mathbb D}}
+\newcommand{\bbE}{{\mathbb E}}
+\newcommand{\bbF}{{\mathbb F}}
+\newcommand{\bbG}{{\mathbb G}}
+\newcommand{\bbH}{{\mathbb H}}
+\newcommand{\bbI}{{\mathbb I}}
+\newcommand{\bbJ}{{\mathbb J}}
+\newcommand{\bbK}{{\mathbb K}}
+\newcommand{\bbL}{{\mathbb L}}
+\newcommand{\bbM}{{\mathbb M}}
+\newcommand{\bbN}{{\mathbb N}}
+\newcommand{\bbO}{{\mathbb O}}
+\newcommand{\bbP}{{\mathbb P}}
+\newcommand{\bbQ}{{\mathbb Q}}
+\newcommand{\bbR}{{\mathbb R}}
+\newcommand{\bbS}{{\mathbb S}}
+\newcommand{\bbT}{{\mathbb T}}
+\newcommand{\bbU}{{\mathbb U}}
+\newcommand{\bbV}{{\mathbb V}}
+\newcommand{\bbW}{{\mathbb W}}
+\newcommand{\bbX}{{\mathbb X}}
+\newcommand{\bbY}{{\mathbb Y}}
+\newcommand{\bbZ}{{\mathbb Z}}
+
+\newcommand{\bfA}{\bm{A}}
+\newcommand{\bfB}{\bm{B}}
+\newcommand{\bfC}{\bm{C}}
+\newcommand{\bfD}{\bm{D}}
+\newcommand{\bfE}{\bm{E}}
+\newcommand{\bfF}{\bm{F}}
+\newcommand{\bfG}{\bm{G}}
+\newcommand{\bfH}{\bm{H}}
+\newcommand{\bfI}{\bm{I}}
+\newcommand{\bfJ}{\bm{J}}
+\newcommand{\bfK}{\bm{K}}
+\newcommand{\bfL}{\bm{L}}
+\newcommand{\bfM}{\bm{M}}
+\newcommand{\bfN}{\bm{N}}
+\newcommand{\bfO}{\bm{O}}
+\newcommand{\bfP}{\bm{P}}
+\newcommand{\bfQ}{\bm{Q}}
+\newcommand{\bfR}{\bm{R}}
+\newcommand{\bfS}{\bm{S}}
+\newcommand{\bfT}{\bm{T}}
+\newcommand{\bfU}{\bm{U}}
+\newcommand{\bfV}{\bm{V}}
+\newcommand{\bfW}{\bm{W}}
+\newcommand{\bfX}{\bm{X}}
+\newcommand{\bfY}{\bm{Y}}
+\newcommand{\bfZ}{\bm{Z}}
+
+\newcommand{\bfa}{\bm{a}}
+\newcommand{\bfb}{\bm{b}}
+\newcommand{\bfc}{\bm{c}}
+\newcommand{\bfd}{\bm{d}}
+\newcommand{\bfe}{\bm{e}}
+\newcommand{\bff}{\bm{f}}
+\newcommand{\bfg}{\bm{g}}
+\newcommand{\bfh}{\bm{h}}
+\newcommand{\bfi}{\bm{i}}
+\newcommand{\bfj}{\bm{j}}
+\newcommand{\bfk}{\bm{k}}
+\newcommand{\bfl}{\bm{l}}
+\newcommand{\bfm}{\bm{m}}
+\newcommand{\bfn}{\bm{n}}
+\newcommand{\bfo}{\bm{o}}
+\newcommand{\bfp}{\bm{p}}
+\newcommand{\bfq}{\bm{q}}
+\newcommand{\bfr}{\bm{r}}
+\newcommand{\bfs}{\bm{s}}
+\newcommand{\bft}{\bm{t}}
+\newcommand{\bfu}{\bm{u}}
+\newcommand{\bfv}{\bm{v}}
+\newcommand{\bfw}{\bm{w}}
+\newcommand{\bfx}{\bm{x}}
+\newcommand{\bfy}{\bm{y}}
+\newcommand{\bfz}{\bm{z}}
+
+\newcommand{\calA}{{\mathcal A}}
+\newcommand{\calB}{{\mathcal B}}
+\newcommand{\calC}{{\mathcal C}}
+\newcommand{\calD}{{\mathcal D}}
+\newcommand{\calE}{{\mathcal E}}
+\newcommand{\calF}{{\mathcal F}}
+\newcommand{\calG}{{\mathcal G}}
+\newcommand{\calH}{{\mathcal H}}
+\newcommand{\calI}{{\mathcal I}}
+\newcommand{\calJ}{{\mathcal J}}
+\newcommand{\calK}{{\mathcal K}}
+\newcommand{\calL}{{\mathcal L}}
+\newcommand{\calM}{{\mathcal M}}
+\newcommand{\calN}{{\mathcal N}}
+\newcommand{\calO}{{\mathcal O}}
+\newcommand{\calP}{{\mathcal P}}
+\newcommand{\calQ}{{\mathcal Q}}
+\newcommand{\calR}{{\mathcal R}}
+\newcommand{\calS}{{\mathcal S}}
+\newcommand{\calT}{{\mathcal T}}
+\newcommand{\calU}{{\mathcal U}}
+\newcommand{\calV}{{\mathcal V}}
+\newcommand{\calW}{{\mathcal W}}
+\newcommand{\calX}{{\mathcal X}}
+\newcommand{\calY}{{\mathcal Y}}
+\newcommand{\calZ}{{\mathcal Z}}
+
+\newcommand{\fraka}{{\mathfrak a}}
+\newcommand{\frakb}{{\mathfrak b}}
+\newcommand{\frakc}{{\mathfrak c}}
+\newcommand{\frakd}{{\mathfrak d}}
+\newcommand{\frake}{{\mathfrak e}}
+\newcommand{\frakf}{{\mathfrak f}}
+\newcommand{\frakg}{{\mathfrak g}}
+\newcommand{\frakh}{{\mathfrak h}}
+\newcommand{\fraki}{{\mathfrak i}}
+\newcommand{\frakj}{{\mathfrak j}}
+\newcommand{\frakk}{{\mathfrak k}}
+\newcommand{\frakl}{{\mathfrak l}}
+\newcommand{\frakm}{{\mathfrak m}}
+\newcommand{\frakn}{{\mathfrak n}}
+\newcommand{\frako}{{\mathfrak o}}
+\newcommand{\frakp}{{\mathfrak p}}
+\newcommand{\frakq}{{\mathfrak q}}
+\newcommand{\frakr}{{\mathfrak r}}
+\newcommand{\fraks}{{\mathfrak s}}
+\newcommand{\frakt}{{\mathfrak t}}
+\newcommand{\fraku}{{\mathfrak u}}
+\newcommand{\frakv}{{\mathfrak v}}
+\newcommand{\frakw}{{\mathfrak w}}
+\newcommand{\frakx}{{\mathfrak x}}
+\newcommand{\fraky}{{\mathfrak y}}
+\newcommand{\frakz}{{\mathfrak z}}
+\newcommand{\frakA}{{\mathfrak A}}
+\newcommand{\frakB}{{\mathfrak B}}
+\newcommand{\frakC}{{\mathfrak C}}
+\newcommand{\frakD}{{\mathfrak D}}
+\newcommand{\frakE}{{\mathfrak E}}
+\newcommand{\frakF}{{\mathfrak F}}
+\newcommand{\frakG}{{\mathfrak G}}
+\newcommand{\frakH}{{\mathfrak H}}
+\newcommand{\frakI}{{\mathfrak I}}
+\newcommand{\frakJ}{{\mathfrak J}}
+\newcommand{\frakK}{{\mathfrak K}}
+\newcommand{\frakL}{{\mathfrak L}}
+\newcommand{\frakM}{{\mathfrak M}}
+\newcommand{\frakN}{{\mathfrak N}}
+\newcommand{\frakO}{{\mathfrak O}}
+\newcommand{\frakP}{{\mathfrak P}}
+\newcommand{\frakQ}{{\mathfrak Q}}
+\newcommand{\frakR}{{\mathfrak R}}
+\newcommand{\frakS}{{\mathfrak S}}
+\newcommand{\frakT}{{\mathfrak T}}
+\newcommand{\frakU}{{\mathfrak U}}
+\newcommand{\frakV}{{\mathfrak V}}
+\newcommand{\frakW}{{\mathfrak W}}
+\newcommand{\frakX}{{\mathfrak X}}
+\newcommand{\frakY}{{\mathfrak Y}}
+\newcommand{\frakZ}{{\mathfrak Z}}
+
+
+
+
+
+
+
+\newcommand{\rma}{{\mathrm a}}
+\newcommand{\rmb}{{\mathrm b}}
+\newcommand{\rmc}{{\mathrm c}}
+\newcommand{\rmd}{{\mathrm d}}
+\newcommand{\rme}{{\mathrm e}}
+\newcommand{\rmf}{{\mathrm f}}
+\newcommand{\rmg}{{\mathrm g}}
+\newcommand{\rmh}{{\mathrm h}}
+\newcommand{\rmi}{{\mathrm i}}
+\newcommand{\rmj}{{\mathrm j}}
+\newcommand{\rmk}{{\mathrm k}}
+\newcommand{\rml}{{\mathrm l}}
+\newcommand{\rmm}{{\mathrm m}}
+\newcommand{\rmn}{{\mathrm n}}
+\newcommand{\rmo}{{\mathrm o}}
+\newcommand{\rmp}{{\mathrm p}}
+\newcommand{\rmq}{{\mathrm q}}
+\newcommand{\rmr}{{\mathrm r}}
+\newcommand{\rms}{{\mathrm s}}
+\newcommand{\rmt}{{\mathrm t}}
+\newcommand{\rmu}{{\mathrm u}}
+\newcommand{\rmv}{{\mathrm v}}
+\newcommand{\rmw}{{\mathrm w}}
+\newcommand{\rmx}{{\mathrm x}}
+\newcommand{\rmy}{{\mathrm y}}
+\newcommand{\rmz}{{\mathrm z}}
+\newcommand{\rmA}{{\mathrm A}}
+\newcommand{\rmB}{{\mathrm B}}
+\newcommand{\rmC}{{\mathrm C}}
+\newcommand{\rmD}{{\mathrm D}}
+\newcommand{\rmE}{{\mathrm E}}
+\newcommand{\rmF}{{\mathrm F}}
+\newcommand{\rmG}{{\mathrm G}}
+\newcommand{\rmH}{{\mathrm H}}
+\newcommand{\rmI}{{\mathrm I}}
+\newcommand{\rmJ}{{\mathrm J}}
+\newcommand{\rmK}{{\mathrm K}}
+\newcommand{\rmL}{{\mathrm L}}
+\newcommand{\rmM}{{\mathrm M}}
+\newcommand{\rmN}{{\mathrm N}}
+\newcommand{\rmO}{{\mathrm O}}
+\newcommand{\rmP}{{\mathrm P}}
+\newcommand{\rmQ}{{\mathrm Q}}
+\newcommand{\rmR}{{\mathrm R}}
+\newcommand{\rmS}{{\mathrm S}}
+\newcommand{\rmT}{{\mathrm T}}
+\newcommand{\rmU}{{\mathrm U}}
+\newcommand{\rmV}{{\mathrm V}}
+\newcommand{\rmW}{{\mathrm W}}
+\newcommand{\rmX}{{\mathrm X}}
+\newcommand{\rmY}{{\mathrm Y}}
+\newcommand{\rmZ}{{\mathrm Z}}
+
+
+
+
+
+\newcommand{\scrA}{{\mathscr A}}
+\newcommand{\scrB}{{\mathscr B}}
+\newcommand{\scrC}{{\mathscr C}}
+\newcommand{\scrD}{{\mathscr D}}
+\newcommand{\scrE}{{\mathscr E}}
+\newcommand{\scrF}{{\mathscr F}}
+\newcommand{\scrG}{{\mathscr G}}
+\newcommand{\scrH}{{\mathscr H}}
+\newcommand{\scrI}{{\mathscr I}}
+\newcommand{\scrJ}{{\mathscr J}}
+\newcommand{\scrK}{{\mathscr K}}
+\newcommand{\scrL}{{\mathscr L}}
+\newcommand{\scrM}{{\mathscr M}}
+\newcommand{\scrN}{{\mathscr N}}
+\newcommand{\scrO}{{\mathscr O}}
+\newcommand{\scrP}{{\mathscr P}}
+\newcommand{\scrQ}{{\mathscr Q}}
+\newcommand{\scrR}{{\mathscr R}}
+\newcommand{\scrS}{{\mathscr S}}
+\newcommand{\scrT}{{\mathscr T}}
+\newcommand{\scrU}{{\mathscr U}}
+\newcommand{\scrV}{{\mathscr V}}
+\newcommand{\scrW}{{\mathscr W}}
+\newcommand{\scrX}{{\mathscr X}}
+\newcommand{\scrY}{{\mathscr Y}}
+\newcommand{\scrZ}{{\mathscr Z}}
+
+
+\newcommand{\veca}{{\vec a}}
+\newcommand{\vecb}{{\vec b}}
+\newcommand{\vecc}{{\vec c}}
+\newcommand{\vecd}{{\vec d}}
+\newcommand{\vece}{{\vec e}}
+\newcommand{\vecf}{{\vec f}}
+\newcommand{\vecg}{{\vec g}}
+\newcommand{\vech}{{\vec h}}
+\newcommand{\veci}{{\vec i}}
+\newcommand{\vecj}{{\vec j}}
+\newcommand{\veck}{{\vec k}}
+\newcommand{\vecl}{{\vec l}}
+\newcommand{\vecm}{{\vec m}}
+\newcommand{\vecn}{{\vec n}}
+\newcommand{\veco}{{\vec o}}
+\newcommand{\vecp}{{\vec p}}
+\newcommand{\vecq}{{\vec q}}
+\newcommand{\vecr}{{\vec r}}
+\newcommand{\vecs}{{\vec s}}
+\newcommand{\vect}{{\vec t}}
+\newcommand{\vecu}{{\vec u}}
+\newcommand{\vecv}{{\vec v}}
+\newcommand{\vecw}{{\vec w}}
+\newcommand{\vecx}{{\vec x}}
+\newcommand{\vecy}{{\vec y}}
+\newcommand{\vecz}{{\vec z}}
+\newcommand{\vecA}{{\vec A}}
+\newcommand{\vecB}{{\vec B}}
+\newcommand{\vecC}{{\vec C}}
+\newcommand{\vecD}{{\vec D}}
+\newcommand{\vecE}{{\vec E}}
+\newcommand{\vecF}{{\vec F}}
+\newcommand{\vecG}{{\vec G}}
+\newcommand{\vecH}{{\vec H}}
+\newcommand{\vecI}{{\vec I}}
+\newcommand{\vecJ}{{\vec J}}
+\newcommand{\vecK}{{\vec K}}
+\newcommand{\vecL}{{\vec L}}
+\newcommand{\vecM}{{\vec M}}
+\newcommand{\vecN}{{\vec N}}
+\newcommand{\vecO}{{\vec O}}
+\newcommand{\vecP}{{\vec P}}
+\newcommand{\vecQ}{{\vec Q}}
+\newcommand{\vecR}{{\vec R}}
+\newcommand{\vecS}{{\vec S}}
+\newcommand{\vecT}{{\vec T}}
+\newcommand{\vecU}{{\vec U}}
+\newcommand{\vecV}{{\vec V}}
+\newcommand{\vecW}{{\vec W}}
+\newcommand{\vecX}{{\vec X}}
+\newcommand{\vecY}{{\vec Y}}
+\newcommand{\vecZ}{{\vec Z}}
+
+
+\newcommand{\boldalpha}{{\boldsymbol\alpha}}
+\newcommand{\boldbeta}{{\boldsymbol\beta}}
+\newcommand{\boldgamma}{{\boldsymbol\gamma}}
+\newcommand{\bolddelta}{{\boldsymbol\delta}}
+\newcommand{\boldepsilon}{{\boldsymbol\epsilon}}
+\newcommand{\boldzeta}{{\boldsymbol\zeta}}
+\newcommand{\boldeta}{{\boldsymbol\eta}}
+\newcommand{\boldtheta}{{\boldsymbol\theta}}
+\newcommand{\boldiota}{{\boldsymbol\iota}}
+\newcommand{\boldkappa}{{\boldsymbol\kappa}}
+\newcommand{\boldlambda}{{\boldsymbol\lambda}}
+\newcommand{\boldmu}{{\boldsymbol\mu}}
+\newcommand{\boldnu}{{\boldsymbol\nu}}
+\newcommand{\boldxi}{{\boldsymbol\xi}}
+\newcommand{\boldomicron}{{\boldsymbol o}}
+\newcommand{\boldpi}{{\boldsymbol\pi}}
+\newcommand{\boldrho}{{\boldsymbol\rho}}
+\newcommand{\boldsigma}{{\boldsymbol\sigma}}
+\newcommand{\boldtau}{{\boldsymbol\tau}}
+\newcommand{\boldupsilon}{{\boldsymbol\upsilon}}
+\newcommand{\boldphi}{{\boldsymbol\phi}}
+\newcommand{\boldchi}{{\boldsymbol\chi}}
+\newcommand{\boldpsi}{{\boldsymbol\psi}}
+\newcommand{\boldomega}{{\boldsymbol\omega}}
+
