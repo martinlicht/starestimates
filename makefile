@@ -78,6 +78,7 @@ substitutions:
 	sed -i -e 's2 \\ref2~\\ref2g' main.tex 
 	sed -i -e 's2 \\cite2~\\cite2g' main.tex 
 	sed -i -e 's/de Rham/de~Rham/g' main.tex 
+	sed -i -e 's/\\textit/\\todo/g' main.tex 
 	sed -i -e 's/Theorem \\ref/Theorem~\\ref/g' main.tex 
 	sed -i -e 's/Lemma \\ref/Lemma~\\ref/g' main.tex 
 	sed -i -e 's/Proposition \\ref/Proposition~\\ref/g' main.tex 

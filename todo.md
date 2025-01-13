@@ -1,3 +1,15 @@
+[x] introduction 
+[x] review poincare 
+[x] triangulations
+[x] poincare on triangulations
+[x] review vector/exterior calculus
+
+[x] potential operators 
+[ ] shellable
+[ ] reflection and deformation 
+[ ] Main estimate
+[ ] numerical 
+
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
 - [x] do you have a preference for facet or face ? 
@@ -95,8 +107,8 @@ git diff 97fbcd86 21e58
 
 FURTHER WORK 
 
-[ ] prove Guerini Savo theorem for Lipschitz domains
-Every convex is a continuous graph over a unit ball. Mollify that graph and measure the difference.
+[x] prove Guerini Savo theorem for Lipschitz domains
+Every convex set is a continuous graph over a unit ball. Mollify that graph and measure the difference.
 Problem: no separation of exterior derivatives between Hodge Laplacians
 Can approximate convex domains by strictly convex domains?
 
