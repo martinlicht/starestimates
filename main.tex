@@ -3375,7 +3375,8 @@ Letting $x,y \in \bbR^n$ with $x \neq y$, we find
     \vol(\Omega)^{-1} \sum_{\jeza=0}^{\mia-1} \tbinom{\mia-1}{\jeza} \, |x-y|^{\jeza-n} \int_{0}^{\infty} r^{n-\jeza-1} \chi_{\Omega}\left(x+r\frac{x-y}{|x-y|}\right)\,dr
     .
 \end{align*}
-If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \leq r \leq \diam(\Omega)$, which gives 
+If $x \in \Omega$ and $x \neq y$, 
+then we can restrict the inner integrals to the range $0 \leq r \leq \diam(\Omega)$, which gives 
 \begin{align*}
     \calG_{\mia}(x,y) 
     &= 
@@ -3386,8 +3387,7 @@ If $x, y \in \Omega$, then we can restrict the inner integrals to the range $0 \
 \end{align*}
 We are now in a position to show that the potentials are bounded with respect to Lebesgue norms. 
 
-\todo{I guess the way we remove the $\chi_\Omega$ is beause we somehow have a convex (if $r \leq \delta(\Omega)$) conbination
-of $x,y$, correct? It would be nice poiting it out explicitly.}
+% DONE {I guess the way we remove the $\chi_\Omega$ is beause we somehow have a convex (if $r \leq \delta(\Omega)$) conbination of $x,y$, correct? It would be nice poiting it out explicitly.}
 
 
 \subsection{An operator norm bound with respect to the Lebesgue norm: the Poincar\'e case}
@@ -4765,10 +4765,9 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     There are triangulations of manifolds in more than three dimensions where not every vertex star is homeomorphic to a ball. 
     
     Not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
-    When the dimension is at least five, then there is no computer algorithm that, given a finite simplicial complex as input, decides whether the input is the triangulation of some fixed manifold~\cite{chernavsky2006unrecognizability}.
-    Going further, it has been shown that deciding whether a simplicial complex is the triangulation of a manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
-    \todo{TCF: To make sure I properly understood: In the former case, you say that given a triangulation and a manifold, you cannot decides
-    whether it triangulates it. In the second case, you say that it is not possible to decide whether a triangulation triangulates some manifold (without specifying what it is, neither as input nor output). Correct?}
+    When the dimension is at least five, then there are manifolds for which no computer algorithm, given a finite simplicial complex as input, decides whether the input is the triangulation of that manifold~\cite{chernavsky2006unrecognizability}.
+    Going further, it has been shown that deciding whether a simplicial complex triangulates \emph{any} manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
+%     \todo{TCF: To make sure I properly understood: In the former case, you say that given a triangulation and a manifold, you cannot decides whether it triangulates it. In the second case, you say that it is not possible to decide whether a triangulation triangulates some manifold (without specifying what it is, neither as input nor output). Correct?}
     % Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. ~\cite{todo}
     We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
 
@@ -7593,8 +7592,9 @@ as there are at least two areas where the present techniques could see further i
 
 
 Firstly, we use local Poincar\'e--Friedrichs inequalities over single simplices, subject to various boundary conditions, but these local estimates over simplices (and, more generally, convex domains) likely allow room for improvement. We conjecture that the Guerini--Savo~\cite{guerini2004eigenvalue} estimates, hitherto only known when $p=2$ and over bounded convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and convex Lipschitz domains. 
-We believe such estimates would yield considerably better bounds on the Poincar\'e--Friedrichs constants than the regularized Poincar\'e operators in the spirit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we currently employ. Similarly, Poincar\'e--Friedrichs constants subject to boundary conditions allow for upper bounds tighter than what we currently achieve via regularized Bogovski\u{\i} operators. 
-\todo{The above needs to be updated.}
+The case $p=2$ was discussed recently~\cite{licht2024geometry}.
+Such estimates would likely improve on the Poincar\'e--Friedrichs constants than the regularized Poincar\'e operators in the spirit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we currently use. Similarly, Poincar\'e--Friedrichs constants subject to boundary conditions allow for upper bounds tighter than what we currently achieve via regularized Bogovski\u{\i} operators. 
+% DONE {The above needs to be updated.}
 
 Secondly, our construction uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
 In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques could lead to better estimates,
