@@ -67,7 +67,7 @@ Potentials for the differential operators of vector calculus and exterior calcul
 
 \cye{Our main purpose here is to fill this gap. In the gradient case, we can go over with so-called face-connected triangulations. However, to proceed} in the \cye{general exterior derivative case, we are brought to} so-called shellable triangulations. 
 Even though only contractible domains can ever admit a shellable triangulation, 
-having computable upper bounds for such domains is an important stepping stone towards more general cases. \cye{Still, we cover most practical nonconvex and non-star-shaped triangulated domains, and as a particular example, local triangulations} around a simplex within a larger triangulation \cye{(the so-called local patches or stars), which are} shellable in two and three spaces dimensions. \cye{Over convex bounded domains, we derive Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex.}
+having computable upper bounds for such domains is an important stepping stone towards more general cases. \cye{Still, we cover most practical non-convex and non-star-shaped triangulated domains, and as a particular example, local triangulations} around a simplex within a larger triangulation \cye{(the so-called local patches or stars), which are} shellable in two and three spaces dimensions. \cye{Over convex bounded domains, we derive Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex.}
 
 \cye{Let $\Omega \subseteq \bbR^n$, $n \geq 1$, be an connected open set.} \todo[inline]{MV: Here not necessarily bounded? But then we sometimes need $\Omega \subseteq \bbR^{n}$ of finite measure \ldots I would be fine with $\Omega$ bounded all the time.} Given any $1 \leq p \leq \infty$, we let $L^{p}(\Omega)$ denote the Lebesgue space over $\Omega$ with integrability exponent $p$. Then $\bfL^{p}(\Omega) := L^{p}(\Omega)^{n}$ is the corresponding Lebesgue space of vector\cye{-valued} fields. 
 
@@ -185,7 +185,7 @@ Yet another writing is
 \end{align}
 for respectively all functions $\bfu$ from $\bfW^{2}(\curl,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\curl,\Omega)$ with $\curl \bfv = 0$ and all functions $\bfu$ from $\bfW^{2}(\divergence,\Omega)$ such that $\int_{\Omega} \bfu(x) \cdot \bfv(x) \;dx = 0$ for all $\bfv$ from $\bfW^{2}(\divergence,\Omega)$ with $\divergence \bfv = 0$. We refer to Friedrichs~\cite[equation~(5)]{Fried_diff_forms_55}, Gaffney~\cite[equation~(2)]{Gaff_Hilbert_harm_55}, Weber~\cite{Web_compact_Maxw_80}, \cite[Lemmas~3.4 and~3.6]{Gir_Rav_NS_86}, \cite[Proposition~7.4]{Fer_Gil_Maxw_BC_97}, and the references therein. Still} in the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space with \cye{homogeneous} Dirichlet boundary conditions \cye{on $\partial \Omega$} implies, via duality~\eqref{math:pot_PF_div}. However, that easy observation seems restricted to $p=2$. 
 
-Not much attention\cye{, however,} seems to have been given to the study of \cye{computable} constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. \cye{Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broder setting of} the exterior calculus formalism\cye{, but the Banach case $p \neq 2$ seems largely unexplored.}
+Not much attention\cye{, however,} seems to have been given to the study of \cye{computable} constants in~\eqref{math:pot_PF_curl_div}, even if the domain $\Omega$ is convex. \cye{Important results in the Hilbert case $p=2$ can be found in~\cite{guerini2004eigenvalue, Paul_Vald_PF_grad_curl_div_20} that we discuss now in the broader setting of} the exterior calculus formalism\cye{, but the Banach case $p \neq 2$ seems largely unexplored.}
 
 \subsection{\cye{Potentials for the exterior derivative and the corresponding Poincar\'e--Fried\-richs inequalities}} \label{section:intro_EC}
 
@@ -195,7 +195,7 @@ This formalism is independent of the \cye{space} dimension and highlights \cye{e
 \begin{align} \label{math:PF_DF} 
     \| u \|_{L^{p}(\Omega} \leq  C_{k,\Omega,p} \| \cartan w \|_{L^{p}(\Omega)}.
 \end{align} 
-}\todo[inline]{MV: The roles of $u$ and $w$ are flipped in the various parts of the paper, see~\eqref{math:PF_DF} in comparsion with Lemma~\ref{lemma:PFexteriorsimplex}. It would be great to unify.}
+}\todo[inline]{MV: The roles of $u$ and $w$ are flipped in the various parts of the paper, see~\eqref{math:PF_DF} in comparison with Lemma~\ref{lemma:PFexteriorsimplex}. It would be great to unify.}
 
 In the Hilbert space case $p=2$, Guerini and Savo~\cite{guerini2004eigenvalue} provide lower bounds for the spectrum of the Hodge--Laplace operator on convex domains with smooth boundary, thus giving upper bounds for the Poincar\'e--Friedrichs constant of the exterior derivative, and hence \cye{in particular} for the curl and divergence operators.
 \cye{A comparison result} shows that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. By duality, this also \cye{gives} upper estimate\cye{s} of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence \cye{operators} subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
@@ -236,7 +236,7 @@ With respect to our main interest, local \cye{patches} (stars) in 2D and 3D tria
 
 \subsubsection{\cye{Analytical constants over convex domains}}
 
-\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (nonconvex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
+\cye{We devote a considerable effort to convex domains for two reasons: first, they are evidently of independent interest, and second, we need them as a building block for the above-discussed recursive procedures on general (non-convex and non-star-shaped) triangulated domains. Here,} we follow closely the \cye{concepts of} Costabel and McIntosh~\cite{costabel2010bogovskiui} who study regularized Poincar\'e and Bogovski\u{\i}-type potential operators. In comparison to their exposition, \cye{which allows for} domains star-shaped with respect to a ball, the regularized potential operators we propose are simplified: we only study them over convex domains and use simpler (constant) weight functions. 
 The resulting operator features generally lower regularity \cye{but} its properties are sufficient for our purposes. \cye{Crucially, this allows us to} easily estimate their operator norms. 
 
 \subsubsection{\cye{Domains star-shaped with respect to a ball}}
@@ -257,11 +257,11 @@ For example, given a divergence-free vector field over a tetrahedron with vanish
 
 \subsection{\cye{Main results}}
 
-\cye{We treat specifically the gradient operator (the setting of Section~\ref{section:intro_grad}) on triangulated domains that can be nonconvex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} are our main results.} \todo{MV: remark from after Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} moved here.} 
+\cye{We treat specifically the gradient operator (the setting of Section~\ref{section:intro_grad}) on triangulated domains that can be non-convex and non-star-shaped but where the triangulations are face connected (though not necessarily shellable). Here, Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} are our main results.} \todo{MV: remark from after Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei} moved here.} 
 The computable Poincar\'e--Friedrichs constants obtained here depend on only a few parameters of the \cye{given} triangulation: the length of any traversal from the root simplex, the ratios of the volumes of \cye{the} adjacent simplices, the Poincar\'e--Friedrichs constants on each face patch, and the Poincar\'e--Friedrichs constant of the initial simplex. \cye{Here,} the \cye{face patch} Poincar\'e--Friedrichs constants \cye{are} estimated in terms of shape \cye{regularity parameters of the triangulation}; if the face patches of the triangulation are convex, then better estimates are possible. 
 
 \cye{Our main result for the curl and divergence operators (Section~\ref{section:intro_curl_div}) and more generally in the exterior calculus setting (Section~\ref{section:intro_EC}) for triangulated domains are Theorems~\ref{theorem:poincarefriedrichsestimate:exterior} and~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
-They treat triangulated domains that can be nonconvex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei}.}
+They treat triangulated domains that can be non-convex and non-star-shaped but where the triangulation is shellable. As discussed above, though this is slightly less generic than merely face-connected triangulations, this namely covers patches of simplices sharing a given vertex, edge, face, or $n$-simplex (stars) in two and three space dimensions, since these local patches are shellable. The dependencies of the obtained computable Poincar\'e--Friedrichs constants are similar to those of the gradient operator in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:gradzwei}.}
 
 \cye{Finally, our main result for convex domains in the exterior calculus setting (Section~\ref{section:intro_EC}) is the construction} of regularized potential operators for the exterior derivative with explicitly bounded operator norms. \cye{This is summarized in Theorem~\ref{theorem:PF_EC}.} \todo{MV: The discussion from before Theorem~\ref{theorem:PF_EC} resumed here.} \cye{The arising upper bounds for} the Poincar\'e--Friedrichs constants are proportional to the domain diameter and are independent of the Lebesgue exponent $1 \leq p \leq \infty$, though the \cye{space} dimension and the form degree enter\cye{\sout{s}} the estimate\cye{s}. 
 
@@ -706,7 +706,7 @@ We write $\supsimplex_{k}(\calT,T)$ for the set of $k$-dimensional simplices in 
 The set of $k$-dimensional simplices in $\calT$ is denoted as $\subsimplex_{{k}}(\calT)$. 
 Additionally, the notations $\Vertices(\calT) := \subsimplex_{0}(\calT)$ and $\Edges(\calT) := \subsimplex_{1}(\calT)$ refer to the vertices and edges of the simplicial complex, respectively. 
 In practice, we not always distinguish between points and singleton simplices. 
-Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, codimension one members) of this triangulation.\footnote{
+Similarly, if $\calT$ is an $n$-dimensional simplicial complex, we write $\Faces(\calT) := \subsimplex_{n-1}(\calT)$ for the faces (that is, members of codimension one) of this triangulation.\footnote{
     Our use of the term \textit{face} as is common in the finite element literature~\cite{brenner2008mathematical}
     and is synonymous with \textit{facet} as used in the literature on polyhedral combinatorics~\cite{schrijver1998theory}.
     Notably, this terminology differs from the uses \textit{face} and \textit{facet} in the theory of polyhedra~\cite{ziegler1995lectures}.
@@ -761,7 +761,7 @@ While there are many equivalent shape measures, we use the ones that most immedi
 \todo[inline]{MWL: The different geometric quantities in this section should really be just what is needed later. Any shape measure should be locally measurable and close to what appears in the right-hand sides of the main results. Any inequalities here should be as tight as possible. }
 
 We write $\diam(T)$ and $\vol(T)$ for the diameter and $n$-dimensional volume of any $n$-simplex $T$.
-Moreover, $\height(T)$ refers to the smallest height of any of the vertices of the simplex $T$.
+Moreover, $\height(T)$ refers to the smallest height of any vertex of the simplex $T$.
 
 For the purpose of the usual scaling arguments, the \emph{$n$-dimensional reference simplex} $\Delta^n \subseteq \bbR^n$ is the convex closure of the origin and the $n$ canonical unit vectors. 
 
@@ -1609,7 +1609,7 @@ The dark gray triangle is the one being currently added, and the light gray tria
 
 
 \cye{\begin{remark}
-The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} overestimates the best one increasingly with increasing number of $n$-simplices in the triangulation $\calT$. For this reason, we target its use to local patches (stars), in particular nonconvex boundary stars such as that of Figure~\ref{figure:exhausting}. Clearly, the same building principle applies when we can obtain a nonoverlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a  face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a large decrease of the overestimation of the best Poincar\'e--Friedrichs constant. 
+The Poincar\'e--Friedrichs constant obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad} overestimates the best one increasingly with increasing number of $n$-simplices in the triangulation $\calT$. For this reason, we target its use to local patches (stars), in particular non-convex boundary stars such as that of Figure~\ref{figure:exhausting}. Clearly, the same building principle applies when we can obtain a non-overlapping partition of $\overline \Omega$ into convex local patches of $n$-simplices $U_m$ with a  face-connected path. The proof proceeds verbatim, where we merely replace the simplices $T_{m}$ by the convex local patches $U_m$. This may allow to a large decrease of the number of elements in the partition of $\overline \Omega$ and thus to a large decrease of the overestimation of the best Poincar\'e--Friedrichs constant. 
 \end{remark}}
 
 \subsection{\cye{Poincar\'e--Friedrichs constants over an $n$-simplex with homogeneous Dirichlet condition on a face}}
@@ -2172,7 +2172,7 @@ The exterior derivative is defined in the sense of distributions and we introduc
     .
 \end{gather*}
 We observe that $u \in L^{p}\Alt^{k}(\Omega)$ has weak exterior derivative $f \in L^{p}\Alt^{k+1}(\Omega)$
-if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration by parts formula
+if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the integration-by-parts formula
 \begin{align*}
     \int_{\Omega} \cartan v \wedge u
     &=
@@ -2186,7 +2186,7 @@ for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{
 Lastly, we are also interested in differential forms whose trace vanishes along only a part of the boundary. 
 Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
 We say that $u \in W^{p}\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
-such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration by parts formula
+such that for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(B_r(x))$ we have the integration-by-parts formula
 \begin{align*}
     \int_{B_r(x)} \cartan v \wedge \tilde u
     &=
@@ -4943,7 +4943,7 @@ such that $T_{m}$ is the last $n$-simplex in the shelling that belongs to $\cye{
 \todo[inline]{MV: It might be good to synchronize the indices between the shellability definitions in Section~\ref{section:shellability} and Theorems~\ref{theorem:poincarefriedrichsestimate:grad}, \ref{theorem:poincarefriedrichsestimate:gradzwei}, \ref{theorem:poincarefriedrichsestimate:exterior}, \ref{theorem:poincarefriedrichsestimate:exterior:contraction}.} 
 We then let $U_{m \cye{-1}}$ be the closure \cye{of} $\patch_{\calT}(S_{m\cye{-1}}) \setminus T_{m}$,
 and we call it the complement of $T_{m}$ in the star $\patch_{\calT}(S_{m\cye{-1}})$. 
-The main result of this manuscript \cye{for nonconvex and non-star-shaped triangulated domains} is the following theorem. 
+The main result of this manuscript \cye{for non-convex and non-star-shaped triangulated domains} is the following theorem. 
 
 \begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior}
     Let $\Omega \subseteq \bbR^{n}$ be a domain with \cye{an $n$-dimensional} shellable triangulation $\calT$.

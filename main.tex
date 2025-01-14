@@ -4741,14 +4741,34 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     % \todo{TCF: I could not really follow the paragraph above. Let's talk about it when we can!}
     
     \todo{
-    We assume that the underlying space $\underlying{\calT}$ is connected. 
+    We assume that the underlying space $\underlying{\calT}$ is connected, and hence path-connected. 
     Given $n$-simplices $S,S' \in \calT$, 
     there exists a path $\gamma : [0,1] \rightarrow \underlying{\calT}$ from the barycenter of $S$ to the barycenter of $S'$.
-    We can choose a sequence of $n$-simplices $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ that cover the path and whose intersections with the path are homeomorphic to $[0,1]$.
+    We can choose a sequence of $n$-simplices $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ without repetitions 
+    that cover the path and whose intersections with the path are homeomorphic to $[0,1]$.
+    The intersections $\gamma([0,1]) \cap S_{i}$ and $\gamma([0,1]) \cap S_{i+1}$ intersect at one point that lies in a common subsimplex of $S_{i}$ and $S_{i+1}$.
+    We deduce that each two consecutive simplices in the sequence $\hat S_0,\hat S_1,\dots,\hat S_m$ have at least one vertex in common. 
+    As each vertex star is face-connected, 
+    there exists a  sequence $S=T_0,T_1,\dots,T_{m}=S' \in \calT$ 
+    where $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
+    This just means that $\calT$ is face-connected. 
     }
     
+    \tode{
+    We assume that the underlying space \(\underlying{\calT}\) is connected, and hence path-connected. 
+    Given \(n\)-simplices \(S, S' \in \calT\), 
+    there exists a path \(\gamma : [0,1] \rightarrow \underlying{\calT}\) from the barycenter of \(S\) to the barycenter of \(S'\).
+    We can choose a sequence of \(n\)-simplices \(\hat S_0, \hat S_1, \dots, \hat S_m \in \calT\) (with \(\hat S_0 = S\) and \(\hat S_m = S'\)), without repetitions, 
+    that covers the path and whose intersections with the path are homeomorphic to \([0,1]\).
+    The sets \(\gamma([0,1]) \cap \hat S_{i}\) and \(\gamma([0,1]) \cap \hat S_{i+1}\) intersect at exactly one point, which lies in a common subsimplex of \(\hat S_{i}\) and \(\hat S_{i+1}\).
+    We deduce that any two consecutive simplices in the sequence \(\hat S_0, \hat S_1, \dots, \hat S_m\) share at least one vertex. 
+    As each vertex star is face-connected, 
+    there exists another sequence of \(n\)-simplices \(T_0, T_1, \dots, T_m \in \calT\) (with \(T_0 = S\) and \(T_m = S'\)) 
+    such that \(T_{i} \cap T_{i-1}\) is a face of both \(T_{i}\) and \(T_{i-1}\) for all \(1 \le i \le m\).
+    This shows that \(\calT\) is face-connected.
+    }
     If the underlying space $\underlying{\calT}$ is connected, 
-    then we easily see that the union of the $1$-simplices is path-connected. \todo{Maybe not that easy.}
+    then we easily see that the union of the $1$-simplices is path-connected. 
     Given $n$-simplices $S,S' \in \calT$, 
     we can thus choose a sequence of $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
     As each vertex star is face-connected, 
