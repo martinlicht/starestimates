@@ -96,9 +96,10 @@
 
 Potentials for the differential operators of vector calculus and exterior calculus are of fundamental importance. 
 The operator norms of these potentials are upper bounds for the Poincar\'e--Friedrichs constants.
-These quantify the fundamental stability properties of \todo{numerous} partial differential equations
+These quantify the fundamental stability properties of {numerous} partial differential equations % DONE
 and enter the stability and convergence theory of numerical methods. 
-Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds of the eigenvalues of the associated Laplacians \todo{and the eigenvalues of finite element matrices. (doubtful statement?)}
+Upper bounds of the Poincar\'e--Friedrichs constants also provide lower bounds of the eigenvalues of the associated Laplacians.
+% DONE {and the eigenvalues of finite element matrices. (doubtful statement?)}
 However, while potentials and Poincar\'e--Friedrichs constants for the gradient have been subject to extensive study,
 quantifiable results regarding the curl and divergence operators, or more generally the exterior derivative, are largely unavailable.
 
@@ -108,8 +109,9 @@ Here, we extend this construction to the curl and divergence operators, as well 
 However, to proceed in the general exterior derivative case, we restrict our efforts to so-called shellable triangulations. 
 Only contractible domains can ever admit a shellable triangulation, but having computable upper bounds for such domains is an important stepping stone towards more general situations. 
 The class of shellable triangulations includes practically relevant triangulations: 
-for example, local triangulations around a simplex \todo{[TCF: Is it really
-true if the simlex is of highest dimension, e.g., a tetrahedron in 3D?]} within a larger triangulation (the so-called local patches or stars) are shellable in dimensions two and three. 
+for example, local triangulations around a simplex 
+% \todo{[TCF: Is it really true if the simlex is of highest dimension, e.g., a tetrahedron in 3D?]} 
+within a larger triangulation (the so-called local patches or stars) are shellable in dimensions two and three; see also Figure~\ref{figure:patches}. 
 Additionally, we include a study of regularized Poincar\'e and Bogovski\u{\i} operators that leads to new Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex over bounded convex domains.
 
 
@@ -342,14 +344,14 @@ Guerini and Savo~\cite{guerini2004eigenvalue} address the spectrum of the Hodge-
 They prove that the Poincar\'e--Friedrichs constant for the gradient already estimates the corresponding constants for the curl and divergence operators. 
 They also provide explicit (but not necessarily optimal) upper bounds for Poincar\'e--Friedrichs constants that depend only on the dimension and diameter of the convex domain. 
 A duality argument also yields upper estimates of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
-Their inequalities hold in convex Lipschitz domains, too, still in the Hilbert space setting~\cite{licht2024geometry}.
+Their inequalities hold in convex Lipschitz domains, too~\cite{licht2024geometry}.
 However, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. %\todo{ [TCF: We might want to obtain with ML's recent preprint.].}
 
 \subsubsection{Domains star-shaped with respect to a ball}
 
 When the domain is not convex but star-shaped with respect to a ball,
-then several estimates for Poincar\'e--Friedrichs constants are known. 
-In fact, Poincar\'e--Friedrichs inequalities even hold over any star-shaped open bounded set~\cite[Theorem~3.1]{hurri1988poincare}. \todo{[TCF: I don’t exactly get the point of this sentence.].}
+then several estimates for Poincar\'e--Friedrichs constants are known.\footnote{In fact, Poincar\'e--Friedrichs inequalities even hold over any star-shaped open bounded set; see~\cite[Theorem~3.1]{hurri1988poincare}.}
+% \todo{[TCF: I don’t exactly get the point of this sentence.].}
 Polynomial interpolation estimates already imply the gradient Poincar\'e--Friedrichs inequality~\cite{brenner2008mathematical,ern2021finite}. 
 We pay particular attention to the regularized Poincar\'e and Bogovski\u{\i} potential operators for the exterior derivative,
 such as those of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
@@ -1201,13 +1203,82 @@ Formally,
     \carapace_{\calT}(T) := \bigcup_{ \substack{ T' \in \patch_{\calT}(T) \\ T \nsubseteq T' } } \subsimplex(T').
 \end{gather*}
 We also write $\Makoto_T := | \patch_{\calT}(T) |$ for the closed underlying set of the local patch. 
-\todo{Should that rather be a closed set?}
+% DONE {Should that rather be a closed set?} {No, it's easier to keep it like that.}
 A crucial structural observation is the following.
+
+
+\begin{figure}[t]
+\centering
+\begin{tabular}{ccc}
+  \begin{tikzpicture}
+    % [line join=bevel,z={( 3.85mm, -3.85mm)}]
+    [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
+    
+    % TODO: Change colors to grey scale 
+    
+    \coordinate (O) at (  0.0,  0.0, 0.0);
+    \coordinate (A) at (  1.0,  0.0, 0.0);
+    \coordinate (B) at (  0.3,  1.0, 0.0);
+    \coordinate (C) at ( -0.6,  0.8, 0.0);
+    \coordinate (D) at ( -0.6, -0.7, 0.0);
+    \coordinate (E) at (  0.3, -1.0, 0.0);
+    \coordinate (F) at (  0.3, -1.0, 0.0);
+    
+    \draw (O) -- (A) -- (B) -- cycle;
+    \draw (O) -- (B) -- (C) -- cycle;
+    \draw (O) -- (C) -- (D) -- cycle;
+    \draw (O) -- (D) -- (E) -- cycle;
+    \draw (O) -- (E) -- (A) -- cycle;
+    \draw (A) -- (B) -- (C) -- (D) -- (E) -- cycle;
+    \draw (0,0) circle[radius=2pt];
+    \fill (0,0) circle[radius=2pt];
+  \end{tikzpicture}%
+  \qquad&\qquad
+  \begin{tikzpicture}
+    % [line join=bevel,z={( 3.85mm, -3.85mm)}]
+    [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
+    
+    % TODO: Change colors to grey scale 
+    
+    \coordinate (O) at (  0.0,  0.0, 0.0);
+    \coordinate (A) at (  1.0,  0.0, 0.0);
+    \coordinate (B) at (  0.3,  1.0, 0.0);
+    \coordinate (C) at ( -0.6,  0.8, 0.0);
+    \coordinate (D) at ( -0.6, -0.7, 0.0);
+    \coordinate (E) at (  0.3, -1.0, 0.0);
+    \coordinate (F) at (  0.3, -1.0, 0.0);
+    
+    \draw (O) -- (A) -- (B) -- cycle;
+    \draw (O) -- (E) -- (A) -- cycle;
+    \draw[line width=0.1cm] (O) -- (A);
+  \end{tikzpicture}%
+  \qquad&\qquad
+  \begin{tikzpicture}
+    % [line join=bevel,z={( 3.85mm, -3.85mm)}]
+    [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
+    
+    % TODO: Change colors to grey scale 
+    
+    \coordinate (O) at (  0.0,  0.0, 0.0);
+    \coordinate (A) at (  1.0,  0.0, 0.0);
+    \coordinate (B) at (  0.3,  1.0, 0.0);
+    \coordinate (C) at ( -0.6,  0.8, 0.0);
+    \coordinate (D) at ( -0.6, -0.7, 0.0);
+    \coordinate (E) at (  0.3, -1.0, 0.0);
+    \coordinate (F) at (  0.3, -1.0, 0.0);
+    
+    \draw[line width=0.1cm] (O) -- (A) -- (E) -- cycle;
+  \end{tikzpicture}
+\end{tabular} 
+\caption{From left to right: local patches around a vertex, and edge, and a triangle. The local patch of a full-dimensional simplex is the only the simplex itself (and its subsimplices).}\label{figure:patches}
+\end{figure}
 
 \begin{lemma}
  Let $\calT$ be an $n$-dimensional simplicial complex and let $S,S' \in \calT$.
- \todo{Be more explicit and avoid measure theory}
- Then either $\patch_{\calT}(S)$ and $\patch_{\calT}(S')$ are essentially disjoint or there exists $S'' \in \calT$
+ % DONE {Be more explicit and avoid measure theory}
+ Then either $\patch_{\calT}(S)$ and $\patch_{\calT}(S')$ 
+ only intersect in simplices of dimension at most $n-1$ % are essentially disjoint 
+ or there exists $S'' \in \calT$
  such that 
  \begin{align*}
     \patch_{\calT}(S) \cap \patch_{\calT}(S') = \patch_{\calT}(S''),
@@ -3156,10 +3227,10 @@ One can show that $\phi^{\ast}u \in L^{p}\Alt^{k}(\Omega)$ and the following est
 
 We review a few approximation properties. 
 Let $\mollifier$ be a non-negative scalar function whose integral equals one and whose support lies in the unit ball around the origin.
-Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We review the following approximation results.
+Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We collect several approximation results that involve convolution with a mollifier.
+In what follows, convolutions of functions defined over domains tacitly assume that these functions have been extended by zero to all of Euclidean space. 
 
-\todo{TCF: It is a bit pedantic, but shouldn’t we say that u is extended by zero to define the convolution
-below?}
+% \todo{TCF: It is a bit pedantic, but shouldn’t we say that u is extended by zero to define the convolution below?}
 
 \begin{lemma}
 %     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $u : \Omega \rightarrow \bbR$ be locally integrable.  
@@ -4097,31 +4168,29 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     \end{align*}
     where 
     \begin{align}
-        C_{{\PF},\Poinc,k,\Omega,p} := C_{\Poinc}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
+        C_{{\PF},\Poinc,k,\Omega,p} &:= C_{\Poinc}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
         ,
-        \quad 
-        C_{{\PF},\Bogov,k,\Omega,p} := C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
+        \\
+        C_{{\PF},\Bogov,k,\Omega,p} &:= C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\Omega)^{n}}{\vol(\Omega)} \diam(\Omega)
         .
     \end{align}
-    For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds that 
+    For any $u \in \bfW^{p}\Alt^{\mia}(\Omega)$ it holds for a.e.\ $x \in \Omega$ that 
     \begin{align}
         u(x) &= \Poinc_{1} \cartan u(x) - \vol(\Omega)^{-1} \int_\Omega u(a) \;da
         \label{math:theorem:bogovpoinc:poincare:zero}
         \\
         u(x) &= \cartan \Poinc_{\mia} u(x) + \Poinc_{\mia+1} \cartan u(x), \qquad 1 \leq \mia \leq n.
-        \label{math:theorem:bogovpoinc:poincare:k}
-    \todo{for a.e.\ $x \in \Omega$ (commas)}
+        \label{math:theorem:bogovpoinc:poincare:k}    
     \end{align}
     In particular, if $u \in W^{p}    \Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Poinc_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
-    For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds that 
+    For any $u \in \bfW^{p}_{0}\Alt^{\mia}(\Omega)$ it holds for a.e.\ $x \in \Omega$ that 
     \begin{align}
         u(x) &= \cartan \Bogov_{\mia} u(x) + \Bogov_{\mia+1} \cartan u(x), \qquad 0 \leq \mia \leq n-1,
         \label{math:theorem:bogovpoinc:bogov:k}
         \\
         u(x) &= \cartan \Bogov_{n} u(x) - \left( \vol(\Omega)^{-1} \int_{\Omega} u(a) \right) \chi_{\Omega}.
         \label{math:theorem:bogovpoinc:bogov:n}
-    \todo{for a.e.\ $x \in \Omega$ (commas)}
     \end{align}
     In particular, if $u \in W^{p}_{0}\Alt^{\mia}(\Omega)$ with $0 \leq \mia \leq n-1$, then $w = \Bogov_{\mia} \cartan u$ satisfies $\cartan w = \cartan u$.
     
@@ -4145,11 +4214,11 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     % 
     Taking the limit on both sides of equation then implies the inequality with $p = \infty$
     because the $L^{\infty}$ norm is the limit of the Lebesgue norms as $p$ goes to infinity. 
-    \todo{Get rid of the auxiliary zeta?}
+    % DONE \todo{Get rid of the auxiliary zeta?} {no}
     
     
     Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$. 
-    \todo{\sout{We write $\zeta := \Poinc_{\mia  } u$.}}
+    % \todo{\sout{We write $\zeta := \Poinc_{\mia  } u$.}}
     We write $\zeta := \Poinc_{\mia  } u$. 
     There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}_{c}\Alt^{n-\mia-1}(\Omega)$, we verify 
@@ -4539,7 +4608,7 @@ This topic is surprisingly non-trivial. We only gather some results that are har
         \item
         If $S \in \calT$ is a boundary subsimplex, 
         then $\patch_{\calT}(S)$ is a simplicial $n$-ball with $S$ as a boundary simplex,
-        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball. \todo{sphere?}
+        and $\carapace_{\calT}(S)$ is a simplicial $(n-1)$-ball. % DONE {sphere?}
     \end{itemize}
 \end{lemma}
 \begin{proof}
@@ -4663,10 +4732,20 @@ This topic is surprisingly non-trivial. We only gather some results that are har
 \begin{proof}
     We first show that each vertex star is face-connected via a short induction argument.
     Clearly, any simplicial $1$-ball and simplicial $1$-sphere are face-connected. 
-    Now, if $n \geq 1$, then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
+    Now, if $n \geq 1$ and $V \in \calT$,
+    then the $n$-simplices in $\patch_{\calT}(V)$ are in correspondence to the $(n-1)$-simplices in $\carapace_{\calT}(V)$.
+    Hence $\patch_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected if and only if $\carapace_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected.
+    % then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
     The induction argument implies that each vertex star in $\calT$ is face-connected.
 
-    \todo{TCF: I could not really follow the paragraph above. Let's talk about it when we can!}
+    % \todo{TCF: I could not really follow the paragraph above. Let's talk about it when we can!}
+    
+    \todo{
+    We assume that the underlying space $\underlying{\calT}$ is connected. 
+    Given $n$-simplices $S,S' \in \calT$, 
+    there exists a path $\gamma : [0,1] \rightarrow \underlying{\calT}$ from the barycenter of $S$ to the barycenter of $S'$.
+    We can choose a sequence of $n$-simplices $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ that cover the path and whose intersections with the path are homeomorphic to $[0,1]$.
+    }
     
     If the underlying space $\underlying{\calT}$ is connected, 
     then we easily see that the union of the $1$-simplices is path-connected. \todo{Maybe not that easy.}
@@ -5172,7 +5251,7 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{align*}
         \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto
     \end{align*}
-    which is the identity along $\partial \Makoto \setminus \partial T$. \todo{Use some name for this intersection?}
+    which is the identity along $\Gamma_2$. \todo{Include a picture of the situation?}
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Csieb{n}{\ell}(\calT),
@@ -5209,7 +5288,8 @@ We give detailed estimates for the singular values of their Jacobians.
         % Let $I := \Makoto \cap T$, which is the union of $\ell$ different faces of $T$, with $1 \leq \ell \leq n$.
         %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-\ell$ faces of $T$.
         %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
-        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$ within the simplex $T$. \todo{What is the complementary subsimplex?}
+        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$ within the simplex $T$. 
+        In other words, the vertices of $S'$ are the vertices of $T$ that are not vertices of $S$. 
         Note that ${\Gamma_2} \subseteq \partial T$ is the union of exactly those faces of $T$ that contain $S'$,
         whereas ${\Gamma_1} = \Makoto \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
         
@@ -7409,7 +7489,6 @@ The second one is specific to the fact that shellable triangulations are contrac
         \end{align*}
     \end{itemize}
 \end{theorem}
-
 
 
 
