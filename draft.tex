@@ -324,6 +324,385 @@
 
 
 
+\section{Alternative attempt at getting a Poincare constant estimate for the scalar potential}
+
+\color{green}
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        L^{\frac p q}
+        \sum_{\ell=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        L^{\frac p q}
+        \sum_{m=0}^{M} 
+        \max_{ 0 \leq \ell \leq M }
+        C_{m,\ell}^{p} 
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    
+    Alternatively, when $L$ denotes the longest path, then a different application of H\"older's inequality shows:
+    Hence, 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \nabla u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+
+
+
+    
+    
+    
+
+\subsection{Failed uppr bound for potential operators}
+On the background of this rewriting, we can establish additional operator norm bounds for the operator norms. 
+These do not depend on the eccentricity of the domain. 
+
+We begin with the Poincar\'e operator. 
+By an application of Jensen's inequality, operator norm estimates, and substitutions, we find 
+\begin{align*}
+    \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{0}^{1} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{0}^{1} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{red}
+A comparable estimate follows for the Bogovski\u{\i} operator with the substitution 
+\begin{align*}
+    \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{1}^{\infty} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{1}^{\infty} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{blue}
+We estimate 
+\begin{align*}
+    \int_{0}^{1}
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    &
+    \leq 
+    \int_{0}^{1}
+    \min\left( 
+        \vol\left(\Omega\right), 
+        \vol\left( \tfrac{t}{1-t} \Omega \right) 
+    \right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{p(k-1)} 
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{k-1} 
+    \ dt
+    .
+\end{align*}
+The last integral is handled via the basic observations
+\begin{align*}
+    \int_{0}^{\frac 1 2} 
+    \frac{ t^{k-1} }{ (1-t)^{n} }
+    \ dt
+    \leq 
+    \int_{0}^{\frac 1 2} 
+    (1-t)^{-n+k-1}
+    \ dt
+    =
+    \int_{\frac 1 2}^{1} 
+    t^{-n+k-1}
+    \ dt
+    =
+    \begin{cases}
+        \ln(2)                 & \text{$n=k$}
+        \\
+        \frac{2^{n-k}-1}{n-k} & \text{otherwise.}
+    \end{cases}
+\end{align*}
+
+
+
+
+
+
+
+
+
+\subsection{Attempted proof for deformation-based estimate}
+
+\begin{proof}\color{blue}
+    We first fix some notation. 
+    Recall that for any $1 \leq m \leq M$, 
+    the sequence $T_0, T_1, \dots, T_{m-1}$ is the shelling of a triangulation of an $n$-dimensional submanifold with boundary, 
+    written $X_{m}$, whose interior domain we denote by $\Omega_m$. 
+    By Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ to the triangulation completes a star in $\calT$ around some simplex $S_{m} \in X_{m-1}$, 
+    and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    
+    We introduce the deformation mapping $\Xi_{2,m} : \patch_{\calT}(S_m) \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
+    This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{m-1} \setminus \partial T$.
+    We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{m} \rightarrow X_{m-1}$ 
+    by letting it be the identity over $X_{m-1} \setminus A_{m-1}$.
+    
+    For each $T \in \calT$ of dimension $n$, there exists a sequence $1 \leq m_{T,1},\dots,m_{T,K} \leq M$, for some $1 \leq K \leq M$,
+    such over the simplex $T$ we have the identity 
+    \begin{align*}
+        ...
+    \end{align*}
+\end{proof}
+
+
+
+\section{Attempted global upper bound: exterior derivative case}
+
+Alternatively, when $L$ denotes the longest path, then a different application of H\"older's inequality shows:
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        L^{\frac p q}
+        \sum_{\ell=0}^{M} C_{m,\ell}^{p} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        L^{\frac p q}
+        \sum_{m=0}^{M} 
+        \max_{ 0 \leq \ell \leq M }
+        C_{m,\ell}^{p} 
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    Hence, 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \cartan u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+
+
+
+
+
+
+\section{}
+
+
+
+
 \section{Material}
 
 \mwl{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
