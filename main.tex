@@ -292,7 +292,7 @@ The qualitative existence of Poincar\'e--Friedrichs inequalities for the differe
 There is a particularly large body of literature on the Poincar\'e inequality for the gradient and its numerous variants,
 which may include weighted integrals or boundary terms. 
 These Poincar\'e-type inequalities are often derived via non-constructive arguments, such as the Rellich embedding theorem, 
-% TODO {[TCF: I believe this is often refered to as the Tartare-Petree theorem]}
+% DONT {[TCF: I believe this is often refered to as the Tartare-Petree theorem]}
 and thus the resulting constants are not explicitly computable. 
 
 % divergence 
@@ -400,7 +400,7 @@ along the interfacing intersection, the two potentials will only differ by a con
 and that difference can easily be removed to ensure continuity across that interface. 
 Cell by cell, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
 The method is known in the finite element literature~\cite{ern2021finite}. 
-% TODO {[TCF: Could you reference a particular theorem or chapter?]} 
+% DONE {[TCF: Could you reference a particular theorem or chapter?]} 
 It was previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. 
 This sequential procedure applies to general triangulated domains, not only local stars, though the latter are our main interest here. 
 Most importantly, these sequential estimates of Poincar\'e--Friedrichs constants generally circumvent the effect of low boundary regularity and only rely on the shape regularity. 
@@ -464,7 +464,7 @@ In light of the different approaches discussed above,
 we seek constants that be explicitly computed in terms of mesh geometry, that do not require the solution of global finite element problems, 
 and that do not depend on the boundary regularity of the domain. 
 
-% TODO: Figure out whether to use the following paragraph.
+% DONE: Figure out whether to use the following paragraph.
 % Our main objective remains to find potentials for the differential operators of vector calculus and exterior calculus, such as the curl and divergence, over triangulated domains. 
 % The operator norms of these potentials will serve as computable Poincar\'e--Friedrichs constants. 
 % In light of the different approaches listed before, 
@@ -488,7 +488,7 @@ Our main result in this context is Theorem~\ref{theorem:poincarefriedrichsestima
 
 % 3. generalization to vector fields 
 
-% TODO: check whether introduction is readable
+% DONE: check whether introduction is readable
 % In the gradient case of Section~\ref{subsection:intro_grad}, it is possible to perform a simple pass through the triangulation, 
 % where merely each subsequent simplex has to be connected to the previous ones by a $(n-1)$-dimensional face. 
 % We always construct a gradient potential over the new simplex, and since the gradient kernel is trivial, 
@@ -1216,8 +1216,6 @@ A crucial structural observation is the following.
     % [line join=bevel,z={( 3.85mm, -3.85mm)}]
     [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
     
-    % TODO: Change colors to grey scale 
-    
     \coordinate (O) at (  0.0,  0.0, 0.0);
     \coordinate (A) at (  1.0,  0.0, 0.0);
     \coordinate (B) at (  0.3,  1.0, 0.0);
@@ -1240,8 +1238,6 @@ A crucial structural observation is the following.
     % [line join=bevel,z={( 3.85mm, -3.85mm)}]
     [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
     
-    % TODO: Change colors to grey scale 
-    
     \coordinate (O) at (  0.0,  0.0, 0.0);
     \coordinate (A) at (  1.0,  0.0, 0.0);
     \coordinate (B) at (  0.3,  1.0, 0.0);
@@ -1259,8 +1255,6 @@ A crucial structural observation is the following.
     % [line join=bevel,z={( 3.85mm, -3.85mm)}]
     [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
     
-    % TODO: Change colors to grey scale 
-    
     \coordinate (O) at (  0.0,  0.0, 0.0);
     \coordinate (A) at (  1.0,  0.0, 0.0);
     \coordinate (B) at (  0.3,  1.0, 0.0);
@@ -1272,7 +1266,7 @@ A crucial structural observation is the following.
     \draw[line width=0.1cm] (O) -- (A) -- (E) -- cycle;
   \end{tikzpicture}
 \end{tabular} 
-\caption{From left to right: local patches around a vertex, and edge, and a triangle. The local patch of a full-dimensional simplex is the only the simplex itself (and its subsimplices).}\label{figure:patches}
+\caption{From left to right: local patches around a vertex, and edge, and a triangle. The local patch of any full-dimensional simplex only consists of that simplex itself (and its subsimplices).}\label{figure:patches}
 \end{figure}
 
 \begin{lemma}
@@ -1353,13 +1347,13 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
     The ratio $\aspectratio(T)$ measures the ``shape quality'' of an $n$-dimensional simplex $T$ and is an instance of a so-called \emph{shape measure}.
     For example, the reference triangle has aspect shape measure $2$ and the reference tetrahedron has aspect shape measure $\sqrt{6}$. 
     Numerous alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices (see~\cite[p.61, Definition 5.1]{braess2001finite}, 
-    \cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here.
+    {\cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here in the final version or figure out how to fix the display in the editor.
     \cite[Definition~11.2]{ern2021finite}). 
 \end{remark}
 
 We gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
 % DONE {Settle the subscripts of the vector norm.}
-% TODO {Replace the constant Ceins and Czwei by the square root of n immediately.}
+% DONT {Replace the constant Ceins and Czwei by the square root of n immediately.}
 
 \begin{lemma}\label{lemma:measurerelationships}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
@@ -2859,13 +2853,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 
 \section{Review of vector calculus and exterior calculus}\label{section:calculus}
 
-% We discuss the Sobolev spaces of vector calculus and exterior calculus 
-% with particular emphasis on their transformation behavior. 
-% We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for further background material on Sobolev vector analysis. 
-% Exterior algebra and exterior products are reviewed in the textbooks by Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth}.
-% TODO: Fuse these two paragraphs 
-
-We review in this section the Sobolev spaces of vector and exterior calculus and their transformation behavior. We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for background material on Sobolev vector analysis and to Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth} for exterior algebra and exterior products. 
+We review in this section the Sobolev spaces of vector and exterior calculus with particular emphasis on their transformation behavior. 
+We refer the reader to Ern and Guermond~\cite{ern2021finite} and Hiptmair~\cite{hiptmair2002finite} for background material on Sobolev vector analysis and to Greub~\cite{greub1967multilinear} and Lee~\cite{lee2012smooth} for exterior algebra and exterior products. 
 
 \subsection{Vector calculus}
 
@@ -3242,7 +3231,7 @@ In what follows, convolutions of functions defined over domains tacitly assume t
     If $u \in L^{p}(\Omega)$, then the convolution $\mollifier_{\eps} \star u \rightarrow u$ in $L^{p}(\Omega)$ as $\epsilon \rightarrow 0$.
 \end{lemma}
 
-% \begin{lemma} % TODO: possibly useful
+% \begin{lemma} % DONT: possibly useful
 %     Let $1 \leq p < \infty$. A sequence converges to $u \in L^{p}$ if and only if it converges locally by measure and the $L^{p}$ norms converge.
 % \end{lemma}
 
@@ -4735,7 +4724,7 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     Clearly, any simplicial $1$-ball and simplicial $1$-sphere are face-connected. 
     Now, if $n \geq 1$ and $V \in \calT$,
     then the $n$-simplices in $\patch_{\calT}(V)$ are in correspondence to the $(n-1)$-simplices in $\carapace_{\calT}(V)$.
-    Hence $\patch_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected if and only if $\carapace_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected.
+    Hence, $\patch_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected if and only if $\carapace_{\calT}(V)$, a triangulation of dimension $n-1$, is face-connected.
     % then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
     The induction argument implies that each vertex star in $\calT$ is face-connected.
 
@@ -4847,25 +4836,30 @@ The resulting succession of simplicial complexes consists of simplicial balls or
 \end{lemma}
 \begin{proof}  
     We prove this claim by induction. 
-    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. Let $1 \leq m \leq M$ and suppose that 
+    Certainly, if $\calT$ contains only one single $n$-simplex, then it is a shellable triangulation of a topological $n$-ball. 
+    Next, let $1 \leq m \leq M$ and suppose that
     \begin{align*}
         X_{m-1} := T_{0} \cup T_{1} \cup \dots \cup T_{m-1}
     \end{align*}
-    is a topological $n$-ball. Let $T_{m}$ is the next $n$-simplex in the shelling.
+    is already known to be a topological $n$-ball. Let $T_{m}$ be the next $n$-simplex in the shelling.
     By definition, $\Gamma_{m} := X_{m-1} \cap T_{m}$ is a submanifold of $\partial T_{m}$,
-    and it is triangulated by some faces of $T_{m}$ and their subsimplices. 
+    triangulated by some faces of $T_{m}$ and their subsimplices. 
     
     Let $F$ be such a face. 
     By assumption, $F$ must be contained in exactly one $n$-simplex of $T_{0}, T_{1}, \dots, T_{m-1}$,
     and $F$ is in the boundary of $X_{m-1}$. 
     We conclude that $\Gamma_{m}$ triangulates a submanifold of the boundary of $X_{m-1}$.
     
-    On the one hand, 
-    if $\Gamma_{m}$ is the entire boundary of $T_{m}$, 
-    then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
-    Hence, $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
-    which requires $m = M$.
-    % TODO {TCF: I don't understand why XM couldn't be a topological n-ball.}
+    On the one hand, if $\Gamma_{m}$ is the entire boundary of $T_{m}$, then it is a topological sphere of dimension $n-1$. 
+    Since $\Gamma_{m}$ is a submanifold of the boundary of $X_{m-1}$, which by induction assumption is also a topological sphere of dimension $n-1$,
+    we conclude that $\Gamma_{m}$ is the whole boundary of $X_{m}$.
+    By basic geometric topology, $X_{m}$ is a topological $n$-sphere, and $T_{m}$ can only be the last simplex in the shelling, $m=M$.
+%     then it must also be the boundary of $X_{m-1}$, which is a topological $n$-ball by the induction assumption. 
+%     Hence, $\Gamma_{m} = \partial X_{m-1}$ is a topological sphere of dimension $n-1$, 
+%     which requires $\partial X_{m-1} \cap \partial T_{m}$ by assumption. 
+%     Hence, $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
+%     which requires $m = M$.
+    % DONE{TCF: I don't understand why XM couldn't be a topological n-ball.}
     On the other hand, 
     if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
     then $X_{m-1} \cup T_{m}$ is still a topological $n$-ball.
@@ -6069,7 +6063,7 @@ We give detailed estimates for the singular values of their Jacobians.
         % After application of a piecewise linear Lipschitz mapping, 
         % we can assume that $\underlying{\calK}$ is convex without loss of generality. 
         % Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $\underlying{\calK}$. 
-        % \mwl{TODO: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
+        % \mwl{DONE: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
         
         
         \item 
@@ -6614,7 +6608,7 @@ We give detailed estimates for the singular values of their Jacobians.
             .
         \end{align}
         All other singular values of $\Jacobian\Theta_{|G}$ equal $1$. 
-        The singular values $\sigma_{\max}(\Theta,G) \geq 1$ and $\sigma_{\min}(\Theta,G) \leq 1$ is monotonically increasing and decreasing, respectively, in $\tan(\beta)$. Hence they must the extremal maximal singular values of $\Jacobian\Theta_{|G}$.
+        The singular values $\sigma_{\max}(\Theta,G) \geq 1$ and $\sigma_{\min}(\Theta,G) \leq 1$ is monotonically increasing and decreasing, respectively, in $\tan(\beta)$. Hence, they must the extremal maximal singular values of $\Jacobian\Theta_{|G}$.
         It is evident that $\rho = \vol(G^{c}) / \vol(G)$. 
         
         We develop explicit bounds for these singular values. 
@@ -6626,7 +6620,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$, which is some face of $T'$.
         Now, the height of $F_{z}$ in $G$ is $(n-\ell)$-th of the height of $F_{z}$ in $T'$
         since $S'$ has dimension $n-\ell-1$. 
-        The height of $F_{z}$ in $T'$ is just the height of the its opposing vertex, which lies in $S'$,
+        The height of the face $F_{z}$ in $T'$ is just the height of its opposing vertex, which lies in $S'$,
         and which equals the height of that vertex in $T$.
 %         which must be contained in some face of $T$ containing $S$. 
 %         The height vector $h_{z}$ is orthogonal to $F_{z}$. 
