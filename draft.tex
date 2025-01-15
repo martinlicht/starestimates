@@ -1,19 +1,330 @@
-\documentclass[a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-\usepackage{hyperref}         % For hypertext links
-
+% \usepackage[margin=0.1cm]{geometry}
 \input{header}
+
+\usepackage{xcolor}          % 
+\usepackage{comment}          % 
+\usepackage[colorlinks=true]{hyperref}         % For hypertext links
+% Make the hyperlinks look similar to arXiv's
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Maroon,    % Color of internal links (sections)
+    citecolor=red,    % Color of citations
+    urlcolor=blue,     % Color for URLs
+    urlbordercolor={1 1 1},
+    pdfborder={0.5 0.5 0}  % Removes the border around the links
+}
+\usepackage{tikz-3dplot}      % 3d plots 
+\usepackage{enumitem}
+\setitemize[1]{left=0.0cm} 
+
+
+% Added by MV 
+\usepackage{bm} % preferred version of bold symbols
+\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
+% \usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
+% \usepackage[textsize=tiny,color=blue!10!white]{todonotes}
+% \newcommand{\todo}[1]{{\colorbox{yellow}{#1}}}
+\setlength{\marginparwidth}{2cm}
+    
+\newcommand\cye[1]{%
+\protect\leavevmode
+\begingroup
+    \color{blue}%
+    #1%
+\endgroup
+}
+% \color{red!35!yellow}
+
+\newcommand{\mwl}[1]{{\color{red}#1}}
+\newcommand{\notice}[1]{{\color{red}REMARK: #1}}
+\newcommand{\disk}{\cye{ball}}
+\newcommand{\todo}[1]{{\color{RedOrange}\textbf{#1}}}
+
+
+
+
+
+
+
+
+% LTeX: enabled=false
+% Title, authors, and affiliations
+% \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
+% \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
+
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de~Rham complex over convex domains and domains with shellable triangulations}
+\author{
+    Th\'eophile Chaumont-Frelet\thanks{Inria Univ. Lille and Laboratoire Paul Painlev\'e, 59655 Villeneuve-d'Ascq, France, \texttt{theophile.chaumont@inria.fr}} \and
+    Martin Werner Licht\thanks{\'Ecole Polytechnique F\'ed\'erale de Lausanne, CH-1015 Lausanne, Switzerland, \texttt{martin.licht@epfl.ch}} \and
+    Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
+}
+\date{}
+% LTeX: enabled=true
 
 
 \begin{document}
 
+\tableofcontents
+
+
+\section{Draft of the Reflection along faces in one of the first sections}
+
+\begin{proof}
+    %     This implies the determinant identity and estimate 
+%     \begin{align*}
+%         \det( \Jacobian \Xi ) 
+%         = 
+%         \frac 1 4 \left( (1+a)^2 - (1-a)^2 \right) 
+%         &
+%         = 
+%         a
+%         \leq 
+%         \aspectratio(T_{1}) \aspectratio(T_{2}) 
+%         .
+%     \end{align*}
+%     % Now we see that if $a \leq 1$, then $\sigma_{+} \leq 1 + c$, and if $a \geq 1$, then $\sigma_{+} \leq a + c$.
+%     Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha \hat h_0$ and $x' = b' + \alpha' \hat h_0$.
+%     Since $\Xi(\hat h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
+%     \begin{align*}
+%         \vecnorm{ \Xi(x) - \Xi(x') }
+%         \leq  
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \cdot \vecnorm{ z_2 }
+%         \leq  
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \vecnorm{ \hat h_0 }
+%         \leq 
+%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \vecnorm{ x-x' }
+%         .
+%     \end{align*}
+    \color{blue}
+    \color{red}
+    The linear mapping $\Xi$ takes the form 
+    % Writing $\hat h_0$ for the unit normal in direction $z_1$, we have 
+    \begin{align*}
+        \Xi(x) 
+        = 
+        x 
+        - \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_1
+        + \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_2
+        ,
+        \qquad 
+        x \in \bbR^{n}
+        .
+    \end{align*}
+    Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
+    By the Xu-Zikanatov estimate~\cite{xu2003some},
+    \begin{align*}
+        % \matnorm{ \Jacobian \Xi }
+        \sigma_{+} 
+        \leq 
+        \frac{ \diam(T_1) }{ \height(T_1) }
+        +
+        \frac{ \diam(T_2) }{ \height(T_1) }
+        \leq 
+        \aspectratio(T_1) + \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_2)
+        .
+    \end{align*}
+    Analogous upper bound holds for $\sigma^{-1}_{-}$.
+%     \begin{align}
+%         \sigma_{-}^{-1} \leq \left( 1 + \aspectratio(T_1) \right) \aspectratio(T_2)
+%     \end{align}
+% \begin{comment}
+    \color{Mulberry}
+    \mwl{Tighter estimate via geometry}
+    Matrix inverse lemma:
+    \begin{align*}
+        A ( A + (z_2-z_1) e_1^t )^{-1}
+        =
+        \Id
+        - 
+        \left( 1 + e_1^{t} A^{-1} (z_2-z_1) \right)^{-1}
+        (z_2-z_1) e_1^t \cdot A^{-1}
+        =
+        \Id
+        - 
+        \left( e_1^{t} A^{-1} z_2 \right)^{-1}
+        (z_2-z_1) e_1^t \cdot A^{-1}
+        .
+    \end{align*}
+    Putting in a multiple of $\alpha z_1$, we find 
+    \begin{align*}
+        \alpha z_1
+        -
+        \left( e_1^{t} A^{-1} z_2 \right)^{-1}
+        (z_2-z_1) 
+        .
+    \end{align*}
+
+    
+    Without loss of generality, $F$ lies in the hyperplane plane of the second to last coordinates,
+    so that the height of $T_1$ and $T_2$ is in the first coordinate direction. 
+    After further rotation, we can assume that $z_1$ and $z_2$ are in the span of the first three coordinate directions with 
+    We can write 
+    \begin{align*}
+        z_1 = a_1 e_1 + a_2 e_2, \qquad z_2 = b_1 e_1 + b_2 e_2 + e_3 b_3.
+    \end{align*}
+    The face $F$ spans a hyperplane over which $\Xi$ is the identity, and it remains to study the matrix
+    \begin{align*}
+        A = 
+        \begin{pmatrix}
+            b_1/a_1 & 0 & 0
+            \\
+            (b_2-a_2)/a_1 & 1 & 0
+            \\
+            b_3/a_1 & 0 & 1
+        \end{pmatrix}
+        =:
+        \begin{pmatrix}
+            c_1 & 0 & 0
+            \\
+            c_2 & 1 & 0
+            \\
+            c_3 & 0 & 1
+        \end{pmatrix}
+    \end{align*}
+    Its singular values are $1$ and 
+    \begin{align*}
+        \sigma_{\max}
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            +
+            \sqrt{ ( 1 + c_1^2 + c_2^2 + c_3^2 )^2 - 4 c_1^2 }
+        }
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            +
+            \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+            \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        }
+        =
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+        +
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        =
+        \frac{1}{2}
+        \sqrt{ ( 1 + c_1 )^2 + c_2^2 + c_3^2 }
+        +
+        \frac{1}{2}
+        \sqrt{ ( 1 - c_1 )^2 + c_2^2 + c_3^2 }
+        \leq 
+        \sqrt{ ( 1 + c_1 )^2 + c_2^2 + c_3^2 }
+        .
+    \end{align*}
+    \begin{align*}
+        \sigma_{\max}
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            -
+            \sqrt{ c_1^2 + c_2^2 + c_3^2 - 4 c_1^2 }
+        }
+        =
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+        -
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        .
+    \end{align*}
+    
+    \begin{align*}
+        \sigma_{\max}
+        &= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            }
+        +
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 + \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 - \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        ,
+        \\
+        \sigma_{\min}
+        &=
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        -
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        .
+    \end{align*}
+    It follows that 
+    \begin{align*}
+        \det \Jacobian\Xi
+        &=
+        \frac{1}{4}
+        \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+        +
+        \frac{1}{4}
+        \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+        \\
+        \frac{1}{2} + \frac{1}{2} 
+        .
+    \end{align*}
+    Matrix determinant lemma:
+    \begin{align*}
+        \det( A + (z_2-z_1) e_n^t ) = \left( 1 + e_n A^{-1} z_2 - e_n A^{-1} z_1 \right) \det(A)
+        =
+        \left( e_{n} A^{-1} z_2 \right) \det(A)
+        =
+        \frac{\langle \hat h, z_2 \rangle}{\langle \hat h, z_1 \rangle} \det(A)
+        .
+    \end{align*}
+% \end{comment}
+\end{proof}
 
 
 
 
 
-
+\section{Material}
 
 \mwl{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
 \mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
@@ -229,7 +540,7 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     For $0 < m \leq M$, by the definition of shellability in Section~\ref{subsection:shellability}, 
     $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
-    where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
+    where $\frakM_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
     
     We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
@@ -243,9 +554,9 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     This is true for $m = 1$. 
     We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
     \begin{align} \label{equation:w''_ext_der}
-        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\Minako_{m-1}}),
+        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\frakM_{m-1}}),
     \end{align}
-    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
+    where $\Xi_{m} : T_{m} \rightarrow \frakM_{m-1}$ is the reflection mapping
     as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
     Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
     \begin{align*}
@@ -265,49 +576,49 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         \leq  
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         + 
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| u - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         .
     \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) = 0$, we have
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}})) = 0$, we have
     \begin{align*}
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})} 
+        \| u - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})} 
         &
         \leq 
         C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
-        + \| \cartan (\Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})} )
+        + \| \cartan (\Xi_{m}^{\ast}(u_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})} )
         .
     \end{align*}
     We also use Proposition~\ref{proposition:pullbackestimate} to find 
     \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
+        \| w \|_{L^{p}(\frakM_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        \| \cartan u \|_{L^{p}(\frakM_{m-1})}
         ,
     \end{align*}
 	\begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
+        \| w \|_{L^{p}(\frakM_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        \| \cartan u \|_{L^{p}(\frakM_{m-1})}
         ,
     \end{align*}
     where we have employed that $\cartan w = \cartan u$ over $X_{m-1}$. 
@@ -1698,7 +2009,7 @@ We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m 
 
 
 
-
+\begin{itemize}
         \item 
         % \todo{Combine all this to get the final transformation.}
         The last simplicial complex that we introduce is called $\calK$,
@@ -2274,7 +2585,8 @@ We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m 
         we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
         We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
         \color{black}
-        
+\item 
+\end{itemize}
 
 
 
