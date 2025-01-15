@@ -1358,7 +1358,7 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
 \end{remark}
 
 We gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
-% \todo{Settle the subscripts of the vector norm.}
+% DONE {Settle the subscripts of the vector norm.}
 % TODO {Replace the constant Ceins and Czwei by the square root of n immediately.}
 
 \begin{lemma}\label{lemma:measurerelationships}
@@ -4650,7 +4650,7 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     and so $\carapace_{\calT}(V) \subseteq \calT'$ triangulates a sphere of dimension $n-1$ and $\patch_{\calT}(V) \subseteq \calT'$ triangulates a ball of dimension $n$.
     We also know that $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a sphere of dimension $n-2$ and $\patch_{\partial\calT}(V) \subseteq \partial\calT$ triangulates a ball of dimension $n-1$. 
     The embedding of $\carapace_{\partial\calT}(V) \subseteq \partial\calT$ is homeomorphic to the standard embedding of the $(n-2)$-dimensional unit sphere into the $(n-1)$-dimensional unit sphere,
-    by the topological Schoenflies theorem. \todo{reference}
+    by the topological Schoenflies theorem~\cite{Moise1977geometric}
     It follows that $\carapace_{\calT}(V)$ triangulates a topological ball of dimension $n-1$.
     Since the closed cone of $\underlying{\carapace(V)}$ is homeomorphic to the star $\underlying{\patch_{\calT}(V)}$, we conclude that $\patch_{\calT}(V)$ triangulates an $n$-dimensional ball. 
     
@@ -4905,8 +4905,8 @@ We now collect important examples of shellable triangulations. Essentially, in t
     First, 
     let $\calS$ be any triangulation of a $2$-sphere. 
     By removing any triangle $S \in \calS$, we obtain a triangulation $\calT$ of a $2$-\disk.
-    Any shelling of that \disk\ \todo{$\calT$} can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
-    So it remains to show that any triangulation $\calT$ of the two-dimensional \disk\ is shellable. 
+    Any shelling of that triangulation $\calT$ can be extended to a shelling of $\calS$ by re-inserting the first triangle $S$.
+    So it remains to show that any triangulation $\calT$ of a two-dimensional \disk\ is shellable. 
     We will construct the shelling in reverse. 
     
     Write $M = \underlying{\calT}$. 
@@ -5260,7 +5260,6 @@ We give detailed estimates for the singular values of their Jacobians.
         \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto
     \end{align*}
     which is the identity along $\Gamma_2$. 
-    \todo{Include a picture of the situation?}
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Csieb{n}{\ell}(\calT),
@@ -5285,7 +5284,7 @@ We give detailed estimates for the singular values of their Jacobians.
         \leq 
         \Cachttrafo{n}{k}{\ell}{p}(\calT).
     \end{align*}
-    \todo{TCF: Should $\sigma_n$ be $\sigma_n^{-1}$ in the second line of both statements?}
+    % DONE {TCF: Should $\sigma_n$ be $\sigma_n^{-1}$ in the second line of both statements?}
     \end{enumerate}
 \end{proposition}
 \begin{proof}
@@ -5320,8 +5319,6 @@ We give detailed estimates for the singular values of their Jacobians.
         Moreover, $S$ is an inner subsimplex of that triangulation. 
         In particular, $\calD^\ast$ is its own star around $S$.
         
-        \todo{Picture?}
-        
         % TODO Check that $\calD^\ast$ is a triangulation
         
         \item 
@@ -5333,6 +5330,42 @@ We give detailed estimates for the singular values of their Jacobians.
         Given any $n$-simplex in $\calG$, replacing its vertex $z_{S}$ with its opposite $-z_{S}$ gives an associated $n$-simplex in $\calG^{c}$.
         
         Lastly, we introduce one more simplicial complex $\calK$ obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
+        
+        \begin{figure}[t]
+            \centering
+            \begin{tabular}{ccc}
+            \begin{tikzpicture}
+                % [line join=bevel,z={( 3.85mm, -3.85mm)}]
+                [line join=bevel,x={( 1.5cm, 0mm)},y={( 0mm, 1.5cm)},z={( 1.5*3.85mm, -1.5*3.85mm)}]
+                
+                \coordinate (O) at (  0.0,  0.0, 0.0);
+                \coordinate (A) at (  1.0,  0.0, 0.0);
+                \coordinate (B) at (  0.3,  1.0, 0.0);
+                \coordinate (C) at ( -0.6,  0.8, 0.0);
+                \coordinate (D) at ( -0.6, -0.7, 0.0);
+                \coordinate (E) at (  0.3, -1.0, 0.0);
+                \coordinate (F) at (  0.3, -1.0, 0.0);
+                
+                \fill[gray!30] (A) -- (B) -- (O) -- cycle;
+                
+                \node at (-0.15, -0.5) {$A$};
+                \node at (0.4, 0.35) {$T$};
+                \node at (0.45, -0.2) {$\Gamma_1$};
+                \node at (-0.75, 0) {$\Gamma_2$};
+                
+                \draw[dotted] (O) -- (A); % THIS ONE 
+                \draw[dotted] (O) -- (B); % THIS ONE 
+                \draw[] (A) -- (B); % THIS ONE 
+%                 \draw (O) -- (C);
+%                 \draw (O) -- (D);
+%                 \draw (O) -- (E);
+                \draw[line width=0.2em] (B) -- (C) -- (D) -- (E) -- (A);
+            \end{tikzpicture}%
+            \end{tabular} 
+            \caption{Sketch of the geometric situation in the proof of Proposition~\ref{proposition:starreflection}.}\label{figure:geometricconstruction}
+        \end{figure}
+
+
         
         \item 
         % Notice that $A_{G^{c}}$ and $A_{G}$ have the same singular values. Thus
@@ -5873,7 +5906,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Every height of the origin in some simplex of $\calG^\ast$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calD^\ast$
         by scaling with $(\ell+1)^{-1}$. If $G \in \calG$, then that original height was already a height of a vertex of $S$ in $T$. 
         If instead $G \notin \calG$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calD$, multiplied by $\mu_{T,\ell}$. The height of any vertex of $S$ in some simplex of $\calD$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
-        %         In oder to estimate $\vecnorm{ h_{G} }$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        %         In oder to estimate $\vecnorm{ x_{G} }$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         %         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
         %         It follows that $\vecnorm{ x_{G} } \leq \diam(T)$. 
         %         
@@ -6887,7 +6920,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \diam(T)
         .
     \end{align*}
-    \todo{Double check the constant}
+    % DONE {Double check the constant}
 \end{lemma}
 \begin{proof}
     There exists an affine bijection $\varphi : \Delta^n \rightarrow T$ 
@@ -6896,7 +6929,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     orthogonal to the $i$-th coordinate axis is mapped 
     onto the face $F_i$. 
     In what follows, we let $\widetilde \Makoto$ be the convex set obtained from reflecting $\Delta^n$ along the coordinate axes $\ell+1$ through $n$. 
-    We see that $\vol(\widetilde \Makoto) = 2^{n-\ell}/n!$
+    We see that $\vol(\widetilde \Makoto) = 2^{n-\ell} \vol(\Delta^n) = 2^{n-\ell}/n!$
     
     We let $\hat u := \varphi^{\ast} u \in W^{p}\Lambda^{k}(\Delta^n)$ and define $\hat g \in L^{p}\Lambda^{k+1}(\Delta^n)$ via $\hat g := \cartan \varphi^{\ast} u$. 
     Then $\cartan \hat u = \hat g$. 
@@ -6911,13 +6944,13 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \| \hat g \|_{L^{p}(\Delta^n)}
         .
     \end{align*}
-    The analysis for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, imply 
-    the existence of $\mathring w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
+    By the analysis for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, 
+    there exists $\mathring w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
     with $\cartan \mathring w = \cartan \tilde u$ satisfying the bounds 
     \begin{align*}
         \| \mathring w \|_{L^{p}(\widetilde \Makoto)}
         &\leq 
-        C_{{\PF},\Poinc,k,\widetilde \Makoto,p}
+        C_{{\PF},\Bogov,k,\widetilde \Makoto,p}
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         %\\&
         \leq 
@@ -6931,6 +6964,19 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         %
         n! \cdot 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
+        .
+    \end{align*}
+    Here,
+    \begin{align*}
+        C_{{\PF},\Bogov,k,\widetilde \Makoto,p} 
+        &
+        = 
+        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\widetilde \Makoto)^{n}}{\vol(\widetilde \Makoto)} \diam(\widetilde \Makoto)
+        \\&
+        = 
+        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{2^{n}}{2^{n-\ell}/n!} 2
+        = 
+        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \cdot n! 2^{\ell+1} 
         .
     \end{align*}
     We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $\ell+1$ through $n$. Thus,
