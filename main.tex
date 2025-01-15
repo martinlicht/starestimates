@@ -109,9 +109,8 @@ Here, we extend this construction to the curl and divergence operators, as well 
 However, to proceed in the general exterior derivative case, we restrict our efforts to so-called shellable triangulations. 
 Only contractible domains can ever admit a shellable triangulation, but having computable upper bounds for such domains is an important stepping stone towards more general situations. 
 The class of shellable triangulations includes practically relevant triangulations: 
-for example, local triangulations around a simplex 
-% \todo{[TCF: Is it really true if the simlex is of highest dimension, e.g., a tetrahedron in 3D?]} 
-within a larger triangulation (the so-called local patches or stars) are shellable in dimensions two and three; see also Figure~\ref{figure:patches}. 
+for example, local triangulations around a simplex within a larger triangulation (the so-called local patches or stars) are shellable in dimensions two and three; see also Figure~\ref{figure:patches}. 
+% DONE {[TCF: Is it really true if the simplex is of highest dimension, e.g., a tetrahedron in 3D?]} 
 Additionally, we include a study of regularized Poincar\'e and Bogovski\u{\i} operators that leads to new Poincar\'e--Friedrichs inequalities with computable constants for the whole $L^{p}$ de~Rham complex over bounded convex domains.
 
 
@@ -292,7 +291,8 @@ We review the literature on Poincar\'e--Friedrichs inequalities. We also identif
 The qualitative existence of Poincar\'e--Friedrichs inequalities for the differential operators of vector calculus and exterior calculus is known for a large class of domains. 
 There is a particularly large body of literature on the Poincar\'e inequality for the gradient and its numerous variants,
 which may include weighted integrals or boundary terms. 
-These Poincar\'e-type inequalities are often derived via non-constructive arguments, such as the Rellich embedding theorem, \todo{[TCF: I believe this is often refered to as the Tartare-Petree theorem]}
+These Poincar\'e-type inequalities are often derived via non-constructive arguments, such as the Rellich embedding theorem, 
+% TODO {[TCF: I believe this is often refered to as the Tartare-Petree theorem]}
 and thus the resulting constants are not explicitly computable. 
 
 % divergence 
@@ -345,13 +345,14 @@ They prove that the Poincar\'e--Friedrichs constant for the gradient already est
 They also provide explicit (but not necessarily optimal) upper bounds for Poincar\'e--Friedrichs constants that depend only on the dimension and diameter of the convex domain. 
 A duality argument also yields upper estimates of the Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators subject to Dirichlet, tangential, and normal boundary conditions, respectively, along the entire boundary. 
 Their inequalities hold in convex Lipschitz domains, too~\cite{licht2024geometry}.
-However, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. %\todo{ [TCF: We might want to obtain with ML's recent preprint.].}
+However, no results as those of~\cite{guerini2004eigenvalue} are known over bounded convex Lipschitz domains and for general Lebesgue exponents $1 \leq p \leq \infty$. 
+%DONE { [TCF: We might want to obtain with ML's recent preprint.].}
 
 \subsubsection{Domains star-shaped with respect to a ball}
 
 When the domain is not convex but star-shaped with respect to a ball,
 then several estimates for Poincar\'e--Friedrichs constants are known.\footnote{In fact, Poincar\'e--Friedrichs inequalities even hold over any star-shaped open bounded set; see~\cite[Theorem~3.1]{hurri1988poincare}.}
-% \todo{[TCF: I don’t exactly get the point of this sentence.].}
+% DONE {[TCF: I don't exactly get the point of this sentence.].}
 Polynomial interpolation estimates already imply the gradient Poincar\'e--Friedrichs inequality~\cite{brenner2008mathematical,ern2021finite}. 
 We pay particular attention to the regularized Poincar\'e and Bogovski\u{\i} potential operators for the exterior derivative,
 such as those of Costabel and McIntosh~\cite{costabel2010bogovskiui}.
@@ -398,8 +399,9 @@ Every time we have found a potential over a subdomain, we construct a potential 
 along the interfacing intersection, the two potentials will only differ by a constant, 
 and that difference can easily be removed to ensure continuity across that interface. 
 Cell by cell, the potential is constructed over increasing subdomains, matching along the interfacing intersections, until the entire domain is exhausted.  
-The method is known in the finite element literature~\cite{ern2021finite}. \todo{[TCF: Could you reference a particular theorem or
-chapter?]} It was previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. 
+The method is known in the finite element literature~\cite{ern2021finite}. 
+% TODO {[TCF: Could you reference a particular theorem or chapter?]} 
+It was previously used in the context of finite volume methods~\cite{Eym_Gal_Her_00}, broken (weakly continuous) Sobolev spaces~\cite{vohralik2005discrete}, or more recently in continuous--discrete comparison results~\cite{Brae_Pill_Sch_p_rob_09, ern2020stable, Chaum_Voh_p_rob_3D_H_curl_24,  Voh_loc_glob_H1_24}. 
 This sequential procedure applies to general triangulated domains, not only local stars, though the latter are our main interest here. 
 Most importantly, these sequential estimates of Poincar\'e--Friedrichs constants generally circumvent the effect of low boundary regularity and only rely on the shape regularity. 
 
@@ -1149,7 +1151,7 @@ which is the union $\underlying{\calT} = \bigcup \calT$ of all simplices in $\ca
     % .
 % \end{align*}
 One calls any set triangulable if it is the underlying set of some triangulation. 
-\todo{Settle the issue that triangulations are closed but that domains are open sets.}
+% DONE {Settle the issue that triangulations are closed but that domains are open sets.}
 
 
 \begin{comment}
@@ -1356,8 +1358,8 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
 \end{remark}
 
 We gather a few relationships between geometric and algebraic entities and compare the different shape measures of a single simplex.
-\todo{Settle the subscripts of the vector norm.}
-\todo{Replace the constant Ceins and Czwei by the square root of n immediately.}
+% \todo{Settle the subscripts of the vector norm.}
+% TODO {Replace the constant Ceins and Czwei by the square root of n immediately.}
 
 \begin{lemma}\label{lemma:measurerelationships}
     Let $T$ be an $n$-simplex and let $\varphi : \Delta^{n} \rightarrow T$ be an affine diffeomorphism from the reference $n$-simplex. Then 
@@ -1549,7 +1551,7 @@ This indicator quantifies how much reflection across the shared face distorts th
         \qquad 
         a = h_2 / h_1,
         \qquad 
-        c = \|b_2-b_1\| / h_1
+        c = \vecnorm{ b_2-b_1 } / h_1
         .
     \end{align*}
     These are 
@@ -1597,13 +1599,13 @@ This indicator quantifies how much reflection across the shared face distorts th
 %     Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha \hat h_0$ and $x' = b' + \alpha' \hat h_0$.
 %     Since $\Xi(\hat h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
 %     \begin{align*}
-%         \| \Xi(x) - \Xi(x') \|
+%         \vecnorm{ \Xi(x) - \Xi(x') }
 %         \leq  
-%         \| b - b' \| + | \alpha - \alpha' | \cdot \| z_2 \|
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \cdot \vecnorm{ z_2 }
 %         \leq  
-%         \| b - b' \| + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \| \hat h_0 \|
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \vecnorm{ \hat h_0 }
 %         \leq 
-%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \| x-x' \|
+%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \vecnorm{ x-x' }
 %         .
 %     \end{align*}
     \color{blue}
@@ -2010,7 +2012,7 @@ We begin with an auxiliary result with independent relevance, where we estimate 
     we assume $1 \leq p < \infty$. 
     Let $u \in C^{\infty}(T)$ have support disjoint from $F$.
     We tacitly extend this by zero to a function $u \in \Lebesgue^{\infty}(\bbR^{n})$. 
-    \todo{Is this readable?}
+    % DONE {Is this readable?}
     Without loss of generality, 
     the segment from the midpoint of $F$ to the opposing vertex lies on the first coordinate axis,
     and the minimal first coordinate among all the points of $F$ equals $0$. 
@@ -3147,7 +3149,7 @@ if and only if for all $v \in C^{\infty}_{c}\Lambda^{n-k-1}(\Omega)$ we have the
 % for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$.
 % The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.}
 % \cye{\sout{We let $W^{p}_{0}\Alt^{k}(\Omega)$ be the closed subspace of those $u \in W^{p}\Alt^{k}(\Omega)$ 
-% for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. }}\todo{MV: repeated below.}
+% for which the extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. }} DONE {MV: repeated below.}
 Lastly, we are also interested in differential forms whose trace vanishes along a part of the boundary. 
 Suppose that $\Gamma \subseteq \partial\Omega$ is a relatively open subset of the boundary. 
 We say that $u \in W^{p}\Alt^{k}(\Omega)$ has vanishing trace along $\Gamma$ if for all $x \in \Gamma$ there exists $r > 0$
@@ -3175,10 +3177,10 @@ Lastly, we introduce the closed subspaces
     \{ u \in W^{p}\Alt^{k}(\Omega) \suchthat \trace_{\partial \Omega} u = 0 \}
     .
 \end{gather*}
-% \cye{The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.}\todo{MV: Moved here.}
+% \cye{The space $W^{p}_{0}\Alt^{k}(\Omega)$ formalizes the idea of differential forms with vanishing boundary trace along the boundary $\partial\Omega$.} DONE {MV: Moved here.}
 This is a closed subspace. We know that $u \in W^{p}_{0}\Alt^{k}(\Omega)$ if and only if its extension by zero $\tilde u : \bbR^{n} \rightarrow \Alt^{k}(\bbR^{n})$ is a member of $\tilde u \in W^{p}\Alt^{k}(\bbR^{n})$. Moreover, $\cartan W^{p}_{0}\Alt^{k}(\Omega) \subseteq W^{p}_{0}\Alt^{k+1}(\Omega)$. We also observe that $W^{p}\Alt^{n}(\Omega) = W^{p}_{0}\Alt^{n}(\Omega) = L^{p}(\Omega)$. We use the abbreviation $W^{1,p}_{0}(\Omega) := W^{p}\Lambda^{0}(\Omega)$. 
 
-\todo{TCF: Is the definition of trace satisfactory for matching traces across simplicies?}
+% DONE {TCF: Is the definition of trace satisfactory for matching traces across simplicies?}
 
 \subsection{Transformations by bi-Lipschitz mappings}
 
@@ -3230,7 +3232,7 @@ Let $\mollifier$ be a non-negative scalar function whose integral equals one and
 Define $\mollifier_{\eps}(x) := \eps^{-n} \mollifier(x/\eps)$. We collect several approximation results that involve convolution with a mollifier.
 In what follows, convolutions of functions defined over domains tacitly assume that these functions have been extended by zero to all of Euclidean space. 
 
-% \todo{TCF: It is a bit pedantic, but shouldn’t we say that u is extended by zero to define the convolution below?}
+% DONE {TCF: It is a bit pedantic, but shouldn't we say that u is extended by zero to define the convolution below?}
 
 \begin{lemma}
 %     Let $\Omega \subseteq \bbR^{n}$ be a bounded open set and let $u : \Omega \rightarrow \bbR$ be locally integrable.  
@@ -3323,7 +3325,7 @@ However, our goal is explicit bounds for the operator norms, giving the Poincar\
 %\mwl{In what follows, $\Omega \subseteq \bbR^{n}$ is a bounded convex open set with diameter $\diam(\Omega) > 0$.}
 In the remainder of this section, $\Omega \subseteq \bbR^{n}$ is a bounded convex open set with diameter $\diam(\Omega) > 0$.
 
-% \todo{MV: Discussion already in the introduction, or in Remark~\ref{remark:reg_Poinc_Bog}}: 
+% DONE {MV: Discussion already in the introduction, or in Remark~\ref{remark:reg_Poinc_Bog}}: 
 
 
 
@@ -4019,7 +4021,7 @@ We make a case distinction. When $k<n$, then the double integral itself is bound
     =
     \int_{\bbR^{n} \setminus B_{\epsilon}(0)}
         u\left( y \right) 
-        \wedge \phi\left( \epsilon \frac{y-a}{\|y-a\|} + a \right) 
+        \wedge \phi\left( \epsilon \frac{y-a}{ \vecnorm{y-a} } + a \right) 
     \,dy 
     .
 \end{align*}
@@ -4203,7 +4205,7 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
 
 \end{theorem}
 
-% \todo{MV: Do $\Poinc_{\mia}$ and $\Bogov_{\mia}$ still map piecewise polynomials to piecewise polynomials? Like Raviart--Thomas and N\'ed\'elec spaces to Raviart--Thomas and N\'ed\'elec spaces??}\mwl{No, they do not respect any piecewise structure.}
+% DONE {MV: Do $\Poinc_{\mia}$ and $\Bogov_{\mia}$ still map piecewise polynomials to piecewise polynomials? Like Raviart--Thomas and N\'ed\'elec spaces to Raviart--Thomas and N\'ed\'elec spaces??}\mwl{No, they do not respect any piecewise structure.}
 
 \begin{proof}
     Consider the case $1 \leq p < \infty$.
@@ -4214,11 +4216,10 @@ namely through definitions~\eqref{equation:A_Poinc} and~\eqref{equation:A_Bogov}
     % 
     Taking the limit on both sides of equation then implies the inequality with $p = \infty$
     because the $L^{\infty}$ norm is the limit of the Lebesgue norms as $p$ goes to infinity. 
-    % DONE \todo{Get rid of the auxiliary zeta?} {no}
+    % DONT {Get rid of the auxiliary zeta?} {no}
     
     
     Consider now $u \in W^{p}\Alt^{\mia}(\Omega)$ with $1 \leq k \leq n$. 
-    % \todo{\sout{We write $\zeta := \Poinc_{\mia  } u$.}}
     We write $\zeta := \Poinc_{\mia  } u$. 
     There exists a sequence $u_{i} \in C^{\infty}\Alt^{\mia}(\overline\Omega)$ that converges to $u$ in $W^{p}\Alt^{\mia}(\Omega)$. 
     For any test form $v \in C^{\infty}_{c}\Alt^{n-\mia-1}(\Omega)$, we verify 
@@ -4738,43 +4739,31 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     % then any vertex star in any $(n+1)$-dimensional manifold triangulation is already face-connected if all simplicial $n$-balls and $n$-spheres are face-connected.
     The induction argument implies that each vertex star in $\calT$ is face-connected.
 
-    % \todo{TCF: I could not really follow the paragraph above. Let's talk about it when we can!}
+    % DONE {TCF: I could not really follow the paragraph above. Let's talk about it when we can!}
     
-    \todo{
     We assume that the underlying space $\underlying{\calT}$ is connected, and hence path-connected. 
     Given $n$-simplices $S,S' \in \calT$, 
     there exists a path $\gamma : [0,1] \rightarrow \underlying{\calT}$ from the barycenter of $S$ to the barycenter of $S'$.
     We can choose a sequence of $n$-simplices $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ without repetitions 
     that cover the path and whose intersections with the path are homeomorphic to $[0,1]$.
-    The intersections $\gamma([0,1]) \cap S_{i}$ and $\gamma([0,1]) \cap S_{i+1}$ intersect at one point that lies in a common subsimplex of $S_{i}$ and $S_{i+1}$.
-    We deduce that each two consecutive simplices in the sequence $\hat S_0,\hat S_1,\dots,\hat S_m$ have at least one vertex in common. 
+    For any index $1 \leq i \leq m$, 
+    the intersection $\gamma([0,1]) \cap S_{i}$ and $\gamma([0,1]) \cap S_{i+1}$ intersect at one point lying in a common subsimplex of $S_{i}$ and $S_{i+1}$.
+    We deduce that each two consecutive simplices in the sequence $\hat S_0,\hat S_1,\dots,\hat S_m$ will have at least one vertex in common. 
     As each vertex star is face-connected, 
-    there exists a  sequence $S=T_0,T_1,\dots,T_{m}=S' \in \calT$ 
+    there exists a sequence $S=S_0,S_1,\dots,S_{m}=S' \in \calT$ 
     where $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
     This just means that $\calT$ is face-connected. 
-    }
-    
-    \tode{
-    We assume that the underlying space \(\underlying{\calT}\) is connected, and hence path-connected. 
-    Given \(n\)-simplices \(S, S' \in \calT\), 
-    there exists a path \(\gamma : [0,1] \rightarrow \underlying{\calT}\) from the barycenter of \(S\) to the barycenter of \(S'\).
-    We can choose a sequence of \(n\)-simplices \(\hat S_0, \hat S_1, \dots, \hat S_m \in \calT\) (with \(\hat S_0 = S\) and \(\hat S_m = S'\)), without repetitions, 
-    that covers the path and whose intersections with the path are homeomorphic to \([0,1]\).
-    The sets \(\gamma([0,1]) \cap \hat S_{i}\) and \(\gamma([0,1]) \cap \hat S_{i+1}\) intersect at exactly one point, which lies in a common subsimplex of \(\hat S_{i}\) and \(\hat S_{i+1}\).
-    We deduce that any two consecutive simplices in the sequence \(\hat S_0, \hat S_1, \dots, \hat S_m\) share at least one vertex. 
-    As each vertex star is face-connected, 
-    there exists another sequence of \(n\)-simplices \(T_0, T_1, \dots, T_m \in \calT\) (with \(T_0 = S\) and \(T_m = S'\)) 
-    such that \(T_{i} \cap T_{i-1}\) is a face of both \(T_{i}\) and \(T_{i-1}\) for all \(1 \le i \le m\).
-    This shows that \(\calT\) is face-connected.
-    }
-    If the underlying space $\underlying{\calT}$ is connected, 
-    then we easily see that the union of the $1$-simplices is path-connected. 
-    Given $n$-simplices $S,S' \in \calT$, 
-    we can thus choose a sequence of $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, and so each two consecutive simplices in that sequence have at least one vertex in common. 
-    As each vertex star is face-connected, 
-    we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
-    is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
-    This just means that $\calT$ is face-connected. 
+
+%     If the underlying space $\underlying{\calT}$ is connected, 
+%     then we easily see that the union of the $1$-simplices is path-connected. 
+%     Given $n$-simplices $S,S' \in \calT$, 
+%     we can thus choose a sequence of $S = \hat S_0,\hat S_1,\dots,\hat S_m=S' \in \calT$ 
+%     such that $\hat S_{i} \cap \hat S_{i-1} \neq \emptyset$ for all $1 \leq i \leq m$, 
+%     and so each two consecutive simplices in that sequence have at least one vertex in common. 
+%     As each vertex star is face-connected, 
+%     we can thus assume without loss of generality that the sequence $S_0=S,S_1,\dots,S'=S_m \in \calT$ 
+%     is such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$.
+%     This just means that $\calT$ is face-connected. 
 \end{proof}
 
 
@@ -4787,7 +4776,7 @@ This topic is surprisingly non-trivial. We only gather some results that are har
     Not every simplicial complex is the triangulation of some (embedded) topological manifold with or without boundary. 
     When the dimension is at least five, then there are manifolds for which no computer algorithm, given a finite simplicial complex as input, decides whether the input is the triangulation of that manifold~\cite{chernavsky2006unrecognizability}.
     Going further, it has been shown that deciding whether a simplicial complex triangulates \emph{any} manifold cannot be decided by any computer algorithm~\cite{poonen2014undecidable}.     
-%     \todo{TCF: To make sure I properly understood: In the former case, you say that given a triangulation and a manifold, you cannot decides whether it triangulates it. In the second case, you say that it is not possible to decide whether a triangulation triangulates some manifold (without specifying what it is, neither as input nor output). Correct?}
+%     DONE {TCF: To make sure I properly understood: In the former case, you say that given a triangulation and a manifold, you cannot decides whether it triangulates it. In the second case, you say that it is not possible to decide whether a triangulation triangulates some manifold (without specifying what it is, neither as input nor output). Correct?}
     % Whether a simplicial complex is the triangulation of a manifold is algorithmically undecidable. ~\cite{todo}
     We therefore are not in pursuit of any easy combinatorial property that indicates whether a simplicial complex (without any further specific assumptions) triangulates a manifold.
 
@@ -4876,7 +4865,7 @@ The resulting succession of simplicial complexes consists of simplicial balls or
     then it must also be the boundary of the topological $n$-ball $X_{m-1}$. 
     Hence, $X_{m-1} \cup T_{m}$ must be a topological $n$-sphere and thus a manifold without boundary, 
     which requires $m = M$.
-    \todo{TCF: I don’t understand why XM couldn’t be a topological n-ball.}
+    % TODO {TCF: I don't understand why XM couldn't be a topological n-ball.}
     On the other hand, 
     if $\Gamma_{m}$ is a proper subset of the entire boundary of $T_{m}$, 
     then $X_{m-1} \cup T_{m}$ is still a topological $n$-ball.
@@ -5270,7 +5259,8 @@ We give detailed estimates for the singular values of their Jacobians.
     \begin{align*}
         \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto
     \end{align*}
-    which is the identity along $\Gamma_2$. \todo{Include a picture of the situation?}
+    which is the identity along $\Gamma_2$. 
+    \todo{Include a picture of the situation?}
     At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
     \begin{gather*}
         \sigma_1 \leq \Csieb{n}{\ell}(\calT),
@@ -5462,9 +5452,9 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
             = 
-            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
             = 
-            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
             \leq 
             (n-\ell) \aspectratio(T)
 %             = 
@@ -5672,13 +5662,13 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             F(x) 
             = 
-            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
-            \frac{ \langle h_1, x \rangle }{ \| h_1 \|^{2} }
+            \frac{ \vecnorm{h_2}^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, x \rangle }{ \vecnorm{ h_1 }^{2} }
             x
             .
         \end{align*}
         This is defined away from the hyperplane orthogonal to $h_2$.
-        If $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \| h_1 \|^{2}$, then $\langle F(x), h_2 \rangle = \| h_2 \|^{2}$.
+        If $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \vecnorm{ h_1 }^{2}$, then $\langle F(x), h_2 \rangle = \vecnorm{ h_2 }^{2}$.
         That shows that $F(x)$ is a radial mapping that maps each point on the hyperplane defined by the normal vector $h_1$
         onto the colinear point that lies on the hyperplane defined by the normal vector $h_2$. Indeed, 
         
@@ -5688,8 +5678,8 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \Jacobian F(x) \cdot y
             &=
-            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
-            \frac{ \langle h_1, y \rangle }{ \| h_1 \|^{2} }
+            \frac{ \vecnorm{ h_2 }^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, y \rangle }{ \vecnorm{ h_1 }^{2} }
             x
             - 
             \frac{ \langle h_2, h_2 \rangle \langle h_2, y \rangle }{ \langle h_2, x \rangle^{2} }
@@ -5700,31 +5690,31 @@ We give detailed estimates for the singular values of their Jacobians.
             \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
             y 
             \\&=
-            \frac{ \langle h_2, h_2 \rangle }{ \|h_2\| \|x\| \cos(\alpha_2) }
+            \frac{ \langle h_2, h_2 \rangle }{ \vecnorm{ h_2 } \vecnorm{x} \cos(\alpha_2) }
             \left( y - \frac{ \langle h_2, y \rangle }{ \langle h_2, x \rangle } x \right)
             \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
             +
-            \frac{ \| h_2 \|^{2} }{ \langle h_2, x \rangle }
-            \frac{ \langle h_1, y \rangle }{ \| h_1 \|^{2} }
+            \frac{ \vecnorm{ h_2 }^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, y \rangle }{ \vecnorm{ h_1 }^{2} }
             x
             \\&=
             \frac{ \langle \hat h_2, h_2 \rangle }{ \cos(\alpha_2) }
             \left( y - \frac{ \langle \hat h_2, y \rangle }{ \langle \hat h_2, \hat x \rangle } \hat x \right)
             \frac{ \langle \hat x, \hat h_1 \rangle }{ \langle h_1, \hat h_1 \rangle }
             +
-            \frac{ \| h_2 \| }{ \langle \hat h_2, \hat x \rangle }
-            \frac{ \langle \hat h_1, y \rangle }{ \| h_1 \| }
+            \frac{ \vecnorm{ h_2 } }{ \langle \hat h_2, \hat x \rangle }
+            \frac{ \langle \hat h_1, y \rangle }{ \vecnorm{ h_1 } }
             \hat x
             \\&=
-            \frac{ \| h_2 \| }{ \cos(\alpha_2) }
+            \frac{ \vecnorm{ h_2 } }{ \cos(\alpha_2) }
             \left( y - \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x \right)
-            \frac{ \cos(\alpha_1) }{ \| h_1 \| }
+            \frac{ \cos(\alpha_1) }{ \vecnorm{ h_1 } }
             +
-            \frac{ \| h_2 \| }{ \cos(\alpha_2) }
-            \frac{ \langle \hat h_1, y \rangle }{ \| h_1 \| }
+            \frac{ \vecnorm{ h_2 } }{ \cos(\alpha_2) }
+            \frac{ \langle \hat h_1, y \rangle }{ \vecnorm{ h_1 } }
             \hat x
             \\&=
-            \frac{ \| h_2 \| }{ \| h_1 \| }
+            \frac{ \vecnorm{ h_2 } }{ \vecnorm{ h_1 } }
             \frac{ \cos(\alpha_1) }{ \cos(\alpha_2) }
             \left( 
                 y 
@@ -5740,14 +5730,14 @@ We give detailed estimates for the singular values of their Jacobians.
         Similar as above, its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are
         %~\cite{blinn1996consider} 
         \begin{align*}
-            \sigma_{\max} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2},
+            \sigma_{\max} = \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } + \frac{ \vecnorm{a} }{2},
             \qquad 
-            \sigma_{\min} = \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}.     
+            \sigma_{\min} = \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } - \frac{ \vecnorm{a} }{2}.     
         \end{align*}
-        Notice that these are strictly monotonically increasing or decreasing, respectively, in $\|a\|$.
+        Notice that these are strictly monotonically increasing or decreasing, respectively, in $\vecnorm{a}$.
 %         We thus consider the upper bound 
 %         \begin{align*}
-%             \|a\| 
+%             \vecnorm{a} 
 %             \leq 
 %             2 \max_{1 \leq i \leq 2} 
 %             \left( 
@@ -5774,8 +5764,8 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \Psi(x) 
             = 
-            \frac{ \| h_K \|^{2} }{ \langle h_K, x \rangle }
-            \frac{ \langle h_{{G}}, x \rangle }{ \| h_{{G}} \|^{2} }
+            \frac{ \vecnorm{ h_K }^{2} }{ \langle h_K, x \rangle }
+            \frac{ \langle h_{{G}}, x \rangle }{ \vecnorm{ h_{{G}} }^{2} }
             x
             .
         \end{align*}
@@ -5784,8 +5774,8 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \Psi^{-1}(z) 
             = 
-            \frac{ \| h_{{G}} \|^{2} }{ \langle h_{{G}}, z \rangle }
-            \frac{ \langle h_K, z \rangle }{ \| h_K \|^{2} }
+            \frac{ \vecnorm{ h_{{G}} }^{2} }{ \langle h_{{G}}, z \rangle }
+            \frac{ \langle h_K, z \rangle }{ \vecnorm{ h_K }^{2} }
             z,
             \qquad 
             z = \Psi(x)
@@ -5802,39 +5792,39 @@ We give detailed estimates for the singular values of their Jacobians.
             % \matnorm{ \Jacobian\Psi(x) }
             \sigma_{1}( \Jacobian\Psi(x) )
             = 
-            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             \left( 
-                \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } + \frac{ \|a\| }{2}
+                \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } + \frac{ \vecnorm{a} }{2}
             \right)
             ,
             \\
             % \matnorm{ \Jacobian\Psi(z)^{-1} }
             \sigma_{1}( \Jacobian\Psi(z)^{-1} )
             = 
-            \frac{ \| h_{{G}} \| }{ \| h_K \| }
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_K } }
             \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
             \left( 
-                \sqrt{ 1 + \frac{ \|a\|^{2} }{ 4 } } - \frac{ \|a\| }{2}
+                \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } - \frac{ \vecnorm{a} }{2}
             \right)^{-1},
             \\
             \sigma_{2}( \Jacobian\Psi(x) ) = \dots = \sigma_{n-1}( \Jacobian\Psi(x) )
             =
-            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             ,
             \\
             \det\Jacobian\Psi(x)
             =
             \left( 
-            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             \right)^{n},
             \qquad
             \det\Jacobian\Psi^{-1}(z)
             =
             \left( 
-            \frac{ \| h_{{G}} \| }{ \| h_{K} \| }
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_{K} } }
             \frac{ \cos(\alpha_{K}) }{ \cos(\alpha_{{G}}) }
             \right)^{n}
             .
@@ -5842,54 +5832,54 @@ We give detailed estimates for the singular values of their Jacobians.
         We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
         By the definition of the cosine, 
         \begin{align*}
-            \frac{ \| h_K \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
             = 
-            \frac{ \| x_K \| }{ \| x_{{G}} \| }
+            \frac{ \vecnorm{ x_K } }{ \vecnorm{ x_{{G}} } }
             \leq 
-            \frac{ \| x_K \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ x_K } }{ \vecnorm{ h_{{G}} } }
             \leq 
-            \frac{ \diam(K) }{ \| h_{{G}} \| }
+            \frac{ \diam(K) }{ \vecnorm{ h_{{G}} } }
             ,
             \qquad 
-            \frac{ \| h_{{G}} \| }{ \| h_K \| }
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_K } }
             \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
             = 
-            \frac{ \| x_{G} \| }{ \| x_{K} \| }
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ x_{K} } }
             \leq 
-            \frac{ \| x_{G} \| }{ \| h_{K} \| }
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{K} } }
             \leq 
-            \frac{ \diam(G) }{ \| h_{K} \| }
+            \frac{ \diam(G) }{ \vecnorm{ h_{K} } }
             .
         \end{align*}
 %         \begin{align*}
-%             \frac{ \| h_K \| }{ \| h_{{G}} \| }
+%             \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
 %             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
 %             \leq 
-%             \frac{ \| x_K \| }{ \| x_{{G}} \| }
+%             \frac{ \vecnorm{ x_K } }{ \vecnorm{ x_{{G}} } }
 %             .
 %         \end{align*}
         We need further details to complete our estimates. 
-        We know that $\| x_K \| \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(\ell+1)^{-1}$.
-        That estimates the quotient $\| x_K \| / \| h_K \|$. 
+        We know that $\vecnorm{ x_K } \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(\ell+1)^{-1}$.
+        That estimates the quotient $\vecnorm{ x_K } / \vecnorm{ h_K }$. 
         % 
-        In order to estimate $\|x_{G}\|$, we first notice the case $G \in \calG$ implies $\|x_{G}\| \leq \diam(G) \leq \diam(T)$. 
+        In order to estimate $\vecnorm{ h_{G} }$, we first notice the case $G \in \calG$ implies $\vecnorm{ h_{G} } \leq \diam(G) \leq \diam(T)$. 
         In the case $G \in \calG^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         that must lie in the face of $G$ that is opposite to $-z_{S'}$. 
         The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
-        It follows again that $\|x_{G}\| \leq \diam(T)$. 
+        It follows again that $\vecnorm{ h_{G} } \leq \diam(T)$. 
         % 
-        It remains to find a lower bound for $\| h_{G} \|$.
+        It remains to find a lower bound for $\vecnorm{ h_{G} }$.
         Every height of the origin in some simplex of $\calG^\ast$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calD^\ast$
         by scaling with $(\ell+1)^{-1}$. If $G \in \calG$, then that original height was already a height of a vertex of $S$ in $T$. 
         If instead $G \notin \calG$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calD$, multiplied by $\mu_{T,\ell}$. The height of any vertex of $S$ in some simplex of $\calD$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
-        %         In oder to estimate $\|x_{G}\|$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        %         In oder to estimate $\vecnorm{ h_{G} }$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
         %         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
-        %         It follows that $\|x_{G}\| \leq \diam(T)$. 
+        %         It follows that $\vecnorm{ x_{G} } \leq \diam(T)$. 
         %         
 %         We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
 %         \begin{align*}
-%             \frac{\diam(T)}{ \|h_{F}\|}
+%             \frac{\diam(T)}{ \vecnorm{ h_{F} }}
 %             \leq  
 %             \aspectratio(T)
 %             % \frac{ \vol(F) \diam(T) }{ n \vol(T) } \leq \frac{ \diam(T)^{n} }{ n! \vol(T) }
@@ -5897,14 +5887,14 @@ We give detailed estimates for the singular values of their Jacobians.
 %         \end{align*}
         Putting all these technical observations together, we estimate 
         \begin{align*}
-            \frac{ \| x_{K} \| }{ \| h_{{G}} \| }
+            \frac{ \vecnorm{ x_{K} } }{ \vecnorm{ h_{{G}} } }
             &\leq 
             (\ell+1)\mu_{T,\ell}
-            \frac{ \diam(K) }{ \| h_{T} \| }
+            \frac{ \diam(K) }{ \vecnorm{ h_{T} } }
             \leq 
             (\ell+1)\mu_{T,\ell}
             \diameterratio(\calT)
-            \frac{ \diam(T) }{ \| h_{T} \| }
+            \frac{ \diam(T) }{ \vecnorm{ h_{T} } }
             \leq 
             (\ell+1)
             \diameterratio(\calT)
@@ -5912,16 +5902,16 @@ We give detailed estimates for the singular values of their Jacobians.
             \mu_{T,\ell}
             ,
             \\
-            \frac{ \| x_{G} \| }{ \| h_{K} \| }
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{K} } }
             &\leq 
             (\ell+1)
             \sup_{ K \in \patch_{\calT}(S) }
-            \frac{ \diam(T) }{ \| h_{K} \| }
+            \frac{ \diam(T) }{ \vecnorm{ h_{K} } }
             \leq 
             (\ell+1)
             \diameterratio(\calT)
             \sup_{ K \in \patch_{\calT}(S) }
-            \frac{ \diam(K) }{ \| h_{K} \| }
+            \frac{ \diam(K) }{ \vecnorm{ h_{K} } }
             \leq 
             (\ell+1)
             \diameterratio(\calT)
@@ -5930,14 +5920,14 @@ We give detailed estimates for the singular values of their Jacobians.
             .
         \end{align*}
         \begin{gather*}
-            \frac{ \| x_{K} \| }{ \| h_{{K}} \| }
+            \frac{ \vecnorm{ x_{K} } }{ \vecnorm{ h_{{K}} } }
             \leq 
             (\ell+1)
             \sup_{ K \in \patch_{\calT}(S) }
             \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
             ,
             \qquad 
-            \frac{ \| x_{G} \| }{ \| h_{G} \| }
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{G} } }
             \leq 
             (\ell+1)
             \aspectratio({G}) \mu_{T,\ell} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
@@ -5956,18 +5946,18 @@ We give detailed estimates for the singular values of their Jacobians.
         The vector $a$ is the difference between $\hat h_{G}$ and $\hat h_{K}$ after both are rescaled such that they lie on the affine hyperplane with normal vector $\hat x$. That difference has length at most $\tan(\alpha_{G}) + \tan(\alpha_{K})$.
         We calculate 
         \begin{align*}
-            \|a\|
+            \vecnorm{a}
             = 
             \left\|
-            \frac{\|x_{G}\|}{\|h_{G}\|} \hat h_{{G}} 
+            \frac{\vecnorm{ x_{G} }}{\vecnorm{ h_{G} }} \hat h_{{G}} 
             - 
-            \frac{\|x_{K}\|}{\|h_{K}\|} \hat h_K
+            \frac{\vecnorm{ x_{K} }}{\vecnorm{ h_{K} }} \hat h_K
             \right\|
             &
             \leq 
-            \frac{\|x_{G}\|}{\|h_{G}\|} 
+            \frac{\vecnorm{ x_{G} }}{\vecnorm{ h_{G} }} 
             + 
-            \frac{\|x_{K}\|}{\|h_{K}\|} 
+            \frac{\vecnorm{ x_{K} }}{\vecnorm{ h_{K} }} 
             % \\&
             \leq 
             (\ell+1) 
@@ -6466,8 +6456,8 @@ We give detailed estimates for the singular values of their Jacobians.
         
         \item 
         Let $\rho \in (0,1]$, yet to be determined. 
-        We define $y = - \rho z_{S'}$ as vector in the opposite direction of $z_{S'}$ and with length $\rho \|z_{S'}\|$. 
-        Henceforth, we assume $\rho \leq \varrho / \|z_{S'}\|$ so that $y \in \overline{\Ball_{\varrho}(z_S)}$.  
+        We define $y = - \rho z_{S'}$ as vector in the opposite direction of $z_{S'}$ and with length $\rho \vecnorm{ z_{S'} }$. 
+        Henceforth, we assume $\rho \leq \varrho / \vecnorm{ z_{S'} }$ so that $y \in \overline{\Ball_{\varrho}(z_S)}$.  
         By construction, the closed line segment from $z_{S}$ to $y$ is contained in $\overline{\Ball_{\varrho}(z_S)}$,
         and we conclude that the convex closure of $T$ and $y$ must lie in $\patch_{\calT}(S)$.
         
@@ -6613,9 +6603,9 @@ We give detailed estimates for the singular values of their Jacobians.
         \begin{align*}
             \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
             = 
-            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
             = 
-            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \| (n-\ell) h_{z} \| }
+            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
             \leq 
             (n-\ell) \aspectratio(T)
 %             = 
