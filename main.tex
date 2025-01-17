@@ -5952,9 +5952,16 @@ We compare the (approximations of) the exact values with the upper bounds given 
 
 \subsection{Estimates for partial boundary conditions}
 
-We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
-which relies on estimates for the Bogovski\u{\i} operator over an auxiliary reference domain.
-We compare computed Poincar\'e--Friedrichs constants over the reference tetrahedron with tangential boundary conditions along a few faces. 
+We first assess the Poincar\'e--Friedrichs constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
+where tangential boundary conditions hold along a few faces. 
+We tabulate reference Poincar\'e--Friedrichs constants over the reference tetrahedron in Table~\ref{table:referencepoincarefriedrichs},
+which are computed via a higher-order finite element method over a mesh after three iterations of uniform refinement.
+
+The aforementioned lemma gives an upper bound of $\sqrt{2}/\pi \approx 0.45015815807$,
+which is an overestimate of at most a factor of six.
+We take this as an indication that the estimate is within feasible range. 
+We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
+
 % We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
 \begin{table}[t]
@@ -5971,7 +5978,7 @@ We compare computed Poincar\'e--Friedrichs constants over the reference tetrahed
     \caption{
     Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
     where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
-    Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{} is $0.45015815807$.
+    Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
     
