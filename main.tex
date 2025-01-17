@@ -71,18 +71,18 @@
 
 \begin{abstract}
     We construct potentials for the gradient, the curl, and the divergence operators over domains with shellable triangulations. 
-    Importantly, the class of shellable triangulations includes local patches (stars) in two or three dimensions. 
+    Notably, the class of shellable triangulations includes local patches (stars) in two or three dimensions. 
     The operator norms of our potentials satisfy explicitly computable bounds that depend only on the geometry. 
-    We thus obtain computable upper bounds for constants in Poincar\'e--Friedrichs inequalities as well as computable lower bounds for the eigenvalues of vector Laplacians. 
+    We thus obtain computable upper bounds for constants in Poincar\'e--Friedrichs inequalities and computable lower bounds for the eigenvalues of vector Laplacians. 
     % We derive computable bound on the operator norms of our potentials that only depend on the geometry. 
     % 
     %     We construct upper bounds for Poincar\'e--Friedrichs constants over triangulated domains. 
     %     This includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
     %     The main application that we envision are computable estimates over finite element patches. 
     %
-    As a result with independent standing, we also establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over bounded convex domains. 
-    This is achieved via a suitable construction of regularized Poincar\'e and Bogovski\u{\i} potential operators whose operator norms we bound.
-    We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operator as its particular instances. 
+    As an additional result with independent standing, we establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over bounded convex domains. 
+    This is achieved via regularized Poincar\'e and Bogovski\u{\i} potential operators whose operator norms we bound.
+    We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operators as its particular instances. 
     Computational examples illustrate the theoretical findings.
 \end{abstract}
 
@@ -119,8 +119,7 @@ Additionally, we include a study of regularized Poincar\'e and Bogovski\u{\i} op
 \subsection{Conceptual overview}
 
 We give a conceptual overview of the topic before we outline the known results in the literature and our contributions in more detail. 
-Our conceptual point of reference is the Poincar\'e--Friedrichs inequality for the gradient of scalar functions, 
-which has been subject to extensive research.
+Our conceptual point of reference is the Poincar\'e--Friedrichs inequality for the gradient of scalar functions, which has been subject to extensive research.
 
 
 \subsubsection{Potentials and Poincar\'e--Friedrichs inequalities for the gradient}
@@ -194,7 +193,6 @@ where $u_\Omega$ denotes the average of $u$. We emphasize that the average-free 
 Hence, the optimal Poincar\'e constant and the optimal Poincar\'e--Friedrichs differ in general. 
 Considerable research efforts have gone into determining constants in the Poincar\'e--Friedrichs inequalities~\eqref{math:intro:poincarefriedrichs:grad} or Poincar\'e inequalities~\eqref{math:intro:poincare:grad}. Upper estimates for these constants also correspond to lower bounds for the spectra of Neumann--Laplacians over those domains. 
 The relationship between the Poincar\'e constant and the Poincar\'e--Friedrichs constant will be elaborated upon in later sections of this manuscript. 
-% We present a more profound discussion further below and also in Section~\ref{section:poincare}, where we also discuss the difference with the Poincar\'e inequality, where the mean value of $u$ is fixed to zero, and address why we later employ linear potentials to estimate the Poincar\'e--Friedrichs constant and not directly the minimizing but nonlinear (for $p \neq 2$) potentials such as~\eqref{math:intro:gradientpotential}. 
 
 
 
@@ -292,10 +290,9 @@ The qualitative existence of Poincar\'e--Friedrichs inequalities for the differe
 There is a particularly large body of literature on the Poincar\'e inequality for the gradient and its numerous variants,
 which may include weighted integrals or boundary terms. 
 These Poincar\'e-type inequalities are often derived via non-constructive arguments, such as the Rellich embedding theorem, 
-% DONT {[TCF: I believe this is often refered to as the Tartare-Petree theorem]}
 and thus the resulting constants are not explicitly computable. 
+% DONT {[TCF: I believe this is often referred to as the Tartare-Petree theorem]}
 
-% divergence 
 The divergence operator has received less attention. 
 In the Hilbert space case $p=2$, the Friedrichs inequality~\cite{burenkov1998sobolev} over the Sobolev space
 with homogeneous Dirichlet boundary conditions along $\partial \Omega$ implies~\eqref{math:intro:Wdiv} by duality. 
@@ -5492,6 +5489,37 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 \end{proof}
 
 
+\begin{remark}\label{remark:mixedbconsimplex:exteriorderivative:hilbert}
+    Under the assumptions of Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, 
+    the special case $p=2$ allows for the following improvement:
+    there exists $w \in W^{2}\Lambda^{k}(T)$ such that 
+    $\trace_{T,\Gamma} w = 0$
+    and  
+    \begin{align*}
+        \cartan w = \cartan u,
+        \quad 
+        \| w \|_{L^{p}(\Omega)} 
+        \leq 
+        C_{\PF,\Gamma,\ell,k,2}(T)
+        \| \cartan u \|_{L^{p}(\Omega)}
+        ,
+    \end{align*}
+    where 
+    \begin{align*}
+        C_{\PF,\Gamma,\ell,k,p}(T)
+        \leq 
+        \frac{1}{\pi}
+        \algebraicshapemeasure(T)^{k-1}
+        \Ceins{n}(T) 
+        \diam(T)
+        .
+    \end{align*}
+    This follows from the results in \cite{licht2024geometry} as simplices are Lipschitz domains.
+    We conjecture that the constant can be improved further, to be independent of the tetrahedron's eccentricity.
+\end{remark}
+
+
+
 
 
 We prepare some further notation for our two main results. 
@@ -5915,35 +5943,33 @@ The second one is specific to the fact that shellable triangulations are contrac
 \section{Numerical examples}\label{section:numericalexamples}
 
 We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
-Unless the Poincar\'e--Friedrichs constants are known explicitly, we use eigenvalue estimates on a refined mesh as a proxy for the exact value. We compare the (approximations of) the exact values with the upper bounds obtained via Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
+Unless the Poincar\'e--Friedrichs constants are known explicitly, we use reference eigenvalue estimates as a proxy for the exact value, which we obtain using a finite element method on refined mesh. 
+We compare the (approximations of) the exact values with the upper bounds given by Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
 
 \subsection{Estimates for partial boundary conditions}
 
 We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
 which relies on estimates for the Bogovski\u{\i} operator over an auxiliary reference domain.
-We compare computed Poincar\'e--Friedrichs constants over the tetrahedron with tangential boundary conditions along a few faces. Our experiments and tetrahedra indicate that we overestimate the constant by several magnitudes.
-%
-We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
+We compare computed Poincar\'e--Friedrichs constants over the tetrahedron with tangential boundary conditions along a few faces. 
+% We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
-\begin{table}[h!]
+\begin{table}[t]
     \centering % TODO: recompute all those numbers
     \begin{tabular}{c|c|c|c|c|c}
         \hline
-        $\ell$ & simulation & theorem & ratio & GS & ratio \\
+        $\ell$ & simulation & theorem & ratio \\
         \hline
-        0 & 5.37161130e+00 & 6.96498956e+03 & 2.41385574e+02 & 1.34450672e+01 & 2.50298587e+00 \\ 
-        1 & 4.08721544e+00 & 2.46249567e+03 & 1.47407784e+02 & 1.90141963e+01 & 4.65211501e+00 \\
-        2 & 6.42794893e+00 & 8.20831891e+02 & 1.98659522e+01 & 2.68901344e+01 & 4.18331487e+00 \\
-        3 & 6.71227069e+00 & 6.15623918e+02 & 1.36639593e+01 & 3.80283927e+01 & 5.66550344e+00 \\
-        3 & 6.71227069e+00 & 2.51327412e+02 & 5.57828803e+00 & 7.76251317e+00 & 1.15646605e+00 \\
+        0 & 5.37161130e+00 & 1.34450672e+01 & 2.50298587e+00 \\ 
+        1 & 4.08721544e+00 & 1.90141963e+01 & 4.65211501e+00 \\
+        2 & 6.42794893e+00 & 2.68901344e+01 & 4.18331487e+00 \\
+        3 & 6.71227069e+00 & 3.80283927e+01 & 5.66550344e+00 \\
+        3 & 6.71227069e+00 & 7.76251317e+00 & 1.15646605e+00 \\
         \hline
     \end{tabular}
     \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
     The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
-    The second column contains estimates obtained via     Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
-    and Theorem~\ref{theorem:bogovpoinc} in the last line. 
-    The fourth column uses the same type of estimate but replaces all applications of Theorem~\ref{theorem:bogovpoinc} with an estimate by Guerini and Savo~\cite{guerini2004eigenvalue}.
-    The last estimate, though clearly the most competitive, technically does not apply because the reference proves it only for bounded convex domains with smooth boundaries.
+    The second column contains estimates obtained via Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
+    and Theorem~\ref{theorem:bogovpoinc} in the last line, where we use Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} for improvement. 
     }
     % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
 \end{table}
@@ -5961,9 +5987,29 @@ the unit square $\Omega_Q$, the L-shaped domain $\Omega_L$, and the slit domain 
     \\
     \Omega_{S} = (-1,1)^2 \setminus ( [0,1) \times \{0\} ).
 \end{gather*}
-% Square 
-% L-shaped 
-% Slit
+We consider the triangulations: 
+\begin{itemize}
+    \item $\calT_{Q}$: square triangulation with two triangles
+    \item $\calT_{L}$: L-shaped domain triangulation with four triangles
+    \item $\calT_{S}$: Slit domain triangulation, five triangles 
+\end{itemize}
+
+Only two differential operators appear in the two-dimensional de~Rham complexes,
+and their Poincar\'e--Friedrichs constants are the inverse square roots of the smallest non-zero Dirichlet and Neumann Laplacians. 
+Standard finite element eigenvalue computations on a sufficiently refined mesh (four steps of uniform refinement) provide reference values for these.
+
+We compare the reference Neumann eigenvalues with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+A brufe-force search easily enumerates all the shortest face-paths that start from a given triangle, so we use the best possible estimate that this method provides. 
+
+We compare the reference Neumann and Dirichlet eigenvalues with the bounds in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
+Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations,
+so the best possible estimate with that method can be obtained. 
+
+
+% Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.
+
+
 
 \subsection{Three-dimensional examples}
 
@@ -5986,10 +6032,22 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
     .
     \end{aligned}
 \end{gather*}
-% Cube 
-% Fichera
-% Crossed bricks 
+We consider the triangulations: 
+\begin{itemize}
+    \item $\calT_{C}$: cube triangulation with five tetrahedra
+    \item $\calT_{K}$: Kuhn triangulation of the cube, consisting of six tetrahedra
+    \item $\calT_{F}$: Fichera corner, $24$ simplices 
+    \item $\calT_{B}$: crossed bricks, $24$ simplices 
+\end{itemize}
 
+The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex and a sufficiently refined mesh (four steps of uniform refinement).
+As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+
+Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
+Brute-force enumeration of all shellings seems infeasible, though. 
+Instead, 
+
+\todo{1. be explicit whether/that a shortest path tree is needed. 2. introduce face shortest-path tree 3. how to enumerate shellings}
 
 
 
@@ -5998,9 +6056,7 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 
 The most important outcome of this manuscript is the computation of upper bounds of Poincar\'e--Friedrichs constants for the curl and divergence operators over local patches in low dimensions (i.e.\ $n=2$ or $n=3$). 
 There are several avenues for further research. 
-In particular, our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars), 
-as there are at least two areas where the present techniques could see further improvement. 
-
+In particular, our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars) and further improvement seems possible.
 
 Firstly, we use local Poincar\'e--Friedrichs inequalities over single simplices, subject to various boundary conditions, but these local estimates over simplices (and, more generally, convex domains) likely allow room for improvement. We conjecture that the Guerini--Savo~\cite{guerini2004eigenvalue} estimates, hitherto only known when $p=2$ and over bounded convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and convex Lipschitz domains. 
 The case $p=2$ was discussed recently~\cite{licht2024geometry}.
@@ -6010,6 +6066,11 @@ Such estimates would likely improve on the Poincar\'e--Friedrichs constants than
 Secondly, our construction uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
 In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques could lead to better estimates,
 such as via trace and extension operators.
+
+Thirdly, the present results can be generalized to shellable polytopal complexes. 
+This extension may also pertain for simplicial triangulation: 
+since the estimates deteriorate if the number of simplices increases, 
+we might improve our estimates if we lump simplices of a triangulation together into a few polytopal subdomains for which the Poincar\'e--Friedrichs constants are controlable.
 
 Lastly, estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is restricted to topological balls and spheres. 
 In particular, the underlying set of any shellable triangulations is contractible. 
