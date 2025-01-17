@@ -1,19 +1,1807 @@
-\documentclass[a4paper]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
-\usepackage{hyperref}         % For hypertext links
-
+% \usepackage[margin=0.1cm]{geometry}
 \input{header}
+
+\usepackage{xcolor}          % 
+\usepackage{comment}          % 
+\usepackage[colorlinks=true]{hyperref}         % For hypertext links
+% Make the hyperlinks look similar to arXiv's
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Maroon,    % Color of internal links (sections)
+    citecolor=red,    % Color of citations
+    urlcolor=blue,     % Color for URLs
+    urlbordercolor={1 1 1},
+    pdfborder={0.5 0.5 0}  % Removes the border around the links
+}
+\usepackage{tikz-3dplot}      % 3d plots 
+\usepackage{enumitem}
+\setitemize[1]{left=0.0cm} 
+
+
+% Added by MV 
+\usepackage{bm} % preferred version of bold symbols
+\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
+% \usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
+% \usepackage[textsize=tiny,color=blue!10!white]{todonotes}
+% \newcommand{\todo}[1]{{\colorbox{yellow}{#1}}}
+\setlength{\marginparwidth}{2cm}
+    
+\newcommand\cye[1]{%
+\protect\leavevmode
+\begingroup
+    \color{blue}%
+    #1%
+\endgroup
+}
+% \color{red!35!yellow}
+
+\newcommand{\mwl}[1]{{\color{red}#1}}
+\newcommand{\notice}[1]{{\color{red}REMARK: #1}}
+\newcommand{\disk}{\cye{ball}}
+\newcommand{\todo}[1]{{\color{RedOrange}\textbf{#1}}}
+
+
+
+
+
+
+
+
+% LTeX: enabled=false
+% Title, authors, and affiliations
+% \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
+% \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
+
+\title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de~Rham complex over convex domains and domains with shellable triangulations}
+\author{
+    Th\'eophile Chaumont-Frelet\thanks{Inria Univ. Lille and Laboratoire Paul Painlev\'e, 59655 Villeneuve-d'Ascq, France, \texttt{theophile.chaumont@inria.fr}} \and
+    Martin Werner Licht\thanks{\'Ecole Polytechnique F\'ed\'erale de Lausanne, CH-1015 Lausanne, Switzerland, \texttt{martin.licht@epfl.ch}} \and
+    Martin Vohral\'ik\thanks{Inria, 48 rue Barrault, 75647 Paris, France \& CERMICS, Ecole des Ponts, 77455 Marne-la-Vall\'ee, France, \texttt{martin.vohralik@inria.fr}}
+}
+\date{}
+% LTeX: enabled=true
 
 
 \begin{document}
 
+\tableofcontents
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+\section{Previous geometric deformation estimate}
+
+\begin{proposition}\label{proposition:starreflection}
+    Let $\calT$ be a triangulation of an $n$-dimensional domain. 
+    Let $S \in \calT$ be an inner simplex of dimension $\ell < n$,
+    let $T \in \patch_{\calT}(S)$ be of dimension $n$,
+    and let 
+    \begin{align*}
+        \Makoto := \overline{ \underlying{\patch_{\calT}(S)} \setminus T },
+        \qquad 
+        {\Gamma_1} := \Makoto \cap T,
+        \qquad 
+        {\Gamma_2} := \overline{ \partial T \setminus \partial \Makoto }.
+    \end{align*}
+    The following holds, where the constants on the right-hand sides are as stated in the proof. 
+    \begin{enumerate}
+    \item 
+    There exists a bi-Lipschitz piecewise affine mapping
+    \begin{align*}
+        \Xi_{1} : T \rightarrow \Makoto
+    \end{align*}
+    which is the identity along ${\Gamma_1}$. 
+    At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
+    \begin{gather*}
+        \sigma_1 \leq \Cfive{n}{\ell}(\calT),
+        \quad 
+        \sigma_2,\dots,\sigma_n \leq \Cfiveprime{n}{\ell}(\calT),
+        \quad 
+        | \det\Jacobian\Xi_{1} |      \leq \Cdetfive{n}{\ell}(\calT),
+        \\
+        \sigma_n^{-1} \leq \Csechs{n}{\ell}(\calT),
+        \quad 
+        \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Csechsprime{n}{\ell}(\calT),
+        \quad 
+        | \det\Jacobian\Xi_{1}^{-1} | \leq \Cdetsechs{n}{\ell}(\calT).
+    \end{gather*}
+    Moreover, for any $0 \leq k \leq n$ and $p \in [1,\infty]$,
+    \begin{align*}
+        \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{1} |^{-\frac 1 p}
+        \leq 
+        \Cfivetrafo{n}{k}{\ell}{p}(\calT),
+        \qquad 
+        \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{1} |^{\frac 1 p}
+        \leq 
+        \Csechstrafo{n}{k}{\ell}{p}(\calT).
+    \end{align*}
+
+    \item 
+    There exists a bi-Lipschitz piecewise affine mapping
+    \begin{align*}
+        \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto
+    \end{align*}
+    which is the identity along $\Gamma_2$. 
+    At any point, the singular values $\sigma_1 \geq \dots \geq \sigma_n$ of its Jacobian satisfy 
+    \begin{gather*}
+        \sigma_1 \leq \Csieb{n}{\ell}(\calT),
+        \quad 
+        \sigma_2,\dots,\sigma_n \leq \Csiebprime{n}{\ell}(\calT),
+        \quad 
+        | \det\Jacobian\Xi_{2} |      \leq \Cdetsieb{n}{\ell}(\calT),
+        \\
+        \sigma_n^{-1} \leq \Cacht{n}{\ell}(\calT),
+        \quad 
+        \sigma_1^{-1},\dots,\sigma_{n-1}^{-1} \leq \Cachtprime{n}{\ell}(\calT),
+        \quad 
+        | \det\Jacobian\Xi_{2}^{-1} | \leq \Cdetacht{n}{\ell}(\calT).
+    \end{gather*}
+    Moreover, for any $0 \leq k \leq n$ and $p \in [1,\infty]$,
+    \begin{align*}
+        \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{2} |^{-\frac 1 p}
+        \leq 
+        \Csiebtrafo{n}{k}{\ell}{p}(\calT),
+        \qquad 
+        \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{2} |^{\frac 1 p}
+        \leq 
+        \Cachttrafo{n}{k}{\ell}{p}(\calT).
+    \end{align*}
+    % DONE {TCF: Should $\sigma_n$ be $\sigma_n^{-1}$ in the second line of both statements?}
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    We derive the estimate in several steps. 
+    In what follows, we use the notation $\hat z$ for the normalization of any vector $z \in \bbR^{n}$.
+    \begin{itemize}
+        \item 
+        Without loss of generality, after shifting the coordinate system, the barycenter $z_{S}$ of $S$ is the origin. 
+        % Let $I := \Makoto \cap T$, which is the union of $\ell$ different faces of $T$, with $1 \leq \ell \leq n$.
+        %We let ${\Gamma_2} \subseteq \partial T$ be the union of the remaining $n+1-\ell$ faces of $T$.
+        %So ${\Gamma_2$} is within the boundary of the star $|\patch_{\calT}(S)|$ and is disjoint from $S$.
+        We fix the subsimplex $S' \subseteq T$ that is complementary to $S$ within the simplex $T$. 
+        In other words, the vertices of $S'$ are the vertices of $T$ that are not vertices of $S$. 
+        Note that ${\Gamma_2} \subseteq \partial T$ is the union of exactly those faces of $T$ that contain $S'$,
+        whereas ${\Gamma_1} = \Makoto \cap T$ is the union of exactly those faces of $T$ that contain $S$. 
+        
+        
+        \item 
+        We let $z_{S'}$ be the midpoint of $S'$. 
+        We apply barycentric refinement to the complementary simplex $S'$, which produces a new triangulation $\calD$ of the underlying set $\underlying{T}$. 
+        Obviously, all $n$-simplices in $\calD$ contain $S$ and $z_{S'}$.
+        
+        We define another simplicial complex $\calD^c$ as follows:
+        given any $n$-simplex $K \in \calD$, 
+        we replace its vertex $z_{S}'$ by the new vertex $-z_{S}'$ at the opposite position,
+        thus obtaining a new simplex $K^{c}$. 
+        Indeed, that $\calD^c$ is a simplicial complex follows easily from $\calD$ being a simplicial complex. 
+        
+        We let the simplicial complex $\calD^\ast$ be the union of $\calD$ and $\calD^c$. 
+        By construction, all its $n$-simplices contain $S$ as a subsimplex,
+        % Indeed, $\calD^\ast$ is indeed a triangulation since they are disjoint except for their proper subsimplices. 
+        Moreover, $S$ is an inner subsimplex of that triangulation. 
+        In particular, $\calD^\ast$ is its own star around $S$.
+        
+        % TODO Check that $\calD^\ast$ is a triangulation
+        
+        \item 
+        As additional step, we introduce another simplicial complex $\calG^\ast$ from $\calD^\ast$ via barycentric subdivision of $S$.
+        Then $\calG^\ast$ is its own local star around the barycenter $z_S$.
+        In particular, all $n$-simplices in $\calG^\ast$ contain $z_{S}$. 
+        The simplicial complex $\calG^\ast$ also contains as subcomplexes the corresponding refinements of $\calD$ and $\calD^{c}$, 
+        which we denote by $\calG$ and $\calG^{c}$, respectively.
+        Given any $n$-simplex in $\calG$, replacing its vertex $z_{S}$ with its opposite $-z_{S}$ gives an associated $n$-simplex in $\calG^{c}$.
+        
+        Lastly, we introduce one more simplicial complex $\calK$ obtained from $\patch_{\calT}(S)$ via barycentric refinement of $S$. 
+        
+
+
+
+        
+        \item 
+        % Notice that $A_{G^{c}}$ and $A_{G}$ have the same singular values. Thus
+        % \begin{align*}
+        %     \matnorm{ \Jacobian \Theta_{|G}      } &\leq \| A_{G^{c}} \| \cdot \| A_{G}^{-1} \| \leq \geometricshapemeasure(A_{G}),
+        %     \\
+        %     \matnorm{ \Jacobian \Theta_{|G}^{-1} } &\leq \| A_{G^{c}}^{-1} \| \cdot \| A_{G} \| \leq \geometricshapemeasure(A_{G}).
+        % \end{align*}
+        We introduce a new mapping $\Theta : \underlying{\calG} \rightarrow \underlying{\calG^c}$ between the underlying sets as follows.
+        Let $G \in \calG$ be an $n$-simplex and $G^{c} \in \calG^{c}$ be constructed from $G$.
+        We let $A_{G} : \Delta^{n} \rightarrow G$ and $A_{G^{c}} : \Delta^{n} \rightarrow G^{c}$
+        be affine reference transformations
+        that agree on the vertices common to $G$ and $G^{c}$.
+        Then the mapping 
+        \begin{align*}
+            \Theta_{|G} := A_{G^{c}} \circ A_{G}^{-1}
+        \end{align*}
+        preserves volumes:
+        \begin{align*}
+            |\det( \Jacobian      \Theta_{|G} )|
+            = 
+            |\det( \Jacobian^{-1} \Theta_{|G} )|
+            =
+            1
+            .
+        \end{align*}
+        We want to characterize the singular values of this transform. 
+        Let $h_{z} \in \bbR^{n}$ be the height vector of $z_{S'}$ inside the simplex $G$.
+        We verify that 
+        \begin{align*}
+            \Theta_{|G}(x) 
+            = 
+            x
+            - 
+            2 \frac{\langle \hat h_{z}, x \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
+            \hat z_{S'}
+            .
+        \end{align*}
+        Indeed, we check that the right-hand side equals $x$ whenever $x$ lies in the plane orthogonal to $h_{z}$,
+        and that it equals $-z_{S'}$ when $x = z_{S'}$.
+%         and when $x = z_{S'}$, then 
+%         \begin{align*}
+%             -z_{S'} 
+%             =
+%             z_{S'}
+%             - 
+%             2 \hat z_{S'} \frac{\langle \hat h_{z}, z_{S'} \rangle}{\langle \hat h_{z}, \hat z_{S'} \rangle}
+%             .
+%         \end{align*}
+        If we orthogonally decompose $z_{S'} = h_{z} + b_{z}$ for some $b_{z} \in \bbR^{n}$, then 
+        \begin{align*}
+            \Theta_{|G}( h_{z} ) 
+            &= 
+            h_{z}
+            - 
+            2 \frac{\langle h_{z}, h_{z} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
+            = 
+            h_{z}
+            - 
+            2 \frac{\langle h_{z}, z_{S'} \rangle}{\langle h_{z}, z_{S'} \rangle} z_{S'}
+            %\\&
+            = 
+            h_{z}
+            - 
+            2 z_{S'}
+            %\\&
+            = 
+            - h_{z}
+            - 
+            2 b_{z}
+            .
+        \end{align*}
+        Evidently, the transformation $\Theta_{|G}$ equals the identity on the orthogonal complement of the span of $h_{z}$ and $b_{z}$. 
+        Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        Then $\vecnorm{ h_{z} } = \cos(\beta) \vecnorm{ z_{S'} }$ and $\vecnorm{ b_{z} } = \sin(\beta) \vecnorm{ z_{S'} }$. 
+        We study the singular values of the matrix 
+        \begin{align*}
+            M_{\Theta,G} 
+            := 
+            \begin{pmatrix}
+            -1                 & 0
+            \\ 
+            -2 \vecnorm{ b_{z} }/\vecnorm{ h_{z} } & 1
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+            -1             & 0
+            \\ 
+            -2 \tan(\beta) & 1
+            \end{pmatrix}
+            .
+        \end{align*}
+        We compute the eigenvalues of the symmetric matrix $M_{\Theta,G}^{\ast} M_{\Theta,G}$. 
+        Its square roots are the desired singular values of $M_{\Theta,G}$:
+        \begin{align}
+            \sigma_{\max}(\Theta,G) := \sqrt{ 2\tan(\beta)^2 + 1 + 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } + \tan(\beta) \label{math:theta_max}
+            ,
+            \\
+            \sigma_{\min}(\Theta,G) := \sqrt{ 2\tan(\beta)^2 + 1 - 2 \tan(\beta) \sqrt{ \tan(\beta)^2 + 1 } } = \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) \label{math:theta_min}
+            .
+        \end{align}
+        They are mutual reciprocals of each other, and they are monotonically increasing and decreasing, respectively, in $\tan(\beta)$.
+        We conclude that these two are also the maximal and minimal singular values of $\Jacobian\Theta_{|G}$,
+        whereas all its other singular values equal $1$. 
+        
+%         Let $\beta$ be the angle between $z_{S'}$ and $h_{z}$. 
+        We develop explicit bounds for these singular values. 
+        The definition of the tangent and the decomposition $z_{S'} = h_{z} + b_{z}$ 
+        imply that $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$.
+        % Obviously, $\vecnorm{ b_{z} } \leq \vecnorm{ z_{S'} }$. 
+        
+        Recall that $G \in \calG$ is obtained from $T$ via barycentric subdivisions, first at $z_{S}$ and then at $z_{S'}$. 
+        Let $F_{z} \subseteq G$ be the face opposite to the vertex $z_{S'}$,
+        which must be contained in some face of $T$. 
+        Since $S'$ has dimension $n-\ell-1$, the vector $(n-\ell) h_{z}$ is the height vector of that face of $T$. 
+        Thus, 
+        \begin{align*}
+            \frac{ \vecnorm{ b_{z} } }{ \vecnorm{ h_{z} } }
+            = 
+            \frac{ \vecnorm{ b_{z} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
+            = 
+            \frac{ \vecnorm{ z_{S'} } }{ (n-\ell)^{-1} \vecnorm{ (n-\ell) h_{z} } }
+            \leq 
+            (n-\ell) \aspectratio(T)
+%             = 
+%             \frac{ \vecnorm{ b_{z} } \vol(F_{z}) }{ (n-\ell)^{-1} n \vol(T) }
+%             \leq 
+%             \frac{ n-\ell }{n!}
+%             \cdot 
+%             \frac{ \diam(T)^{n} }{ \vol(T) }
+            .
+        \end{align*}
+        This establishes bounds on the singular values of the transformation. 
+        We abbreviate 
+        \begin{align}\label{math:upper_bound_for_theta}
+            \mu_{T,\ell} 
+            := 
+%             \sqrt{ 1 + \tan^{2}(\beta) } - \tan(\beta) 
+%             \geq 
+            \sqrt{ 
+                1 + (n-\ell)^{2} \aspectratio(T)^{2} % \frac{ \diam(T)^{2n} }{ n!^{2}\vol(T)^{2} } 
+            } 
+            + 
+            (n-\ell) \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }            
+            .
+        \end{align}
+        In summary, the singular values of the Jacobian of $\Theta$ at almost every $x$ satisfy 
+        \begin{align}
+            \sigma_{1}(\Theta,x) \leq \mu_{T,\ell},
+            \quad 
+            \sigma_{2}(\Theta,x) = \dots = \sigma_{n-1}(\Theta) = 1,
+            \quad 
+            \sigma_{n}(\Theta,x)^{-1} \leq \mu_{T,\ell}.
+        \end{align}
+        \color{red}It is also evident that the eigenvalues of the Jacobian almost everywhere have magnitude $1$.\color{black}
+        
+        
+        
+        
+        
+        \item 
+        We introduce another mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$ as follows. 
+        Consider any $n$-simplex $G \in \calG$ and let $G^c \in \calG^{c}$ be its image under $\Theta$.
+        We construct a bi-Lipschitz mapping 
+        \begin{align*}
+            \Phi_{G} : G \cup G^{c} \rightarrow G^{c}.
+        \end{align*}
+        The construction will be such that the union of $\Phi_{G}$ for all $n$-simplices $G \in \calG$
+        will define the desired bi-Lipschitz mapping $\Phi : \underlying{\calG^\ast} \rightarrow \underlying{\calG^{c}}$,
+        which will be the identity along $\partial\underlying{\calG^\ast} \setminus \partial\underlying{\calG}$.
+        
+        Once again, $h_{z}$ denotes the height of $z_{S'}$ within $G$.
+        Here, we let $Q \subseteq G \cap G^{c}$ be the subsimplex 
+        that is complementary to the line segment from the origin to $z_{S'}$ in $G$.
+        Equivalently, $Q$ is complementary to the line segment from the origin to $-z_{S'}$ in $G^{c}$.
+        From the definition of simplices, we now conclude that any $x \in G \cup G^{c}$ 
+        has a unique representation
+        \begin{align*}
+            x = \lambda z_{S'} + \mu x_{Q}, \quad \lambda \in [-1,1], \quad \mu \in [0,1], \quad |\lambda| + \mu \leq 1, \quad x_{Q} \in Q,
+        \end{align*}
+        Since $\mu x_{Q}$ lies in the hyperplane spanned by the origin and $Q$, we have 
+        \begin{align*}
+            \lambda = \lambda(x) := \frac{\langle h_{z},x\rangle}{\langle h_{z},z_{S'}\rangle} 
+            .
+        \end{align*}
+        Based on that observation, we define 
+        \begin{align*}
+            \Phi_{G}(x) % TODO : Sign error. Check values for 0 and 1. Then proceed from there ... 
+            &
+            := 
+            \mu x_{Q} + \frac 1 2 \left( \lambda(x) - 1 \right) z_{S'}
+            \\&
+            = 
+            x - \lambda(x) z_{S'} + \frac{ \lambda(x)}{ 2 } z_{S'} - \frac{ 1 }{ 2 } z_{S'}
+            \\&
+            = 
+            x - \frac{ \lambda(x) }{2} z_{S'} - \frac{ 1 }{ 2 } z_{S'}
+            \\&
+            = 
+            x - \frac{\langle h_{z},x\rangle}{2\langle h_{z},z_{S'}\rangle} z_{S'} - \frac 1 2 z_{S'}
+            .
+        \end{align*}
+        We readily verify that this transformation is a bi-Lipschitz mapping from $G \cup G^{c}$ onto $G^{c}$
+        that satisfies the desired mapping properties. 
+        It remains to analyze its Jacobian to get explicit estimates. 
+        
+        We once more introduce an orthogonal decomposition $h_{z} + b_{z} = z_{S'}$ for some $b_{z} \in \bbR^{n}$.
+        With that,
+        \begin{align*}
+            \Jacobian \Phi_{G}(x)
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle }  
+            z_{S'} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            h_{z} \otimes h_{z}^{t}
+            - 
+            \frac{1}{ 2 \langle h_{z},z_{S'}\rangle } 
+            b_{z} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
+            h_{z} \otimes h_{z}^{t}
+            - 
+            \frac{1}{ 2 \langle h_{z}, h_{z}\rangle } 
+            b_{z} \otimes h_{z}^{t}
+            \\
+            &=
+            \Id 
+            - 
+            \frac{1}{ 2 } 
+            \hat h_{z} \otimes \hat h_{z}^{t}
+            - 
+            \frac{ 1 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } 
+            \hat b_{z} \otimes \hat h_{z}^{t}
+            .
+        \end{align*}
+        The Jacobian acts as the identity over the orthogonal complement of the span of $h_{z}$ and $z_{s'}$.
+        We write $\beta$ for the angle between $h_{z}$ and $z_{S'}$.
+        Hence, $\tan(\beta) = \vecnorm{ b_{z} } / \vecnorm{ h_{z} }$. 
+        We verify that 
+        \begin{align}
+            \Jacobian \Phi_{G}(x) \cdot \hat b_{z} = \hat b_{z},
+            \qquad 
+            \Jacobian \Phi_{G}(x) \cdot \hat h_{z} = \frac 1 2 h_{z} - \frac{ 1 \vecnorm{ b_{z} } }{ 2 \vecnorm{ h_{z} } } \hat b_{z}
+            .
+        \end{align}
+        It remains to study the singular values of the matrix 
+        \begin{align*}
+            M_{\Phi,G} 
+            = 
+            \begin{pmatrix}
+                 \frac 1 2             & 0 
+                \\
+                -\frac 1 2 \tan(\beta) & 1 
+            \end{pmatrix}
+%             = 
+%             \frac 1 2 
+%             \begin{pmatrix}
+%                 -1 & 0 
+%                 \\
+%                 -3\tan(\beta) & 2 
+%             \end{pmatrix}
+            .
+        \end{align*}
+        By building the symmetric matrix $M_{\Phi,G}^{t} M_{\Phi,G}$ and computing its eigenvalues, 
+        we obtain the singular values 
+        \begin{align*}
+            \sigma_{\max}(\Phi,G) 
+            &
+            =
+            \frac{1}{4} \sqrt{ 9 + \tan(\beta)^2 } + \frac{1}{4} \sqrt{ 1 + \tan(\beta)^2 } 
+            ,
+            \\
+            \sigma_{\min}(\Phi,G) 
+            &
+            =
+            \frac{1}{4} \sqrt{ 9 + \tan(\beta)^2 } - \frac{1}{4} \sqrt{ 1 + \tan(\beta)^2 } 
+            .
+        \end{align*}
+        These are monotonically increasing from $1$ and decreasing from $0.5$, respectively, in $\tan(\beta)$. 
+        Hence, these are also the maximal and minimal singular values of the Jacobian $\Jacobian \Phi_{G}$, the remaining singular values being equal to $1$. 
+        Notice that $\sigma_{\max}(\Phi,G) \sigma_{\min}(\Phi,G) = 1/2$ and 
+        \begin{align*}
+            \det \Jacobian\Phi = \frac 1 2.
+        \end{align*}
+        We now recall that the height of $h_{z}$ in $G \in \calG$ equals $(\ell+1)^{-1}$ multiplied with the height of some vertex of $S$ within $T$.
+        Similar as above, we use the upper bound 
+        \begin{align*}
+            \tan(\beta) = \frac{\vecnorm{ b_{z} }}{\vecnorm{ h_{z} }} \leq (\ell+1) \aspectratio(T).
+        \end{align*}
+        We conclude that the singular values of the Jacobian of $\Phi$ at almost every $x$ satisfy 
+        \begin{gather}
+            \sigma_{1}(\Phi,x) % \matnorm{ \Jacobian\Phi_{G} } 
+            \leq 
+            \frac 1 4 \sqrt{ 9 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 4 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 }
+            \leq 
+            1 + \frac{1}{2} (\ell+1) \aspectratio(T) 
+            \label{math:phi_max}
+            ,
+            \\
+            \sigma_{2}(\Phi,x) = \dots = \sigma_{n-1}(\Phi,x) = 1,
+            \\
+            \sigma_{n}(\Phi,x)^{-1} % \matnorm{ \Jacobian\Phi_{G}^{-1} } 
+            \leq 
+            \frac 1 2 \sqrt{ 9 + (\ell+1)^2 \aspectratio(T)^2 } + \frac 1 2 \sqrt{ 1 + (\ell+1)^2 \aspectratio(T)^2 }
+            \leq 
+            2 + (\ell+1) \aspectratio(T) 
+            \label{math:phi_min}
+            .
+        \end{gather}
+        \color{red}Moreover, it is evident that the eigenvalues of the Jacobian are $1$ with multiplicity $n-1$ and $\tfrac 1 2$ with multiplicity $1$.\color{black}
+        This finishes the discussion of the transformation $\Phi$. 
+        
+        
+        \item 
+        We continue with an auxiliary result.
+        Let $x, h_1, h_2 \in \bbR^{n}$ be non-zero. 
+        Define 
+        \begin{align*}
+            F(x) 
+            = 
+            \frac{ \vecnorm{h_2}^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, x \rangle }{ \vecnorm{ h_1 }^{2} }
+            x
+            .
+        \end{align*}
+        This is defined away from the hyperplane orthogonal to $h_2$.
+        If $x \in \bbR^{n}$ with $\langle h_1, x \rangle = \vecnorm{ h_1 }^{2}$, then $\langle F(x), h_2 \rangle = \vecnorm{ h_2 }^{2}$.
+        That shows that $F(x)$ is a radial mapping that maps each point on the hyperplane defined by the normal vector $h_1$
+        onto the colinear point that lies on the hyperplane defined by the normal vector $h_2$. Indeed, 
+        
+        We identify the Lipschitz properties of this mapping by computing its Jacobian. 
+        We write $\alpha_1, \alpha_2 \geq 0$ for the two angles between $h_1$ and $x$ and between $h_2$ and $x$, respectively. 
+        In what follows, $y \in \bbR^{n}$.
+        \begin{align*}
+            \Jacobian F(x) \cdot y
+            &=
+            \frac{ \vecnorm{ h_2 }^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, y \rangle }{ \vecnorm{ h_1 }^{2} }
+            x
+            - 
+            \frac{ \langle h_2, h_2 \rangle \langle h_2, y \rangle }{ \langle h_2, x \rangle^{2} }
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            x 
+            +
+            \frac{ \langle h_2, h_2 \rangle }{ \langle h_2, x \rangle }
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            y 
+            \\&=
+            \frac{ \langle h_2, h_2 \rangle }{ \vecnorm{ h_2 } \vecnorm{x} \cos(\alpha_2) }
+            \left( y - \frac{ \langle h_2, y \rangle }{ \langle h_2, x \rangle } x \right)
+            \frac{ \langle x, h_1 \rangle }{ \langle h_1, h_1 \rangle }
+            +
+            \frac{ \vecnorm{ h_2 }^{2} }{ \langle h_2, x \rangle }
+            \frac{ \langle h_1, y \rangle }{ \vecnorm{ h_1 }^{2} }
+            x
+            \\&=
+            \frac{ \langle \hat h_2, h_2 \rangle }{ \cos(\alpha_2) }
+            \left( y - \frac{ \langle \hat h_2, y \rangle }{ \langle \hat h_2, \hat x \rangle } \hat x \right)
+            \frac{ \langle \hat x, \hat h_1 \rangle }{ \langle h_1, \hat h_1 \rangle }
+            +
+            \frac{ \vecnorm{ h_2 } }{ \langle \hat h_2, \hat x \rangle }
+            \frac{ \langle \hat h_1, y \rangle }{ \vecnorm{ h_1 } }
+            \hat x
+            \\&=
+            \frac{ \vecnorm{ h_2 } }{ \cos(\alpha_2) }
+            \left( y - \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x \right)
+            \frac{ \cos(\alpha_1) }{ \vecnorm{ h_1 } }
+            +
+            \frac{ \vecnorm{ h_2 } }{ \cos(\alpha_2) }
+            \frac{ \langle \hat h_1, y \rangle }{ \vecnorm{ h_1 } }
+            \hat x
+            \\&=
+            \frac{ \vecnorm{ h_2 } }{ \vecnorm{ h_1 } }
+            \frac{ \cos(\alpha_1) }{ \cos(\alpha_2) }
+            \left( 
+                y 
+                - 
+                \frac{ \langle \hat h_2, y \rangle }{ \cos(\alpha_2) } \hat x 
+                + 
+                \frac{ \langle \hat h_1, y \rangle }{ \cos(\alpha_1) } \hat x 
+            \right)
+            .
+        \end{align*}
+        We define $a := \cos(\alpha_1)^{-1} \hat h_1 - \cos(\alpha_2)^{-1} \hat h_2$. 
+        Notice that $a \perp \hat x$. The matrix $\Id + \hat x \otimes a^{t}$ is the identity over the orthogonal complement of the linear span of $a$ and $x$. Over that two-dimensional subspace, it can be represented by a triangular matrix.
+        Similar as above, its largest and the smallest singular values $\sigma_{max} \geq 1 \geq \sigma_{\min}$ are
+        %~\cite{blinn1996consider} 
+        \begin{align*}
+            \sigma_{\max} = \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } + \frac{ \vecnorm{a} }{2},
+            \qquad 
+            \sigma_{\min} = \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } - \frac{ \vecnorm{a} }{2}.     
+        \end{align*}
+        Notice that these are strictly monotonically increasing or decreasing, respectively, in $\vecnorm{a}$.
+%         We thus consider the upper bound 
+%         \begin{align*}
+%             \vecnorm{a} 
+%             \leq 
+%             2 \max_{1 \leq i \leq 2} 
+%             \left( 
+%                 \frac{ \hat h_i }{ \langle \hat x, \hat h_i \rangle } 
+%             \right)
+%             .
+%         \end{align*}
+        \color{red}Lastly, the matrix $\Id + \hat x \otimes a^{t}$ has the eigenvalue $1$ with multiplicity $n-1$ and a trace of $n + \langle a, \hat x \rangle$,
+        so it has one eigenvalue $1 + \langle a, \hat x \rangle$.\color{black}
+
+        \item 
+        We now describe the construction of a bi-Lipschitz mapping 
+        \begin{align*}
+            \Psi : \underlying{\calG^\ast} \rightarrow \underlying{\calK}.
+        \end{align*}
+        Recall that $\calG^\ast$ and $\calK$ are their own respective stars around the origin,
+        so they must contain an open ball around the origin. 
+        % TODO \mwl{Here we need to show that it is indeed a ball. It must be a domain triangulation.}
+        Let ${G} \in \calG^\ast$ be an $n$-dimensional simplex and let $x \in {G}$ be non-zero. There exists a simplex $K \in \calK$ that intersects the ray $\bbR_0^+ \cdot x$. We let $h_{{G}}$ and $h_{K}$ be the normal vectors of the origin within ${G}$ and $K$, respectively. They define respective hyperplanes $H_{G}$ and $H_{K}$,
+        and we write $F_{G} = G \cap H_{G}$ and $F_{K} = K \cap H_{K}$ for the corresponding faces. 
+        We notice that $x$ has a sharp angle to both $h_{{G}}$ and $h_{K}$,
+        that is, the scalar product of $x$ with either height vector is positive. 
+        We define 
+        \begin{align*}
+            \Psi(x) 
+            = 
+            \frac{ \vecnorm{ h_K }^{2} }{ \langle h_K, x \rangle }
+            \frac{ \langle h_{{G}}, x \rangle }{ \vecnorm{ h_{{G}} }^{2} }
+            x
+            .
+        \end{align*}
+        One easily verifies that this defines a continuous mapping $\Psi$. 
+        By the same line of thought, we see that it is invertible with inverse satisfying 
+        \begin{align*}
+            \Psi^{-1}(z) 
+            = 
+            \frac{ \vecnorm{ h_{{G}} }^{2} }{ \langle h_{{G}}, z \rangle }
+            \frac{ \langle h_K, z \rangle }{ \vecnorm{ h_K }^{2} }
+            z,
+            \qquad 
+            z = \Psi(x)
+            .
+        \end{align*}
+        We let $\alpha_K$ and $\alpha_{{G}}$ be the angles of $x$ with the vectors $h_{{G}}$ and $h_{K}$, respectively,
+        and let 
+        \begin{align*}
+            a := \cos(\alpha_{{G}})^{-1} \hat h_{{G}} - \cos(\alpha_K)^{-1} \hat h_K
+            .
+        \end{align*}
+        The preceding auxiliary results now contribute all information on the singular values of these Jacobians:
+        \begin{gather*}
+            % \matnorm{ \Jacobian\Psi(x) }
+            \sigma_{1}( \Jacobian\Psi(x) )
+            = 
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            \left( 
+                \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } + \frac{ \vecnorm{a} }{2}
+            \right)
+            ,
+            \\
+            % \matnorm{ \Jacobian\Psi(z)^{-1} }
+            \sigma_{1}( \Jacobian\Psi(z)^{-1} )
+            = 
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_K } }
+            \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
+            \left( 
+                \sqrt{ 1 + \frac{ \vecnorm{a}^{2} }{ 4 } } - \frac{ \vecnorm{a} }{2}
+            \right)^{-1},
+            \\
+            \sigma_{2}( \Jacobian\Psi(x) ) = \dots = \sigma_{n-1}( \Jacobian\Psi(x) )
+            =
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            ,
+            \\
+            \det\Jacobian\Psi(x)
+            =
+            \left( 
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            \right)^{n},
+            \qquad
+            \det\Jacobian\Psi^{-1}(z)
+            =
+            \left( 
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_{K} } }
+            \frac{ \cos(\alpha_{K}) }{ \cos(\alpha_{{G}}) }
+            \right)^{n}
+            .
+        \end{gather*}
+        We let $x_{G} \in F_{G}$ and $x_{K} \in F_{K}$ be the intersection points of the ray $\bbR \cdot x$ with the respective faces.
+        By the definition of the cosine, 
+        \begin{align*}
+            \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
+            \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+            = 
+            \frac{ \vecnorm{ x_K } }{ \vecnorm{ x_{{G}} } }
+            \leq 
+            \frac{ \vecnorm{ x_K } }{ \vecnorm{ h_{{G}} } }
+            \leq 
+            \frac{ \diam(K) }{ \vecnorm{ h_{{G}} } }
+            ,
+            \qquad 
+            \frac{ \vecnorm{ h_{{G}} } }{ \vecnorm{ h_K } }
+            \frac{ \cos(\alpha_K) }{ \cos(\alpha_{{G}}) }
+            = 
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ x_{K} } }
+            \leq 
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{K} } }
+            \leq 
+            \frac{ \diam(G) }{ \vecnorm{ h_{K} } }
+            .
+        \end{align*}
+%         \begin{align*}
+%             \frac{ \vecnorm{ h_K } }{ \vecnorm{ h_{{G}} } }
+%             \frac{ \cos(\alpha_{{G}}) }{ \cos(\alpha_K) }
+%             \leq 
+%             \frac{ \vecnorm{ x_K } }{ \vecnorm{ x_{{G}} } }
+%             .
+%         \end{align*}
+        We need further details to complete our estimates. 
+        We know that $\vecnorm{ x_K } \leq \diam(K)$ and that the diameters of the simplices in $\calK$ are already bounded by the maximum diameter in $\patch_{\calT}(S)$. The height $h_{K}$ is obtained from a height vector of a vertex in $\patch_{\calT}(S)$ by scaling with the factor $(\ell+1)^{-1}$.
+        That estimates the quotient $\vecnorm{ x_K } / \vecnorm{ h_K }$. 
+        % 
+        In order to estimate $\vecnorm{ h_{G} }$, we first notice the case $G \in \calG$ implies $\vecnorm{ h_{G} } \leq \diam(G) \leq \diam(T)$. 
+        In the case $G \in \calG^{c}$, we recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        that must lie in the face of $G$ that is opposite to $-z_{S'}$. 
+        The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
+        It follows again that $\vecnorm{ h_{G} } \leq \diam(T)$. 
+        % 
+        It remains to find a lower bound for $\vecnorm{ h_{G} }$.
+        Every height of the origin in some simplex of $\calG^\ast$ is obtained from a height vector of some vertex in $S$ in some simplex in $\calD^\ast$
+        by scaling with $(\ell+1)^{-1}$. If $G \in \calG$, then that original height was already a height of a vertex of $S$ in $T$. 
+        If instead $G \notin \calG$, then each of the latter height vectors has length bounded from below by the height of some vertex in $S$ within a simplex of $\calD$, multiplied by $\mu_{T,\ell}$. The height of any vertex of $S$ in some simplex of $\calD$ is the same as the height $h_T$ of that vertex in the original simplex $T$. 
+        %         In oder to estimate $\vecnorm{ x_{G} }$, recall that $x = \lambda (-z_{S'}) + (1-\lambda) z_{x}$ for some $\lambda \in [0,1]$ and $z_{x} \in G$
+        %         being in the face of $G$ that is opposite to $z_{x}$. The preimage of $x$ under $\Theta_{{G}}$ is $\lambda z_{S'} + (1-\lambda) z_{x}$. 
+        %         It follows that $\vecnorm{ x_{G} } \leq \diam(T)$. 
+        %         
+%         We know that whenever $T$ is a simplex with some face $F$ and $h_F$ is corresponding height vector, then 
+%         \begin{align*}
+%             \frac{\diam(T)}{ \vecnorm{ h_{F} }}
+%             \leq  
+%             \aspectratio(T)
+%             % \frac{ \vol(F) \diam(T) }{ n \vol(T) } \leq \frac{ \diam(T)^{n} }{ n! \vol(T) }
+%             .
+%         \end{align*}
+        Putting all these technical observations together, we estimate 
+        \begin{align*}
+            \frac{ \vecnorm{ x_{K} } }{ \vecnorm{ h_{{G}} } }
+            &\leq 
+            (\ell+1)\mu_{T,\ell}
+            \frac{ \diam(K) }{ \vecnorm{ h_{T} } }
+            \leq 
+            (\ell+1)\mu_{T,\ell}
+            \diameterratio(\calT)
+            \frac{ \diam(T) }{ \vecnorm{ h_{T} } }
+            \leq 
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(T) % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \mu_{T,\ell}
+            ,
+            \\
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{K} } }
+            &\leq 
+            (\ell+1)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \frac{ \diam(T) }{ \vecnorm{ h_{K} } }
+            \leq 
+            (\ell+1)
+            \diameterratio(\calT)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \frac{ \diam(K) }{ \vecnorm{ h_{K} } }
+            \leq 
+            (\ell+1)
+            \diameterratio(\calT)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            .
+        \end{align*}
+        \begin{gather*}
+            \frac{ \vecnorm{ x_{K} } }{ \vecnorm{ h_{{K}} } }
+            \leq 
+            (\ell+1)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            ,
+            \qquad 
+            \frac{ \vecnorm{ x_{G} } }{ \vecnorm{ h_{G} } }
+            \leq 
+            (\ell+1)
+            \aspectratio({G}) \mu_{T,\ell} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            .
+        \end{gather*}
+
+        
+        %         To simplify that expression, we make another observation regarding the height vectors. 
+        %         when $T$ is an $n$-dimensional simplex with a $\ell$-dimensional subsimplex $S \subseteq T$,
+        %         and $h > 0$ is the height of some vertex $v \in S$ opposite to a face $F$,
+        %         then the barycenter $z_S$ of $S$ has distance $h/(\ell+1)$ from the face $F$. 
+        %         From this observation we infer that the height vectors at the origin of the simplices in $\calG^\ast$ and $\calK$
+        %         are obtained by rescaling the height vectors in $\calD^\ast$ and $\patch_{\calT}(S)$
+        %         with the factor $(\ell+1)^{-1}$.
+        
+        The vector $a$ is the difference between $\hat h_{G}$ and $\hat h_{K}$ after both are rescaled such that they lie on the affine hyperplane with normal vector $\hat x$. That difference has length at most $\tan(\alpha_{G}) + \tan(\alpha_{K})$.
+        We calculate 
+        \begin{align*}
+            \vecnorm{a}
+            = 
+            \left\|
+            \frac{\vecnorm{ x_{G} }}{\vecnorm{ h_{G} }} \hat h_{{G}} 
+            - 
+            \frac{\vecnorm{ x_{K} }}{\vecnorm{ h_{K} }} \hat h_K
+            \right\|
+            &
+            \leq 
+            \frac{\vecnorm{ x_{G} }}{\vecnorm{ h_{G} }} 
+            + 
+            \frac{\vecnorm{ x_{K} }}{\vecnorm{ h_{K} }} 
+            % \\&
+            \leq 
+            (\ell+1) 
+            \left( 1 + \mu_{T,\ell} \right)
+            \sup_{ K \in \patch_{\calT}(S) }
+            \aspectratio(K) % \frac{ \diam(K)^{n} }{ n! \vol(K) }
+            .
+        \end{align*}
+        We define 
+        \begin{align}
+            \nu_{T,\ell} := \sqrt{ 1 + \frac{ (\ell+1)^{2}\left( 1 + \mu_{T,\ell} \right)^{2} \aspectratio(\calT)^{2} }{4} } + \frac{ (\ell+1)\left( 1 + \mu_{T,\ell} \right) \aspectratio(\calT) }{2}
+            .
+        \end{align}
+        In summary, 
+        the singular values of the Jacobian of $\Psi$ at almost every $x$ satisfy 
+        % using that $\sqrt{s^2+t^2} \leq s + t$ for any $s,t \geq 0$, 
+        \begin{align}
+            \sigma_{1}(\Psi,x) % \matnorm{ \Jacobian\Psi(x) }
+            &\leq  
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(T)\mu_{T,\ell} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \cdot 
+            \nu_{T,\ell}
+            ,
+            \\
+            \sigma_{n}(\Psi,x)^{-1} % \matnorm{ \Jacobian\Psi(z)^{-1} }
+            &\leq  
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+            \nu_{T,\ell}
+            ,
+            \\
+            \sigma_{  2}(\Psi,x) 
+            &= 
+            \dots
+            =
+            \sigma_{n-1}(\Psi,x) 
+            \leq 
+            (\ell+1) \diameterratio(\calT) \aspectratio(T)\mu_{T,\ell}
+            ,
+            \\
+            \sigma_{n-1}(\Psi,x)^{-1} 
+            &= 
+            \dots
+            =
+            \sigma_{  2}(\Psi,x)^{-1} 
+            \leq 
+            (\ell+1) \diameterratio(\calT) \aspectratio(T) 
+            ,
+            \\
+            \det\Jacobian\Psi(x)
+            &\leq 
+            \left( 
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(T)\mu_{T,\ell} % \frac{ \diam(T)^{n} }{ n! \vol(T) }
+            \right)^{n},
+            \\
+            \det\Jacobian\Psi^{-1}(x)
+            &\leq 
+            \left( 
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \right)^{n}
+            .
+        \end{align}
+        We have shown that $\Psi$ and $\Psi^{-1}$ are piecewise Lipschitz with respect to some essentially disjoint closed partitions over their respective domains.
+        % It remains to show both are Lipschitz, which we illustrate for $\Psi$, the argument for $\Psi^{-1}$ being analogous. 
+        % Rademacher's theorem then shows that both have essentially bounded weak Jacobians. 
+        Every function that is piecewise Lipschitz with respect to the triangulation $\calK$ must be Lipschitz over all of $\underlying{\calK}$, since there exists a bi-Lipschitz transformation from $\underlying{\calK}$ onto the unit ball.
+        % We use a technique similar to Lemma~\ref{lemma:stars_are_shellable}. 
+        % After application of a piecewise linear Lipschitz mapping, 
+        % we can assume that $\underlying{\calK}$ is convex without loss of generality. 
+        % Any function piecewise Lipschitz with respect to $\calK$ must be Lipschitz over $\underlying{\calK}$. 
+        % \mwl{DONE: not enough. Instead, use the homeomorphism onto a ball and estimate its Lipschitz constant.}
+        
+        
+        \item 
+        We define a mapping $ \Xi_{1} : T \rightarrow \Makoto = \overline{ \underlying{ \patch_{\calT}(S) } \setminus T}$ by setting 
+        \begin{align*}
+            \Xi_{1} := \Psi \circ \Theta.
+        \end{align*}
+        It preserves the interface from $T$ onto $\Makoto$. 
+        Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in T$. 
+        Combining the previous estimates for $\Psi$ and $\Theta$ with interlacing inequalities for the singular values of product matrices provides 
+        \begin{align*}
+            \sigma_1(x) = \matnorm{ \Jacobian \Xi_{1} }
+            &\leq 
+            \Cfive{n}{\ell}(\calT)
+            :=
+            (\ell+1) 
+            \diameterratio(\calT)
+            \aspectratio(\calT)
+            \mu_{T,\ell}^{2}
+            \nu_{T,\ell}           
+            ,
+            \\
+            \sigma_2(x), \dots, \sigma_n(x) 
+            &\leq 
+            \Cfiveprime{n}{\ell}(\calT)
+            :=
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(T) \mu_{T,\ell}^{2}
+            ,
+            \\
+            \sigma_n(x)^{-1} = \matnorm{ \Jacobian \Xi_{1}^{-1} }
+            &\leq
+            \Csechs{n}{\ell}(\calT)
+            :=
+            (\ell+1) 
+            \diameterratio(\calT)
+            \aspectratio(\calT)
+            \mu_{T,\ell}
+            \nu_{T,\ell}
+            ,
+            \\
+            \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
+            &\leq 
+            \Csechsprime{n}{\ell}(\calT)
+            :=
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+            \mu_{T,\ell}
+            .
+        \end{align*}
+        We get the determinant estimates
+        \begin{align*}
+            |\det(\Xi_{1})|
+            &\leq 
+            \Cdetfive{n}{\ell}(\calT)
+            :=
+            (\ell+1)^{n}
+            \diameterratio(\calT)^{n}
+            \mu_{T,\ell}^{n}
+            \aspectratio(\calT)^{n}
+            ,
+            \\
+            |\det(\Xi_{1}^{-1})|
+            &\leq 
+            \Cdetsechs{n}{\ell}(\calT)
+            :=
+            (\ell+1)^{n}
+            \diameterratio(\calT)^{n}
+            \aspectratio(\calT)^{n}
+            .
+        \end{align*}
+        \color{blue}
+        Let $p \in [1,\infty]$ and $0 < k < n$. Using inequalities for the product of singular values, we find 
+        \begin{align*}
+            \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{1} |^{-\frac 1 p}
+            &
+            \leq 
+            \Cfivetrafo{n}{k}{\ell}{p}(\calT)
+            \\&
+            :=
+            \left( 
+            % Theta max 
+            \mu_{T,\ell} 
+            % Psi max 
+            \nu_{T,\ell}
+            \right)
+            % Det 
+            \left( (\ell+1) \diameterratio(\calT) \aspectratio(T)\mu_{T,\ell} \right)^{k-\frac n p}
+            ,
+            \\
+            \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{1} |^{\frac 1 p}
+            &
+            \leq 
+            \Csechstrafo{n}{k}{\ell}{p}(\calT)
+            \\&
+            :=
+            \left(
+            % Theta^{-1} max 
+            \mu_{T,\ell} 
+            % Psi^{-1} max 
+            \nu_{T,\ell}
+            \right)
+            % Det 
+            \left( (\ell+1) \diameterratio(\calT) \aspectratio(T) \right)^{k-\frac n p}            
+            .
+        \end{align*}
+        This completes the desired estimates for $\Xi_{1}$. 
+        \color{black}
+        
+        
+        \item 
+        We define another mapping $ \Xi_{2} : \underlying{\patch_{\calT}(S)} \rightarrow \Makoto $ by setting 
+        \begin{align*}
+            \Xi_{2} := \Psi \circ \Phi.
+        \end{align*}
+        It is bi-Lipschitz and preserves $\partial\underlying{\patch_{\calT}(S)} \setminus \partial T$. 
+        Let $\sigma_1(x) \geq \dots \geq \sigma_n(x)$ be the singular values of its Jacobian at $x \in \underlying{\patch_{\calT}(S)}$. 
+        The combination of the previous estimates for $\Psi$ and $\Phi$ with standard interlacing inequalities now lead to 
+        \begin{align*}
+            \sigma_1(x)
+            = 
+            \matnorm{ \Jacobian \Xi_{2} }
+            &\leq 
+            \Csieb{n}{\ell}(\calT)
+            :=
+            (\ell+1) 
+            \aspectratio(\calT)
+            \diameterratio(\calT)
+            \mu_{T,\ell}
+            \nu_{T,\ell}         
+            \cdot 
+            \left( 1 + \frac{1}{2} (\ell+1) \aspectratio(T) \right)
+            ,
+            \\
+            \sigma_2(x), \dots, \sigma_n(x) 
+            &\leq 
+            \Csiebprime{n}{\ell}(\calT)
+            :=
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(T)\mu_{T,\ell} 
+            \cdot 
+            \left( 1 + \frac{1}{2} (\ell+1) \aspectratio(T) \right)
+            ,
+            \\
+            \sigma_n(x)^{-1}
+            = 
+            \matnorm{ \Jacobian \Xi_{2}^{-1} }
+            &\leq  
+            \Cacht{n}{\ell}(\calT)
+            :=
+            (\ell+1) 
+            \diameterratio(\calT)
+            \aspectratio(\calT)
+            \nu_{T,\ell}           
+            \cdot 
+            \left( 2 + (\ell+1) \aspectratio(T) \right)
+            ,
+            \\
+            \sigma_1(x)^{-1}, \dots, \sigma_{n-1}(x)^{-1}
+            &\leq 
+            \Cachtprime{n}{\ell}(\calT)
+            :=
+            (\ell+1)
+            \diameterratio(\calT)
+            \aspectratio(\calT) 
+            \cdot 
+            \left( 2 + (\ell+1) \aspectratio(T) \right)
+            .
+        \end{align*}
+        We get the determinant estimates 
+        \begin{align*}
+            |\det(\Xi_{2})|
+            &\leq 
+            \Cdetsieb{n}{\ell}(\calT)
+            :=
+            \frac 1 2 
+            (\ell+1)^{n}
+            \diameterratio(\calT)^{n}
+            \mu_{T,\ell}^{n}
+            \aspectratio(\calT)^{n}
+            ,
+            \\
+            |\det(\Xi_{2}^{-1})|
+            &\leq 
+            \Cdetacht{n}{\ell}(\calT)
+            :=
+            2
+            (\ell+1)^{n}
+            \diameterratio(\calT)^{n}
+            \aspectratio(\calT)^{n}
+            .
+        \end{align*}
+        \color{blue}
+        Let $p \in [1,\infty]$ and $0 < k < n$. Using inequalities for the product of singular values, we find 
+        \begin{align*}
+            \sigma_{1}\cdots\sigma_{k} | \det\Jacobian\Xi_{2} |^{-\frac 1 p}
+            &
+            \leq 
+            \Csiebtrafo{n}{k}{\ell}{p}(\calT)
+            \\&
+            :=
+            \left( 
+            % Phi max 
+            \left( 1 + \frac 1 2 ( \ell+1 )\aspectratio(\calT) \right)
+            % Psi max 
+            \nu_{T,\ell}
+            \right)
+            % Det 
+            \left( (\ell+1) \diameterratio(\calT) \aspectratio(T)\mu_{T,\ell} \right)^{k-\frac n p} 2^{\frac n p}
+            ,
+            \\
+            \sigma_{n}^{-1}\cdots\sigma_{n-k+1}^{-1} | \det\Jacobian\Xi_{2} |^{\frac 1 p}
+            &
+            \leq 
+            \Cachttrafo{n}{k}{\ell}{p}(\calT)
+            \\&
+            :=
+            \left(
+            % Phi^{-1} max 
+            \left( 2 + ( \ell+1 )\aspectratio(\calT) \right)
+            % Psi^{-1} max 
+            \nu_{T,\ell}
+            \right)
+            % Det 
+            \left( (\ell+1) \diameterratio(\calT) \aspectratio(T) \right)^{k-\frac n p} 2^{\frac n p}            
+            .
+        \end{align*}
+        \color{black}
+        This completes the desired estimates for $\Xi_{2}$. 
+    \end{itemize}
+    Having shown all the desired estimates, and the proof is complete. 
+\end{proof}
+        
+
+        
+        
+    
+    
+\section{Draft of the Reflection along faces in one of the first sections}
+
+\begin{proof}
+    %     This implies the determinant identity and estimate 
+%     \begin{align*}
+%         \det( \Jacobian \Xi ) 
+%         = 
+%         \frac 1 4 \left( (1+a)^2 - (1-a)^2 \right) 
+%         &
+%         = 
+%         a
+%         \leq 
+%         \aspectratio(T_{1}) \aspectratio(T_{2}) 
+%         .
+%     \end{align*}
+%     % Now we see that if $a \leq 1$, then $\sigma_{+} \leq 1 + c$, and if $a \geq 1$, then $\sigma_{+} \leq a + c$.
+%     Suppose that $b, b' \in F$ and $\alpha, \alpha' \in \bbR$ such that $x = b + \alpha \hat h_0$ and $x' = b' + \alpha' \hat h_0$.
+%     Since $\Xi(\hat h_0) = z_2$, it follows with the arguments as above and H\"older's inequality that 
+%     \begin{align*}
+%         \vecnorm{ \Xi(x) - \Xi(x') }
+%         \leq  
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \cdot \vecnorm{ z_2 }
+%         \leq  
+%         \vecnorm{ b - b' } + | \alpha - \alpha' | \aspectratio(T_1) \frac{\diam(T_2)}{\diam(T_1)} \vecnorm{ \hat h_0 }
+%         \leq 
+%         \left( 1 + \aspectratio(T_1)^2 \frac{\diam(T_2)^2}{\diam(T_1)^2} \right)^{\frac 1 2} \vecnorm{ x-x' }
+%         .
+%     \end{align*}
+    \color{blue}
+    \color{red}
+    The linear mapping $\Xi$ takes the form 
+    % Writing $\hat h_0$ for the unit normal in direction $z_1$, we have 
+    \begin{align*}
+        \Xi(x) 
+        = 
+        x 
+        - \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_1
+        + \frac{ \langle \hat h_0, x \rangle }{ \langle \hat h_0, z_1 \rangle } z_2
+        ,
+        \qquad 
+        x \in \bbR^{n}
+        .
+    \end{align*}
+    Its Jacobian is the rank-one perturbation of the linear projection along $z_1$ onto the hyperplane spanned by $F$. 
+    By the Xu-Zikanatov estimate~\cite{xu2003some},
+    \begin{align*}
+        % \matnorm{ \Jacobian \Xi }
+        \sigma_{+} 
+        \leq 
+        \frac{ \diam(T_1) }{ \height(T_1) }
+        +
+        \frac{ \diam(T_2) }{ \height(T_1) }
+        \leq 
+        \aspectratio(T_1) + \frac{ \diam(T_2) }{ \diam(T_1) } \aspectratio(T_2)
+        .
+    \end{align*}
+    Analogous upper bound holds for $\sigma^{-1}_{-}$.
+%     \begin{align}
+%         \sigma_{-}^{-1} \leq \left( 1 + \aspectratio(T_1) \right) \aspectratio(T_2)
+%     \end{align}
+% \begin{comment}
+    \color{Mulberry}
+    \mwl{Tighter estimate via geometry}
+    Matrix inverse lemma:
+    \begin{align*}
+        A ( A + (z_2-z_1) e_1^t )^{-1}
+        =
+        \Id
+        - 
+        \left( 1 + e_1^{t} A^{-1} (z_2-z_1) \right)^{-1}
+        (z_2-z_1) e_1^t \cdot A^{-1}
+        =
+        \Id
+        - 
+        \left( e_1^{t} A^{-1} z_2 \right)^{-1}
+        (z_2-z_1) e_1^t \cdot A^{-1}
+        .
+    \end{align*}
+    Putting in a multiple of $\alpha z_1$, we find 
+    \begin{align*}
+        \alpha z_1
+        -
+        \left( e_1^{t} A^{-1} z_2 \right)^{-1}
+        (z_2-z_1) 
+        .
+    \end{align*}
+
+    
+    Without loss of generality, $F$ lies in the hyperplane plane of the second to last coordinates,
+    so that the height of $T_1$ and $T_2$ is in the first coordinate direction. 
+    After further rotation, we can assume that $z_1$ and $z_2$ are in the span of the first three coordinate directions with 
+    We can write 
+    \begin{align*}
+        z_1 = a_1 e_1 + a_2 e_2, \qquad z_2 = b_1 e_1 + b_2 e_2 + e_3 b_3.
+    \end{align*}
+    The face $F$ spans a hyperplane over which $\Xi$ is the identity, and it remains to study the matrix
+    \begin{align*}
+        A = 
+        \begin{pmatrix}
+            b_1/a_1 & 0 & 0
+            \\
+            (b_2-a_2)/a_1 & 1 & 0
+            \\
+            b_3/a_1 & 0 & 1
+        \end{pmatrix}
+        =:
+        \begin{pmatrix}
+            c_1 & 0 & 0
+            \\
+            c_2 & 1 & 0
+            \\
+            c_3 & 0 & 1
+        \end{pmatrix}
+    \end{align*}
+    Its singular values are $1$ and 
+    \begin{align*}
+        \sigma_{\max}
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            +
+            \sqrt{ ( 1 + c_1^2 + c_2^2 + c_3^2 )^2 - 4 c_1^2 }
+        }
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            +
+            \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+            \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        }
+        =
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+        +
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        =
+        \frac{1}{2}
+        \sqrt{ ( 1 + c_1 )^2 + c_2^2 + c_3^2 }
+        +
+        \frac{1}{2}
+        \sqrt{ ( 1 - c_1 )^2 + c_2^2 + c_3^2 }
+        \leq 
+        \sqrt{ ( 1 + c_1 )^2 + c_2^2 + c_3^2 }
+        .
+    \end{align*}
+    \begin{align*}
+        \sigma_{\max}
+        =
+        \frac{1}{\sqrt 2}
+        \sqrt{
+            1 + c_1^2 + c_2^2 + c_3^2 
+            -
+            \sqrt{ c_1^2 + c_2^2 + c_3^2 - 4 c_1^2 }
+        }
+        =
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 + 2 c_1 }
+        -
+        \frac{1}{2}
+        \sqrt{ 1 + c_1^2 + c_2^2 + c_3^2 - 2 c_1 }
+        .
+    \end{align*}
+    
+    \begin{align*}
+        \sigma_{\max}
+        &= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            } }
+        \\&= 
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+            }
+        +
+        \frac{1}{\sqrt 2}
+        \sqrt{ 
+            \frac 1 2 \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 + \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        +
+        \frac{1}{2}
+        \sqrt{ 
+            \left( 1 - \frac{ a_1 }{h} \right)^{2} + \frac{ a_2^2 }{h^2}
+            }
+        ,
+        \\
+        \sigma_{\min}
+        &=
+        \frac{1}{\sqrt 2}
+        \sqrt{ 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - \sqrt{ \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} \right)^2 - 4 \frac{ a_1^2 }{h^2} } }
+        \\&= 
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h}
+            }
+        -
+        \frac{1}{2}
+        \sqrt{ 
+            1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h}
+            }
+        .
+    \end{align*}
+    It follows that 
+    \begin{align*}
+        \det \Jacobian\Xi
+        &=
+        \frac{1}{4}
+        \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} + 2\frac{ a_1 }{h} \right)
+        +
+        \frac{1}{4}
+        \left( 1 + \frac{ a_1^2 }{h^2} + \frac{ a_2^2 }{h^2} - 2\frac{ a_1 }{h} \right)
+        \\
+        \frac{1}{2} + \frac{1}{2} 
+        .
+    \end{align*}
+    Matrix determinant lemma:
+    \begin{align*}
+        \det( A + (z_2-z_1) e_n^t ) = \left( 1 + e_n A^{-1} z_2 - e_n A^{-1} z_1 \right) \det(A)
+        =
+        \left( e_{n} A^{-1} z_2 \right) \det(A)
+        =
+        \frac{\langle \hat h, z_2 \rangle}{\langle \hat h, z_1 \rangle} \det(A)
+        .
+    \end{align*}
+% \end{comment}
+\end{proof}
+
+
+
+
+
+\section{Alternative attempt at getting a Poincare constant estimate for the scalar potential}
+
+\color{green}
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        L^{\frac p q}
+        \sum_{\ell=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        L^{\frac p q}
+        \sum_{m=0}^{M} 
+        \max_{ 0 \leq \ell \leq M }
+        C_{m,\ell}^{p} 
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    
+    Alternatively, when $L$ denotes the longest path, then a different application of H\"older's inequality shows:
+    Hence, 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \nabla u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \nabla u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+
+
+
+    
+    
+    
+
+\subsection{Failed uppr bound for potential operators}
+On the background of this rewriting, we can establish additional operator norm bounds for the operator norms. 
+These do not depend on the eccentricity of the domain. 
+
+We begin with the Poincar\'e operator. 
+By an application of Jensen's inequality, operator norm estimates, and substitutions, we find 
+\begin{align*}
+    \| \Poinc_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{0}^{1} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{0}^{1} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{0}^{1} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{red}
+A comparable estimate follows for the Bogovski\u{\i} operator with the substitution 
+\begin{align*}
+    \| \Bogov_{\mia} u \|_{L^{p}(\Omega)}^{p}
+    &
+    \leq 
+    \diam(\Omega)^{p}
+    \vol(\Omega)^{-1}
+    \int_{1}^{\infty} \int_{\Omega} \int_{\Omega} 
+    t^{p(k-1)} |u( a + t(x-a) )|^{p} \,dt \,da \,dx
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ z \in (1-t) a + t \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{1}^{\infty} 
+    \iint\limits_{\substack{ (z,a) \in \Omega \times \Omega \\ a \in \frac{z}{1-t} + \frac{t}{1-t} \Omega } }
+    \vol(t\Omega)^{-1}
+    t^{p(k-1)} |u( z )|^{p} \,dz \,da \,dt
+    \\&
+    = 
+    \diam(\Omega)^{p}
+    \int_{\Omega} 
+    |u( z )|^{p}
+    \int_{1}^{\infty} 
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \,dt \,dz 
+    .
+\end{align*}
+\color{blue}
+We estimate 
+\begin{align*}
+    \int_{0}^{1}
+    \vol\left(\left\{ 
+        \Omega \cap ( \tfrac{1}{1-t} z + \tfrac{t}{1-t} \Omega )
+    \right\}\right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    &
+    \leq 
+    \int_{0}^{1}
+    \min\left( 
+        \vol\left(\Omega\right), 
+        \vol\left( \tfrac{t}{1-t} \Omega \right) 
+    \right)
+    \frac{ t^{p(k-1)} }{ \vol(t\Omega) }
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{p(k-1)} 
+    \ dt
+    \\&
+    \leq 
+    \int_{0}^{1}
+    \min\left( \tfrac{1}{t^{n}}, \tfrac{1}{(1-t)^n} \right) 
+    t^{k-1} 
+    \ dt
+    .
+\end{align*}
+The last integral is handled via the basic observations
+\begin{align*}
+    \int_{0}^{\frac 1 2} 
+    \frac{ t^{k-1} }{ (1-t)^{n} }
+    \ dt
+    \leq 
+    \int_{0}^{\frac 1 2} 
+    (1-t)^{-n+k-1}
+    \ dt
+    =
+    \int_{\frac 1 2}^{1} 
+    t^{-n+k-1}
+    \ dt
+    =
+    \begin{cases}
+        \ln(2)                 & \text{$n=k$}
+        \\
+        \frac{2^{n-k}-1}{n-k} & \text{otherwise.}
+    \end{cases}
+\end{align*}
+
+
+
+
+
+
+
+
+
+\subsection{Attempted proof for deformation-based estimate}
+
+\begin{proof}\color{blue}
+    We first fix some notation. 
+    Recall that for any $1 \leq m \leq M$, 
+    the sequence $T_0, T_1, \dots, T_{m-1}$ is the shelling of a triangulation of an $n$-dimensional submanifold with boundary, 
+    written $X_{m}$, whose interior domain we denote by $\Omega_m$. 
+    By Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ to the triangulation completes a star in $\calT$ around some simplex $S_{m} \in X_{m-1}$, 
+    and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
+    
+    We introduce the deformation mapping $\Xi_{2,m} : \patch_{\calT}(S_m) \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
+    This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{m-1} \setminus \partial T$.
+    We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{m} \rightarrow X_{m-1}$ 
+    by letting it be the identity over $X_{m-1} \setminus A_{m-1}$.
+    
+    For each $T \in \calT$ of dimension $n$, there exists a sequence $1 \leq m_{T,1},\dots,m_{T,K} \leq M$, for some $1 \leq K \leq M$,
+    such over the simplex $T$ we have the identity 
+    \begin{align*}
+        ...
+    \end{align*}
+\end{proof}
+
+
+
+\section{Attempted global upper bound: exterior derivative case}
+
+Alternatively, when $L$ denotes the longest path, then a different application of H\"older's inequality shows:
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        L^{\frac p q}
+        \sum_{\ell=0}^{M} C_{m,\ell}^{p} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} 
+        \leq 
+        L^{\frac p q}
+        \sum_{m=0}^{M} 
+        \max_{ 0 \leq \ell \leq M }
+        C_{m,\ell}^{p} 
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        ,
+    \end{align*}
+    Hence, 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}^{p}
+        &
+        \leq 
+        \sum_{m=0}^{M}
+        \| w \|_{L^{p}(T_{m})}^{p}
+        \\&
+        \leq 
+        \sum_{m=0}^{M}
+        \sum_{\ell=0}^{M} 
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \delta_{m,\ell} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} 
+        \\&
+        \leq 
+        \max_{0 \leq \ell \leq M} \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \delta_{m,\ell} 
+        \right)
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        \\&
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)
+        \cdot 
+        \| \cartan u \|_{L^{p}(\Omega)}^{p} 
+        .
+    \end{align}
+    Now, if $q \leq p$, that is, $2 \leq p$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \left(
+            \sum_{\ell'=0}^{M}
+            \left( \sum_{m=0}^{M} C_{m,\ell'}^{p} \right)^{\frac q p}
+        \right)^{\frac 1 q}
+        .
+    \end{align}
+    Instead, if $p \leq q$, that is, $p \leq 2$, then 
+    \begin{align}
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac 1 q}
+        \leq 
+        \sum_{m=0}^{M}
+        \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{p} \right)^{\frac 1 p}
+        .
+    \end{align}
+    So in any case, it is better than using the following Minkowski's inequality: 
+    \begin{align}
+        \| w \|_{L^{p}(\Omega)}
+        &
+        \leq 
+        \left( \sum_{m=0}^{M} \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \cartan u \|_{L^{p}(T_{\ell})} \right)^{p} \right)^{\frac 1 p}
+        \\&
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \| \cartan u \|_{L^{p}(T_{\ell})}^{p} \right)^{\frac 1 p}
+        \leq 
+        \sum_{\ell=0}^{M}
+        \left( \sum_{m=0}^{M} C_{m,\ell}^{p} \right)^{\frac 1 p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        .
+    \end{align}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+\section{Material}
 
 \mwl{MV: Why a second theorem? Difference of Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} wrt Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}? Which is better and when? Add more details to the estimates}
 \mwl{MV: There is indeed $\diam(T)^{k}$, with the power $k$? Nothing like this appears in Lemma~\ref{lemma:PFexteriorsimplex}. Moreover, so far, all the constants $C_{{\PF},T,p}$, $C_{{\PF},T_1 \cup T_2,p}$ in Lemma~\ref{lemma:poincarefriedrichsoverfacepatch}, $C_{\PF,T,F,p}$ in Lemma~\ref{lemma:mixedbconsimplex}, or $C_{{\PF},k,\Omega,p}$ in Lemma~\ref{lemma:PFexteriorsimplex} had the diameter $\diam(T)$ inside, only the constants in Section~\ref{subsection: PX_convex} have it outside. Finally, $\Omega$ in the indices is missing, whereas $l$ is superfluous. We should unify.}
@@ -229,7 +2017,7 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     For $0 < m \leq M$, by the definition of shellability in Section~\ref{subsection:shellability}, 
     $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     It follows from Lemma~\ref{lemma:existenceofstar} that adding $T_{m}$ completes a star in $\calT$ around the simplex $S_{m} \in \calT$, 
-    where $\Minako_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
+    where $\frakM_{m-1} \subseteq X_{m-1}$ is the complement of $T_{m}$ in that newly completed star. 
     
     We will recursively construct $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$, satisfying the desired bound. 
     Let $u \in W^{p}\Alt^{k}(\Omega)$. 
@@ -243,9 +2031,9 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     This is true for $m = 1$. 
     We now define, as in Equations~(5.12) and~(5.14) of~\cite{ern2020stable} or Equations~(6.7) and~(6.9)~\cite{Chaum_Voh_p_rob_3D_H_curl_24},
     \begin{align} \label{equation:w''_ext_der}
-        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\Minako_{m-1}}),
+        w_{|T_m} := u_{|T_m} + \Xi_{m}^{\ast}((w - u)|_{\frakM_{m-1}}),
     \end{align}
-    where $\Xi_{m} : T_{m} \rightarrow \Minako_{m-1}$ is the reflection mapping
+    where $\Xi_{m} : T_{m} \rightarrow \frakM_{m-1}$ is the reflection mapping
     as $\Xi_{1}$ in Proposition~\ref{proposition:starreflection} and the pullback is defined in~\eqref{equation:pullback}.
     Clearly, $w_{|T_m} \in W^{p}\Alt^{k}(T_{m})$. Moreover,
     \begin{align*}
@@ -265,49 +2053,49 @@ This implies the following estimate for Poincar\'e--Friedrichs constants over co
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         \leq  
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         + 
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| u - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         .
     \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) = 0$, we have
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, since $\trace_{\Gamma_{m-1}} (u_{|T_m} - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}})) = 0$, we have
     \begin{align*}
-        \| u - \Xi_{m}^{\ast}(u_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})} 
+        \| u - \Xi_{m}^{\ast}(u_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})} 
         &
         \leq 
         C_{\PF,T_{m},\Gamma_{m},k,p} (\| \cartan u      \|_{L^{p}(T_{m})} 
-        + \| \cartan (\Xi_{m}^{\ast}(u_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})} )
+        + \| \cartan (\Xi_{m}^{\ast}(u_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})} )
         .
     \end{align*}
     We also use Proposition~\ref{proposition:pullbackestimate} to find 
     \begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
+        \| w \|_{L^{p}(\frakM_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        \|\det(\Jacobian \Xi_{m}  )\|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        \| \cartan u \|_{L^{p}(\frakM_{m-1})}
         ,
     \end{align*}
 	\begin{align*}
-        \| \Xi_{m}^{\ast}(w_{|\Minako_{m-1}}) \|_{L^{p}(T_{m})}
+        \| \Xi_{m}^{\ast}(w_{|\frakM_{m-1}}) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k}_{L^{\infty}(T_{m})}
-        \| w \|_{L^{p}(\Minako_{m-1})}
+        \| w \|_{L^{p}(\frakM_{m-1})}
         ,
         \\
-        \| \cartan (\Xi_{m}^{\ast}(w_{|\Minako_{m-1}})) \|_{L^{p}(T_{m})}
+        \| \cartan (\Xi_{m}^{\ast}(w_{|\frakM_{m-1}})) \|_{L^{p}(T_{m})}
         &\leq 
-        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\Minako_{m-1})} 
+        |\det(\Jacobian \Xi_{m}  )|^{-\frac 1 p}_{L^{\infty}(\frakM_{m-1})} 
         \| \Jacobian \Xi_{m} \|^{k+1}_{L^{\infty}(T_{m})}
-        \| \cartan u \|_{L^{p}(\Minako_{m-1})}
+        \| \cartan u \|_{L^{p}(\frakM_{m-1})}
         ,
     \end{align*}
     where we have employed that $\cartan w = \cartan u$ over $X_{m-1}$. 
@@ -1698,7 +3486,7 @@ We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m 
 
 
 
-
+\begin{itemize}
         \item 
         % \todo{Combine all this to get the final transformation.}
         The last simplicial complex that we introduce is called $\calK$,
@@ -2274,7 +4062,8 @@ We write $\Omega_{m} \subseteq \bbR^{n}$ for the domain with $\overline\Omega_m 
         we obtain a bound on the operator norm of the Jacobian of $F_{T}^{-1}$. 
         We recall that $\sigma_{\max}(A_{T}^{-1}) = \sigma_{\min}(A_{T})^{-1}$ and $\sigma_{\min}(A_{T}^{-1})^{-1} = \sigma_{\max}(A_{T})$.
         \color{black}
-        
+\item 
+\end{itemize}
 
 
 

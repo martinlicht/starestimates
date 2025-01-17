@@ -1,3 +1,15 @@
+[x] introduction 
+[x] review poincare 
+[x] triangulations
+[x] poincare on triangulations
+[x] review vector/exterior calculus
+
+[x] potential operators 
+[ ] shellable
+[ ] reflection and deformation 
+[ ] Main estimate
+[ ] numerical 
+
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
 - [x] do you have a preference for facet or face ? 
@@ -59,12 +71,16 @@ Further changes:
 - [x] use the product inequality for singular values 
 - [x] pairwise inequality (topics: p.178)
 - [x] Lemma 9.2: clean up estimate on poincare with BC, make it less explicit 
-- [ ] Section 9: update the application of geometric estimate in the following section
-- [ ] CODE: include that possible improvement in the C++ estimate
-- [ ] compare the results 
-- [ ] implement the shelling2 construction in full
-- [ ] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
+- [x] Section 9: update the application of geometric estimate in the following section
+- [x] CODE: include that possible improvement in the C++ estimate
+- [x] implement the shelling2 construction in full
+- [x] In the deformation-based estimate, avoid estimates of the determinant, be more explicit. 
       Furthermore, it must respect the depth of each simplex
+- [ ] improve the constant \rho to have no arbitrary scale and adjust all subsequent estimates
+      \rho should be the ratio target height / source height 
+      adjust subsequent estimates after that and implement the details in C++.
+- [ ] .
+- [ ] create an improved geometric estimate for vertex stars 
 
 
 POST-REVISION:
@@ -91,8 +107,8 @@ git diff 97fbcd86 21e58
 
 FURTHER WORK 
 
-[ ] prove Guerini Savo theorem for Lipschitz domains
-Every convex is a continuous graph over a unit ball. Mollify that graph and measure the difference.
+[x] prove Guerini Savo theorem for Lipschitz domains
+Every convex set is a continuous graph over a unit ball. Mollify that graph and measure the difference.
 Problem: no separation of exterior derivatives between Hodge Laplacians
 Can approximate convex domains by strictly convex domains?
 

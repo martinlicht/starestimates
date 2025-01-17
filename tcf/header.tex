@@ -30,30 +30,22 @@
 \makeatother
 
 % TODO: macro names in correct order, this is messy ...
-\newcommand{\Ceins}[1]{C_{1,#1}}
-\newcommand{\Czwei}[1]{C_{2,#1}}
+\newcommand{\Ceins}[1]{\tcf{\sqrt{#1}}} %% \newcommand{\Ceins}[1]{C_{1,#1}}
+\newcommand{\Czwei}[1]{\tcf{\sqrt{#1}}} %% \newcommand{\Czwei}[1]{C_{2,#1}}
 \newcommand{\Cdrei}[1]{C_{3,#1}}
 \newcommand{\Cvier}[1]{C_{4,#1}}
-
 \newcommand{\Cfive}[2]{C_{5,#1,#2}}
 \newcommand{\Cfiveprime}[2]{C'_{5,#1,#2}}
 \newcommand{\Cdetfive}[2]{C^{\det}_{5,#1,#2}}
-\newcommand{\Cfivetrafo}[4]{C_{5,#1,#2,#3,#4}}
-
 \newcommand{\Csechs}[2]{C_{6,#1,#2}}
 \newcommand{\Csechsprime}[2]{C'_{6,#1,#2}}
 \newcommand{\Cdetsechs}[2]{C^{\det}_{6,#1,#2}}
-\newcommand{\Csechstrafo}[4]{C_{6,#1,#2,#3,#4}}
-
 \newcommand{\Csieb}[2]{C_{7,#1,#2}}
 \newcommand{\Csiebprime}[2]{C'_{7,#1,#2}}
-\newcommand{\Cdetsieb}[2]{C^{\det}_{7,#1,#2}}
-\newcommand{\Csiebtrafo}[4]{C_{7,#1,#2,#3,#4}}
-
 \newcommand{\Cacht}[2]{C_{8,#1,#2}}
 \newcommand{\Cachtprime}[2]{C'_{8,#1,#2}}
+\newcommand{\Cdetsieb}[2]{C^{\det}_{7,#1,#2}}
 \newcommand{\Cdetacht}[2]{C^{\det}_{8,#1,#2}}
-\newcommand{\Cachttrafo}[4]{C_{8,#1,#2,#3,#4}}
 % \newcommand{\Ceins}{\sqrt{n}}
 % \newcommand{\Czwei}{\sqrt{2n}}
 
@@ -67,7 +59,7 @@
 
 \newcommand{\aspectratio}{\kappa_{\rm A}}
 \newcommand{\algebraicshapemeasure}{\kappa_{\rm M}}
-\newcommand{\geometricshapemeasure}{\frakg_{}}
+%\newcommand{\geometricshapemeasure}{\kappa_{}}
 \newcommand{\volumeratio}{C_\rho}
 \newcommand{\diameterratio}{C_\theta}
 \newcommand{\reflectionestimate}{C_\xi}
@@ -166,10 +158,8 @@
 \newcommand{\equivalent}{ \Longleftrightarrow }
 \newcommand{\vol}{\operatorname{vol}}
 \newcommand{\st}{ \mid }
-%\newcommand{\diam}{{\operatorname{diam}}}
-\newcommand{\diam}{{\delta}}
-% \newcommand{\height}{{\rm h}}
-\newcommand{\height}{\cye{h}}
+\newcommand{\diam}{{\delta}} %% \newcommand{\diam}{{\operatorname{diam}}}
+\newcommand{\height}{h} %% \newcommand{\height}{{\rm h}}
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\patch}{\operatorname{st}}
 
