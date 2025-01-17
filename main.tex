@@ -1293,8 +1293,8 @@ A crucial structural observation is the following.
 % LTeX: enabled=false
 We introduce a specific notion of connectivity when we are given an $n$-dimensional simplicial complex $\calT$. 
 We call two $n$-dimensional simplices $S, S' \in \calT$ \emph{face-neighboring} if $S \cap S'$ is a common face of both of them. 
-We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S=S_0,S_1,\dots,S_m=S' \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
-We call such a sequence a \emph{face path} from $S$ to $S'$ in $\calT$. 
+We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S=S_0,S_1,\dots,S_m=S' \in \calT$ such that $S_{i}$ and $S_{i-1}$ are face-neighboring for all $1 \leq i \leq m$. 
+Such a sequence is called a \emph{face path} from $S$ to $S'$ in $\calT$. 
 Clearly, face-connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{face-connected component} of $\calT$ is an equivalence class under this equivalence relation, 
 and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
@@ -4765,7 +4765,11 @@ We give detailed estimates for the singular values of their Jacobians.
     \caption{Sketch of the geometric situation in the proof of Proposition~\ref{proposition:starreflection}.
     The triangle $T$ completes the star around an interior vertex. $A$ is the complement of the triangle within the star. 
     $\Gamma_1$ is the interface between the two sets, and left invariant by the reflection.
-    $\Gamma_2$ is left invariant by the deformation.}\label{figure:geometricconstruction}
+    $\Gamma_2$ is left invariant by the deformation.
+    $\Xi_{1}$ maps $T$ into $A$ while preserving the interface $\Gamma_1$,
+    and 
+    $\Xi_{2}$ maps the whole patch into $A$ while preserving the boundary $\Gamma_2$.
+    }\label{figure:geometricconstruction}
 \end{figure}
 
 
@@ -4896,12 +4900,12 @@ We give detailed estimates for the singular values of their Jacobians.
         Assuming that $\varrho > 0$ is at most the minimum height of $z_{S}$ in any $n$-simplex $K \in \calK$,
         suppose that $z \in \Ball_{\varrho}(z_S)$. 
         Let $x \in \patch_{\calT}(S)$ be in the interior of the local patch. 
-        If the line segment $I$ from $z$ to $x$ is not wholly contained in $\patch_{\calT}(S)$, 
-        then $I$ passes through a boundary face $F \subseteq K$ of the local patch,
-        and $z$ and $x$ are contained on different sides of the hyperplane $H$ spanned by $F$. 
-        Then $x$ and $z_{S}$ are the same side of $H$, since otherwise the straight line segment from $x$ to $z_{S}$ would not be contained in the patch. 
-        This means, however, that $z_{S}$ and $z$ are on different sides of $H$, contradicting that $\varrho$ is at most the height of $z_S \in K$. 
-        % TODO: The above argument seems to rely on convexity. Generalise it to avoid that difficulty.
+        Suppose that the line segment $I$ from $z$ to $x$ is not wholly contained in $\patch_{\calT}(S)$. 
+        Then $I$ intersects with a boundary face $F \subseteq K$ of the local patch.
+        The straight line segment from $z_{S}$ to $x$ lies within one open half-space defined by the affine hull of $F$.
+        Since $I$ intersects with $F$, this open-half space cannot contain $z$ but it must contain $\Ball_{\varrho}(z_S)$.
+        That is a contradiction. Hence, the straight line segment from $z$ to $x$ bust lie within the interior of the local patch. 
+        We deduce that $\patch_{\calT}(S)$ is star-shaped with respect to $\Ball_{\varrho}(z_S)$.
         
         \item 
         Let $\rho \in (0,1]$, yet to be determined. 
