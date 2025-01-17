@@ -6003,12 +6003,12 @@ and their Poincar\'e--Friedrichs constants are the inverse square roots of the s
 Standard finite element eigenvalue computations on a sufficiently refined mesh (four steps of uniform refinement) provide reference values for these.
 
 We compare the reference Neumann eigenvalues with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-A brufe-force search easily enumerates all the shortest face-paths that start from a given triangle, so we use the best possible estimate that this method provides. 
+A brufe-force search easily enumerates all the (reptition-free) face-paths between triangles, which allows us to find the best estimate possible estimate with the aforementioned theorem. 
 
-We compare the reference Neumann and Dirichlet eigenvalues with the bounds in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+We compare the reference Neumann and Dirichlet eigenvalues with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
 Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations,
-so the best possible estimate with that method can be obtained. 
+allowing us to compute the best possible of these bounds. 
 
 
 % Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.
@@ -6044,14 +6044,15 @@ We consider the triangulations:
     \item $\calT_{B}$: crossed bricks, $24$ simplices 
 \end{itemize}
 
-The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex and a sufficiently refined mesh (four steps of uniform refinement).
-As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
+Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 
-Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
+The computation becomes more demanding in dimension three. 
+Enumerating all the paths between tetrahedra in our example triangulations is feasible but takes considerably longer. 
 Brute-force enumeration of all shellings seems infeasible, though. 
 Instead, 
 
-\todo{1. be explicit whether/that a shortest path tree is needed. 2. introduce face shortest-path tree 3. how to enumerate shellings}
+\todo{How to select shellings}
 
 
 
