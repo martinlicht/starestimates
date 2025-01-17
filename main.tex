@@ -4899,7 +4899,7 @@ We give detailed estimates for the singular values of their Jacobians.
         Suppose that the line segment $I$ from $z$ to $x$ is not wholly contained in $\patch_{\calT}(S)$. 
         Then $I$ intersects with a boundary face $F \subseteq K$ of the local patch.
         The straight line segment from $z_{S}$ to $x$ lies within one open half-space defined by the affine hull of $F$.
-        Since $I$ intersects with $F$, this open-half space cannot contain $z$ but it must contain $\Ball_{\varrho}(z_S)$.
+        Since $I$ intersects with $F$, this open-half space cannot contain $z$, but it must contain $\Ball_{\varrho}(z_S)$.
         That is a contradiction. Hence, the straight line segment from $z$ to $x$ bust lie within the interior of the local patch. 
         We deduce that $\patch_{\calT}(S)$ is star-shaped with respect to $\Ball_{\varrho}(z_S)$.
         
@@ -5958,25 +5958,25 @@ We compare computed Poincar\'e--Friedrichs constants over the reference tetrahed
 % We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
 \begin{table}[t]
-    \centering % TODO: recompute all those numbers
-    \begin{tabular}{c|c|c|c|c|c}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $\ell$ & simulation & theorem & ratio \\
-        \hline
-        0 & 5.37161130e+00 & 1.34450672e+01 & 2.50298587e+00 \\ 
-        1 & 4.08721544e+00 & 1.90141963e+01 & 4.65211501e+00 \\
-        2 & 6.42794893e+00 & 2.68901344e+01 & 4.18331487e+00 \\
-        3 & 6.71227069e+00 & 3.80283927e+01 & 5.66550344e+00 \\
-        3 & 6.71227069e+00 & 7.76251317e+00 & 1.15646605e+00 \\
-        \hline
+                           & $\grad$           & $\curl$           & $\divergence$   \\ \hline
+        $l=0$              & 0.08625017654     & 0.1453729386      & 0.2601720480    \\ \hline
+        $l=1$              & 0.1093817645      & 0.1829680131      & 0.3493931507    \\ \hline
+        $l=2$              & 0.1450219664      & 0.2428248005      & 0.1845090722    \\ \hline
+        $l=3$              & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
+        $\Gamma=\emptyset$ & 0.2631059409      & 0.1458215887      & 0.08740665548   \\ \hline
     \end{tabular}
-    \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
-    The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
-    The second column contains estimates obtained via Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
-    and Theorem~\ref{theorem:bogovpoinc} in the last line, where we use Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} for improvement. 
-    }
-    % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
+    \caption{
+    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
+    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
+    Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{} is $0.45015815807$.
+    }\label{table:referencepoincarefriedrichs}
 \end{table}
+    
+
+    
 
 
 
@@ -6015,6 +6015,28 @@ allowing us to compute the best possible of these bounds.
 
 
 
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Domain & Exact PF & Approximate PF & Ratio 
+    \\ 
+    \hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    \hline
+    \end{tabular}
+    \caption{Example table with text and formulas.}
+    \label{tab:example}
+\end{table}
+
+
 \subsection{Three-dimensional examples}
 
 We consider the following example domains in two dimensions:
@@ -6046,6 +6068,28 @@ We consider the triangulations:
 
 The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
 Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Domain & Exact PF & Approximate PF & Ratio 
+    \\ 
+    \hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    \hline
+    \end{tabular}
+    \caption{Example table with text and formulas.}
+    \label{tab:example}
+\end{table}
+The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex and a sufficiently refined mesh (four steps of uniform refinement).
+As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 The computation becomes more demanding in dimension three. 
 Enumerating all the paths between tetrahedra in our example triangulations is feasible but takes considerably longer. 

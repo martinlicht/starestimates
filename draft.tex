@@ -75,8 +75,28 @@
 
 
 
+\section{Old type}
 
-
+\begin{table}[t]
+    \centering % TODO: recompute all those numbers
+    \begin{tabular}{c|c|c|c|c|c}
+        \hline
+        $\ell$ & simulation & theorem & ratio \\
+        \hline
+        0 & 5.37161130e+00 & 1.34450672e+01 & 2.50298587e+00 \\ 
+        1 & 4.08721544e+00 & 1.90141963e+01 & 4.65211501e+00 \\
+        2 & 6.42794893e+00 & 2.68901344e+01 & 4.18331487e+00 \\
+        3 & 6.71227069e+00 & 3.80283927e+01 & 5.66550344e+00 \\
+        3 & 6.71227069e+00 & 7.76251317e+00 & 1.15646605e+00 \\
+        \hline
+    \end{tabular}
+    \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
+    The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
+    The second column contains estimates obtained via Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
+    and Theorem~\ref{theorem:bogovpoinc} in the last line, where we use Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} for improvement. 
+    }
+    % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
+\end{table}
 
 
 
