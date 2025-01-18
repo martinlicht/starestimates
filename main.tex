@@ -1290,8 +1290,8 @@ A crucial structural observation is the following.
 % LTeX: enabled=false
 We introduce a specific notion of connectivity when we are given an $n$-dimensional simplicial complex $\calT$. 
 We call two $n$-dimensional simplices $S, S' \in \calT$ \emph{face-neighboring} if $S \cap S'$ is a common face of both of them. 
-We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S=S_0,S_1,\dots,S_m=S' \in \calT$ such that $S_{i} \cap S_{i-1}$ is a face of both $S_{i}$ and $S_{i-1}$ for all $1 \leq i \leq m$. 
-We call such a sequence a \emph{face path} from $S$ to $S'$ in $\calT$. 
+We call $n$-simplices $S,S' \in \calT$ \emph{face-connected in $\calT$} if there exists a sequence $S=S_0,S_1,\dots,S_m=S' \in \calT$ such that $S_{i}$ and $S_{i-1}$ are face-neighboring for all $1 \leq i \leq m$. 
+Such a sequence is called a \emph{face path} from $S$ to $S'$ in $\calT$. 
 Clearly, face-connected in $\calT$ is an equivalence relation among simplices. 
 A \emph{face-connected component} of $\calT$ is an equivalence class under this equivalence relation, 
 and we call $\calT$ \emph{face-connected} if it has only one face-connected component. 
@@ -4761,7 +4761,11 @@ We give detailed estimates for the singular values of their Jacobians.
     \caption{Sketch of the geometric situation in the proof of Proposition~\ref{proposition:starreflection}.
     The triangle $T$ completes the star around an interior vertex. $A$ is the complement of the triangle within the star. 
     $\Gamma_1$ is the interface between the two sets, and left invariant by the reflection.
-    $\Gamma_2$ is left invariant by the deformation.}\label{figure:geometricconstruction}
+    $\Gamma_2$ is left invariant by the deformation.
+    $\Xi_{1}$ maps $T$ into $A$ while preserving the interface $\Gamma_1$,
+    and 
+    $\Xi_{2}$ maps the whole patch into $A$ while preserving the boundary $\Gamma_2$.
+    }\label{figure:geometricconstruction}
 \end{figure}
 
 
@@ -4892,12 +4896,12 @@ We give detailed estimates for the singular values of their Jacobians.
         Assuming that $\varrho > 0$ is at most the minimum height of $z_{S}$ in any $n$-simplex $K \in \calK$,
         suppose that $z \in \Ball_{\varrho}(z_S)$. 
         Let $x \in \patch_{\calT}(S)$ be in the interior of the local patch. 
-        If the line segment $I$ from $z$ to $x$ is not wholly contained in $\patch_{\calT}(S)$, 
-        then $I$ passes through a boundary face $F \subseteq K$ of the local patch,
-        and $z$ and $x$ are contained on different sides of the hyperplane $H$ spanned by $F$. 
-        Then $x$ and $z_{S}$ are the same side of $H$, since otherwise the straight line segment from $x$ to $z_{S}$ would not be contained in the patch. 
-        This means, however, that $z_{S}$ and $z$ are on different sides of $H$, contradicting that $\varrho$ is at most the height of $z_S \in K$. 
-        % TODO: The above argument seems to rely on convexity. Generalise it to avoid that difficulty.
+        Suppose that the line segment $I$ from $z$ to $x$ is not wholly contained in $\patch_{\calT}(S)$. 
+        Then $I$ intersects with a boundary face $F \subseteq K$ of the local patch.
+        The straight line segment from $z_{S}$ to $x$ lies within one open half-space defined by the affine hull of $F$.
+        Since $I$ intersects with $F$, this open-half space cannot contain $z$, but it must contain $\Ball_{\varrho}(z_S)$.
+        That is a contradiction. Hence, the straight line segment from $z$ to $x$ bust lie within the interior of the local patch. 
+        We deduce that $\patch_{\calT}(S)$ is star-shaped with respect to $\Ball_{\varrho}(z_S)$.
         
         \item 
         Let $\rho \in (0,1]$, yet to be determined. 
@@ -5948,31 +5952,38 @@ We compare the (approximations of) the exact values with the upper bounds given 
 
 \subsection{Estimates for partial boundary conditions}
 
-We first assess the constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
-which relies on estimates for the Bogovski\u{\i} operator over an auxiliary reference domain.
-We compare computed Poincar\'e--Friedrichs constants over the tetrahedron with tangential boundary conditions along a few faces. 
+We first assess the Poincar\'e--Friedrichs constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
+where tangential boundary conditions hold along a few faces. 
+We tabulate reference Poincar\'e--Friedrichs constants over the reference tetrahedron in Table~\ref{table:referencepoincarefriedrichs},
+which are computed via a higher-order finite element method over a mesh after three iterations of uniform refinement.
+
+The aforementioned lemma gives an upper bound of $\sqrt{2}/\pi \approx 0.45015815807$,
+which is an overestimate of at most a factor of six.
+We take this as an indication that the estimate is within feasible range. 
+We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
+
 % We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
 \begin{table}[t]
-    \centering % TODO: recompute all those numbers
-    \begin{tabular}{c|c|c|c|c|c}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
         \hline
-        $\ell$ & simulation & theorem & ratio \\
-        \hline
-        0 & 5.37161130e+00 & 1.34450672e+01 & 2.50298587e+00 \\ 
-        1 & 4.08721544e+00 & 1.90141963e+01 & 4.65211501e+00 \\
-        2 & 6.42794893e+00 & 2.68901344e+01 & 4.18331487e+00 \\
-        3 & 6.71227069e+00 & 3.80283927e+01 & 5.66550344e+00 \\
-        3 & 6.71227069e+00 & 7.76251317e+00 & 1.15646605e+00 \\
-        \hline
+                           & $\grad$           & $\curl$           & $\divergence$   \\ \hline
+        $l=0$              & 0.08625017654     & 0.1453729386      & 0.2601720480    \\ \hline
+        $l=1$              & 0.1093817645      & 0.1829680131      & 0.3493931507    \\ \hline
+        $l=2$              & 0.1450219664      & 0.2428248005      & 0.1845090722    \\ \hline
+        $l=3$              & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
+        $\Gamma=\emptyset$ & 0.2631059409      & 0.1458215887      & 0.08740665548   \\ \hline
     \end{tabular}
-    \caption{Estimated $L^2$ Poincar\'e--Friedrichs constants of the curl operator over the unit tetrahedron with tangential boundary conditions along $\ell$ faces. 
-    The first column contains estimates obtained by numerical simulation with lowest-order N\'ed\'elec elements, via solving an eigenvalue problem.
-    The second column contains estimates obtained via Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} in the first four lines
-    and Theorem~\ref{theorem:bogovpoinc} in the last line, where we use Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} for improvement. 
-    }
-    % Guerini savo : sqrt(3/2) exp(3/2) * D = 7.7625131735516560875716574146153971065689036068355180671108813262 > 6.71227069e+00
+    \caption{
+    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
+    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
+    Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
+    }\label{table:referencepoincarefriedrichs}
 \end{table}
+    
+
+    
 
 
 
@@ -5999,16 +6010,38 @@ and their Poincar\'e--Friedrichs constants are the inverse square roots of the s
 Standard finite element eigenvalue computations on a sufficiently refined mesh (four steps of uniform refinement) provide reference values for these.
 
 We compare the reference Neumann eigenvalues with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-A brufe-force search easily enumerates all the shortest face-paths that start from a given triangle, so we use the best possible estimate that this method provides. 
+A brufe-force search easily enumerates all the (reptition-free) face-paths between triangles, which allows us to find the best estimate possible estimate with the aforementioned theorem. 
 
-We compare the reference Neumann and Dirichlet eigenvalues with the bounds in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+We compare the reference Neumann and Dirichlet eigenvalues with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
 Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations,
-so the best possible estimate with that method can be obtained. 
+allowing us to compute the best possible of these bounds. 
 
 
 % Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.
 
+
+
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Domain & Exact PF & Approximate PF & Ratio 
+    \\ 
+    \hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    \hline
+    \end{tabular}
+    \caption{Example table with text and formulas.}
+    \label{tab:example}
+\end{table}
 
 
 \subsection{Three-dimensional examples}
@@ -6040,9 +6073,32 @@ We consider the triangulations:
     \item $\calT_{B}$: crossed bricks, $24$ simplices 
 \end{itemize}
 
+The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
+Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Domain & Exact PF & Approximate PF & Ratio 
+    \\ 
+    \hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    %\hline
+    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
+    \\ 
+    \hline
+    \end{tabular}
+    \caption{Example table with text and formulas.}
+    \label{tab:example}
+\end{table}
 The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex and a sufficiently refined mesh (four steps of uniform refinement).
 As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
+The computation becomes more demanding in dimension three. 
 Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
 Brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
 Instead, we perform a greedy backtracking search: 
@@ -6056,6 +6112,7 @@ Our implementation starts with a fixed simplex and generates up to $10$ shelling
 We repeat this for a possible choices of initial simplex, and pick the optimal among those.
 The candidate shellings that we obtain in this manner allow for estimates that differ by a factor of about $2$.
 
+\todo{How to select shellings}
 
 
 

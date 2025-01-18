@@ -1,0 +1,45 @@
+
+reference simplex
+gradient, first BC face
+l=0		 0.08625017654
+l=1      0.1093817645
+l=2      0.1450219664
+l=3      0.2057601732
+
+gradient, Neumann:  0.2631059409
+
+
+reference simplex
+curl, first BC face
+l=0		 0.1453729386
+l=1      0.1829680131
+l=2      0.2428248005
+l=3      0.1527746636
+
+Curl, no boundary conditions: 0.1458215887
+
+                
+reference simplex
+divergence, first BC face, by analogy
+l=0		 0.2601720480
+l=1      0.3493931507 
+l=2      0.1845090722
+l=3      0.1223402289
+
+Divergence, no boundary conditions: 0.08740665548
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+                  & $\grad$           & $\curl$           & $\divergence$     \\ \hline
+$l=0$             & 0.08625017654     & 0.1453729386      & 0.2601720480      \\ \hline
+$l=1$             & 0.1093817645      & 0.1829680131      & 0.3493931507      \\ \hline
+$l=2$             & 0.1450219664      & 0.2428248005      & 0.1845090722      \\ \hline
+$l=3$             & 0.2057601732      & 0.1527746636      & 0.1223402289      \\ \hline
+Neumann           & 0.2631059409      & 0.1458215887      & 0.08740665548     \\ \hline
+\end{tabular}
+\caption{Reference eigenvalues for the gradient, curl, and divergence operators over the reference tetrahedron when boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{} is $0.45015815807$.}
+\label{figure:referencepoincarefriedrichs}
+\end{table}
+
