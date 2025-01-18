@@ -6044,10 +6044,18 @@ The reference Poincar\'e--Friedrichs constants for the gradient, curl, and diver
 As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
-Brute-force enumeration of all shellings seems infeasible, though. 
-Instead, 
+Brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
+Instead, we perform a greedy backtracking search: 
+starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
+Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
+We moreover prioritize the completion of face stars, since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+It is imperative for the improvement of our upper bounds that we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each of the geometric transformations, thus avoiding overtly pessimistic blanket estimates.
 
-\todo{1. be explicit whether/that a shortest path tree is needed. 2. introduce face shortest-path tree 3. how to enumerate shellings}
+This greedy backtracking algorithm does generally not guarantee that the optimal shelling is found before the last iteration. 
+Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
+We repeat this for a possible choices of initial simplex, and pick the optimal among those.
+The candidate shellings that we obtain in this manner allow for estimates that differ by a factor of about $2$.
+
 
 
 
