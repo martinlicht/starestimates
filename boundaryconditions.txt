@@ -43,3 +43,35 @@ Neumann           & 0.2631059409      & 0.1458215887      & 0.08740665548     \\
 \label{figure:referencepoincarefriedrichs}
 \end{table}
 
+
+
+2D  Quadrat 
+k=0 ref 0.318309563  est 1.559393601 ratio 3.141595843441268 
+k=1 ref 0.2250565284 est 1.559393601 ratio 6.928897176872058 
+
+2D  L-Shaped 
+k=0 ref 0.8226899867 est 2.382013071 ratio 2.895395724002629                 
+k=1 ref 0.3221078945 est 2.382013071 ratio 7.402266766215750
+
+2D  Slit domain (5T)
+k=0 ref 0.9781817319 est 2.917358296 ratio 2.982429747636027
+k=1 ref 0.3465088853 est 2.917358296 ratio 8.419288566306699
+
+2D  Slit domain (4 at origin, 4 at outside)
+k=0 ref 0.9781817319 est 4.764026134 ratio 2.982429747636027
+k=1 ref 0.3465088853 est 4.764026134 ratio 8.419288566306699
+
+
+
+
+3D Standard Cube (5)
+k=0 ref 0.6355994053 est 2.295365232 ratio 3.611339490040196e+00                     
+k=1 ref 0.4501390064 est 2.295365232 ratio 5.099236457042005e+00
+k=2 ref 0.3675762649 est 3.053121173 ratio 2.720523862471254e+00
+
+3D Unit Cube (6)
+k=0 ref est 12.73827122 ratio 
+k=1 ref est 29.14392611 ratio 
+k=2 ref est 25.68030786 ratio 
+
+
