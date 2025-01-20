@@ -5894,13 +5894,19 @@ We compare the (approximations of) the exact values with the upper bounds given 
 
 We first assess the Poincar\'e--Friedrichs constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
 where tangential boundary conditions hold along a few faces. 
+This constant appears repeatedly within our main result. 
+
 We tabulate reference Poincar\'e--Friedrichs constants over the reference tetrahedron in Table~\ref{table:referencepoincarefriedrichs},
 which are computed via a higher-order finite element method over a mesh after three iterations of uniform refinement.
 
 The aforementioned lemma gives an upper bound of $\sqrt{2}/\pi \approx 0.45015815807$,
 which is an overestimate of at most a factor of six.
-We take this as an indication that the estimate is within feasible range. 
+We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
 We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
+
+However, the results indicate significant room for improvement. 
+Future estimates should tighten the gap towards the actual computed values,
+including for ill-shaped simplices.
 
 % We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
@@ -5920,7 +5926,7 @@ We expect the bound to deteriorate as the eccentricity of the tetrahedron increa
     where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
     Computed via lowest-order finite element methods. 
     Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
-    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
+    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $2/\pi \approx 0.45015815807$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
     
@@ -5966,26 +5972,26 @@ allowing us to compute the best possible of these bounds.
 
 \begin{table}[t]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
         \hline
-                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
         \hline
-        $\calT_{Q}$     & 0.318309563  & 1.559393582 & 3.141595843441268  & 0.2250565284       & 1.559393592        &  6.928897176872058 \\ 
+        $\calT_{Q}$     & 0.318        &             &               & 1.559       & 3.141              & 0.225              & 1.559              &  6.928              \\ 
         \hline
-        $\calT_{L}$     & 0.8226899867 & 2.382013071 & 2.895395724002629  & 0.3221078945       & 2.382013071        &  7.402266766215750 \\ 
+        $\calT_{L}$     & 0.822        &             &               & 2.382       & 2.895              & 0.322              & 2.382              &  7.402              \\ 
         \hline
-        $\calT_{S}$     & 0.9781817319 & 2.917358296 & 2.982429747636027  & 0.3465088853       & 2.917358296        &  8.419288566306699 \\ 
+        $\calT_{S}$     & 0.978        &             &               & 2.917       & 2.982              & 0.346              & 2.917              &  8.419              \\ 
         \hline
-        $\calT_{S'}$    & 0.9781817319 & 4.764026134 & 4.870287369552950  & 0.3465088853       & 4.764026134        & 13.748640615306034 \\ 
+        $\calT_{S'}$    & 0.978        &             &               & 4.764       & 4.870              & 0.346              & 4.764              & 13.748              \\ 
         \hline
     \end{tabular}
     \caption{
-    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
-    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
-    Computed via lowest-order finite element methods. 
-    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
-    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
-    }\label{table:referencepoincarefriedrichs}
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 2D domains.
+    Reference values for the gradient and divergence (2nd and 7th column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column), 
+    and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (8th and 9th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates2D}
 \end{table}
 
 
@@ -6042,6 +6048,50 @@ We repeat this for a possible choices of initial simplex, and pick the optimal s
 The candidate shellings that we obtain in this manner allow for estimates that differ by a factor of about $2$.
 
 
+\begin{table}[t]
+    \color{red}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio      & $\grad$ est & $\grad$ ratio       \\ 
+        \hline
+        $\calT_{C}$     & 0.3177997026 &             &                    &  1.147682616 & 3.611339490040196  \\ 
+        \hline
+        $\calT_{K}$     & 0.3179254398 &             &                    & 12.73827122  & 91.66905966662563  \\ 
+        \hline
+        $\calT_{C,5}$     &              &             &                    & 36.7821067   &                    \\ 
+        \hline
+    \end{tabular}
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants of the gradient over various triangulated 3D domains.
+    Reference values for the gradient (2nd column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column).
+    }\label{table:estimates3D:grad}
+\end{table}
+
+\begin{table}[t]
+    \color{red}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+                        & $\curl$ ref  & $\curl$ est & $\curl$ ratio     & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
+        \hline
+        $\calT_{C}$     & 0.2250695032 & 1.147682616 & 5.099236457042005 & 0.1837881324      & 1.5265605865      &  8.30608900893      \\ 
+        \hline
+        $\calT_{K}$     & 0.2250062929 & 29.14392611 & 129.5249378629681 & 0.1837655124      & 25.68030786       & 139.7449800105412   \\ 
+        \hline
+        $\calT_{C,5}$   &              & 160.0052039 &                   & 36.7821067        & 160.7339833       &                     \\ 
+        \hline
+    \end{tabular}
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 3D domains.
+    Reference values for the curl and divergence (2nd and 5th column) computed with finite element methods together with estimates and ratios
+    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (3rd and 4th column) and with $k=1$ (5th and 6th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates3D:curldiv}
+\end{table}
+
+36.7821067  160.0052039 160.7339833
 
 
 

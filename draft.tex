@@ -71,6 +71,37 @@
 
 
 
+\section{Original 2D table}
+
+
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio      & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
+        \hline
+        $\calT_{Q}$     & 0.318309563  &             &                    & 1.559393582 & 3.141595843441268  & 0.2250565284       & 1.559393592        &  6.928897176872058 \\ 
+        \hline
+        $\calT_{L}$     & 0.8226899867 &             &                    & 2.382013071 & 2.895395724002629  & 0.3221078945       & 2.382013071        &  7.402266766215750 \\ 
+        \hline
+        $\calT_{S}$     & 0.9781817319 &             &                    & 2.917358296 & 2.982429747636027  & 0.3465088853       & 2.917358296        &  8.419288566306699 \\ 
+        \hline
+        $\calT_{S'}$    & 0.9781817319 &             &                    & 4.764026134 & 4.870287369552950  & 0.3465088853       & 4.764026134        & 13.748640615306034 \\ 
+        \hline
+    \end{tabular}
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 2D domains.
+    Reference values for the gradient and divergence (2nd and 7th column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column), 
+    and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (8th and 9th column)
+    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
+    Computed via lowest-order finite element methods. 
+    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
+    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
+    }\label{table:referencepoincarefriedrichs}
+\end{table}
+
 
 
 \section{Additional formulation for the curl-operator}
