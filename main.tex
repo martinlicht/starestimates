@@ -5963,6 +5963,23 @@ allowing us to compute the best possible of these bounds.
 % Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.
 
 
+\begin{table}[t]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+                           & $\grad$ ref       $\grad$ est       $\grad$ ratio       & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ \hline
+        $\calT_{Q}$        & 0.2250790762      & 1.559393582    &  6.928203228191673 &                    &  1.559393592       &                     \\ \hline
+        $\calT_{L}$        &                   &                &                    &                    &                    &                     \\ \hline
+        $\calT_{S}$        &                   &                &                    &                    &                    &                     \\ \hline
+    \end{tabular}
+    \caption{
+    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
+    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
+    Computed via lowest-order finite element methods. 
+    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
+    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
+    }\label{table:referencepoincarefriedrichs}
+\end{table}
 
 
 
