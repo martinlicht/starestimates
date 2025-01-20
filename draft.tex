@@ -73,6 +73,70 @@
 
 
 
+\section{Additional formulation for the curl-operator}
+
+
+
+% TODO: Keep this theorem in favor of a broad audience? Or toss it?
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:curl}
+    Let $\calT$ be a shellable $n$-dimensional triangulation, 
+    and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
+    Assume that $T_0, T_1, \dots, T_M$ be a shelling of $\calT$ and that $\bfu \in \bfW^{p}(\Omega,\curl)$ for some $1 \leq p \leq \infty$.
+    Let $0 \leq \ell_{m} < n$ be such that $T_{m}$ shares $n - \ell_{m}$ faces with the previous simplices.
+    \begin{itemize}
+        \item 
+        There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$
+        and such that the following estimates hold:
+        \begin{gather*}
+            \| \bfw \|_{L^{p}(T_{0})} \leq C_{{\PF},1,T_{0},p} \| \curl \bfu \|_{L^{p}(T_{0})}
+        \end{gather*}
+        and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
+        \begin{align*}
+            \| \bfw \|_{L^{p}(T_{m})}
+            &
+            \leq  
+            C_{\PF,T_{m},\Gamma_{m},1,p}(\calT) 
+            \left( 
+                \| \curl \bfu      \|_{L^{p}(T_{m})} 
+                +
+                \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
+                \| \curl \bfu \|_{L^{p}(\Makoto_{m-1})}
+            \right)
+            \\&\qquad
+            + 
+            \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
+            \| \bfw \|_{L^{p}(\Makoto_{m-1})}
+            .
+        \end{align*}
+        \item 
+        There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$ 
+        such that 
+        \begin{align*}
+            \| \bfw \|_{L^{p}(T_{m})}
+            \leq 
+            \left( 
+            \prod_{i=1}^{M}
+            \Cachttrafo{n}{2}{\ell_{m}}{p}(\calT)
+            \Csiebtrafo{n}{1}{\ell_{m}}{p}(\calT)
+            \right)
+            C_{{\PF},1,T_{0},p}
+            \| \curl \bfu \|_{L^{p}(\Omega)}
+            .
+        \end{align*}
+    \end{itemize}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \section{Old type}

@@ -1344,7 +1344,7 @@ We call these the aspect and algebraic shape measure, respectively, of the trian
     The ratio $\aspectratio(T)$ measures the ``shape quality'' of an $n$-dimensional simplex $T$ and is an instance of a so-called \emph{shape measure}.
     For example, the reference triangle has aspect shape measure $2$ and the reference tetrahedron has aspect shape measure $\sqrt{6}$. 
     Numerous alternative shape measures have been used throughout the literature of numerical analysis and computational geometry to quantify the quality of simplices (see~\cite[p.61, Definition 5.1]{braess2001finite}, 
-    \cite[p.97, Definition 4.2.16 ]{brenner2008mathematical}, % TODO: add brackets here in the final version or figure out how to fix the display in the editor.
+    \cite[p.97, Definition {\char`\(}4.2.16{\char`\)} ]{brenner2008mathematical}, % DONE: add brackets here in the final version or figure out how to fix the display in the editor.
     \cite[Definition~11.2]{ern2021finite}). 
 \end{remark}
 
@@ -5445,12 +5445,12 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         C_{{\PF},\Bogov,k,\widetilde \Makoto,p} 
         &
         = 
-        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{\diam(\widetilde \Makoto)^{n}}{\vol(\widetilde \Makoto)} \diam(\widetilde \Makoto)
+        C_{\Bogov}(n,\mia+1) \vol_{n-1}(S_{1}(0)) \frac{\diam(\widetilde \Makoto)^{n}}{\vol(\widetilde \Makoto)} \diam(\widetilde \Makoto)
         \\&
         = 
-        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \frac{2^{n}}{2^{n-\ell}/n!} 2
+        C_{\Bogov}(n,\mia+1) \vol_{n-1}(S_{1}(0)) \frac{2^{n}}{2^{n-\ell}/n!} 2
         = 
-        C_{\Bogov}(n,\mia) \vol_{n-1}(S_{1}(0)) \cdot n! 2^{\ell+1} 
+        C_{\Bogov}(n,\mia+1) \vol_{n-1}(S_{1}(0)) \cdot n! 2^{\ell+1} 
         .
     \end{align*}
     We let $\tilde w \in W^{p}\Lambda^{k}(\widetilde \Makoto)$ be defined by averaging the $2^{n - \ell}$ reflections of $\mathring w$ along the coordinate axes $\ell+1$ through $n$. Thus,
@@ -5512,7 +5512,7 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     \begin{align*}
         C_{\PF,\Gamma,\ell,k,p}(T)
         \leq 
-        \frac{1}{\pi}
+        \frac{2}{\pi}
         \algebraicshapemeasure(T)^{k-1}
         \Ceins{n}(T) 
         \diam(T)
@@ -5883,66 +5883,6 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 
 
-% TODO: Keep this theorem in favor of a broad audience? Or toss it?
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:curl}
-    Let $\calT$ be a shellable $n$-dimensional triangulation, 
-    and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
-    Assume that $T_0, T_1, \dots, T_M$ be a shelling of $\calT$ and that $\bfu \in \bfW^{p}(\Omega,\curl)$ for some $1 \leq p \leq \infty$.
-    Let $0 \leq \ell_{m} < n$ be such that $T_{m}$ shares $n - \ell_{m}$ faces with the previous simplices.
-    \begin{itemize}
-        \item 
-        There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$
-        and such that the following estimates hold:
-        \begin{gather*}
-            \| \bfw \|_{L^{p}(T_{0})} \leq C_{{\PF},1,T_{0},p} \| \curl \bfu \|_{L^{p}(T_{0})}
-        \end{gather*}
-        and for each $T_{m} \in \calT$, $1 \leq m \leq M$ we have the recursive estimate 
-        \begin{align*}
-            \| \bfw \|_{L^{p}(T_{m})}
-            &
-            \leq  
-            C_{\PF,T_{m},\Gamma_{m},1,p}(\calT) 
-            \left( 
-                \| \curl \bfu      \|_{L^{p}(T_{m})} 
-                +
-                \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
-                \| \curl \bfu \|_{L^{p}(\Makoto_{m-1})}
-            \right)
-            \\&\qquad
-            + 
-            \Cfivetrafo{n}{1}{\ell_{m}}{p}(\calT)
-            \| \bfw \|_{L^{p}(\Makoto_{m-1})}
-            .
-        \end{align*}
-        \item 
-        There exists $\bfw \in \bfW^{p}(\Omega,\curl)$ with $\curl \bfw = \curl \bfu$ 
-        such that 
-        \begin{align*}
-            \| \bfw \|_{L^{p}(T_{m})}
-            \leq 
-            \left( 
-            \prod_{i=1}^{M}
-            \Cachttrafo{n}{2}{\ell_{m}}{p}(\calT)
-            \Csiebtrafo{n}{1}{\ell_{m}}{p}(\calT)
-            \right)
-            C_{{\PF},1,T_{0},p}
-            \| \curl \bfu \|_{L^{p}(\Omega)}
-            .
-        \end{align*}
-    \end{itemize}
-\end{theorem}
-
-
-
-
-
-
-
-
-
-
-
-
 
 \section{Numerical examples}\label{section:numericalexamples}
 
@@ -5978,7 +5918,9 @@ We expect the bound to deteriorate as the eccentricity of the tetrahedron increa
     \caption{
     Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
     where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
-    Computed via lowest-order finite element methods. The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
+    Computed via lowest-order finite element methods. 
+    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
+    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
     
@@ -6022,26 +5964,6 @@ allowing us to compute the best possible of these bounds.
 
 
 
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-    \hline
-    Domain & Exact PF & Approximate PF & Ratio 
-    \\ 
-    \hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    %\hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    %\hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    \hline
-    \end{tabular}
-    \caption{Example table with text and formulas.}
-    \label{tab:example}
-\end{table}
 
 
 \subsection{Three-dimensional examples}
@@ -6075,35 +5997,25 @@ We consider the triangulations:
 
 The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
 Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-\begin{table}[h!]
-    \centering
-    \begin{tabular}{|c|c|c|c|}
-    \hline
-    Domain & Exact PF & Approximate PF & Ratio 
-    \\ 
-    \hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    %\hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    %\hline
-    $\Omega$ & $1.0$ & $1.0$ & $1.0$ 
-    \\ 
-    \hline
-    \end{tabular}
-    \caption{Example table with text and formulas.}
-    \label{tab:example}
-\end{table}
-The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex and a sufficiently refined mesh (four steps of uniform refinement).
-As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
+
+% The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
+% As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 The computation becomes more demanding in dimension three. 
-Enumerating all the paths between tetrahedra in our example triangulations is feasible but takes considerably longer. 
-Brute-force enumeration of all shellings seems infeasible, though. 
-Instead, 
+Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
+Brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
+Instead, we perform a greedy backtracking search: 
+starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
+Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
+We moreover prioritize the completion of face stars, since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+It is imperative for the improvement of our upper bounds that we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each of the geometric transformations, thus avoiding overtly pessimistic blanket estimates.
 
-\todo{How to select shellings}
+This greedy backtracking algorithm does generally not guarantee that the optimal shelling is found until all shellings have been produced.
+However, finding all shellings seems practically infeasible. 
+Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
+We repeat this for a possible choices of initial simplex, and pick the optimal shelling among those found.
+The candidate shellings that we obtain in this manner allow for estimates that differ by a factor of about $2$.
+
 
 
 
