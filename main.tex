@@ -5942,9 +5942,10 @@ the unit square $\Omega_Q$, the L-shaped domain $\Omega_L$, and the slit domain 
 \end{gather*}
 We consider the triangulations: 
 \begin{itemize}
-    \item $\calT_{Q}$: square triangulation with two triangles
-    \item $\calT_{L}$: L-shaped domain triangulation with four triangles
-    \item $\calT_{S}$: Slit domain triangulation, five triangles 
+    \item $\calT_{Q}$:  square triangulation with two triangles
+    \item $\calT_{L}$:  L-shaped domain triangulation with four triangles
+    \item $\calT_{S}$:  Slit domain triangulation, five triangles 
+    \item $\calT_{S'}$: Slit domain triangulation, 8 triangles, four of which touch the origin.
 \end{itemize}
 
 Only two differential operators appear in the two-dimensional de~Rham complexes,
@@ -5965,12 +5966,18 @@ allowing us to compute the best possible of these bounds.
 
 \begin{table}[t]
     \centering
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
         \hline
-                           & $\grad$ ref       $\grad$ est       $\grad$ ratio       & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ \hline
-        $\calT_{Q}$        & 0.2250790762      & 1.559393582    &  6.928203228191673 &                    &  1.559393592       &                     \\ \hline
-        $\calT_{L}$        &                   &                &                    &                    &                    &                     \\ \hline
-        $\calT_{S}$        &                   &                &                    &                    &                    &                     \\ \hline
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
+        \hline
+        $\calT_{Q}$     & 0.318309563  & 1.559393582 & 3.141595843441268  & 0.2250565284       & 1.559393592        &  6.928897176872058 \\ 
+        \hline
+        $\calT_{L}$     & 0.8226899867 & 2.382013071 & 2.895395724002629  & 0.3221078945       & 2.382013071        &  7.402266766215750 \\ 
+        \hline
+        $\calT_{S}$     & 0.9781817319 & 2.917358296 & 2.982429747636027  & 0.3465088853       & 2.917358296        &  8.419288566306699 \\ 
+        \hline
+        $\calT_{S'}$    & 0.9781817319 & 4.764026134 & 4.870287369552950  & 0.3465088853       & 4.764026134        & 13.748640615306034 \\ 
+        \hline
     \end{tabular}
     \caption{
     Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
@@ -5980,6 +5987,7 @@ allowing us to compute the best possible of these bounds.
     The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $0.45015815807$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
+
 
 
 
