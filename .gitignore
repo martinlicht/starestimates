@@ -1,4 +1,5 @@
 arxiv.tex
+*.vscode
 *.spl
 *.fdb_latexmk
 *.fls
