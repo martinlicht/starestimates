@@ -1,14 +1,14 @@
-[x] introduction 
-[x] review poincare 
-[x] triangulations
-[x] poincare on triangulations
-[x] review vector/exterior calculus
 
-[x] potential operators 
-[ ] shellable
-[ ] reflection and deformation 
-[ ] Main estimate
-[ ] numerical 
+[ ] turn the remarks into major results; get a better idea of the recursive structure
+[ ] turn the deformation estimates into a mere remark 
+[x] make the remark more explicit (BC table)
+[ ] Remark on how we can reduce the number of simplices. The triangulation has an influence. We better avoid non-face patches. 
+[ ] What is a good start? Is the interior a good heuristic?
+[ ] make the C++ code more prominent
+[ ] Tartar-Peetre 
+[ ] Further algorithms for shellings?
+[ ] mention that the Costabel-McIntosh operators preserve 
+
 
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
