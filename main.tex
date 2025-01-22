@@ -5421,13 +5421,13 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
     By the analysis for the Bogovski\u{\i} potential operators, Theorem~\ref{theorem:bogovpoinc}, 
     there exists $\mathring w \in W^{p}_{0}\Lambda^{k}(\widetilde \Makoto)$
     with $\cartan \mathring w = \cartan \tilde u$ satisfying the bounds 
-    \begin{align*}
+    \begin{align}\label{math:mixedbconsimplex:exteriorderivative:internalconstant}
         \| \mathring w \|_{L^{p}(\widetilde \Makoto)}
         &\leq 
         C_{{\PF},\Bogov,k,\widetilde \Makoto,p}
         \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         %\\&
-        \leq 
+        % \leq 
         % n C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_2(0)) }{ \vol(\widetilde \Makoto) } 2
         % 2^n n   C_{\Bogov}(n,k+1) \frac{ \vol_{}(B_1(0))    }{ \vol(\widetilde \Makoto) } 2
         % 2^n     C_{\Bogov}(n,k+1) \frac{ \vol_{n-1}(S_1(0)) }{ \vol(\widetilde \Makoto) } 2
@@ -5436,10 +5436,10 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         %
         % n! 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
         %
-        n! \cdot 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
-        \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
+        % n! \cdot 2^{\ell+1} C_{\Bogov}(n,k+1) \vol_{n-1}(S_1(0)) 
+        % \| \tilde g \|_{L^{p}(\widetilde \Makoto)}
         .
-    \end{align*}
+    \end{align}
     Here,
     \begin{align*}
         C_{{\PF},\Bogov,k,\widetilde \Makoto,p} 
@@ -5495,7 +5495,10 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
 
 \begin{remark}\label{remark:mixedbconsimplex:exteriorderivative:hilbert}
     Under the assumptions of Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, 
-    the special case $p=2$ allows for the following improvement:
+    the special case $p=2$ allows to improve the preceding lemma.
+    Specifically, we use a better estimate for the auxiliary constant in \eqref{math:mixedbconsimplex:exteriorderivative:internalconstant}.
+    This follows from the results in \cite{licht2024geometry} as simplices are Lipschitz domains.
+    The complete inequality then reads: 
     there exists $w \in W^{2}\Lambda^{k}(T)$ such that 
     $\trace_{T,\Gamma} w = 0$
     and  
@@ -5518,8 +5521,8 @@ We also need a Poincar\'e--Friedrichs inequality for differential forms over a s
         \diam(T)
         .
     \end{align*}
-    This follows from the results in \cite{licht2024geometry} as simplices are Lipschitz domains.
-    We conjecture that the constant can be improved further, to be independent of the tetrahedron's eccentricity.
+    We conjecture that the constant can be improved further, to be independent of the tetrahedron's eccentricity,
+    and that the result can be extended to Lebesgue exponents $1 \leq p \leq \infty$.
 \end{remark}
 
 
@@ -5886,21 +5889,22 @@ The second one is specific to the fact that shellable triangulations are contrac
 
 \section{Numerical examples}\label{section:numericalexamples}
 
-We assess the ``efficiency'' of our upper bounds with a few numerical examples in dimension 2D and 3D, with focus on the Hilbert space case $p=2$. 
-Unless the Poincar\'e--Friedrichs constants are known explicitly, we use reference eigenvalue estimates as a proxy for the exact value, which we obtain using a finite element method on refined mesh. 
-We compare the (approximations of) the exact values with the upper bounds given by Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
+We assess the practical quality of our upper bounds with a few numerical examples in dimension 2D and 3D, with exclusive focus on the Hilbert space case $p=2$. 
+We want to compare the exact Poincar\'e--Friedrichs constants with the upper bounds given by Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
+In lieu of the exact value, finite element computations on a refined mesh provide reference eigenvalues as a proxy for the exact value.
+We have multiple estimates for the gradient potential, and the Poincar\'e--Friedrichs constant of the divergence can always be estimated by the diameter,
+hence our main interest is the curl operator. 
 
 \subsection{Estimates for partial boundary conditions}
 
-We first assess the Poincar\'e--Friedrichs constant in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
-where tangential boundary conditions hold along a few faces. 
-This constant appears repeatedly within our main result. 
+We first assess the Poincar\'e--Friedrichs constant over the reference simplex where boundary conditions hold along a few faces. 
+This is of interest because the constant appears repeatedly within our main result. 
 
-We tabulate reference Poincar\'e--Friedrichs constants over the reference tetrahedron in Table~\ref{table:referencepoincarefriedrichs},
-which are computed via a higher-order finite element method over a mesh after three iterations of uniform refinement.
+For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
+These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
 
-The aforementioned lemma gives an upper bound of $\sqrt{2}/\pi \approx 0.45015815807$,
-which is an overestimate of at most a factor of six.
+Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and the subequent remark (using $p=2$) give an upper bound of $2/\pi \approx 0.45015815807$,
+which is an overestimate by a factor of at most six.
 We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
 We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
 
@@ -5912,21 +5916,22 @@ including for ill-shaped simplices.
 
 \begin{table}[t]
     \centering
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|l|c|c|c|}
         \hline
-                           & $\grad$           & $\curl$           & $\divergence$   \\ \hline
-        $l=0$              & 0.08625017654     & 0.1453729386      & 0.2601720480    \\ \hline
-        $l=1$              & 0.1093817645      & 0.1829680131      & 0.3493931507    \\ \hline
-        $l=2$              & 0.1450219664      & 0.2428248005      & 0.1845090722    \\ \hline
-        $l=3$              & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
-        $\Gamma=\emptyset$ & 0.2631059409      & 0.1458215887      & 0.08740665548   \\ \hline
+                                                  & $\grad$           & $\curl$           & $\divergence$   \\ \hline
+        $\Gamma = F_0 \cup F_1 \cup F_2 \cup F_3$ & 0.08625017654     & 0.1453729386      & 0.2601720480    \\ \hline
+        $\Gamma =          F_1 \cup F_2 \cup F_3$ & 0.1093817645      & 0.1829680131      & 0.3493931507    \\ \hline
+        $\Gamma =                   F_2 \cup F_3$ & 0.1450219664      & 0.2428248005      & 0.1845090722    \\ \hline
+        $\Gamma =                            F_3$ & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
+        $\Gamma =                      \emptyset$ & 0.2631059409      & 0.1458215887      & 0.08740665548   \\ \hline
     \end{tabular}
     \caption{
     Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
-    where boundary conditions are imposed along the faces $F_{\ell}, \dots, F_3$, or no boundary conditions are imposed (last row). 
-    Computed via lowest-order finite element methods. 
+    where boundary conditions are imposed along the boundary part $\Gamma$, 
+    computed via lowest-order finite element methods on a refined mesh. 
     Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
-    The upper bound in Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} is $2/\pi \approx 0.45015815807$.
+    Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} 
+    give the improved upper bound $2/\pi \approx 0.45015815807$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
     
@@ -5940,7 +5945,7 @@ including for ill-shaped simplices.
 We consider the following example domains in two dimensions:
 the unit square $\Omega_Q$, the L-shaped domain $\Omega_L$, and the slit domain $\Omega_{S}$:
 \begin{gather*}
-    \Omega_{Q} = (-1,1)^2,
+    \Omega_{Q} = ( 0,1)^2,
     \qquad 
     \Omega_{L} = (-1,1)^2 \setminus (0,1)^2,
     \\
@@ -6002,7 +6007,7 @@ allowing us to compute the best possible of these bounds.
 We consider the following example domains in two dimensions:
 the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed bricks domain $\Omega_{B}$:
 \begin{gather*}
-    \Omega_{C}  = (-1,1)^3,
+    \Omega_{C}  = ( 0,1)^3,
     \qquad 
     \Omega_{F}  = (-1,1)^3 \setminus [0,1)^3,
     \\
@@ -6033,8 +6038,8 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 % As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 The computation becomes more demanding in dimension three. 
-Enumerating all the shortest-path trees of the triangulations above is feasible but takes considerably longer. 
-Brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
+Enumerating all the shortest-path trees of the triangulations above is still feasible but takes considerably longer. 
+However, brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
 Instead, we perform a greedy backtracking search: 
 starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
 Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
@@ -6045,7 +6050,8 @@ This greedy backtracking algorithm does generally not guarantee that the optimal
 However, finding all shellings seems practically infeasible. 
 Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
 We repeat this for a possible choices of initial simplex, and pick the optimal shelling among those found.
-The candidate shellings that we obtain in this manner allow for estimates that differ by a factor of about $2$.
+The candidate shellings that we obtain in this manner lead to different quantitative estimates. In the case of more complicated triangulations, such as of the Fichera corner, they may differ by a factor of $20$.
+For that reason, optimizing the estimate induced by the shelling is an important computational subproblem. 
 
 
 \begin{table}[t]
@@ -6091,7 +6097,7 @@ The candidate shellings that we obtain in this manner allow for estimates that d
     }\label{table:estimates3D:curldiv}
 \end{table}
 
-36.7821067  160.0052039 160.7339833
+
 
 
 
