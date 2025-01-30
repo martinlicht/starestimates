@@ -1,13 +1,20 @@
 
-[ ] turn the remarks into major results; get a better idea of the recursive structure
-[ ] turn the deformation estimates into a mere remark 
 [x] make the remark more explicit (BC table)
+[x] mention that the Costabel-McIntosh operators preserve polynomials
+[x] double check the form degrees in the theorems
+[x] demote the deformation estimates into a mere remark 
+[x] and the computations: 8 -> k+1, 7 -> k
+[ ] gradient: add explicit preimages to the main theorems (as Martin explained), turn remarks into major results and get a better idea of the recursive structure
+[ ] exterior: add explicit preimages to the main theorems (as Martin explained), turn remarks into major results and get a better idea of the recursive structure
+
 [ ] Remark on how we can reduce the number of simplices. The triangulation has an influence. We better avoid non-face patches. 
 [ ] What is a good start? Is the interior a good heuristic?
 [ ] make the C++ code more prominent
 [ ] Tartar-Peetre 
+
 [ ] Further algorithms for shellings?
-[ ] mention that the Costabel-McIntosh operators preserve 
+
+[ ] Lotoreichek, Rohleder: We recover the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
 
 
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation

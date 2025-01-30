@@ -71,6 +71,180 @@
 
 
 
+
+
+\section{Remark on global estimate: gradient}
+
+\begin{remark}\label{remark:fullrecursivesum}
+    \color{red}
+    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+    The potential $w$ for the gradient $\nabla u$ satisfies 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
+        \qquad 
+        % \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m} \cup T_{m-1})}                             + B_{m} \| w \|_{L^{p}(T_{m-1})},
+        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + A'_{m} \| \nabla u \|_{L^{p}(T_{m-1})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
+    \end{align*}
+    where $A_{m}, A'_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
+    Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
+    \begin{align}\label{math:fullrecursivesum}
+        \begin{split}
+            \| w \|_{L^{p}(T_{m})} 
+            &
+            \leq 
+            \sum_{\ell=0}^{m}   \left( B_{m} \cdots B_{\ell+1} \right) A_{\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m} \cdots B_{\ell+2} \right) A'_{\ell+1} \| \nabla u \|_{L^{p}(T_{\ell})}
+            \\&
+            \leq 
+            A_{m} \| \nabla u \|_{L^{p}(T_{m})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m} \cdots B_{\ell+2} \right) \left( B_{\ell+1} A_{\ell} + A'_{\ell+1} \right) \| \nabla u \|_{L^{p}(T_{\ell})}
+            \\&
+            =:
+            \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+            .
+        \end{split}
+    \end{align}
+    Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
+    By definition, $C_{m,0} = A_0$, and 
+    \begin{align}
+        C_{m,}
+    \end{align}
+    
+    The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
+    \begin{align*}
+        \begin{split}
+            \| w \|_{L^{p}(\Omega)}^{p}
+            &
+            \leq 
+            \sum_{m=0}^{M}
+            \| w \|_{L^{p}(T_{m})}^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \sum_{\ell=0}^{M} 
+            \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+            \leq 
+            \left(
+                \sum_{m=0}^{M}
+                \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+            \right)
+            \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+            ,
+        \end{split}
+    \end{align*}
+    where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+    In other words, the Poincar\'e--Friedrichs inequality is estimated by first taking the $q$-norm of the coefficients in the full sum~\eqref{math:fullrecursivesum} and then taking $p$-norm of these intermediate sums.
+\end{remark}
+
+
+
+\section{Old contraction results, now turned into a remark}
+
+% 6. Contractible 
+Inspired by the contractibility of shellable triangulations, we pursue an additional estimate for Poincar\'e--Friedrichs constants. 
+Every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations. 
+Their bi-Lipschitz constants are controlled by the shape regularity of the domain. 
+This reduces the construction of potentials over shellable triangulations to the construction of potentials over convex domains.
+We refer to Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} as the main result of this approach. 
+
+
+\color{red}
+\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
+    Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
+    Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$.
+    Then for any $u \in W^{p}\Alt^{k}(\Omega)$, where $1 \leq p \leq \infty$, 
+    there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
+    such that 
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}
+        \leq 
+%         \left( 
+%             \Cachttrafo{n}{k}{\ell}(\calT)
+            % \Cacht{n}{k}(\calT)
+            % \Cachtprime{n}{k}(\calT)^{k} 
+            % \Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
+%             \Csiebtrafo{n}{k}{\ell}(\calT)
+            % \Csieb{n}{k}(\calT)
+            % \Csiebprime{n}{k}(\calT)^{k-1} 
+            % \Cdetacht{n}{k}(\calT)^{\frac 1 p} 
+%         \right)^{M}
+        \left( 
+        \prod_{m=1}^{M}
+            \Cachttrafo{n}{k+1}{\ell_{m}}{p}(\calT)
+            \Csiebtrafo{n}{k  }{\ell_{m}}{p}(\calT)
+        \right)
+        C_{{\PF},k,T_{0},p}
+        \| \cartan u \|_{L^{p}(\Omega)}
+        ,
+    \end{align*}
+    where $0 \leq \ell_{m} < n$ is such that $T_{m}$ has $n - \ell_{m}$ faces in common with the previous simplices.
+\end{theorem}
+\begin{proof}
+    We prove this via induction. 
+    The statement is clearly satisfied when $M=0$ because then we only consider a single simplex,
+    so that the Poincar\'e--Friedrichs inequality over a simplex can be used. 
+    Let us assume that the statement is true for some integer $M-1 \geq 0$.
+    
+    Recall that $X_M$ is an $n$-dimensional submanifold with boundary with a triangulation that has a shelling $T_0, T_1, \dots, T_{M-1}$. 
+    Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
+    By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
+    and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
+    We let $\ell_{M}$ be the dimension of $S_{M}$.
+    
+    We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
+    This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
+    We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{M} \rightarrow X_{M-1}$ by requiring that it is the identity over $X_{M-1} \setminus A_{M-1}$.
+    
+    Let $u \in W^{p}\Alt^{k}(\Omega)$ and write $g = \cartan u$. We define $g' = \Xi_{2}^{-\ast} \cartan u = \cartan \Xi_{2}^{-\ast} u$. 
+    Then Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} give  
+    \begin{align*}
+        \| g' \|_{L^{p}(\Omega')}  
+        \leq 
+        \Cachttrafo{n}{k+1}{\ell_{M}}{p}(\calT)
+        %\Cacht{n}{k}(\calT)
+        %\Cachtprime{n}{k}(\calT)^{k} 
+        %\Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
+        \| g \|_{L^{p}(\Omega)}  
+        .
+    \end{align*}
+    By induction assumption, there exists $w' \in W^{p}\Alt^{k}(\Omega')$ such that $\cartan w' = g'$.
+%     We have 
+%     \begin{align*}
+%         \| w' \|_{L^{p}(\Omega')} 
+%         \leq 
+%         \left( 
+%         \Cachttrafo{n}{k}{\ell_{M}}{p}(\calT)
+%         \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
+%         \right)^{M-1}
+%         C_{{\PF},k,T_{0},p}
+%         \| g' \|_{L^{p}(\Omega')}  
+%     \end{align*}
+    Finally, $w = \Xi_{2}^{\ast} w' \in W^{p}\Alt^{k}(\Omega)$ satisfies $\cartan w = g$.
+    Moreover, Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} show 
+    \begin{align*}
+        \| w \|_{L^{p}(\Omega)}  
+        \leq 
+        \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
+        %\Csieb{n}{k}(\calT)
+        %\Csiebprime{n}{k}(\calT)^{k-1} 
+        %\Cdetacht{n}{k}(\calT)^{\frac 1 p} 
+        \| w' \|_{L^{p}(\Omega')} 
+    \end{align*}
+    We use the induction assumption to complete the estimates in the induction step is complete. The desired result follows. 
+\end{proof}
+\color{black}
+
+
+
+
+
+
+
+
+
 \section{Original 2D table}
 
 

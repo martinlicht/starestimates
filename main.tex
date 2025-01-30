@@ -550,12 +550,6 @@ Shellable simplicial complexes, and more generally polytopal complexes, are a we
 Any shellable simplicial complex must necessarily triangulate a contractible space. 
 With respect to our main interest, local patches (stars) in 2D and 3D triangulations are shellable. 
 
-% 6. Contractible 
-Inspired by the contractibility of shellable triangulations, we pursue an additional estimate for Poincar\'e--Friedrichs constants. 
-Every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations. 
-Their bi-Lipschitz constants are controlled by the shape regularity of the domain. 
-This reduces the construction of potentials over shellable triangulations to the construction of potentials over convex domains.
-We refer to Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction} as the main result of this approach. 
 
 
 
@@ -3133,6 +3127,10 @@ for any $1 \leq p \leq \infty$ we have a bounded linear operator
 \end{gather*}
 % Its operator norm is bounded by $n C_{\Poinc}(n,\mia) \vol(\Omega)^{-1} \vol_{}(B_{\diam(\Omega)}(0)) \diam(\Omega)$. 
 % 
+
+\begin{remark}
+    As already explained in the original paper~\cite{costabel2010bogovskiui}, the operators $\Poinc_{\mia}$ preserve polynomial differential forms. 
+\end{remark}
 
 
 \subsection{An operator norm bound with respect to the Lebesgue norm: the Bogovski\u{\i} case}
@@ -5737,13 +5735,21 @@ The second one is specific to the fact that shellable triangulations are contrac
 \end{proof}
 
 
-
-
-
-
-\begin{theorem}\label{theorem:poincarefriedrichsestimate:exterior:contraction}
+\begin{remark}\label{remark:poincarefriedrichsestimate:exterior:contraction}
+    We would like to point out an alternative application of Proposition~\ref{proposition:starreflection},
+    using the second class of transformations. 
+    Those transformations are a sequence of contractions.
+    Here, we take inspiration from the topological observation that domains with shellable triangulations are contractible. 
+    More specifically, we have seen that every shellable triangulation can be transformed into a single simplex along a sequence of local bi-Lipschitz deformations, and their bi-Lipschitz constants are controlled by the shape regularity of the triangulation. 
+    
+    Using successive pullbacks along those contractions, the original problem of finding a potential over the domain is reduced to finding a potential for some right-hand side over the first simplex of the shelling. 
+    The potential over that first simplex is then extended along successive reverse pullbacks to the whole domain. 
+    Using the Poincar\'e--Friedrichs constant over the first simplex and pullback estimates (Proposition~\ref{proposition:pullbackestimate}),
+    one obtains the following estimate.
+    
     Let $\calT$ be a shellable $n$-dimensional triangulation, and let the domain $\Omega \subseteq \bbR^{n}$ be the interior of the underlying set of $\calT$.
-    Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$.
+    Let $T_0, T_1, \dots, T_M$ be a shelling of $\calT$
+    and let $0 \leq \ell_{m} < n$, for $1 \leq m \leq M$, be such that $T_{m}$ has $n - \ell_{m}$ faces in common with the previous simplices.
     Then for any $u \in W^{p}\Alt^{k}(\Omega)$, where $1 \leq p \leq \infty$, 
     there exists $w \in W^{p}\Alt^{k}(\Omega)$ with $\cartan w = \cartan u$ 
     such that 
@@ -5767,63 +5773,14 @@ The second one is specific to the fact that shellable triangulations are contrac
         \right)
         C_{{\PF},k,T_{0},p}
         \| \cartan u \|_{L^{p}(\Omega)}
-        ,
-    \end{align*}
-    where $0 \leq \ell_{m} < n$ is such that $T_{m}$ has $n - \ell$ faces in common with the previous simplices.
-\end{theorem}
-\begin{proof}
-    We prove this via induction. 
-    The statement is clearly satisfied when $M=0$ because then we only consider a single simplex,
-    so that the Poincar\'e--Friedrichs inequality over a simplex can be used. 
-    Let us assume that the statement is true for some integer $M-1 \geq 0$.
-    
-    Recall that $X_M$ is an $n$-dimensional submanifold with boundary with a triangulation that has a shelling $T_0, T_1, \dots, T_{M-1}$. 
-    Write $\Omega' \subseteq X_{M}$ for the interior domain of that manifold. 
-    By Lemma~\ref{lemma:existenceofstar}, adding $T_{M}$ completes a star in $\calT$ around some simplex $S_{M} \in X_{M-1}$, 
-    and we let $\Makoto_{M-1} \subseteq X_{M-1}$ be the complement of $T_{M}$ in that newly completed star. 
-    We let $\ell_{M}$ be the dimension of $S_{M}$.
-    
-    We introduce the deformation mapping $\Xi_{2} : \patch_{\calT}(S_M) \rightarrow \Makoto_{M-1}$ of Proposition~\ref{proposition:starreflection}. 
-    This mapping and its inverse are piecewise linear, and it acts as the identity along $\partial \Makoto_{M-1} \setminus \partial T$.
-    We extend it to a bi-Lipschitz piecewise linear mapping $\Xi_{2} : X_{M} \rightarrow X_{M-1}$ by requiring that it is the identity over $X_{M-1} \setminus A_{M-1}$.
-    
-    Let $u \in W^{p}\Alt^{k}(\Omega)$ and write $g = \cartan u$. We define $g' = \Xi_{2}^{-\ast} \cartan u = \cartan \Xi_{2}^{-\ast} u$. 
-    Then Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} give  
-    \begin{align*}
-        \| g' \|_{L^{p}(\Omega')}  
-        \leq 
-        \Cachttrafo{n}{k+1}{\ell_{M}}{p}(\calT)
-        %\Cacht{n}{k}(\calT)
-        %\Cachtprime{n}{k}(\calT)^{k} 
-        %\Cdetsieb{n}{k}(\calT)^{\frac 1 p} 
-        \| g \|_{L^{p}(\Omega)}  
         .
     \end{align*}
-    By induction assumption, there exists $w' \in W^{p}\Alt^{k}(\Omega')$ such that $\cartan w' = g'$.
-%     We have 
-%     \begin{align*}
-%         \| w' \|_{L^{p}(\Omega')} 
-%         \leq 
-%         \left( 
-%         \Cachttrafo{n}{k}{\ell_{M}}{p}(\calT)
-%         \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
-%         \right)^{M-1}
-%         C_{{\PF},k,T_{0},p}
-%         \| g' \|_{L^{p}(\Omega')}  
-%     \end{align*}
-    Finally, $w = \Xi_{2}^{\ast} w' \in W^{p}\Alt^{k}(\Omega)$ satisfies $\cartan w = g$.
-    Moreover, Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} show 
-    \begin{align*}
-        \| w \|_{L^{p}(\Omega)}  
-        \leq 
-        \Csiebtrafo{n}{k}{\ell_{M}}{p}(\calT)
-        %\Csieb{n}{k}(\calT)
-        %\Csiebprime{n}{k}(\calT)^{k-1} 
-        %\Cdetacht{n}{k}(\calT)^{\frac 1 p} 
-        \| w' \|_{L^{p}(\Omega')} 
-    \end{align*}
-    We use the induction assumption to complete the estimates in the induction step is complete. The desired result follows. 
-\end{proof}
+    However, in our numerical examples (see Section~\ref{section:numericalexamples}), 
+    the estimate performs significantly worse than the estimate derived in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior},
+    which is why we choose to not deploy this method in our computations. 
+\end{remark}
+
+
 
 
 
@@ -5917,13 +5874,14 @@ This is of interest because the constant appears repeatedly within our main resu
 
 For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
 These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
+This example conforms to the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
 
 Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and the subequent remark (using $p=2$) give an upper bound of $2/\pi \approx 0.45015815807$,
 which is an overestimate by a factor of at most six.
 We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
 We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
 
-However, the results indicate significant room for improvement. 
+However, the results indicate room for improvement. 
 Future estimates should tighten the gap towards the actual computed values,
 including for ill-shaped simplices.
 
@@ -5981,8 +5939,7 @@ Standard finite element eigenvalue computations on a sufficiently refined mesh (
 We compare the reference Neumann eigenvalues with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 A brufe-force search easily enumerates all the (repetition-free) face-paths between triangles, which allows us to find the best estimate possible estimate with the aforementioned theorem. 
 
-We compare the reference Neumann and Dirichlet eigenvalues with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
-Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
+We compare the reference Neumann and Dirichlet eigenvalues with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
 Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations,
 allowing us to compute the best possible of these bounds. 
 
@@ -6047,7 +6004,7 @@ We consider the triangulations:
 \end{itemize}
 
 The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
-Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+Again, we compare these reference values with estimates obtained Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and in the special case of the gradient, with Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 
 % The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
 % As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
