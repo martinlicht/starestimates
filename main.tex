@@ -5735,116 +5735,115 @@ The second one is specific to the fact that shellable triangulations are contrac
     \begin{gather*}
         \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},k,T_{0},p} \| \cartan u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ 
-    with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
+    Suppose that $0 < m \leq M$ such that there exists $w_{m-1} \in W^{p}\Alt^{k}(X_{m-1})$ with $\cartan w_{m-1} = \cartan u$ over $X_{m-1}$. 
+    This is already true for $m = 1$.
     By assumption, $T_{m}$ and $X_{m-1}$ share the interface $\Gamma_{m}$, which is a collection of faces of $T_{m}$. 
     In accordance to Lemma~\ref{lemma:existenceofstar}, adding $T_{m}$ completes a star in $\calT$ around some simplex $S_{m}$, 
     and we let $\Makoto_{m-1} \subseteq X_{m-1}$ be the complement of $T_{m}$ in that newly completed star. 
     Write $\ell$ for the dimension of $S_{m}$.
     
-    We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
-    We define 
+    We now define, as in~\cite[Equations~{\char`\(}5.12{\char`\)} and~{\char`\(}5.14{\char`\)}]{ern2020stable} or~\cite[equations~{\char`\(}6.7{\char`\)} and~{\char`\(}6.9{\char`\)}]{Chaum_Voh_p_rob_3D_H_curl_24}, the field $\widetilde w_{m} \in W^{p}\Alt^{k}(T_{m})$ via 
+    \begin{align} \label{equation:w''_ext_der}
+        {\widetilde w}_{m} := u_{|T_m} + \Xi_{1}^{\ast}\left( (w_{m-1} - u)_{|\Makoto_{m-1} } \right).
+    \end{align}
+    One verifies that 
     \begin{align*}
-        w'_{m} :=  \Xi_{1}^{\ast} w_{m-1} \in W^{p}\Alt^{k}(T_{m}).
-    \end{align*}
-    By construction, $w'_{m} \in W^{p}\Alt^{k}(T_{m})$ with 
-    \begin{align*}
-        \trace_F w_{m-1} = \trace_F w'_{m}
-        . 
-    \end{align*}
-    There exists $w''_{m} \in W^{p}\Alt^{k}(T_{m})$ satisfying 
-    \begin{align*}
-        \cartan w''_{m} = \cartan u - \cartan w'_{m}, 
-        \quad 
-        \trace_{\Gamma_{m}} w''_{m} = 0.
-    \end{align*}
-    Indeed, such $w''_{m}$ exists because 
-    \begin{align*}
-        \trace_{\Gamma_{m}}( \cartan u - \cartan w'_{m} ) 
-        &= 
-        \trace_{\Gamma_{m}} \cartan u - \trace_{\Gamma_{m}} \cartan w'_{m}
-        \\&= 
-        \cartan \trace_{\Gamma_{m}} u - \cartan \trace_{\Gamma_{m}} w'_{m}
+        \trace_F {\widetilde w}_{m} 
+        &
         = 
-        \cartan \trace_{\Gamma_{m}} u - \cartan \trace_{\Gamma_{m}} w_{m-1}
+        \trace_F u_{|T_m} + \trace_F \Xi_{1}^{\ast} w_{m-1|\Makoto_{m-1} } - \trace_F \Xi_{1}^{\ast} u_{|\Makoto_{m-1} } 
+        \\&
         = 
-        0
+        \trace_F u_{|T_m} + \trace_F \Xi_{1}^{\ast} w_{m-1|\Makoto_{m-1} } - \trace_F \Xi_{1}^{\ast} u_{|\Makoto_{m-1} } 
+        \\&
+        = 
+        \trace_F \Xi_{1}^{\ast} w_{m-1|\Makoto_{m-1} }
+        \\&
+        = 
+        \trace_F w_{m-1|\Makoto_{m-1}}
         .
     \end{align*}
-    Setting $w_{m} := w_{m-1}$ over $X_{m-1}$ and $w_{m} := w'_{m} + w''_{m}$ over $T_{m}$, 
-    we find 
-    \begin{gather*}
-        \cartan w_{m} = \cartan w'_{m} + \cartan w''_{m} = \cartan w'_{m} + \cartan u - \cartan w'_{m} = \cartan u,
-        \\
-        \trace_{\Gamma_{m}} w_{m} = \trace_{\Gamma_{m}} w'_{m} = \trace_{\Gamma_{m}} w_{m-1}.
-    \end{gather*}
-    That means that $w_{m} \in W^{p}\Alt^{k}(X_{m})$ with $\cartan w_{m} = \cartan u$ over $X_{m}$. 
+    Moreover, 
+    \begin{align*}
+        \cartan {\widetilde w}_{m} 
+        &
+        = 
+        \cartan u_{|T_m} + \cartan \Xi_{1}^{\ast} w_{m-1|\Makoto_{m-1} } - \cartan \Xi_{1}^{\ast} u_{|\Makoto_{m-1} } 
+        \\&
+        = 
+        \cartan u_{|T_m} + \Xi_{1}^{\ast} \cartan w_{m-1|\Makoto_{m-1} } - \Xi_{1}^{\ast} \cartan u_{|\Makoto_{m-1} } 
+        = 
+        \cartan u_{|T_m}
+        .
+    \end{align*}
+    Setting $w_{m} := w_{m-1}$ over $X_{m-1}$ and $w_{m} := {\widetilde w}_{m} + w''_{m}$ over $T_{m}$, 
+    we thus verify $w_{m} \in W^{p}\Alt^{k}(X_{m})$ with $\cartan w_{m} = \cartan u$ over $X_{m}$. 
     
-    We want to estimate norms. By the triangle inequality, 
+    We want to estimate norms. 
+    By construction,
     \begin{align*}
-        \| w_{m} \|_{L^{p}(T_{m})}
+        \| w \|_{L^{p}(T_{m})}
         \leq  
-        \| w'_{m} \|_{L^{p}(T_{m})}
+        \| \Xi_{1}^{\ast} w_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})}
         + 
-        \| w''_{m} \|_{L^{p}(T_{m})}
+        \| u - \Xi_{1}^{\ast} u_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})}
         .
     \end{align*}
-    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative},
-    we can assume that $w''_{m}$ satisfies 
+    Due to Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative}, 
+    which applies since $\trace_{\Gamma_{m}} \left( u_{|T_m} - \Xi_{1}^{\ast} u_{|\Makoto_{m-1}} \right) = 0$, 
+    we have
     \begin{align*}
-        \| w''_{m} \|_{L^{p}(T_{m})} 
+        \| u - \Xi_{1}^{\ast} u_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})} 
         &
         \leq 
-        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan u - \cartan w'_{m} \|_{L^{p}(T_{m})}
+        C_{\PF,T_{m},\Gamma_{m-1},k,p} 
+        \left( 
+            \| \cartan u \|_{L^{p}(T_{m})} + \| \cartan \Xi_{1}^{\ast} u_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})} 
+        \right)
         \\&
         \leq 
-        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan u      \|_{L^{p}(T_{m})} 
-        + 
-        C_{\PF,T_{m},\Gamma_{m},k,p} \| \cartan w'_{m} \|_{L^{p}(T_{m})} 
+        C_{\PF,T_{m},\Gamma_{m-1},k,p} 
+        \left( 
+            \| \cartan u \|_{L^{p}(T_{m})} + \| \Xi_{1}^{\ast} \cartan u_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})} 
+        \right)
         .
     \end{align*}
     Proposition~\ref{proposition:pullbackestimate} and Proposition~\ref{proposition:starreflection} now show 
-    % \begin{align*}
-        % \| w'_{m} \|_{L^{p}(T_{m})}
-        % &\leq 
-        % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k}
-        % \|\det \Jacobian \Xi_{1}^{-1}  \|_{L^{\infty}(\Makoto_{m-1})}^{\frac 1 p} 
-        % \cdot 
-        % \| w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
-        % ,
-        % \\
-        % \| \cartan w'_{m} \|_{L^{p}(T_{m})}
-        % &\leq 
-        % \| \Jacobian \Xi_{1} \|_{L^{\infty}(T_{m})}^{k+1}
-        % \|\det \Jacobian \Xi_{1}^{-1}  \|^{\frac 1 p}_{L^{\infty}(\Makoto_{m-1})} 
-        % \cdot 
-        % \| \cartan w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
-        % .
-    % \end{align*}
     \begin{align*}
-        \| w'_{m} \|_{L^{p}(T_{m})}
+        \| \Xi_{1}^{\ast} w_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})}
         &\leq 
         \Cfivetrafo{n}{k}{\ell}{p}(\calT)
         % \Cfive{n}{k}(\calT)
         % \Cfiveprime{n}{k}(\calT)^{k-1}
         % \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
-        \cdot 
         \| w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         ,
         \\
-        \| \cartan w'_{m} \|_{L^{p}(T_{m})}
+        \| \Xi_{1}^{\ast} \cartan u_{|\Makoto_{m-1}} \|_{L^{p}(T_{m})}
         &\leq 
         \Cfivetrafo{n}{k+1}{\ell}{p}(\calT)
         % \Cfive{n}{k}{\ell}(\calT)
         % \Cfiveprime{n}{k}(\calT)^{k}
         % \Cdetsechs{n}{k}(\calT)^{\frac 1 p}
-        \cdot 
         \| \cartan w_{m-1} \|_{L^{p}(\Makoto_{m-1})}
         .
     \end{align*}
     We have assumed that $\cartan w_{m-1} = \cartan u_{|X_{m-1}}$. 
     The existence of $w \in W^{p}\Alt^{k}(\Omega)$ satisfying the recursive estimate follows. 
-\end{proof}
+\end{proof}    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 \begin{remark}\label{remark:poincarefriedrichsestimate:exterior:contraction}

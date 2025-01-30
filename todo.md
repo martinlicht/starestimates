@@ -4,8 +4,10 @@
 [x] double check the form degrees in the theorems
 [x] demote the deformation estimates into a mere remark 
 [x] and the computations: 8 -> k+1, 7 -> k
-[ ] gradient: add explicit preimages to the main theorems (as Martin explained), turn remarks into major results and get a better idea of the recursive structure
-[ ] exterior: add explicit preimages to the main theorems (as Martin explained), turn remarks into major results and get a better idea of the recursive structure
+[x] gradient: add explicit preimages to the main theorems (as Martin explained)
+[x] exterior: add explicit preimages to the main theorems (as Martin explained)
+[ ] gradient: turn remarks into major results and get a better idea of the recursive structure
+[ ] turn remarks into major results and get a better idea of the recursive structure
 
 [ ] Remark on how we can reduce the number of simplices. The triangulation has an influence. We better avoid non-face patches. 
 [ ] What is a good start? Is the interior a good heuristic?
