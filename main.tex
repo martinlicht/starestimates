@@ -1815,6 +1815,19 @@ We begin with an auxiliary result with independent relevance, where we estimate 
     and has the desired support property. 
 \end{proof}
 
+\begin{remark}\label{remark:mixedbconsimplex:hilbert}
+    We can improve Lemma~\ref{lemma:mixedbconsimplex} in the special case $p=2$.
+    The variational formulation of the Poincar\'e constant over a convex domain reveals that $C_{\PF,T,F,p}$ lies between the the Poincar\'e constant without boundary conditions and with full boundary conditions. 
+    In particular,
+    \begin{align*}
+        C_{\PF,T,F,2} 
+        \leq 
+        \frac{ \diam(T) }{ \pi }
+    \end{align*}
+    is an improved Poincar\'e inequality.
+\end{remark}
+
+
 The next auxiliary result establishes Poincar\'e--Friedrichs constants over face patches within simplicial triangulations. 
 We emphasize that face patches are not necessarily convex, but we can still extend the results on convex domains from Section~\ref{subsection: PX_convex}. The following result is reasonably sharp when the two simplices have similar volumes and diameters.
 
@@ -2124,39 +2137,57 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     and satisfying the following estimates:
     there exists an $n$-simplex $T_0 \in \calT$ with 
     \begin{gather*}
-        \| w_0 \|_{L^{p}(T_{0})} \leq C_{{\PF},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
+        \| w \|_{L^{p}(T_{0})} \leq C_{{\PF},T_{0},p} \| \nabla u \|_{L^{p}(T_{0})}.
     \end{gather*}
-    Whenever $T_0, T_1, \dots, T_M$ is a face path,
-    then for all $1 \leq m \leq$ the following recursive estimates:
+    For any $n$-simplex $T_M \in \calT$ there exists a face path $T_0, T_1, \dots, T_M$
+    such that for all $1 \leq m \leq$ we have one of the following recursive estimates:
     \begin{align*}
         \| w \|_{L^{p}(T_{m})}
         &
         \leq  
-        \volumeratio(\calT)^{\frac 1 p} 
+        A_{m}
         \| w \|_{L^{p}(T_{m-1})} 
+        +
+        B'_{m}
+        \| \nabla u \|_{L^{p}(T_{m  })} 
         + 
-%         C_{\PF,T_{m},F_{m},p} 
-%         \left( 
-%             \| \nabla u \|_{L^{p}(T_{m})} 
-%             + 
-%             \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
-%             \| \nabla u \|_{L^{p}(T_{m-1})}
-%         \right)
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
-        C_{\PF,T_{m},F_{m},p} 
-        \| \nabla u \|_{L^{p}(\Makoto_{F_m})} 
+        B''_{m}
+        \| \nabla u \|_{L^{p}(T_{m-1})} 
         ,
         \\
-        \| w \|_{L^{p}(T_m)}
-        &\leq 
-        \volumeratio(\calT)^{\frac 1 p} 
-        \| w \|_{L^{p}(T_{{m-1}})}
+        \| w \|_{L^{p}(T_{m})}
+        &
+        \leq  
+        A_{m}
+        \| w \|_{L^{p}(T_{m-1})} 
         +
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\PF},\Makoto_{F_m},p} 
+        B^\star_{m}
         \| \nabla u \|_{L^{p}(\Makoto_{F_m})} 
-        . 
+        , 
     \end{align*}
+    where 
+    \begin{gather*}
+        A_{m} 
+        \leq
+        \volumeratio(\calT)^{\frac 1 p} 
+        ,
+        \quad 
+        B'_{m} 
+        \leq 
+        C_{\PF,T_{m},F_{m},p} 
+        ,
+        \quad 
+        B''_{m} 
+        \leq 
+        C_{\PF,T_{m},F_{m},p} \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT) 
+        ,
+        \\
+        B_{m}^\star
+        \leq 
+        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
+        C_{{\PF},\Makoto_{F_\ell},p} 
+        .
+    \end{gather*}
     Here, for any $1 \leq m \leq M$, let $F_m = T_m \cap T_{m-1}$.
 \end{theorem}
 
@@ -2178,13 +2209,13 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \end{align*} 
     Clearly, $w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
     By construction $w_{|T_{0}} = w_0$. 
-    We verify that $w$ satisfies the two desired recursive estimates.
+    We verify that $w$ can be chosen such that it satisfies the desired recursive estimates.
     Suppose that $T_0, T_1, \dots, T_M$ is a face path in $\calT$
     and that $1 \leq m \leq M$.
     Recall that we write $F_m := T_m \cap T_{m-1}$, which is a face of dimension $n-1$ shared by the $n$-simplices $T_{m}$ and $T_{m-1}$,
     and that we write $\Makoto_{F_m} := T_m \cup T_{m-1}$. 
     
-    We proceed with the first recursive estimate. 
+    We study two constructions, beginning as follows. 
     We define $w'_{m} := w_{|T_{m-1}} \circ \Xi \in W^{1,p}(T_{m})$,
     where $\Xi : T_{m} \rightarrow T_{m-1}$ is the unique affine diffeomorphism that leaves $F_{m}$ invariant. 
     By construction, $w'_{m} \in W^{1,p}(T_{m})$ with 
@@ -2236,6 +2267,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
             + 
             \| \nabla w'_{m} \|_{L^{p}(T_{m})} 
         \right) 
+        \\&
         \leq 
         C_{\PF,T_{m},F_{m},p} 
         \left( 
@@ -2255,9 +2287,10 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| \nabla w \|_{L^{p}(T_{m-1})}
         \\&
         \leq 
-        \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
+        \left( \frac{ \vol(T_m) }{ \vol(T_{m-1}) } \right)^{\frac 1 p}
+        \reflectionestimate(\calT)
         \| \nabla w \|_{L^{p}(T_{m-1})}
-        \\&
+        %\\&
         =
         \volumeratio(\calT)^{\frac 1 p} \reflectionestimate(\calT)
         \| \nabla u \|_{L^{p}(T_{m-1})}
@@ -2285,7 +2318,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \| \nabla u \|_{L^{p}(T_{m-1})}
         \right). 
     \end{align*}
-    We now use H\"older's inequality. 
     Therefrom, the first recursive estimate follows.
     
     
@@ -2342,7 +2374,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     we use H\"older's inequality to verify 
     \begin{align*}
         \| w \|_{L^{p}(T_m)}
-        &\leq 
+        &
+        \leq 
         \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
         \left( 
             \| w_{F_{m}} \|_{L^{p}(T_m)}^{p}
@@ -2352,7 +2385,8 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         +
         \frac{ \vol(T_m)^{\frac 1 p} }{ \vol(T_{{m-1}})^{\frac 1 p} }
         \| w \|_{L^{p}(T_{{m-1}})}
-        \\&\leq 
+        \\&
+        = 
         \left( 1 + \frac{ \vol(T_m)^{\frac q p} }{ \vol(T_{{m-1}})^{\frac q p} } \right)^{\frac 1 q}
         \| w_{F_{m}} \|_{L^{p}(\Makoto_{F_m})} 
         +
@@ -2382,66 +2416,69 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \end{align*}
     The local inequality~\eqref{math:wFm_inequality} now provides the second recursive estimate. 
     The proof is complete.
-\end{proof}
+\end{proof} 
 
 
-\begin{corollary}
-    Under the assumptions of Theorem~\ref{theorem:poincarefriedrichsestimate:grad},
-    whenever $T_0, T_1, \dots, T_m$ is a face-path of $n$-simplices in $\calT$,
-    we have 
+
+
+
+
+
+
+
+
+The recursive construction of a gradient potential in the previous theorem, marching from simplex to simplex, can be associated with a concept of graph theory. Indeed, the face-neighbor relationship between adjacent $n$-simplices gives rise to an undirected graph that we call \emph{face-connection graph}. 
+If the potential is constructed starting from an initial $n$-simplex $T_0$, then the sequence of simplices corresponds to a path in that graph. In practice, we will pick a spanning tree for the undirected graph to describe the construction of the potentials. 
+
+We use that formalism to describe an estimate for the Poincar\'e--Friedrichs constant of the gradient potential, unwrapping the recursion.
+
+\begin{theorem}\label{theorem:globalestimate:gradient}
+    Let $\calT$ be a face-connected $n$-dimensional finite triangulation
+    and that the domain $\Omega$ is the interior of the underlying set of $\calT$. 
+    Let $1 \leq p,q \leq \infty$ with $1 = 1/p + 1/q$,
+    and suppose that $u, w \in W^{1,p}(\Omega)$ with $\nabla w = \nabla u$.
+
+    Suppose that $n$-simplices are enumerated as $T_0, T_1, \dots, T_M$,
+    and that with each $n$-simplex $T_{m} \in \calT$ 
+    we have a sequence of indices 
+    \begin{gather*}
+        0 = \imath_{m,0}, \; \imath_{m,1}, \; \dots, \; \imath_{m,L_m} = m
+    \end{gather*}
+    such that for each $0 \leq m \leq M$ we have estimates of the following form:
     \begin{align*}
-        \| w \|_{L^{p}(T_m)}
-        &\leq 
-        \sum_{\ell=1}^{m} 
-        \volumeratio^{\frac{m-\ell}{p}}
-        \min\left( 
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \right)^{\frac 1 q}
-        C_{{\PF},\Makoto_{F_\ell},p} 
+        \| w \|_{L^{p}(T_{0})} &\leq A_{m,0} \| \nabla u \|_{L^{p}(T_{0})}
         ,
-        \left( 1 + \volumeratio(\calT)^{\frac q p} \reflectionestimate(\calT)^{q} \right)^{\frac 1 q}
-        C_{\PF,T_{\ell},F_{\ell},p} 
-        \right)
-        \| \nabla u \|_{L^{p}(\Makoto_{F_\ell})}
-        \\&
-        \qquad 
-        \qquad 
+        \\
+        \| w \|_{L^{p}(T_{m,\ell})}
+        &\leq  
+        A_{m,\ell}
+        \| w \|_{L^{p}(T_{m,\ell-1})} 
         +
-        \volumeratio^{\frac m p}
-        C_{{\PF},T_{0},p}
-        \| \nabla u \|_{L^{p}(T_{0})}
+        B'_{m,\ell}
+        \| \nabla u \|_{L^{p}(T_{m,\ell  })} 
+        + 
+        B''_{m,\ell}
+        \| \nabla u \|_{L^{p}(T_{m,\ell-1})}, 
+        \qquad 1 \leq \ell \leq L_m
         .
     \end{align*}
-\end{corollary}
+    % TODO: complete here. We need a spanning tree. 
+\end{theorem}
 \begin{proof}
-    This follows by repeated application of the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-\end{proof}
-
-
-\begin{remark}\label{remark:fullrecursivesum}
-    \color{red}
-    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-    The potential $w$ for the gradient $\nabla u$ satisfies 
-    \begin{align*}
-        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
-        \qquad 
-        % \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m} \cup T_{m-1})}                             + B_{m} \| w \|_{L^{p}(T_{m-1})},
-        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + A'_{m} \| \nabla u \|_{L^{p}(T_{m-1})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
-    \end{align*}
-    where $A_{m}, A'_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
     Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
     \begin{align}\label{math:fullrecursivesum}
         \begin{split}
             \| w \|_{L^{p}(T_{m})} 
             &
             \leq 
-            \sum_{\ell=0}^{m}   \left( B_{m} \cdots B_{\ell+1} \right) A_{\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+            \sum_{\ell=0}^{m}   \left( B_{m,m} \cdots B_{m,\ell+1} \right) A_{m,\ell} \| \nabla u \|_{L^{p}(T_{m,\ell})}
             +
-            \sum_{\ell=0}^{m-1} \left( B_{m} \cdots B_{\ell+2} \right) A'_{\ell+1} \| \nabla u \|_{L^{p}(T_{\ell})}
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) A'_{m,\ell+1} \| \nabla u \|_{L^{p}(T_{m,\ell})}
             \\&
-            \leq 
-            A_{m} \| \nabla u \|_{L^{p}(T_{m})}
+            = 
+            A_{m,m} \| \nabla u \|_{L^{p}(T_{m,m})}
             +
-            \sum_{\ell=0}^{m-1} \left( B_{m} \cdots B_{\ell+2} \right) \left( B_{\ell+1} A_{\ell} + A'_{\ell+1} \right) \| \nabla u \|_{L^{p}(T_{\ell})}
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) \left( B_{m,\ell+1} A_{m,\ell} + A'_{m,\ell+1} \right) \| \nabla u \|_{L^{p}(T_{m,\ell})}
             \\&
             =:
             \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
@@ -2465,6 +2502,10 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
             \\&
             \leq 
             \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
             \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
             \sum_{\ell=0}^{M} 
             \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
@@ -2478,6 +2519,77 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
         \end{split}
     \end{align*}
     where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+\end{proof}
+
+
+
+\begin{remark}\label{remark:fullrecursivesum}
+    \color{red}
+    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+    The potential $w$ for the gradient $\nabla u$ satisfies 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
+        \qquad 
+        % \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m} \cup T_{m-1})}                             + B_{m} \| w \|_{L^{p}(T_{m-1})},
+        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + A'_{m} \| \nabla u \|_{L^{p}(T_{m-1})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
+    \end{align*}
+    where $A_{m}, A'_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
+
+    Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
+    \begin{align}\label{math:fullrecursivesum}
+        \begin{split}
+            \| w \|_{L^{p}(T_{m})} 
+            &
+            \leq 
+            \sum_{\ell=0}^{m}   \left( B_{m,m} \cdots B_{m,\ell+1} \right) A_{m,\ell} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) A'_{m,\ell+1} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \\&
+            = 
+            A_{m,m} \| \nabla u \|_{L^{p}(T_{m,m})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) \left( B_{m,\ell+1} A_{m,\ell} + A'_{m,\ell+1} \right) \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \\&
+            =:
+            \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+            .
+        \end{split}
+    \end{align}
+    Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
+    By definition, $C_{m,0} = A_0$, and 
+    \begin{align}
+        C_{m,}
+    \end{align}
+    
+    The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
+    \begin{align*}
+        \begin{split}
+            \| w \|_{L^{p}(\Omega)}^{p}
+            &
+            \leq 
+            \sum_{m=0}^{M}
+            \| w \|_{L^{p}(T_{m})}^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \sum_{\ell=0}^{M} 
+            \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+            \leq 
+            \left(
+                \sum_{m=0}^{M}
+                \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+            \right)
+            \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+            ,
+        \end{split}
+    \end{align*}
+    where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+    
     In other words, the Poincar\'e--Friedrichs inequality is estimated by first taking the $q$-norm of the coefficients in the full sum~\eqref{math:fullrecursivesum} and then taking $p$-norm of these intermediate sums.
 \end{remark}
 
@@ -5934,11 +6046,11 @@ including for ill-shaped simplices.
     \begin{tabular}{|l|c|c|c|}
         \hline
                                                   & $\grad$           & $\curl$           & $\divergence$   \\ \hline
-        $\Gamma = F_0 \cup F_1 \cup F_2 \cup F_3$ & 0.08625017654     & 0.1453729386      & 0.2601720480    \\ \hline
+        $\Gamma = F_0 \cup F_1 \cup F_2 \cup F_3$ & 0.0862501765      & 0.1453729386      & 0.2601720480    \\ \hline
         $\Gamma =          F_1 \cup F_2 \cup F_3$ & 0.1093817645      & 0.1829680131      & 0.3493931507    \\ \hline
         $\Gamma =                   F_2 \cup F_3$ & 0.1450219664      & 0.2428248005      & 0.1845090722    \\ \hline
         $\Gamma =                            F_3$ & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
-        $\Gamma =                      \emptyset$ & 0.2631059409      & 0.1458215887      & 0.08740665548   \\ \hline
+        $\Gamma =                      \emptyset$ & 0.2631059409      & 0.1458215887      & 0.0874066554    \\ \hline
     \end{tabular}
     \caption{
     Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
@@ -5946,7 +6058,7 @@ including for ill-shaped simplices.
     computed via lowest-order finite element methods on a refined mesh. 
     Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
     Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} 
-    give the improved upper bound $2/\pi \approx 0.45015815807$.
+    give the upper bound $2/\pi \cdot \diam(\Delta^3) \approx 0.90031631615$.
     }\label{table:referencepoincarefriedrichs}
 \end{table}
     
@@ -5996,9 +6108,9 @@ allowing us to compute the best possible of these bounds.
         \hline
                         & $\grad$ ref  & $\grad$ est & $\grad$ ratio & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
         \hline
-        $\calT_{Q}$     & 0.318        &             &               & 1.559       & 3.141              & 0.225              & 1.559              &  6.928              \\ 
+        $\calT_{Q}$     & 0.318        & 1.684337597 &               & 1.684337582       & 3.141        & 0.225              & 1.684337545        &  6.928              \\ 
         \hline
-        $\calT_{L}$     & 0.822        &             &               & 2.382       & 2.895              & 0.322              & 2.382              &  7.402              \\ 
+        $\calT_{L}$     & 0.822        & 5.079960342 &               & 2.382       & 2.895              & 0.322              & 2.382              &  7.402              \\ 
         \hline
         $\calT_{S}$     & 0.978        &             &               & 2.917       & 2.982              & 0.346              & 2.917              &  8.419              \\ 
         \hline
