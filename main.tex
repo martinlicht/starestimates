@@ -2425,6 +2425,9 @@ The recursive construction of a gradient potential in the previous theorem, marc
 If the potential is constructed starting from an initial $n$-simplex $T_0$, then the sequence of simplices corresponds to a path in that graph. In practice, we will pick a spanning tree for the undirected graph to describe the construction of the potentials. 
 
 We use that formalism to describe an estimate for the Poincar\'e--Friedrichs constant of the gradient potential, unwrapping the recursion.
+While the notation is a bit technical, the underlying idea is this:
+Unrolling the recursion gives estimates for the potential over a simplex in terms of the potential over previous simplices. 
+The final constant can be estimated by a norm of the vector of the coefficients that appear in the recursion. 
 
 \begin{theorem}\label{theorem:globalestimate:gradient}
     Let $\calT$ be a face-connected $n$-dimensional finite triangulation
@@ -2436,55 +2439,82 @@ We use that formalism to describe an estimate for the Poincar\'e--Friedrichs con
     and that with each $n$-simplex $T_{m} \in \calT$ 
     we have a sequence of indices 
     \begin{gather*}
-        0 = \imath_{m,0}, \; \imath_{m,1}, \; \dots, \; \imath_{m,L_m} = m
+        0 = \imath(m,0), \; \imath(m,1), \; \dots, \; \imath(m,L_m) = m
     \end{gather*}
     such that for each $0 \leq m \leq M$ we have estimates of the following form:
     \begin{align*}
         \| w \|_{L^{p}(T_{0})} &\leq A_{m,0} \| \nabla u \|_{L^{p}(T_{0})}
         ,
-        \\
-        \| w \|_{L^{p}(T_{m,\ell})}
+    \end{align*}
+    \begin{align*}
+        \| w \|_{ L^{p}(T_{\imath(m,\ell)}) }
         &\leq  
-        A_{m,\ell}
-        \| w \|_{L^{p}(T_{m,\ell-1})} 
+        A_{m,\imath(m,\ell)}
+        \| w \|_{ L^{p}(T_{\imath(m,\ell-1)}) }
+        \\&\qquad 
         +
-        B'_{m,\ell}
-        \| \nabla u \|_{L^{p}(T_{m,\ell  })} 
+        B'_{m,\imath(m,\ell)}
+        \| \nabla u \|_{ L^{p}(T_{\imath(m,\ell)}) }
         + 
-        B''_{m,\ell}
-        \| \nabla u \|_{L^{p}(T_{m,\ell-1})}, 
-        \qquad 1 \leq \ell \leq L_m
+        B''_{m,\imath(m,\ell)}
+        \| \nabla u \|_{ L^{p}(T_{\imath(m,\ell-1)}) }
+        ,
+        \quad 1 \leq \ell \leq L_m
+        .
+    \end{align*}
+    Then 
+    \begin{gather*}
+        \| w \|_{ L^{p}(\Omega) }
+        \leq 
+        \left(
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{L_m} D_{m,\ell}^{q} \right)^{\frac p q}
+        \right)^{\frac 1 p}
+        \| \nabla u \|_{ L^{p}(\Omega) }
+        ,
+    \end{gather*}
+    where 
+    \begin{gather*}
+        D_{m,L_m} = A_{m,m},
+        \\
+        D_{m,\ell} 
+        = 
+        \left( B_{m,\imath(m,L_m)} \cdots B_{m,\imath(m,\ell+2)} \right) 
+        \left( B_{m,\imath(m,\ell+1)} A_{m,\imath(m,\ell)} + A'_{m,\imath(m,\ell+1)} \right) 
+        ,
+        \qquad 
+        1 \leq \ell \leq L_{m}-1
         .
     \end{align*}
     % TODO: complete here. We need a spanning tree. 
 \end{theorem}
 \begin{proof}
     Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
-    \begin{align}\label{math:fullrecursivesum}
+    \begin{align*}%\label{math:fullrecursivesum}
         \begin{split}
             \| w \|_{L^{p}(T_{m})} 
             &
             \leq 
-            \sum_{\ell=0}^{m}   \left( B_{m,m} \cdots B_{m,\ell+1} \right) A_{m,\ell} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \sum_{\ell=0}^{L_m}   \left( B_{m,\imath(m,L_m)} \cdots B_{m,\imath(m,\ell+1)} \right) A_ {m,\imath(m,\ell  )} \| \nabla u \|_{L^{p}(T_{\imath(m,\ell)})}
+            \\&\qquad 
             +
-            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) A'_{m,\ell+1} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \sum_{\ell=0}^{L_m-1} \left( B_{m,\imath(m,L_m)} \cdots B_{m,\imath(m,\ell+2)} \right) A'_{m,\imath(m,\ell+1)} \| \nabla u \|_{L^{p}(T_{\imath(m,\ell)})}
             \\&
             = 
-            A_{m,m} \| \nabla u \|_{L^{p}(T_{m,m})}
+            A_{m,m} \| \nabla u \|_{L^{p}(T_{\imath(m,L_m)})}
+            \\&\qquad 
             +
-            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) \left( B_{m,\ell+1} A_{m,\ell} + A'_{m,\ell+1} \right) \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \sum_{\ell=0}^{L_m-1} 
+            \left( B_{m,\imath(m,L_m)} \cdots B_{m,\imath(m,\ell+2)} \right) 
+            \left( B_{m,\imath(m,\ell+1)} A_{m,\imath(m,\ell)} + A'_{m,\imath(m,\ell+1)} \right) 
+            \| \nabla u \|_{L^{p}(T_{\imath(m,\ell)})}
             \\&
             =:
             \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
             .
         \end{split}
-    \end{align}
+    \end{align*}
     Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
-    By definition, $C_{m,0} = A_0$, and 
-    \begin{align}
-        C_{m,}
-    \end{align}
-    
     The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
     \begin{align*}
         \begin{split}
@@ -2500,9 +2530,8 @@ We use that formalism to describe an estimate for the Poincar\'e--Friedrichs con
             \\&
             \leq 
             \sum_{m=0}^{M}
-            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
-            \sum_{\ell=0}^{M} 
-            \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+            \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+            \sum_{\ell'=0}^{M} \| \nabla u \|_{L^{p}(T_{\ell'})}^{p} 
             \leq 
             \left(
                 \sum_{m=0}^{M}
