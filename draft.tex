@@ -75,6 +75,77 @@
 
 \section{....}
 
+\begin{remark}\label{remark:fullrecursivesum}
+    \color{red}
+    We briefly outline how  to obtain an estimate for the Poincar\'e--Friedrichs constant from the recursive estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+    The potential $w$ for the gradient $\nabla u$ satisfies 
+    \begin{align*}
+        \| w \|_{L^{p}(T_{0})} \leq A_{0} \| \nabla u \|_{L^{p}(T_{0})},
+        \qquad 
+        % \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m} \cup T_{m-1})}                             + B_{m} \| w \|_{L^{p}(T_{m-1})},
+        \| w \|_{L^{p}(T_{m})} \leq A_{m} \| \nabla u \|_{L^{p}(T_{m})} + A'_{m} \| \nabla u \|_{L^{p}(T_{m-1})} + B_{m} \| w \|_{L^{p}(T_{m-1})},
+    \end{align*}
+    where $A_{m}, A'_{m}, B_{m} \geq 0$ are numbers and $T_{0}, T_{1}, \dots, T_{m-1}, T_{m}$ is a face path.
+
+    Unwrapping the recursion for the norm over the $m$-th simplex, we get a total expression of the form 
+    \begin{align}\label{math:fullrecursivesum}
+        \begin{split}
+            \| w \|_{L^{p}(T_{m})} 
+            &
+            \leq 
+            \sum_{\ell=0}^{m}   \left( B_{m,m} \cdots B_{m,\ell+1} \right) A_{m,\ell} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) A'_{m,\ell+1} \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \\&
+            = 
+            A_{m,m} \| \nabla u \|_{L^{p}(T_{m,m})}
+            +
+            \sum_{\ell=0}^{m-1} \left( B_{m,m} \cdots B_{m,\ell+2} \right) \left( B_{m,\ell+1} A_{m,\ell} + A'_{m,\ell+1} \right) \| \nabla u \|_{L^{p}(T_{m,\ell})}
+            \\&
+            =:
+            \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})}
+            .
+        \end{split}
+    \end{align}
+    Here, $C_{m,\ell}$ is the coefficient of $\| \nabla u \|_{L^{p}(T_{\ell})}$, possibly zero, as it appears in the unwrapped recursive estimate of $\| w \|_{L^{p}(T_{m})}$. 
+    By definition, $C_{m,0} = A_0$, and 
+    \begin{align}
+        C_{m,}
+    \end{align}
+    
+    The global Poincar\'e--Friedrichs inequality follows via H\"older's inequality:
+    \begin{align*}
+        \begin{split}
+            \| w \|_{L^{p}(\Omega)}^{p}
+            &
+            \leq 
+            \sum_{m=0}^{M}
+            \| w \|_{L^{p}(T_{m})}^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell=0}^{M} C_{m,\ell} \| \nabla u \|_{L^{p}(T_{\ell})} \right)^{p}
+            \\&
+            \leq 
+            \sum_{m=0}^{M}
+            \left( \sum_{\ell'=0}^{M} C_{m,\ell'}^{q} \right)^{\frac p q}
+            \sum_{\ell=0}^{M} 
+            \| \nabla u \|_{L^{p}(T_{\ell})}^{p} 
+            \leq 
+            \left(
+                \sum_{m=0}^{M}
+                \left( \sum_{\ell=0}^{M} C_{m,\ell}^{q} \right)^{\frac p q}
+            \right)
+            \| \nabla u \|_{L^{p}(\Omega)}^{p} 
+            ,
+        \end{split}
+    \end{align*}
+    where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
+    
+    In other words, the Poincar\'e--Friedrichs inequality is estimated by first taking the $q$-norm of the coefficients in the full sum~\eqref{math:fullrecursivesum} and then taking $p$-norm of these intermediate sums.
+\end{remark}
+
+
 \begin{proof}
     We introduce the reflection mapping $\Xi_{1} : T_{m} \rightarrow \Makoto_{m-1}$ of Proposition~\ref{proposition:starreflection}. 
     We define 
