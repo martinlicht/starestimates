@@ -6,12 +6,17 @@
 [x] and the computations: 8 -> k+1, 7 -> k
 [x] gradient: add explicit preimages to the main theorems (as Martin explained)
 [x] exterior: add explicit preimages to the main theorems (as Martin explained)
-[ ] gradient: turn remarks into major results and get a better idea of the recursive structure
-[ ] turn remarks into major results and get a better idea of the recursive structure
+[x] gradient: turn remarks into major results and get a better idea of the recursive structure
+[x] turn remarks into major results and get a better idea of the recursive structure
 
-[ ] Remark on how we can reduce the number of simplices. The triangulation has an influence. We better avoid non-face patches. 
-[ ] What is a good start? Is the interior a good heuristic?
-[ ] make the C++ code more prominent
+[ ] Software and algorithms:
+    [ ] C++ code and its features (meshes, diffforms)
+    [ ] Finding a spanning tree in the face graph
+    [ ] Finding a shelling 
+    [ ] Remark on how we can reduce the number of simplices. 
+    [ ] The triangulation has an influence. We better avoid non-face patches. 
+    [ ] What is a good start? Is the interior a good heuristic?
+    [ ] make the C++ code more prominent
 [ ] Tartar-Peetre 
 
 [ ] Further algorithms for shellings?

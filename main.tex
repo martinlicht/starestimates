@@ -6003,30 +6003,71 @@ such as the recursion presented in Theorem~\ref{theorem:poincarefriedrichsestima
 
 \section{Numerical examples}\label{section:numericalexamples}
 
-We assess the practical quality of our upper bounds with a few numerical examples in dimension 2D and 3D, with exclusive focus on the Hilbert space case $p=2$. 
-We want to compare the exact Poincar\'e--Friedrichs constants with the upper bounds given by Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}.
-In lieu of the exact value, finite element computations on a refined mesh provide reference eigenvalues as a proxy for the exact value.
-We have multiple estimates for the gradient potential, and the Poincar\'e--Friedrichs constant of the divergence can always be estimated by the diameter,
-hence our main interest is the curl operator. 
+We wish to assess the practical quality of our upper bounds, with exclusive focus on the Hilbert space case $p=2$. 
+To that end, we compare our estimates for the Poincar\'e--Friedrichs constants with the exact constants of a few examples domains in dimension 2 and 3. 
+In lieu of the exact values, finite element eigenvalue computations on a refined mesh provide reference values as a proxy for the exact value.
+We study the 
+
+Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} gives estimates for the gradient, curl and divergence Poincar\'e--Friedrichs constants. 
+In addition, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} provides anotherr upper bound for the Poincar\'e constant.
+We remark that the Poincar\'e--Friedrichs constant for the divergence can always be estimated by less than the diameter of the domain (see Lemma~\ref{lemma:mixedbconsimplex}), so our recursive estimates are of no practical interest in that case. 
+
+\subsection{Software and algorithms}
+
+% TODO: write about the software and the algorithms 
+
+% spanning trees 
+Computing the upper bound for the Poincar\'e constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires to find paths between simplices. One easily sees that the estimate is minimized by a spanning tree of the face-connection graph. 
+We choose a depth-first search that attempts to minimize the resulting constant. 
+While this does not take much time on small two-dimensional examples, the computation takes considerably in our three dimensional examples. 
+
+% shelling
+Computing the upper bound for the Poincar\'e--Friedrichs constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires the construction of shellings. 
+While a brute-force enumeration of shellings is still feasible for small two-dimensional triangulations, it becomes unfeasible in dimension three due to the combinatorial explosion of the number of possible shellings. 
+Instead, we perform a greedy backtracking search: 
+starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
+Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
+We moreover prioritize the completion of face stars, since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+
+This greedy backtracking algorithm does generally not guarantee that the optimal shelling is found until all shellings have been produced.
+However, finding all shellings seems practically infeasible. 
+Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
+We repeat this for a possible choices of initial simplex, and pick the optimal shelling among those found.
+The candidate shellings that we obtain in this manner lead to different quantitative estimates. In the case of more complicated 3D triangulations, such as of the Fichera corner, they may differ by a factor of $20$.
+For that reason, optimizing the estimate induced by the shelling is an important computational subproblem. 
+
+For tight estimates, it is imperative that we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each of the geometric transformations. The estimates that we use are slightly tighter than the ones stated in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:exterior},
+namely the calculations used in the proofs.
+
+
+
+
 
 \subsection{Estimates for partial boundary conditions}
 
+The Poincar\'e--Friedrichs constants over simplices enter our estimates.
+They are subject to boundary conditions that hold along a few faces. 
+Since those constants appear so frequently, we prefer to have tight upper estimates for them. 
+
+Specifically, and subject to different boundary conditions 
 We first assess the Poincar\'e--Friedrichs constant over the reference simplex where boundary conditions hold along a few faces. 
 This is of interest because the constant appears repeatedly within our main result. 
 
+Whenever $T$ is a simplex, the Poincar\'e--Friedrichs constants have upper bounds of the form $C \diam(T)$ for some numerical constant $C > 0$.
+Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and the subequent remark (using $p=2$) have established that $C = 2/\pi \approx 0.45015815807$. In the special case of the gradient potential, where the Poincar\'e constant can be characterized variationally, the Poincar\'e constant without boundary conditions is already an upper bound for the Poincar\'e constant with boundary conditions, and one can choose $C = 1/\pi \approx 0.31830988618$.
+This conforms to the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues.
+Finally, the factor $1/\pi$ in the previous two estimates has a known improvement when the simplex is a triangle:
+then we can replace the factor by $1/j_{1,1} \approx 0.2609803592$, where $j_{1,1}$ is the zero of a Bessel function; see~\cite{todo}.
+
 For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
 These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
-This example conforms to the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
 
-Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and the subequent remark (using $p=2$) give an upper bound of $2/\pi \approx 0.45015815807$,
-which is an overestimate by a factor of at most six.
+We overestimate by a factor of at most six.
 We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
 We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
 However, the results indicate room for improvement. 
 Future estimates should tighten the gap towards the actual computed values,
 including for ill-shaped simplices.
-
-% We conjecture that over convex domains $\Omega$, the Poincar\'e--Friedrichs constant of the gradient $\grad : W^{1,p}(\Omega) \rightarrow \bfL^{p}(\Omega)$ is an upper estimate for other Poincar\'e--Friedrichs constants in de~Rham complex. Numerical examples indicate that this holds for $p=2$.
 
 \begin{table}[t]
     \centering
@@ -6077,12 +6118,12 @@ Only two differential operators appear in the two-dimensional de~Rham complexes,
 and their Poincar\'e--Friedrichs constants are the inverse square roots of the smallest non-zero Dirichlet and Neumann Laplacians. 
 Standard finite element eigenvalue computations on a sufficiently refined mesh (four steps of uniform refinement) provide reference values for these.
 
-We compare the reference Neumann eigenvalues with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
+We compare the reference Poincar\'e constants with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 A brufe-force search easily enumerates all the (repetition-free) face-paths between triangles, which allows us to find the best estimate possible estimate with the aforementioned theorem. 
-
-We compare the reference Neumann and Dirichlet eigenvalues with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection} (with Remark~\ref{remark:improved_starreflection}).
-Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations,
-allowing us to compute the best possible of these bounds. 
+%
+Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection}. 
+% (with Remark~\ref{remark:improved_starreflection}).
+Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations, allowing us to compute the best possible of these bounds. 
 
 
 % Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.

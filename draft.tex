@@ -70,6 +70,16 @@
 \tableofcontents
 
 
+For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
+These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
+This example conforms to the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
+
+We overestimate by a factor of at most six.
+We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
+We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
+However, the results indicate room for improvement. 
+Future estimates should tighten the gap towards the actual computed values,
+including for ill-shaped simplices.
 
 
 
