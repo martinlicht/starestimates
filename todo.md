@@ -23,6 +23,11 @@
 
 [ ] Lotoreichek, Rohleder: We recover the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
 
+[ ] Laugesen and Siudeja \cite{laugesen2010minimizing} determine the optimal Poincar\'e constant over triangles with $p=2$ in terms of the root of a Bessel function. For any triangle $T$, they estimate 
+\[
+    C \leq \diam(T) / j_{1,1}, \quad j_{1,1} \approx 3.83170597020751231561443588630816076656454527428780192876229898991883930951
+\]
+This is slightly better than the Payne-Weinberger bound. It might also be a limit to what extent the latter estimates can be improved for general tetrahedra.
 
 https://math.stackexchange.com/questions/861674/decompose-a-2d-arbitrary-transform-into-only-scaling-and-rotation
 
