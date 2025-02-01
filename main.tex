@@ -6014,30 +6014,32 @@ We remark that the Poincar\'e--Friedrichs constant for the divergence can always
 
 \subsection{Software and algorithms}
 
-% TODO: write about the software and the algorithms 
+All computations have been implemented with an in-house C++ code developed specifically for implementing finite element exterior calculus. 
+The reference Poincar\'e constants are the inverse square roots of reference eigenvalues.
+We compute the latter by solving finite element eigenvalue problems that involve mixed formulations of the vector Laplacian over sufficiently refined meshes. 
 
-% spanning trees 
-Computing the upper bound for the Poincar\'e constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires to find paths between simplices. One easily sees that the estimate is minimized by a spanning tree of the face-connection graph. 
+Computing the upper bound for the Poincar\'e constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires to find paths between simplices. One quickly sees that a spanning tree of the face-connection graph minimizes the estimate. 
 We choose a depth-first search that attempts to minimize the resulting constant. 
-While this does not take much time on small two-dimensional examples, the computation takes considerably in our three dimensional examples. 
+While this does not take much time for small two-dimensional examples, the computation takes considerably for our three-dimensional examples. 
 
-% shelling
 Computing the upper bound for the Poincar\'e--Friedrichs constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires the construction of shellings. 
+Finding a shelling that optimizes a geometric target quantity is a challenging problem in computational geometry and theoretical computer science. 
 While a brute-force enumeration of shellings is still feasible for small two-dimensional triangulations, it becomes unfeasible in dimension three due to the combinatorial explosion of the number of possible shellings. 
 Instead, we perform a greedy backtracking search: 
-starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
-Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
-We moreover prioritize the completion of face stars, since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+Starting with a single simplex, we successively add simplices to the partial shellings until a complete shelling is found. 
+This backtracking algorithm does generally not find the optimal shelling until all shellings have been checked.
+However, enumerating and checking all shellings seems practically infeasible. 
 
-This greedy backtracking algorithm does generally not guarantee that the optimal shelling is found until all shellings have been produced.
-However, finding all shellings seems practically infeasible. 
-Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
-We repeat this for a possible choices of initial simplex, and pick the optimal shelling among those found.
-The candidate shellings that we obtain in this manner lead to different quantitative estimates. In the case of more complicated 3D triangulations, such as of the Fichera corner, they may differ by a factor of $20$.
-For that reason, optimizing the estimate induced by the shelling is an important computational subproblem. 
+Therefore, we need a practical heuristic to find shellings that induce small constants. Indeed, our computations show that the Poincar\'e--Friedrichs estimates depend on the shelling and can differ by orders of magnitudes. Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
+We repeat this for all possible initial simplices and pick the optimal shelling among those found.
+We use a greedy strategy: Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
+We moreover prioritize the completion of face stars since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+In other words, we defer the completion of non-face stars in order to not introduce large factors early into the recursion. 
 
-For tight estimates, it is imperative that we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each of the geometric transformations. The estimates that we use are slightly tighter than the ones stated in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:exterior},
-namely the calculations used in the proofs.
+For tight estimates, we must compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each geometric transformation. The estimates that we use are slightly tighter than the ones stated in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:exterior},
+as we directly implement the calculations used in the proofs.
+
+
 
 
 
@@ -6057,7 +6059,7 @@ Whenever $T$ is a simplex, the Poincar\'e--Friedrichs constants have upper bound
 Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and the subequent remark (using $p=2$) have established that $C = 2/\pi \approx 0.45015815807$. In the special case of the gradient potential, where the Poincar\'e constant can be characterized variationally, the Poincar\'e constant without boundary conditions is already an upper bound for the Poincar\'e constant with boundary conditions, and one can choose $C = 1/\pi \approx 0.31830988618$.
 This conforms to the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues.
 Finally, the factor $1/\pi$ in the previous two estimates has a known improvement when the simplex is a triangle:
-then we can replace the factor by $1/j_{1,1} \approx 0.2609803592$, where $j_{1,1}$ is the zero of a Bessel function; see~\cite{todo}.
+then we can replace the factor $1/\pi$ by $1/j_{1,1} \approx 0.2609803592$, where $j_{1,1}$ is the zero of a Bessel function; see~\cite{laugesen2010minimizing}.
 
 For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
 These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
@@ -6119,14 +6121,11 @@ and their Poincar\'e--Friedrichs constants are the inverse square roots of the s
 Standard finite element eigenvalue computations on a sufficiently refined mesh (four steps of uniform refinement) provide reference values for these.
 
 We compare the reference Poincar\'e constants with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
-A brufe-force search easily enumerates all the (repetition-free) face-paths between triangles, which allows us to find the best estimate possible estimate with the aforementioned theorem. 
 %
 Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection}. 
 % (with Remark~\ref{remark:improved_starreflection}).
-Again, brute-force search is feasible to enumerate all possible shellings of moderately small two-dimensional triangulations, allowing us to compute the best possible of these bounds. 
 
 
-% Because much easier estimates are known for those, applying our estimates in the two-dimensional situation has only demonstrative purpose.
 
 
 \begin{table}[t]
@@ -6191,23 +6190,6 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 % The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
 % As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
-The computation becomes more demanding in dimension three. 
-Enumerating all the shortest-path trees of the triangulations above is still feasible but takes considerably longer. 
-However, brute-force enumeration of all shellings seems infeasible, though, due to the combinatorial explosion of the number of possible shellings. 
-Instead, we perform a greedy backtracking search: 
-starting with a single simplex, we successively increase the number of shellings until a complete shelling is found. 
-Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
-We moreover prioritize the completion of face stars, since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
-It is imperative for the improvement of our upper bounds that we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each of the geometric transformations, thus avoiding overtly pessimistic blanket estimates.
-
-This greedy backtracking algorithm does generally not guarantee that the optimal shelling is found until all shellings have been produced.
-However, finding all shellings seems practically infeasible. 
-Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
-We repeat this for a possible choices of initial simplex, and pick the optimal shelling among those found.
-The candidate shellings that we obtain in this manner lead to different quantitative estimates. In the case of more complicated triangulations, such as of the Fichera corner, they may differ by a factor of $20$.
-For that reason, optimizing the estimate induced by the shelling is an important computational subproblem. 
-
-
 \begin{table}[t]
     \color{red}
     \centering
@@ -6265,23 +6247,24 @@ For that reason, optimizing the estimate induced by the shelling is an important
 
 \section{Outlook}\label{section:outlook}
 
-The most important outcome of this manuscript is the computation of upper bounds of Poincar\'e--Friedrichs constants for the curl and divergence operators over local patches in low dimensions (i.e.\ $n=2$ or $n=3$). 
-There are several avenues for further research. 
-In particular, our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars) and further improvement seems possible.
+The most important contribution of this manuscript is the computation of upper bounds of Poincar\'e--Friedrichs constants for the curl and divergence operators over local patches in low dimensions (i.e., \ $n=2$ or $n=3$). 
+However, our upper bounds are hardly the last word on estimating the Poincar\'e--Friedrichs constants over local patches (stars). There are several avenues for further research and improvement. 
 
-Firstly, we use local Poincar\'e--Friedrichs inequalities over single simplices, subject to various boundary conditions, but these local estimates over simplices (and, more generally, convex domains) likely allow room for improvement. We conjecture that the Guerini--Savo~\cite{guerini2004eigenvalue} estimates, hitherto only known when $p=2$ and over bounded convex domains with smooth boundary, could be extended to the entire range of Lebesgue exponents $1 \leq p \leq \infty$ and convex Lipschitz domains. 
-The case $p=2$ was discussed recently~\cite{licht2024geometry}.
-Such estimates would likely improve on the Poincar\'e--Friedrichs constants than the regularized Poincar\'e operators in the spirit of Costabel and McIntosh~\cite{costabel2010bogovskiui} that we currently use. Similarly, Poincar\'e--Friedrichs constants subject to boundary conditions allow for upper bounds tighter than what we currently achieve via regularized Bogovski\u{\i} operators. 
-% DONE {The above needs to be updated.}
+We use local Poincar\'e--Friedrichs inequalities over single simplices, subject to boundary conditions along some faces. As mentioned earlier, the Poincar\'e constant over triangles admits a sharper upper bound than for general convex domains. We conjecture that tetrahedra permit a similar improvement. 
 
-Secondly, our construction uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
-In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques could lead to better estimates,
-such as via trace and extension operators.
+The gradient Poincar\'e--Friedrichs constant already dominates the Poincar\'e--Friedrichs constants of the $\Lebesgue^2$ de~Rham complex without boundary conditions (or with full boundary conditions) over convex domains~\cite{guerini2004eigenvalue,licht2024geometry}. 
+We believe that this generalizes to the entire range of Lebesgue exponents $1 \leq p \leq \infty$
+Such estimates would likely improve on the Poincar\'e--Friedrichs constants derived via the regularized Poincar\'e and Bogovski\u{\i} operators.
 
-Thirdly, the present results can be generalized to shellable polytopal complexes. 
-This extension may also pertain for simplicial triangulation: 
-since the estimates deteriorate if the number of simplices increases, 
-we might improve our estimates if we lump simplices of a triangulation together into a few polytopal subdomains for which the Poincar\'e--Friedrichs constants are controlable.
+Our method uses the extension of differential forms onto a simplex from the complement of that simplex within a local star. 
+In the present manuscript, this extension is via pullback along a bi-Lipschitz mapping, but different techniques, such as via trace and extension operators, could lead to better estimates.
+
+There is little research on practical algorithms that construct shellings. Checking whether a general triangulation has a shelling is computationally infeasible. While the literature knows a few theoretical results, there is interest in algorithms that attempt to shell practically relevant triangulations while optimizing geometric target heuristics.
+
+We expect the present results to generalize to shellable polytopal complexes. 
+Apart from the intrinsic interest in polytopal simplicial complexes, this extension is also relevant for any simplicial triangulation:
+As a rule of thumb, the estimates deteriorate as the number of simplices increases.
+We might improve our estimates by lumping simplices into a few polytopal subdomains for which the Poincar\'e--Friedrichs constants are controllable. For example, the crossed bricks domain easily partitions into four quadrilaterals.
 
 Lastly, estimating Poincar\'e--Friedrichs constants over domains and manifolds with shellable triangulations is restricted to topological balls and spheres. 
 In particular, the underlying set of any shellable triangulations is contractible. 

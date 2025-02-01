@@ -9,16 +9,17 @@
 [x] gradient: turn remarks into major results and get a better idea of the recursive structure
 [x] turn remarks into major results and get a better idea of the recursive structure
 
-[ ] Software and algorithms:
-    [ ] C++ code and its features (meshes, diffforms)
-    [ ] Finding a spanning tree in the face graph
-    [ ] Finding a shelling 
-    [ ] Remark on how we can reduce the number of simplices. 
-    [ ] The triangulation has an influence. We better avoid non-face patches. 
-    [ ] What is a good start? Is the interior a good heuristic?
-    [ ] make the C++ code more prominent
+[x] Software and algorithms:
+    [x] C++ code and its features (meshes, diffforms)
+    [x] Finding a spanning tree in the face graph
+    [x] Finding a shelling 
+    [x] General remark on how to find a shelling
+    [x] The triangulation has an influence. We better avoid non-face patches. 
+    [x] make the C++ code more prominent
 [ ] Tartar-Peetre 
 
+[ ] Remark on how we can reduce the number of simplices. 
+[ ] What is a good start? Is the interior a good heuristic?
 [ ] Further algorithms for shellings?
 
 [ ] Lotoreichek, Rohleder: We recover the well-known fact that the eigenvalues of the scalar Laplacian with mixed boundary conditions are between the Neumann and Dirichlet eigenvalues, which follows from a known variational principle. However, such an enclosure does not seem to hold for the vector Laplacians with mixed boundary conditions.
