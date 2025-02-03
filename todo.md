@@ -18,6 +18,12 @@
     [x] make the C++ code more prominent
 [ ] Tartar-Peetre 
 
+Fichera
+grad 1 : 10.62410979
+grad 2 : 269.5329306
+curl : 25752.34203
+div : 8958.467291
+
 [ ] Remark on how we can reduce the number of simplices. 
 [ ] What is a good start? Is the interior a good heuristic?
 [ ] Further algorithms for shellings?
