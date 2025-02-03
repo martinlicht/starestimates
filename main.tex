@@ -6124,6 +6124,8 @@ We compare the reference Poincar\'e constants with the gradient potential estima
 Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection}. 
 % (with Remark~\ref{remark:improved_starreflection}).
 
+The shelling-based estimate for the Poincar\'e constant of the gradient potential outperforms the estimate in Section~\ref{section:gradient} in our examples where the triangles are not all congruent to each other.
+That is a result of our implementation, where the face-based reflections are not necessarily onto, which allows for some improved estimates.
 
 
 
@@ -6133,13 +6135,17 @@ Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bou
         \hline
                         & $\grad$ ref  & $\grad$ est & $\grad$ ratio & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
         \hline
-        $\calT_{Q}$     & 0.318        & 1.684337597 &               & 1.684337582       & 3.141        & 0.225              & 1.684337545        &  6.928              \\ 
+        $\calT_{Q}$     & 0.318        & 0.9040624834 &               & 0.904062477       & 3.141        & 0.225              & 1.380978233              &  6.928              \\ 
         \hline
-        $\calT_{L}$     & 0.822        & 2.904309304 &               & 1.733455376       & 2.895              & 0.322              & 1.733455385              &  7.402              \\ 
+        $\calT_{L}$     & 0.822        & 2.381225711 &               & 1.421249625       & 2.895              & 0.322              & 2.978885552         &  7.402              \\ 
         \hline
-        $\calT_{S}$     & 0.978        & 3.357380776 &               & 2.170240475       & 2.982              & 0.346              & 2.170240474              &  8.419              \\ 
+        $\calT_{L'}$     & 0.822        & 2.391924501 &               & 2.391924492       & 2.895              & 0.322              & 4.208181795        &  7.402              \\ 
         \hline
-        $\calT_{S'}$    & 0.978        & 3.368675195 &               & 3.368675191       & 4.870              & 0.346              & 3.368675191              & 13.748              \\ 
+        $\calT_{S,5}$     & 0.978        & 2.752696283 &               & 1.779367097       & 2.982              & 0.346              & 3.717588832       &  8.419              \\ 
+        \hline % non-centered
+        $\calT_{S'}$    & 0.978        & 2.761956509 &               & 2.761956506       & 4.870              & 0.346              & 4.840464511         & 13.748              \\ 
+        \hline % non-centered
+        $\calT_{S''}$   & 0.978        & 3.131764309 &               & 3.131764307       & 4.870              & 0.346              & 5.669944609         & 13.748              \\ 
         \hline
     \end{tabular}
     \caption{
