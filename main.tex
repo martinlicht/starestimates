@@ -6112,7 +6112,8 @@ We consider the triangulations:
     \item $\calT_{Q}$:  square triangulation with two triangles
     \item $\calT_{L}$:  L-shaped domain triangulation with four triangles
     \item $\calT_{S}$:  Slit domain triangulation, five triangles 
-    \item $\calT_{S'}$: Slit domain triangulation, 8 triangles, four of which touch the origin.
+    \item $\calT_{S'}$: Slit domain triangulation, 8 triangles, all of which touch the origin.
+    \item $\calT_{S''}$: Slit domain triangulation, 8 triangles, four of which touch the origin.
 \end{itemize}
 
 Only two differential operators appear in the two-dimensional de~Rham complexes,
@@ -6121,10 +6122,10 @@ Standard finite element eigenvalue computations on a sufficiently refined mesh (
 
 We compare the reference Poincar\'e constants with the gradient potential estimate in Theorem~\ref{theorem:poincarefriedrichsestimate:grad}.
 %
-Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection}. 
+Moreover, we compare the reference Poincar\'e--Friedrichs constants with the bounds computed in Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}. Here, we take into account Lemma~\ref{lemma:volumecomparison} and Theorem~\ref{proposition:starreflection}.
 % (with Remark~\ref{remark:improved_starreflection}).
 
-The shelling-based estimate for the Poincar\'e constant of the gradient potential outperforms the estimate in Section~\ref{section:gradient} in our examples where the triangles are not all congruent to each other.
+The shelling-based estimate for the Poincar\'e constant of the gradient potential outperforms the estimate in Section~\ref{section:gradient} in our examples where the triangles are not all congruent to each other ($\calT_{L}$ and $\calT_{S,5}$).
 That is a result of our implementation, where the face-based reflections are not necessarily onto, which allows for some improved estimates.
 
 
@@ -6135,17 +6136,17 @@ That is a result of our implementation, where the face-based reflections are not
         \hline
                         & $\grad$ ref  & $\grad$ est & $\grad$ ratio & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
         \hline
-        $\calT_{Q}$     & 0.318        & 0.9040624834 &               & 0.904062477       & 3.141        & 0.225              & 1.380978233              &  6.928              \\ 
+        $\calT_{Q}$     & 0.318        & 0.9040624834 &               & 0.904062477        & 3.141        & 0.225              & 1.339553527              &  6.928              \\
         \hline
-        $\calT_{L}$     & 0.822        & 2.381225711 &               & 1.421249625       & 2.895              & 0.322              & 2.978885552         &  7.402              \\ 
+        $\calT_{L}$     & 0.822        & 2.381225711 &               & 1.421249625        & 2.895              & 0.322              & 2.505543143         &  7.402              \\
         \hline
-        $\calT_{L'}$     & 0.822        & 2.391924501 &               & 2.391924492       & 2.895              & 0.322              & 4.208181795        &  7.402              \\ 
+        $\calT_{L'}$     & 0.822        & 2.391924501 &               & 2.391924492        & 2.895              & 0.322              & 4.053039867        &  7.402              \\
         \hline
         $\calT_{S,5}$     & 0.978        & 2.752696283 &               & 1.779367097       & 2.982              & 0.346              & 3.717588832       &  8.419              \\ 
+        \hline % centered
+        $\calT_{S'}$    & 0.978        & 3.131764309 &               & 3.131764307       & 4.870              & 0.346              & 5.453759801         & 13.748              \\
         \hline % non-centered
-        $\calT_{S'}$    & 0.978        & 2.761956509 &               & 2.761956506       & 4.870              & 0.346              & 4.840464511         & 13.748              \\ 
-        \hline % non-centered
-        $\calT_{S''}$   & 0.978        & 3.131764309 &               & 3.131764307       & 4.870              & 0.346              & 5.669944609         & 13.748              \\ 
+        $\calT_{S''}$   & 0.978        & 2.761956509 &               & 2.761956506       & 4.870              & 0.346              & 4.662992222         & 13.748              \\
         \hline
     \end{tabular}
     \caption{
@@ -6200,17 +6201,17 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
     \centering
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
         \hline
-                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio      & $\grad$ est & $\grad$ ratio       \\ 
+                        & $\grad$ ref  & $\grad$ est  & $\grad$ ratio      & $\grad$ est & $\grad$ ratio       \\
         \hline
-        $\calT_{C}$     & 0.3177997026 &             &                    &  1.147682616 & 3.611339490040196  \\ 
+        $\calT_{C,5}$   & 0.3179254398 & 4.31776537   &                    & 3.246136642  & 91.66905966662563  \\
         \hline
-        $\calT_{K}$     & 0.3179254398 &             &                    & 12.73827122  & 91.66905966662563  \\ 
+        $\calT_{C,K}$   & 0.3041392027 & 0.3177997026 &                    & 11.03485346 & 3.611339490040196  \\
         \hline
-        $\calT_{B,5}$   & 1.022627161  &             &                    & 36.7821067   & 35.96824737574127  \\ 
+        $\calT_{B,5}$   & 1.022627161  & 7.698889039  &                    & 25.97226447  & 35.96824737574127  \\
         \hline
-        $\calT_{B}$     & 1.022627161  &             &                    & 62.40578125  & 61.02495966269372  \\ 
+        $\calT_{B,K}$   & 1.022627161  & 10.10602558  &                    & 53.76320901  & 61.02495966269372  \\
         \hline
-        $\calT_{F}$     & 0.7117133306 &             &                    & 325.7340627  & 18796.92616132183  \\ 
+        $\calT_{F}$     & 0.7117133306 &              &                    & 325.7340627  & 18796.92616132183  \\
         \hline
     \end{tabular} 
     \caption{
@@ -6227,13 +6228,13 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
         \hline
                         & $\curl$ ref  & $\curl$ est & $\curl$ ratio     & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
         \hline
-        $\calT_{C}$     & 0.2250695032 & 1.147682616 & 5.099236457042005 & 0.1837881324      & 1.5265605865      &  8.30608900893      \\ 
+        $\calT_{K,5}$   & 0.2250062929 & 141.1488115 & 129.5249378629681 & 0.1837655124      & 3.391164992       & 139.7449800105412   \\
         \hline
-        $\calT_{K}$     & 0.2250062929 & 29.14392611 & 129.5249378629681 & 0.1837655124      & 25.68030786       & 139.7449800105412   \\ 
+        $\calT_{C,K}$   & 0.2250695032 & 12.15727753 & 5.099236457042005 & 0.1837881324      & 25.89943821       &  8.30608900893      \\
         \hline
-        $\calT_{B,5}$   & 0.3315710272 & 160.0052039 & 482.5669036190229 & 0.2330604743      & 160.7339833       & 689.6664212985330   \\ 
+        $\calT_{B,5}$   & 0.3315710272 & 113.0845771 & 482.5669036190229 & 0.2330604743      & 152.8861269       &    \\
         \hline
-        $\calT_{B}$     & 0.3315710272 & 572.3519405 & 1726.182004903473 & 0.2330604743      & 510.806374        & 2191.733177984011   \\ 
+        $\calT_{B,K}$   & 0.3315710272 & 162.6872182 & 1726.182004903473 & 0.2330604743      & 512.2731352       & 2191.733177984011   \\
         \hline
         $\calT_{F}$     & 0.5549678737 & 13378.02292 & 24105.94118711908 & 0.3106774562      & 11705.58269       & 37677.60567703448   \\ 
         \hline
