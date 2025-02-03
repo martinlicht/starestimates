@@ -432,11 +432,90 @@ We refer to Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction
 
 
 
+\section{Updated Tables}
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{|c||c|c|c|c|c||c|c|c|}
+        \hline
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio       & $\grad$ est   & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
+        \hline
+        $\calT_{Q}$     & 0.318        & 0.9040624834 & 2.842963784        & 0.904062477   & 2.84296376         & 0.225              & 1.339553527        & 5.95357123111   \\
+        \hline
+        $\calT_{L}$     & 0.822        & 2.381225711 & 2.896868261         & 1.421249625   & 1.72901414234      & 0.322              & 2.505543143        & 7.78118988509   \\
+        \hline
+        $\calT_{L'}$    & 0.822        & 2.391924501 & 2.909883821         & 2.391924492   & 2.90988381022      & 0.322              & 4.053039867        & 12.5870803323   \\
+        \hline
+        $\calT_{S,5}$   & 0.978        & 2.752696283 & 2.81461787627       & 1.779367097   & 1.81939375971      & 0.346              & 3.717588832        & 10.7444763931   \\ 
+        \hline % centered
+        $\calT_{S'}$    & 0.978        & 3.131764309 & 3.2022129948        & 3.131764307   & 3.20221299284      & 0.346              & 5.453759801        & 15.7623115636   \\
+        \hline % non-centered
+        $\calT_{S''}$   & 0.978        & 2.761956509 & 2.82408641002       & 2.761956506   & 2.82408640695      & 0.346              & 4.662992222        & 13.4768561329   \\
+        \hline
+    \end{tabular}
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 2D domains.
+    Reference values for the gradient and divergence (2nd and 7th column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column), 
+    and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (8th and 9th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates2D}
+\end{table}
+
+\begin{table}[t]
+    \color{red}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+                        & $\grad$ ref  & $\grad$ est  & $\grad$ ratio       & $\grad$ est & $\grad$ ratio  \\
+        \hline
+        $\calT_{C,5}$   & 0.3179254398 & 4.31776537   & 13.5810628200       & 3.246136642  & 10.214410571  \\
+        \hline
+        $\calT_{C,K}$   & 0.3177997026 & 3.571616557  &  11.238577405       & 11.03485346  & 34.722667673  \\
+        \hline
+        $\calT_{B,5}$   & 1.022627161  & 7.698889039  & 7.52853956223       & 25.97226447  & 25.397589131  \\
+        \hline
+        $\calT_{B,K}$   & 1.022627161  & 10.10602558  & 9.88241459391       & 53.76320901  & 52.573617306  \\
+        \hline
+        $\calT_{F}$     & 0.7117133306 & 10.62410979  & 14.9275127122       & 269.5329306  & 378.70996511  \\ 
+        \hline
+    \end{tabular} 
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants of the gradient over various triangulated 3D domains.
+    Reference values for the gradient (2nd column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column).
+    }\label{table:estimates3D:grad}
+\end{table}
+  
+\begin{table}[t]
+    \color{red}
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+                        & $\curl$ ref  & $\curl$ est & $\curl$ ratio     & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
+        \hline
+        $\calT_{K,5}$   & 0.2250062929 & 141.1488115 & 627.310506212     & 0.1837655124      & 3.391164992       & 18.4537617952   \\
+        \hline
+        $\calT_{C,K}$   & 0.2250695032 & 12.15727753 & 54.0308334194     & 0.1837881324      & 25.89943821       & 140.920079397   \\
+        \hline
+        $\calT_{B,5}$   & 0.3315710272 & 113.0845771 & 341.056871148     & 0.2330604743      & 152.8861269       & 655.993374077   \\
+        \hline
+        $\calT_{B,K}$   & 0.3315710272 & 162.6872182 & 490.655711308     & 0.2330604743      & 512.2731352       & 2198.02665698   \\
+        \hline
+        $\calT_{F}$     & 0.5549678737 & 25752.34203 & 46403.3023359     & 0.3106774562      & 8958.467291       & 28835.2666478   \\ 
+        \hline
+    \end{tabular}
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 3D domains.
+    Reference values for the curl and divergence (2nd and 5th column) computed with finite element methods together with estimates and ratios
+    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (3rd and 4th column) and with $k=1$ (5th and 6th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates3D:curldiv}
+\end{table}
+
 
 
 \section{Original 2D table}
-
-
 
 \begin{table}[t]
     \centering

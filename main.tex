@@ -6132,21 +6132,21 @@ That is a result of our implementation, where the face-based reflections are not
 
 \begin{table}[t]
     \centering
-    \begin{tabular}{|c||c|c|c|c|c||c|c|c|}
+    \begin{tabular}{|r||r|r|r|r|r||r|r|r|}
         \hline
-                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio & $\grad$ est & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
+                        & $\grad$ ref  & $\grad$ est & $\grad$ ratio       & $\grad$ est   & $\grad$ ratio      & $\divergence$ ref  & $\divergence$ est  & $\divergence$ ratio \\ 
         \hline
-        $\calT_{Q}$     & 0.318        & 0.9040624834 &               & 0.904062477        & 3.141        & 0.225              & 1.339553527              &  6.928              \\
+        $\calT_{Q}$     & 0.318        & 0.904       & 2.842               & 0.904         & 2.842              & 0.225              & 1.339              &  5.953         \\
         \hline
-        $\calT_{L}$     & 0.822        & 2.381225711 &               & 1.421249625        & 2.895              & 0.322              & 2.505543143         &  7.402              \\
+        $\calT_{L}$     & 0.822        & 2.381       & 2.896               & 1.421         & 1.729              & 0.322              & 2.505              &  7.781         \\
         \hline
-        $\calT_{L'}$     & 0.822        & 2.391924501 &               & 2.391924492        & 2.895              & 0.322              & 4.053039867        &  7.402              \\
+        $\calT_{L'}$    & 0.822        & 2.391       & 2.909               & 2.391         & 2.909              & 0.322              & 4.053              & 12.587         \\
         \hline
-        $\calT_{S,5}$     & 0.978        & 2.752696283 &               & 1.779367097       & 2.982              & 0.346              & 3.717588832       &  8.419              \\ 
+        $\calT_{S,5}$   & 0.978        & 2.752       & 2.814               & 1.779         & 1.819              & 0.346              & 3.717              & 10.744         \\ 
         \hline % centered
-        $\calT_{S'}$    & 0.978        & 3.131764309 &               & 3.131764307       & 4.870              & 0.346              & 5.453759801         & 13.748              \\
+        $\calT_{S'}$    & 0.978        & 3.131       & 3.202               & 3.131         & 3.202              & 0.346              & 5.453              & 15.762         \\
         \hline % non-centered
-        $\calT_{S''}$   & 0.978        & 2.761956509 &               & 2.761956506       & 4.870              & 0.346              & 4.662992222         & 13.748              \\
+        $\calT_{S''}$   & 0.978        & 2.761       & 2.824               & 2.761         & 2.824              & 0.346              & 4.662              & 13.476         \\
         \hline
     \end{tabular}
     \caption{
@@ -6184,10 +6184,11 @@ the unit cube $\Omega_C$, the Fichera corner domain $\Omega_F$, and the crossed 
 \end{gather*}
 We consider the triangulations: 
 \begin{itemize}
-    \item $\calT_{C}$: cube triangulation with five tetrahedra
-    \item $\calT_{K}$: Kuhn triangulation of the cube, consisting of six tetrahedra
+    \item $\calT_{C,5}$: cube triangulation with five tetrahedra
+    \item $\calT_{C,K}$: Kuhn triangulation of the cube, consisting of six tetrahedra
+    \item $\calT_{B,5}$: crossed bricks, four copies of $\calT_{C,5}$
+    \item $\calT_{B,K}$: crossed bricks, four copies of $\calT_{C,K}$
     \item $\calT_{F}$: Fichera corner, $24$ simplices 
-    \item $\calT_{B}$: crossed bricks, $24$ simplices 
 \end{itemize}
 
 The reference Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators are found via standard finite element eigenvalue computations, using the lowest-order finite element de~Rham complex over a sufficiently refined mesh (four steps of uniform refinement).
@@ -6199,19 +6200,19 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 \begin{table}[t]
     \color{red}
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|r||r|r|r|r|r||r|r|r|}
         \hline
-                        & $\grad$ ref  & $\grad$ est  & $\grad$ ratio      & $\grad$ est & $\grad$ ratio       \\
+                        & $\grad$ ref  & $\grad$ est  & $\grad$ ratio       & $\grad$ est  & $\grad$ ratio  \\
         \hline
-        $\calT_{C,5}$   & 0.3179254398 & 4.31776537   &                    & 3.246136642  & 91.66905966662563  \\
+        $\calT_{C,5}$   & 0.317        & 4.317        & 13.581              & 3.246        & 10.214         \\
         \hline
-        $\calT_{C,K}$   & 0.3041392027 & 0.3177997026 &                    & 11.03485346 & 3.611339490040196  \\
+        $\calT_{C,K}$   & 0.317        & 3.571        &  11.23              & 11.034       & 34.722         \\
         \hline
-        $\calT_{B,5}$   & 1.022627161  & 7.698889039  &                    & 25.97226447  & 35.96824737574127  \\
+        $\calT_{B,5}$   & 1.022        & 7.698        & 7.5285              & 25.972       & 25.397         \\
         \hline
-        $\calT_{B,K}$   & 1.022627161  & 10.10602558  &                    & 53.76320901  & 61.02495966269372  \\
+        $\calT_{B,K}$   & 1.022        & 10.106       & 9.8824              & 53.763       & 52.573         \\
         \hline
-        $\calT_{F}$     & 0.7117133306 & 10.62410979 &                    & 269.5329306  & 18796.92616132183  \\ 
+        $\calT_{F}$     & 0.711        & 10.622       & 14.927              &  268.071     & 377.033        \\ 
         \hline
     \end{tabular} 
     \caption{
@@ -6221,22 +6222,22 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
     }\label{table:estimates3D:grad}
 \end{table}
   
-\begin{table}[t]
+\begin{table}[t]  
     \color{red}
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \begin{tabular}{|r||r|r|r||r|r|r|}
         \hline
-                        & $\curl$ ref  & $\curl$ est & $\curl$ ratio     & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
+                        & $\curl$ ref  & $\curl$ est & $\curl$ ratio          & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
         \hline
-        $\calT_{K,5}$   & 0.2250062929 & 141.1488115 & 129.5249378629681 & 0.1837655124      & 3.391164992       & 139.7449800105412   \\
+        $\calT_{C,5}$   & 0.225        & 141.148     & 627.310506212          & 0.183             & 3.391             & 18.453          \\
         \hline
-        $\calT_{C,K}$   & 0.2250695032 & 12.15727753 & 5.099236457042005 & 0.1837881324      & 25.89943821       &  8.30608900893      \\
+        $\calT_{C,K}$   & 0.225        & 12.157      & 54.0308334194          & 0.183             & 25.899            & 140.920         \\
         \hline
-        $\calT_{B,5}$   & 0.3315710272 & 113.0845771 & 482.5669036190229 & 0.2330604743      & 152.8861269       &    \\
+        $\calT_{B,5}$   & 0.331        & 113.084     & 341.056871148          & 0.233             & 152.886           & 655.993         \\
         \hline
-        $\calT_{B,K}$   & 0.3315710272 & 162.6872182 & 1726.182004903473 & 0.2330604743      & 512.2731352       & 2191.733177984011   \\
+        $\calT_{B,K}$   & 0.331        & 162.687     & 490.655711308          & 0.233             & 512.273           & 2198.026        \\
         \hline
-        $\calT_{F}$     & 0.5549678737 & 25752.34203 & 24105.94118711908 & 0.3106774562      & 8958.467291       & 37677.60567703448   \\ 
+        $\calT_{F}$     & 0.554        & 25752.342   & 46403.3023359          & 0.310             & 8958.467          & 28835.266       \\ 
         \hline
     \end{tabular}
     \caption{
