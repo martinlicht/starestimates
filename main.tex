@@ -5883,6 +5883,7 @@ such as the recursion presented in Theorem~\ref{theorem:poincarefriedrichsestima
     % where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
 \end{proof}    
     
+\begin{comment}
 \begin{remark}\label{remark:fullrecursivesum:exterior}
     Recall that the potential $w$ for the gradient $\cartan u$ satisfies the recursive estimate 
     \begin{align*}
@@ -5940,6 +5941,7 @@ such as the recursion presented in Theorem~\ref{theorem:poincarefriedrichsestima
     \end{align*}
     where $q \in [1,\infty]$ satisfies $1 = 1/p + 1/q$ and with obvious modifications if $p=1$ or $p=\infty$. 
 \end{remark}
+\end{comment}
         
         
 
@@ -6198,7 +6200,6 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 % As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 \begin{table}[t]
-    \color{red}
     \centering
     \begin{tabular}{|r||r|r|r|r|r||r|r|r|}
         \hline
@@ -6223,27 +6224,26 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 \end{table}
   
 \begin{table}[t]  
-    \color{red}
     \centering
     \begin{tabular}{|r||r|r|r||r|r|r|}
         \hline
                         & $\curl$ ref  & $\curl$ est & $\curl$ ratio          & $\divergence$ ref & $\divergence$ est & $\divergence$ ratio \\ 
         \hline
-        $\calT_{C,5}$   & 0.225        & 141.148     & 627.310506212          & 0.183             & 3.391             & 18.453          \\
+        $\calT_{C,5}$   & 0.225        & 141.148     & 627.310                & 0.183             & 3.391             & 18.453          \\
         \hline
-        $\calT_{C,K}$   & 0.225        & 12.157      & 54.0308334194          & 0.183             & 25.899            & 140.920         \\
+        $\calT_{C,K}$   & 0.225        & 12.157      & 54.030                 & 0.183             & 25.899            & 140.920         \\
         \hline
-        $\calT_{B,5}$   & 0.331        & 113.084     & 341.056871148          & 0.233             & 152.886           & 655.993         \\
+        $\calT_{B,5}$   & 0.331        & 113.084     & 341.056                & 0.233             & 152.886           & 655.993         \\
         \hline
-        $\calT_{B,K}$   & 0.331        & 162.687     & 490.655711308          & 0.233             & 512.273           & 2198.026        \\
+        $\calT_{B,K}$   & 0.331        & 162.687     & 490.655                & 0.233             & 512.273           & 2198.026        \\
         \hline
-        $\calT_{F}$     & 0.554        & 25752.342   & 46403.3023359          & 0.310             & 8958.467          & 28835.266       \\ 
+        $\calT_{F}$     & 0.554        & 25752.342   & 46403.302              & 0.310             & 8958.467          & 28835.266       \\ 
         \hline
     \end{tabular}
     \caption{
     Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 3D domains.
     Reference values for the curl and divergence (2nd and 5th column) computed with finite element methods together with estimates and ratios
-    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (3rd and 4th column) and with $k=1$ (5th and 6th column).
+    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=1$ (3rd and 4th column) and with $k=2$ (5th and 6th column).
     Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
     }\label{table:estimates3D:curldiv}
 \end{table}
@@ -6255,7 +6255,7 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 \section{Outlook}\label{section:outlook}
 
 The primary contribution of this manuscript is the derivation of upper bounds of Poincar\'e--Friedrichs constants for the curl and divergence operators over local patches in low dimensions (i.e., $n=2$ or $n=3$).
-However, we believe there are ample opportunities for refining our estimates of Poincar\'e--Friedrichs constants and extending the technique to further applications.
+However, we believe there are ample opportunities for refining our estimates of Poincar\'e--Friedrichs constants, both conceptually and algorithmically, and extending the technique to further applications.
 
 We use local Poincar\'e--Friedrichs inequalities over single simplices, subject to boundary conditions along some faces.
 We believe that tighter estimates of these are achievable.
