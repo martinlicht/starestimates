@@ -526,7 +526,7 @@ Our main result here is Theorem~\ref{theorem:poincarefriedrichsestimate:exterior
 However, unlike in the potential construction of the gradient, it is not immediately evident whether the construction of the local curl potential with given tangential traces is a well-posed auxiliary problem.
 For the case of the gradient, it is sufficient that the sequential traversal of the triangulation satisfies that each new simplex shares at least one face with one of the previous simplices.
 For the differential operators of vector calculus and exterior calculus, we choose to be more restrictive:
-we require the new simplex to intersect with the existing subtriangulation along an $(n-1)$-dimensional boundary submanifold, allowing us to define a well-posed auxiliary problem and to extend the existing curl potential to the new simplex.
+we require the new simplex to intersect with the existing subtriangulation along a boundary submanifold of dimension $n-1$, allowing us to define a well-posed auxiliary problem and to extend the existing curl potential to the new simplex.
 Whether a triangulation admits such a particular traversal is a non-trivial condition and defines the class of \emph{shellable} triangulations.
 
  
@@ -567,17 +567,17 @@ Furthermore, $\Jacobian F$ always denotes the Jacobian of any mapping $F$.
 
 % LTeX: enabled=false
 The remainder of this manuscript is structured as follows.
-We review Poincar\'e--Friedrichs constants for the gradient over convex domains in Section~\ref{section:poincare}. 
-We also discuss there the difference with the Poincar\'e inequality and motivate our interest in linear potentials.
+We review Poincar\'e--Friedrichs constants for the gradient over convex domains in Section~\ref{section:poincare},
+where we also discuss the difference with the Poincar\'e inequality and motivate our interest in linear potentials.
 We review basic notions of triangulations in Section~\ref{section:triangulations}.
-We develop computable upper bounds for the Poincar\'e--Friedrichs constants for the gradient over face-connected triangulated domains in Section~\ref{section:gradient}.
-We recap Sobolev spaces in vector calculus and the calculus of differential forms in Section~\ref{section:calculus}. 
-Our regularized potentials over convex sets are then introduced in Section~\ref{section:potentialoperator}, 
+Subsequently, we develop the computable upper bounds for the Poincar\'e--Friedrichs constants for the gradient over face-connected triangulated domains in Section~\ref{section:gradient}.
+Sobolev spaces in vector calculus and the calculus of differential forms are reviewed in Section~\ref{section:calculus}. 
+We then introduce our regularized potentials over convex sets in Section~\ref{section:potentialoperator}, 
 giving rise to computable Poincar\'e--Friedrichs constants as their operator norms. 
 We subsequently review shellable triangulations of manifolds in Section~\ref{section:advancedtriangulations},
 and we construct an important geometric reflection operator in Section~\ref{section:extension}. 
-We finally provide computable upper bounds for Poincar\'e--Friedrichs constants for the exterior derivative over shellable triangulations in Section~\ref{section:poincarefriedrichs}.
-We present numerical examples in Section~\ref{section:numericalexamples} and conclude by some outlook in Section~\ref{section:outlook}. 
+Finally, we provide computable upper bounds for Poincar\'e--Friedrichs constants for the exterior derivative over shellable triangulations in Section~\ref{section:poincarefriedrichs} and present numerical examples in Section~\ref{section:numericalexamples}.
+We conclude with an outlook in Section~\ref{section:outlook}. 
 % LTeX: enabled=true
 
 
@@ -1799,7 +1799,7 @@ We begin with an auxiliary result with independent relevance, where we estimate 
 
 \begin{remark}\label{remark:mixedbconsimplex:hilbert}
     We can improve Lemma~\ref{lemma:mixedbconsimplex} in the special case $p=2$.
-    The variational formulation of the Poincar\'e constant over a convex domain reveals that $C_{\PF,T,F,p}$ lies between the the Poincar\'e constant without boundary conditions and with full boundary conditions. 
+    The variational formulation of the Poincar\'e constant over a convex domain reveals that $C_{\PF,T,F,p}$ lies between the Poincar\'e constant without boundary conditions and with full boundary conditions. 
     In particular,
     \begin{align*}
         C_{\PF,T,F,2} 
@@ -6010,35 +6010,50 @@ In lieu of the exact values, finite element eigenvalue computations on a refined
 We study the 
 
 Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} gives estimates for the gradient, curl and divergence Poincar\'e--Friedrichs constants. 
-In addition, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} provides anotherr upper bound for the Poincar\'e constant.
+In addition, Theorem~\ref{theorem:poincarefriedrichsestimate:grad} provides another upper bound for the Poincar\'e constant.
 We remark that the Poincar\'e--Friedrichs constant for the divergence can always be estimated by less than the diameter of the domain (see Lemma~\ref{lemma:mixedbconsimplex}), so our recursive estimates are of no practical interest in that case. 
 
 \subsection{Software and algorithms}
 
 All computations have been implemented with an in-house C++ code developed specifically for implementing finite element exterior calculus. 
-The reference Poincar\'e constants are the inverse square roots of reference eigenvalues.
-We compute the latter by solving finite element eigenvalue problems that involve mixed formulations of the vector Laplacian over sufficiently refined meshes. 
+The reference Poincar\'e constants are the inverse square roots of reference eigenvalues,
+the latter being computed as solutions of finite element eigenvalue problems in mixed formulation over sufficiently refined meshes. 
 
-Computing the upper bound for the Poincar\'e constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires to find paths between simplices. One quickly sees that a spanning tree of the face-connection graph minimizes the estimate. 
+Computing the upper bound for the Poincar\'e constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires computing paths between simplices. 
+One quickly sees that a spanning tree of the face-connection graph provides paths that minimize the estimate.  
 We choose a depth-first search that attempts to minimize the resulting constant. 
-While this does not take much time for small two-dimensional examples, the computation takes considerably for our three-dimensional examples. 
+While this does not take much time for small two-dimensional examples, the computation takes considerably longer for our three-dimensional examples. 
 
-Computing the upper bound for the Poincar\'e--Friedrichs constant of Theorem~\ref{theorem:fullrecursivesum:grad} requires the construction of shellings. 
+We require a shelling to apply Theorem~\ref{theorem:fullrecursivesum:grad} and estimate the upper bound for the Poincar\'e--Friedrichs constant. 
 Finding a shelling that optimizes a geometric target quantity is a challenging problem in computational geometry and theoretical computer science. 
-While a brute-force enumeration of shellings is still feasible for small two-dimensional triangulations, it becomes unfeasible in dimension three due to the combinatorial explosion of the number of possible shellings. 
-Instead, we perform a greedy backtracking search: 
+While a brute-force enumeration of shellings is still feasible for small two-dimensional triangulations, it becomes practically infeasible in dimension three due to the combinatorial explosion of the number of possible shellings. 
+Instead, we perform a backtracking search guided by a greedy strategy: 
 Starting with a single simplex, we successively add simplices to the partial shellings until a complete shelling is found. 
-This backtracking algorithm does generally not find the optimal shelling until all shellings have been checked.
-However, enumerating and checking all shellings seems practically infeasible. 
+% 
+% 
+In choosing among the possible candidates for the next simplex, our practical heuristic prefers those that introduce the smallest possible geometric constants, and we further prioritize the completion of face stars because then the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+% 
+% 
+We repeat this backtracking approach for all possible initial simplices, producing up to $10$ shellings each time, and pick the optimal shelling among those found. 
+We have observed in our computations that the Poincar\'e--Friedrichs estimates depend on the shelling and may differ by orders of magnitudes;
+the method might not necessarily produce the global optimum.
 
-Therefore, we need a practical heuristic to find shellings that induce small constants. Indeed, our computations show that the Poincar\'e--Friedrichs estimates depend on the shelling and can differ by orders of magnitudes. Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
-We repeat this for all possible initial simplices and pick the optimal shelling among those found.
-We use a greedy strategy: Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
-We moreover prioritize the completion of face stars since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
-In other words, we defer the completion of non-face stars in order to not introduce large factors early into the recursion. 
+In order to ensure tight estimates, we compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each local star. These estimates are numerically tighter than the ones stated in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:exterior}, as we directly implement the calculations used in the proofs.
 
-For tight estimates, we must compute the relevant geometric parameters, such as heights, individually for each simplex and use individualized estimates for each geometric transformation. The estimates that we use are slightly tighter than the ones stated in Theorems~\ref{theorem:poincarefriedrichsestimate:grad} and~\ref{theorem:poincarefriedrichsestimate:exterior},
-as we directly implement the calculations used in the proofs.
+
+% and pick the optimal shelling among those found.
+% This backtracking algorithm does generally not find the optimal shelling until all shellings have been checked.
+% However, enumerating and checking all shellings seems practically infeasible. 
+% Therefore, we need a practical heuristic to find shellings that induce small constants. 
+% Our implementation starts with a fixed simplex and generates up to $10$ shellings. 
+% We repeat this for all possible initial simplices and pick the optimal shelling among those found.
+% We use a greedy strategy: Among the possible candidate simplices, we prioritize those that introduce the smallest possible geometric constant. 
+% We moreover prioritize the completion of face stars since the induced constants are easier to control via Lemma~\ref{lemma:volumecomparison}. 
+% In other words, we defer the completion of non-face stars in order to not introduce large factors early into the recursion. 
+
+
+
+
 
 
 
@@ -6065,12 +6080,10 @@ then we can replace the factor $1/\pi$ by $1/j_{1,1} \approx 0.2609803592$, wher
 For the purpose of comparison, we compute reference Poincar\'e--Friedrichs constants over the reference tetrahedron via a higher-order finite element method over a mesh after three iterations of uniform refinement.
 These data are tabulated in Table~\ref{table:referencepoincarefriedrichs}. 
 
-We overestimate by a factor of at most six.
-We take this as an indication that the estimate is within feasible range, at least on simplices with good shape regularity. 
-We expect the bound to deteriorate as the eccentricity of the tetrahedron increases.
-However, the results indicate room for improvement. 
-Future estimates should tighten the gap towards the actual computed values,
-including for ill-shaped simplices.
+With an overestimate by a factor of at most six,
+the estimate seems within practical range, at least on simplices with good shape regularity. 
+However, the results indicate room for improvement, and we expect the overestimate to worsen as the eccentricity of the tetrahedron increases.
+Future estimates should tighten the gap towards the actual computed values, including for ill-shaped simplices.
 
 \begin{table}[t]
     \centering
