@@ -1,16 +1,60 @@
 
+
+
+\usepackage[utf8]{inputenc}
+\usepackage{fullpage}
+\usepackage{comment}
 \usepackage[dvipsnames]{xcolor}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{amscd}
+\usepackage{bbm}
+
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{tikz-3dplot} % 3d plots 
 \usetikzlibrary{calc}
-\usepackage{amscd}
 
-\usepackage{bbm}
+
+
+\usepackage[colorlinks=true]{hyperref}         % For hypertext links
+% Make the hyperlinks look similar to arXiv's
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Maroon,    % Color of internal links (sections)
+    citecolor=red,    % Color of citations
+    urlcolor=blue,     % Color for URLs
+    urlbordercolor={1 1 1},
+    pdfborder={0.5 0.5 0}  % Removes the border around the links
+}
+\usepackage{enumitem}
+\setitemize[1]{left=0.0cm} 
+
+
+
+
+% Added by MV 
+\usepackage{bm} % preferred version of bold symbols
+\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
+\setlength{\marginparwidth}{2cm}
+% \usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
+% \usepackage[textsize=tiny,color=blue!10!white]{todonotes}
+% \newcommand{\todo}[1]{{\colorbox{yellow}{#1}}}
+    
+\newcommand\cye[1]{%
+\protect\leavevmode
+\begingroup
+    \color{blue}%
+    #1%
+\endgroup
+}
+% \color{red!35!yellow}
+
+
+
 
 
 \newtheorem{definition}{Definition}[section]
@@ -566,8 +610,8 @@
 % \newcommand{\mwl}[1]{{\color{red}#1}}
 % \newcommand{\notice}[1]{{\color{red}REMARK: #1}}
 % \newcommand{\disk}{\cye{ball}}
+% \newcommand{\todo}[1]{ { \color{RedOrange} \textbf{#1} } }
 \newcommand{\disk}{ball}
-% \newcommand{\todo}[1]{{\color{RedOrange}\textbf{#1}}}
 
 
 

@@ -1,56 +1,14 @@
+% \documentclass[sn-mathphys-num]{sn-jnl}
 \documentclass[10pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{fullpage}
-% \usepackage[margin=0.1cm]{geometry}
+
+
 \input{header}
-
-\usepackage{xcolor}          % 
-\usepackage{comment}          % 
-\usepackage[colorlinks=true]{hyperref}         % For hypertext links
-% Make the hyperlinks look similar to arXiv's
-\hypersetup{
-    colorlinks=true,
-    linkcolor=Maroon,    % Color of internal links (sections)
-    citecolor=red,    % Color of citations
-    urlcolor=blue,     % Color for URLs
-    urlbordercolor={1 1 1},
-    pdfborder={0.5 0.5 0}  % Removes the border around the links
-}
-\usepackage{tikz-3dplot}      % 3d plots 
-\usepackage{enumitem}
-\setitemize[1]{left=0.0cm} 
-
-
-% Added by MV 
-\usepackage{bm} % preferred version of bold symbols
-\usepackage[normalem]{ulem} % for strikethrough (\sout) in collaborative writing
-% \usepackage{cancel} % for strikethrough in collaborative writing (math formulas)
-% \usepackage[textsize=tiny,color=blue!10!white]{todonotes}
-% \newcommand{\todo}[1]{{\colorbox{yellow}{#1}}}
-\setlength{\marginparwidth}{2cm}
-    
-\newcommand\cye[1]{%
-\protect\leavevmode
-\begingroup
-    \color{blue}%
-    #1%
-\endgroup
-}
-% \color{red!35!yellow}
-
-
-
-
-
-
-
 
 
 % LTeX: enabled=false
 % Title, authors, and affiliations
 % \title{Poincar\'e--Friedrichs constants over domains with shellable triangulations}
 % \author{Th\'eophile Chaumont-Frelet, Martin Werner Licht, Martin Vohral\'ik}
-
 \title{Computable Poincar\'e--Friedrichs constants for the $L^{p}$ de~Rham complex over convex domains and domains with shellable triangulations}
 \author{
     Th\'eophile Chaumont-Frelet\thanks{Inria Univ. Lille and Laboratoire Paul Painlev\'e, 59655 Villeneuve-d'Ascq, France, \texttt{theophile.chaumont@inria.fr}} \and
@@ -70,12 +28,6 @@
     Notably, the class of shellable triangulations includes local patches (stars) in two or three dimensions.
     The operator norms of our potentials satisfy explicitly computable bounds that depend only on the geometry.
     We thus compute upper bounds for constants in Poincar\'e--Friedrichs inequalities and lower bounds for the eigenvalues of vector Laplacians.
-    % We derive computable bound on the operator norms of our potentials that only depend on the geometry.
-    % 
-    %     We construct upper bounds for Poincar\'e--Friedrichs constants over triangulated domains. 
-    %     This includes lower estimates for the singular values of the gradient, curl, and divergence operators as special cases. 
-    %     The main application that we envision are computable estimates over finite element patches. 
-    %
     As an additional result with independent standing, we establish Poincar\'e--Friedrichs inequalities with computable constants for the $L^{p}$ de~Rham complex over bounded convex domains, derived as explicit operator norms of regularized Poincar\'e and Bogovski\u{\i} potential operators.
     We express all our main results in the calculus of differential forms and treat the gradient, curl, and divergence operators as instances of the exterior derivative.
     Computational examples illustrate the theoretical findings.
