@@ -4,6 +4,32 @@
 
 \input{header}
 
+\usepackage[colorlinks=true]{hyperref}         % For hypertext links
+% Make the hyperlinks look similar to arXiv's
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Maroon,    % Color of internal links (sections)
+    citecolor=red,    % Color of citations
+    urlcolor=blue,     % Color for URLs
+    urlbordercolor={1 1 1},
+    pdfborder={0.5 0.5 0}  % Removes the border around the links
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % LTeX: enabled=false
 % Title, authors, and affiliations
@@ -1137,6 +1163,7 @@ A crucial structural observation is the following.
 
 
 \begin{figure}[t]
+\caption{From left to right: local patches around a vertex, and edge, and a triangle. The local patch of any full-dimensional simplex only consists of that simplex itself (and its subsimplices).}\label{figure:patches}
 \centering
 \begin{tabular}{ccc}
   \begin{tikzpicture}
@@ -1193,7 +1220,6 @@ A crucial structural observation is the following.
     \draw[line width=0.1cm] (O) -- (A) -- (E) -- cycle;
   \end{tikzpicture}
 \end{tabular} 
-\caption{From left to right: local patches around a vertex, and edge, and a triangle. The local patch of any full-dimensional simplex only consists of that simplex itself (and its subsimplices).}\label{figure:patches}
 \end{figure}
 
 \begin{lemma}
@@ -2011,6 +2037,7 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
 \end{comment}
 
 \begin{figure}[t]
+\caption{Face-connected triangulation of a domain. The arrows depict a spanning tree in the face-connection graph.}\label{figure:spanningtree}
 \begin{center}
 \begin{tikzpicture}[rotate=-60]
     \coordinate (A) at (0,0);
@@ -2053,8 +2080,6 @@ The reader is referred to Figure~\ref{figure:spanningtree} for an illustration.
     \draw[-latex, thick, shorten <=1.0pt, shorten >=2.0pt] (CentroidCDE) -- (CentroidDET); 
 \end{tikzpicture}
 \end{center}
-\caption{Face-connected triangulation of a domain. The arrows depict a spanning tree in the face-connection graph.}
-\label{figure:spanningtree}
 \end{figure}
 
 
@@ -3994,6 +4019,7 @@ The monographs by Kozlov~\cite{kozlov2008combinatorial} and Ziegler~\cite{ziegle
 We also refer to Lee's monograph~\cite{lee2011topological} for any further background on manifolds. 
 
 \begin{figure}[h]
+\caption{Left: manifold triangulation of an annulus. Right: not a manifold triangulation.}\label{figure:not_manifold_triang}
 % \centerline{\includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg} \quad \includegraphics[width=0.2\textwidth]{revision/homotopic_ball.jpg}}
 \centering
 \begin{tikzpicture}[scale=0.8]
@@ -4038,9 +4064,6 @@ We also refer to Lee's monograph~\cite{lee2011topological} for any further backg
     \draw[thick,fill=gray!25] (Z) -- (CL) -- (CLL) -- cycle;
     \draw[thick,fill=gray!25] (Z) -- (CR) -- (CRR) -- cycle;
 \end{tikzpicture}
-
-\caption{Left: manifold triangulation of an annulus. Right: not a manifold triangulation.}
-\label{figure:not_manifold_triang}
 \end{figure}
 
 
@@ -4680,6 +4703,12 @@ scaled by $(\ell+1)^{-1}$.
 \end{lemma}
 
 \begin{figure}
+    \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: 
+    the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. 
+    The height vector to $v_2$ in all three triangles remains the same. The height vector to $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector to $v_0$ in the original triangle. 
+    Right: 
+    the triangle $T$ is trisected, leading to three new triangles. 
+    The height vector to $z_T$ from the opposite edge in any triangle is one third of the original height vector of that edge.}
     \begin{center}
     \begin{tikzpicture}
         % Coordinates of the triangle
@@ -4737,12 +4766,6 @@ scaled by $(\ell+1)^{-1}$.
         \node[right] at (G) {$z_T$};
     \end{tikzpicture}
     \end{center}
-    \caption{Illustration of Lemma~\ref{lemma:stardivision}. Left: 
-    the triangle $T = [ v_0, v_1, v_2 ]$ is bisected at the edge $S = [ v_0, v_1 ]$, leading to two new triangles. 
-    The height vector to $v_2$ in all three triangles remains the same. The height vector to $z_S$ in the new triangle $[z_S, v_1, v_2]$ is one half of the height vector to $v_0$ in the original triangle. 
-    Right: 
-    the triangle $T$ is trisected, leading to three new triangles. 
-    The height vector to $z_T$ from the opposite edge in any triangle is one third of the original height vector of that edge.}
 \end{figure}
 
 
@@ -4761,6 +4784,14 @@ and on the other hand, the bi-Lipschitz contraction from the local star onto the
 We give detailed estimates for the singular values of their Jacobians.
 
 \begin{figure}[t]
+    \caption{Sketch of the geometric situation in the proof of Proposition~\ref{proposition:starreflection}.
+    The triangle $T$ completes the star around an interior vertex. $A$ is the complement of the triangle within the star. 
+    $\Gamma_1$ is the interface between the two sets, and left invariant by the reflection.
+    $\Gamma_2$ is left invariant by the deformation.
+    $\Xi_{1}$ maps $T$ into $A$ while preserving the interface $\Gamma_1$,
+    and 
+    $\Xi_{2}$ maps the whole patch into $A$ while preserving the boundary $\Gamma_2$.
+    }\label{figure:geometricconstruction}
     \centering
     \begin{tabular}{ccc}
     \begin{tikzpicture}
@@ -4791,14 +4822,6 @@ We give detailed estimates for the singular values of their Jacobians.
         \draw[line width=0.2em] (B) -- (C) -- (D) -- (E) -- (A);
     \end{tikzpicture}%
     \end{tabular} 
-    \caption{Sketch of the geometric situation in the proof of Proposition~\ref{proposition:starreflection}.
-    The triangle $T$ completes the star around an interior vertex. $A$ is the complement of the triangle within the star. 
-    $\Gamma_1$ is the interface between the two sets, and left invariant by the reflection.
-    $\Gamma_2$ is left invariant by the deformation.
-    $\Xi_{1}$ maps $T$ into $A$ while preserving the interface $\Gamma_1$,
-    and 
-    $\Xi_{2}$ maps the whole patch into $A$ while preserving the boundary $\Gamma_2$.
-    }\label{figure:geometricconstruction}
 \end{figure}
 
 
@@ -6033,6 +6056,14 @@ However, the results indicate room for improvement, and we expect the overestima
 Future estimates should tighten the gap towards the practically observed values, including for ill-shaped simplices.
 
 \begin{table}[t]
+    \caption{
+    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
+    where boundary conditions are imposed along the boundary part $\Gamma$, 
+    computed via lowest-order finite element methods on a refined mesh. 
+    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
+    Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} 
+    give the upper bound $2/\pi \cdot \diam(\Delta^3) \approx 0.90031631615$.
+    }\label{table:referencepoincarefriedrichs}
     \centering
     \begin{tabular}{|l|c|c|c|}
         \hline
@@ -6043,14 +6074,6 @@ Future estimates should tighten the gap towards the practically observed values,
         $\Gamma =                            F_3$ & 0.2057601732      & 0.1527746636      & 0.1223402289    \\ \hline
         $\Gamma =                      \emptyset$ & 0.2631059409      & 0.1458215887      & 0.0874066554    \\ \hline
     \end{tabular}
-    \caption{
-    Reference $L^2$ Poincar\'e--Friedrichs constants for the gradient, curl, and divergence operators over the reference tetrahedron,
-    where boundary conditions are imposed along the boundary part $\Gamma$, 
-    computed via lowest-order finite element methods on a refined mesh. 
-    Notably, the top-left should and the bottom-right should asymptotically coincide, as should the bottom-left and the top-right.
-    Lemma~\ref{lemma:mixedbconsimplex:exteriorderivative} and Remark~\ref{remark:mixedbconsimplex:exteriorderivative:hilbert} 
-    give the upper bound $2/\pi \cdot \diam(\Delta^3) \approx 0.90031631615$.
-    }\label{table:referencepoincarefriedrichs}
 \end{table}
     
 
@@ -6093,6 +6116,13 @@ That is a result of our implementation, where the face-based reflections are not
 
 
 \begin{table}[t]
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 2D domains.
+    Reference values for the gradient and divergence (2nd and 7th column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column), 
+    and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (8th and 9th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates2D}
     \centering
     \begin{tabular}{|r||r|r|r|r|r||r|r|r|}
         \hline
@@ -6111,13 +6141,6 @@ That is a result of our implementation, where the face-based reflections are not
         $\calT_{S''}$   & 0.978        & 2.761       & 2.824               & 2.761         & 2.824              & 0.346              & 4.662              & 13.476         \\
         \hline
     \end{tabular}
-    \caption{
-    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 2D domains.
-    Reference values for the gradient and divergence (2nd and 7th column) computed with finite element methods together with estimates and ratios: 
-    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column), 
-    and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (8th and 9th column).
-    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
-    }\label{table:estimates2D}
 \end{table}
 
 
@@ -6160,6 +6183,11 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
 % As in the two-dimensional case outlined above, we again compare these reference values with estimates obtained from Theorem~\ref{theorem:poincarefriedrichsestimate:grad}, Theorem~\ref{theorem:poincarefriedrichsestimate:exterior}, and Theorem~\ref{theorem:poincarefriedrichsestimate:exterior:contraction}.
 
 \begin{table}[t]
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants of the gradient over various triangulated 3D domains.
+    Reference values for the gradient (2nd column) computed with finite element methods together with estimates and ratios: 
+    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column).
+    }\label{table:estimates3D:grad}
     \centering
     \begin{tabular}{|r||r|r|r|r|r||r|r|r|}
         \hline
@@ -6176,14 +6204,15 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
         $\calT_{F}$     & 0.711        & 10.622       & 14.927              &  268.071     & 377.033        \\ 
         \hline
     \end{tabular} 
-    \caption{
-    Estimates for $L^2$ Poincar\'e--Friedrichs constants of the gradient over various triangulated 3D domains.
-    Reference values for the gradient (2nd column) computed with finite element methods together with estimates and ratios: 
-    Theorem~\ref{theorem:poincarefriedrichsestimate:grad} (3rd and 4th column), and using Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=0$ (5th and 6th column).
-    }\label{table:estimates3D:grad}
 \end{table}
   
 \begin{table}[t]  
+    \caption{
+    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 3D domains.
+    Reference values for the curl and divergence (2nd and 5th column) computed with finite element methods together with estimates and ratios
+    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=1$ (3rd and 4th column) and with $k=2$ (5th and 6th column).
+    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
+    }\label{table:estimates3D:curldiv}
     \centering
     \begin{tabular}{|r||r|r|r||r|r|r|}
         \hline
@@ -6200,12 +6229,6 @@ Again, we compare these reference values with estimates obtained Theorem~\ref{th
         $\calT_{F}$     & 0.554        & 25752.342   & 46403.302              & 0.310             & 8958.467          & 28835.266       \\ 
         \hline
     \end{tabular}
-    \caption{
-    Estimates for $L^2$ Poincar\'e--Friedrichs constants over various triangulated 3D domains.
-    Reference values for the curl and divergence (2nd and 5th column) computed with finite element methods together with estimates and ratios
-    that rely on Theorem~\ref{theorem:poincarefriedrichsestimate:exterior} with $k=1$ (3rd and 4th column) and with $k=2$ (5th and 6th column).
-    Note that the divergence constant can always be estimated using Lemma~\ref{lemma:mixedbconsimplex}.
-    }\label{table:estimates3D:curldiv}
 \end{table}
 
 
